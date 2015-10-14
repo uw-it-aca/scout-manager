@@ -1,5 +1,7 @@
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.conf import settings
+from django.template import RequestContext
+from django.shortcuts import render_to_response
+from htmlmin.decorators import minified_response
 
 # Create your views here.
 
