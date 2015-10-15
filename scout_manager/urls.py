@@ -8,6 +8,6 @@ urlpatterns = patterns(
     # Examples:
 
     url(r'^$', 'scout_manager.views.home', name='home'),
-    url(r'^test/', 'scout_manager.views.guidelines', name='guidelines'),
+    url(r'^test/', 'scout_manager.views.test', name='test'),
 
 )
