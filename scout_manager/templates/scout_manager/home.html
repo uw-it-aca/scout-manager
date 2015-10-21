@@ -1,1 +1,19 @@
+{% extends is_hybrid|yesno:"hybrid/base.html,scout/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Scout Manager{% endblock %}
+
+{% block page_header %}<a href="/manager">Scout Manager</a>{% endblock %}
+
+{% block main_nav %}
+{% endblock %}
+
+{% block web %} 
 This is home.html.. go to <a href="/manager/test/">test.html</a>
+{% endblock %}
+
+{% block map %} 
+{% endblock %}
+
+{% block hybrid %}
+{% endblock %}
