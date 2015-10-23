@@ -1,1 +1,8 @@
-This is test.html... go to <a href="/manager/">home.html</a>
+{% extends "scout_manager/base.html" %}
+{% load staticfiles %}
+
+{% block content %} 
+<div style="display:block; margin-top:96px;">
+  This is test.html... go to <a href="/manager/">home.html</a>
+</div>    
+{% endblock %}
