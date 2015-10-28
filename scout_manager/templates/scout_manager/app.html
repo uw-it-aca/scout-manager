@@ -89,9 +89,12 @@
 {% endblock %}
 {% block header %}<a href="/manager">Scout Manager</a>{% endblock %}
 
-{% block content %}{% endblock %}
+{% block content %}        
+    {% block web_content %} 
+    {% endblock %}
+{% endblock %}
 
-{% block subcontent %} 
+{% block extra_js %} 
         {% if google_analytics %}
         <!-- google analytics -->
         <script>
