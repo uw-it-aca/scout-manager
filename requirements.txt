@@ -1,0 +1,2 @@
+-e git+https://github.com/uw-it-aca/spotseeker_client.git#egg=spotseeker-restclient
+-e .
