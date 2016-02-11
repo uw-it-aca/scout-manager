@@ -1,8 +1,56 @@
 {% extends "scout_manager/app.html" %}
 {% load staticfiles %}
 
-{% block web_content %} 
-<div style="display:block; margin-top:96px;">
-  This is space.html. You edit a space here.
-  </div>    
+{% block web_content %}   
+<div class="intro_text">
+    <p>This is space.html. You edit a space here.</p>
+</div>  
+
+<h2>Edit Space</h2>
+<form>
+    <div>
+        <div>
+            <label for="space-name">Name:</label><input id="space-name" type="text" required>
+        </div>
+        <div>
+            <label for="space-campus" required>Campus:</label>
+            <select>
+                <option>Bothell</option>
+                <option selected>Seattle</option>
+                <option>South Lake Union</option>
+                <option>Tacoma</option>
+            </select>
+        </div>
+        <div>
+            <label for="space-description">Location Description:</label><br/><textarea id="space-description" type="text"></textarea>
+        </div>
+         <div>
+            <fieldset>
+                <legend>Primary use:</legend>
+                <label><input type="checkbox" value="Food">Food Space</label>
+                <label><input type="checkbox"value="Study">Study Space</label>
+                <label><input type="checkbox"value="Other">Other</label>
+            </fieldset>
+        </div>
+        <div>
+            <label for="space-types">Type of space:</label>
+            <select>
+                <option>Space Type 1</option>
+                <option>Space Type 2</option>
+                <option>Space Type 3</option>
+                <option>Space Type 4</option>
+            </select>
+        </div>
+        <div>
+            <h3>Hours</h3>
+            <fieldset>
+                <legend>Monday Hours:</legend>
+                <label for="monday-open">Open:</label><select id="monday-open-1">
+                <label for="monday-close">Close:</label><select id="monday-close1">
+                <input type="button" value="Add Timerange">
+            </fieldset>
+        </div>
+        
+    </div>
+</form>
 {% endblock %}
