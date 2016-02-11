@@ -1,0 +1,46 @@
+{% extends "scout_manager/app.html" %}
+{% load staticfiles %}
+
+{% block web_content %} 
+<div class="intro_text">
+<p>This is the app home. It has your list of spaces and items that you manage.</p>
+</div>  
+
+<h2>Spaces you manage</h2>
+<div>Total: <span class="dummy">Total # of spaces in spaces list</span></div>
+<ol>
+    {% for spot in spots %}
+    <li>
+    <div><a href="space/{{ spot.spot_id }}">Edit</a></div>
+    <div>Name: <span class="dummy">{{ spot.name }}</span></div>
+    <div>Campus: <span class="dummy">{{ spot.campus }}</span></div>
+    <div>App: {% for app in spot.app %}<span class="dummy">{{ app.name }}</span>{% endfor %}</div>
+    <div>Building: 
+        <span>
+        {% if spot.building_name %}{{ spot.building_name }}{% else %} <span class="dummy">missing building_name</span> {% endif %}
+            </span>
+        </div>
+    <div>{% if spot.has_alert %}<span>ALERT</span>{% else %} <span class="dummy">no alert</span>{% endif %}</div>
+    <div>Type: 
+        {% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name}}</span>{% empty %}<span class="dummy">empty spot type</span> {% endfor %}{% else %} <span class="dummy">Error: spot type</span> {% endif %}
+        </div>
+    <div>Items: 
+        {% if spot.has_items %}{% for item_type in spot.has_items %}<span>{{ item_type.name}}</span>{% empty %}<span class="dummy">empty item types</span> {% endfor %}{% else %} <span class="dummy">Error: item type</span> {% endif %}
+        </div>
+    <div>Publish Status: {% if spot.is_published %}<span>Published</span>{% else %} <span>Unpublished</span>{% endif %}</div>
+    <div>Future Changes: {% if spot.has_changes %}<span>Yes {{ spot.change_date}}</span><span><a href="space/{{ spot.spot_id }}">Edit</a></span>{% else %} <span>No</span>{% endif %}</div>
+    <div>Needs ACA Review: {% if spot.needs_aca_review %}<span>Yes</span>{% else %} <span>No</span>{% endif %}</div>
+    </li>
+    {% endfor %}
+</ol>
+
+
+<h2>Items you manage</h2>
+<ol>
+    {% for item in spot.items %}
+    <li>
+    
+    </li>
+    {% endfor %}
+</ol>  
+{% endblock %}

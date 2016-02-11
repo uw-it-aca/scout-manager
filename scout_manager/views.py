@@ -5,14 +5,9 @@ from htmlmin.decorators import minified_response
 
 # Create your views here.
 
-def test(request):
+def list(request):
     return render_to_response(
-        'scout_manager/test.html',
-        context_instance=RequestContext(request))
-        
-def app(request):
-    return render_to_response(
-        'scout_manager/app.html',
+        'scout_manager/list.html',
         context_instance=RequestContext(request))
 
 
