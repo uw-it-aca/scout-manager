@@ -7,40 +7,52 @@
 </div>  
 
 <h2>Spaces you manage</h2>
-<div>Total: <span class="dummy">Total # of spaces in spaces list</span></div>
-<ol>
-    {% for spot in spots %}
-    <li>
-    <div><a href="space/{{ spot.spot_id }}">Edit</a></div>
-    <div>Name: <span class="dummy">{{ spot.name }}</span></div>
-    <div>Campus: <span class="dummy">{{ spot.campus }}</span></div>
-    <div>App: {% for app in spot.app %}<span class="dummy">{{ app.name }}</span>{% endfor %}</div>
-    <div>Building: 
-        <span>
-        {% if spot.building_name %}{{ spot.building_name }}{% else %} <span class="dummy">missing building_name</span> {% endif %}
-            </span>
-        </div>
-    <div>{% if spot.has_alert %}<span>ALERT</span>{% else %} <span class="dummy">no alert</span>{% endif %}</div>
-    <div>Type: 
-        {% if spot.spot_types %}{% for type in spot.spot_types %}<span>{{ type.name}}</span>{% empty %}<span class="dummy">empty spot type</span> {% endfor %}{% else %} <span class="dummy">Error: spot type</span> {% endif %}
-        </div>
-    <div>Items: 
-        {% if spot.has_items %}{% for item_type in spot.has_items %}<span>{{ item_type.name}}</span>{% empty %}<span class="dummy">empty item types</span> {% endfor %}{% else %} <span class="dummy">Error: item type</span> {% endif %}
-        </div>
-    <div>Publish Status: {% if spot.is_published %}<span>Published</span>{% else %} <span>Unpublished</span>{% endif %}</div>
-    <div>Future Changes: {% if spot.has_changes %}<span>Yes {{ spot.change_date}}</span><span><a href="space/{{ spot.spot_id }}">Edit</a></span>{% else %} <span>No</span>{% endif %}</div>
-    <div>Needs ACA Review: {% if spot.needs_aca_review %}<span>Yes</span>{% else %} <span>No</span>{% endif %}</div>
-    </li>
-    {% endfor %}
-</ol>
+<div>
+    <div>Total: <span class="dummy">Total # of spaces in spaces list</span></div>
+    <ol>
+        <li>
+            <div><a href="space/{{ spot.spot_id }}">Edit</a></div>
+            <div>Image:<span class="dummy">space.default_image</span></div>
+            <div>Name: <span class="dummy">spot.name</span></div>
+            <div>Campus: <span class="dummy">spot.campus</span></div>
+            <div>App:<span class="dummy">Food</span><span class="dummy">Study</span></div>
+            <div>Building:<span class="dummy">building_name</span></div>
+            <div>Alert:<span class="dummy">has_alert</span></div>
+            <div>Type:<span class="dummy">spot.type.name</span></div>
+            <div>Items:<span class="dummy">has_items (Yes or No)</span><span class="dummy">item_type.name</span></div>
+            <div>Publish Status: <span class="dummy">Published</span><span class="dummy">Unpublished</span><button type="button">Toggle Publish Status</button></div>
+            <div>Future Changes: <span class="dummy">change_date (Yes or No)</span><span class="dummy"><a href="space/{{ spot.spot_id }}">spot.change_date</a></span></div>
+            <div>Needs ACA Review: <span class="dummy">needs_aca_review (Yes or No)</span> <button type="button">Clear Review Flag</button></div>
+            <div><button type="button">Delete Space</button></div>
+            <div><span>If published: <a href="scout/space/{{ spot.spot_id }}">view in client</span></div>
+        </li>
+    </ol>
+    <div><button type="button">Download CSV of listed Spaces</button></div>
+    <div><a href="add/">Add New Space</a></div>
+</div>
 
 
 <h2>Items you manage</h2>
-<ol>
-    {% for item in spot.items %}
-    <li>
-    
-    </li>
-    {% endfor %}
-</ol>  
+<div>
+<div>Total: <span class="dummy">Total # of items in items list</span></div>
+    <ol>
+        <li>
+            <div><a href="item/{{ item_id }}">Edit</a></div>
+            <div>Image:<span class="dummy">item.default_image</span></div>
+            <div>Name: <span class="dummy">item.name</span></div>
+            <div>Building:<span class="dummy">space.building_name</span></div>
+            <div>Type:<span class="dummy">item_type.name</span></div>
+            <div>Category:<span class="dummy">item_category.name</span></div>
+            <div>Brand:<span class="dummy">item.brand</span></div>
+            <div>Model:<span class="dummy">item.model</span></div>
+            <div>Quantity:<span class="dummy">item.quantity</span></div>
+            <div>Space:<span class="dummy">space.name</span></div>
+            <div><span>If space published: <a href="scout/space/{{ spot.spot_id }}">view in client</a></span></div>
+            <div>STF Funded: <span class="dummy">Yes</span></div>
+            <div><button type="button">Delete Item</button></div>
+        </li>
+    </ol>
+    <div><button type="button">Download CSV of listed Items</button></div>
+    <div><a href="add/">Add New Item</a></div>
+</div> 
 {% endblock %}

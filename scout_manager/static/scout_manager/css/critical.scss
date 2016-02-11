@@ -4,4 +4,8 @@ $scout-purple: #6564A8;
 
 // header
 
-.content_container { margin: 66px 0 0 20px;  }
+.content_container { position: fixed; width: 99%; overflow: scroll; Top:55px; bottom:45px; left:20px;}
+
+// body
+span {padding:5px;}
+div {margin: 10px 0 0;}
