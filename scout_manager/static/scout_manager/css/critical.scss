@@ -7,9 +7,11 @@ $scout-purple: #6564A8;
 .content_container { position: fixed; width: 99%; overflow: scroll; Top:55px; bottom:45px;}
 
 // body
+h3 {margin-top:50px; color: #666;}
 span {padding:5px;}
 div {margin: 10px 0 0;}
 
 // forms
-label, legend {font-weight:900;}
-input, select {margin: 8px 0 8px 15px;}
+legend {font-weight:900;}
+input, select {margin: 8px 8px 8px 15px;}
+textarea {height:120px; width:330px;}

@@ -9,6 +9,9 @@
 <h2>Edit Space</h2>
 <form>
     <div>
+        
+        
+        <h3>General Info</h3>
         <div>
             <label for="space-name">Name:</label><input id="space-name" type="text" required>
         </div>
@@ -21,8 +24,120 @@
                 <option>Tacoma</option>
             </select>
         </div>
+        <fieldset>
+            <legend>Location:</legend>
+            <label for="space-latitude">Latitude</label><input id="space-latitude" type="text" required>
+            <label for="space-longitude">Longitude</label><input id="space-longitude" type="text" required>
+        </fieldset> 
         <div>
-            <label for="space-description">Location Description:</label><br/><textarea id="space-description" type="text"></textarea>
+            <label><input type="checkbox" value="Outdoor">Outdoor location</label>
+        </div> 
+        <div>
+            <!-- Hide if outdoor location -->
+            <label for="room-number">Room #:</label><input id="room-number" type="text">
+        </div>
+        <div>
+            <!-- Hide if outdoor location. We suggest/enforce building options. -->
+            <label for="building-name">Building:</label><input id="building-name" type="text">
+        </div>
+        <div>
+            <!-- Hide if outdoor location. We suggest floor options. -->
+            <label for="floor">Floor:</label><input id="floor" type="text">
+        </div>
+        <div>
+            <label><input type="checkbox" value="ADA">ADA Accessible</label>
+        </div> 
+        
+        <h3>Current Alert</h3>
+         <div>
+            <label for="alert-notes">Post this Alert:</label><br/><textarea id="alert-notes" type="text"></textarea>
+        </div>
+        
+        
+        
+        <h3>Hours and Access</h3>              
+            <div>
+                <fieldset>
+                 <!-- Selection determines which Day hours fieldsets are shown below -->
+                    <legend>Days of operation:</legend>
+                    <label><input type="checkbox" value="Monday">Monday</label>
+                    <label><input type="checkbox"value="Tuesday">Tuesday</label>
+                    <label><input type="checkbox"value="Wednesday">Wednesday</label>
+                    <label><input type="checkbox" value="Thursday">Thursday</label>
+                    <label><input type="checkbox"value="Friday">Friday</label>
+                    <label><input type="checkbox"value="Saturday">Saturday</label>
+                    <label><input type="checkbox"value="Sunday">Sunday</label>
+                </fieldset>
+            <fieldset>
+                <legend>Monday Hours:</legend>
+                <div><input type="button" value="Add Timerange"></div>
+                <ul>
+                    <li>
+                        <label for="monday-open">Open:</label>
+                        <select id="monday-open-1">
+                            <option>12:00 am</option>
+                            <option>12:15 am</option>
+                            <option>12:30 am</option>
+                            <option>12:45 am</option>
+                            <option>1:00 am</option>
+                            <option>1:15 am</option>
+                            <option>...</option>
+                            <option>midnight</option>
+                        </select>
+                        <label for="monday-close-1">Close:</label><select id="monday-close-1">
+                            <!-- limit close option list to times later than open choice -->
+                            <option>12:00 am</option>
+                            <option>12:15 am</option>
+                            <option>12:30 am</option>
+                            <option>12:45 am</option>
+                            <option>1:00 am</option>
+                            <option>1:15 am</option>
+                            <option>...</option>
+                            <option>midnight</option>
+                        </select>
+                    </li>
+                </ul>
+            </fieldset>
+            <fieldset>
+                <legend>Tuesday Hours:</legend>
+                <div><input type="button" value="Add Timerange"></div>
+                <ul>
+                    <li>
+                        <label for="tuesday-open">Open:</label>
+                        <select id="tuesday-open-1">
+                            <option>12:00 am</option>
+                            <option>12:15 am</option>
+                            <option>12:30 am</option>
+                            <option>12:45 am</option>
+                            <option>1:00 am</option>
+                            <option>1:15 am</option>
+                            <option>...</option>
+                            <option>midnight</option>
+                        </select>
+                        <label for="tuesday-close-1">Close:</label><select id="tuesday-close-1">
+                            <!-- limit close option list to times later than open choice -->
+                            <option>12:00 am</option>
+                            <option>12:15 am</option>
+                            <option>12:30 am</option>
+                            <option>12:45 am</option>
+                            <option>1:00 am</option>
+                            <option>1:15 am</option>
+                            <option>...</option>
+                            <option>midnight</option>
+                        </select>
+                    </li>
+                </ul>
+            </fieldset>
+        </div>
+        <div>
+            <label for="hours-notes">Hours Notes:</label><br/><textarea id="hours-notes"></textarea>
+        </div>
+    
+    
+        
+        <h3>Space Description</h3>
+        <div>                                       
+            <label for="space-description">Description:</label><br/><textarea id="space-description" type="text"></textarea>
         </div>
          <div>
             <fieldset>
@@ -34,23 +149,23 @@
         </div>
         <div>
             <label for="space-types">Type of space:</label>
-            <select>
+            <select id="space-types">
                 <option>Space Type 1</option>
                 <option>Space Type 2</option>
                 <option>Space Type 3</option>
                 <option>Space Type 4</option>
             </select>
         </div>
-        <div>
-            <h3>Hours</h3>
-            <fieldset>
-                <legend>Monday Hours:</legend>
-                <label for="monday-open">Open:</label><select id="monday-open-1">
-                <label for="monday-close">Close:</label><select id="monday-close1">
-                <input type="button" value="Add Timerange">
-            </fieldset>
-        </div>
         
+        
+        
+        <h3>Space Administration</h3>
+        
+        
+        <h3>Items for campus use</h3>        
+        
+                    
+                     
     </div>
 </form>
 {% endblock %}
