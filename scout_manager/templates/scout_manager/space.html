@@ -132,11 +132,26 @@
         <div>
             <label for="hours-notes">Hours Notes:</label><br/><textarea id="hours-notes"></textarea>
         </div>
+        <div>
+            <label for="access-notes">Access Notes:</label><br/><textarea id="access-notes"></textarea>
+        </div>
     
     
         
         <h3>Space Description</h3>
-        <div>                                       
+        <fieldset>
+            <legend>Images</legend>
+            <label><input type="file" name="pic" accept="image/*"><span class="visuallyhidden">Add Image +</span></label>
+            <ul>
+                <li class="dummy">
+                <span><a href="#" target="_blank" title="preview image">Image 1 URL</a></span><label for="default_image_1"><input type="radio" name="default" id="default_image_1">default</label><button type="button">Remove</button>
+                </li>
+                <li class="dummy">
+                <span><a href="#" target="_blank" title="preview image">Image 2 URL</a></span><label for="default_image_2"><input type="radio" name="default" id="default_image_2">default</label><button type="button">Remove</button>
+                </li>
+            </ul>
+        </fieldset>
+        <div>                                 
             <label for="space-description">Description:</label><br/><textarea id="space-description" type="text"></textarea>
         </div>
          <div>

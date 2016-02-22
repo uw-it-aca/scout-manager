@@ -10,8 +10,18 @@ $scout-purple: #6564A8;
 h3 {margin-top:50px; color: #666;}
 span {padding:5px;}
 div {margin: 10px 0 0;}
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
 
 // forms
 legend {font-weight:900;}
-input, select {margin: 8px 8px 8px 15px;}
+input, select, button {margin: 8px 8px 8px 15px;}
 textarea {height:120px; width:330px;}
