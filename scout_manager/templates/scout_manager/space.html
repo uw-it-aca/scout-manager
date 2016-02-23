@@ -9,9 +9,9 @@
 <h2>Edit Space</h2>
 <!-- if has_planned change -->
 <!-- & not editing planned change -->
-<p>This shows currently published space information. You have edits set to be published on <span class="dummy">[planned_edit.date]</span>. <a href="space/{{ spot.spot_id }}/{{planned_id}}">edit</a></p>
+<p>This shows currently published space information. You have edits set to be published on <span class="dummy">[planned_edit.date]</span>. <a href="/manager/space/{{ spot.spot_id }}/{{planned_id}}/">edit</a></p>
 <!-- IS editing planned change -->
-<p>These edits are set to be published on <input type=date name="planned_date" placeholder="planned_edit.date">. <a href="space/{{ spot.spot_id }}">edit currently published info</a> 
+<p>These edits are set to be published on <input type=date name="planned_date" placeholder="planned_edit.date">. <a href="/manager/space/{{ spot.spot_id }}/">edit currently published info</a> 
 
 <form>
     <div>
@@ -301,7 +301,7 @@
         
         <h3>Space Actions</h3>
         <div>Publish Status: <span class="dummy">Published</span><span class="dummy">Unpublished</span><input type="button" value="Toggle Publish Status"></input></div>
-        <div><span>If published: <a href="scout/space/{{ spot.spot_id }}">view in client</a></span></div>
+        <div><span>If published: <a href="/scout/space/{{ spot.spot_id }}">view in client</a></span></div>
         <div><input type="button" value="Download CSV of Space"></input></div>
         <div><input type="button" value="Delete Space"></input></div>
     
