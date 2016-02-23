@@ -1,8 +1,32 @@
 {% extends "scout_manager/app.html" %}
 {% load staticfiles %}
 
-{% block web_content %} 
-<div style="display:block; margin-top:96px;">
+{% block web_content %}   
+
+<div class="intro_text">
   This is item.html. You edit inventory items here.
-  </div>    
+</div>    
+
+<form>
+    <div>
+        <h3>General Information</h3>
+        
+        
+        <h3>Current Alert</h3>
+        
+        <h3>Item Description</h3>
+        
+        <h3>Access Restrictions</h3>
+        
+        <h3>Contact</h3>
+        
+        <h3>Item Actions</h3>
+        <div><span>If published: <a href="scout/space/{{ spot.spot_id }}" target="_blank">view in client</a></span></div>
+        <div><input type="button" value="Download CSV of Item"></input></div>
+        <div><input type="button" value="Delete Item Listing"></input></div>
+    
+        <a href="/">Cancel</a>
+        <input type="submit" value="Save Changes"></input>     
+    </div>
+</form>
 {% endblock %}
