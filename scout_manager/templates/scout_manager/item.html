@@ -10,15 +10,138 @@
 <form>
     <div>
         <h3>General Information</h3>
+        <div>
+            <label for="item-name">Name:</label><input id="item-name" type="text" required>
+        </div>
+        <div>
+            <label for="item-quantity">Quantity:</label><input id="item-quantity" type="number" required>
+        </div>
+        <div><span>Location:</span> <span class="dummy">space.name, space.building, space.campus</span><a href="/manager/add/" title="change location">edit</a>
+        </div>
         
         
+                
         <h3>Current Alert</h3>
+        <div>
+            <label for="alert-notes">Post this Alert:</label><br/><textarea id="alert-notes" type="text"></textarea>
+        </div>
+        
+        
         
         <h3>Item Description</h3>
+        <div>
+            <label for="item-category">Category of Item:</label>
+            <!-- list of ACA predefined categories -->
+            <select id="item-category" required>
+                <option>Prototyping</option>
+                <option>Defined Category 2</option>
+                <option>...</option>
+            </select>
+        </div>
+        <div>
+            <label for="item-type">Type of Item:</label><input id="item-type" type="text" list="item-type-list" required>
+            <!-- list of predefined types, based on selected category. -->
+            <datalist id="item-type-list">
+                <option>3D printer</option>
+                <option>Defined Type 2</option>
+                <option>...</option>
+            </datalist>
+        </div>
+        <div>                                 
+            <label for="item-description">Description:</label><br/><textarea id="item-description" type="text"></textarea>
+        </div>
+        <div><label for="item_info_website">Website for item info:</label><input id="item_info_website" type="url"></div>
+            <fieldset>
+                <legend>Images</legend>
+                <label><input type="file" name="pic" accept="image/*"><span class="visuallyhidden">Add Image +</span></label>
+                <ul>
+                    <li class="dummy">
+                    <span><a href="#" target="_blank" title="preview image">Image 1 URL</a></span><label for="default-image-1"><input type="radio" name="default" id="default-image-1">default</label><input type="button" value="Remove"></input>
+                    </li>
+                    <li class="dummy">
+                    <span><a href="#" target="_blank" title="preview image">Image 2 URL</a></span><label for="default-image-2"><input type="radio" name="default" id="default-image-2">default</label><input type="button" value="Remove"></input>
+                    </li>
+                </ul>
+            </fieldset>
+        <div>
+            <label for="item-serial">Serial Number(s):</label><input id="item-serial" type="text" >
+            <p>Note: separate multiple serial numbers with a comma.</p>
+        </div>
+        <div>
+            <label for="item-UWtag">UW Tag Number(s):</label><input id="item-UWtag" type="text" >
+            <p>Note: separate multiple UW Tag numbers with a comma.</p>
+        </div>
+
         
         <h3>Access Restrictions</h3>
+        <fieldset>
+            <legend>Prerequisites?</legend>
+            <label><input type="radio" name="prereqs" value="yes">Yes</label>
+            <label><input type="radio" name="prereqs" value="no" checked>No</label>
+            <!-- if YES -->
+            <div>                                 
+                <label for="prereq-notes">Notes:</label><br/><textarea id="prereq-notes" type="text"></textarea>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Reservable?</legend>
+            <label><input type="radio" name="item-reservability" value="yes">Yes</label>
+            <label><input type="radio" name="item-reservability" value="no" checked>No</label>
+            <!-- if YES -->
+            <div>                                 
+                <label for="reservation-notes">Notes:</label><br/><textarea id="reservation-notes" type="text"></textarea>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Item Access</legend>
+            <fieldset>
+             <!-- Selection determines which access fieldsets are shown below -->
+                <legend>Available to general public?</legend>
+                <label><input type="radio" name="item-access-limit" value="yes" checked>Yes</label>
+                <label><input type="radio" name="item-access-limit" value="no">No</label>
+            </fieldset>
+         <!-- If NO, show this fieldset. Selection here determines which access fieldsets are shown below. -->
+            <fieldset>
+                <legend>Access limited to:</legend>
+                <label><input type="checkbox"value="access_netid">UW NetID</label>
+                <label><input type="checkbox"value="access_role">Specific role (student/staff/faculty)</label>
+                <label><input type="checkbox" value="access_school">Specific School affiliation</label>
+                <label><input type="checkbox"value="access_dept">Specific Department affiliation</label>
+                 <fieldset><!-- If ROLE selected, show this fieldset.  -->
+                    <legend>Select role(s)</legend>
+                    <label><input type="checkbox"value="access_student">Students</label>
+                    <label><input type="checkbox"value="access_faculty">Staff</label>
+                    <label><input type="checkbox" value="access_staff">Faculty</label>
+                </fieldset>
+                <div><!-- If SCHOOL AFFILIATION selected, show this div.  -->
+                    <select multiple>
+                        <option selected disabled>choose school...</option>
+                        <option >UW School 1</option>
+                        <option >UW School 2</option>
+                        <option >...</option>
+                    </select>
+                </div>
+                <div>
+                <!-- If DEPARTMENT AFFILIATION selected, show this div. If SCHOOL(s) chosen, then limit list to depts within school(s). -->
+                    <select multiple>
+                        <option selected disabled>choose department...</option>
+                        <option >UW Dept 1</option>
+                        <option >UW Dept 2</option>
+                        <option >...</option>
+                    </select>
+                </div>
+            </fieldset>
+            <div>                                 
+                <label for="access-notes">Access Notes:</label><br/><textarea id="access-notes" type="text"></textarea>
+            </div>
+        </fieldset>
+        
         
         <h3>Contact</h3>
+        <div><label for="manager-name">Manager Name:</label><input id="manager-name" type="type"></div>
+        <div><label for="phone">Phone:</label><input id="phone" type="tel"></div>
+        <div><label for="email">Email:</label><input id="email" type="email"></div>
+        </fieldset>
         
         <h3>Item Actions</h3>
         <div><span>If published: <a href="scout/space/{{ spot.spot_id }}" target="_blank">view in client</a></span></div>
