@@ -136,7 +136,7 @@
             </fieldset>
         </div>
         <div>
-            <label for="hours-notes">Hours Notes:</label><br/><textarea id="hours-notes"></textarea>
+            <label for="hours-notes">Hours Notes/Exceptions:</label><br/><textarea id="hours-notes"></textarea>
         </div>
         <div>
             <label for="access-notes">Access Notes:</label><br/><textarea id="access-notes"></textarea>
@@ -147,22 +147,8 @@
         <h3>Space Description</h3>
         <div>                                 
             <label for="space-description">Description:</label><br/><textarea id="space-description" type="text"></textarea>
-        </div>
+        </div>         
         <div>
-            <fieldset>
-                <legend>Images</legend>
-                <label><input type="file" name="pic" accept="image/*"><span class="visuallyhidden">Add Image +</span></label>
-                <ul>
-                    <li class="dummy">
-                    <span><a href="#" target="_blank" title="preview image">Image 1 URL</a></span><label for="default-image-1"><input type="radio" name="default" id="default-image-1">default</label><input type="button" value="Remove"></input>
-                    </li>
-                    <li class="dummy">
-                    <span><a href="#" target="_blank" title="preview image">Image 2 URL</a></span><label for="default-image-2"><input type="radio" name="default" id="default-image-2">default</label><input type="button" value="Remove"></input>
-                    </li>
-                </ul>
-            </fieldset>
-        </div>
-         <div>
             <fieldset>
                 <legend>Primary use:</legend>
                 <label><input type="checkbox" value="Food">Food Space</label>
@@ -187,6 +173,18 @@
         <!--  if "food" space -->
         <h3>Food space metadata</h3>
         <div>  
+            <fieldset>
+                <legend>Food location images:</legend>
+                <label><input type="file" name="pic" accept="image/*"><span class="visuallyhidden">Add Image +</span></label>
+                <ul>
+                    <li class="dummy">
+                    <span><a href="#" target="_blank" title="preview image">Image 1 URL</a></span><label for="food-default-image-1"><input type="radio" name="default-food-img" id="food-default-image-1">default</label><input type="button" value="Remove"></input>
+                    </li>
+                    <li class="dummy">
+                    <span><a href="#" target="_blank" title="preview image">Image 2 URL</a></span><label for="food-default-image-2"><input type="radio" name="default-food-img" id="food-default-image-2">default</label><input type="button" value="Remove"></input>
+                    </li>
+                </ul>
+            </fieldset>
             <fieldset>
                 <legend>Cuisine</legend>
                 <label><input type="checkbox" name="cuisine" value="cuisine1">Cuisine 1(American)</label>
@@ -223,6 +221,18 @@
         <!--  if "study" space -->
         <h3>Study space metadata</h3>
         <div>
+            <fieldset>
+                <legend>Images of Study Space</legend>
+                <label><input type="file" name="pic" accept="image/*"><span class="visuallyhidden">Add Image +</span></label>
+                <ul>
+                    <li class="dummy">
+                    <span><a href="#" target="_blank" title="preview image">Image 1 URL</a></span><label for="study-default-image-1"><input type="radio" name="default-study-img" id="study-default-image-1">default</label><input type="button" value="Remove"></input>
+                    </li>
+                    <li class="dummy">
+                    <span><a href="#" target="_blank" title="preview image">Image 2 URL</a></span><label for="study-default-image-2"><input type="radio" name="default-study-img" id="study-default-image-2">default</label><input type="button" value="Remove"></input>
+                    </li>
+                </ul>
+            </fieldset>
             <div>
                 <label for="capacity">Capacity</label><input type="number" id="capacity">
             </div>  
@@ -267,7 +277,7 @@
         <h3>Items for campus use</h3>    
         <div>
             <fieldset>
-                <legend>Room Resources:</legend>
+                <legend>Basic Resources:</legend>
                 <label><input type="checkbox"value="computer">Computer</label>
                 <label><input type="checkbox"value="display">Large Display (for laptop)</label>
                 <label><input type="checkbox"value="outlets">Outlets</label>
@@ -279,7 +289,7 @@
         </div>  
         <div>
             <fieldset>
-                <legend>Room Inventory</legend>
+                <legend>Additional Resources</legend>
                 <div><a href="/manager/item/">Add New Item</a></div>
                 <!--  if has_items -->
                 <div>Total: <span class="dummy">Total # of items in items list</span></div>
@@ -301,14 +311,16 @@
         
         
         <h3>Space Actions</h3>
+        <!-- When a user clicks to change status to PUBLISH, then we should validate form. It would be ideal to provide them with a condensed list of required and invalid fields that they need to address (maybe as intersticial, which they can cancel from. -->
         <div>Publish Status: <span class="dummy">Published</span><span class="dummy">Unpublished</span><input type="button" value="Toggle Publish Status"></input></div>
         <div><span>If published: <a href="/scout/space/{{ spot.spot_id }}">view in client</a></span></div>
         <div><input type="button" value="Download CSV of Space"></input></div>
         <div><input type="button" value="Delete Space"></input></div>
     
         <a href="/">Cancel</a>
+        <!-- if PUBLISHED space. Behavior, goes to publish confirmation. -->
         <input type="submit" value="Save Changes"></input>
-        <!-- if adding new space or editing currently UNPUBLISHED space (behavior: skips auth) -->
+        <!-- if adding new space or editing currently UNPUBLISHED space (behavior: skips auth). -->
         <input type="submit" value="Save for later"></input>
 
         
