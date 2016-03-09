@@ -2,7 +2,52 @@
 {% load staticfiles %}
 
 {% block web_content %} 
-<div style="display:block; margin-top:96px;">
+<div class="intro_text">
   This is add.html. You step through this page to add items/spaces.
-  </div>    
+</div>    
+<h2>Add Space/Item</h2>
+ <form>
+     <h3>General location info:</h3>
+     <div>
+        <label for="space-campus" required>Campus:</label>
+        <select>
+            <option>Bothell</option>
+            <option selected>Seattle</option>
+            <option>South Lake Union</option>
+            <option>Tacoma</option>
+        </select>
+    </div>
+    <div>
+        <label><input type="checkbox" value="Outdoor">Outdoor location</label>
+    </div> 
+    <div>
+        <!-- Hide if outdoor location. We suggest/enforce building options based on campus. -->
+        <label for="building-name">Building:</label><input id="building-name" type="text">
+    </div>
+ </form>
+ <div>
+<!-- Hide until outdoor or a building selected. List is constrained to campus and outdoor spaces or spaces w/in a building. -->
+<div>
+    <h3>Select the location:</h3>
+    <div>Total: <span class="dummy">Total # of spaces list</span></div>
+    <ol>
+        <li>
+            <a href="/manager/space/{{ spot.spot_id }}"> 
+                <div>Name: <span class="dummy">spot.name</span></div>
+                <div>Building:<span class="dummy">building_name</span></div>
+                <div>Floor: <span class="dummy">Floor_# floor</span></div>
+                <div>Room #: <span class="dummy">room_#</span></div>
+                <div>Type:<span class="dummy">spot.type.name</span></div>
+                <div>Items:<span class="dummy">has_items (Yes or No)</span><span class="dummy">item_type.name <!--could be multiple --></span></div>
+                <div><span>If published: <a href="/scout/space/{{ spot.spot_id }}">view in client</span></div>
+            </a>
+        </li>
+    </ol>
+    <div>
+        <p>Not seeing the location?<a href="/manager/space/">Create New Space <!-- Pass on entered location info (campus, outdoor/building. --></a></p>
+    </div>
+ </div>
+    
+        
+
 {% endblock %}
