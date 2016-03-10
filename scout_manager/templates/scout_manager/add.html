@@ -28,19 +28,36 @@
  <div>
 <!-- Hide until outdoor or a building selected. List is constrained to campus and outdoor spaces or spaces w/in a building. -->
 <div>
-    <h3>Select the location:</h3>
+    <h3>Select the space:</h3>
     <div>Total: <span class="dummy">Total # of spaces list</span></div>
-    <ol>
-        <li>
-            <a href="/manager/space/{{ spot.spot_id }}"> 
-                <div>Name: <span class="dummy">spot.name</span></div>
-                <div>Building:<span class="dummy">building_name</span></div>
-                <div>Floor: <span class="dummy">Floor_# floor</span></div>
-                <div>Room #: <span class="dummy">room_#</span></div>
-                <div>Type:<span class="dummy">spot.type.name</span></div>
-                <div>Items:<span class="dummy">has_items (Yes or No)</span><span class="dummy">item_type.name <!--could be multiple --></span></div>
-                <div><span>If published: <a href="/scout/space/{{ spot.spot_id }}">view in client</span></div>
-            </a>
+    <ol><!-- list by floor. -->
+        <li><h4 class="dummy">Floor_# 1</h4>
+            <ol>
+                <li>
+                    <a href="/manager/space/{{ spot.spot_id }}"> 
+                        <div>Name: <span class="dummy">spot.name</span></div>
+                        <div>Building:<span class="dummy">building_name</span></div>
+                        <div>Room #: <span class="dummy">room_#</span></div>
+                        <div>Type:<span class="dummy">spot.type.name <!--could be multiple --></span></div>
+                        <div>Items:<span class="dummy">has_items (Yes or No)</span><span class="dummy">item_type.name <!--could be multiple --></span></div>
+                        <div><span>If published: <a href="/scout/space/{{ spot.spot_id }}" target="_blank">view in client</span></div>
+                    </a>
+                </li>
+            </ol>
+        </li>
+        <li><h4 class="dummy">Floor_# 2</h4>
+            <ol>
+                <li>
+                    <a href="/manager/space/{{ spot.spot_id }}"> 
+                        <div>Name: <span class="dummy">spot.name</span></div>
+                        <div>Building:<span class="dummy">building_name</span></div>
+                        <div>Room #: <span class="dummy">room_#</span></div>
+                        <div>Type:<span class="dummy">spot.type.name <!--could be multiple --></span></div>
+                        <div>Items:<span class="dummy">has_items (Yes or No)</span><span class="dummy">item_type.name <!--could be multiple --></span></div>
+                        <div><span>If published: <a href="/scout/space/{{ spot.spot_id }}" target="_blank">view in client</span></div>
+                    </a>
+                </li>
+            </ol>
         </li>
     </ol>
     <div>
