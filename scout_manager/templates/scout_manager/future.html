@@ -1,0 +1,25 @@
+{% extends "scout_manager/app.html" %}
+{% load staticfiles %}
+
+{% block web_content %} 
+<div class="intro_text">
+  This is publish.html. You confirm when you want to publish here.
+</div>    
+<h2>Publish Space</h2>
+<form>
+    <fieldset>
+        <legend>When do you want to publish?</legend>
+        <div>
+            <label for="publish-now">
+                <input id="publish-now" type="radio" name="publish-time">Now
+            </label>
+        </div>
+        <div>
+            <label for="publish-future">
+                <input id="publish-future" type="radio" name="publish-time">Future date
+            </label>
+        </div>
+    </fieldset>
+</form>
+
+{% endblock %}

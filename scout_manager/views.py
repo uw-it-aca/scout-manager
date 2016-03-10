@@ -22,9 +22,9 @@ def item(request):
         context_instance=RequestContext(request))
 
 
-def publish(request):
+def future(request):
     return render_to_response(
-        'scout_manager/publish.html',
+        'scout_manager/future.html',
         context_instance=RequestContext(request))
         
 def space(request):

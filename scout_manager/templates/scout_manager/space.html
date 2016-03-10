@@ -8,8 +8,7 @@
 
 <h2>Edit Space</h2>
 <!-- if has_planned change -->
-<!-- & not editing planned change -->
-<p>This shows currently published space information. You have edits set to be published on <span class="dummy">[planned_edit.date]</span>. <a href="/manager/space/{{ spot.spot_id }}/{{planned_id}}/">edit</a></p>
+<p>This shows currently published space information. You have edits set to be published on <span class="dummy">[planned_edit.date]</span>. <a href="/manager/future/{{ spot.spot_id }}">edit</a></p>
 <!-- IS editing planned change -->
 <p>These edits are set to be published on <input type=date name="planned_date" placeholder="planned_edit.date">. <a href="/manager/space/{{ spot.spot_id }}/">edit currently published info</a> 
 
@@ -312,7 +311,21 @@
         
         <h3>Space Actions</h3>
         <!-- When a user clicks to change status to PUBLISH, then we should validate form. It would be ideal to provide them with a condensed list of required and invalid fields that they need to address (maybe as intersticial, which they can cancel from. -->
-        <div>Publish Status: <span class="dummy">Published</span><span class="dummy">Unpublished</span><input type="button" value="Toggle Publish Status"></input></div>
+        <div>Publish Status: <span class="dummy">Published</span><span class="dummy">Unpublished</span>
+            <input type="button" value="Toggle Publish Status"></input> <!-- Publish will be conditional to form validation -->
+        </div>
+        
+        <h3>Incomplete items</h3>
+        <p>You must complete </p>
+        <ul>
+            <li class="dummy">
+            Invalid field name 1
+            </li>
+            <li class="dummy">
+            Invalid field name 2
+            </li>
+        </ul>
+        
         <div><span>If published: <a href="/scout/space/{{ spot.spot_id }}">view in client</a></span></div>
         <div><input type="button" value="Download CSV of Space"></input></div>
         <div><input type="button" value="Delete Space"></input></div>
@@ -320,7 +333,7 @@
         <a href="/">Cancel</a>
         <!-- if PUBLISHED space. Behavior, goes to publish confirmation. -->
         <input type="submit" value="Save Changes"></input>
-        <!-- if adding new space or editing currently UNPUBLISHED space (behavior: skips auth). -->
+        <!-- if editing currently UNPUBLISHED space (behavior: skips auth). -->
         <input type="submit" value="Save for later"></input>
 
         
