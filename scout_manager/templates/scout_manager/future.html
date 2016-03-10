@@ -3,9 +3,11 @@
 
 {% block web_content %} 
 <div class="intro_text">
-  This is publish.html. You confirm when you want to publish here.
+  This is future.html. You set/edit changes that you want to go out on a future date here.
 </div>    
-<h2>Publish Space</h2>
+<h2>Future changes for <span class="dummy">[space_name]</span></h2>
+<!-- has planned change. Form fields should show.  -->
+<p>These edits are set to be published on <span class="dummy">planned_edit.date</span>. <a href="/manager/space/{{ spot.spot_id }}/">edit currently published info</a> </p>
 <form>
     <fieldset>
         <legend>When do you want to publish?</legend>
