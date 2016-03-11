@@ -59,6 +59,7 @@
         
         
         <h3>Hours and Access</h3>              
+            <div><input type="button" value="clear values"></input></div>
             <div>
                 <fieldset>
                  <!-- Selection determines which Day hours fieldsets are shown below -->
@@ -73,7 +74,6 @@
                 </fieldset>
             <fieldset>
                 <legend>Monday Hours:</legend>
-                <div><input type="button" value="Add Timerange"></div>
                 <ul>
                     <li>
                         <label for="monday-open">Open:</label>
@@ -98,12 +98,13 @@
                             <option>...</option>
                             <option>midnight</option>
                         </select>
+                        <input type="button" value="X" title="remove time range">
                     </li>
                 </ul>
+                <div><input type="button" value="Add Timerange"></div>
             </fieldset>
             <fieldset>
                 <legend>Tuesday Hours:</legend>
-                <div><input type="button" value="Add Timerange"></div>
                 <ul>
                     <li>
                         <label for="tuesday-open">Open:</label>
@@ -128,8 +129,10 @@
                             <option>...</option>
                             <option>midnight</option>
                         </select>
+                        <input type="button" value="X" title="remove time range">
                     </li>
                 </ul>
+                <div><input type="button" value="Add Timerange"></div>
             </fieldset>
         </div>
         <div>
@@ -340,10 +343,11 @@
         <!-- if existing space -->
         <div><input type="button" value="Delete Space"></input></div>
         
-        <!-- if editing currently UNPUBLISHED space (behavior: skips auth). -->
-        <input type="submit" value="Save for later"></input>
-
-        <a href="/">Cancel</a>
+        <div>
+            <a href="/">Cancel</a>
+            <!-- if editing currently UNPUBLISHED space (behavior: skips auth). -->
+            <input type="submit" value="Save for later"></input>
+        </div>
         
     </div>
 </form>
