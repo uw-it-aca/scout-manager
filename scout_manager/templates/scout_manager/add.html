@@ -1,10 +1,10 @@
 {% extends "scout_manager/app.html" %}
 {% load staticfiles %}
 
-{% block web_content %} 
+{% block web_content %}
 <div class="intro_text">
   This is add.html. You step through this page to add items/spaces.
-</div>    
+</div>
 <h2>Add Space/Item</h2>
  <form>
      <h3>General location info:</h3>
@@ -19,7 +19,7 @@
     </div>
     <div>
         <label><input type="checkbox" value="Outdoor">Outdoor location</label>
-    </div> 
+    </div>
     <div>
         <!-- Hide if outdoor location. We suggest/enforce building options based on campus. -->
         <label for="building-name">Building:</label><input id="building-name" type="text">
@@ -34,7 +34,7 @@
         <li><h4 class="dummy">Floor_# 1</h4>
             <ol>
                 <li>
-                    <a href="/manager/space/{{ spot.spot_id }}"> 
+                    <a href="/manager/space/{{ spot.spot_id }}">
                         <div>Name: <span class="dummy">spot.name</span></div>
                         <div>Building:<span class="dummy">building_name</span></div>
                         <div>Room #: <span class="dummy">room_#</span></div>
@@ -48,7 +48,7 @@
         <li><h4 class="dummy">Floor_# 2</h4>
             <ol>
                 <li>
-                    <a href="/manager/space/{{ spot.spot_id }}"> 
+                    <a href="/manager/space/{{ spot.spot_id }}">
                         <div>Name: <span class="dummy">spot.name</span></div>
                         <div>Building:<span class="dummy">building_name</span></div>
                         <div>Room #: <span class="dummy">room_#</span></div>
@@ -64,7 +64,5 @@
         <p>Not seeing the location?<a href="/manager/space/">Create New Space <!-- Pass on entered location info (campus, outdoor/building. --></a></p>
     </div>
  </div>
-    
-        
 
 {% endblock %}
