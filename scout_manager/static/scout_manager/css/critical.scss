@@ -2,15 +2,18 @@
 
 $scout-purple: #6564A8;
 
+// content
 
-.manager-content { padding-top:55px; padding-bottom:45px;
+.manager-content {
 
     li { margin-right: 1em; margin-bottom: 2em; border: solid 1px #ddd; padding: 5px; }
+
+    h2 {  color: #333; }
+    h3 { margin-top:50px; color: #666;}
+
 }
 
-// body
-h3 {margin-top:50px; color: #666;}
-
+// global helpers
 
 .visuallyhidden {
     border: 0;
