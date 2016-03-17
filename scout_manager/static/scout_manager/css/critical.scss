@@ -3,7 +3,7 @@
 $scout-purple: #6564A8;
 
 
-.manager-content { position: fixed; width: 100%; overflow-x: hidden; overflow-y: scroll; top:55px; bottom:45px;
+.manager-content { padding-top:55px; padding-bottom:45px;
 
     li { margin-right: 1em; margin-bottom: 2em; border: solid 1px #ddd; padding: 5px; }
 }
