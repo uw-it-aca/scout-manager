@@ -1,10 +1,10 @@
 {% extends "scout_manager/app.html" %}
 {% load staticfiles %}
 
-{% block web_content %} 
-<div class="intro_text">
-  This is future.html. You set/edit changes that you want to go out on a future date here.
-</div>    
+{% block web_content %}
+
+<p>This is future.html. You set/edit changes that you want to go out on a future date here.</p>
+
 <h2>Future changes for <span class="dummy">[space_name]</span></h2>
 <!-- IF has planned change.  -->
 <p>These edits are set to be published on <span class="dummy">planned_edit.date</span>.</p>
@@ -13,13 +13,13 @@
      <div>
         <label for="alert-notes">Post this Alert:</label><br/><textarea id="alert-notes" type="text"></textarea>
     </div>
-    <h3>Open Hours</h3>   
+    <h3>Open Hours</h3>
     <div>
         <!-- button to prepopulate hours widget w/ current space hours -->
         <input type="button" value="Import currently published hours"></input>
-        
+
         <input type="button" value="clear values"></input>
-    </div>            
+    </div>
     <div>
         <fieldset>
          <!-- Selection determines which Day hours fieldsets are shown below -->
@@ -100,7 +100,7 @@
     </div>
     <!--  if "food" space -->
     <h3>Food space metadata</h3>
-    <div>  
+    <div>
             <div>
                 <label for="menu-url">Menu URL:</label><input id="menu-url" type="url">
             </div>
@@ -108,9 +108,9 @@
             <legend>Coupons</legend>
             <label for="coupon-url">Coupon URL:</label><input id="coupon-url" type="url">
             <label for="coupon-date">Expiration Date:</label><input id="coupon-date" type="date">
-        </fieldset>   
+        </fieldset>
     </div>
-    
+
     <h3>Publish Changes</h3>
     <div>
        <label for="publish-date">Publish changes on:</label><input id="publish-date" type="date">

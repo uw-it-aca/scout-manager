@@ -1,11 +1,9 @@
 {% extends "scout_manager/app.html" %}
 {% load staticfiles %}
 
-{% block web_content %}   
+{% block web_content %}
 
-<div class="intro_text">
-  This is item.html. You edit inventory items here.
-</div>    
+<p>This is item.html. You edit inventory items here.</p>    
 
 <form>
     <div>
@@ -18,16 +16,16 @@
         </div>
         <div><span>Location:</span> <span class="dummy">space.name, space.building, space.campus</span><a href="/manager/add/" title="change location">edit</a>
         </div>
-        
-        
-                
+
+
+
         <h3>Current Alert</h3>
         <div>
             <label for="alert-notes">Post this Alert:</label><br/><textarea id="alert-notes" type="text"></textarea>
         </div>
-        
-        
-        
+
+
+
         <h3>Item Description</h3>
         <div>
             <label for="item-category">Category of Item:</label>
@@ -47,7 +45,7 @@
                 <option>...</option>
             </datalist>
         </div>
-        <div>                                 
+        <div>
             <label for="item-description">Description:</label><br/><textarea id="item-description" type="text"></textarea>
         </div>
         <div><label for="item_info_website">Website for item info:</label><input id="item_info_website" type="url"></div>
@@ -72,14 +70,14 @@
             <p>Note: separate multiple UW Tag numbers with a comma.</p>
         </div>
 
-        
+
         <h3>Access Restrictions</h3>
         <fieldset>
             <legend>Prerequisites?</legend>
             <label><input type="radio" name="prereqs" value="yes">Yes</label>
             <label><input type="radio" name="prereqs" value="no" checked>No</label>
             <!-- if YES -->
-            <div>                                 
+            <div>
                 <label for="prereq-notes">Notes:</label><br/><textarea id="prereq-notes" type="text"></textarea>
             </div>
         </fieldset>
@@ -88,7 +86,7 @@
             <label><input type="radio" name="item-reservability" value="yes">Yes</label>
             <label><input type="radio" name="item-reservability" value="no" checked>No</label>
             <!-- if YES -->
-            <div>                                 
+            <div>
                 <label for="reservation-notes">Notes:</label><br/><textarea id="reservation-notes" type="text"></textarea>
             </div>
         </fieldset>
@@ -131,25 +129,25 @@
                     </select>
                 </div>
             </fieldset>
-            <div>                                 
+            <div>
                 <label for="access-notes">Access Notes:</label><br/><textarea id="access-notes" type="text"></textarea>
             </div>
         </fieldset>
-        
-        
+
+
         <h3>Contact</h3>
         <div><label for="manager-name">Manager Name:</label><input id="manager-name" type="type"></div>
         <div><label for="phone">Phone:</label><input id="phone" type="tel"></div>
         <div><label for="email">Email:</label><input id="email" type="email"></div>
         </fieldset>
-        
+
         <h3>Item Actions</h3>
         <div><span>If published: <a href="scout/space/{{ spot.spot_id }}" target="_blank">view in client</a></span></div>
         <div><input type="button" value="Download CSV of Item"></input></div>
         <div><input type="button" value="Delete Item Listing"></input></div>
-    
+
         <a href="/">Cancel</a>
-        <input type="submit" value="Save Changes"></input>     
+        <input type="submit" value="Save Changes"></input>
     </div>
 </form>
 {% endblock %}

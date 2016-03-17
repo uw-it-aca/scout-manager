@@ -1,10 +1,8 @@
 {% extends "scout_manager/app.html" %}
 {% load staticfiles %}
 
-{% block web_content %} 
-<div class="intro_text">
+{% block web_content %}
 <p>This is the app home. It has your list of spaces and items that you manage.</p>
-</div>  
 
 <h2>Spaces you manage</h2>
 <div>
@@ -24,8 +22,11 @@
             <div>Future Changes: <span class="dummy">change_date (Yes or No)</span><span class="dummy"><a href="/manager/space/{{ spot.spot_id }}/{{planned_id}}/">spot.change_date</a></span></div>
             <div>Needs ACA Review: <span class="dummy">needs_aca_review (Yes or No)</span> <button type="button">Clear Review Flag</button></div>
             <div><button type="button">Delete Space</button></div>
-            <div><span>If published: <a href="/scout/space/{{ spot.spot_id }}">view in client</span></div>
+            <div><span>If published: <a href="/scout/space/{{ spot.spot_id }}">view in client</a></span></div>
         </li>
+        <li>another space</li>
+        <li>another space</li>
+        <li>another space</li>
     </ol>
     <div><button type="button">Download CSV of listed Spaces</button></div>
     <div><a href="/manager/add/">Add New Space</a></div>
@@ -51,8 +52,11 @@
             <div>STF Funded: <span class="dummy">Yes</span></div>
             <div><button type="button">Delete Item</button></div>
         </li>
+        <li>another item</li>
+        <li>another item</li>
+        <li>another item</li>
     </ol>
     <div><button type="button">Download CSV of listed Items</button></div>
     <div><a href="/manager/add/">Add New Item</a></div>
-</div> 
+</div>
 {% endblock %}
