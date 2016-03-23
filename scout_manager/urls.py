@@ -12,6 +12,6 @@ urlpatterns = patterns(
     url(r'^future/', 'scout_manager.views.future', name='future'),
     url(r'^space/', 'scout_manager.views.space', name='space'),
     url(r'^test/', 'scout_manager.views.test', name='test'),
-    url(r'.*', 'scout_manager.views.list', name='list'),
+    url(r'^$', 'scout_manager.views.list', name='list'),
 
 )
