@@ -1,5 +1,5 @@
 """
-A simple test using python for load
+A simple test using python for loading urls
 """
 
 import sys
@@ -10,7 +10,7 @@ from django.test import LiveServerTestCase
 from django.test import Client
 from django.conf import settings
 
-class ReTest(LiveServerTestCase):
+class urlStatusCheck(LiveServerTestCase):
 
     def setUp(self):
         self.client = Client()
@@ -61,7 +61,3 @@ class ReTest(LiveServerTestCase):
     def test_badURL(self):
         self.matchUrlStatus(404, '/rando/' )
 
-    """Checks to see if you can get a proper 403
-    def test_bad_homeURL(self):
-        self.assertUrlStatus('/rando/', 404) 
-    """
