@@ -6,22 +6,22 @@
 
 <h2>Spaces you manage</h2>
 <div>
-    <div>Total: <span class="dummy">{{ count }}</span></div>
-    <ol>as
+    <div>Total: <span class="">{{ count }}</span></div>
+    <ol>
         {% for spot in spots %}
         <li>
             <div><a href="/manager/space/{{ spot.spot_id }}">Edit</a></div>
             <div>Image:<span class="dummy">space.default_image</span></div>
-            <div>Name: <span class="dummy">{{ spot.name }}</span></div>
-            <div>Campus: <span class="dummy">{{ spot.campus }}</span></div>
+            <div>Name: <span class="">{{ spot.name }}</span></div>
+            <div>Campus: <span class="">{{ spot.campus }}</span></div>
             <div>App:<span class="dummy">Food</span><span class="dummy">Study</span></div>
-            <div>Building:<span class="dummy">{{ spot.building_name }}</span></div>
+            <div>Building:<span class="">{{ spot.building_name }}</span></div>
             {% if spot.has_alert %}
-            <div>Alert:<span class="dummy">{{ spot.alert_notes }}</span></div>
+            <div>Alert:<span class="">{{ spot.alert_notes }}</span></div>
             {% endif %}
             <div>Type:
                 {%  for type in spot.spot_types %}
-                <span class="dummy">{{ type.name }}</span>
+                <span class="">{{ type.name }}</span>
                 {% endfor %}
             </div>
             <div>Items:<span class="dummy">has_items (Yes or No)</span><span class="dummy">item_type.name <!--could be multiple --></span></div>
