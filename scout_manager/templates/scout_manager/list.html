@@ -11,15 +11,19 @@
         {% for spot in spots %}
         <li>
             <div><a href="/manager/space/{{ spot.spot_id }}">Edit</a></div>
-            <div>Image:<span class="dummy">space.default_image</span></div>
+            <div>Image:
+                {% if spot.images %}
+                    <div style="border:solid 1px #eee; background: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=200') no-repeat center center; background-size:contain; width:100px; height:100px;">&nbsp;</div>
+                {% endif %}
+            </div>
             <div>Name: <span class="">{{ spot.name }}</span></div>
             <div>Campus: <span class="">{{ spot.campus }}</span></div>
-            <div>App:<span class="dummy">Food</span><span class="dummy">Study</span></div>
+            <div>App:<span class="dummy">Food</span> <span class="dummy">Study</span></div>
             <div>Building:<span class="">{{ spot.building_name }}</span></div>
             {% if spot.has_alert %}
             <div>Alert:<span class="">{{ spot.alert_notes }}</span></div>
             {% endif %}
-            <div>Type:
+            <div>Space Type:
                 {%  for type in spot.spot_types %}
                 <span class="">{{ type.name }}</span>
                 {% endfor %}
