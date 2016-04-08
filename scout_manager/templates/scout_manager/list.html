@@ -29,7 +29,7 @@
             <div>Future Changes: <span class="dummy">change_date (Yes or No)</span><span class="dummy"><a href="/manager/space/{{ spot.spot_id }}/{{planned_id}}/">spot.change_date</a></span></div>
             <div>Needs ACA Review: <span class="dummy">needs_aca_review (Yes or No)</span> <button type="button">Clear Review Flag</button></div>
             <div><button type="button">Delete Space</button></div>
-            <div><span>If published: <a href="/scout/space/{{ spot.spot_id }}">view in client</a></span></div>
+            <div><span>If published: <a href="/detail/{{ spot.spot_id }}">view in client</a></span></div>
         </li>
         {% endfor %}
     </ol>
@@ -53,7 +53,7 @@
             <div>Model:<span class="dummy">item.model</span></div>
             <div>Quantity:<span class="dummy">item.quantity</span></div>
             <div>Space item is in:<span class="dummy">space.name</span></div>
-            <div><span>If space published: <a href="/scout/space/{{ spot.spot_id }}">view in client</a></span></div>
+            <div><span>If space published: <a href="/detail/{{ spot.spot_id }}">view in client</a></span></div>
             <div>STF Funded: <span class="dummy">Yes</span></div>
             <div><button type="button">Delete Item</button></div>
         </li>
