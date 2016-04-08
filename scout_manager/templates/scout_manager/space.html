@@ -14,44 +14,48 @@
 
         <h3>General Info</h3>
         <div>
-            <label for="space-name">Name:</label><input id="space-name" type="text" required>
+            <label for="space-name">Name:</label><input id="space-name" type="text" value="{{ spot.name }}" required>
         </div>
         <div>
             <label for="space-campus" required>Campus:</label>
             <select>
-                <option>Bothell</option>
-                <option selected>Seattle</option>
-                <option>South Lake Union</option>
-                <option>Tacoma</option>
+                <option value="seattle" {% if spot.campus == "bothell" %} selected {% endif %}>Seattle</option>
+                <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
+                <option value="south_lake_union" {% if spot.campus == "south_lake_union" %} selected {% endif %}>South Lake Union</option>
+                <option value="tacoma" {% if spot.campus == "tacoma" %} selected {% endif %}>Tacoma</option>
             </select>
         </div>
         <fieldset>
             <legend>Location:</legend>
-            <label for="space-latitude">Latitude</label><input id="space-latitude" type="text" required>
-            <label for="space-longitude">Longitude</label><input id="space-longitude" type="text" required>
+            <label for="space-latitude">Latitude</label><input id="space-latitude" type="text" value="{{ spot.latitude }}" required>
+            <label for="space-longitude">Longitude</label><input id="space-longitude" type="text" value="{{ spot.longitude }}"required>
         </fieldset>
         <div>
+            {# How are we determining this? #}
             <label><input type="checkbox" value="Outdoor">Outdoor location</label>
         </div>
         <div>
             <!-- Hide if outdoor location -->
-            <label for="room-number">Room #:</label><input id="room-number" type="text">
+            <label for="room-number">Room #:</label><input id="room-number" type="text" value="{{ spot.room_number }}">
         </div>
         <div>
             <!-- Hide if outdoor location. We suggest/enforce building options. -->
-            <label for="building-name">Building:</label><input id="building-name" type="text">
+            <label for="building-name">Building:</label><input id="building-name" type="text" value="{{ spot.building_name }}">
         </div>
         <div>
             <!-- Hide if outdoor location. We suggest floor options. -->
-            <label for="floor">Floor:</label><input id="floor" type="text">
+            <label for="floor">Floor:</label><input id="floor" type="text" value="{{ spot.floor }}">
         </div>
         <div>
+            {# How are we determining this? #}
             <label><input type="checkbox" value="ADA">ADA Accessible</label>
         </div>
 
         <h3>Current Alert</h3>
          <div>
-            <label for="alert-notes">Post this Alert:</label><br/><textarea id="alert-notes" type="text"></textarea>
+             {# we need to set has_alert too to show it #}
+             <label><input type="checkbox" value="has_alert" {% if spot.has_alert %}checked{% endif %}>Alert Enabled</label>
+            <label for="alert-notes">Post this Alert:</label><br/><textarea id="alert-notes" type="text" value="{{ spot.alert_notes }}"></textarea>
         </div>
 
 

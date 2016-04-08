@@ -2,7 +2,7 @@ from django.conf import settings
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from htmlmin.decorators import minified_response
-from scout.dao.space import get_spot_list
+from scout.dao.space import get_spot_list, get_spot_by_id
 
 
 def list(request):
@@ -35,7 +35,9 @@ def future(request):
             context_instance=RequestContext(request))
 
 
-def space(request):
+def space(request, spot_id):
+    spot = get_spot_by_id(spot_id)
     return render_to_response(
             'scout_manager/space.html',
+            {'spot': spot},
             context_instance=RequestContext(request))
