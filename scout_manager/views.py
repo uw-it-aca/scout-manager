@@ -29,15 +29,17 @@ def item(request):
             context_instance=RequestContext(request))
 
 
-def future(request):
+def schedule(request, spot_id):
+    spot = get_spot_by_id(spot_id)
     return render_to_response(
-            'scout_manager/future.html',
+            'scout_manager/schedule.html',
+            {'spot': spot},
             context_instance=RequestContext(request))
 
 
-def space(request, spot_id):
+def edit(request, spot_id):
     spot = get_spot_by_id(spot_id)
     return render_to_response(
-            'scout_manager/space.html',
+            'scout_manager/edit.html',
             {'spot': spot},
             context_instance=RequestContext(request))
