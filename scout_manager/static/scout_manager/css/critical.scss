@@ -1,10 +1,24 @@
-// sass variables
+// default variables
 
-$scout-purple: #6564A8;
+
+$main-color: #c0392b;
+$header-height: 56px;
+$footer-height: 45px;
+
+
+// header
+
+.manager-header { position: fixed; top:0; left:0; right: 0; z-index: 999; background: #fff url('../img/scout.png') no-repeat 0 50%; background-size:55px; border-bottom: 2px #777 solid;
+
+    h1 { margin: 0; line-height: $header-height; height:$header-height; color: $main-color; text-transform: uppercase; font-family: "Raleway",sans-serif; font-weight: 900; font-size: 30px; padding-left: 65px;
+
+        a { color: $main-color; text-decoration: none; }
+    }
+}
 
 // content
 
-.manager-content {
+.manager-content { padding-top:$header-height+2; padding-bottom:$footer-height+2;
 
     li { margin-right: 1em; margin-bottom: 2em; border: solid 1px #ddd; padding: 5px; }
 
@@ -12,6 +26,11 @@ $scout-purple: #6564A8;
     h3 { margin-top:50px; color: #666;}
 
 }
+
+
+// footer
+.manager-footer { line-height: $footer-height; position: fixed; background: #555 url('../img/w-mini_wht.png') no-repeat 5px 50%; background-size: 50px; color:white; width: 100%; font-size: 75%; bottom:0; text-align:center; border-top: 2px #777 solid;}
+
 
 // global helpers
 
