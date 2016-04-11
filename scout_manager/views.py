@@ -37,9 +37,9 @@ def schedule(request, spot_id):
             context_instance=RequestContext(request))
 
 
-def edit(request, spot_id):
+def space(request, spot_id):
     spot = get_spot_by_id(spot_id)
     return render_to_response(
-            'scout_manager/edit.html',
+            'scout_manager/space.html',
             {'spot': spot},
             context_instance=RequestContext(request))

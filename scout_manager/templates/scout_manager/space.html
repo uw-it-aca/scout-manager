@@ -4,7 +4,7 @@
 {% block web_content %}
 <p>This is space.html. You edit a space here.</p>
 
-<h2>Edit {{ spot.name }}</h2>
+<h2>Edit: {{ spot.name }}</h2>
 
 
 <!-- IF has planned change.  -->
@@ -304,7 +304,18 @@
                 <div>Total: <span class="dummy">Total # of items in items list</span></div>
                 <ol>
                     <li>
-                        <div><a href="/manager/item/{{ item_id }}">Edit</a></div>
+                        <div><a href="/manager/item/601234">Edit</a></div>
+                        <div>Name: <span class="dummy">item.name</span></div>
+                        <div>Type:<span class="dummy">item_type.name</span></div>
+                        <div>Category:<span class="dummy">item_category.name</span></div>
+                        <div>Brand:<span class="dummy">item.brand</span></div>
+                        <div>Model:<span class="dummy">item.model</span></div>
+                        <div>Quantity:<span class="dummy">item.quantity</span></div>
+                        <div>STF Funded: <span class="dummy">Yes</span></div>
+                        <div><input type="button" value="Delete Item"></input></div>
+                    </li>
+                    <li>
+                        <div><a href="/manager/item/475786">Edit</a></div>
                         <div>Name: <span class="dummy">item.name</span></div>
                         <div>Type:<span class="dummy">item_type.name</span></div>
                         <div>Category:<span class="dummy">item_category.name</span></div>

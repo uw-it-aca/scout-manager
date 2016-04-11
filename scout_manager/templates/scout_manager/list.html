@@ -10,7 +10,7 @@
     <ol>
         {% for spot in spots %}
         <li>
-            <div><a href="/manager/edit/{{ spot.spot_id }}/">Edit</a></div>
+            <div><a href="/manager/space/{{ spot.spot_id }}/">Edit</a></div>
             <div>Image:
                 {% if spot.images %}
                     <div style="border:solid 1px #eee; background: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=200') no-repeat center center; background-size:contain; width:100px; height:100px;">&nbsp;</div>
@@ -47,7 +47,7 @@
 <div>Total: <span class="dummy">Total # of items in items list</span></div>
     <ol>
         <li>
-            <div><a href="/manager/item/{{ item_id }}">Edit</a></div>
+            <div class="dummy"><a href="/manager/item/{{ item_id }}">Edit</a></div>
             <div>Image:<span class="dummy">item.default_image</span></div>
             <div>Name: <span class="dummy">item.name</span></div>
             <div>Building item is in:<span class="dummy">space.building_name</span></div>
