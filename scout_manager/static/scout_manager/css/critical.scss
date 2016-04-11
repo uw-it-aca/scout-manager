@@ -1,16 +1,20 @@
 // default variables
 
-
-$main-color: #c0392b;
-$header-height: 56px;
+$main-color: #777;
+$header-height: 55px;
 $footer-height: 45px;
 
 
 // header
 
-.manager-header { position: fixed; top:0; left:0; right: 0; z-index: 999; background: #fff url('../img/scout.png') no-repeat 0 50%; background-size:55px; border-bottom: 2px #777 solid;
+.manager-header {
 
-    h1 { margin: 0; line-height: $header-height; height:$header-height; color: $main-color; text-transform: uppercase; font-family: "Raleway",sans-serif; font-weight: 900; font-size: 30px; padding-left: 65px;
+    position: fixed; top:0; left:0; right: 0; z-index: 999;
+    background: #fff url('../img/scout-default.png') no-repeat 10px 50%;
+    background-size:35px;
+    border-bottom: 2px #777 solid;
+
+    h1 { margin: 0; line-height: $header-height; height:$header-height; padding-left:$header-height; color: $main-color; text-transform: uppercase; font-family: "Raleway",sans-serif; font-weight: 900; font-size: 30px;
 
         a { color: $main-color; text-decoration: none; }
     }
@@ -18,10 +22,9 @@ $footer-height: 45px;
 
 // content
 
-.manager-content { padding-top:$header-height+2; padding-bottom:$footer-height+2;
+.manager-content { padding-top:$header-height+2; padding-bottom:$footer-height+2; padding-left: 10px; padding-right: 10px;
 
     li { margin-right: 1em; margin-bottom: 2em; border: solid 1px #ddd; padding: 5px; }
-
     h2 {  color: #333; }
     h3 { margin-top:50px; color: #666;}
 

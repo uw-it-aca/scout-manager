@@ -10,7 +10,7 @@
     <ol>
         {% for spot in spots %}
         <li>
-            <div><a href="/manager/space/{{ spot.spot_id }}">Edit</a></div>
+            <div><a href="/manager/space/{{ spot.spot_id }}/">Edit</a></div>
             <div>Image:
                 {% if spot.images %}
                     <div style="border:solid 1px #eee; background: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=200') no-repeat center center; background-size:contain; width:100px; height:100px;">&nbsp;</div>
@@ -30,10 +30,10 @@
             </div>
             <div>Items:<span class="dummy">has_items (Yes or No)</span><span class="dummy">item_type.name <!--could be multiple --></span></div>
             <div>Publish Status: <span class="dummy">Published</span><span class="dummy">Unpublished</span><button type="button">Toggle Publish Status</button></div>
-            <div>Future Changes: <span class="dummy">change_date (Yes or No)</span><span class="dummy"><a href="/manager/space/{{ spot.spot_id }}/{{planned_id}}/">spot.change_date</a></span></div>
+            <div>Future Changes: <span class="dummy">change_date (Yes or No)</span><span class="dummy"><a href="/manager/space/{{ spot.spot_id }}/{{planned_id}}">spot.change_date</a></span></div>
             <div>Needs ACA Review: <span class="dummy">needs_aca_review (Yes or No)</span> <button type="button">Clear Review Flag</button></div>
             <div><button type="button">Delete Space</button></div>
-            <div><span>If published: <a href="/detail/{{ spot.spot_id }}">view in client</a></span></div>
+            <div><span>If published: <a href="/detail/{{ spot.spot_id }}/">view in client</a></span></div>
         </li>
         {% endfor %}
     </ol>
