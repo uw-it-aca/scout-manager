@@ -5,14 +5,12 @@
 
 <p>This is future.html. You set/edit changes that you want to go out on a future date here.</p>
 
-<h2>Future changes for <span class="">{{ spot.name }}</span></h2>
+<h2>Scheduled changes for <span class="">{{ spot.name }}</span></h2>
 
 <!-- IF has planned change.  -->
 <p>These edits are set to be published on <span class="dummy">planned_edit.date</span>.</p>
 <ol>
-    <li><a href="">0001</a> - scheduled for July 6, 2016 @ 10:45am</li>
-    <li><a href="">0007</a> - scheduled for July 10, 2016 @ 09:15am</li>
-    <li><a href="">0029</a> - scheduled for July 16, 2016 @ 16:45pm</li>
+    <li><a href="/manager/schedule/{{ spot.spot_id }}/">Scheduled for July 6, 2016 @ 10:45am</a></li>
 </ol>
 
 <form>
