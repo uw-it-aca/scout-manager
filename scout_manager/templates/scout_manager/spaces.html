@@ -2,15 +2,18 @@
 {% load staticfiles %}
 
 {% block web_content %}
-<p>This is the app home. It has your list of spaces and items that you manage.</p>
-
 <h2>Spaces you manage</h2>
+
 <div>
+
     <div>Total: <span class="">{{ count }}</span></div>
+    <div><button type="button">Download CSV of listed Spaces</button></div>
+    <div><a href="/manager/spaces/add/">Add New Space</a></div>
+
     <ol>
         {% for spot in spots %}
         <li>
-            <div><a href="/manager/space/{{ spot.spot_id }}/">Edit</a></div>
+            <div><a href="/manager/spaces/{{ spot.spot_id }}/">Edit</a></div>
             <div>Image:
                 {% if spot.images %}
                     <div style="border:solid 1px #eee; background: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=200') no-repeat center center; background-size:contain; width:100px; height:100px;">&nbsp;</div>
@@ -37,35 +40,6 @@
         </li>
         {% endfor %}
     </ol>
-    <div><button type="button">Download CSV of listed Spaces</button></div>
-    <div><a href="/manager/add/">Add New Space</a></div>
-</div>
 
-
-<h2>Items you manage</h2>
-<div>
-<div>Total: <span class="dummy">Total # of items in items list</span></div>
-    <ol>
-        <li>
-            <div class="dummy"><a href="/manager/item/{{ item_id }}">Edit</a></div>
-            <div>Image:<span class="dummy">item.default_image</span></div>
-            <div>Name: <span class="dummy">item.name</span></div>
-            <div>Building item is in:<span class="dummy">space.building_name</span></div>
-            <div>Type:<span class="dummy">item_type.name</span></div>
-            <div>Category:<span class="dummy">item_category.name</span></div>
-            <div>Brand:<span class="dummy">item.brand</span></div>
-            <div>Model:<span class="dummy">item.model</span></div>
-            <div>Quantity:<span class="dummy">item.quantity</span></div>
-            <div>Space item is in:<span class="dummy">space.name</span></div>
-            <div><span>If space published: <a href="/detail/{{ spot.spot_id }}">view in client</a></span></div>
-            <div>STF Funded: <span class="dummy">Yes</span></div>
-            <div><button type="button">Delete Item</button></div>
-        </li>
-        <li>another item</li>
-        <li>another item</li>
-        <li>another item</li>
-    </ol>
-    <div><button type="button">Download CSV of listed Items</button></div>
-    <div><a href="/manager/add/">Add New Item</a></div>
 </div>
 {% endblock %}

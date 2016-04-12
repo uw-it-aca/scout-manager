@@ -7,11 +7,19 @@ urlpatterns = patterns(
     '',
     # Examples:
 
-    url(r'^add/', 'scout_manager.views.add', name='add'),
-    url(r'^item/', 'scout_manager.views.item', name='item'),
+    # /manager/
+    url(r'^$', 'scout_manager.views.home', name='home'),
+
+    # /items/
+    url(r'^items/$', 'scout_manager.views.items', name='items'),
+    url(r'^items/(?P<item_id>[0-9]{1,5})', 'scout_manager.views.items_edit', name='items_edit'),
+    url(r'^items/add/', 'scout_manager.views.items_add', name='items_add'),
+
+    # /spaces/
+    url(r'^spaces/$', 'scout_manager.views.spaces', name='spaces'),
+    url(r'^spaces/(?P<spot_id>[0-9]{1,5})', 'scout_manager.views.spaces_edit', name='spaces_edit'),
+    url(r'^spaces/add/', 'scout_manager.views.spaces_add', name='spaces_add'),
+
     url(r'^schedule/(?P<spot_id>[0-9]{1,5})', 'scout_manager.views.schedule', name='schedule'),
-    url(r'^space/(?P<spot_id>[0-9]{1,5})', 'scout_manager.views.space', name='space'),
-    url(r'^test/', 'scout_manager.views.test', name='test'),
-    url(r'^$', 'scout_manager.views.list', name='list'),
 
 )
