@@ -1,33 +1,117 @@
-{% extends "scout_manager/base.html" %}
-{% load staticfiles %}
+{% extends "scout_manager/base.html" %} {% load staticfiles %} {% block web_content %}
 
-{% block web_content %}
-<p>This is add.html. You step through this page to add items/spaces.</p>
+<h2>Add New Space</h2>
+<form>
 
-<h2>Add Space</h2>
- <form>
-     <h3>General location info:</h3>
-     <div>
+    <h3>General Info</h3>
+    <div>
+        <label for="space-name">Name:</label>
+        <input id="space-name" type="text" value="" required>
+    </div>
+    <div>
         <label for="space-campus" required>Campus:</label>
         <select>
-            <option>Bothell</option>
-            <option selected>Seattle</option>
-            <option>South Lake Union</option>
-            <option>Tacoma</option>
+            <option value="seattle">Seattle</option>
+            <option value="bothell">Bothell</option>
+            <option value="south_lake_union">South Lake Union</option>
+            <option value="tacoma">Tacoma</option>
         </select>
     </div>
+    <fieldset>
+        <legend>Location:</legend>
+        <label for="space-latitude">Latitude</label>
+        <input id="space-latitude" type="text" value="" required>
+        <label for="space-longitude">Longitude</label>
+        <input id="space-longitude" type="text" value="" required>
+    </fieldset>
     <div>
-        <label><input type="checkbox" value="Outdoor">Outdoor location</label>
+        {# How are we determining this? #}
+        <label>
+            <input type="checkbox" value="Outdoor">Outdoor location</label>
     </div>
     <div>
-        <!-- Hide if outdoor location. We suggest/enforce building options based on campus. -->
-        <label for="building-name">Building:</label><input id="building-name" type="text">
+        <!-- Hide if outdoor location -->
+        <label for="room-number">Room #:</label>
+        <input id="room-number" type="text" value="">
     </div>
- </form>
- <div>
+    <div>
+        <!-- Hide if outdoor location. We suggest/enforce building options. -->
+        <label for="building-name">Building:</label>
+        <input id="building-name" type="text" value="">
+    </div>
+    <div>
+        <!-- Hide if outdoor location. We suggest floor options. -->
+        <label for="floor">Floor:</label>
+        <input id="floor" type="text" value="">
+    </div>
+    <div>
+        {# How are we determining this? #}
+        <label>
+            <input type="checkbox" value="ADA">ADA Accessible</label>
+    </div>
 
-<h3>General Info</h3>
+    <h3>Space Description</h3>
+    <div>
+        <label for="space-description">Description:</label>
+        <br/>
+        <textarea id="space-description" type="text"></textarea>
+    </div>
+    <div>
+        <fieldset>
+            <legend>Primary use:</legend>
+            <label>
+                <input type="checkbox" value="Food">Food Space</label>
+            <label>
+                <input type="checkbox" value="Study">Study Space</label>
+            <label>
+                <input type="checkbox" value="Other">Other</label>
+        </fieldset>
+    </div>
+    <div>
+        <label for="space-types">Type of space:</label>
+        <select id="space-types">
+            <option>Space Type 1</option>
+            <option>Space Type 2</option>
+            <option>Space Type 3</option>
+            <option>Space Type 4</option>
+        </select>
+    </div>
 
-<div>space form here (same as edit)</div>
+    <h3>Space Administration</h3>
+    <fieldset>
+        <legend>Contact Info</legend>
+        <label for="manager-name">Manager Name:</label>
+        <input id="manager-name" type="type">
+        <label for="phone">Phone:</label>
+        <input id="phone" type="tel">
+        <label for="email">Email:</label>
+        <input id="email" type="email">
+        <label for="website">Website URL:</label>
+        <input id="website" type="url">
+    </fieldset>
+    <div>
+        <label for="admin-group">Administrators of Space Information (UW Group):</label>
+        <input id="admin-group" type="text">
+    </div>
+
+    <h3>VALIDATION: Incomplete items</h3>
+    <p>You must complete </p>
+    <ul>
+        <li class="dummy">
+            Invalid field name 1
+        </li>
+        <li class="dummy">
+            Invalid field name 2
+        </li>
+    </ul>
+
+    <h3>ACTIONS</h3>
+    <div>
+        <a href="/">Cancel</a>
+        <input type="submit" value="Save"></input>
+        <!-- on save... redirects to "edit" mode -->
+    </div>
+
+</form>
 
 {% endblock %}
