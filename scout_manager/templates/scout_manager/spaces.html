@@ -12,7 +12,7 @@
 
     <ol>
         {% for spot in spots %}
-        <li>
+        <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">
             <div><a href="/manager/spaces/{{ spot.spot_id }}/">Edit</a></div>
             <div>Image:
                 {% if spot.images %}

@@ -4,7 +4,7 @@
 {% block web_content %}
 <p>This is add.html. You step through this page to add items/spaces.</p>
 
-<h2>Add Space/Item</h2>
+<h2>Add Space</h2>
  <form>
      <h3>General location info:</h3>
      <div>
@@ -25,43 +25,9 @@
     </div>
  </form>
  <div>
-<!-- Hide until outdoor or a building selected. List is constrained to campus and outdoor spaces or spaces w/in a building. -->
-<div>
-    <h3>Select the space:</h3>
-    <div>Total: <span class="dummy">Total # of spaces list</span></div>
-    <ol><!-- list by floor. -->
-        <li><h4 class="dummy">Floor_# 1</h4>
-            <ol>
-                <li>
-                    <a href="/manager/space/{{ spot.spot_id }}">
-                        <div>Name: <span class="dummy">spot.name</span></div>
-                        <div>Building:<span class="dummy">building_name</span></div>
-                        <div>Room #: <span class="dummy">room_#</span></div>
-                        <div>Type:<span class="dummy">spot.type.name <!--could be multiple --></span></div>
-                        <div>Items:<span class="dummy">has_items (Yes or No)</span><span class="dummy">item_type.name <!--could be multiple --></span></div>
-                        <div><span>If published: <a href="/scout/space/{{ spot.spot_id }}" target="_blank">view in client</span></div>
-                    </a>
-                </li>
-            </ol>
-        </li>
-        <li><h4 class="dummy">Floor_# 2</h4>
-            <ol>
-                <li>
-                    <a href="/manager/space/{{ spot.spot_id }}">
-                        <div>Name: <span class="dummy">spot.name</span></div>
-                        <div>Building:<span class="dummy">building_name</span></div>
-                        <div>Room #: <span class="dummy">room_#</span></div>
-                        <div>Type:<span class="dummy">spot.type.name <!--could be multiple --></span></div>
-                        <div>Items:<span class="dummy">has_items (Yes or No)</span><span class="dummy">item_type.name <!--could be multiple --></span></div>
-                        <div><span>If published: <a href="/scout/space/{{ spot.spot_id }}" target="_blank">view in client</span></div>
-                    </a>
-                </li>
-            </ol>
-        </li>
-    </ol>
-    <div>
-        <p>Not seeing the location?<a href="/manager/space/">Create New Space <!-- Pass on entered location info (campus, outdoor/building. --></a></p>
-    </div>
- </div>
+
+<h3>General Info</h3>
+
+<div>space form here (same as edit)</div>
 
 {% endblock %}
