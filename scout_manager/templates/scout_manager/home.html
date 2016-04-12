@@ -4,18 +4,14 @@
 {% block web_content %}
 <p>This is the app home. It has your list of spaces and items that you manage.</p>
 
-<div style="min-height:300px; border: solid 1px blue;">
-    <p>spaces go here... we'll look into using Django Channels for rendering the lists here.</p>
-    <p>in the meantime... <a href="/manager/spaces/">spaces here</a></p>
+<div style="min-height:100px; border: solid 1px #eee;" id="spaces">
+    <p>loading...</p>
 </div>
 
 <br/><br/>
 
-<div style="min-height:300px; border: solid 1px green;">
-    <p>items go here... we'll look into using Django Channels for rendering the lists here.</p>
-    <p>in the meantime... <a href="/manager/items/">items here</a></p>
+<div style="min-height:100px; border: solid 1px #eee;" id="items">
+    <p>loading...</p>
 </div>
-
-
 
 {% endblock %}
