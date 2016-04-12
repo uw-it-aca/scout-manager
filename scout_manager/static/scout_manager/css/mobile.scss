@@ -1,5 +1,16 @@
 // sass variables
 
 
+// forms
+
+fieldset { margin-bottom: 2em; }
+legend {font-weight:900; }
+textarea { height:120px; width: 100%; }
+
+label { display: block; margin-bottom: 1em;
+    input, select { display: block;}
+    input[type='checkbox'] { display: inline-block; margin-right: 5px; }
+}
+
 // Temporary Classes [Delete]
 .dummy {color:red;}

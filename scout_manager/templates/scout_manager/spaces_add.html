@@ -1,115 +1,122 @@
-{% extends "scout_manager/base.html" %} {% load staticfiles %} {% block web_content %}
+{% extends "scout_manager/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Add space{% endblock %}
+
+{% block web_content %}
 
 <h2>Add New Space</h2>
 <form>
 
     <h3>General Info</h3>
-    <div>
-        <label for="space-name">Name:</label>
+
+    <label for="space-name">Name:
         <input id="space-name" type="text" value="" required>
-    </div>
-    <div>
-        <label for="space-campus" required>Campus:</label>
+    </label>
+
+    <label for="space-campus" required>Campus:
         <select>
             <option value="seattle">Seattle</option>
             <option value="bothell">Bothell</option>
             <option value="south_lake_union">South Lake Union</option>
             <option value="tacoma">Tacoma</option>
         </select>
-    </div>
+    </label>
+
     <fieldset>
         <legend>Location:</legend>
-        <label for="space-latitude">Latitude</label>
-        <input id="space-latitude" type="text" value="" required>
-        <label for="space-longitude">Longitude</label>
-        <input id="space-longitude" type="text" value="" required>
+
+        <label for="space-latitude">Latitude
+            <input id="space-latitude" type="text" value="" required>
+        </label>
+
+        <label for="space-longitude">Longitude
+            <input id="space-longitude" type="text" value="" required>
+        </label>
+
     </fieldset>
-    <div>
-        {# How are we determining this? #}
-        <label>
-            <input type="checkbox" value="Outdoor">Outdoor location</label>
-    </div>
-    <div>
-        <!-- Hide if outdoor location -->
-        <label for="room-number">Room #:</label>
+
+    {# How are we determining this? #}
+    <label><input type="checkbox" value="Outdoor">Outdoor location</label>
+
+    <!-- Hide if outdoor location -->
+    <label for="room-number">Room #:
         <input id="room-number" type="text" value="">
-    </div>
-    <div>
-        <!-- Hide if outdoor location. We suggest/enforce building options. -->
-        <label for="building-name">Building:</label>
+    </label>
+
+    <!-- Hide if outdoor location. We suggest/enforce building options. -->
+    <label for="building-name">Building:
         <input id="building-name" type="text" value="">
-    </div>
-    <div>
-        <!-- Hide if outdoor location. We suggest floor options. -->
-        <label for="floor">Floor:</label>
+    </label>
+
+
+    <!-- Hide if outdoor location. We suggest floor options. -->
+    <label for="floor">Floor:
         <input id="floor" type="text" value="">
-    </div>
-    <div>
-        {# How are we determining this? #}
-        <label>
-            <input type="checkbox" value="ADA">ADA Accessible</label>
-    </div>
+    </label>
+
+    {# How are we determining this? #}
+    <label><input type="checkbox" value="ADA">ADA Accessible</label>
 
     <h3>Space Description</h3>
-    <div>
-        <label for="space-description">Description:</label>
-        <br/>
+
+    <label for="space-description">Description:
         <textarea id="space-description" type="text"></textarea>
-    </div>
-    <div>
-        <fieldset>
-            <legend>Primary use:</legend>
-            <label>
-                <input type="checkbox" value="Food">Food Space</label>
-            <label>
-                <input type="checkbox" value="Study">Study Space</label>
-            <label>
-                <input type="checkbox" value="Other">Other</label>
-        </fieldset>
-    </div>
-    <div>
-        <label for="space-types">Type of space:</label>
+    </label>
+
+    <fieldset>
+        <legend>Primary use:</legend>
+        <label><input type="checkbox" value="Food">Food Space</label>
+        <label><input type="checkbox" value="Study">Study Space</label>
+        <label><input type="checkbox" value="Other">Other</label>
+    </fieldset>
+
+
+    <label for="space-types">Type of space:
         <select id="space-types">
             <option>Space Type 1</option>
             <option>Space Type 2</option>
             <option>Space Type 3</option>
             <option>Space Type 4</option>
         </select>
-    </div>
+    </label>
 
     <h3>Space Administration</h3>
     <fieldset>
         <legend>Contact Info</legend>
-        <label for="manager-name">Manager Name:</label>
-        <input id="manager-name" type="type">
-        <label for="phone">Phone:</label>
-        <input id="phone" type="tel">
-        <label for="email">Email:</label>
-        <input id="email" type="email">
-        <label for="website">Website URL:</label>
-        <input id="website" type="url">
+
+        <label for="manager-name">Manager Name:
+            <input id="manager-name" type="type">
+        </label>
+
+        <label for="phone">Phone:
+            <input id="phone" type="tel">
+        </label>
+
+        <label for="email">Email:
+            <input id="email" type="email">
+        </label>
+
+        <label for="website">Website URL:
+            <input id="website" type="url">
+        </label>
     </fieldset>
-    <div>
-        <label for="admin-group">Administrators of Space Information (UW Group):</label>
+
+    <label for="admin-group">Administrators of Space Information (UW Group):
         <input id="admin-group" type="text">
-    </div>
+    </label>
 
     <h3>VALIDATION: Incomplete items</h3>
     <p>You must complete </p>
     <ul>
-        <li class="dummy">
-            Invalid field name 1
-        </li>
-        <li class="dummy">
-            Invalid field name 2
-        </li>
+        <li class="dummy">Invalid field name 1</li>
+        <li class="dummy">Invalid field name 2</li>
     </ul>
 
     <h3>ACTIONS</h3>
     <div>
         <a href="/">Cancel</a>
         <input type="submit" value="Save"></input>
-        <!-- on save... redirects to "edit" mode -->
     </div>
 
 </form>

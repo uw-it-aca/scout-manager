@@ -1,7 +1,12 @@
-{% extends "scout_manager/base.html" %} {% load staticfiles %} {% block web_content %}
+{% extends "scout_manager/base.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ spot.name }}{% endblock %}
+
+{% block web_content %}
 <p>This is space.html. You edit a space here.</p>
 
-<h2>Edit: {{ spot.name }}</h2>
+<h2>{{ spot.name }}</h2>
 
 <form>
     <div>
@@ -20,7 +25,7 @@
         <h3>General Info</h3>
         <div>
             <label for="space-name">Name:</label>
-            <input id="space-name" type="text" value="{{ spot.name }}" required>
+            <input id="space-name" type="text" value="{{ spot.name }}" required="required">
         </div>
         <div>
             <label for="space-campus" required>Campus:</label>
