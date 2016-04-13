@@ -1,13 +1,13 @@
-// brand variables
+// brand override variables
 
 $main-color: #6564A8;
-$header-height: 56px;
+$header-height: 55px;
 $footer-height: 45px;
 
-
 // header
-.manager-header {
+.mgr-header {
     background: #fff url('../img/scout.png') no-repeat 10px 50%;
+    background-size: 35px;
     h1 {
         color: $main-color;
         a {
@@ -17,7 +17,7 @@ $footer-height: 45px;
 }
 
 // content
-.manager-content {}
+.mgr-content {}
 
 // footer
-.manager-footer {}
+.mgr-footer {}

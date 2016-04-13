@@ -4,7 +4,7 @@ $header-height: 55px;
 $footer-height: 45px;
 
 // header
-.manager-header {
+.mgr-header {
     position: fixed;
     top: 0;
     left: 0;
@@ -30,7 +30,7 @@ $footer-height: 45px;
     }
 }
 // content
-.manager-content {
+.mgr-content {
     padding: $header-height+2 10px $footer-height+2;
     h2 {
         color: #333;
@@ -41,11 +41,11 @@ $footer-height: 45px;
     }
 }
 // footer
-.manager-footer {
+.mgr-footer {
     line-height: $footer-height;
     position: fixed;
     background: #555 url('../img/w-mini_wht.png') no-repeat 5px 50%;
-    background-size: 50px;
+    background-size: 30px;
     color: white;
     width: 100%;
     font-size: 75%;
