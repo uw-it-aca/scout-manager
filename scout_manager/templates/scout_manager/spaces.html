@@ -4,11 +4,13 @@
 
 <div>
 
-    <div>Total: <span class="">{{ count }}</span></div>
+    <div style="margin-bottom:1em;">Total: <span class="">{{ count }}</span> <a href="/manager/spaces/add/">Add New Space</a></div>
+
+    <div style="margin-bottom:1em;">Filter by: <span class="dummy">All</span> | <span class="dummy">Food</span> | <span class="dummy">Study</span> | <span class="dummy">Other</span></div>
+
     <div>
         <button type="button">Download CSV of listed Spaces</button>
     </div>
-    <div><a href="/manager/spaces/add/">Add New Space</a></div>
 
     <ol>
         {% for spot in spots %}
@@ -20,8 +22,8 @@
             </div>
             <div>Name: <span class="">{{ spot.name }}</span></div>
             <div>Campus: <span class="">{{ spot.campus }}</span></div>
-            <div>App:<span class="dummy">Food</span> <span class="dummy">Study</span></div>
-            <div>Building:<span class="">{{ spot.building_name }}</span></div>
+            <div>App: <span class="dummy">Food</span> <span class="dummy">Study</span></div>
+            <div>Building: <span class="">{{ spot.building_name }}</span></div>
             {% if spot.has_alert %}
             <div>Alert:<span class="">{{ spot.alert_notes }}</span></div>
             {% endif %}
