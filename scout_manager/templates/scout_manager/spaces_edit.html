@@ -14,7 +14,8 @@
 
     <!-- IF has planned change.  -->
     <p>These edits are set to be published on <span class="dummy">planned_edit.date</span>.</p>
-    <ol>
+
+    <ol class="dummy">
         <li><a href="/manager/schedule/{{ spot.spot_id }}/">Scheduled for July 6, 2016 @ 10:45am</a></li>
     </ol>
 
@@ -29,7 +30,7 @@
 
     <label for="space-campus" required>Campus:
         <select>
-            <option value="seattle" {% if spot.campus == "bothell" %} selected {% endif %}>Seattle</option>
+            <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
             <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
             <option value="south_lake_union" {% if spot.campus == "south_lake_union" %} selected {% endif %}>South Lake Union</option>
             <option value="tacoma" {% if spot.campus == "tacoma" %} selected {% endif %}>Tacoma</option>
@@ -46,9 +47,9 @@
             <input id="space-longitude" type="text" value="{{ spot.longitude }}" required>
         </label>
     </fieldset>
+
     {# How are we determining this? #}
-    <label>
-        <input type="checkbox" value="Outdoor">Outdoor location</label>
+    <label class="dummy"><input type="checkbox" value="Outdoor">Outdoor location</label>
 
 
     <!-- Hide if outdoor location -->
@@ -67,23 +68,22 @@
     </label>
 
     {# How are we determining this? #}
-    <label>
-        <input type="checkbox" value="ADA">ADA Accessible</label>
+    <label class="dummy"><input type="checkbox" value="ADA">ADA Accessible</label>
 
     <h3>Current Alert</h3> {# we need to set has_alert too to show it #}
-    <label>
-        <input type="checkbox" value="has_alert" {% if spot.has_alert %}checked{% endif %}>Alert Enabled</label>
+    <label><input type="checkbox" value="has_alert" {% if spot.has_alert %}checked{% endif %}>Alert Enabled</label>
 
-    <label for="alert-notes">Post this Alert:
+    <label for="alert-notes">Post this Alert message:
         <textarea id="alert-notes" type="text" value="{{ spot.alert_notes }}"></textarea>
     </label>
 
     <h3>Hours and Access</h3>
-    <label>clear hours
+
+    <label class="dummy">clear hours
         <input type="button" value="clear"></input>
     </label>
 
-    <fieldset>
+    <fieldset class="dummy">
         <!-- Selection determines which Day hours fieldsets are shown below -->
         <legend>Days of operation:</legend>
         <label>
@@ -102,7 +102,7 @@
             <input type="checkbox" value="Sunday">Sunday</label>
     </fieldset>
 
-    <fieldset>
+    <fieldset class="dummy">
         <legend>Monday Hours:</legend>
         <ul>
             <li>
@@ -142,7 +142,8 @@
             <input type="button" value="Add Timerange">
         </div>
     </fieldset>
-    <fieldset>
+
+    <fieldset class="dummy">
         <legend>Tuesday Hours:</legend>
         <ul>
             <li>
@@ -184,27 +185,26 @@
     </fieldset>
 
     <label for="hours-notes">Hours Notes/Exceptions:
-        <textarea id="hours-notes"></textarea>
+        <textarea id="hours-notes">{{spot.hours_notes}}</textarea>
     </label>
 
     <label for="access-notes">Access Notes:
-        <textarea id="access-notes"></textarea>
+        <textarea id="access-notes">{{spot.access_notes}}</textarea>
     </label>
 
     <h3>Space Description</h3>
     <label for="space-description">Description:
-        <textarea id="space-description" type="text"></textarea>
+        <textarea id="space-description" type="text">{{spot.location_description}}</textarea>
     </label>
 
-
-    <fieldset>
+    <fieldset class="dummy">
         <legend>Primary use:</legend>
         <label><input type="checkbox" value="Food">Food Space</label>
         <label><input type="checkbox" value="Study">Study Space</label>
         <label><input type="checkbox" value="Other">Other</label>
     </fieldset>
 
-    <label for="space-types">Type of space:
+    <label for="space-types" class="dummy">Type of space:
         <select id="space-types">
             <option>Space Type 1</option>
             <option>Space Type 2</option>
@@ -214,14 +214,14 @@
     </label>
 
     <!-- if computer_lab -->
-    <label for="computer-count"># of computers
+    <label for="computer-count" class="dummy"># of computers
         <input type="number" id="computer-count">
     </label>
 
 
     <!--  if "food" space -->
     <h3>Food space metadata</h3>
-    <fieldset>
+    <fieldset class="dummy">
         <legend>Food location images:</legend>
         <label>
             <input type="file" name="pic" accept="image/*"><span class="visually-hidden">Add Image +</span></label>
@@ -238,7 +238,8 @@
             </li>
         </ul>
     </fieldset>
-    <fieldset>
+
+    <fieldset class="dummy">
         <legend>Cuisine</legend>
         <label><input type="checkbox" name="cuisine" value="cuisine1">Cuisine 1(American)</label>
         <label><input type="checkbox" name="cuisine" value="cuisine2">Cuisine 2(BBQ)</label>
@@ -246,10 +247,10 @@
     </fieldset>
 
     <label for="menu-url">Menu URL:
-        <input id="menu-url" type="url">
+        <input id="menu-url" type="url" value="{{spot.menu_url}}" />
     </label>
 
-    <fieldset>
+    <fieldset class="dummy">
         <legend>Food Served</legend>
         <label><input type="checkbox" name="food_type" value="food_type1">Food_Type 1(Appetizers)</label>
         <label><input type="checkbox" name="food_type" value="food_type2">Food_Type 2(Burgers)</label>
@@ -259,22 +260,23 @@
     <fieldset>
         <legend>Coupons</legend>
         <label for="coupon-url">Coupon URL:
-            <input id="coupon-url" type="url">
+            <input id="coupon-url" type="url" value="{{ spot.coupon_url }}" />
         </label>
         <label for="coupon-date">Expiration Date:
-            <input id="coupon-date" type="date">
+            <input id="coupon-date" type="date" value="{{ spot.coupon_expiration }}" placeholder="mm/dd/yyyy" />
         </label>
     </fieldset>
+
     <fieldset>
         <legend>Reservations</legend>
         <label for="has-reservations-food">
-            <input id="has-reservations-food" type="checkbox">Accepts Reservations</label>
-
+            <input id="has-reservations-food" type="checkbox" {% if spot.has_reservation %}checked{% endif%} />Accepts Reservations</label>
         <label for="reservation-notes-food">Reservation Notes:
-            <textarea id="reservation-notes-food"></textarea>
+            <textarea id="reservation-notes-food">{{spot.reservation_notes}}</textarea>
         </label>
     </fieldset>
-    <fieldset>
+
+    <fieldset class="dummy">
         <legend>Payment Type</legend>
         <label><input type="checkbox" name="payment" value="payment_type1">Payment_Type 1(Cash)</label>
         <label><input type="checkbox" name="payment" value="payment_type2">Payment_Type 2(Husky Card)</label>
@@ -283,18 +285,19 @@
 
     <!--  if "study" space -->
     <h3>Study space metadata</h3>
-    <fieldset>
+
+    <fieldset class="dummy">
         <legend>Images of Study Space</legend>
         <label>
             <input type="file" name="pic" accept="image/*"><span class="visually-hidden">Add Image +</span></label>
         <ul>
-            <li class="dummy">
+            <li>
                 <span><a href="#" target="_blank" title="preview image">Image 1 URL</a></span>
                 <label for="study-default-image-1">
                     <input type="radio" name="default-study-img" id="study-default-image-1">default</label>
                 <input type="button" value="Remove"></input>
             </li>
-            <li class="dummy">
+            <li>
                 <span><a href="#" target="_blank" title="preview image">Image 2 URL</a></span>
                 <label for="study-default-image-2">
                     <input type="radio" name="default-study-img" id="study-default-image-2">default</label>
@@ -302,26 +305,25 @@
             </li>
         </ul>
     </fieldset>
-    <div>
-        <label for="capacity">Capacity
-            <input type="number" id="capacity">
-        </label>
-    </div>
-    <fieldset>
+
+    <label for="capacity" class="dummy">Capacity
+        <input type="number" id="capacity">
+    </label>
+
+    <fieldset class="dummy">
         <legend>Lighting</legend>
         <label>
             <input type="checkbox" name="lighting" value="natural">Has Natural Light</label>
     </fieldset>
-    <fieldset>
+
+    <fieldset class="dummy">
         <legend>Noise Level</legend>
-        <label>
-            <input type="radio" name="noise" value="noise_level1">noise_level 1 (Silent)</label>
-        <label>
-            <input type="radio" name="noise" value="noise_level2">noise_level 2 (Low hum)</label>
-        <label>
-            <input type="radio" name="noise" value="noise_level3">noise_level 3 (Chatter)</label>
+        <label><input type="radio" name="noise" value="noise_level1">noise_level 1 (Silent)</label>
+        <label><input type="radio" name="noise" value="noise_level2">noise_level 2 (Low hum)</label>
+        <label><input type="radio" name="noise" value="noise_level3">noise_level 3 (Chatter)</label>
     </fieldset>
-    <fieldset>
+
+    <fieldset class="dummy">
         <legend>Labstats</legend>
         <label for="has-labstats">Labstats integration URL
             <input id="has-labstats" type="url">
@@ -330,7 +332,8 @@
             <input id="labstats-id" type="type">
         </label>
     </fieldset>
-    <fieldset>
+
+    <fieldset class="dummy">
         <legend>Reservations</legend>
         <label for="has-reservations-study">
             <input id="has-reservations-study" type="checkbox">Can Reserve Space</label>
@@ -340,97 +343,81 @@
     </fieldset>
 
     <h3>Space Administration</h3>
+
     <fieldset>
         <legend>Contact Info</legend>
-        <label for="manager-name">Manager Name:
-            <input id="manager-name" type="type">
-        </label>
-        <label for="phone">Phone:
-            <input id="phone" type="tel">
-        </label>
-        <label for="email">Email:
-            <input id="email" type="email">
-        </label>
-        <label for="website">Website URL:
-            <input id="website" type="url">
-        </label>
 
-        <label for="admin-group">Administrators of Space Information (UW Group):
-            <input id="admin-group" type="text">
-        </label>
+        <label for="manager-name" class="dummy">Manager Name:<input id="manager-name" type="type"></label>
+        <label for="phone" class="dummy">Phone:<input id="phone" type="tel"></label>
+        <label for="email" class="dummy">Email:<input id="email" type="email"></label>
+        <label for="website">Website URL: <input id="website" type="url" value="{{spot.website_url}}" /></label>
+        <label for="admin-group" class="dummy">Administrators of Space Information (UW Group):<input id="admin-group" type="text"></label>
 
+    </fieldset>
+
+    <h3>Items for campus use</h3>
+
+    <fieldset class="dummy">
+        <legend>Basic Resources:</legend>
+        <label>
+            <input type="checkbox" value="computer">Computer</label>
+        <label>
+            <input type="checkbox" value="display">Large Display (for laptop)</label>
+        <label>
+            <input type="checkbox" value="outlets">Outlets</label>
+        <label>
+            <input type="checkbox" value="printing">Printing</label>
+        <label>
+            <input type="checkbox" value="projector">Projector</label>
+        <label>
+            <input type="checkbox" value="scanning">Scanning</label>
+        <label>
+            <input type="checkbox" value="whiteboard">Whiteboard</label>
+    </fieldset>
+
+    <fieldset>
+        <legend>Additional Resources</legend>
+        <p><a href="/manager/items/add/">Add New Item</a></p>
+        <!--  if has_items -->
+        <p>Total: <span class="dummy">Total # of items in items list</span></p>
+        <ol>
+            <li>
+                <div><a href="/manager/items/601234">Edit</a></div>
+                <div>Name: <span class="dummy">item.name</span></div>
+                <div>Type:<span class="dummy">item_type.name</span></div>
+                <div>Category:<span class="dummy">item_category.name</span></div>
+                <div>Brand:<span class="dummy">item.brand</span></div>
+                <div>Model:<span class="dummy">item.model</span></div>
+                <div>Quantity:<span class="dummy">item.quantity</span></div>
+                <div>STF Funded: <span class="dummy">Yes</span></div>
+                <div>
+                    <input type="button" value="Delete Item" class="dummy"></input>
+                </div>
+            </li>
+            <li>
+                <div><a href="/manager/items/475786">Edit</a></div>
+                <div>Name: <span class="dummy">item.name</span></div>
+                <div>Type:<span class="dummy">item_type.name</span></div>
+                <div>Category:<span class="dummy">item_category.name</span></div>
+                <div>Brand:<span class="dummy">item.brand</span></div>
+                <div>Model:<span class="dummy">item.model</span></div>
+                <div>Quantity:<span class="dummy">item.quantity</span></div>
+                <div>STF Funded: <span class="dummy">Yes</span></div>
+                <div>
+                    <input type="button" value="Delete Item" class="dummy"></input>
+                </div>
+            </li>
+        </ol>
     </fieldset>
 
 
 
-    <h3>Items for campus use</h3>
-    <div>
-        <fieldset>
-            <legend>Basic Resources:</legend>
-            <label>
-                <input type="checkbox" value="computer">Computer</label>
-            <label>
-                <input type="checkbox" value="display">Large Display (for laptop)</label>
-            <label>
-                <input type="checkbox" value="outlets">Outlets</label>
-            <label>
-                <input type="checkbox" value="printing">Printing</label>
-            <label>
-                <input type="checkbox" value="projector">Projector</label>
-            <label>
-                <input type="checkbox" value="scanning">Scanning</label>
-            <label>
-                <input type="checkbox" value="whiteboard">Whiteboard</label>
-        </fieldset>
-    </div>
-    <div>
-        <fieldset>
-            <legend>Additional Resources</legend>
-            <div><a href="/manager/items/add/">Add New Item</a></div>
-            <!--  if has_items -->
-            <div>Total: <span class="dummy">Total # of items in items list</span></div>
-            <ol>
-                <li>
-                    <div><a href="/manager/items/601234">Edit</a></div>
-                    <div>Name: <span class="dummy">item.name</span></div>
-                    <div>Type:<span class="dummy">item_type.name</span></div>
-                    <div>Category:<span class="dummy">item_category.name</span></div>
-                    <div>Brand:<span class="dummy">item.brand</span></div>
-                    <div>Model:<span class="dummy">item.model</span></div>
-                    <div>Quantity:<span class="dummy">item.quantity</span></div>
-                    <div>STF Funded: <span class="dummy">Yes</span></div>
-                    <div>
-                        <input type="button" value="Delete Item"></input>
-                    </div>
-                </li>
-                <li>
-                    <div><a href="/manager/items/475786">Edit</a></div>
-                    <div>Name: <span class="dummy">item.name</span></div>
-                    <div>Type:<span class="dummy">item_type.name</span></div>
-                    <div>Category:<span class="dummy">item_category.name</span></div>
-                    <div>Brand:<span class="dummy">item.brand</span></div>
-                    <div>Model:<span class="dummy">item.model</span></div>
-                    <div>Quantity:<span class="dummy">item.quantity</span></div>
-                    <div>STF Funded: <span class="dummy">Yes</span></div>
-                    <div>
-                        <input type="button" value="Delete Item"></input>
-                    </div>
-                </li>
-            </ol>
-        </fieldset>
-    </div>
-
-
     <h3>Space Actions</h3>
     <!-- When a user clicks to change status to PUBLISH, then we should validate form. It would be ideal to provide them with a condensed list of required and invalid fields that they need to address (maybe as intersticial, which they can cancel from. -->
-    <div>Publish Status: <span class="dummy">Published</span>
-        <!-- if Changes , add <span>(without current changes)</span> -->
-        <span class="dummy">Unpublished</span>
+    <p>Publish Status: <span class="dummy">Published</span>&nbsp;<span class="dummy">Unpublished</span></p>
+    <p><span>If published: <a href="/detail/{{ spot.spot_id }}">view in client</a></span></p>
 
-        <span>If published: <a href="/detail/{{ spot.spot_id }}">view in client</a></span>
-
-
-        <div style="margin-bottom:2em;">
+        <div class="dummy" style="margin-bottom:2em;">
             <!-- if UNPUBLISHED -->
             <input type="button" value="Publish"></input>
             <!-- Publish will be conditional to form validation -->
@@ -440,26 +427,25 @@
             <input type="button" value="Unpublish"></input>
         </div>
 
-        <div style="margin-bottom:2em;">
+        <div class="dummy" style="margin-bottom:2em;">
             <input type="submit" value="Save Changes" />
             <input type="button" value="Cancel" />
         </div>
 
-        <div style="margin-bottom:2em;">
+        <div class="dummy" style="margin-bottom:2em;">
             <input type="button" value="Download CSV of Space"></input>
         </div>
 
-        <div>
+        <div class="dummy">
             <input type="button" value="Delete Space"></input>
         </div>
 
-    </div>
 
     <h3>Incomplete items</h3>
     <p>You must complete </p>
-    <ul>
-        <li class="dummy">Invalid field name 1</li>
-        <li class="dummy">Invalid field name 2</li>
+    <ul class="dummy">
+        <li>Invalid field name 1</li>
+        <li>Invalid field name 2</li>
     </ul>
 
 </form>
