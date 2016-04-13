@@ -6,20 +6,18 @@ $footer-height: 45px;
 
 
 // header
-
 .manager-header {
-
     background: #fff url('../img/scout.png') no-repeat 10px 50%;
-    
-    h1 { color: $main-color;
-        a { color: $main-color; }
+    h1 {
+        color: $main-color;
+        a {
+            color: $main-color;
+        }
     }
 }
 
 // content
-
-.manager-content { }
-
+.manager-content {}
 
 // footer
-.manager-footer {  }
+.manager-footer {}
