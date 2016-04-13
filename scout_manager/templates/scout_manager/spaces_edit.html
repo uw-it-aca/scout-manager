@@ -101,11 +101,12 @@
         <label>
             <input type="checkbox" value="Sunday">Sunday</label>
     </fieldset>
+
     <fieldset>
         <legend>Monday Hours:</legend>
         <ul>
             <li>
-                <label for="monday-open">Open:</label>
+                <label for="monday-open">Open:
                 <select id="monday-open-1">
                     <option>12:00 am</option>
                     <option>12:15 am</option>
@@ -116,7 +117,9 @@
                     <option>...</option>
                     <option>midnight</option>
                 </select>
-                <label for="monday-close-1">Close:</label>
+                </label>
+
+                <label for="monday-close-1">Close:
                 <select id="monday-close-1">
                     <!-- limit close option list to times later than open choice -->
                     <option>12:00 am</option>
@@ -128,7 +131,11 @@
                     <option>...</option>
                     <option>midnight</option>
                 </select>
-                <input type="button" value="X" title="remove time range">
+                </label>
+
+                <label for="">remove
+                <input type="button" value="X" title="remove time range"></label>
+
             </li>
         </ul>
         <div>
@@ -139,7 +146,7 @@
         <legend>Tuesday Hours:</legend>
         <ul>
             <li>
-                <label for="tuesday-open">Open:</label>
+                <label for="tuesday-open">Open:
                 <select id="tuesday-open-1">
                     <option>12:00 am</option>
                     <option>12:15 am</option>
@@ -150,7 +157,9 @@
                     <option>...</option>
                     <option>midnight</option>
                 </select>
-                <label for="tuesday-close-1">Close:</label>
+                </label>
+
+                <label for="tuesday-close-1">Close:
                 <select id="tuesday-close-1">
                     <!-- limit close option list to times later than open choice -->
                     <option>12:00 am</option>
@@ -162,7 +171,11 @@
                     <option>...</option>
                     <option>midnight</option>
                 </select>
-                <input type="button" value="X" title="remove time range">
+                </label>
+
+                <label for="">remove
+                <input type="button" value="X" title="remove time range"></label>
+
             </li>
         </ul>
         <div>
@@ -178,7 +191,6 @@
         <textarea id="access-notes"></textarea>
     </label>
 
-
     <h3>Space Description</h3>
     <label for="space-description">Description:
         <textarea id="space-description" type="text"></textarea>
@@ -187,12 +199,9 @@
 
     <fieldset>
         <legend>Primary use:</legend>
-        <label>
-            <input type="checkbox" value="Food">Food Space</label>
-        <label>
-            <input type="checkbox" value="Study">Study Space</label>
-        <label>
-            <input type="checkbox" value="Other">Other</label>
+        <label><input type="checkbox" value="Food">Food Space</label>
+        <label><input type="checkbox" value="Study">Study Space</label>
+        <label><input type="checkbox" value="Other">Other</label>
     </fieldset>
 
     <label for="space-types">Type of space:
@@ -215,43 +224,38 @@
     <fieldset>
         <legend>Food location images:</legend>
         <label>
-            <input type="file" name="pic" accept="image/*"><span class="visuallyhidden">Add Image +</span></label>
+            <input type="file" name="pic" accept="image/*"><span class="visually-hidden">Add Image +</span></label>
         <ul>
             <li class="dummy">
                 <span><a href="#" target="_blank" title="preview image">Image 1 URL</a></span>
-                <label for="food-default-image-1">
-                    <input type="radio" name="default-food-img" id="food-default-image-1">default</label>
+                <label for="food-default-image-1"><input type="radio" name="default-food-img" id="food-default-image-1">default</label>
                 <input type="button" value="Remove"></input>
             </li>
             <li class="dummy">
                 <span><a href="#" target="_blank" title="preview image">Image 2 URL</a></span>
-                <label for="food-default-image-2">
-                    <input type="radio" name="default-food-img" id="food-default-image-2">default</label>
+                <label for="food-default-image-2"><input type="radio" name="default-food-img" id="food-default-image-2">default</label>
                 <input type="button" value="Remove"></input>
             </li>
         </ul>
     </fieldset>
     <fieldset>
         <legend>Cuisine</legend>
-        <label>
-            <input type="checkbox" name="cuisine" value="cuisine1">Cuisine 1(American)</label>
-        <label>
-            <input type="checkbox" name="cuisine" value="cuisine2">Cuisine 2(BBQ)</label>
-        <label>
-            <input type="checkbox" name="cuisine" value="cuisine3">Cuisine 3</label>
-        <label for="menu-url">Menu URL:
-            <input id="menu-url" type="url">
-        </label>
+        <label><input type="checkbox" name="cuisine" value="cuisine1">Cuisine 1(American)</label>
+        <label><input type="checkbox" name="cuisine" value="cuisine2">Cuisine 2(BBQ)</label>
+        <label><input type="checkbox" name="cuisine" value="cuisine3">Cuisine 3</label>
     </fieldset>
+
+    <label for="menu-url">Menu URL:
+        <input id="menu-url" type="url">
+    </label>
+
     <fieldset>
         <legend>Food Served</legend>
-        <label>
-            <input type="checkbox" name="food_type" value="food_type1">Food_Type 1(Appetizers)</label>
-        <label>
-            <input type="checkbox" name="food_type" value="food_type2">Food_Type 2(Burgers)</label>
-        <label>
-            <input type="checkbox" name="food_type" value="food_type3">Food_Type 3</label>
+        <label><input type="checkbox" name="food_type" value="food_type1">Food_Type 1(Appetizers)</label>
+        <label><input type="checkbox" name="food_type" value="food_type2">Food_Type 2(Burgers)</label>
+        <label><input type="checkbox" name="food_type" value="food_type3">Food_Type 3</label>
     </fieldset>
+
     <fieldset>
         <legend>Coupons</legend>
         <label for="coupon-url">Coupon URL:
@@ -272,12 +276,9 @@
     </fieldset>
     <fieldset>
         <legend>Payment Type</legend>
-        <label>
-            <input type="checkbox" name="payment" value="payment_type1">Payment_Type 1(Cash)</label>
-        <label>
-            <input type="checkbox" name="payment" value="payment_type2">Payment_Type 2(Husky Card)</label>
-        <label>
-            <input type="checkbox" name="payment" value="payment_type3">Payment_Type 3(...)</label>
+        <label><input type="checkbox" name="payment" value="payment_type1">Payment_Type 1(Cash)</label>
+        <label><input type="checkbox" name="payment" value="payment_type2">Payment_Type 2(Husky Card)</label>
+        <label><input type="checkbox" name="payment" value="payment_type3">Payment_Type 3(...)</label>
     </fieldset>
 
     <!--  if "study" space -->
@@ -285,7 +286,7 @@
     <fieldset>
         <legend>Images of Study Space</legend>
         <label>
-            <input type="file" name="pic" accept="image/*"><span class="visuallyhidden">Add Image +</span></label>
+            <input type="file" name="pic" accept="image/*"><span class="visually-hidden">Add Image +</span></label>
         <ul>
             <li class="dummy">
                 <span><a href="#" target="_blank" title="preview image">Image 1 URL</a></span>
@@ -353,11 +354,14 @@
         <label for="website">Website URL:
             <input id="website" type="url">
         </label>
+
+        <label for="admin-group">Administrators of Space Information (UW Group):
+            <input id="admin-group" type="text">
+        </label>
+
     </fieldset>
 
-    <label for="admin-group">Administrators of Space Information (UW Group):
-        <input id="admin-group" type="text">
-    </label>
+
 
     <h3>Items for campus use</h3>
     <div>
@@ -426,7 +430,7 @@
         <span>If published: <a href="/detail/{{ spot.spot_id }}">view in client</a></span>
 
 
-        <div>
+        <div style="margin-bottom:2em;">
             <!-- if UNPUBLISHED -->
             <input type="button" value="Publish"></input>
             <!-- Publish will be conditional to form validation -->
@@ -436,12 +440,12 @@
             <input type="button" value="Unpublish"></input>
         </div>
 
-        <div>
-            <a href="/">Cancel</a>
-            <input type="submit" value="Save Changes"></input>
+        <div style="margin-bottom:2em;">
+            <input type="submit" value="Save Changes" />
+            <input type="button" value="Cancel" />
         </div>
 
-        <div>
+        <div style="margin-bottom:2em;">
             <input type="button" value="Download CSV of Space"></input>
         </div>
 
