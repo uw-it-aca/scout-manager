@@ -9,7 +9,7 @@
     <div style="margin-bottom:1em;">Filter by: <span class="dummy">All</span> | <span class="dummy">Food</span> | <span class="dummy">Study</span> | <span class="dummy">Other</span></div>
 
     <div>
-        <button type="button">Download CSV of listed Spaces</button>
+        <button type="button" class="dummy">Download CSV of listed Spaces</button>
     </div>
 
     <ol>
@@ -32,14 +32,14 @@
             </div>
             <div>Items:<span class="dummy">has_items (Yes or No)</span><span class="dummy">item_type.name <!--could be multiple --></span></div>
             <div>Publish Status: <span class="dummy">Published</span><span class="dummy">Unpublished</span>
-                <button type="button">Toggle Publish Status</button>
+                <button type="button" class="dummy">Toggle Publish Status</button>
             </div>
-            <div>Future Changes: <span class="dummy">change_date (Yes or No)</span><span class="dummy"><a href="/manager/schedule/{{ spot.spot_id }}/">spot.change_date</a></span></div>
+            <div>Future Changes: <span class="dummy">change_date (Yes or No)</span> <span class="dummy"><a href="/manager/schedule/{{ spot.spot_id }}/">spot.change_date</a></span></div>
             <div>Needs ACA Review: <span class="dummy">needs_aca_review (Yes or No)</span>
-                <button type="button">Clear Review Flag</button>
+                <button type="button" class="dummy">Clear Review Flag</button>
             </div>
             <div>
-                <button type="button">Delete Space</button>
+                <button type="button" class="dummy">Delete Space</button>
             </div>
             <div><span>If published: <a href="/detail/{{ spot.spot_id }}/">view in client</a></span></div>
         </li>

@@ -58,7 +58,8 @@
     </label>
 
     <!-- Hide if outdoor location. We suggest/enforce building options. -->
-    <label for="building-name">Building:
+    <label for="building-name" class="dummy">Building:
+        <!-- this should be dropdown list of existing buildings -->
         <input id="building-name" type="text" value="{{ spot.building_name }}">
     </label>
 
@@ -239,11 +240,16 @@
         </ul>
     </fieldset>
 
-    <fieldset class="dummy">
+    <fieldset>
         <legend>Cuisine</legend>
-        <label><input type="checkbox" name="cuisine" value="cuisine1">Cuisine 1(American)</label>
-        <label><input type="checkbox" name="cuisine" value="cuisine2">Cuisine 2(BBQ)</label>
-        <label><input type="checkbox" name="cuisine" value="cuisine3">Cuisine 3</label>
+        <label><input type="checkbox" {% if "American" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_american">American</label>
+        <label><input type="checkbox" {% if "BBQ" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_bbq">BBQ</label>
+        <label><input type="checkbox" {% if "Chinese" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_chinese">Chinese</label>
+        <label><input type="checkbox" {% if "Indian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_indian">Indian</label>
+        <label><input type="checkbox" {% if "Italian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_italian">Italian</label>
+        <label><input type="checkbox" {% if "Korean" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_korean">Korean</label>
+        <label><input type="checkbox" {% if "Mexian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_mexican">Mexican</label>
+        <label><input type="checkbox" {% if "Vietnamese" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_vietnamese">Vietnamese</label>
     </fieldset>
 
     <label for="menu-url">Menu URL:
@@ -251,10 +257,25 @@
     </label>
 
     <fieldset class="dummy">
-        <legend>Food Served</legend>
-        <label><input type="checkbox" name="food_type" value="food_type1">Food_Type 1(Appetizers)</label>
-        <label><input type="checkbox" name="food_type" value="food_type2">Food_Type 2(Burgers)</label>
-        <label><input type="checkbox" name="food_type" value="food_type3">Food_Type 3</label>
+        <legend>Food served {{ spot.foodtype_names}}</legend>
+        <div id="food_select">
+            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_burgers" %} checked {% endif %} value="s_food_burgers">Burgers</label>
+            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_breakfast" %} checked {% endif %} value="s_food_breakfast">Breakfast</label>
+            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_curry" %} checked {% endif %} value="s_food_curry">Curry</label>
+            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_desserts" %} checked {% endif %} value="s_food_desserts">Desserts</label>
+            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_entrees" %} checked {% endif %} value="s_food_entrees">Entrees</label>
+            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_espresso" %} checked {% endif %} value="s_food_espresso">Espresso</label>
+            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_frozen_yogurt" %} checked {% endif %} value="s_food_frozen_yogurt">Frozen Yogurt</label>
+            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_pasta" %} checked {% endif %} value="s_food_pasta">Pasta</label>
+            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_pastries" %} checked {% endif %} value="s_food_pastries">Pastries</label>
+            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_pho" %} checked {% endif %} value="s_food_pho">Pho</label>
+            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_pizza" %} checked {% endif %} value="s_food_pizza">Pizza</label>
+            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_salads" %} checked {% endif %} value="s_food_salads">Salads</label>
+            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_sandwiches" %} checked {% endif %} value="s_food_sandwiches">Sandwiches</label>
+            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_smoothies" %} checked {% endif %} value="s_food_smoothies">Smoothies</label>
+            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_sushi_packaged" %} checked {% endif %} value="s_food_sushi_packaged">Sushi (packaged)</label>
+            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_tacos" %} checked {% endif %} value="s_food_tacos">Tacos</label>
+        </div>
     </fieldset>
 
     <fieldset>
@@ -278,9 +299,11 @@
 
     <fieldset class="dummy">
         <legend>Payment Type</legend>
-        <label><input type="checkbox" name="payment" value="payment_type1">Payment_Type 1(Cash)</label>
-        <label><input type="checkbox" name="payment" value="payment_type2">Payment_Type 2(Husky Card)</label>
-        <label><input type="checkbox" name="payment" value="payment_type3">Payment_Type 3(...)</label>
+        <label><input type="checkbox" value="s_pay_cash">Cash</label>
+        <label><input type="checkbox" value="s_pay_husky">Husky Card</label>
+        <label><input type="checkbox" value="s_pay_dining">Dining Card</label>
+        <label><input type="checkbox" value="s_pay_visa">Visa</label>
+        <label><input type="checkbox" value="s_pay_mastercard">Mastercard</label>
     </fieldset>
 
     <!--  if "study" space -->
