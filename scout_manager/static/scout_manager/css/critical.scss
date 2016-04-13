@@ -86,7 +86,7 @@ $footer-height: 45px;
     margin: 0 auto;
     width: 15%;
     height: 15%;
-    background-color: #333;
+    background-color: $main-color;
     border-radius: 100%;
     -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
     animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
@@ -191,9 +191,7 @@ $footer-height: 45px;
     animation-delay: -0.1s;
 }
 @-webkit-keyframes sk-circleFadeDelay {
-    0%,
-    100%,
-    39% {
+    0%, 100%, 39% {
         opacity: 0;
     }
     40% {
@@ -201,9 +199,7 @@ $footer-height: 45px;
     }
 }
 @keyframes sk-circleFadeDelay {
-    0%,
-    100%,
-    39% {
+    0%, 100%, 39% {
         opacity: 0;
     }
     40% {
