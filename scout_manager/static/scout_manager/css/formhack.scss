@@ -4,7 +4,7 @@
 
 // Font
 $fh-font-family: sans-serif !default;
-$fh-font-size: 14px !default;
+$fh-font-size: 13px !default;
 $fh-font-color: rgb(40, 40, 40) !default;
 
 // Borders
@@ -14,9 +14,9 @@ $fh-border-style: solid !default;
 $fh-border-color: rgb(200, 200, 200) !default;
 
 // Inputs, Textareas, Select, Option
-$fh-input-height: 35px !default;
+$fh-input-height: 30px !default;
 $fh-input-width: 100% !default;
-$fh-input-max-width: 400px !default;
+$fh-input-max-width: 100% !default;
 $fh-input-bg-color: #fff !default;
 $fh-focus-bg-color: rgb(220, 220, 220) !default;
 $fh-focus-border-color: $fh-border-color !default;
@@ -49,7 +49,7 @@ $fh-display: block !default;
 		text-align: center;
 	}
 	@else {
-		margin: 10px 0;
+		margin: 8px 0;
 	}
 }
 
@@ -209,7 +209,7 @@ fieldset {
 	}
 	@else {
 		border-radius: $fh-border-radius;
-		border: $fh-border-width $fh-border-style $fh-border-color;
+		border: $fh-border-width $fh-border-style #ddd;
 	}
 }
 

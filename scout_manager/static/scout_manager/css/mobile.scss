@@ -7,7 +7,7 @@ textarea {
     height: 120px;
 }
 
-label { margin: 0;
+label { 
 
     input[type='checkbox'],
     input[type='radio'] {
@@ -17,11 +17,12 @@ label { margin: 0;
 }
 
 
+
 .mgr-hours {
 
     ul { margin: 0; padding: 0; }
-    label { line-height: 35px; margin-bottom: 5px;
-        select { display: inline-block !important; margin: 0 !important; margin-left: 5px !important; }
+    label { line-height: 30px; margin-bottom: 5px;
+        select { display: inline-block; margin: 0; margin-left: 0px; }
     }
 
 }
@@ -30,5 +31,6 @@ label { margin: 0;
 // Temporary Classes [Delete]
 .dummy {
     color: red !important;
+
     * { color: red !important; }
 }
