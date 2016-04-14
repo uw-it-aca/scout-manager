@@ -256,25 +256,25 @@
         <input id="menu-url" type="url" value="{{spot.menu_url}}" />
     </label>
 
-    <fieldset class="dummy">
-        <legend>Food served {{ spot.foodtype_names}}</legend>
+    <fieldset>
+        <legend>Food served</legend>
         <div id="food_select">
-            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_burgers" %} checked {% endif %} value="s_food_burgers">Burgers</label>
-            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_breakfast" %} checked {% endif %} value="s_food_breakfast">Breakfast</label>
-            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_curry" %} checked {% endif %} value="s_food_curry">Curry</label>
-            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_desserts" %} checked {% endif %} value="s_food_desserts">Desserts</label>
-            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_entrees" %} checked {% endif %} value="s_food_entrees">Entrees</label>
-            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_espresso" %} checked {% endif %} value="s_food_espresso">Espresso</label>
-            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_frozen_yogurt" %} checked {% endif %} value="s_food_frozen_yogurt">Frozen Yogurt</label>
-            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_pasta" %} checked {% endif %} value="s_food_pasta">Pasta</label>
-            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_pastries" %} checked {% endif %} value="s_food_pastries">Pastries</label>
-            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_pho" %} checked {% endif %} value="s_food_pho">Pho</label>
-            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_pizza" %} checked {% endif %} value="s_food_pizza">Pizza</label>
-            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_salads" %} checked {% endif %} value="s_food_salads">Salads</label>
-            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_sandwiches" %} checked {% endif %} value="s_food_sandwiches">Sandwiches</label>
-            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_smoothies" %} checked {% endif %} value="s_food_smoothies">Smoothies</label>
-            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_sushi_packaged" %} checked {% endif %} value="s_food_sushi_packaged">Sushi (packaged)</label>
-            <label><input type="checkbox" {% if spot.foodtype_names == "s_food_tacos" %} checked {% endif %} value="s_food_tacos">Tacos</label>
+            <label><input type="checkbox" {% if "Burgers" in spot.foodtype_names %} checked {% endif %} value="s_food_burgers">Burgers</label>
+            <label><input type="checkbox" {% if "Breakfast" in spot.foodtype_names %} checked {% endif %} value="s_food_breakfast">Breakfast</label>
+            <label><input type="checkbox" {% if "Curry" in spot.foodtype_names %} checked {% endif %} value="s_food_curry">Curry</label>
+            <label><input type="checkbox" {% if "Dessers" in spot.foodtype_names %} checked {% endif %} value="s_food_desserts">Desserts</label>
+            <label><input type="checkbox" {% if "Entrees" in spot.foodtype_names %} checked {% endif %} value="s_food_entrees">Entrees</label>
+            <label><input type="checkbox" {% if "Espresso" in spot.foodtype_names %} checked {% endif %} value="s_food_espresso">Espresso</label>
+            <label><input type="checkbox" {% if "Frozen Yogurt" in spot.foodtype_names %} checked {% endif %} value="s_food_frozen_yogurt">Frozen Yogurt</label>
+            <label><input type="checkbox" {% if "Pasta" in spot.foodtype_names %} checked {% endif %} value="s_food_pasta">Pasta</label>
+            <label><input type="checkbox" {% if "Pastries" in spot.foodtype_names %} checked {% endif %} value="s_food_pastries">Pastries</label>
+            <label><input type="checkbox" {% if "Pho" in spot.foodtype_names %} checked {% endif %} value="s_food_pho">Pho</label>
+            <label><input type="checkbox" {% if "Pizza" in spot.foodtype_names %} checked {% endif %} value="s_food_pizza">Pizza</label>
+            <label><input type="checkbox" {% if "Salad" in spot.foodtype_names %} checked {% endif %} value="s_food_salads">Salads</label>
+            <label><input type="checkbox" {% if "Sandwiches" in spot.foodtype_names %} checked {% endif %} value="s_food_sandwiches">Sandwiches</label>
+            <label><input type="checkbox" {% if "Smoothies" in spot.foodtype_names %} checked {% endif %} value="s_food_smoothies">Smoothies</label>
+            <label><input type="checkbox" {% if "Sushi (packaged)" in spot.foodtype_names %} checked {% endif %} value="s_food_sushi_packaged">Sushi (packaged)</label>
+            <label><input type="checkbox" {% if "Tacos" in spot.foodtype_names %} checked {% endif %} value="s_food_tacos">Tacos</label>
         </div>
     </fieldset>
 
