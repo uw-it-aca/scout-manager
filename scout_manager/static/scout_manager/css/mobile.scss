@@ -7,7 +7,7 @@ textarea {
     height: 120px;
 }
 
-label { 
+label {
 
     input[type='checkbox'],
     input[type='radio'] {
@@ -30,7 +30,6 @@ label {
 
 // Temporary Classes [Delete]
 .dummy {
-    color: red !important;
-
-    * { color: red !important; }
+    color: #e74c3c !important;
+    * { color: #e74c3c !important; }
 }

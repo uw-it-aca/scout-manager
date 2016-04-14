@@ -1,6 +1,11 @@
 // default variables
-$main-color: #777;
+
+$main-color: #34495e;
+
+$header-color: #ecf0f1;
 $header-height: 55px;
+
+$footer-color: #bdc3c7;
 $footer-height: 45px;
 
 
@@ -13,7 +18,7 @@ body { font-size: 14px; padding: 0; }
     left: 0;
     right: 0;
     z-index: 999;
-    background: #ddd url('../img/scout-default.png') no-repeat 10px 50%;
+    background: $header-color url('../img/scout-default.png') no-repeat 10px 50%;
     background-size: 30px;
     //border-bottom: 2px #777 solid;
     h1 {
@@ -51,7 +56,7 @@ body { font-size: 14px; padding: 0; }
 .mgr-footer {
     line-height: $footer-height;
     //position: fixed;
-    background: #555 url('../img/w-mini_wht.png') no-repeat 5px 50%;
+    background: $footer-color url('../img/w-mini_wht.png') no-repeat 5px 50%;
     background-size: 30px;
     color: white;
     width: 100%;
