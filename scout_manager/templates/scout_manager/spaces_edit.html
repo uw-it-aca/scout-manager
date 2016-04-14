@@ -41,10 +41,10 @@
         <legend>Location:</legend>
 
         <label for="space-latitude">Latitude
-            <input id="space-latitude" type="text" value="{{ spot.latitude }}" required>
+            <input id="space-latitude" type="text" value="{{ spot.latitude }}" required />
         </label>
         <label for="space-longitude">Longitude
-            <input id="space-longitude" type="text" value="{{ spot.longitude }}" required>
+            <input id="space-longitude" type="text" value="{{ spot.longitude }}" required />
         </label>
     </fieldset>
 
@@ -59,8 +59,18 @@
 
     <!-- Hide if outdoor location. We suggest/enforce building options. -->
     <label for="building-name" class="dummy">Building:
-        <!-- this should be dropdown list of existing buildings -->
-        <input id="building-name" type="text" value="{{ spot.building_name }}">
+        <select>
+            <option disabled selected value>select a building...</option>
+            <option value="building_name1" {% if spot.building_name == "Odegaard Undergraduate Library (OUGL)" %} selected {% endif %}>Odegaard Undergraduate Library (OUGL)</option>
+            <option value="building_name2" {% if spot.building_name == "Husky Union Building (HUB)" %} selected {% endif %}>Husky Union Building (HUB)</option>
+            <option value="building_name3" {% if spot.building_name == "Elm Hall" %} selected {% endif %}>Elm Hall</option>
+            <option value="building_name4">building_name</option>
+            <option value="building_name5">building_name</option>
+            <option value="building_name6">building_name</option>
+            <option value="building_name7">building_name</option>
+            <option value="building_name8">building_name</option>
+            <option value="building_name9">building_name</option>
+        </select>
     </label>
 
     <!-- Hide if outdoor location. We suggest floor options. -->
@@ -297,13 +307,13 @@
         </label>
     </fieldset>
 
-    <fieldset class="dummy">
-        <legend>Payment Type {{spot.payment_names}}</legend>
-        <label><input type="checkbox" value="s_pay_cash">Cash</label>
-        <label><input type="checkbox" value="s_pay_husky">Husky Card</label>
-        <label><input type="checkbox" value="s_pay_dining">Dining Card</label>
-        <label><input type="checkbox" value="s_pay_visa">Visa</label>
-        <label><input type="checkbox" value="s_pay_mastercard">Mastercard</label>
+    <fieldset>
+        <legend>Payment Type</legend>
+        <label><input type="checkbox" {% if "Cash" in spot.payment_names %} checked {% endif %} value="s_pay_cash">Cash</label>
+        <label><input type="checkbox" {% if "Husky Card" in spot.payment_names %} checked {% endif %} value="s_pay_husky">Husky Card</label>
+        <label><input type="checkbox" {% if "Dining Card" in spot.payment_names %} checked {% endif %} value="s_pay_dining">Dining Card</label>
+        <label><input type="checkbox" {% if "Visa" in spot.payment_names %} checked {% endif %} value="s_pay_visa">Visa</label>
+        <label><input type="checkbox" {% if "Mastercard" in spot.payment_names %} checked {% endif %} value="s_pay_mastercard">Mastercard</label>
     </fieldset>
 
     <!--  if "study" space -->
@@ -370,8 +380,8 @@
     <fieldset>
         <legend>Contact Info</legend>
 
-        <label for="manager-name" class="dummy">Manager Name:<input id="manager-name" type="type"></label>
-        <label for="phone" class="dummy">Phone:<input id="phone" type="tel"></label>
+        <label for="manager-name" class="dummy">Manager Name:<input id="manager-name" type="text"></label>
+        <label for="phone" class="">Phone:<input id="phone" type="tel" value="{{ spot.phone }}"></label>
         <label for="email" class="dummy">Email:<input id="email" type="email"></label>
         <label for="website">Website URL: <input id="website" type="url" value="{{spot.website_url}}" /></label>
         <label for="admin-group" class="dummy">Administrators of Space Information (UW Group):<input id="admin-group" type="text"></label>
