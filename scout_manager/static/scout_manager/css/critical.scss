@@ -39,7 +39,26 @@ $footer-height: 45px;
         margin-top: 50px;
         color: #666;
     }
+
+
+    // flexbox
+    .flex-container {
+    	display: -webkit-flex;
+    	display: flex;
+    	-webkit-flex-flow: row wrap;
+    	flex-flow: row wrap;
+    	-webkit-justify-content: space-around;
+    	justify-content:space-around;
+    }
+
+    .flex-item {
+    	-webkit-flex: 1 auto;
+    	flex: 1 auto;
+        padding: 5px;
+    }
+
 }
+
 // footer
 .mgr-footer {
     line-height: $footer-height;

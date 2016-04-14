@@ -4,7 +4,6 @@
 {% block title %}{{ spot.name }}{% endblock %}
 
 {% block web_content %}
-<p>This is space.html. You edit a space here.</p>
 
 <h2>{{ spot.name }}</h2>
 
@@ -28,59 +27,91 @@
         <input id="space-name" type="text" value="{{ spot.name }}" required="required">
     </label>
 
-    <label for="space-campus" required>Campus:
-        <select>
-            <option disabled selected value>select a campus...</option>
-            <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
-            <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
-            <option value="south_lake_union" {% if spot.campus == "south_lake_union" %} selected {% endif %}>South Lake Union</option>
-            <option value="tacoma" {% if spot.campus == "tacoma" %} selected {% endif %}>Tacoma</option>
-        </select>
+    <fieldset class="dummy">
+        <legend>Primary use: app_type (required)</legend>
+        <label><input type="checkbox" value="food">Food</label>
+        <label><input type="checkbox" value="study">Study</label>
+        <label><input type="checkbox" value="other">Other (neither food or study.. tied to stuff, since stuff must belong in a spot)</label>
+    </fieldset>
+
+    <label for="space-description">Description:
+        <textarea id="space-description" type="text">{{spot.location_description}}</textarea>
     </label>
+
+    <fieldset class="dummy">
+        <legend>Images</legend>
+        <label>
+            <input type="file" name="pic" accept="image/*"><span class="visually-hidden">Add Image +</span></label>
+        <ul>
+            <li>
+                <span><a href="#" target="_blank" title="preview image">Image 1 URL</a></span>
+                <label for="study-default-image-1">
+                    <input type="radio" name="default-study-img" id="study-default-image-1">default</label>
+                <input type="button" value="Remove"></input>
+            </li>
+            <li>
+                <span><a href="#" target="_blank" title="preview image">Image 2 URL</a></span>
+                <label for="study-default-image-2">
+                    <input type="radio" name="default-study-img" id="study-default-image-2">default</label>
+                <input type="button" value="Remove"></input>
+            </li>
+        </ul>
+    </fieldset>
 
     <fieldset>
         <legend>Location:</legend>
 
+        <label for="space-campus" required>Campus:
+            <select>
+                <option disabled selected value>select a campus...</option>
+                <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
+                <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
+                <option value="south_lake_union" {% if spot.campus == "south_lake_union" %} selected {% endif %}>South Lake Union</option>
+                <option value="tacoma" {% if spot.campus == "tacoma" %} selected {% endif %}>Tacoma</option>
+            </select>
+        </label>
+
         <label for="space-latitude">Latitude
             <input id="space-latitude" type="text" value="{{ spot.latitude }}" required />
         </label>
+
         <label for="space-longitude">Longitude
             <input id="space-longitude" type="text" value="{{ spot.longitude }}" required />
         </label>
+
+        {# How are we determining this? #}
+        <label class="dummy"><input type="checkbox" value="Outdoor">Outdoor location</label>
+
+        <!-- Hide if outdoor location. We suggest/enforce building options. -->
+        <label for="building-name" class="dummy">Building: {{ spot.building_name }}
+            <select>
+                <option disabled selected value>select a building...</option>
+                <option value="" {% if spot.building_name == "Odegaard Undergraduate Library (OUGL)" %} selected {% endif %}>Odegaard Undergraduate Library (OUGL)</option>
+                <option value="" {% if spot.building_name == "Husky Union Building (HUB)" %} selected {% endif %}>Husky Union Building (HUB)</option>
+                <option value="" {% if spot.building_name == "Elm Hall" %} selected {% endif %}>Elm Hall</option>
+                <option value="">building_name</option>
+                <option value="">building_name</option>
+                <option value="">building_name</option>
+                <option value="">building_name</option>
+                <option value="">building_name</option>
+                <option value="">building_name</option>
+            </select>
+        </label>
+
+        <!-- Hide if outdoor location. We suggest floor options. -->
+        <label for="floor">Floor:
+            <input id="floor" type="text" value="{{ spot.floor }}">
+        </label>
+
+        <!-- Hide if outdoor location -->
+        <label for="room-number">Room #:
+            <input id="room-number" type="text" value="{{ spot.room_number }}">
+        </label>
+
+        {# How are we determining this? #}
+        <label class="dummy"><input type="checkbox" value="ADA">ADA Accessible</label>
+
     </fieldset>
-
-    {# How are we determining this? #}
-    <label class="dummy"><input type="checkbox" value="Outdoor">Outdoor location</label>
-
-
-    <!-- Hide if outdoor location -->
-    <label for="room-number">Room #:
-        <input id="room-number" type="text" value="{{ spot.room_number }}">
-    </label>
-
-    <!-- Hide if outdoor location. We suggest/enforce building options. -->
-    <label for="building-name" class="dummy">Building:
-        <select>
-            <option disabled selected value>select a building...</option>
-            <option value="" {% if spot.building_name == "Odegaard Undergraduate Library (OUGL)" %} selected {% endif %}>Odegaard Undergraduate Library (OUGL)</option>
-            <option value="" {% if spot.building_name == "Husky Union Building (HUB)" %} selected {% endif %}>Husky Union Building (HUB)</option>
-            <option value="" {% if spot.building_name == "Elm Hall" %} selected {% endif %}>Elm Hall</option>
-            <option value="">building_name</option>
-            <option value="">building_name</option>
-            <option value="">building_name</option>
-            <option value="">building_name</option>
-            <option value="">building_name</option>
-            <option value="">building_name</option>
-        </select>
-    </label>
-
-    <!-- Hide if outdoor location. We suggest floor options. -->
-    <label for="floor">Floor:
-        <input id="floor" type="text" value="{{ spot.floor }}">
-    </label>
-
-    {# How are we determining this? #}
-    <label class="dummy"><input type="checkbox" value="ADA">ADA Accessible</label>
 
     <h3>Current Alert</h3> {# we need to set has_alert too to show it #}
     <label><input type="checkbox" value="has_alert" {% if spot.has_alert %}checked{% endif %}>Alert Enabled</label>
@@ -204,191 +235,176 @@
         <textarea id="access-notes">{{spot.access_notes}}</textarea>
     </label>
 
-    <h3>Space Description</h3>
-    <label for="space-description">Description:
-        <textarea id="space-description" type="text">{{spot.location_description}}</textarea>
-    </label>
 
-    <fieldset class="dummy">
-        <legend>Primary use: app_type (required)</legend>
-        <label><input type="checkbox" value="food">Food</label>
-        <label><input type="checkbox" value="study">Study</label>
-        <label><input type="checkbox" value="other">Other (neight food or study.. tied to stuff, since stuff must belong in a spot)</label>
-    </fieldset>
+    <div class="flex-container">
+    	<div class="flex-item">
 
-    <label for="space-types" class="dummy">Type of space:
-        <fieldset>
-            <legend>Food</legend>
-            <div id="food_spot_types">
-                <label><input type="checkbox" value="cafe">Cafes</label>
-                <label><input type="checkbox" value="food_court">Food Court</label>
-                <label><input type="checkbox" value="food_truck">Food Truck</label>
-                <label><input type="checkbox" value="market">Market</label>
-                <label><input type="checkbox" value="restaurant">Restaurant</label>
-            </div>
-        </fieldset>
-        <fieldset>
-            <legend>Study</legend>
-            <div id="food_spot_types">
-                <label><input type="checkbox" value="xxxxx">xxxxx</label>
-                <label><input type="checkbox" value="xxxxx">xxxxx</label>
-                <label><input type="checkbox" value="xxxxx">xxxxx</label>
-                <label><input type="checkbox" value="xxxxx">xxxxx</label>
-                <label><input type="checkbox" value="xxxxx">xxxxx</label>
-            </div>
-        </fieldset>
-    </label>
+            <!--  if "food" app_type -->
+            <h3>Food space metadata</h3>
 
-    <!-- if computer_lab -->
-    <label for="computer-count" class="dummy"># of computers
-        <input type="number" id="computer-count">
-    </label>
+            <label for="space-types" class="dummy">Type of space:
+                <fieldset>
+                    <legend>Food spot types</legend>
+                    <div id="food_spot_types">
+                        <label><input type="checkbox" value="cafe">Cafes</label>
+                        <label><input type="checkbox" value="food_court">Food Court</label>
+                        <label><input type="checkbox" value="food_truck">Food Truck</label>
+                        <label><input type="checkbox" value="market">Market</label>
+                        <label><input type="checkbox" value="restaurant">Restaurant</label>
+                    </div>
+                </fieldset>
+            </label>
 
+            <fieldset>
+                <legend>Cuisine</legend>
+                <label><input type="checkbox" {% if "American" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_american">American</label>
+                <label><input type="checkbox" {% if "BBQ" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_bbq">BBQ</label>
+                <label><input type="checkbox" {% if "Chinese" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_chinese">Chinese</label>
+                <label><input type="checkbox" {% if "Indian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_indian">Indian</label>
+                <label><input type="checkbox" {% if "Italian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_italian">Italian</label>
+                <label><input type="checkbox" {% if "Korean" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_korean">Korean</label>
+                <label><input type="checkbox" {% if "Mexian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_mexican">Mexican</label>
+                <label><input type="checkbox" {% if "Vietnamese" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_vietnamese">Vietnamese</label>
+            </fieldset>
 
-    <!--  if "food" space -->
-    <h3>Food space metadata</h3>
-    <fieldset class="dummy">
-        <legend>Food location images:</legend>
-        <label>
-            <input type="file" name="pic" accept="image/*"><span class="visually-hidden">Add Image +</span></label>
-        <ul>
-            <li class="dummy">
-                <span><a href="#" target="_blank" title="preview image">Image 1 URL</a></span>
-                <label for="food-default-image-1"><input type="radio" name="default-food-img" id="food-default-image-1">default</label>
-                <input type="button" value="Remove"></input>
-            </li>
-            <li class="dummy">
-                <span><a href="#" target="_blank" title="preview image">Image 2 URL</a></span>
-                <label for="food-default-image-2"><input type="radio" name="default-food-img" id="food-default-image-2">default</label>
-                <input type="button" value="Remove"></input>
-            </li>
-        </ul>
-    </fieldset>
+            <label for="website">Website URL: <input id="website" type="url" value="{{spot.website_url}}" /></label>
 
-    <fieldset>
-        <legend>Cuisine</legend>
-        <label><input type="checkbox" {% if "American" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_american">American</label>
-        <label><input type="checkbox" {% if "BBQ" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_bbq">BBQ</label>
-        <label><input type="checkbox" {% if "Chinese" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_chinese">Chinese</label>
-        <label><input type="checkbox" {% if "Indian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_indian">Indian</label>
-        <label><input type="checkbox" {% if "Italian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_italian">Italian</label>
-        <label><input type="checkbox" {% if "Korean" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_korean">Korean</label>
-        <label><input type="checkbox" {% if "Mexian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_mexican">Mexican</label>
-        <label><input type="checkbox" {% if "Vietnamese" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_vietnamese">Vietnamese</label>
-    </fieldset>
+            <label for="menu-url">Menu URL:<input id="menu-url" type="url" value="{{spot.menu_url}}" /></label>
 
-    <label for="menu-url">Menu URL:
-        <input id="menu-url" type="url" value="{{spot.menu_url}}" />
-    </label>
+            <fieldset>
+                <legend>Food served</legend>
+                <div id="food_select">
+                    <label><input type="checkbox" {% if "Burgers" in spot.foodtype_names %} checked {% endif %} value="s_food_burgers">Burgers</label>
+                    <label><input type="checkbox" {% if "Breakfast" in spot.foodtype_names %} checked {% endif %} value="s_food_breakfast">Breakfast</label>
+                    <label><input type="checkbox" {% if "Curry" in spot.foodtype_names %} checked {% endif %} value="s_food_curry">Curry</label>
+                    <label><input type="checkbox" {% if "Dessers" in spot.foodtype_names %} checked {% endif %} value="s_food_desserts">Desserts</label>
+                    <label><input type="checkbox" {% if "Entrees" in spot.foodtype_names %} checked {% endif %} value="s_food_entrees">Entrees</label>
+                    <label><input type="checkbox" {% if "Espresso" in spot.foodtype_names %} checked {% endif %} value="s_food_espresso">Espresso</label>
+                    <label><input type="checkbox" {% if "Frozen Yogurt" in spot.foodtype_names %} checked {% endif %} value="s_food_frozen_yogurt">Frozen Yogurt</label>
+                    <label><input type="checkbox" {% if "Pasta" in spot.foodtype_names %} checked {% endif %} value="s_food_pasta">Pasta</label>
+                    <label><input type="checkbox" {% if "Pastries" in spot.foodtype_names %} checked {% endif %} value="s_food_pastries">Pastries</label>
+                    <label><input type="checkbox" {% if "Pho" in spot.foodtype_names %} checked {% endif %} value="s_food_pho">Pho</label>
+                    <label><input type="checkbox" {% if "Pizza" in spot.foodtype_names %} checked {% endif %} value="s_food_pizza">Pizza</label>
+                    <label><input type="checkbox" {% if "Salad" in spot.foodtype_names %} checked {% endif %} value="s_food_salads">Salads</label>
+                    <label><input type="checkbox" {% if "Sandwiches" in spot.foodtype_names %} checked {% endif %} value="s_food_sandwiches">Sandwiches</label>
+                    <label><input type="checkbox" {% if "Smoothies" in spot.foodtype_names %} checked {% endif %} value="s_food_smoothies">Smoothies</label>
+                    <label><input type="checkbox" {% if "Sushi (packaged)" in spot.foodtype_names %} checked {% endif %} value="s_food_sushi_packaged">Sushi (packaged)</label>
+                    <label><input type="checkbox" {% if "Tacos" in spot.foodtype_names %} checked {% endif %} value="s_food_tacos">Tacos</label>
+                </div>
+            </fieldset>
 
-    <fieldset>
-        <legend>Food served</legend>
-        <div id="food_select">
-            <label><input type="checkbox" {% if "Burgers" in spot.foodtype_names %} checked {% endif %} value="s_food_burgers">Burgers</label>
-            <label><input type="checkbox" {% if "Breakfast" in spot.foodtype_names %} checked {% endif %} value="s_food_breakfast">Breakfast</label>
-            <label><input type="checkbox" {% if "Curry" in spot.foodtype_names %} checked {% endif %} value="s_food_curry">Curry</label>
-            <label><input type="checkbox" {% if "Dessers" in spot.foodtype_names %} checked {% endif %} value="s_food_desserts">Desserts</label>
-            <label><input type="checkbox" {% if "Entrees" in spot.foodtype_names %} checked {% endif %} value="s_food_entrees">Entrees</label>
-            <label><input type="checkbox" {% if "Espresso" in spot.foodtype_names %} checked {% endif %} value="s_food_espresso">Espresso</label>
-            <label><input type="checkbox" {% if "Frozen Yogurt" in spot.foodtype_names %} checked {% endif %} value="s_food_frozen_yogurt">Frozen Yogurt</label>
-            <label><input type="checkbox" {% if "Pasta" in spot.foodtype_names %} checked {% endif %} value="s_food_pasta">Pasta</label>
-            <label><input type="checkbox" {% if "Pastries" in spot.foodtype_names %} checked {% endif %} value="s_food_pastries">Pastries</label>
-            <label><input type="checkbox" {% if "Pho" in spot.foodtype_names %} checked {% endif %} value="s_food_pho">Pho</label>
-            <label><input type="checkbox" {% if "Pizza" in spot.foodtype_names %} checked {% endif %} value="s_food_pizza">Pizza</label>
-            <label><input type="checkbox" {% if "Salad" in spot.foodtype_names %} checked {% endif %} value="s_food_salads">Salads</label>
-            <label><input type="checkbox" {% if "Sandwiches" in spot.foodtype_names %} checked {% endif %} value="s_food_sandwiches">Sandwiches</label>
-            <label><input type="checkbox" {% if "Smoothies" in spot.foodtype_names %} checked {% endif %} value="s_food_smoothies">Smoothies</label>
-            <label><input type="checkbox" {% if "Sushi (packaged)" in spot.foodtype_names %} checked {% endif %} value="s_food_sushi_packaged">Sushi (packaged)</label>
-            <label><input type="checkbox" {% if "Tacos" in spot.foodtype_names %} checked {% endif %} value="s_food_tacos">Tacos</label>
+            <fieldset>
+                <legend>Coupons</legend>
+                <label for="coupon-url">Coupon URL:
+                    <input id="coupon-url" type="url" value="{{ spot.coupon_url }}" />
+                </label>
+                <label for="coupon-date">Expiration Date:
+                    <input id="coupon-date" type="date" value="{{ spot.coupon_expiration }}" placeholder="mm/dd/yyyy" />
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Reservations</legend>
+                <label for="has-reservations-food">
+                    <input id="has-reservations-food" type="checkbox" {% if spot.has_reservation %}checked{% endif%} />Accepts Reservations</label>
+                <label for="reservation-notes-food">Reservation Notes:
+                    <textarea id="reservation-notes-food">{{spot.reservation_notes}}</textarea>
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Payment Type</legend>
+                <label><input type="checkbox" {% if "Cash" in spot.payment_names %} checked {% endif %} value="s_pay_cash">Cash</label>
+                <label><input type="checkbox" {% if "Husky Card" in spot.payment_names %} checked {% endif %} value="s_pay_husky">Husky Card</label>
+                <label><input type="checkbox" {% if "Dining Card" in spot.payment_names %} checked {% endif %} value="s_pay_dining">Dining Card</label>
+                <label><input type="checkbox" {% if "Visa" in spot.payment_names %} checked {% endif %} value="s_pay_visa">Visa</label>
+                <label><input type="checkbox" {% if "Mastercard" in spot.payment_names %} checked {% endif %} value="s_pay_mastercard">Mastercard</label>
+            </fieldset>
+
         </div>
-    </fieldset>
+    	<div class="flex-item">
 
-    <fieldset>
-        <legend>Coupons</legend>
-        <label for="coupon-url">Coupon URL:
-            <input id="coupon-url" type="url" value="{{ spot.coupon_url }}" />
-        </label>
-        <label for="coupon-date">Expiration Date:
-            <input id="coupon-date" type="date" value="{{ spot.coupon_expiration }}" placeholder="mm/dd/yyyy" />
-        </label>
-    </fieldset>
+            <!--  if "study" app_type -->
+            <h3>Study space metadata</h3>
 
-    <fieldset>
-        <legend>Reservations</legend>
-        <label for="has-reservations-food">
-            <input id="has-reservations-food" type="checkbox" {% if spot.has_reservation %}checked{% endif%} />Accepts Reservations</label>
-        <label for="reservation-notes-food">Reservation Notes:
-            <textarea id="reservation-notes-food">{{spot.reservation_notes}}</textarea>
-        </label>
-    </fieldset>
+            <label for="space-types" class="dummy">Type of space:
+                <fieldset>
+                    <legend>Study spot types</legend>
+                    <div id="food_spot_types">
+                        <label><input type="checkbox" value="xxxxx">Study room</label>
+                        <label><input type="checkbox" value="xxxxx">Study area</label>
+                        <label><input type="checkbox" value="xxxxx">Computer lab</label>
+                        <label><input type="checkbox" value="xxxxx">Production studio</label>
+                        <label><input type="checkbox" value="xxxxx">Conference/classroom</label>
+                        <label><input type="checkbox" value="xxxxx">Open space</label>
+                        <label><input type="checkbox" value="xxxxx">Lounge</label>
+                        <label><input type="checkbox" value="xxxxx">Cafe</label>
+                        <label><input type="checkbox" value="xxxxx">Outdoor area</label>
+                    </div>
+                </fieldset>
+            </label>
 
-    <fieldset>
-        <legend>Payment Type</legend>
-        <label><input type="checkbox" {% if "Cash" in spot.payment_names %} checked {% endif %} value="s_pay_cash">Cash</label>
-        <label><input type="checkbox" {% if "Husky Card" in spot.payment_names %} checked {% endif %} value="s_pay_husky">Husky Card</label>
-        <label><input type="checkbox" {% if "Dining Card" in spot.payment_names %} checked {% endif %} value="s_pay_dining">Dining Card</label>
-        <label><input type="checkbox" {% if "Visa" in spot.payment_names %} checked {% endif %} value="s_pay_visa">Visa</label>
-        <label><input type="checkbox" {% if "Mastercard" in spot.payment_names %} checked {% endif %} value="s_pay_mastercard">Mastercard</label>
-    </fieldset>
+            <!-- if computer_lab -->
+            <label for="computer-count" class="dummy"># of computers
+                <input type="number" id="computer-count">
+            </label>
 
-    <!--  if "study" space -->
-    <h3>Study space metadata</h3>
+            <label for="capacity" class="dummy">Capacity
+                <input type="number" id="capacity">
+            </label>
 
-    <fieldset class="dummy">
-        <legend>Images of Study Space</legend>
-        <label>
-            <input type="file" name="pic" accept="image/*"><span class="visually-hidden">Add Image +</span></label>
-        <ul>
-            <li>
-                <span><a href="#" target="_blank" title="preview image">Image 1 URL</a></span>
-                <label for="study-default-image-1">
-                    <input type="radio" name="default-study-img" id="study-default-image-1">default</label>
-                <input type="button" value="Remove"></input>
-            </li>
-            <li>
-                <span><a href="#" target="_blank" title="preview image">Image 2 URL</a></span>
-                <label for="study-default-image-2">
-                    <input type="radio" name="default-study-img" id="study-default-image-2">default</label>
-                <input type="button" value="Remove"></input>
-            </li>
-        </ul>
-    </fieldset>
+            <fieldset class="dummy">
+                <legend>Has Resources:</legend>
+                <label>
+                    <input type="checkbox" value="computer">Computer</label>
+                <label>
+                    <input type="checkbox" value="display">Large Display (for laptop)</label>
+                <label>
+                    <input type="checkbox" value="outlets">Outlets</label>
+                <label>
+                    <input type="checkbox" value="printing">Printing</label>
+                <label>
+                    <input type="checkbox" value="projector">Projector</label>
+                <label>
+                    <input type="checkbox" value="scanning">Scanning</label>
+                <label>
+                    <input type="checkbox" value="whiteboard">Whiteboard</label>
+            </fieldset>
 
-    <label for="capacity" class="dummy">Capacity
-        <input type="number" id="capacity">
-    </label>
+            <fieldset class="dummy">
+                <legend>Lighting</legend>
+                <label>
+                    <input type="checkbox" name="lighting" value="natural">Has Natural Light</label>
+            </fieldset>
 
-    <fieldset class="dummy">
-        <legend>Lighting</legend>
-        <label>
-            <input type="checkbox" name="lighting" value="natural">Has Natural Light</label>
-    </fieldset>
+            <fieldset class="dummy">
+                <legend>Noise Level</legend>
+                <label><input type="radio" name="noise" value="noise_level1">noise_level 1 (Silent)</label>
+                <label><input type="radio" name="noise" value="noise_level2">noise_level 2 (Low hum)</label>
+                <label><input type="radio" name="noise" value="noise_level3">noise_level 3 (Chatter)</label>
+            </fieldset>
 
-    <fieldset class="dummy">
-        <legend>Noise Level</legend>
-        <label><input type="radio" name="noise" value="noise_level1">noise_level 1 (Silent)</label>
-        <label><input type="radio" name="noise" value="noise_level2">noise_level 2 (Low hum)</label>
-        <label><input type="radio" name="noise" value="noise_level3">noise_level 3 (Chatter)</label>
-    </fieldset>
+            <fieldset class="dummy">
+                <legend>Labstats</legend>
+                <label for="has-labstats">Labstats integration URL
+                    <input id="has-labstats" type="url">
+                </label>
+                <label for="labstats-id">Labstats ID:
+                    <input id="labstats-id" type="type">
+                </label>
+            </fieldset>
 
-    <fieldset class="dummy">
-        <legend>Labstats</legend>
-        <label for="has-labstats">Labstats integration URL
-            <input id="has-labstats" type="url">
-        </label>
-        <label for="labstats-id">Labstats ID:
-            <input id="labstats-id" type="type">
-        </label>
-    </fieldset>
+            <fieldset class="dummy">
+                <legend>Reservations</legend>
+                <label for="has-reservations-study">
+                    <input id="has-reservations-study" type="checkbox">Can Reserve Space</label>
+                <label for="reservation-notes-study">Reservation Notes:
+                    <textarea id="reservation-notes-study"></textarea>
+                </label>
+            </fieldset>
 
-    <fieldset class="dummy">
-        <legend>Reservations</legend>
-        <label for="has-reservations-study">
-            <input id="has-reservations-study" type="checkbox">Can Reserve Space</label>
-        <label for="reservation-notes-study">Reservation Notes:
-            <textarea id="reservation-notes-study"></textarea>
-        </label>
-    </fieldset>
+        </div>
+    </div>
 
     <h3>Space Administration</h3>
 
@@ -398,33 +414,14 @@
         <label for="manager-name" class="dummy">Manager Name:<input id="manager-name" type="text"></label>
         <label for="phone" class="">Phone:<input id="phone" type="tel" value="{{ spot.phone }}"></label>
         <label for="email" class="dummy">Email:<input id="email" type="email"></label>
-        <label for="website">Website URL: <input id="website" type="url" value="{{spot.website_url}}" /></label>
         <label for="admin-group" class="dummy">Administrators of Space Information (UW Group):<input id="admin-group" type="text"></label>
 
     </fieldset>
 
-    <h3>Items for campus use</h3>
-
-    <fieldset class="dummy">
-        <legend>Basic Resources:</legend>
-        <label>
-            <input type="checkbox" value="computer">Computer</label>
-        <label>
-            <input type="checkbox" value="display">Large Display (for laptop)</label>
-        <label>
-            <input type="checkbox" value="outlets">Outlets</label>
-        <label>
-            <input type="checkbox" value="printing">Printing</label>
-        <label>
-            <input type="checkbox" value="projector">Projector</label>
-        <label>
-            <input type="checkbox" value="scanning">Scanning</label>
-        <label>
-            <input type="checkbox" value="whiteboard">Whiteboard</label>
-    </fieldset>
+    <h3>Stuff Scout</h3>
 
     <fieldset>
-        <legend>Additional Resources</legend>
+        <legend>Items</legend>
         <p><a href="/manager/items/add/">Add New Item</a></p>
         <!--  if has_items -->
         <p>Total: <span class="dummy">Total # of items in items list</span></p>

@@ -6,6 +6,7 @@
 {% block web_content %}
 
 <h2>Add New Space</h2>
+
 <form>
 
     <h3>General Info</h3>
@@ -14,18 +15,25 @@
         <input id="space-name" type="text" value="" required>
     </label>
 
-    <label for="space-campus" required>Campus:
-        <select>
-            <option disabled selected value>select a campus...</option>
-            <option value="seattle">Seattle</option>
-            <option value="bothell">Bothell</option>
-            <option value="south_lake_union">South Lake Union</option>
-            <option value="tacoma">Tacoma</option>
-        </select>
-    </label>
+    <fieldset class="dummy">
+        <legend>Primary use: app_type (required)</legend>
+        <label><input type="checkbox" value="food">Food</label>
+        <label><input type="checkbox" value="study">Study</label>
+        <label><input type="checkbox" value="other">Other (neither food or study.. tied to stuff, since stuff must belong in a spot)</label>
+    </fieldset>
 
     <fieldset>
         <legend>Location:</legend>
+
+        <label for="space-campus" required>Campus:
+            <select>
+                <option disabled selected value>select a campus...</option>
+                <option value="seattle">Seattle</option>
+                <option value="bothell">Bothell</option>
+                <option value="south_lake_union">South Lake Union</option>
+                <option value="tacoma">Tacoma</option>
+            </select>
+        </label>
 
         <label for="space-latitude">Latitude
             <input id="space-latitude" type="text" value="" required>
@@ -35,90 +43,61 @@
             <input id="space-longitude" type="text" value="" required>
         </label>
 
+        {# How are we determining this? #}
+        <label><input type="checkbox" value="Outdoor">Outdoor location</label>
+
+        <!-- Hide if outdoor location. We suggest/enforce building options. -->
+        <label for="building-name" class="dummy">Building:
+            <select>
+                <option disabled selected value>select a building...</option>
+                <option value="">building_name</option>
+                <option value="">building_name</option>
+                <option value="">building_name</option>
+                <option value="">building_name</option>
+                <option value="">building_name</option>
+                <option value="">building_name</option>
+            </select>
+        </label>
+
+        <!-- Hide if outdoor location -->
+        <label for="room-number">Room #:
+            <input id="room-number" type="text" value="">
+        </label>
+
+        <!-- Hide if outdoor location. We suggest floor options. -->
+        <label for="floor">Floor:
+            <input id="floor" type="text" value="">
+        </label>
+
+        {# How are we determining this? #}
+        <label><input type="checkbox" value="ADA">ADA Accessible</label>
+
     </fieldset>
-
-    {# How are we determining this? #}
-    <label><input type="checkbox" value="Outdoor">Outdoor location</label>
-
-    <!-- Hide if outdoor location -->
-    <label for="room-number">Room #:
-        <input id="room-number" type="text" value="">
-    </label>
-
-    <!-- Hide if outdoor location. We suggest/enforce building options. -->
-    <label for="building-name">Building:
-        <input id="building-name" type="text" value="">
-    </label>
-
-
-    <!-- Hide if outdoor location. We suggest floor options. -->
-    <label for="floor">Floor:
-        <input id="floor" type="text" value="">
-    </label>
-
-    {# How are we determining this? #}
-    <label><input type="checkbox" value="ADA">ADA Accessible</label>
-
-    <h3>Space Description</h3>
-
-    <label for="space-description">Description:
-        <textarea id="space-description" type="text"></textarea>
-    </label>
-
-    <fieldset>
-        <legend>Primary use:</legend>
-        <label><input type="checkbox" value="Food">Food (show space in food)</label>
-        <label><input type="checkbox" value="Study">Study (show space in Study)</label>
-        <label><input type="checkbox" value="Other">Other (space used for items)</label>
-    </fieldset>
-
-
-    <label for="space-types">Type of space:
-        <select id="space-types">
-            <option>Space Type 1</option>
-            <option>Space Type 2</option>
-            <option>Space Type 3</option>
-            <option>Space Type 4</option>
-        </select>
-    </label>
 
     <h3>Space Administration</h3>
+
     <fieldset>
         <legend>Contact Info</legend>
 
-        <label for="manager-name">Manager Name:
-            <input id="manager-name" type="text">
-        </label>
+        <label for="manager-name">Manager Name:<input id="manager-name" type="text"></label>
+        <label for="phone">Phone:<input id="phone" type="tel"></label>
+        <label for="email">Email:<input id="email" type="email"></label>
+        <label for="admin-group">Administrators of Space Information (UW Group):<input id="admin-group" type="text"></label>
 
-        <label for="phone">Phone:
-            <input id="phone" type="tel">
-        </label>
-
-        <label for="email">Email:
-            <input id="email" type="email">
-        </label>
-
-        <label for="website">Website URL:
-            <input id="website" type="url">
-        </label>
     </fieldset>
 
-    <label for="admin-group">Administrators of Space Information (UW Group):
-        <input id="admin-group" type="text">
-    </label>
-
-    <h3>VALIDATION: Incomplete items</h3>
-    <p>You must complete </p>
-    <ul>
-        <li class="dummy">Invalid field name 1</li>
-        <li class="dummy">Invalid field name 2</li>
-    </ul>
-
-    <h3>ACTIONS</h3>
-    <div>
-        <input type="submit" value="Save" />
+    <h3>Space Actions</h3>
+    <div class="dummy" style="margin-bottom:2em;">
+        <input type="submit" value="Save Changes" />
         <input type="button" value="Cancel" />
     </div>
+
+    <h3>Incomplete items</h3>
+    <p>You must complete </p>
+    <ul class="dummy">
+        <li>Invalid field name 1</li>
+        <li>Invalid field name 2</li>
+    </ul>
 
 </form>
 
