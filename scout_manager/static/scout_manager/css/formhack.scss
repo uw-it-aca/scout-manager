@@ -4,7 +4,7 @@
 
 // Font
 $fh-font-family: sans-serif !default;
-$fh-font-size: 16px !default;
+$fh-font-size: 14px !default;
 $fh-font-color: rgb(40, 40, 40) !default;
 
 // Borders
@@ -82,6 +82,8 @@ datalist {
 }
 
 label {
+    font-family: $fh-font-family;
+	font-size: $fh-font-size;
 	display: $fh-display;
 	@include center-layout;
 }

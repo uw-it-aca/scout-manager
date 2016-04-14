@@ -30,6 +30,7 @@
 
     <label for="space-campus" required>Campus:
         <select>
+            <option disabled selected value>select a campus...</option>
             <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
             <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
             <option value="south_lake_union" {% if spot.campus == "south_lake_union" %} selected {% endif %}>South Lake Union</option>
@@ -61,15 +62,15 @@
     <label for="building-name" class="dummy">Building:
         <select>
             <option disabled selected value>select a building...</option>
-            <option value="building_name1" {% if spot.building_name == "Odegaard Undergraduate Library (OUGL)" %} selected {% endif %}>Odegaard Undergraduate Library (OUGL)</option>
-            <option value="building_name2" {% if spot.building_name == "Husky Union Building (HUB)" %} selected {% endif %}>Husky Union Building (HUB)</option>
-            <option value="building_name3" {% if spot.building_name == "Elm Hall" %} selected {% endif %}>Elm Hall</option>
-            <option value="building_name4">building_name</option>
-            <option value="building_name5">building_name</option>
-            <option value="building_name6">building_name</option>
-            <option value="building_name7">building_name</option>
-            <option value="building_name8">building_name</option>
-            <option value="building_name9">building_name</option>
+            <option value="" {% if spot.building_name == "Odegaard Undergraduate Library (OUGL)" %} selected {% endif %}>Odegaard Undergraduate Library (OUGL)</option>
+            <option value="" {% if spot.building_name == "Husky Union Building (HUB)" %} selected {% endif %}>Husky Union Building (HUB)</option>
+            <option value="" {% if spot.building_name == "Elm Hall" %} selected {% endif %}>Elm Hall</option>
+            <option value="">building_name</option>
+            <option value="">building_name</option>
+            <option value="">building_name</option>
+            <option value="">building_name</option>
+            <option value="">building_name</option>
+            <option value="">building_name</option>
         </select>
     </label>
 
@@ -209,19 +210,33 @@
     </label>
 
     <fieldset class="dummy">
-        <legend>Primary use:</legend>
-        <label><input type="checkbox" value="Food">Food Space</label>
-        <label><input type="checkbox" value="Study">Study Space</label>
-        <label><input type="checkbox" value="Other">Other</label>
+        <legend>Primary use: app_type (required)</legend>
+        <label><input type="checkbox" value="food">Food</label>
+        <label><input type="checkbox" value="study">Study</label>
+        <label><input type="checkbox" value="other">Other (neight food or study.. tied to stuff, since stuff must belong in a spot)</label>
     </fieldset>
 
     <label for="space-types" class="dummy">Type of space:
-        <select id="space-types">
-            <option>Space Type 1</option>
-            <option>Space Type 2</option>
-            <option>Space Type 3</option>
-            <option>Space Type 4</option>
-        </select>
+        <fieldset>
+            <legend>Food</legend>
+            <div id="food_spot_types">
+                <label><input type="checkbox" value="cafe">Cafes</label>
+                <label><input type="checkbox" value="food_court">Food Court</label>
+                <label><input type="checkbox" value="food_truck">Food Truck</label>
+                <label><input type="checkbox" value="market">Market</label>
+                <label><input type="checkbox" value="restaurant">Restaurant</label>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Study</legend>
+            <div id="food_spot_types">
+                <label><input type="checkbox" value="xxxxx">xxxxx</label>
+                <label><input type="checkbox" value="xxxxx">xxxxx</label>
+                <label><input type="checkbox" value="xxxxx">xxxxx</label>
+                <label><input type="checkbox" value="xxxxx">xxxxx</label>
+                <label><input type="checkbox" value="xxxxx">xxxxx</label>
+            </div>
+        </fieldset>
     </label>
 
     <!-- if computer_lab -->
