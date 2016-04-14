@@ -122,109 +122,389 @@
 
     <h3>Hours and Access</h3>
 
-    <label class="dummy">clear hours
-        <input type="button" value="clear"></input>
-    </label>
-
-    <fieldset class="dummy">
-        <!-- Selection determines which Day hours fieldsets are shown below -->
-        <legend>Days of operation:</legend>
-        <label>
-            <input type="checkbox" value="Monday">Monday</label>
-        <label>
-            <input type="checkbox" value="Tuesday">Tuesday</label>
-        <label>
-            <input type="checkbox" value="Wednesday">Wednesday</label>
-        <label>
-            <input type="checkbox" value="Thursday">Thursday</label>
-        <label>
-            <input type="checkbox" value="Friday">Friday</label>
-        <label>
-            <input type="checkbox" value="Saturday">Saturday</label>
-        <label>
-            <input type="checkbox" value="Sunday">Sunday</label>
-    </fieldset>
-
-    <fieldset class="dummy">
-        <legend>Monday Hours:</legend>
+    <fieldset class="dummy mgr-hours">
+        <legend>Monday:</legend>
         <ul>
-            <li>
-                <label for="monday-open">Open:
-                <select id="monday-open-1">
-                    <option>12:00 am</option>
-                    <option>12:15 am</option>
-                    <option>12:30 am</option>
-                    <option>12:45 am</option>
-                    <option>1:00 am</option>
-                    <option>1:15 am</option>
-                    <option>...</option>
-                    <option>midnight</option>
-                </select>
-                </label>
+            <li class="flex-container">
 
-                <label for="monday-close-1">Close:
-                <select id="monday-close-1">
-                    <!-- limit close option list to times later than open choice -->
-                    <option>12:00 am</option>
-                    <option>12:15 am</option>
-                    <option>12:30 am</option>
-                    <option>12:45 am</option>
-                    <option>1:00 am</option>
-                    <option>1:15 am</option>
-                    <option>...</option>
-                    <option>midnight</option>
-                </select>
-                </label>
+                <div class="flex-item">
+                    <label for="monday-open">Open:
+                    <select id="monday-open-1">
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
 
-                <label for="">remove
-                <input type="button" value="X" title="remove time range"></label>
+                    <label for="monday-close-1">Close:
+                    <select id="monday-close-1">
+                        <!-- limit close option list to times later than open choice -->
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+                </div>
+                <div class="flex-item">
+                    <label for="monday-open">Open:
+                    <select id="monday-open-1">
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
 
+                    <label for="monday-close-1">Close:
+                    <select id="monday-close-1">
+                        <!-- limit close option list to times later than open choice -->
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+                </div>
             </li>
         </ul>
-        <div>
-            <input type="button" value="Add Timerange">
-        </div>
+        <label for="">Clear hours
+        <input type="button" value="clear hours" title="clear hours"></label>
     </fieldset>
 
-    <fieldset class="dummy">
-        <legend>Tuesday Hours:</legend>
+    <fieldset class="dummy mgr-hours">
+        <legend>Tuesday:</legend>
         <ul>
-            <li>
-                <label for="tuesday-open">Open:
-                <select id="tuesday-open-1">
-                    <option>12:00 am</option>
-                    <option>12:15 am</option>
-                    <option>12:30 am</option>
-                    <option>12:45 am</option>
-                    <option>1:00 am</option>
-                    <option>1:15 am</option>
-                    <option>...</option>
-                    <option>midnight</option>
-                </select>
-                </label>
+            <li class="flex-container">
 
-                <label for="tuesday-close-1">Close:
-                <select id="tuesday-close-1">
-                    <!-- limit close option list to times later than open choice -->
-                    <option>12:00 am</option>
-                    <option>12:15 am</option>
-                    <option>12:30 am</option>
-                    <option>12:45 am</option>
-                    <option>1:00 am</option>
-                    <option>1:15 am</option>
-                    <option>...</option>
-                    <option>midnight</option>
-                </select>
-                </label>
+                <div class="flex-item">
+                    <label for="monday-open">Open:
+                    <select id="monday-open-1">
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
 
-                <label for="">remove
-                <input type="button" value="X" title="remove time range"></label>
+                    <label for="monday-close-1">Close:
+                    <select id="monday-close-1">
+                        <!-- limit close option list to times later than open choice -->
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+                </div>
+                <div class="flex-item">
+                    <label for="monday-open">Open:
+                    <select id="monday-open-1">
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
 
+                    <label for="monday-close-1">Close:
+                    <select id="monday-close-1">
+                        <!-- limit close option list to times later than open choice -->
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+                </div>
             </li>
         </ul>
-        <div>
-            <input type="button" value="Add Timerange">
-        </div>
+        <label for="">Clear hours
+        <input type="button" value="clear hours" title="clear hours"></label>
+    </fieldset>
+
+    <fieldset class="dummy mgr-hours">
+        <legend>Wednesday:</legend>
+        <ul>
+            <li class="flex-container">
+
+                <div class="flex-item">
+                    <label for="monday-open">Open:
+                    <select id="monday-open-1">
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+
+                    <label for="monday-close-1">Close:
+                    <select id="monday-close-1">
+                        <!-- limit close option list to times later than open choice -->
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+                </div>
+                <div class="flex-item">
+                    <label for="monday-open">Open:
+                    <select id="monday-open-1">
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+
+                    <label for="monday-close-1">Close:
+                    <select id="monday-close-1">
+                        <!-- limit close option list to times later than open choice -->
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+                </div>
+            </li>
+        </ul>
+        <label for="">Clear hours
+        <input type="button" value="clear hours" title="clear hours"></label>
+    </fieldset>
+
+    <fieldset class="dummy mgr-hours">
+        <legend>Thursday:</legend>
+        <ul>
+            <li class="flex-container">
+
+                <div class="flex-item">
+                    <label for="monday-open">Open:
+                    <select id="monday-open-1">
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+
+                    <label for="monday-close-1">Close:
+                    <select id="monday-close-1">
+                        <!-- limit close option list to times later than open choice -->
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+                </div>
+                <div class="flex-item">
+                    <label for="monday-open">Open:
+                    <select id="monday-open-1">
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+
+                    <label for="monday-close-1">Close:
+                    <select id="monday-close-1">
+                        <!-- limit close option list to times later than open choice -->
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+                </div>
+            </li>
+        </ul>
+        <label for="">Clear hours
+        <input type="button" value="clear hours" title="clear hours"></label>
+    </fieldset>
+
+    <fieldset class="dummy mgr-hours">
+        <legend>Friday:</legend>
+        <ul>
+            <li class="flex-container">
+
+                <div class="flex-item">
+                    <label for="monday-open">Open:
+                    <select id="monday-open-1">
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+
+                    <label for="monday-close-1">Close:
+                    <select id="monday-close-1">
+                        <!-- limit close option list to times later than open choice -->
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+                </div>
+                <div class="flex-item">
+                    <label for="monday-open">Open:
+                    <select id="monday-open-1">
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+
+                    <label for="monday-close-1">Close:
+                    <select id="monday-close-1">
+                        <!-- limit close option list to times later than open choice -->
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+                </div>
+            </li>
+        </ul>
+        <label for="">Clear hours
+        <input type="button" value="clear hours" title="clear hours"></label>
+    </fieldset>
+
+    <fieldset class="dummy mgr-hours">
+        <legend>Saturday:</legend>
+        <ul>
+            <li class="flex-container">
+
+                <div class="flex-item">
+                    <label for="monday-open">Open:
+                    <select id="monday-open-1">
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+
+                    <label for="monday-close-1">Close:
+                    <select id="monday-close-1">
+                        <!-- limit close option list to times later than open choice -->
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+                </div>
+                <div class="flex-item">
+                    <label for="monday-open">Open:
+                    <select id="monday-open-1">
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+
+                    <label for="monday-close-1">Close:
+                    <select id="monday-close-1">
+                        <!-- limit close option list to times later than open choice -->
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+                </div>
+            </li>
+        </ul>
+        <label for="">Clear hours
+        <input type="button" value="clear hours" title="clear hours"></label>
+    </fieldset>
+
+    <fieldset class="dummy mgr-hours">
+        <legend>Sunday:</legend>
+        <ul>
+            <li class="flex-container">
+
+                <div class="flex-item">
+                    <label for="monday-open">Open:
+                    <select id="monday-open-1">
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+
+                    <label for="monday-close-1">Close:
+                    <select id="monday-close-1">
+                        <!-- limit close option list to times later than open choice -->
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+                </div>
+                <div class="flex-item">
+                    <label for="monday-open">Open:
+                    <select id="monday-open-1">
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+
+                    <label for="monday-close-1">Close:
+                    <select id="monday-close-1">
+                        <!-- limit close option list to times later than open choice -->
+                        <option>12:00 am</option>
+                        <option>12:15 am</option>
+                        <option>12:30 am</option>
+                        <option>...</option>
+                        <option>midnight</option>
+                    </select>
+                    </label>
+                </div>
+            </li>
+        </ul>
+        <label for="">Clear hours
+        <input type="button" value="clear hours" title="clear hours"></label>
     </fieldset>
 
     <label for="hours-notes">Hours Notes/Exceptions:
@@ -244,9 +524,9 @@
 
             <label for="space-types" class="dummy">Type of space:
                 <fieldset>
-                    <legend>Food spot types</legend>
+                    <legend>Food spot types {{ spot.spot_types }}</legend>
                     <div id="food_spot_types">
-                        <label><input type="checkbox" value="cafe">Cafes</label>
+                        <label><input type="checkbox" {% if spot.spot_types == "cafe" %} selected {% endif %} value="cafe">Cafe</label>
                         <label><input type="checkbox" value="food_court">Food Court</label>
                         <label><input type="checkbox" value="food_truck">Food Truck</label>
                         <label><input type="checkbox" value="market">Market</label>
@@ -418,7 +698,7 @@
 
     </fieldset>
 
-    <h3>Stuff Scout</h3>
+    <h3>Stuff Integration</h3>
 
     <fieldset>
         <legend>Items</legend>

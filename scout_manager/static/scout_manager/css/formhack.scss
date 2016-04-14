@@ -208,7 +208,6 @@ fieldset {
 		border: 0;
 	}
 	@else {
-		padding: 10px 25px;
 		border-radius: $fh-border-radius;
 		border: $fh-border-width $fh-border-style $fh-border-color;
 	}
