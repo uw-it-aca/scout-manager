@@ -11,15 +11,19 @@
 
     <h3>Scheduled changes (only if published)</h3>
 
-    <!-- IF has planned change.  -->
-    <p>These edits are set to be published on <span class="dummy">planned_edit.date</span>.</p>
+    <fieldset class="dummy">
+        <legend>Scheduled updates</legend>
 
-    <ol class="dummy">
-        <li><a href="/manager/schedule/{{ spot.spot_id }}/">Scheduled for July 6, 2016 @ 10:45am</a></li>
-    </ol>
+        <!-- IF has planned change.  -->
+        <p>These edits are set to be published on <span class="dummy">planned_edit.date</span>.</p>
 
-    <p><a href="/manager/schedule/{{ spot.spot_id }}/">schedule  planned changes</a></p>
+        <ol class="dummy">
+            <li><a href="/manager/schedule/{{ spot.spot_id }}/">Scheduled for July 6, 2016 @ 10:45am</a></li>
+        </ol>
 
+        <p><a href="/manager/schedule/{{ spot.spot_id }}/">schedule  planned changes</a></p>
+
+    </fieldset>
 
     <h3>General Info</h3>
 
@@ -39,23 +43,36 @@
     </label>
 
     <fieldset class="dummy">
+
         <legend>Images</legend>
-        <label>
-            <input type="file" name="pic" accept="image/*"><span class="visually-hidden">Add Image +</span></label>
+
+        <label>Choose: <input type="file" name="" accept="image/*">
+            <input type="button" value="Upload image"></input>
+        </label>
+
+        <p>Uploaded images:</p>
         <ul>
+            <li>need a foreach loop... {{spot.images}}</li>
+
             <li>
-                <span><a href="#" target="_blank" title="preview image">Image 1 URL</a></span>
-                <label for="study-default-image-1">
-                    <input type="radio" name="default-study-img" id="study-default-image-1">default</label>
-                <input type="button" value="Remove"></input>
+                <img src="/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=100" />
+                <label for="study-default-image-1"><input type="radio" name="default-study-img" id="study-default-image-1">default</label>
+                <input type="button" value="Delete image"></input>
             </li>
             <li>
-                <span><a href="#" target="_blank" title="preview image">Image 2 URL</a></span>
-                <label for="study-default-image-2">
-                    <input type="radio" name="default-study-img" id="study-default-image-2">default</label>
-                <input type="button" value="Remove"></input>
+                <img src="/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=100" />
+                <label for="study-default-image-1"><input type="radio" name="default-study-img" id="study-default-image-1">default</label>
+                <input type="button" value="Delete image"></input>
             </li>
+            <li>
+                <img src="/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=100" />
+                <label for="study-default-image-1"><input type="radio" name="default-study-img" id="study-default-image-1">default</label>
+                <input type="button" value="Delete image"></input>
+            </li>
+
         </ul>
+
+
     </fieldset>
 
     <fieldset>
@@ -450,7 +467,7 @@
                 <div>Quantity:<span class="dummy">item.quantity</span></div>
                 <div>STF Funded: <span class="dummy">Yes</span></div>
                 <div>
-                    <input type="button" value="Delete Item" class="dummy"></input>
+                    <input type="button" value="Delete item" class="dummy"></input>
                 </div>
             </li>
             <li>
@@ -463,7 +480,7 @@
                 <div>Quantity:<span class="dummy">item.quantity</span></div>
                 <div>STF Funded: <span class="dummy">Yes</span></div>
                 <div>
-                    <input type="button" value="Delete Item" class="dummy"></input>
+                    <input type="button" value="Delete item" class="dummy"></input>
                 </div>
             </li>
         </ol>
