@@ -30,6 +30,11 @@ label {
 
 // Temporary Classes [Delete]
 .dummy {
+    color: #bdc3c7 !important;
+    * { color: #bdc3c7 !important; }
+}
+
+.scope {
     color: #e74c3c !important;
     * { color: #e74c3c !important; }
 }

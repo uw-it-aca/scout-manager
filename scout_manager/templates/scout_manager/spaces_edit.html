@@ -32,7 +32,7 @@
         <input id="space-name" type="text" value="{{ spot.name }}" required="required">
     </label>
 
-    <fieldset class="dummy">
+    <fieldset class="scope">
 
         <p class="dummy">extended_info:app_type ??</p>
 
@@ -50,17 +50,18 @@
 
         <legend>Images</legend>
 
-        <label class="dummy">Choose: <input type="file" name="" accept="image/*">
+        <label class="scope">Choose: <input type="file" name="" accept="image/*">
             <input type="button" value="Upload image"></input>
         </label>
 
         <p>Uploaded images:</p>
+
         <ul>
             {% for image in spot.images %}
              <li>
                  <img src="/images/{{ spot.spot_id }}/image/{{ image.image_id }}?width=100">
-                 <label for="study-default-image-1" class="dummy"><input type="radio" name="default-study-img" id="study-default-image-1">default</label>
-                 <input type="button" value="Delete image" class="dummy"></input>
+                 <label for="study-default-image-1" class="scope"><input type="radio" name="default-study-img" id="study-default-image-1">default</label>
+                 <input type="button" value="Delete image" class="scope"></input>
              </li>
             {% endfor %}
         </ul>
@@ -93,7 +94,7 @@
         <label class="dummy"><input type="checkbox" value="Outdoor">Outdoor location</label>
 
         <!-- Hide if outdoor location. We suggest/enforce building options. -->
-        <label for="building-name" class="dummy">Building: {{ spot.building_name }}
+        <label for="building-name" class="scope">Building: {{ spot.building_name }}
             <select>
                 <option disabled selected value>select a building...</option>
                 <option value="" {% if spot.building_name == "Odegaard Undergraduate Library (OUGL)" %} selected {% endif %}>Odegaard Undergraduate Library (OUGL)</option>
@@ -132,7 +133,7 @@
 
     <h3>Hours and Access</h3>
 
-    <fieldset class="dummy mgr-hours">
+    <fieldset class="scope mgr-hours">
         <legend>Monday:</legend>
         <ul>
             <li class="flex-container">
@@ -149,7 +150,7 @@
         <input type="button" value="clear hours" title="clear hours">
     </fieldset>
 
-    <fieldset class="dummy mgr-hours">
+    <fieldset class="scope mgr-hours">
         <legend>Tuesday:</legend>
         <ul>
             <li class="flex-container">
@@ -166,7 +167,7 @@
         <input type="button" value="clear hours" title="clear hours">
     </fieldset>
 
-    <fieldset class="dummy mgr-hours">
+    <fieldset class="scope mgr-hours">
         <legend>Wednesday:</legend>
         <ul>
             <li class="flex-container">
@@ -183,7 +184,7 @@
         <input type="button" value="clear hours" title="clear hours">
     </fieldset>
 
-    <fieldset class="dummy mgr-hours">
+    <fieldset class="scope mgr-hours">
         <legend>Thursday:</legend>
         <ul>
             <li class="flex-container">
@@ -200,7 +201,7 @@
         <input type="button" value="clear hours" title="clear hours">
     </fieldset>
 
-    <fieldset class="dummy mgr-hours">
+    <fieldset class="scope mgr-hours">
         <legend>Friday:</legend>
         <ul>
             <li class="flex-container">
@@ -217,7 +218,7 @@
         <input type="button" value="clear hours" title="clear hours">
     </fieldset>
 
-    <fieldset class="dummy mgr-hours">
+    <fieldset class="scope mgr-hours">
         <legend>Saturday:</legend>
         <ul>
             <li class="flex-container">
@@ -234,7 +235,7 @@
         <input type="button" value="clear hours" title="clear hours">
     </fieldset>
 
-    <fieldset class="dummy mgr-hours">
+    <fieldset class="scope mgr-hours">
         <legend>Sunday:</legend>
         <ul>
             <li class="flex-container">
@@ -266,7 +267,7 @@
             <!--  if "food" app_type -->
             <h3>Food space metadata</h3>
 
-            <label for="space-types" class="dummy">Type of space:
+            <label for="space-types" class="scope">Type of space:
                 <fieldset>
                     <legend>Food spot types</legend>
                     <div id="food_spot_types">
@@ -441,9 +442,9 @@
     <fieldset>
         <legend>Contact Info</legend>
 
-        <label for="manager-name" class="dummy">Manager Name:<input id="manager-name" type="text"></label>
+        <label for="manager-name" class="scope">Manager Name:<input id="manager-name" type="text"></label>
         <label for="phone" class="">Phone:<input id="phone" type="tel" value="{{ spot.phone }}"></label>
-        <label for="email" class="dummy">Email:<input id="email" type="email"></label>
+        <label for="email" class="scope">Email:<input id="email" type="email"></label>
         <label for="admin-group" class="dummy">Administrators of Space Information (UW Group):<input id="admin-group" type="text"></label>
 
     </fieldset>
@@ -489,10 +490,10 @@
 
     <h3>Space Actions</h3>
     <!-- When a user clicks to change status to PUBLISH, then we should validate form. It would be ideal to provide them with a condensed list of required and invalid fields that they need to address (maybe as intersticial, which they can cancel from. -->
-    <p>Publish Status: <span class="dummy">Published</span>&nbsp;<span class="dummy">Unpublished</span></p>
+    <p>Publish Status: <span class="scope">Published</span>&nbsp;<span class="scope">Unpublished</span></p>
     <p><span>If published: <a href="/detail/{{ spot.spot_id }}">view in client</a></span></p>
 
-        <div class="dummy" style="margin-bottom:2em;">
+        <div class="scope" style="margin-bottom:2em;">
             <!-- if UNPUBLISHED -->
             <input type="button" value="Publish"></input>
             <!-- Publish will be conditional to form validation -->
