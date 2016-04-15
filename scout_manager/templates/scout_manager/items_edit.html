@@ -7,7 +7,7 @@
 {% block web_content %}
 <p>This is item.html. You edit inventory items here.</p>
 
-<h2>Edit: <span class="dummy">item.name</span></h2>
+<h2><span class="dummy">item.name</span></h2>
 
 <form>
 
@@ -26,15 +26,16 @@
 
     <h3>Location:</h3>
 
-    <p>Total: <span class="dummy">Total # of spaces list</span></p>
+    <p>Total: {{ count }}</p>
 
     <label for="space-campus" required>Space:
-        <select id="item-category" required>
+        <select id="item-category" multiple required style="height:300px;">
             <option disabled selected value>select a space...</option>
-            <option>space 1</option>
-            <option>space 2</option>
-            <option>space 3</option>
-            <option>...</option>
+
+            {% for spot in spots %}
+            <option>{{spot.name}}</option>
+            {% endfor %}
+
         </select>
     </label>
 
@@ -77,22 +78,26 @@
 
 
 
-    <fieldset>
+    <fieldset class="dummy">
+
         <legend>Images</legend>
-        <label>
-            <input type="file" name="pic" accept="image/*"><span class="visually-hidden">Add Image +</span></label>
+        <label>Choose: <input type="file" name="" accept="image/*">
+            <input type="button" value="Upload image"></input>
+        </label>
+
+        <p>Uploaded images:</p>
         <ul>
             <li class="dummy">
                 <span><a href="#" target="_blank" title="preview image">Image 1 URL</a></span>
                 <label for="default-image-1">
                     <input type="radio" name="default" id="default-image-1">default</label>
-                <input type="button" value="Remove"></input>
+                <input type="button" value="Delete image"></input>
             </li>
             <li class="dummy">
                 <span><a href="#" target="_blank" title="preview image">Image 2 URL</a></span>
                 <label for="default-image-2">
                     <input type="radio" name="default" id="default-image-2">default</label>
-                <input type="button" value="Remove"></input>
+                <input type="button" value="Delete image"></input>
             </li>
         </ul>
     </fieldset>
@@ -203,7 +208,7 @@
     <fieldset>
         <legend>Contact Info</legend>
         <label for="manager-name">Manager Name:
-            <input id="manager-name" type="type">
+            <input id="manager-name" type="text">
         </label>
 
         <label for="phone">Phone:
@@ -215,13 +220,6 @@
         </label>
 
     </fieldset>
-
-    <h3>VALIDATION: Incomplete items</h3>
-    <p>You must complete </p>
-    <ul>
-        <li class="dummy">Invalid field name 1</li>
-        <li class="dummy">Invalid field name 2</li>
-    </ul>
 
     <h3>Item Actions</h3>
 
@@ -245,6 +243,13 @@
             <input type="button" value="Cancel" />
         </div>
     </div>
+
+    <h3>Incomplete items</h3>
+    <p>You must complete </p>
+    <ul class="dummy">
+        <li>Invalid field name 1</li>
+        <li>Invalid field name 2</li>
+    </ul>
 
 </form>
 {% endblock %}

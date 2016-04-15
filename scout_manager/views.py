@@ -24,8 +24,12 @@ def items_add(request):
 
 
 def items_edit(request, item_id):
+    spots = get_spot_list()
+    context = {"spots": spots,
+               "count": len(spots)}
     return render_to_response(
             'scout_manager/items_edit.html',
+            context,
             context_instance=RequestContext(request))
 
 
