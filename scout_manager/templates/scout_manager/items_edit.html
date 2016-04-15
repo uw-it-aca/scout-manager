@@ -5,7 +5,6 @@
 
 
 {% block web_content %}
-<p>This is item.html. You edit inventory items here.</p>
 
 <h2><span class="dummy">item.name</span></h2>
 
@@ -26,19 +25,23 @@
 
     <h3>Location:</h3>
 
-    <p>Total: {{ count }}</p>
+    <fieldset>
+        <legend>Item location</legend>
 
-    <label for="space-campus" required>Space:
-        <select id="item-category" multiple required style="height:300px;">
-            <option disabled selected value>select a space...</option>
+        <p>Total: {{ count }}</p>
 
-            {% for spot in spots %}
-            <option>{{spot.name}}</option>
-            {% endfor %}
+        <label for="space-campus" required>Space:
+            <select id="item-category" multiple required style="height:300px;">
+                <option disabled selected value>select a space...</option>
 
-        </select>
-    </label>
+                {% for spot in spots %}
+                <option>{{spot.name}}</option>
+                {% endfor %}
 
+            </select>
+        </label>
+
+    </fieldset>
 
     <h3>Current Alert</h3>
     <label for="alert-notes">Post this Alert:
@@ -102,16 +105,21 @@
         </ul>
     </fieldset>
 
-    <label for="item-serial">Serial Number(s):
-        <input id="item-serial" type="text">
-        <p>Note: separate multiple serial numbers with a comma.</p>
-    </label>
+    <fieldset class="dummy">
+        <legend>Serial numbers</legend>
+
+        <label for="item-serial">Serial Number(s):
+            <input id="item-serial" type="text">
+            <p>Note: separate multiple serial numbers with a comma.</p>
+        </label>
 
 
-    <label for="item-UWtag">UW Tag Number(s):
-        <input id="item-UWtag" type="text">
-        <p>Note: separate multiple UW Tag numbers with a comma.</p>
-    </label>
+        <label for="item-UWtag">UW Tag Number(s):
+            <input id="item-UWtag" type="text">
+            <p>Note: separate multiple UW Tag numbers with a comma.</p>
+        </label>
+
+    </fieldset>
 
     <h3>Access Restrictions</h3>
     <fieldset>
@@ -223,12 +231,7 @@
 
     <h3>Item Actions</h3>
 
-    <div>Publish Status: <span class="dummy">Published</span>
-        <!-- if Changes , add <span>(without current changes)</span> -->
-        <span class="dummy">Unpublished</span>
-
-        <span>If published: <a href="/">view in client</a></span>
-
+    <div>
 
         <div style="margin-bottom:2em;">
             <input type="button" value="Download CSV of Item"></input>

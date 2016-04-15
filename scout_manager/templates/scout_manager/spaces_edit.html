@@ -42,34 +42,23 @@
         <textarea id="space-description" type="text">{{spot.location_description}}</textarea>
     </label>
 
-    <fieldset class="dummy">
+    <fieldset>
 
         <legend>Images</legend>
 
-        <label>Choose: <input type="file" name="" accept="image/*">
+        <label class="dummy">Choose: <input type="file" name="" accept="image/*">
             <input type="button" value="Upload image"></input>
         </label>
 
         <p>Uploaded images:</p>
         <ul>
-            <li>need a foreach loop... {{spot.images}}</li>
-
-            <li>
-                <img src="/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=100" />
-                <label for="study-default-image-1"><input type="radio" name="default-study-img" id="study-default-image-1">default</label>
-                <input type="button" value="Delete image"></input>
-            </li>
-            <li>
-                <img src="/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=100" />
-                <label for="study-default-image-1"><input type="radio" name="default-study-img" id="study-default-image-1">default</label>
-                <input type="button" value="Delete image"></input>
-            </li>
-            <li>
-                <img src="/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=100" />
-                <label for="study-default-image-1"><input type="radio" name="default-study-img" id="study-default-image-1">default</label>
-                <input type="button" value="Delete image"></input>
-            </li>
-
+            {% for image in spot.images %}
+             <li>
+                 <img src="/images/{{ spot.spot_id }}/image/{{ image.image_id }}?width=100">
+                 <label for="study-default-image-1" class="dummy"><input type="radio" name="default-study-img" id="study-default-image-1">default</label>
+                 <input type="button" value="Delete image" class="dummy"></input>
+             </li>
+            {% endfor %}
         </ul>
 
 
