@@ -264,14 +264,20 @@
 
             <label for="space-types" class="dummy">Type of space:
                 <fieldset>
-                    <legend>Food spot types {{ spot.spot_types }}</legend>
+                    <legend>Food spot types</legend>
                     <div id="food_spot_types">
-                        <label><input type="checkbox" {% if spot.spot_types == "cafe" %} selected {% endif %} value="cafe">Cafe</label>
-                        <label><input type="checkbox" value="food_court">Food Court</label>
-                        <label><input type="checkbox" value="food_truck">Food Truck</label>
-                        <label><input type="checkbox" value="market">Market</label>
-                        <label><input type="checkbox" value="restaurant">Restaurant</label>
+
+                        {{ spot.spot_types }}
+
+                        <label><input type="checkbox" {% if "cafe" in spot.spot_types %} checked {% endif %} value="cafe">Cafe</label>
+                        <label><input type="checkbox" {% if "food_court" in spot.spot_types %} checked {% endif %} value="food_court">Food Court</label>
+                        <label><input type="checkbox" {% if "food_truck" in spot.spot_types %} checked {% endif %} value="food_truck">Food Truck</label>
+                        <label><input type="checkbox" {% if "market" in spot.spot_types %} checked {% endif %} value="market">Market</label>
+                        <label><input type="checkbox" {% if "restaurant" in spot.spot_types %} checked {% endif %} value="restaurant">Restaurant</label>
+                        <label><input type="checkbox" {% if "cafeteria" in spot.spot_types %} checked {% endif %} value="cafeteria">Cafeteria</label>
+
                     </div>
+
                 </fieldset>
             </label>
 
