@@ -1,7 +1,7 @@
 .mgr-hours {
 
     label {
-        select { margin-left: 5px; max-width: 400px;  }
+        select, input[type='time'] { margin-left: 5px; max-width: 400px;  }
     }
 
 }
