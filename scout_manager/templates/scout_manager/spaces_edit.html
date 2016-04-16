@@ -32,6 +32,7 @@
         <input id="space-name" type="text" value="{{ spot.name }}" required="required">
     </label>
 
+<<<<<<< Updated upstream
     <fieldset class="scope">
 
         <p class="dummy">extended_info:app_type ??</p>
@@ -40,6 +41,13 @@
         <label><input type="checkbox" value="food">Food</label>
         <label><input type="checkbox" value="study">Study</label>
         <label><input type="checkbox" value="other">Other (neither food or study.. tied to stuff, since stuff must belong in a spot)</label>
+=======
+    <fieldset>
+        <legend>Primary use: app_type (required)</legend>
+        <label><input type="checkbox" value="food" {% if spot.app_type == "food"%}checked{% endif %}>Food</label>
+        <label><input type="checkbox" value="study"{% if spot.app_type == "study"%}checked{% endif %}>Study</label>
+        <label><input type="checkbox" value="other"{% if spot.app_type == "other"%}checked{% endif %}>Other (neither food or study.. tied to stuff, since stuff must belong in a spot)</label>
+>>>>>>> Stashed changes
     </fieldset>
 
     <label for="space-description">Description:

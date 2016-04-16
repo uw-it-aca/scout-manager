@@ -22,7 +22,7 @@
             </div>
             <div>Name: <span class="">{{ spot.name }}</span></div>
             <div>Campus: <span class="">{{ spot.campus }}</span></div>
-            <div>App: <span class="dummy">Food</span> <span class="dummy">Study</span></div>
+            <div>App: <span>{{ spot.app_type | capfirst }}</span></div>
             <div>Building: <span class="">{{ spot.building_name }}</span></div>
             {% if spot.has_alert %}
             <div>Alert:<span class="">{{ spot.alert_notes }}</span></div>
