@@ -434,16 +434,14 @@
         </div>
     </div>
 
-    <h3>Space Administration</h3>
+    <h3>Administration</h3>
 
     <fieldset>
         <legend>Contact Info</legend>
-
-        <label for="manager-name" class="scope">Manager Name:<input id="manager-name" type="text"></label>
+        <label for="manager-name">Manager Name:<input id="manager-name" type="text" value="{{ spot.manager }}"></label>
+        <label for="email" class="scope">Email:<input id="email" type="email" value=""></label>
         <label for="phone" class="">Phone:<input id="phone" type="tel" value="{{ spot.phone }}"></label>
-        <label for="email" class="scope">Email:<input id="email" type="email"></label>
         <label for="admin-group" class="dummy">Administrators of Space Information (UW Group):<input id="admin-group" type="text"></label>
-
     </fieldset>
 
     <h3>Stuff Integration</h3>
