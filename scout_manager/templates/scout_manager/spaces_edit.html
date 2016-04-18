@@ -32,7 +32,7 @@
         <input id="space-name" type="text" value="{{ spot.name }}" required="required">
     </label>
 
-    <fieldset class="scope">
+    <fieldset>
         <legend>Primary use: (required)</legend>
         <label><input type="checkbox" value="food "{% if spot.app_type == "food"%}checked{% endif %}>Food</label>
         <label><input type="checkbox" value="study" {% if spot.app_type == "study"%}checked{% endif %}>Study</label>
