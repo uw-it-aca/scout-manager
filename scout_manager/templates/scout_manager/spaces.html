@@ -22,7 +22,7 @@
             </div>
             <div>Name: <span class="">{{ spot.name }}</span></div>
             <div>Campus: <span class="">{{ spot.campus }}</span></div>
-            <div>App: <span>{{ spot.app_type | capfirst }}</span></div>
+            <div>App Type: <span>{{ spot.app_type | capfirst }}</span></div>
             <div>Building: <span class="">{{ spot.building_name }}</span></div>
             {% if spot.has_alert %}
             <div>Alert:<span class="">{{ spot.alert_notes }}</span></div>
@@ -30,8 +30,8 @@
             <div>Space Type: {% for type in spot.spot_types %}
                 <span class="">{{ type.name }}</span> {% endfor %}
             </div>
-            <div>Items:<span class="dummy">has_items (Yes or No)</span><span class="dummy">item_type.name <!--could be multiple --></span></div>
-            <div>Publish Status: <span class="dummy">Published</span><span class="dummy">Unpublished</span>
+            <div>Items: <span class="dummy">has_items (Yes or No)</span><span class="dummy">item_type.name <!--could be multiple --></span></div>
+            <div>Publish Status: <span class="scope">Published</span> <span class="scope">Unpublished</span>
                 <button type="button" class="dummy">Toggle Publish Status</button>
             </div>
             <div>Future Changes: <span class="dummy">change_date (Yes or No)</span> <span class="dummy"><a href="/manager/schedule/{{ spot.spot_id }}/">spot.change_date</a></span></div>
