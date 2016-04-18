@@ -34,9 +34,9 @@
 
     <fieldset>
         <legend>Primary use: (required)</legend>
-        <label><input type="checkbox" value="food "{% if spot.app_type == "food"%}checked{% endif %}>Food</label>
-        <label><input type="checkbox" value="study" {% if spot.app_type == "study"%}checked{% endif %}>Study</label>
-        <label><input type="checkbox" value="other" {% if spot.app_type == "other"%}checked{% endif %}>Other (neither food or study.. tied to stuff, since stuff must belong in a spot)</label>
+        <label><input type="checkbox" value="food "{% if spot.app_type == "food"%}checked{% endif %} disabled>Food</label>
+        <label><input type="checkbox" value="study" {% if spot.app_type == "study"%}checked{% endif %} disabled>Study</label>
+        <label><input type="checkbox" value="other" {% if spot.app_type == "other"%}checked{% endif %} disabled>Other (neither food or study.. tied to stuff, since stuff must belong in a spot)</label>
     </fieldset>
 
     <label for="space-description">Description:
