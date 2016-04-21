@@ -135,6 +135,7 @@
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
+                    current hours range
                     {% for hours in spot.hours.monday %}
                     <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
                     <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
@@ -142,15 +143,16 @@
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     {% endfor %}
+                    <input type="button" value="clear hours" title="clear hours" class="scope">
                 </div>
                 <div class="scope flex-item">
-                    range 2 (if has multiple in a day)
-                    <label for="">Open:<input type="time" name="" /></label>
-                    <label for="">Close:<input type="time" name="" /></label>
+                    add hours range
+                    <label for="">Open:<input type="time" name="" value="" /></label>
+                    <label for="">Close:<input type="time" name="" value="" /></label>
+                    <input type="button" value="add range" title="add range" class="scope">
                 </div>
             </li>
         </ul>
-        <input type="button" value="clear hours" title="clear hours" class="scope">
     </fieldset>
 
     <fieldset class="mgr-hours">
@@ -158,6 +160,7 @@
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
+                    current hours range
                     {% for hours in spot.hours.tuesday %}
                     <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
                     <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
@@ -165,15 +168,16 @@
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     {% endfor %}
+                    <input type="button" value="clear hours" title="clear hours" class="scope">
                 </div>
                 <div class="scope flex-item">
-                    range 2 (if has multiple in a day)
-                    <label for="">Open:<input type="time" name="" /></label>
-                    <label for="">Close:<input type="time" name="" /></label>
+                    add hours range
+                    <label for="">Open:<input type="time" name="" value="" /></label>
+                    <label for="">Close:<input type="time" name="" value="" /></label>
+                    <input type="button" value="add range" title="add range" class="scope">
                 </div>
             </li>
         </ul>
-        <input type="button" value="clear hours" title="clear hours" class="scope">
     </fieldset>
 
     <fieldset class="mgr-hours">
@@ -181,6 +185,7 @@
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
+                    current hours range
                     {% for hours in spot.hours.wednesday %}
                     <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
                     <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
@@ -188,15 +193,16 @@
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     {% endfor %}
+                    <input type="button" value="clear hours" title="clear hours" class="scope">
                 </div>
                 <div class="scope flex-item">
-                    range 2 (if has multiple in a day)
-                    <label for="">Open:<input type="time" name="" /></label>
-                    <label for="">Close:<input type="time" name="" /></label>
+                    add hours range
+                    <label for="">Open:<input type="time" name="" value="" /></label>
+                    <label for="">Close:<input type="time" name="" value="" /></label>
+                    <input type="button" value="add range" title="add range" class="scope">
                 </div>
             </li>
         </ul>
-        <input type="button" value="clear hours" title="clear hours" class="scope">
     </fieldset>
 
     <fieldset class="mgr-hours">
@@ -204,6 +210,7 @@
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
+                    current hours range
                     {% for hours in spot.hours.thursday %}
                     <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
                     <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
@@ -211,15 +218,16 @@
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     {% endfor %}
+                    <input type="button" value="clear hours" title="clear hours" class="scope">
                 </div>
                 <div class="scope flex-item">
-                    range 2 (if has multiple in a day)
-                    <label for="">Open:<input type="time" name="" /></label>
-                    <label for="">Close:<input type="time" name="" /></label>
+                    add hours range
+                    <label for="">Open:<input type="time" name="" value="" /></label>
+                    <label for="">Close:<input type="time" name="" value="" /></label>
+                    <input type="button" value="add range" title="add range" class="scope">
                 </div>
             </li>
         </ul>
-        <input type="button" value="clear hours" title="clear hours" class="scope">
     </fieldset>
 
     <fieldset class="mgr-hours">
@@ -227,6 +235,7 @@
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
+                    current hours range
                     {% for hours in spot.hours.friday %}
                     <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
                     <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
@@ -234,15 +243,16 @@
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     {% endfor %}
+                    <input type="button" value="clear hours" title="clear hours" class="scope">
                 </div>
                 <div class="scope flex-item">
-                    range 2 (if has multiple in a day)
-                    <label for="">Open:<input type="time" name="" /></label>
-                    <label for="">Close:<input type="time" name="" /></label>
+                    add hours range
+                    <label for="">Open:<input type="time" name="" value="" /></label>
+                    <label for="">Close:<input type="time" name="" value="" /></label>
+                    <input type="button" value="add range" title="add range" class="scope">
                 </div>
             </li>
         </ul>
-        <input type="button" value="clear hours" title="clear hours" class="scope">
     </fieldset>
 
     <fieldset class="mgr-hours">
@@ -250,6 +260,7 @@
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
+                    current hours range
                     {% for hours in spot.hours.saturday %}
                     <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
                     <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
@@ -257,15 +268,16 @@
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     {% endfor %}
+                    <input type="button" value="clear hours" title="clear hours" class="scope">
                 </div>
                 <div class="scope flex-item">
-                    range 2 (if has multiple in a day)
-                    <label for="">Open:<input type="time" name="" /></label>
-                    <label for="">Close:<input type="time" name="" /></label>
+                    add hours range
+                    <label for="">Open:<input type="time" name="" value="" /></label>
+                    <label for="">Close:<input type="time" name="" value="" /></label>
+                    <input type="button" value="add range" title="add range" class="scope">
                 </div>
             </li>
         </ul>
-        <input type="button" value="clear hours" title="clear hours" class="scope">
     </fieldset>
 
     <fieldset class="mgr-hours">
@@ -273,6 +285,7 @@
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
+                    current hours range
                     {% for hours in spot.hours.sunday %}
                     <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
                     <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
@@ -280,15 +293,16 @@
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     {% endfor %}
+                    <input type="button" value="clear hours" title="clear hours" class="scope">
                 </div>
                 <div class="scope flex-item">
-                    range 2 (if has multiple in a day)
-                    <label for="">Open:<input type="time" name="" /></label>
-                    <label for="">Close:<input type="time" name="" /></label>
+                    add hours range
+                    <label for="">Open:<input type="time" name="" value="" /></label>
+                    <label for="">Close:<input type="time" name="" value="" /></label>
+                    <input type="button" value="add range" title="add range" class="scope">
                 </div>
             </li>
         </ul>
-        <input type="button" value="clear hours" title="clear hours" class="scope">
     </fieldset>
 
     <label for="hours-notes">Hours Notes/Exceptions:
