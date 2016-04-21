@@ -280,16 +280,15 @@
 
             <label for="space-types" class="scope">Type of space:
                 <fieldset>
-                    <legend>Food spot types</legend>
+                    <legend>Spot types</legend>
                     <div id="food_spot_types">
-                    {{ spot.foodtype_names }}
-                        <label><input type="checkbox" {% if "cafe" in spot.foodtype_names %} checked {% endif %} value="cafe">Cafe</label>
-                        <label><input type="checkbox" {% if "food_court" in spot.foodtype_names %} checked {% endif %} value="food_court">Food Court</label>
-                        <label><input type="checkbox" {% if "food_truck" in spot.foodtype_names %} checked {% endif %} value="food_truck">Food Truck</label>
-                        <label><input type="checkbox" {% if "market" in spot.foodtype_names %} checked {% endif %} value="market">Market</label>
-                        <label><input type="checkbox" {% if "restaurant" in spot.foodtype_names %} checked {% endif %} value="restaurant">Restaurant</label>
-                        <label><input type="checkbox" {% if "cafeteria" in spot.foodtype_names %} checked {% endif %} value="cafeteria">Cafeteria</label>
-
+                    {{ spot.spot_types }}
+                        <label><input type="checkbox" {% if "cafe" in spot.spot_types %} checked {% endif %} value="cafe">Cafe</label>
+                        <label><input type="checkbox" {% if "food_court" in spot.spot_types %} checked {% endif %} value="food_court">Food Court</label>
+                        <label><input type="checkbox" {% if "food_truck" in spot.spot_types %} checked {% endif %} value="food_truck">Food Truck</label>
+                        <label><input type="checkbox" {% if "market" in spot.spot_types %} checked {% endif %} value="market">Market</label>
+                        <label><input type="checkbox" {% if "restaurant" in spot.spot_types %} checked {% endif %} value="restaurant">Restaurant</label>
+                        <label><input type="checkbox" {% if "cafeteria" in spot.spot_types %} checked {% endif %} value="cafeteria">Cafeteria</label>
                     </div>
 
                 </fieldset>
@@ -370,7 +369,7 @@
 
             <label for="space-types" class="dummy">Type of space:
                 <fieldset>
-                    <legend>Study spot types</legend>
+                    <legend>Spot types</legend>
                     <div id="food_spot_types">
                         <label><input type="checkbox" value="xxxxx">Study room</label>
                         <label><input type="checkbox" value="xxxxx">Study area</label>
