@@ -130,137 +130,165 @@
 
     <h3>Hours and Access</h3>
 
-    <fieldset class="scope mgr-hours">
+    <fieldset class="mgr-hours">
         <legend>Monday:</legend>
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
-                    range 1
-                    <label for="">Open:<input type="time" name="" /></label>
-                    <label for="">Close:<input type="time" name="" /></label>
+                    {% for hours in spot.hours.monday %}
+                    <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
+                    <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
+                    {% empty %}
+                    <label for="">Open:<input type="time" name="" value="" /></label>
+                    <label for="">Close:<input type="time" name="" value="" /></label>
+                    {% endfor %}
                 </div>
-                <div class="flex-item">
+                <div class="scope flex-item">
                     range 2 (if has multiple in a day)
                     <label for="">Open:<input type="time" name="" /></label>
                     <label for="">Close:<input type="time" name="" /></label>
                 </div>
             </li>
         </ul>
-        <input type="button" value="clear hours" title="clear hours">
+        <input type="button" value="clear hours" title="clear hours" class="scope">
     </fieldset>
 
-    <fieldset class="scope mgr-hours">
+    <fieldset class="mgr-hours">
         <legend>Tuesday:</legend>
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
-                    range 1
-                    <label for="">Open:<input type="time" name="" /></label>
-                    <label for="">Close:<input type="time" name="" /></label>
+                    {% for hours in spot.hours.tuesday %}
+                    <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
+                    <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
+                    {% empty %}
+                    <label for="">Open:<input type="time" name="" value="" /></label>
+                    <label for="">Close:<input type="time" name="" value="" /></label>
+                    {% endfor %}
                 </div>
-                <div class="flex-item">
+                <div class="scope flex-item">
                     range 2 (if has multiple in a day)
                     <label for="">Open:<input type="time" name="" /></label>
                     <label for="">Close:<input type="time" name="" /></label>
                 </div>
             </li>
         </ul>
-        <input type="button" value="clear hours" title="clear hours">
+        <input type="button" value="clear hours" title="clear hours" class="scope">
     </fieldset>
 
-    <fieldset class="scope mgr-hours">
+    <fieldset class="mgr-hours">
         <legend>Wednesday:</legend>
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
-                    range 1
-                    <label for="">Open:<input type="time" name="" /></label>
-                    <label for="">Close:<input type="time" name="" /></label>
+                    {% for hours in spot.hours.wednesday %}
+                    <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
+                    <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
+                    {% empty %}
+                    <label for="">Open:<input type="time" name="" value="" /></label>
+                    <label for="">Close:<input type="time" name="" value="" /></label>
+                    {% endfor %}
                 </div>
-                <div class="flex-item">
+                <div class="scope flex-item">
                     range 2 (if has multiple in a day)
                     <label for="">Open:<input type="time" name="" /></label>
                     <label for="">Close:<input type="time" name="" /></label>
                 </div>
             </li>
         </ul>
-        <input type="button" value="clear hours" title="clear hours">
+        <input type="button" value="clear hours" title="clear hours" class="scope">
     </fieldset>
 
-    <fieldset class="scope mgr-hours">
+    <fieldset class="mgr-hours">
         <legend>Thursday:</legend>
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
-                    range 1
-                    <label for="">Open:<input type="time" name="" /></label>
-                    <label for="">Close:<input type="time" name="" /></label>
+                    {% for hours in spot.hours.thursday %}
+                    <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
+                    <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
+                    {% empty %}
+                    <label for="">Open:<input type="time" name="" value="" /></label>
+                    <label for="">Close:<input type="time" name="" value="" /></label>
+                    {% endfor %}
                 </div>
-                <div class="flex-item">
+                <div class="scope flex-item">
                     range 2 (if has multiple in a day)
                     <label for="">Open:<input type="time" name="" /></label>
                     <label for="">Close:<input type="time" name="" /></label>
                 </div>
             </li>
         </ul>
-        <input type="button" value="clear hours" title="clear hours">
+        <input type="button" value="clear hours" title="clear hours" class="scope">
     </fieldset>
 
-    <fieldset class="scope mgr-hours">
+    <fieldset class="mgr-hours">
         <legend>Friday:</legend>
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
-                    range 1
-                    <label for="">Open:<input type="time" name="" /></label>
-                    <label for="">Close:<input type="time" name="" /></label>
+                    {% for hours in spot.hours.friday %}
+                    <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
+                    <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
+                    {% empty %}
+                    <label for="">Open:<input type="time" name="" value="" /></label>
+                    <label for="">Close:<input type="time" name="" value="" /></label>
+                    {% endfor %}
                 </div>
-                <div class="flex-item">
+                <div class="scope flex-item">
                     range 2 (if has multiple in a day)
                     <label for="">Open:<input type="time" name="" /></label>
                     <label for="">Close:<input type="time" name="" /></label>
                 </div>
             </li>
         </ul>
-        <input type="button" value="clear hours" title="clear hours">
+        <input type="button" value="clear hours" title="clear hours" class="scope">
     </fieldset>
 
-    <fieldset class="scope mgr-hours">
+    <fieldset class="mgr-hours">
         <legend>Saturday:</legend>
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
-                    range 1
-                    <label for="">Open:<input type="time" name="" /></label>
-                    <label for="">Close:<input type="time" name="" /></label>
+                    {% for hours in spot.hours.saturday %}
+                    <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
+                    <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
+                    {% empty %}
+                    <label for="">Open:<input type="time" name="" value="" /></label>
+                    <label for="">Close:<input type="time" name="" value="" /></label>
+                    {% endfor %}
                 </div>
-                <div class="flex-item">
+                <div class="scope flex-item">
                     range 2 (if has multiple in a day)
                     <label for="">Open:<input type="time" name="" /></label>
                     <label for="">Close:<input type="time" name="" /></label>
                 </div>
             </li>
         </ul>
-        <input type="button" value="clear hours" title="clear hours">
+        <input type="button" value="clear hours" title="clear hours" class="scope">
     </fieldset>
 
-    <fieldset class="scope mgr-hours">
+    <fieldset class="mgr-hours">
         <legend>Sunday:</legend>
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
-                    range 1
-                    <label for="">Open:<input type="time" name="" /></label>
-                    <label for="">Close:<input type="time" name="" /></label>
+                    {% for hours in spot.hours.sunday %}
+                    <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
+                    <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
+                    {% empty %}
+                    <label for="">Open:<input type="time" name="" value="" /></label>
+                    <label for="">Close:<input type="time" name="" value="" /></label>
+                    {% endfor %}
                 </div>
-                <div class="flex-item">
+                <div class="scope flex-item">
                     range 2 (if has multiple in a day)
                     <label for="">Open:<input type="time" name="" /></label>
                     <label for="">Close:<input type="time" name="" /></label>
                 </div>
             </li>
         </ul>
-        <input type="button" value="clear hours" title="clear hours">
+        <input type="button" value="clear hours" title="clear hours" class="scope">
     </fieldset>
 
     <label for="hours-notes">Hours Notes/Exceptions:
