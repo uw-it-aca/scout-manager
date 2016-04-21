@@ -135,18 +135,19 @@
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
-                    current hours range
                     {% for hours in spot.hours.monday %}
+                    current hours
                     <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
                     <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
                     {% empty %}
+                    no hours.. add some?
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     {% endfor %}
                     <input type="button" value="clear hours" title="clear hours" class="mgr-clear-hours">
                 </div>
                 <div class="scope flex-item">
-                    add hours range
+                    add additional hours
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     <input type="button" value="add range" title="add range" class="scope">
@@ -160,18 +161,19 @@
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
-                    current hours range
                     {% for hours in spot.hours.tuesday %}
+                    current hours
                     <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
                     <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
                     {% empty %}
+                    no hours.. add some?
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     {% endfor %}
                     <input type="button" value="clear hours" title="clear hours" class="mgr-clear-hours">
                 </div>
                 <div class="scope flex-item">
-                    add hours range
+                    add additional hours
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     <input type="button" value="add range" title="add range" class="scope">
@@ -185,18 +187,19 @@
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
-                    current hours range
                     {% for hours in spot.hours.wednesday %}
+                    current hours
                     <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
                     <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
                     {% empty %}
+                    no hours.. add some?
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     {% endfor %}
                     <input type="button" value="clear hours" title="clear hours" class="mgr-clear-hours">
                 </div>
                 <div class="scope flex-item">
-                    add hours range
+                    add additional hours
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     <input type="button" value="add range" title="add range" class="scope">
@@ -210,18 +213,20 @@
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
-                    current hours range
+
                     {% for hours in spot.hours.thursday %}
+                    current hours
                     <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
                     <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
                     {% empty %}
+                    no hours.. add some?
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     {% endfor %}
                     <input type="button" value="clear hours" title="clear hours" class="mgr-clear-hours">
                 </div>
                 <div class="scope flex-item">
-                    add hours range
+                    add additional hours
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     <input type="button" value="add range" title="add range" class="scope">
@@ -235,18 +240,19 @@
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
-                    current hours range
                     {% for hours in spot.hours.friday %}
+                    current hours
                     <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
                     <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
                     {% empty %}
+                    no hours... add some?
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     {% endfor %}
                     <input type="button" value="clear hours" title="clear hours" class="mgr-clear-hours">
                 </div>
                 <div class="scope flex-item">
-                    add hours range
+                    add additional hours
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     <input type="button" value="add range" title="add range" class="scope">
@@ -260,18 +266,19 @@
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
-                    current hours range
                     {% for hours in spot.hours.saturday %}
+                    current hours
                     <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
                     <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
                     {% empty %}
+                    no hours... add some?
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     {% endfor %}
                     <input type="button" value="clear hours" title="clear hours" class="mgr-clear-hours">
                 </div>
                 <div class="scope flex-item">
-                    add hours range
+                    add additional hours
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     <input type="button" value="add range" title="add range" class="scope">
@@ -285,18 +292,19 @@
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
-                    current hours range
                     {% for hours in spot.hours.sunday %}
+                    current hours
                     <label for="">Open:<input type="time" name="" value="{{ hours.0|time:"H:i"}}" /></label>
                     <label for="">Close:<input type="time" name="" value="{{ hours.1|time:"H:i" }}" /></label>
                     {% empty %}
+                    no hours... add some?
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     {% endfor %}
                     <input type="button" value="clear hours" title="clear hours" class="mgr-clear-hours">
                 </div>
                 <div class="scope flex-item">
-                    add hours range
+                    add additional hours
                     <label for="">Open:<input type="time" name="" value="" /></label>
                     <label for="">Close:<input type="time" name="" value="" /></label>
                     <input type="button" value="add range" title="add range" class="scope">
