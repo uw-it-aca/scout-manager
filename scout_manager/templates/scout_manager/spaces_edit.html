@@ -282,15 +282,13 @@
                 <fieldset>
                     <legend>Food spot types</legend>
                     <div id="food_spot_types">
-
-                        {{ spot.spot_types }}
-
-                        <label><input type="checkbox" {% if "cafe" in spot.spot_types %} checked {% endif %} value="cafe">Cafe</label>
-                        <label><input type="checkbox" {% if "food_court" in spot.spot_types %} checked {% endif %} value="food_court">Food Court</label>
-                        <label><input type="checkbox" {% if "food_truck" in spot.spot_types %} checked {% endif %} value="food_truck">Food Truck</label>
-                        <label><input type="checkbox" {% if "market" in spot.spot_types %} checked {% endif %} value="market">Market</label>
-                        <label><input type="checkbox" {% if "restaurant" in spot.spot_types %} checked {% endif %} value="restaurant">Restaurant</label>
-                        <label><input type="checkbox" {% if "cafeteria" in spot.spot_types %} checked {% endif %} value="cafeteria">Cafeteria</label>
+                    {{ spot.foodtype_names }}
+                        <label><input type="checkbox" {% if "cafe" in spot.foodtype_names %} checked {% endif %} value="cafe">Cafe</label>
+                        <label><input type="checkbox" {% if "food_court" in spot.foodtype_names %} checked {% endif %} value="food_court">Food Court</label>
+                        <label><input type="checkbox" {% if "food_truck" in spot.foodtype_names %} checked {% endif %} value="food_truck">Food Truck</label>
+                        <label><input type="checkbox" {% if "market" in spot.foodtype_names %} checked {% endif %} value="market">Market</label>
+                        <label><input type="checkbox" {% if "restaurant" in spot.foodtype_names %} checked {% endif %} value="restaurant">Restaurant</label>
+                        <label><input type="checkbox" {% if "cafeteria" in spot.foodtype_names %} checked {% endif %} value="cafeteria">Cafeteria</label>
 
                     </div>
 
@@ -328,7 +326,7 @@
                     <label><input type="checkbox" {% if "Pastries" in spot.foodtype_names %} checked {% endif %} value="s_food_pastries">Pastries</label>
                     <label><input type="checkbox" {% if "Pho" in spot.foodtype_names %} checked {% endif %} value="s_food_pho">Pho</label>
                     <label><input type="checkbox" {% if "Pizza" in spot.foodtype_names %} checked {% endif %} value="s_food_pizza">Pizza</label>
-                    <label><input type="checkbox" {% if "Salad" in spot.foodtype_names %} checked {% endif %} value="s_food_salads">Salads</label>
+                    <label><input type="checkbox" {% if "Salads" in spot.foodtype_names %} checked {% endif %} value="s_food_salads">Salads</label>
                     <label><input type="checkbox" {% if "Sandwiches" in spot.foodtype_names %} checked {% endif %} value="s_food_sandwiches">Sandwiches</label>
                     <label><input type="checkbox" {% if "Smoothies" in spot.foodtype_names %} checked {% endif %} value="s_food_smoothies">Smoothies</label>
                     <label><input type="checkbox" {% if "Sushi (packaged)" in spot.foodtype_names %} checked {% endif %} value="s_food_sushi_packaged">Sushi (packaged)</label>

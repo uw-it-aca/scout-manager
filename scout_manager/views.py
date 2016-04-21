@@ -61,6 +61,7 @@ def spaces_add(request):
 
 def spaces_edit(request, spot_id):
     spot = get_spot_by_id(spot_id)
+    print spot.spot_types[0].__dict__
     return render_to_response(
             'scout_manager/spaces_edit.html',
             {'spot': spot},
