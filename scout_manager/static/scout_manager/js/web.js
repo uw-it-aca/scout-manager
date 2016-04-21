@@ -17,4 +17,6 @@ $(document).on('ready', function(event) {
         $("#items").load("/manager/items/");
     }
 
+    Hours.clear_hours();
+
 });
