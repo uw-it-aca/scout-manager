@@ -3,6 +3,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from htmlmin.decorators import minified_response
 from scout.dao.space import get_spot_list, get_spot_by_id
+from scout_manager.dao.space import get_spot_by_id as manager_get_spot_by_id
 
 
 def home(request):
@@ -60,8 +61,7 @@ def spaces_add(request):
 
 
 def spaces_edit(request, spot_id):
-    spot = get_spot_by_id(spot_id)
-    print spot.spot_types[0].__dict__
+    spot = manager_get_spot_by_id(spot_id)
     return render_to_response(
             'scout_manager/spaces_edit.html',
             {'spot': spot},
