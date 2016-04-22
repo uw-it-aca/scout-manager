@@ -17,7 +17,13 @@ def process_extended_info(spot):
         return spot
 
 def sort_hours_by_day(spot):
-    days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
+    days = ["monday",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+            "sunday"]
     hours_objects = []
     for day in days:
         day_hours = \
