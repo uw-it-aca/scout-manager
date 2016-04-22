@@ -157,6 +157,7 @@
         </ul>
     </fieldset>
     {% endfor %}
+
     <label for="hours-notes">Hours Notes/Exceptions:
         <textarea id="hours-notes">{{spot.hours_notes}}</textarea>
     </label>
@@ -232,7 +233,7 @@
                     <input id="coupon-url" type="url" value="{{ spot.coupon_url }}" />
                 </label>
                 <label for="coupon-date">Expiration Date:
-                    <input id="coupon-date" type="date" value="{{ spot.coupon_expiration }}" placeholder="mm/dd/yyyy" />
+                    <input id="coupon-date" type="text" value="{{ spot.coupon_expiration }}" placeholder="mm/dd/yyyy" />
                 </label>
             </fieldset>
 
