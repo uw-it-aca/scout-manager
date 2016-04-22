@@ -138,8 +138,8 @@
                 <div class="flex-item">
                     {% for period in day_hours.hours %}
                     current hours
-                    <label for="">Open:<input type="time" name="" value="{{ period.start_time|time:"G:i" }}" /></label>
-                    <label for="">Close:<input type="time" name="" value="{{ period.end_time|time:"G:i" }}" /></label>
+                    <label for="">Open:<input type="time" name="" value="{{ period.start_time|time:"H:i" }}" /></label>
+                    <label for="">Close:<input type="time" name="" value="{{ period.end_time|time:"H:i" }}" /></label>
                     {% empty %}
                     no hours.. add some?
                     <label for="">Open:<input type="time" name="" value="" /></label>
