@@ -37,10 +37,11 @@
         <label><input type="checkbox" value="food "{% if spot.app_type == "food"%}checked{% endif %} disabled>Food</label>
         <label><input type="checkbox" value="study" {% if spot.app_type == "study"%}checked{% endif %} disabled>Study</label>
         <label><input type="checkbox" value="other" {% if spot.app_type == "other"%}checked{% endif %} disabled>Other (neither food or study.. tied to stuff, since stuff must belong in a spot)</label>
+        <input type="hidden" name="extended_info:app-type" value="{{ spot.app_type }}" />
     </fieldset>
 
     <label for="space-description">Description:
-        <textarea id="space-description" type="text">{{spot.location_description}}</textarea>
+        <textarea name="extended_info:location_description" id="space-description" type="text">{{spot.location_description}}</textarea>
     </label>
 
     <fieldset>
@@ -70,7 +71,7 @@
         <legend>Location:</legend>
 
         <label for="space-campus" required>Campus:
-            <select>
+            <select name="extended_info:campus">
                 <option disabled selected value>select a campus...</option>
                 <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
                 <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
@@ -80,11 +81,11 @@
         </label>
 
         <label for="space-latitude">Latitude
-            <input id="space-latitude" type="text" value="{{ spot.latitude }}" required />
+            <input name="location:latitude" id="space-latitude" type="text" value="{{ spot.latitude }}" required />
         </label>
 
         <label for="space-longitude">Longitude
-            <input id="space-longitude" type="text" value="{{ spot.longitude }}" required />
+            <input name="location:longitude" id="space-longitude" type="text" value="{{ spot.longitude }}" required />
         </label>
 
         {# How are we determining this? #}
@@ -92,7 +93,7 @@
 
         <!-- Hide if outdoor location. We suggest/enforce building options. -->
         <label for="building-name" class="scope">Building: {{ spot.building_name }}
-            <select>
+            <select name="location:building_name">
                 <option disabled selected value>select a building...</option>
                 <option value="" {% if spot.building_name == "Odegaard Undergraduate Library (OUGL)" %} selected {% endif %}>Odegaard Undergraduate Library (OUGL)</option>
                 <option value="" {% if spot.building_name == "Husky Union Building (HUB)" %} selected {% endif %}>Husky Union Building (HUB)</option>
@@ -108,12 +109,12 @@
 
         <!-- Hide if outdoor location. We suggest floor options. -->
         <label for="floor">Floor:
-            <input id="floor" type="text" value="{{ spot.floor }}">
+            <input id="floor" name="location:floor" type="text" value="{{ spot.floor }}">
         </label>
 
         <!-- Hide if outdoor location -->
         <label for="room-number">Room #:
-            <input id="room-number" type="text" value="{{ spot.room_number }}">
+            <input id="room-number" name="location:room_number" type="text" value="{{ spot.room_number }}">
         </label>
 
         {# How are we determining this? #}
@@ -122,10 +123,10 @@
     </fieldset>
 
     <h3>Current Alert</h3> {# we need to set has_alert too to show it #}
-    <label><input type="checkbox" value="has_alert" {% if spot.has_alert %}checked{% endif %}>Alert Enabled</label>
+    <label><input name="extended_info:has_alert" type="checkbox" value="has_alert" {% if spot.has_alert %}checked{% endif %}>Alert Enabled</label>
 
     <label for="alert-notes">Post this Alert message:
-        <textarea id="alert-notes" type="text" value="{{ spot.alert_notes }}"></textarea>
+        <textarea id="alert-notes" name="extended_info:alert_notes" type="text" value="{{ spot.alert_notes }}"></textarea>
     </label>
 
     <h3>Hours and Access</h3>
@@ -160,11 +161,11 @@
     {% endfor %}
 
     <label for="hours-notes">Hours Notes/Exceptions:
-        <textarea id="hours-notes">{{spot.hours_notes}}</textarea>
+        <textarea id="hours-notes"name="extended_info:hours_notes">{{spot.hours_notes}}</textarea>
     </label>
 
     <label for="access-notes">Access Notes:
-        <textarea id="access-notes">{{spot.access_notes}}</textarea>
+        <textarea id="access-notes"name="extended_info:access_notes">{{spot.access_notes}}</textarea>
     </label>
 
 
@@ -178,12 +179,12 @@
                 <fieldset>
                     <legend>Spot types</legend>
                     <div id="food_spot_types">
-                        <label><input type="checkbox" {% for type in spot.spot_types %}{% if "cafe" in type.name %} checked {% endif %}{% endfor %} value="cafe">Cafe</label>
-                        <label><input type="checkbox" {% for type in spot.spot_types %}{% if "food_court" in type.name %} checked {% endif %}{% endfor %} value="food_court">Food Court</label>
-                        <label><input type="checkbox" {% for type in spot.spot_types %}{% if "food_truck" in type.name %} checked {% endif %}{% endfor %} value="food_truck">Food Truck</label>
-                        <label><input type="checkbox" {% for type in spot.spot_types %}{% if "market" in type.name %} checked {% endif %}{% endfor %} value="market">Market</label>
-                        <label><input type="checkbox" {% for type in spot.spot_types %}{% if "restaurant" in type.name %} checked {% endif %}{% endfor %} value="restaurant">Restaurant</label>
-                        <label><input type="checkbox" {% for type in spot.spot_types %}{% if "cafeteria" in type.name %} checked {% endif %}{% endfor %} value="cafeteria">Cafeteria</label>
+                        <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafe" in type.name %} checked {% endif %}{% endfor %} value="cafe">Cafe</label>
+                        <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "food_court" in type.name %} checked {% endif %}{% endfor %} value="food_court">Food Court</label>
+                        <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "food_truck" in type.name %} checked {% endif %}{% endfor %} value="food_truck">Food Truck</label>
+                        <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "market" in type.name %} checked {% endif %}{% endfor %} value="market">Market</label>
+                        <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "restaurant" in type.name %} checked {% endif %}{% endfor %} value="restaurant">Restaurant</label>
+                        <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafeteria" in type.name %} checked {% endif %}{% endfor %} value="cafeteria">Cafeteria</label>
                     </div>
 
                 </fieldset>
@@ -191,69 +192,69 @@
 
             <fieldset>
                 <legend>Cuisine</legend>
-                <label><input type="checkbox" {% if "American" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_american">American</label>
-                <label><input type="checkbox" {% if "BBQ" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_bbq">BBQ</label>
-                <label><input type="checkbox" {% if "Chinese" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_chinese">Chinese</label>
-                <label><input type="checkbox" {% if "Hawaiian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_hawaiian">Hawaiian</label>
-                <label><input type="checkbox" {% if "Indian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_indian">Indian</label>
-                <label><input type="checkbox" {% if "Italian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_italian">Italian</label>
-                <label><input type="checkbox" {% if "Korean" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_korean">Korean</label>
-                <label><input type="checkbox" {% if "Mexian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_mexican">Mexican</label>
-                <label><input type="checkbox" {% if "Vietnamese" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_vietnamese">Vietnamese</label>
+                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "American" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_american">American</label>
+                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "BBQ" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_bbq">BBQ</label>
+                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Chinese" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_chinese">Chinese</label>
+                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Hawaiian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_hawaiian">Hawaiian</label>
+                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Indian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_indian">Indian</label>
+                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Italian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_italian">Italian</label>
+                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Korean" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_korean">Korean</label>
+                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Mexian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_mexican">Mexican</label>
+                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Vietnamese" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_vietnamese">Vietnamese</label>
             </fieldset>
 
-            <label for="website">Website URL: <input id="website" type="url" value="{{spot.website_url}}" /></label>
+            <label for="website">Website URL: <input id="website" name="extended_info:s_website_url" type="url" value="{{spot.website_url}}" /></label>
 
-            <label for="menu-url">Menu URL:<input id="menu-url" type="url" value="{{spot.menu_url}}" /></label>
+            <label for="menu-url">Menu URL:<input id="menu-url" name="extended_info:s_menu_url" type="url" value="{{spot.menu_url}}" /></label>
 
             <fieldset>
                 <legend>Food served</legend>
                 <div id="food_select">
-                    <label><input type="checkbox" {% if "Burgers" in spot.foodtype_names %} checked {% endif %} value="s_food_burgers">Burgers</label>
-                    <label><input type="checkbox" {% if "Breakfast" in spot.foodtype_names %} checked {% endif %} value="s_food_breakfast">Breakfast</label>
-                    <label><input type="checkbox" {% if "Curry" in spot.foodtype_names %} checked {% endif %} value="s_food_curry">Curry</label>
-                    <label><input type="checkbox" {% if "Desserts" in spot.foodtype_names %} checked {% endif %} value="s_food_desserts">Desserts</label>
-                    <label><input type="checkbox" {% if "Entrees" in spot.foodtype_names %} checked {% endif %} value="s_food_entrees">Entrees</label>
-                    <label><input type="checkbox" {% if "Espresso" in spot.foodtype_names %} checked {% endif %} value="s_food_espresso">Espresso</label>
-                    <label><input type="checkbox" {% if "Frozen Yogurt" in spot.foodtype_names %} checked {% endif %} value="s_food_frozen_yogurt">Frozen Yogurt</label>
-                    <label><input type="checkbox" {% if "Pasta" in spot.foodtype_names %} checked {% endif %} value="s_food_pasta">Pasta</label>
-                    <label><input type="checkbox" {% if "Pastries" in spot.foodtype_names %} checked {% endif %} value="s_food_pastries">Pastries</label>
-                    <label><input type="checkbox" {% if "Pho" in spot.foodtype_names %} checked {% endif %} value="s_food_pho">Pho</label>
-                    <label><input type="checkbox" {% if "Pizza" in spot.foodtype_names %} checked {% endif %} value="s_food_pizza">Pizza</label>
-                    <label><input type="checkbox" {% if "Salads" in spot.foodtype_names %} checked {% endif %} value="s_food_salads">Salads</label>
-                    <label><input type="checkbox" {% if "Sandwiches" in spot.foodtype_names %} checked {% endif %} value="s_food_sandwiches">Sandwiches</label>
-                    <label><input type="checkbox" {% if "Smoothies" in spot.foodtype_names %} checked {% endif %} value="s_food_smoothies">Smoothies</label>
-                    <label><input type="checkbox" {% if "Sushi (packaged)" in spot.foodtype_names %} checked {% endif %} value="s_food_sushi_packaged">Sushi (packaged)</label>
-                    <label><input type="checkbox" {% if "Tacos" in spot.foodtype_names %} checked {% endif %} value="s_food_tacos">Tacos</label>
+                    <label><input type="checkbox" name="extended_info:s_food" {% if "Burgers" in spot.foodtype_names %} checked {% endif %} value="s_food_burgers">Burgers</label>
+                    <label><input type="checkbox" name="extended_info:s_food" {% if "Breakfast" in spot.foodtype_names %} checked {% endif %} value="s_food_breakfast">Breakfast</label>
+                    <label><input type="checkbox" name="extended_info:s_food" {% if "Curry" in spot.foodtype_names %} checked {% endif %} value="s_food_curry">Curry</label>
+                    <label><input type="checkbox" name="extended_info:s_food" {% if "Desserts" in spot.foodtype_names %} checked {% endif %} value="s_food_desserts">Desserts</label>
+                    <label><input type="checkbox" name="extended_info:s_food" {% if "Entrees" in spot.foodtype_names %} checked {% endif %} value="s_food_entrees">Entrees</label>
+                    <label><input type="checkbox" name="extended_info:s_food" {% if "Espresso" in spot.foodtype_names %} checked {% endif %} value="s_food_espresso">Espresso</label>
+                    <label><input type="checkbox" name="extended_info:s_food" {% if "Frozen Yogurt" in spot.foodtype_names %} checked {% endif %} value="s_food_frozen_yogurt">Frozen Yogurt</label>
+                    <label><input type="checkbox" name="extended_info:s_food" {% if "Pasta" in spot.foodtype_names %} checked {% endif %} value="s_food_pasta">Pasta</label>
+                    <label><input type="checkbox" name="extended_info:s_food" {% if "Pastries" in spot.foodtype_names %} checked {% endif %} value="s_food_pastries">Pastries</label>
+                    <label><input type="checkbox" name="extended_info:s_food" {% if "Pho" in spot.foodtype_names %} checked {% endif %} value="s_food_pho">Pho</label>
+                    <label><input type="checkbox" name="extended_info:s_food" {% if "Pizza" in spot.foodtype_names %} checked {% endif %} value="s_food_pizza">Pizza</label>
+                    <label><input type="checkbox" name="extended_info:s_food" {% if "Salads" in spot.foodtype_names %} checked {% endif %} value="s_food_salads">Salads</label>
+                    <label><input type="checkbox" name="extended_info:s_food" {% if "Sandwiches" in spot.foodtype_names %} checked {% endif %} value="s_food_sandwiches">Sandwiches</label>
+                    <label><input type="checkbox" name="extended_info:s_food" {% if "Smoothies" in spot.foodtype_names %} checked {% endif %} value="s_food_smoothies">Smoothies</label>
+                    <label><input type="checkbox" name="extended_info:s_food" {% if "Sushi (packaged)" in spot.foodtype_names %} checked {% endif %} value="s_food_sushi_packaged">Sushi (packaged)</label>
+                    <label><input type="checkbox" name="extended_info:s_food" {% if "Tacos" in spot.foodtype_names %} checked {% endif %} value="s_food_tacos">Tacos</label>
                 </div>
             </fieldset>
 
             <fieldset>
                 <legend>Coupons</legend>
                 <label for="coupon-url">Coupon URL:
-                    <input id="coupon-url" type="url" value="{{ spot.coupon_url }}" />
+                    <input id="coupon-url" name="extended_info:s_coupon_url" type="url" value="{{ spot.coupon_url }}" />
                 </label>
                 <label for="coupon-date">Expiration Date:
-                    <input id="coupon-date" type="text" value="{{ spot.coupon_expiration }}" placeholder="mm/dd/yyyy" />
+                    <input id="coupon-date" name="extended_info:s_coupon_expiration" type="text" value="{{ spot.coupon_expiration }}" placeholder="mm/dd/yyyy" />
                 </label>
             </fieldset>
 
             <fieldset>
                 <legend>Reservations</legend>
                 <label for="has-reservations-food">
-                    <input id="has-reservations-food" type="checkbox" {% if spot.has_reservation %}checked{% endif%} />Accepts Reservations</label>
+                    <input id="has-reservations-food" name="extended_info:s_has_reservation"type="checkbox" {% if spot.has_reservation %}checked{% endif%} />Accepts Reservations</label>
                 <label for="reservation-notes-food">Reservation Notes:
-                    <textarea id="reservation-notes-food">{{spot.reservation_notes}}</textarea>
+                    <textarea id="reservation-notes-food" name="extended_info:s_reservation_notes">{{spot.reservation_notes}}</textarea>
                 </label>
             </fieldset>
 
             <fieldset>
                 <legend>Payment Type</legend>
-                <label><input type="checkbox" {% if "Cash" in spot.payment_names %} checked {% endif %} value="s_pay_cash">Cash</label>
-                <label><input type="checkbox" {% if "Husky Card" in spot.payment_names %} checked {% endif %} value="s_pay_husky">Husky Card</label>
-                <label><input type="checkbox" {% if "Dining Card" in spot.payment_names %} checked {% endif %} value="s_pay_dining">Dining Card</label>
-                <label><input type="checkbox" {% if "Visa" in spot.payment_names %} checked {% endif %} value="s_pay_visa">Visa</label>
-                <label><input type="checkbox" {% if "Mastercard" in spot.payment_names %} checked {% endif %} value="s_pay_mastercard">Mastercard</label>
+                <label><input type="checkbox" name="extended_info:s_pay" {% if "Cash" in spot.payment_names %} checked {% endif %} value="s_pay_cash">Cash</label>
+                <label><input type="checkbox" name="extended_info:s_pay" {% if "Husky Card" in spot.payment_names %} checked {% endif %} value="s_pay_husky">Husky Card</label>
+                <label><input type="checkbox" name="extended_info:s_pay" {% if "Dining Card" in spot.payment_names %} checked {% endif %} value="s_pay_dining">Dining Card</label>
+                <label><input type="checkbox" name="extended_info:s_pay" {% if "Visa" in spot.payment_names %} checked {% endif %} value="s_pay_visa">Visa</label>
+                <label><input type="checkbox" name="extended_info:s_pay" {% if "Mastercard" in spot.payment_names %} checked {% endif %} value="s_pay_mastercard">Mastercard</label>
             </fieldset>
 
         </div>
@@ -338,7 +339,7 @@
 
     <fieldset>
         <legend>Contact Info</legend>
-        <label for="manager-name">Manager Name:<input id="manager-name" type="text" value="{{ spot.manager }}"></label>
+        <label for="manager-name">Manager Name:<input id="manager-name" name="manager" type="text" value="{{ spot.manager }}"></label>
         <label for="email" class="">Email:<input id="email" type="email" value="{{ spot.email }}"></label>
         <label for="phone" class="">Phone:<input id="phone" type="tel" value="{{ spot.phone }}"></label>
         <label for="admin-group" class="dummy">Administrators of Space Information (UW Group):<input id="admin-group" type="text"></label>
@@ -390,7 +391,7 @@
 
         <div class="scope" style="margin-bottom:2em;">
             <!-- if UNPUBLISHED -->
-            <input type="button" value="Publish"></input>
+            <input type="button" value="Publish"></input> ^ Using this button for now to handle PUTing the form back to spotseeker
             <!-- Publish will be conditional to form validation -->
             <!-- if PUBLISHED space WITH changes. Validate form. -->
             <input type="submit" value="Publish Changes"></input>
