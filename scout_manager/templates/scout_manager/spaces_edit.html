@@ -137,23 +137,19 @@
         <ul>
             <li class="flex-container">
                 <div class="flex-item">
-                    {% for period in day_hours.hours %}
-                    current hours
-                    <label for="">Open:<input type="time" name="" value="{{ period.start_time|time:"H:i" }}" /></label>
-                    <label for="">Close:<input type="time" name="" value="{{ period.end_time|time:"H:i" }}" /></label>
-                    {% empty %}
-                    no hours.. add some?
-                    <label for="">Open:<input type="time" name="" value="" /></label>
-                    <label for="">Close:<input type="time" name="" value="" /></label>
-                    {% endfor %}
+                    <div class="mgr-current-hours">
+                        {% for period in day_hours.hours %}
+                        current hours
+                        <label for="">Open:<input type="time" name="" value="{{ period.start_time|time:"H:i" }}" /></label>
+                        <label for="">Close:<input type="time" name="" value="{{ period.end_time|time:"H:i" }}" /></label>
+                        {% empty %}
+                        no hours.. add some?
+                        <label for="">Open:<input type="time" name="" value="" /></label>
+                        <label for="">Close:<input type="time" name="" value="" /></label>
+                        {% endfor %}
+                    </div>
                     <input type="button" value="clear hours" title="clear hours" class="mgr-clear-hours">
-                </div>
-                <div class="scope flex-item">
-                    add additional hours
-                    <label for="">Open:<input type="time" name="" value="" /></label>
-                    <label for="">Close:<input type="time" name="" value="" /></label>
-                    <input type="button" value="add hours" title="add hours" class="scope mgr-add-hours">
-                    added hours should appear in the left column with current hours
+                    <input type="button" value="add hours" title="add hours" class="mgr-add-hours">
                 </div>
             </li>
         </ul>

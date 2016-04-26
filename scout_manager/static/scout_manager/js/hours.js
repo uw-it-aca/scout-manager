@@ -14,9 +14,11 @@ var Hours = {
     },
 
     add_hours: function(){
+        // add hours input fields
         $(".mgr-add-hours").click(function(e) {
-            alert("add hours for this day!");
+            $(this).siblings('.mgr-current-hours').append('<label for="">Open:<input type="time" name="" value="" /></label><label for="">Close:<input type="time" name="" value="" /></label>');
         });
+
     },
 
 };
