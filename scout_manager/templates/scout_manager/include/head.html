@@ -34,8 +34,6 @@
     <!-- async (mobile) -->
     {% compress css %}
     <link rel="stylesheet" href="{% static 'scout_manager/css/mobile.scss' %}" type="text/x-scss">
-    <!-- brand css goes last -->
-    <!--<link rel="stylesheet" href="{% static 'scout_manager/css/brand.scss' %}" type="text/x-scss">-->
     {% endcompress %}
 
 {% endif %}
@@ -54,8 +52,6 @@
     {% compress css %}
     <link rel="stylesheet" href="{% static 'scout_manager/css/mobile.scss' %}" type="text/x-scss">
     <link rel="stylesheet" href="{% static 'scout_manager/css/tablet.scss' %}" type="text/x-scss">
-    <!-- brand css goes last -->
-    <!--<link rel="stylesheet" href="{% static 'scout_manager/css/brand.scss' %}" type="text/x-scss">-->
     {% endcompress %}
 {% endif %}
 
@@ -74,10 +70,15 @@
 
     <!-- async (mobile + tablet + desktop) -->
     {% compress css %}
-    <!-- brand css goes last -->
-    <!--<link rel="stylesheet" href="{% static 'scout_manager/css/brand.scss' %}" type="text/x-scss">-->
     {% endcompress %}
 
+{% endif %}
+
+{% if is_branded %}
+{% compress css %}
+<!-- brand css goes last -->
+<link rel="stylesheet" href="{% static 'scout_manager/css/brand.scss' %}" type="text/x-scss">
+{% endcompress %}
 {% endif %}
 
 <!-- javascript -->
