@@ -18,7 +18,7 @@ $(document).on('ready', function(event) {
         $("#items").load("/manager/items/");
     }
 
-    Hours.init_hours();
+    Forms.init_form();
 
     // Function to serialize form data into an JS object
     $.fn.serializeObject = function() {

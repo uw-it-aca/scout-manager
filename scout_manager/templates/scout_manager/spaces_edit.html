@@ -48,18 +48,16 @@
 
         <legend>Images</legend>
 
-        <label class="scope">Choose: <input type="file" name="" accept="image/*">
-            <input type="button" value="Upload image"></input>
-        </label>
+        <label>Choose: <input type="file" name="" accept="image/*" id="mgr_upload_image"></label>
 
-        <p>Uploaded images:</p>
+        <p>Preview images:</p>
 
-        <ul>
+        <ul id="mgr_list_spot_images">
             {% for image in spot.images %}
              <li>
                  <img src="/images/{{ spot.spot_id }}/image/{{ image.image_id }}?width=100">
-                 <label for="study-default-image-1" class="scope"><input type="radio" name="default-study-img" id="study-default-image-1">default</label>
-                 <input type="button" value="Delete image" class="scope"></input>
+                 <label for="study-default-image-1" class="scope"><input type="radio" name="default-study-img" id="study-default-image-1" />default</label>
+                 <input type="button" value="Delete image" class="mgr-delete-image" />
              </li>
             {% endfor %}
         </ul>
