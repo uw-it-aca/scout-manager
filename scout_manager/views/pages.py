@@ -4,7 +4,7 @@ from django.shortcuts import render_to_response
 from htmlmin.decorators import minified_response
 from scout.dao.space import get_spot_list, get_spot_by_id
 from scout_manager.dao.space import get_spot_by_id as manager_get_spot_by_id
-
+from spotseeker_restclient.spotseeker import Spotseeker
 
 def home(request):
     return render_to_response(
@@ -62,7 +62,12 @@ def spaces_add(request):
 
 def spaces_edit(request, spot_id):
     spot = manager_get_spot_by_id(spot_id)
+    spot_client = Spotseeker()
+    buildings = spot_client.get_building_list()
+    context = {"spot" : spot,
+               "buildings" : buildings,
+              }
     return render_to_response(
             'scout_manager/spaces_edit.html',
-            {'spot': spot},
+            context,
             context_instance=RequestContext(request))

@@ -89,6 +89,12 @@
         {# How are we determining this? #}
         <label class="dummy"><input type="checkbox" value="Outdoor" disabled>Outdoor location</label>
 
+        <ul>
+        {% for building in buildings %}
+        <li>{{ building }}</li>
+        {% endfor %}
+        </ul>
+
         <!-- Hide if outdoor location. We suggest/enforce building options. -->
         <label for="building-name" class="scope">Building: {{ spot.building_name }}
             <select name="location:building_name">
