@@ -90,25 +90,13 @@
         {# How are we determining this? #}
         <label class="dummy"><input type="checkbox" value="Outdoor" disabled>Outdoor location</label>
 
-        <ul>
-        {% for building in buildings %}
-        <li>{{ building }}</li>
-        {% endfor %}
-        </ul>
-
         <!-- Hide if outdoor location. We suggest/enforce building options. -->
-        <label for="building-name" class="scope">Building: {{ spot.building_name }}
+        <label for="building-name">Building:
             <select name="location:building_name">
                 <option disabled selected value>select a building...</option>
-                <option value="" {% if spot.building_name == "Odegaard Undergraduate Library (OUGL)" %} selected {% endif %}>Odegaard Undergraduate Library (OUGL)</option>
-                <option value="" {% if spot.building_name == "Husky Union Building (HUB)" %} selected {% endif %}>Husky Union Building (HUB)</option>
-                <option value="" {% if spot.building_name == "Elm Hall" %} selected {% endif %}>Elm Hall</option>
-                <option value="">building_name</option>
-                <option value="">building_name</option>
-                <option value="">building_name</option>
-                <option value="">building_name</option>
-                <option value="">building_name</option>
-                <option value="">building_name</option>
+                {% for building in buildings %}
+                <option value="" {% if spot.building_name == building %} selected {% endif %}>{{ building }}</option>
+                {% endfor %}
             </select>
         </label>
 
