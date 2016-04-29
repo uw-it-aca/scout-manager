@@ -1,28 +1,15 @@
 """
 A simple test using python for loading urls
 """
-import unittest
 
-from django.test import LiveServerTestCase
-from django.test import Client
+from django.test import TestCase
 
 baseUrl = '/manager'
 
-class urlStatusCheck(LiveServerTestCase):
-
-    def setUp(self):
-        client = Client()
+class urlStatusCheck(TestCase):
 
     ####################Start helper methods####################
 
-    """#Method to test clicks
-    def clickOnLink(self, link):
-        self.driver.find_element_by_partial_link(link).click()
-
-    #Makes driver go to the given URL
-    def go_url(self, urlsuffix=''):
-       self.driver.get(self.baseurl + urlsuffix)
-    """
     #Returns the status code of the given URL
     def urlStatus(self, urlsuffix=''):
         #Issues a GET request
@@ -44,18 +31,17 @@ class urlStatusCheck(LiveServerTestCase):
     def test_addPage(self):
         self.matchUrlStatus(200, '/items/')
         self.matchUrlStatus(200, '/items/5555/')
-        self.matchUrlStatus(200, '/items/add/')
-        self.matchUrlStatus(301, '/items/add')
 
 
-    #Checks to see if the spaces page results in a 200
+    #Checks to see if the spaces page (/spaces/results in a 200
     def test_publishPage(self):
         self.matchUrlStatus(200, '/spaces/')
         self.matchUrlStatus(200, '/spaces/add/')
-        self.matchUrlStatus(404, '/spaces/12345')
+        self.matchUrlStatus(200, '/spaces/1/') #This one is causing a problem
 
+    #Checks to see if the schedule works
     def test_spacePage(self):
-        self.matchUrlStatus(404, '/schedule/12345')
+        self.matchUrlStatus(200, '/schedule/1')
             
     #Checks to see if entering an invalid URL results in a 404
     def test_badURL(self):
