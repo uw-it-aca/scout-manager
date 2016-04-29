@@ -63,7 +63,9 @@ def spaces_add(request):
 def spaces_edit(request, spot_id):
     spot = manager_get_spot_by_id(spot_id)
     spot_client = Spotseeker()
+    # building search only returns study buildings by default
     buildings = spot_client.get_building_list()
+    buildings += spot_client.get_building_list("food")
     context = {"spot" : spot,
                "buildings" : buildings,
               }
