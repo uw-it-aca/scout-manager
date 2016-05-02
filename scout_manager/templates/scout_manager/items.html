@@ -1,0 +1,36 @@
+{% load staticfiles %}
+
+<h2>Items you manage</h2>
+<div>
+
+    <div>Total: <span class="dummy">Total # of items in items list</span></div>
+
+    <div>
+        <button type="button">Download CSV of listed Items</button>
+    </div>
+    <div><a href="/manager/items/add/">Add New Item</a></div>
+
+    <ol>
+        <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">
+            <div class="dummy"><a href="/manager/items/5555/">Edit</a></div>
+            <div>Image:<span class="dummy">item.default_image</span></div>
+            <div>Name: <span class="dummy">item.name</span></div>
+            <div>Building item is in:<span class="dummy">space.building_name</span></div>
+            <div>Type:<span class="dummy">item_type.name</span></div>
+            <div>Category:<span class="dummy">item_category.name</span></div>
+            <div>Brand:<span class="dummy">item.brand</span></div>
+            <div>Model:<span class="dummy">item.model</span></div>
+            <div>Quantity:<span class="dummy">item.quantity</span></div>
+            <div>Space item is in:<span class="dummy">space.name</span></div>
+            <div><span>If space published: <a href="/detail/{{ spot.spot_id }}">view in client</a></span></div>
+            <div>STF Funded: <span class="dummy">Yes</span></div>
+            <div>
+                <button type="button">Delete Item</button>
+            </div>
+        </li>
+        <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
+        <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
+        <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
+    </ol>
+
+</div>

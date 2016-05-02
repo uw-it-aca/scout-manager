@@ -1,0 +1,104 @@
+{% extends "scout_manager/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Add space{% endblock %}
+
+{% block web_content %}
+
+<h2>Add New Space</h2>
+
+<form>
+
+    <h3>General Info</h3>
+
+    <label for="space-name" class="scope">Name:
+        <input id="space-name" type="text" value="" required>
+    </label>
+
+    <fieldset class="scope">
+        <legend>Primary use: app_type (required)</legend>
+        <label><input type="checkbox" value="food">Food</label>
+        <label><input type="checkbox" value="study">Study</label>
+        <label><input type="checkbox" value="other">Other (neither food or study.. tied to stuff, since stuff must belong in a spot)</label>
+    </fieldset>
+
+    <fieldset>
+        <legend>Location:</legend>
+
+        <label for="space-campus" required>Campus:
+            <select>
+                <option disabled selected value>select a campus...</option>
+
+                <option value="seattle">Seattle</option>
+                <option value="bothell">Bothell</option>
+                <option value="south_lake_union">South Lake Union</option>
+                <option value="tacoma">Tacoma</option>
+            </select>
+        </label>
+
+        <label class="scope" for="space-latitude">Latitude
+            <input id="space-latitude" type="text" value="" required>
+        </label>
+
+        <label class="scope" for="space-longitude">Longitude
+            <input id="space-longitude" type="text" value="" required>
+        </label>
+
+        {# How are we determining this? #}
+        <label class="dummy"><input type="checkbox" value="Outdoor" disabled>Outdoor location</label>
+
+        <!-- Hide if outdoor location. We suggest/enforce building options. -->
+        <label for="building-name" class="scope">Building:
+            <select>
+                <option disabled selected value>select a building...</option>
+                <option value="">building_name</option>
+                <option value="">building_name</option>
+                <option value="">building_name</option>
+                <option value="">building_name</option>
+                <option value="">building_name</option>
+                <option value="">building_name</option>
+            </select>
+        </label>
+
+        <!-- Hide if outdoor location -->
+        <label for="room-number">Room #:
+            <input id="room-number" type="text" value="">
+        </label>
+
+        <!-- Hide if outdoor location. We suggest floor options. -->
+        <label for="floor">Floor:
+            <input id="floor" type="text" value="">
+        </label>
+
+        {# How are we determining this? #}
+        <label class="dummy"><input type="checkbox" value="ADA" disabled>ADA Accessible</label>
+
+    </fieldset>
+
+    <h3>Space Administration</h3>
+
+    <fieldset>
+        <legend>Contact Info</legend>
+
+        <label class="scope" for="manager-name">Manager Name:<input id="manager-name" type="text"></label>
+        <label class="scope" for="email">Email:<input id="email" type="email"></label>
+        <label class="scope" for="phone">Phone:<input id="phone" type="tel"></label>
+        <label class="dummy" for="admin-group">Administrators of Space Information (UW Group):<input id="admin-group" type="text"></label>
+    </fieldset>
+
+    <h3>Space Actions</h3>
+    <div class="scope" style="margin-bottom:2em;">
+        <input type="submit" value="Save Changes" />
+        <input type="button" value="Cancel" />
+    </div>
+
+    <h3>Incomplete items</h3>
+    <p>You must complete </p>
+    <ul class="scope">
+        <li>Invalid field name 1</li>
+        <li>Invalid field name 2</li>
+    </ul>
+
+</form>
+
+{% endblock %}

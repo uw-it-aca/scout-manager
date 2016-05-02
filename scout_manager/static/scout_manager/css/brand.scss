@@ -1,0 +1,29 @@
+// brand override variables
+
+$main-color: #6564A8;
+$header-height: 55px;
+$footer-height: 45px;
+
+// header
+.mgr-header {
+    background: $main-color url('../img/scout.png') no-repeat 10px 50%;
+    background-size: 35px;
+
+    -webkit-box-shadow: 1px 1px 7px 0px rgba(0,0,0,0.32);
+-moz-box-shadow: 1px 1px 7px 0px rgba(0,0,0,0.32);
+box-shadow: 1px 1px 7px 0px rgba(0,0,0,0.32);
+
+
+    h1 {
+        color: #fff;
+        a {
+            color: #fff;
+        }
+    }
+}
+
+// content
+.mgr-content {}
+
+// footer
+.mgr-footer {}

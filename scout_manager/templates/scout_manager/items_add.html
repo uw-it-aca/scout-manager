@@ -1,0 +1,84 @@
+{% extends "scout_manager/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Add item{% endblock %}
+
+{% block web_content %}
+
+<p>This is add.html. You step through this page to add items/spaces.</p>
+
+<h2>Add new Item</h2>
+<form>
+
+    <h3>General Information</h3>
+    <label for="item-name">Name:
+        <input id="item-name" type="text" required>
+    </label>
+
+    <label for="item-quantity">Quantity:
+        <input id="item-quantity" type="number" required>
+    </label>
+
+    {# How are we determining this? #}
+    <label>
+        <input type="checkbox" value="STF">STF Funded</label>
+
+
+    <h3>Location:</h3>
+
+    <p>Total: <span class="dummy">Total # of spaces list</span></p>
+
+    <label for="space-campus" required>Space:
+        <select id="item-category" required>
+            <option disabled selected value>select a space...</option>
+            <option>space 1</option>
+            <option>space 2</option>
+            <option>space 3</option>
+            <option>...</option>
+        </select>
+    </label>
+
+    <p>Not seeing the location? <a href="/manager/spaces/add/">Create New Space <!-- Pass on entered location info (campus, outdoor/building. --></a></p>
+
+    <h3>Item Description</h3>
+
+    <label for="item-category">Category of Item:
+        <!-- list of ACA predefined categories -->
+        <select id="item-category" required>
+            <option>Prototyping</option>
+            <option>Defined Category 2</option>
+            <option>...</option>
+        </select>
+    </label>
+
+    <label for="item-type">Type of Item:
+        <input id="item-type" type="text" list="item-type-list" required>
+        <!-- list of predefined types, based on selected category. -->
+        <datalist id="item-type-list">
+            <option>3D printer</option>
+            <option>Defined Type 2</option>
+            <option>...</option>
+        </datalist>
+    </label>
+
+    <label for="item-description">Description:
+        <textarea id="item-description" type="text"></textarea>
+    </label>
+
+
+    <h3>Items Actions</h3>
+    <div class="dummy" style="margin-bottom:2em;">
+        <input type="submit" value="Save Changes" />
+        <input type="button" value="Cancel" />
+    </div>
+
+    <h3>Incomplete items</h3>
+    <p>You must complete </p>
+    <ul class="dummy">
+        <li>Invalid field name 1</li>
+        <li>Invalid field name 2</li>
+    </ul>
+
+</form>
+
+{% endblock %}

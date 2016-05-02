@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <title>{% block title %}{% endblock %} &middot; Scout Manager</title>
+        {% include "scout_manager/include/head.html" %}
+    </head>
+    <body>
+
+        <div id="header" class="mgr-header">
+            <h1><a href="/manager/">Scout Manager</a></h1>
+        </div>
+
+        <div id="content" class="mgr-content">
+
+            <fieldset>
+                <legend>Development notes:</legend>
+                <p>Note: best if used with latest Chrome browser</p>
+                <p class="dummy"><i class="fa fa-square" aria-hidden="true"></i> dummy placeholder text</p>
+                <p class="scope"><i class="fa fa-square" aria-hidden="true"></i> in progress for current sprint</p>
+            </fieldset>
+
+            {% block web_content %}{% endblock %}
+        </div>
+
+        <div id="footer" class="mgr-footer">
+            <span>Courtesy of UW-IT ACA</span><span style="float:right;"><a href="mailto:help@uw.edu">Contact Support</a></span>
+        </div>
+
+    </body>
+</html>
