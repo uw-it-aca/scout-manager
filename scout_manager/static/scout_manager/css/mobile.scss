@@ -1,5 +1,40 @@
 // sass variables
 
 
+// forms
+
+textarea {
+    height: 120px;
+}
+
+label {
+
+    input[type='checkbox'],
+    input[type='radio'] {
+        display: inline-block;
+        margin-right: 5px;
+    }
+}
+
+
+
+.mgr-hours {
+
+    ul { margin: 0; padding: 0; }
+    label { line-height: 30px; margin-bottom: 5px;
+        select, input[type='time'] { display: inline-block; margin: 0; margin-left: 0px; }
+    }
+
+}
+
+
 // Temporary Classes [Delete]
-.dummy {color:red;}
+.dummy {
+    color: #bdc3c7 !important;
+    * { color: #bdc3c7 !important; }
+}
+
+.scope {
+    color: #e74c3c !important;
+    * { color: #e74c3c !important; }
+}

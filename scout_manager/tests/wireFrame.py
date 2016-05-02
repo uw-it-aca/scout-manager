@@ -18,6 +18,7 @@ class ContentTest(TestCase):
         return soup
 
     def checkLinkExists(self, soup, reference):
+<<<<<<< HEAD
         return bool(soup.find('a', href=reference))
 
     """
@@ -30,11 +31,20 @@ class ContentTest(TestCase):
     """
 
     ####################End helper methods#######################
+=======
+        return bool(soup.find('a', href=reference))      
+    ####################End helper methods#######################
+
+>>>>>>> story/admin-01
     def test_homePage(self):
         page = self.makeSoup(baseUrl)
         spaces = page.findAll('li')
         for space in spaces:
+<<<<<<< HEAD
             checkEdit = space.find('a', href='/manager/spaces') #How
+=======
+            childCount = space.findAll('div')
+>>>>>>> story/admin-01
             print len(childCount)
             #self.assertEqual(childCount.len() == 13)
         

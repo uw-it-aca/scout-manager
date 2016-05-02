@@ -37,8 +37,12 @@ class urlStatusCheck(TestCase):
     def test_publishPage(self):
         self.matchUrlStatus(200, '/spaces/')
         self.matchUrlStatus(200, '/spaces/add/')
+<<<<<<< HEAD
         #CURRENTLY DOESN'T WORK CAUSE no attribute 'get_building_list'
         self.matchUrlStatus(200, '/spaces/1/')
+=======
+        self.matchUrlStatus(200, '/spaces/1/') #This one is causing a problem
+>>>>>>> story/admin-01
 
     #Checks to see if the schedule works
     def test_spacePage(self):
