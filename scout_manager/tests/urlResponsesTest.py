@@ -1,30 +1,19 @@
 """
 A simple test using python for loading urls
 """
-import unittest
 
-from django.test import LiveServerTestCase
-from django.test import Client
+from django.test import TestCase
 
-class urlStatusCheck(LiveServerTestCase):
+baseUrl = '/manager'
 
-    def setUp(self):
-        client = Client()
+class urlStatusCheck(TestCase):
 
     ####################Start helper methods####################
-
-    #Method to test clicks
-    def clickOnLink(self, link):
-        self.driver.find_element_by_partial_link(link).click()
-
-    #Makes driver go to the given URL
-    def go_url(self, urlsuffix=''):
-        self.driver.get(self.baseurl + urlsuffix)
 
     #Returns the status code of the given URL
     def urlStatus(self, urlsuffix=''):
         #Issues a GET request
-        response = self.client.get(urlsuffix)
+        response = self.client.get(baseUrl + urlsuffix)
         return response.status_code
 
     #Checks to see if the status code of the given URL matches
@@ -34,26 +23,27 @@ class urlStatusCheck(LiveServerTestCase):
 
     ####################End helper methods####################
 
-    #Checks to see if the home page results in a 200 
+    #Checks to see if the home manager page (/manager/) results in a 200 
     def test_home_exists(self):
         self.matchUrlStatus(200, '/')
     
-    #Checks to see if the add page results in a 200
+    #Checks to see if the items pages (/items/) results in a 200
     def test_addPage(self):
-        self.matchUrlStatus(200, '/add/')
+        self.matchUrlStatus(200, '/items/')
+        self.matchUrlStatus(200, '/items/5555/')
 
-    #Checks to see if the item page results in a 200
-    def test_itemPage(self):
-        self.matchUrlStatus(200, '/item/')
 
-    #Checks to see if the publish page results in a 200
+    #Checks to see if the spaces page (/spaces/results in a 200
     def test_publishPage(self):
-        self.matchUrlStatus(200, '/publish/')
+        self.matchUrlStatus(200, '/spaces/')
+        self.matchUrlStatus(200, '/spaces/add/')
+        #CURRENTLY DOESN'T WORK CAUSE no attribute 'get_building_list'
+        self.matchUrlStatus(200, '/spaces/1/')
 
-    #Checks to see if the space page results in a 200
+    #Checks to see if the schedule works
     def test_spacePage(self):
-        self.matchUrlStatus(200, '/space/')
-
+        self.matchUrlStatus(200, '/schedule/1')
+            
     #Checks to see if entering an invalid URL results in a 404
     def test_badURL(self):
         self.matchUrlStatus(404, '/rando/' )
