@@ -29,7 +29,7 @@
     <h3>General Info</h3>
 
     <label for="space-name">Name:
-        <input id="space-name" type="text" value="{{ spot.name }}" required="required">
+        <input id="space-name" type="text" name="name" value="{{ spot.name }}" required="required" />
         <input type="hidden" name="id" value="{{ spot.spot_id }}" />
     </label>
 
@@ -95,7 +95,7 @@
             <select name="location:building_name">
                 <option disabled selected value>select a building...</option>
                 {% for building in buildings %}
-                <option value="" {% if spot.building_name == building %} selected {% endif %}>{{ building }}</option>
+                <option value="{{ building }}" {% if spot.building_name == building %} selected {% endif %}>{{ building }}</option>
                 {% endfor %}
             </select>
         </label>
@@ -231,7 +231,7 @@
             <fieldset>
                 <legend>Reservations</legend>
                 <label for="has-reservations-food">
-                    <input id="has-reservations-food" name="extended_info:s_has_reservation"type="checkbox" {% if spot.has_reservation %}checked{% endif%} />Accepts Reservations</label>
+                    <input id="has-reservations-food" name="extended_info:s_has_reservation"type="checkbox" value="true" {% if spot.has_reservation %}checked{% endif%} />Accepts Reservations</label>
                 <label for="reservation-notes-food">Reservation Notes:
                     <textarea id="reservation-notes-food" name="extended_info:s_reservation_notes">{{spot.reservation_notes}}</textarea>
                 </label>
@@ -241,7 +241,7 @@
                 <legend>Payment Type</legend>
                 <label><input type="checkbox" name="extended_info:s_pay" {% if "Cash" in spot.payment_names %} checked {% endif %} value="s_pay_cash">Cash</label>
                 <label><input type="checkbox" name="extended_info:s_pay" {% if "Husky Card" in spot.payment_names %} checked {% endif %} value="s_pay_husky">Husky Card</label>
-                <label><input type="checkbox" name="extended_info:s_pay" {% if "Dining Card" in spot.payment_names %} checked {% endif %} value="s_pay_dining">Dining Card</label>
+                <label><input type="checkbox" name="extended_info:s_pay" {% if "Dining Account" in spot.payment_names %} checked {% endif %} value="s_pay_dining">Dining Card</label>
                 <label><input type="checkbox" name="extended_info:s_pay" {% if "Visa" in spot.payment_names %} checked {% endif %} value="s_pay_visa">Visa</label>
                 <label><input type="checkbox" name="extended_info:s_pay" {% if "Mastercard" in spot.payment_names %} checked {% endif %} value="s_pay_mastercard">Mastercard</label>
             </fieldset>
@@ -328,9 +328,10 @@
 
     <fieldset>
         <legend>Contact Info</legend>
+        <label for="owner">Owner:<input id="owner" name="extended_info:owner" type="text" value="{{ spot.owner }}"></label>
         <label for="manager-name">Manager Name:<input id="manager-name" name="manager" type="text" value="{{ spot.manager }}"></label>
         <label for="email" class="">Email:<input id="email" type="email" value="{{ spot.email }}"></label>
-        <label for="phone" class="">Phone:<input id="phone" type="tel" value="{{ spot.phone }}"></label>
+        <label for="phone" class="">Phone:<input id="phone" name="phone" type="tel" value="{{ spot.phone }}"></label>
         <label for="admin-group" class="dummy">Administrators of Space Information (UW Group):<input id="admin-group" type="text"></label>
     </fieldset>
 
