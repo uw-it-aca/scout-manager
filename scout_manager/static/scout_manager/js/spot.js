@@ -1,6 +1,7 @@
 var Spot = {
     submit_spot: function (e) {
         var form_data = Spot.get_edit_form_data();
+        console.log(form_data);
         $.ajax({
             url: "/manager/api/spot/" + form_data.id,
             type: "PUT",

@@ -37,7 +37,6 @@ def items_edit(request, item_id):
 def schedule(request, spot_id):
     spot = get_spot_by_id(spot_id)
     return render_to_response(
-            'scout_manager/schedule.html',
             {'spot': spot},
             context_instance=RequestContext(request))
 
@@ -66,9 +65,9 @@ def spaces_edit(request, spot_id):
     # building search only returns study buildings by default
     buildings = spot_client.get_building_list()
     buildings += spot_client.get_building_list("food")
-    context = {"spot" : spot,
-               "buildings" : buildings,
-              }
+    context = {"spot": spot,
+               "buildings": buildings,
+               }
     return render_to_response(
             'scout_manager/spaces_edit.html',
             context,
