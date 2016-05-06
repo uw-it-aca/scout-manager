@@ -125,7 +125,7 @@
     <h3>Hours and Access</h3>
 
     {% for day_hours in spot.grouped_hours %}
-    <fieldset class="mgr-hours">
+    <fieldset class="mgr-hours" data-day="{{ day_hours.day }}">
         <legend>{{ day_hours.day|capfirst }}:</legend>
         <ul>
             <li class="flex-container">
@@ -133,8 +133,11 @@
                     <div class="mgr-current-hours">
                         {% for period in day_hours.hours %}
                         current hours
-                        <label for="">Open:<input type="time" name="" value="{{ period.start_time|time:"H:i" }}" /></label>
-                        <label for="">Close:<input type="time" name="" value="{{ period.end_time|time:"H:i" }}" /></label>
+                        <div class="mgr-hours-block">
+                        <p>test</p>
+                            <label for="">Open:<input type="time" name="" value="{{ period.start_time|time:"H:i" }}" /></label>
+                            <label for="">Close:<input type="time" name="" value="{{ period.end_time|time:"H:i" }}" /></label>
+                        </div>
                         {% empty %}
                         no hours.. add some?
                         <label for="">Open:<input type="time" name="" value="" /></label>
