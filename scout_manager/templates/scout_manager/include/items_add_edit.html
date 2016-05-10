@@ -1,0 +1,243 @@
+<h3>General Information</h3>
+<label for="item-name">Name:
+    <input id="item-name" type="text" required>
+</label>
+
+<label for="item-quantity">Quantity:
+    <input id="item-quantity" type="number" required>
+</label>
+
+{# How are we determining this? #}
+<label>
+    <input type="checkbox" value="STF">STF Funded</label>
+
+<h3>Location:</h3>
+
+<fieldset>
+    <legend>Item location</legend>
+
+    <p>Total: {{ count }}</p>
+
+    <label for="space-campus" required>Space:
+        <select id="item-category" multiple required style="height:300px;">
+            <option disabled selected value>select a space...</option>
+
+            {% for spot in spots %}
+            <option>{{spot.name}}</option>
+            {% endfor %}
+
+        </select>
+    </label>
+
+</fieldset>
+
+<h3>Current Alert</h3>
+<label for="alert-notes">Post this Alert:
+    <textarea id="alert-notes" type="text"></textarea>
+</label>
+
+
+<h3>Item Description</h3>
+
+<label for="item-category">Category of Item:
+    <!-- list of ACA predefined categories -->
+    <select id="item-category" required>
+        <option disabled selected value>select a category...</option>
+        <option>Prototyping</option>
+        <option>Defined Category 2</option>
+        <option>...</option>
+    </select>
+</label>
+
+<label for="item-type">Type of Item:
+    <input id="item-type" type="text" list="item-type-list" required>
+    <!-- list of predefined types, based on selected category. -->
+    <datalist id="item-type-list">
+        <option>3D printer</option>
+        <option>Defined Type 2</option>
+        <option>...</option>
+    </datalist>
+</label>
+
+<label for="item-description">Description:
+    <textarea id="item-description" type="text"></textarea>
+</label>
+
+<label for="item_info_website">Website for item info:
+    <input id="item_info_website" type="url">
+</label>
+
+
+
+<fieldset class="dummy">
+
+    <legend>Images</legend>
+    <label>Choose: <input type="file" name="" accept="image/*">
+        <input type="button" value="Upload image"></input>
+    </label>
+
+    <p>Uploaded images:</p>
+    <ul>
+        <li class="dummy">
+            <span><a href="#" target="_blank" title="preview image">Image 1 URL</a></span>
+            <label for="default-image-1">
+                <input type="radio" name="default" id="default-image-1">default</label>
+            <input type="button" value="Delete image"></input>
+        </li>
+        <li class="dummy">
+            <span><a href="#" target="_blank" title="preview image">Image 2 URL</a></span>
+            <label for="default-image-2">
+                <input type="radio" name="default" id="default-image-2">default</label>
+            <input type="button" value="Delete image"></input>
+        </li>
+    </ul>
+</fieldset>
+
+<fieldset class="dummy">
+    <legend>Serial numbers</legend>
+
+    <label for="item-serial">Serial Number(s):
+        <input id="item-serial" type="text">
+        <p>Note: separate multiple serial numbers with a comma.</p>
+    </label>
+
+
+    <label for="item-UWtag">UW Tag Number(s):
+        <input id="item-UWtag" type="text">
+        <p>Note: separate multiple UW Tag numbers with a comma.</p>
+    </label>
+
+</fieldset>
+
+<h3>Access Restrictions</h3>
+<fieldset>
+    <legend>Prerequisites?</legend>
+    <label>
+        <input type="radio" name="prereqs" value="yes">Yes</label>
+    <label>
+        <input type="radio" name="prereqs" value="no" checked>No</label>
+
+    <!-- if YES -->
+    <label for="prereq-notes">Notes:
+        <textarea id="prereq-notes" type="text"></textarea>
+    </label>
+
+</fieldset>
+<fieldset>
+    <legend>Reservable?</legend>
+    <label>
+        <input type="radio" name="item-reservability" value="yes">Yes</label>
+    <label>
+        <input type="radio" name="item-reservability" value="no" checked>No</label>
+
+    <!-- if YES -->
+    <label for="reservation-notes">Notes:
+        <textarea id="reservation-notes" type="text"></textarea>
+    </label>
+
+</fieldset>
+<fieldset>
+    <legend>Item Access</legend>
+    <fieldset>
+        <!-- Selection determines which access fieldsets are shown below -->
+        <legend>Available to general public?</legend>
+        <label>
+            <input type="radio" name="item-access-limit" value="yes" checked>Yes</label>
+        <label>
+            <input type="radio" name="item-access-limit" value="no">No</label>
+    </fieldset>
+
+    <!-- If NO, show this fieldset. Selection here determines which access fieldsets are shown below. -->
+    <fieldset>
+        <legend>Access limited to:</legend>
+
+        <label>
+            <input type="checkbox" value="access_netid">UW NetID</label>
+        <label>
+            <input type="checkbox" value="access_role">Specific role (student/staff/faculty)</label>
+        <label>
+            <input type="checkbox" value="access_school">Specific School affiliation</label>
+        <label>
+            <input type="checkbox" value="access_dept">Specific Department affiliation</label>
+
+        <fieldset>
+            <!-- If ROLE selected, show this fieldset.  -->
+            <legend>Select role(s)</legend>
+            <label>
+                <input type="checkbox" value="access_student">Students</label>
+            <label>
+                <input type="checkbox" value="access_faculty">Staff</label>
+            <label>
+                <input type="checkbox" value="access_staff">Faculty</label>
+        </fieldset>
+
+        <label for="">School:
+            <!-- If SCHOOL AFFILIATION selected, show this div.  -->
+            <select multiple>
+                <option disabled selected value>choose school...</option>
+                <option>UW School 1</option>
+                <option>UW School 2</option>
+                <option>...</option>
+            </select>
+        </label>
+
+        <label for="">Department
+            <!-- If DEPARTMENT AFFILIATION selected, show this div. If SCHOOL(s) chosen, then limit list to depts within school(s). -->
+            <select multiple>
+                <option disabled selected value>choose department...</option>
+                <option>UW Dept 1</option>
+                <option>UW Dept 2</option>
+                <option>...</option>
+            </select>
+        </label>
+
+    </fieldset>
+
+    <label for="access-notes">Access Notes:
+        <textarea id="access-notes" type="text"></textarea>
+    </label>
+
+</fieldset>
+
+
+<h3>Item Administration</h3>
+<fieldset>
+    <legend>Contact Info</legend>
+    <label for="manager-name">Manager Name:
+        <input id="manager-name" type="text">
+    </label>
+
+    <label for="phone">Phone:
+        <input id="phone" type="tel">
+    </label>
+
+    <label for="email">Email:
+        <input id="email" type="email">
+    </label>
+
+</fieldset>
+
+<h3>Item Actions</h3>
+
+<div>
+
+    <div style="margin-bottom:2em;">
+        <input type="button" value="Download CSV of Item"></input>
+    </div>
+
+    <div style="margin-bottom:2em;">
+        <input type="button" value="Delete Item"></input>
+    </div>
+
+    <div style="margin-bottom:2em;">
+        <input type="submit" value="Save Changes" />
+        <input type="button" value="Cancel" />
+    </div>
+</div>
+
+<h3>Incomplete items</h3>
+<p>You must complete </p>
+<ul class="dummy">
+    <li>Invalid field name 1</li>
+    <li>Invalid field name 2</li>
+</ul>
