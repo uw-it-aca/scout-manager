@@ -54,8 +54,15 @@ def spaces(request):
 
 
 def spaces_add(request):
+    spot_client = Spotseeker()
+    # building search only returns study buildings by default
+    buildings = spot_client.get_building_list()
+    buildings += spot_client.get_building_list("food")
+    context = {"buildings": buildings,
+              }
     return render_to_response(
             'scout_manager/spaces_add.html',
+            context,
             context_instance=RequestContext(request))
 
 
