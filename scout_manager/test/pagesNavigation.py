@@ -15,32 +15,32 @@ class NavigationTests(TestCase):
         return soup
 
     def checkLinkExists(self, soup, reference):
-        return bool(soup.find('a', href=reference))
+        self.assertElementExists(soup, 'a', href=reference)
+
+    def assertElementExists(self, soup, *args, **kwargs):
+        self.assertIsNotNone(soup.find(*args, **kwargs))
     ####################End helper methods#######################
 
     #Main page to edit space and add space
     def test_mainPage(self):
         page = self.makeSoup(baseUrl)
-        self.assertTrue(self.checkLinkExists(page, baseUrl + 'add/'))
-        self.assertTrue(self.checkLinkExists(page, baseUrl +'1/'))
-        self.assertTrue(self.checkLinkExists(page, '/detail/1/'))
+        self.checkLinkExists(page, baseUrl + 'add/')
+        self.checkLinkExists(page, baseUrl +'1/')
+        self.checkLinkExists(page, '/detail/1/')
 
     #Main page to email help
     def test_mainEmail(self):
         page = self.makeSoup('/manager/')
-        self.assertTrue(self.checkLinkExists(page, 'mailto:help@uw.edu'))
+        self.checkLinkExists(page, 'mailto:help@uw.edu')
 
     #Add page to home
     def test_addPage(self):
         page = self.makeSoup(baseUrl + 'add/')
-        self.assertTrue(self.checkLinkExists(page, '/manager/'))
-        self.assertIsNotNone(page.find('input', type='submit'))
-        #Is it bad to think that there will only be one button?
-            #Should I just do it by value instead?
-        self.assertIsNotNone(page.find('input', type='button')) 
+        self.checkLinkExists(page, '/manager/')
+        self.assertElementExists(page, 'input', type='submit', value='Save Changes')
+        self.assertElementExists(page, 'input', type='button', value='Cancel')
 
     #Edit page to home
-    #def test_editPage(self):
-       # page = self.makeSoup(baseUrl + '1/'))
-        #self.assertTrue(self.checkLinkExists(page, '/manager/'))
-    #CURRENTLY DOESN'T WORK CAUSE no attribute 'get_building_list'  
+    def test_editPage(self):
+        page = self.makeSoup(baseUrl + '1/')
+        self.assertElementExists(page, '/manager/') 
