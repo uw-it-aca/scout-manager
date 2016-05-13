@@ -12,15 +12,19 @@ redir = 301
 notfound = 404
 
 _testCases = (
-    ('Home', '/', OK),
-    ('Home redir', '', redir),
-    ('Items', '/items', redir),
-    ('Items slash', '/items/', OK),
-    ('Item specific', '/items/5555/', OK),
-    ('Spaces', '/spaces/', OK),
-    ('Spaces add', '/spaces/add/', OK),
-    ('Spaces specific', '/spaces/1/', OK),
-    ('Schedule', '/schedule/1', OK),
+    ('Home', '/', OK, 'SCOUT-122'),
+    ('Home redir', '', redir, 'SCOUT-129'),
+    ('Items', '/items/', OK, 'SCOUT-122'),
+    ('Items redir', '/items', redir, 'SCOUT-129'),
+    ('Items add', '/items/add/', OK, 'SCOUT-122'),
+    ('Items add redir', '/items/add', redir, 'SCOUT-129'),
+    ('Item specific', '/items/5555/', OK, 'SCOUT-122'),
+    ('Spaces', '/spaces/', OK, 'SCOUT-122'),
+    ('Spaces redir', '/spaces', redir, 'SCOUT-122'),
+    ('Spaces add', '/spaces/add/', OK, 'SCOUT-122'),
+    ('Spaces add redir', '/spaces/add', redir, 'SCOUT-129'),
+    ('Spaces specific', '/spaces/1/', OK, 'SCOUT-122'),
+    ('Schedule', '/schedule/1', OK, 'SCOUT-122'),
     ('Bad url', '/rando/', notfound)
 )
 
