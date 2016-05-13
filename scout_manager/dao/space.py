@@ -68,7 +68,6 @@ def update_spot(data):
                 else:
                     extended_info[name] = value
 
-
     # formats location data
     location_data = {}
     for key in list(data):
@@ -77,8 +76,12 @@ def update_spot(data):
             location_data[name] = data[key]
             data.pop(key)
 
+    try:
+        phone = data.pop("phone")
+        extended_info["s_phone"] = phone
+    except KeyError:
+        pass
 
     data["extended_info"] = extended_info
     data["location"] = location_data
-
 
