@@ -1,7 +1,6 @@
 var Spot = {
     submit_spot: function (e) {
         var form_data = Spot.get_edit_form_data();
-        console.log(form_data);
         $.ajax({
             url: "/manager/api/spot/" + form_data.id,
             type: "PUT",
@@ -20,7 +19,7 @@ var Spot = {
     get_edit_form_data: function() {
         var form = $("form").first();
         var serialized_form = form.serializeObject();
-        serialized_form["hours"] = Spot._get_spot_hours();
+        serialized_form["available_hours"] = Spot._get_spot_hours();
         return serialized_form;
 
     },
@@ -36,7 +35,9 @@ var Spot = {
                 var inputs = $(block).find("input");
                 var start = $(inputs[0]).val();
                 var end = $(inputs[1]).val();
-                avalible_hours[day_name].push([start, end]);
+                if(start.length > 0 && end.length > 0){
+                    avalible_hours[day_name].push([start, end]);
+                }
             });
 
         });
@@ -47,4 +48,4 @@ var Spot = {
     init_events: function () {
         $("input[value='Publish']").click(Spot.submit_spot);
     }
-}
+};

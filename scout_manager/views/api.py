@@ -13,5 +13,5 @@ class Spot(RESTDispatch):
 
     def PUT(self, request, spot_id):
         data = json.loads(request.body)
-        update_spot(data)
+        update_spot(data, spot_id)
         return HttpResponse('it works')

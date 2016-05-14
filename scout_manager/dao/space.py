@@ -2,6 +2,7 @@ from spotseeker_restclient.spotseeker import Spotseeker
 from spotseeker_restclient.exceptions import DataFailureException
 from scout.dao.space import add_cuisine_names, add_foodtype_names_to_spot, \
     add_payment_names, add_additional_info
+import json
 
 def get_spot_by_id(spot_id):
         spot_client = Spotseeker()
@@ -38,7 +39,7 @@ def sort_hours_by_day(spot):
     return spot
 
 
-def update_spot(data):
+def update_spot(data, spot_id):
     # handles case where single box is checked doesn't return a list
     if isinstance(data["type"], unicode):
         data["type"] = [data["type"]]
@@ -84,4 +85,12 @@ def update_spot(data):
 
     data["extended_info"] = extended_info
     data["location"] = location_data
+
+
+    spot_client = Spotseeker()
+
+    # this is really hacky, but the etag seems to keep getting reset between a GET and PUT
+    spot = get_spot_by_id(spot_id)
+    etag = spot.etag
+    spot_client.put_spot(spot_id, json.dumps(data), etag)
 
