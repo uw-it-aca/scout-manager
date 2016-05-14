@@ -5,6 +5,7 @@
 <label for="space-name">Name:
     <input id="space-name" type="text" name="name" value="{{ spot.name }}" required="required" />
     <input type="hidden" name="id" value="{{ spot.spot_id }}" />
+    <input type="hidden" name="etag" value="{{ spot.etag }}" />
 </label>
 
 <fieldset>
@@ -108,14 +109,16 @@
                     {% for period in day_hours.hours %}
                     current hours
                     <div class="mgr-hours-block">
-                    <p>test</p>
                         <label for="">Open:<input type="time" name="" value="{{ period.start_time|time:"H:i" }}" /></label>
                         <label for="">Close:<input type="time" name="" value="{{ period.end_time|time:"H:i" }}" /></label>
                     </div>
+
                     {% empty %}
                     no hours.. add some?
-                    <label for="">Open:<input type="time" name="" value="" /></label>
-                    <label for="">Close:<input type="time" name="" value="" /></label>
+                    <div class="mgr-hours-block">
+                        <label for="">Open:<input type="time" name="" value="" /></label>
+                        <label for="">Close:<input type="time" name="" value="" /></label>
+                    </div>
                     {% endfor %}
                 </div>
                 <input type="button" value="clear hours" title="clear hours" class="mgr-clear-hours">
