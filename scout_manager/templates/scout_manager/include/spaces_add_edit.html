@@ -3,7 +3,7 @@
 <h3>General Info</h3>
 
 <label for="space-name">Name:
-    <input id="space-name" type="text" name="name" value="{{ spot.name }}" required="required" />
+    <input id="space-name" type="text" name="name" value="{% if spot.name %}{{ spot.name }}{% endif %}" required="required" />
     <input type="hidden" name="id" value="{{ spot.spot_id }}" />
     <input type="hidden" name="etag" value="{{ spot.etag }}" />
 </label>
@@ -17,7 +17,7 @@
 </fieldset>
 
 <label for="space-description">Description:
-    <textarea name="extended_info:location_description" id="space-description" type="text">{{spot.location_description}}</textarea>
+    <textarea name="extended_info:location_description" id="space-description" type="text">{% if spot.location_description %}{{spot.location_description}}{% endif %}</textarea>
 </label>
 
 <fieldset>
@@ -55,11 +55,11 @@
     </label>
 
     <label for="space-latitude">Latitude
-        <input name="location:latitude" id="space-latitude" type="text" value="{{ spot.latitude }}" required />
+        <input name="location:latitude" id="space-latitude" type="text" value="{% if spot.latitude %}{{ spot.latitude }}{% endif %}" required />
     </label>
 
     <label for="space-longitude">Longitude
-        <input name="location:longitude" id="space-longitude" type="text" value="{{ spot.longitude }}" required />
+        <input name="location:longitude" id="space-longitude" type="text" value="{% if spot.longitude %}{{ spot.longitude }}{% endif %}" required />
     </label>
 
     {# How are we determining this? #}
@@ -77,12 +77,12 @@
 
     <!-- Hide if outdoor location. We suggest floor options. -->
     <label for="floor">Floor:
-        <input id="floor" name="location:floor" type="text" value="{{ spot.floor }}">
+        <input id="floor" name="location:floor" type="text" value="{% if spot.floor %}{{ spot.floor }}{% endif %}">
     </label>
 
     <!-- Hide if outdoor location -->
     <label for="room-number">Room #:
-        <input id="room-number" name="location:room_number" type="text" value="{{ spot.room_number }}">
+        <input id="room-number" name="location:room_number" type="text" value="{% if spot.room_number %}{{ spot.room_number }}{% endif %}">
     </label>
 
     {# How are we determining this? #}
@@ -94,7 +94,7 @@
 <label><input name="extended_info:has_alert" type="checkbox" value="has_alert" {% if spot.has_alert %}checked{% endif %}>Alert Enabled</label>
 
 <label for="alert-notes">Post this Alert message:
-    <textarea id="alert-notes" name="extended_info:alert_notes" type="text" value="{{ spot.alert_notes }}"></textarea>
+    <textarea id="alert-notes" name="extended_info:alert_notes" type="text" value="{% if spot.alert_notes %}{{ spot.alert_notes }}{% endif %}"></textarea>
 </label>
 
 <h3>Hours and Access</h3>
@@ -130,11 +130,11 @@
 {% endfor %}
 
 <label for="hours-notes">Hours Notes/Exceptions:
-    <textarea id="hours-notes"name="extended_info:hours_notes">{{spot.hours_notes}}</textarea>
+    <textarea id="hours-notes"name="extended_info:hours_notes">{% if spot.hours_notes %}{{spot.hours_notes}}{% endif %}</textarea>
 </label>
 
 <label for="access-notes">Access Notes:
-    <textarea id="access-notes"name="extended_info:access_notes">{{spot.access_notes}}</textarea>
+    <textarea id="access-notes"name="extended_info:access_notes">{% if spot.access_notes %}{{spot.access_notes}}{% endif %}</textarea>
 </label>
 
 
@@ -172,9 +172,9 @@
             <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Vietnamese" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_vietnamese">Vietnamese</label>
         </fieldset>
 
-        <label for="website">Website URL: <input id="website" name="extended_info:s_website_url" type="url" value="{{spot.website_url}}" /></label>
+        <label for="website">Website URL: <input id="website" name="extended_info:s_website_url" type="url" value="{% if spot.website_url %}{{spot.website_url}}{% endif %}" /></label>
 
-        <label for="menu-url">Menu URL:<input id="menu-url" name="extended_info:s_menu_url" type="url" value="{{spot.menu_url}}" /></label>
+        <label for="menu-url">Menu URL:<input id="menu-url" name="extended_info:s_menu_url" type="url" value="{% if spot.menu_url %}{{spot.menu_url}}{% endif %}" /></label>
 
         <fieldset>
             <legend>Food served</legend>
@@ -201,10 +201,10 @@
         <fieldset>
             <legend>Coupons</legend>
             <label for="coupon-url">Coupon URL:
-                <input id="coupon-url" name="extended_info:s_coupon_url" type="url" value="{{ spot.coupon_url }}" />
+                <input id="coupon-url" name="extended_info:s_coupon_url" type="url" value="{% if spot.coupon_url %}{{ spot.coupon_url }}{% endif %}" />
             </label>
             <label for="coupon-date">Expiration Date:
-                <input id="coupon-date" name="extended_info:s_coupon_expiration" type="text" value="{{ spot.coupon_expiration }}" placeholder="mm/dd/yyyy" />
+                <input id="coupon-date" name="extended_info:s_coupon_expiration" type="text" value="{% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% endif %}" placeholder="mm/dd/yyyy" />
             </label>
         </fieldset>
 
@@ -213,7 +213,7 @@
             <label for="has-reservations-food">
                 <input id="has-reservations-food" name="extended_info:s_has_reservation"type="checkbox" value="true" {% if spot.has_reservation %}checked{% endif%} />Accepts Reservations</label>
             <label for="reservation-notes-food">Reservation Notes:
-                <textarea id="reservation-notes-food" name="extended_info:s_reservation_notes">{{spot.reservation_notes}}</textarea>
+                <textarea id="reservation-notes-food" name="extended_info:s_reservation_notes">{% if spot.reservation_notes %}{{spot.reservation_notes}}{% endif %}</textarea>
             </label>
         </fieldset>
 
@@ -308,10 +308,10 @@
 
 <fieldset>
     <legend>Contact Info</legend>
-    <label for="owner">Owner/Admin Group:<input id="owner" name="extended_info:owner" type="text" value="{{ spot.owner }}"></label>
-    <label for="manager-name">Manager Name:<input id="manager-name" name="manager" type="text" value="{{ spot.manager }}"></label>
-    <label for="email" class="">Email:<input id="email" type="email" value="{{ spot.email }}"></label>
-    <label for="phone" class="">Phone:<input id="phone" name="phone" type="tel" value="{{ spot.phone }}"></label>
+    <label for="owner">Owner/Admin Group:<input id="owner" name="extended_info:owner" type="text" value="{% if spot.owner %}{{ spot.owner }}{% endif %}"></label>
+    <label for="manager-name">Manager Name:<input id="manager-name" name="manager" type="text" value="{% if spot.manager %}{{ spot.manager }}{% endif %}"></label>
+    <label for="email" class="">Email:<input id="email" type="email" value="{% if spot.email %}{{ spot.email }}{% endif %}"></label>
+    <label for="phone" class="">Phone:<input id="phone" name="phone" type="tel" value="{% if spot.phone %}{{ spot.phone }}{% endif %}"></label>
 </fieldset>
 
 <h3>Stuff Integration</h3>
