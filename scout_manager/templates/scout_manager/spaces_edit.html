@@ -17,10 +17,11 @@
         <p>These edits are set to be published on <span class="dummy">planned_edit.date</span>.</p>
 
         <ol class="dummy">
-            <li><a href="/manager/schedule/{{ spot.spot_id }}/">Scheduled for July 6, 2016 @ 10:45am</a></li>
+            <li><a href="/manager/schedule/{{ spot.spot_id }}/1234/">Scheduled for July 6, 2016 @ 10:45am</a></li>
+            <li><a href="/manager/schedule/{{ spot.spot_id }}/5678/">Scheduled for July 8, 2016 @ 09:45pm</a></li>
         </ol>
 
-        <p><a href="/manager/schedule/{{ spot.spot_id }}/">schedule  planned changes</a></p>
+        <p class="scope"><a href="/manager/schedule/{{ spot.spot_id }}/">schedule new changes</a></p>
 
     </fieldset>
 

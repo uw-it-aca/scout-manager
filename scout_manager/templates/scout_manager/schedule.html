@@ -5,112 +5,48 @@
 
 {% block web_content %}
 
-<p>This is future.html. You set/edit changes that you want to go out on a future date here.</p>
-
 <h2>Scheduled changes for <span class="">{{ spot.name }}</span></h2>
 
 <!-- IF has planned change.  -->
-<p>These edits are set to be published on <span class="dummy">planned_edit.date</span>.</p>
+<p>These edits are set to be published:</p>
 <ol>
-    <li><a href="/manager/schedule/{{ spot.spot_id }}/">Scheduled for July 6, 2016 @ 10:45am</a></li>
+    <li><a href="/manager/schedule/{{ spot.spot_id }}/1234/">Scheduled for July 6, 2016 @ 10:45am</a></li>
+    <li><a href="/manager/schedule/{{ spot.spot_id }}/5678/">Scheduled for July 8, 2016 @ 09:45pm</a></li>
 </ol>
 
+
+<br><br><br>
+
+<h2>New changes</h2>
 <form>
-    <h3>Space Alert</h3>
-     <div>
-        <label for="alert-notes">Post this Alert:</label><br/><textarea id="alert-notes" type="text"></textarea>
-    </div>
-    <h3>Open Hours</h3>
+
+    <h3>Current Alert</h3>
+    <label for="alert-notes">Post this Alert message:
+        <textarea id="alert-notes" name="extended_info:alert_notes" type="text" value="{{ spot.alert_notes }}"></textarea>
+    </label>
+
+    <h3>Hours and Access</h3>
     <div>
         <!-- button to prepopulate hours widget w/ current space hours -->
         <input type="button" value="Import currently published hours"></input>
+    </div>
 
-        <input type="button" value="clear values"></input>
+    <div style="line-height:200px;">
+        hours go here!
     </div>
-    <div>
-        <fieldset>
-         <!-- Selection determines which Day hours fieldsets are shown below -->
-            <legend>Days of operation:</legend>
-            <label><input type="checkbox" value="Monday">Monday</label>
-            <label><input type="checkbox"value="Tuesday">Tuesday</label>
-            <label><input type="checkbox"value="Wednesday">Wednesday</label>
-            <label><input type="checkbox" value="Thursday">Thursday</label>
-            <label><input type="checkbox"value="Friday">Friday</label>
-            <label><input type="checkbox"value="Saturday">Saturday</label>
-            <label><input type="checkbox"value="Sunday">Sunday</label>
-        </fieldset>
-        <fieldset>
-        <legend>Monday Hours:</legend>
-            <ul>
-                <li>
-                    <label for="monday-open">Open:</label>
-                    <select id="monday-open-1">
-                        <option>12:00 am</option>
-                        <option>12:15 am</option>
-                        <option>12:30 am</option>
-                        <option>12:45 am</option>
-                        <option>1:00 am</option>
-                        <option>1:15 am</option>
-                        <option>...</option>
-                        <option>midnight</option>
-                    </select>
-                    <label for="monday-close-1">Close:</label><select id="monday-close-1">
-                        <!-- limit close option list to times later than open choice -->
-                        <option>12:00 am</option>
-                        <option>12:15 am</option>
-                        <option>12:30 am</option>
-                        <option>12:45 am</option>
-                        <option>1:00 am</option>
-                        <option>1:15 am</option>
-                        <option>...</option>
-                        <option>midnight</option>
-                    </select>
-                    <input type="button" value="X" title="remove time range">
-                </li>
-            </ul>
-            <div><input type="button" value="Add Timerange"></div>
-        </fieldset>
-        <fieldset>
-            <legend>Tuesday Hours:</legend>
-            <ul>
-                <li>
-                    <label for="tuesday-open">Open:</label>
-                    <select id="tuesday-open-1">
-                        <option>12:00 am</option>
-                        <option>12:15 am</option>
-                        <option>12:30 am</option>
-                        <option>12:45 am</option>
-                        <option>1:00 am</option>
-                        <option>1:15 am</option>
-                        <option>...</option>
-                        <option>midnight</option>
-                    </select>
-                    <label for="tuesday-close-1">Close:</label><select id="tuesday-close-1">
-                        <!-- limit close option list to times later than open choice -->
-                        <option>12:00 am</option>
-                        <option>12:15 am</option>
-                        <option>12:30 am</option>
-                        <option>12:45 am</option>
-                        <option>1:00 am</option>
-                        <option>1:15 am</option>
-                        <option>...</option>
-                        <option>midnight</option>
-                    </select>
-                    <input type="button" value="X" title="remove time range">
-                </li>
-            </ul>
-            <div><input type="button" value="Add Timerange"></div>
-        </fieldset>
-    </div>
-    <div>
-    <label for="hours-notes">Hours Notes/Exceptions:</label><br/><textarea id="hours-notes"></textarea>
-    </div>
+
+    <label for="hours-notes">Hours Notes/Exceptions:
+        <textarea id="hours-notes"name="extended_info:hours_notes">{{spot.hours_notes}}</textarea>
+    </label>
+
     <!--  if "food" space -->
     <h3>Food space metadata</h3>
     <div>
-            <div>
-                <label for="menu-url">Menu URL:</label><input id="menu-url" type="url">
-            </div>
+
+        <div>
+            <label for="menu-url">Menu URL:</label><input id="menu-url" type="url">
+        </div>
+
         <fieldset>
             <legend>Coupons</legend>
             <label for="coupon-url">Coupon URL:</label><input id="coupon-url" type="url">
@@ -118,14 +54,17 @@
         </fieldset>
     </div>
 
-    <h3>Publish Changes</h3>
+    <h3>Publish Date</h3>
     <div>
        <label for="publish-date">Publish changes on:</label><input id="publish-date" type="date">
     </div>
-    <div>
-        <a href="/">Cancel</a>
-        <input type="submit" value="Save"></input>
+
+    <h3>Space Actions</h3>
+    <div class="dummy" style="margin-bottom:2em;">
+        <input type="submit" value="Save Changes" />
+        <input type="button" value="Cancel" />
     </div>
+
 </form>
 
 {% endblock %}
