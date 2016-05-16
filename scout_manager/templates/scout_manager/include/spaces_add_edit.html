@@ -358,14 +358,14 @@
 <p>Publish Status: <span class="scope">Published</span>&nbsp;<span class="scope">Unpublished</span></p>
 <p><span>If published: <a href="/detail/{{ spot.spot_id }}">view in client</a></span></p>
 
-    <div class="scope" style="margin-bottom:2em;">
+    <div style="margin-bottom:2em;">
         <!-- if UNPUBLISHED -->
-        <input type="button" value="Publish"></input> ^ Using this button for now to handle PUTing the form back to spotseeker
+        <input type="button" value="Publish" class="scope"></input> ^ Using this button for now to handle PUTing the form back to spotseeker
         <!-- Publish will be conditional to form validation -->
         <!-- if PUBLISHED space WITH changes. Validate form. -->
-        <input type="submit" value="Publish Changes"></input>
+        <input type="submit" value="Publish Changes" class="dummy"></input>
         <!-- if PUBLISHED -->
-        <input type="button" value="Unpublish"></input>
+        <input type="button" value="Unpublish" class="dummy"></input>
     </div>
 
     <div class="dummy" style="margin-bottom:2em;">
