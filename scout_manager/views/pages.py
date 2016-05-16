@@ -40,8 +40,9 @@ def items_edit(request, item_id):
 
 def schedule(request, spot_id):
     spot = get_spot_by_id(spot_id)
+    context = {'spot': spot}
     return render_to_response(
-            {'spot': spot},
+            'scout_manager/schedule.html',
             context_instance=RequestContext(request))
 
 
