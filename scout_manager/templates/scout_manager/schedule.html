@@ -10,8 +10,8 @@
 <!-- IF has planned change.  -->
 <p>These edits are set to be published:</p>
 <ol>
-    <li><a href="/manager/schedule/{{ spot.spot_id }}/1234/">Scheduled for July 6, 2016 @ 10:45am</a></li>
-    <li><a href="/manager/schedule/{{ spot.spot_id }}/5678/">Scheduled for July 8, 2016 @ 09:45pm</a></li>
+    <li><a href="/manager/spaces/{{ spot.spot_id }}/schedule/20160516/">Scheduled for July 6, 2016 @ 10:45am</a></li>
+    <li><a href="/manager/spaces/{{ spot.spot_id }}/schedule/20160516/">Scheduled for July 8, 2016 @ 09:45pm</a></li>
 </ol>
 
 
@@ -31,12 +31,12 @@
         <input type="button" value="Import currently published hours"></input>
     </div>
 
-    <div style="line-height:200px;">
-        hours go here!
+    <div style="line-height:200px;" class="scope">
+        empty hours form goes here!
     </div>
 
     <label for="hours-notes">Hours Notes/Exceptions:
-        <textarea id="hours-notes"name="extended_info:hours_notes">{{spot.hours_notes}}</textarea>
+        <textarea id="hours-notes" name="extended_info:hours_notes"></textarea>
     </label>
 
     <!--  if "food" space -->
@@ -54,14 +54,15 @@
         </fieldset>
     </div>
 
-    <h3>Publish Date</h3>
+    <h3>Valid Date(s)</h3>
     <div>
-       <label for="publish-date">Publish changes on:</label><input id="publish-date" type="date">
+       <label for="valid_on">Valid on (required):</label><input id="valid_on" type="date" required>
+       <label for="valid_until">Valid until:</label><input id="valid_until" type="date">
     </div>
 
-    <h3>Space Actions</h3>
+    <h3>Schedule Actions</h3>
     <div class="dummy" style="margin-bottom:2em;">
-        <input type="submit" value="Save Changes" />
+        <input type="submit" value="Schedule Changes" />
         <input type="button" value="Cancel" />
     </div>
 

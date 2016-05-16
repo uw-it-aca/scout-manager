@@ -17,12 +17,20 @@ urlpatterns = patterns(
 
     # /spaces/
     url(r'^spaces/$', 'scout_manager.views.pages.spaces', name='spaces'),
+
+    # /spaces/ID/
     url(r'^spaces/(?P<spot_id>[0-9]{1,5})/$', 'scout_manager.views.pages.spaces_edit', name='spaces_edit'),
+
+    # /spaces/ID/schedule/new/
+    url(r'^spaces/(?P<spot_id>[0-9]{1,5})/schedule/new/$', 'scout_manager.views.pages.schedule', name='schedule'),
+
+    # /spaces/ID/schedule/DATETIME/
+    url(r'^spaces/(?P<spot_id>[0-9]{1,5})/schedule/20160516/$', 'scout_manager.views.pages.schedule', name='schedule'),
+
+    # /spaces/add/
     url(r'^spaces/add/$', 'scout_manager.views.pages.spaces_add', name='spaces_add'),
 
-    # /schedule/
-    url(r'^schedule/(?P<spot_id>[0-9]{1,5})/$', 'scout_manager.views.pages.schedule', name='schedule'),
-
+    # /api/
     url(r'api/spot/(?P<spot_id>[0-9]{1,5})', Spot().run)
 
 )

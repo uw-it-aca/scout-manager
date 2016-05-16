@@ -14,14 +14,14 @@
     <fieldset class="dummy">
         <legend>Scheduled updates</legend>
 
-        <p>These edits are set to be published on <span class="dummy">planned_edit.date</span>.</p>
+        <p>These edits are set to be published:</p>
 
         <ol class="dummy">
-            <li><a href="/manager/schedule/{{ spot.spot_id }}/1234/">Scheduled for July 6, 2016 @ 10:45am</a></li>
-            <li><a href="/manager/schedule/{{ spot.spot_id }}/5678/">Scheduled for July 8, 2016 @ 09:45pm</a></li>
+            <li><a href="/manager/spaces/{{ spot.spot_id }}/schedule/20160516/">Scheduled for July 6, 2016 @ 10:45am</a></li>
+            <li><a href="/manager/spaces/{{ spot.spot_id }}/schedule/20160516/">Scheduled for July 8, 2016 @ 09:45pm</a></li>
         </ol>
 
-        <p class="scope"><a href="/manager/schedule/{{ spot.spot_id }}/">schedule new changes</a></p>
+        <p class="scope"><a href="/manager/spaces/{{ spot.spot_id }}/schedule/new/">schedule new changes</a></p>
 
     </fieldset>
 
