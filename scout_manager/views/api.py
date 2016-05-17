@@ -13,5 +13,8 @@ class Spot(RESTDispatch):
 
     def PUT(self, request, spot_id):
         data = json.loads(request.body)
-        update_spot(data, spot_id)
+        try:
+            update_spot(data, spot_id)
+        except Exception as ex:
+            return HttpResponse(ex, status=400)
         return HttpResponse('it works')

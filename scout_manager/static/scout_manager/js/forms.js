@@ -21,7 +21,10 @@ var Forms = {
     hours_add: function(){
         // add hours input fields
         $(".mgr-add-hours").click(function(e) {
-            $(this).siblings('.mgr-current-hours').append('added hours <label for="">Open:<input type="time" name="" value="" /></label><label for="">Close:<input type="time" name="" value="" /></label>');
+            var hours_blocks = $(this).siblings('.mgr-current-hours');
+            var empty_hours = $(hours_blocks[0]).clone();
+            $(empty_hours).find("input").val("");
+            $($(this).parent()).append(empty_hours);
         });
     },
 
