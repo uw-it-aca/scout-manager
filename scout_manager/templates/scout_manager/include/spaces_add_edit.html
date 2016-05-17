@@ -10,10 +10,9 @@
 
 <fieldset>
     <legend>Primary use: (required)</legend>
-    <label><input type="checkbox" value="food "{% if spot.app_type == "food"%}checked disabled{% endif %}>Food</label>
-    <label><input type="checkbox" value="study" {% if spot.app_type == "study"%}checked disabled{% endif %}>Study</label>
-    <label><input type="checkbox" value="other" {% if spot.app_type == "other"%}checked disabled{% endif %}>Other (neither food or study.. tied to stuff, since stuff must belong in a spot)</label>
-    <input type="hidden" name="extended_info:app-type" value="{{ spot.app_type }}" />
+    <label><input type="radio" name="extended_info:app-type" value="food "{% if spot.app_type == "food"%}checked{% endif %}>Food</label>
+    <label><input type="radio" name="extended_info:app-type" value="study" {% if spot.app_type == "study"%}checked{% endif %}>Study</label>
+    <label><input type="radio" name="extended_info:app-type" value="other" {% if spot.app_type == "other"%}checked{% endif %}>Other (neither food or study.. tied to stuff, since stuff must belong in a spot)</label>
 </fieldset>
 
 <label for="space-description">Description:
@@ -359,6 +358,7 @@
 <p><span>If published: <a href="/detail/{{ spot.spot_id }}">view in client</a></span></p>
 
     <div style="margin-bottom:2em;">
+        {{ spot.etag }}
         <!-- if UNPUBLISHED -->
         <input type="button" value="Publish" class="scope"></input> ^ Using this button for now to handle PUTing the form back to spotseeker
         <!-- Publish will be conditional to form validation -->

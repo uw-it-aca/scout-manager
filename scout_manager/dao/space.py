@@ -18,6 +18,8 @@ def process_extended_info(spot):
         for item in spot.extended_info:
             if item.key == "owner":
                 spot.owner = item.value
+            if item.key == "app_type":
+                spot.app_type = item.value
         return spot
 
 def sort_hours_by_day(spot):
