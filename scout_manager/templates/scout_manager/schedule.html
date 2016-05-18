@@ -31,19 +31,8 @@
         <textarea id="alert-notes" name="extended_info:alert_notes" type="text" value="{{ spot.alert_notes }}"></textarea>
     </label>
 
-    <h3>Hours and Access</h3>
-    <div>
-        <!-- button to prepopulate hours widget w/ current space hours -->
-        <input type="button" value="Import currently published hours"></input>
-    </div>
-
-    <div style="line-height:200px;" class="scope">
-        empty hours form goes here!
-    </div>
-
-    <label for="hours-notes">Hours Notes/Exceptions:
-        <textarea id="hours-notes" name="extended_info:hours_notes"></textarea>
-    </label>
+    <!-- include the hour and access form -->
+    {% include "scout_manager/include/form_hours.html" %}
 
     <!--  if "food" space -->
     <h3>Food space metadata</h3>

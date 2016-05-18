@@ -1,0 +1,35 @@
+<h3>Hours and Access</h3>
+
+{% for day_hours in spot.grouped_hours %}
+<fieldset class="mgr-hours" data-day="{{ day_hours.day }}">
+    <legend>{{ day_hours.day|capfirst }}:</legend>
+    <ul>
+        <li class="flex-container">
+            <div class="flex-item">
+                <div class="mgr-current-hours">
+                    {% for period in day_hours.hours %}
+                    current hours
+                    <div class="mgr-hours-block">
+                        <label for="">Open:<input type="time" name="" value="{{ period.start_time|time:"H:i" }}" /></label>
+                        <label for="">Close:<input type="time" name="" value="{{ period.end_time|time:"H:i" }}" /></label>
+                    </div>
+
+                    {% empty %}
+                    no hours.. add some?
+                    <div class="mgr-hours-block">
+                        <label for="">Open:<input type="time" name="" value="" /></label>
+                        <label for="">Close:<input type="time" name="" value="" /></label>
+                    </div>
+                    {% endfor %}
+                </div>
+                <input type="button" value="clear hours" title="clear hours" class="mgr-clear-hours">
+                <input type="button" value="add hours" title="add hours" class="mgr-add-hours">
+            </div>
+        </li>
+    </ul>
+</fieldset>
+{% endfor %}
+
+<label for="hours-notes">Hours Notes/Exceptions:
+    <textarea id="hours-notes"name="extended_info:hours_notes">{% if spot.hours_notes %}{{spot.hours_notes}}{% endif %}</textarea>
+</label>
