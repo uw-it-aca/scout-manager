@@ -36,17 +36,21 @@
 
     <!--  if "food" space -->
     <h3>Food space metadata</h3>
+
     <div>
 
-        <div>
-            <label for="menu-url">Menu URL:</label><input id="menu-url" type="url">
-        </div>
+        <label for="menu-url">Menu URL:<input id="menu-url" name="extended_info:s_menu_url" type="url" value="{% if spot.menu_url %}{{spot.menu_url}}{% endif %}" /></label>
 
         <fieldset>
             <legend>Coupons</legend>
-            <label for="coupon-url">Coupon URL:</label><input id="coupon-url" type="url">
-            <label for="coupon-date">Expiration Date:</label><input id="coupon-date" type="date">
+            <label for="coupon-url">Coupon URL:
+                <input id="coupon-url" name="extended_info:s_coupon_url" type="url" value="{% if spot.coupon_url %}{{ spot.coupon_url }}{% endif %}" />
+            </label>
+            <label for="coupon-date">Expiration Date:
+                <input id="coupon-date" name="extended_info:s_coupon_expiration" type="text" value="{% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% endif %}" placeholder="mm/dd/yyyy" />
+            </label>
         </fieldset>
+
     </div>
 
     <h3>Valid Date(s)</h3>
