@@ -361,6 +361,12 @@
         {{ spot.etag }}
         <!-- if UNPUBLISHED -->
         <input type="button" value="Publish" class="scope"></input> ^ Using this button for now to handle PUTing the form back to spotseeker
+
+        <!-- This is just a temp place to put publishing errors while we're developing, will probably change once we have validation -->
+        <div id="pub_error">
+
+        </div>
+
         <!-- Publish will be conditional to form validation -->
         <!-- if PUBLISHED space WITH changes. Validate form. -->
         <input type="submit" value="Publish Changes" class="dummy"></input>

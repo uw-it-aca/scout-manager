@@ -9,9 +9,10 @@ var Spot = {
             dataType: "json",
             headers: {'X-CSRFToken': Cookies.get('csrftoken')},
             success: function(results) {
-                console.log('success');
+                $("#pub_error").html();
             },
             error: function(xhr, status, error) {
+                $("#pub_error").html(error + ": " + xhr.responseText);
             }
         });
     },

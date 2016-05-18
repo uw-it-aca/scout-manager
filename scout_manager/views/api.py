@@ -16,5 +16,5 @@ class Spot(RESTDispatch):
         try:
             update_spot(data, spot_id)
         except Exception as ex:
-            return HttpResponse(ex, status=400)
-        return HttpResponse('it works')
+            return HttpResponse(json.dumps({'error': str(ex)}), status=400)
+        return HttpResponse(json.dumps({'status': 'it works'}))
