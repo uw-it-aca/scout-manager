@@ -1,49 +1,74 @@
 """
-A simple test using python for loading urls
+Use a list of URLs and expected status codes to ensure every page
+returns the expected code.
 """
 
 from django.test import TestCase
 
 baseUrl = '/manager'
 
+OK = 200
+redir = 301
+notfound = 404
+
+_testCases = (
+    ('Home', '/', OK, 'SCOUT-122'),
+    ('Home redir', '', redir, 'SCOUT-129'),
+    ('Items', '/items/', OK, 'SCOUT-122'),
+    ('Items redir', '/items', redir, 'SCOUT-129'),
+    ('Items add', '/items/add/', OK, 'SCOUT-122'),
+    ('Items add redir', '/items/add', redir, 'SCOUT-129'),
+    ('Item specific', '/items/5555/', OK, 'SCOUT-122'),
+    ('Spaces', '/spaces/', OK, 'SCOUT-122'),
+    ('Spaces redir', '/spaces', redir, 'SCOUT-122'),
+    ('Spaces add', '/spaces/add/', OK, 'SCOUT-122'),
+    ('Spaces add redir', '/spaces/add', redir, 'SCOUT-129'),
+    ('Spaces specific', '/spaces/5070/', OK, 'SCOUT-122'),
+    ('Spaces specific redir', '/spaces/5070', redir, 'SCOUT-129'),
+    ('Bad url', '/rando/', notfound)
+)
+
+
+def _makeTestFunc(name, path, status=OK, issue=None):
+    """Returns a function that tests given URL using assertUrlStatus"""
+
+    def _testFunc(self):
+        self.assertUrlStatus(status, path)
+
+    # Makes a test function, with the page passed as the name.
+    _testFunc.__name__ = 'test_page_' + name.replace(' ', '_').lower()
+
+    # Makes a help comment about the url status
+    doc = 'Assert "%s" results in a %s' % (path, status)
+
+    # Connects the help comment with an issue number in JIRA
+    if issue is not None:
+        doc += ' (%s)' % issue
+    _testFunc.__doc__ = doc
+
+    return _testFunc
+
+
 class urlStatusCheck(TestCase):
-
-    ####################Start helper methods####################
-
-    #Returns the status code of the given URL
-    def urlStatus(self, urlsuffix=''):
-        #Issues a GET request
+    """Use a list of URLs and expected status codes to ensure every
+        page returns the expected code."""
+    
+    def _clientUrlStatus(self, urlsuffix=''):
+        """Return response code of given URL, or 500 if failed"""
         response = self.client.get(baseUrl + urlsuffix)
         return response.status_code
 
-    #Checks to see if the status code of the given URL matches
-    #   the given status code
-    def matchUrlStatus(self, code, urlsuffix=''):
-        self.assertEqual(self.urlStatus(urlsuffix), code)   
+    def assertUrlStatus(self, code, urlsuffix=''):
+        """Compares that baseUrl + urlsuffix returns the given status code"""
+        self.assertEqual(self._clientUrlStatus(urlsuffix), code)
 
-    ####################End helper methods####################
-
-    #Checks to see if the home manager page (/manager/) results in a 200 
-    def test_home_exists(self):
-        self.matchUrlStatus(200, '/')
+    # Runs all test cases
+    for case in _testCases:
+        # Takes all the arguments and make test functions
+        _testFunc = _makeTestFunc(*case)
+        # Sets the names for the test functions
+        name = _testFunc.__name__
+        vars()[name] = _testFunc
     
-    #Checks to see if the items pages (/items/) results in a 200
-    def test_addPage(self):
-        self.matchUrlStatus(200, '/items/')
-        self.matchUrlStatus(200, '/items/5555/')
-
-
-    #Checks to see if the spaces page (/spaces/results in a 200
-    def test_publishPage(self):
-        self.matchUrlStatus(200, '/spaces/')
-        self.matchUrlStatus(200, '/spaces/add/')
-        self.matchUrlStatus(200, '/spaces/1/') #This one is causing a problem
-
-    #Checks to see if the schedule works
-    def test_spacePage(self):
-        self.matchUrlStatus(200, '/schedule/1')
-            
-    #Checks to see if entering an invalid URL results in a 404
-    def test_badURL(self):
-        self.matchUrlStatus(404, '/rando/' )
-
+    # Deletes variables so they don't leak into help documentation
+    del case, name, _testFunc
