@@ -1,2 +1,2 @@
--e git+https://github.com/uw-it-aca/scout.git#egg=scout
+-e git+https://github.com/uw-it-aca/scout.git@develop#egg=scout
 -e .
