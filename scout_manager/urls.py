@@ -46,7 +46,7 @@ urlpatterns = patterns(
     # /spaces/add/
     url(r'^spaces/add/$',
         'scout_manager.views.pages.spaces_add',
-        ame='spaces_add'),
+        name='spaces_add'),
 
     # /api/
     url(r'api/spot/(?P<spot_id>[0-9]{1,5})',
