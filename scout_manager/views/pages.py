@@ -6,6 +6,7 @@ from scout.dao.space import get_spot_list, get_spot_by_id
 from scout_manager.dao.space import get_spot_by_id as manager_get_spot_by_id
 from spotseeker_restclient.spotseeker import Spotseeker
 
+
 def home(request):
     return render_to_response(
             'scout_manager/home.html',
@@ -64,8 +65,7 @@ def spaces_add(request):
     # building search only returns study buildings by default
     buildings = spot_client.get_building_list()
     buildings += spot_client.get_building_list("food")
-    context = {"buildings": buildings,
-              }
+    context = {"buildings": buildings}
     return render_to_response(
             'scout_manager/spaces_add.html',
             context,

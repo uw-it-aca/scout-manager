@@ -3,6 +3,7 @@ from scout_manager.dao.space import update_spot
 from django.http import HttpResponse
 import json
 
+
 class Spot(RESTDispatch):
     """
     Handles changes to spots

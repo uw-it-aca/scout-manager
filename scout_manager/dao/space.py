@@ -4,10 +4,12 @@ from scout.dao.space import add_cuisine_names, add_foodtype_names_to_spot, \
     add_payment_names, add_additional_info
 import json
 
+
 def get_spot_by_id(spot_id):
         spot_client = Spotseeker()
         res = spot_client.get_spot_by_id(spot_id)
         return process_extended_info(res)
+
 
 def process_extended_info(spot):
         spot = add_foodtype_names_to_spot(spot)
@@ -21,6 +23,7 @@ def process_extended_info(spot):
             if item.key == "app_type":
                 spot.app_type = item.value
         return spot
+
 
 def sort_hours_by_day(spot):
     days = ["monday",
@@ -88,11 +91,10 @@ def update_spot(data, spot_id):
     data["extended_info"] = extended_info
     data["location"] = location_data
 
-
     spot_client = Spotseeker()
 
-    # this is really hacky, but the etag seems to keep getting reset between a GET and PUT
+    # this is really hacky, but the etag seems to keep getting reset\
+    # between a GET and PUT
     spot = get_spot_by_id(spot_id)
     etag = spot.etag
     spot_client.put_spot(spot_id, json.dumps(data), etag)
-
