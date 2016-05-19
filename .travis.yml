@@ -14,7 +14,7 @@ before_script:
   - npm install jquery
   - npm install jsdom@3
 script:
-  - pep8 scout_manager/ --exclude=migrations
+  - pep8 scout_manager/ --exclude=migrations,scout_manager/tests
   - coverage run --source=scout_manager/ --omit=scout_manager/migrations/* manage.py test scout_manager
 after_script:
   - coveralls
