@@ -23,6 +23,11 @@ urlpatterns = patterns(
         'scout_manager.views.pages.items_add',
         name='items_add'),
 
+    # /unpublished/
+    url(r'^unpublished/$',
+        'scout_manager.views.pages.unpublished',
+        name='unpublished'),
+
     # /spaces/
     url(r'^spaces/$',
         'scout_manager.views.pages.spaces',
