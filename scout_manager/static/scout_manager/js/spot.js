@@ -83,6 +83,6 @@ var Spot = {
     },
 
     init_events: function () {
-        $("input[value='Publish']").click(Spot.submit_spot);
+        $("input[value='Save Changes']").click(Spot.submit_spot);
     }
 };
