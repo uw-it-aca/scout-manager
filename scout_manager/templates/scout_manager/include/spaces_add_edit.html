@@ -322,6 +322,10 @@
 <!-- When a user clicks to change status to PUBLISH, then we should validate form. It would be ideal to provide them with a condensed list of required and invalid fields that they need to address (maybe as intersticial, which they can cancel from. -->
 <p>Publish Status: <span class="scope">Published</span>&nbsp;<span class="scope">Unpublished</span></p>
 <p><span>If published: <a href="/detail/{{ spot.spot_id }}">view in client</a></span></p>
+<fieldset>
+    <legend>Publish Status</legend>
+    <div>Space is Hidden: <input type="checkbox" name="extended_info:is_hidden"{% if spot.is_hidden %} checked{% endif %}></input></div>
+</fieldset>
 
     <div style="margin-bottom:2em;">
         {{ spot.etag }}

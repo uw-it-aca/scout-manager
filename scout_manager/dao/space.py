@@ -22,6 +22,8 @@ def process_extended_info(spot):
                 spot.owner = item.value
             if item.key == "app_type":
                 spot.app_type = item.value
+            if item.key == "is_hidden":
+                spot.is_hidden = item.value
         return spot
 
 
@@ -70,6 +72,9 @@ def update_spot(data, spot_id):
             data.pop(key)
             if value != "None" and len(value) > 0:
                 if value == "true":
+                    extended_info[name] = True
+                if value == "on":
+                    # if a checkbox is checked, set to true
                     extended_info[name] = True
                 else:
                     extended_info[name] = value
