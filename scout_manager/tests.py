@@ -1,1 +1,1 @@
-from test.url_responses_test import urlStatusCheck
+from scout_manager.test.url_responses_test import urlStatusCheck
