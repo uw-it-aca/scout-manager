@@ -32,8 +32,10 @@
             </div>
             <div>Items: <span class="dummy">has_items (Yes or No)</span><span class="dummy">item_type.name <!--could be multiple --></span></div>
             <div>Publish Status: <span>{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED <a href="/detail/{{ spot.spot_id }}" target="_blank">preview in client</a>{% endif %}</span>
-                <button type="button" class="dummy">Toggle Publish Status</button>
+                <!--<button type="button" class="dummy">Toggle Publish Status</button>-->
             </div>
+
+            <!--
             <div>Future Changes: <span class="dummy">change_date (Yes or No)</span> <span class="dummy"><a href="/manager/schedule/{{ spot.spot_id }}/">spot.change_date</a></span></div>
             <div>Needs ACA Review: <span class="dummy">needs_aca_review (Yes or No)</span>
                 <button type="button" class="dummy">Clear Review Flag</button>
@@ -41,6 +43,7 @@
             <div>
                 <button type="button" class="dummy">Delete Space</button>
             </div>
+            -->
         </li>
         {% endfor %}
     </ol>

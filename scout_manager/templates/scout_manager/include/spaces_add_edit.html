@@ -192,7 +192,8 @@
         </fieldset>
 
     </div>
-    <div class="flex-item">
+
+    <div class="flex-item" style="display:none;">
 
         <!--  if "study" app_type -->
         <h3>Study space metadata</h3>
@@ -267,6 +268,8 @@
         </fieldset>
 
     </div>
+
+    
 </div>
 
 <h3>Administration</h3>
@@ -328,6 +331,7 @@
 </fieldset>
 
     <div style="margin-bottom:2em;">
+
         {{ spot.etag }}
         <!-- if UNPUBLISHED -->
         <input type="button" value="Publish"></input>
@@ -340,11 +344,12 @@
 
         <!-- Publish will be conditional to form validation -->
         <!-- if PUBLISHED space WITH changes. Validate form. -->
-        <input type="submit" value="Publish Changes" class="dummy"></input>
+        <!--<input type="submit" value="Publish Changes" class="dummy"></input>-->
         <!-- if PUBLISHED -->
-        <input type="button" value="Unpublish" class="dummy"></input>
+        <!--<input type="button" value="Unpublish" class="dummy"></input>-->
     </div>
 
+<!--
     <div class="dummy" style="margin-bottom:2em;">
         <input type="submit" value="Save Changes" />
         <input type="button" value="Cancel" />
@@ -365,3 +370,5 @@
     <li>Invalid field name 1</li>
     <li>Invalid field name 2</li>
 </ul>
+
+-->
