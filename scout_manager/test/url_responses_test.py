@@ -52,7 +52,7 @@ def _makeTestFunc(name, path, status=OK, issue=None):
 class urlStatusCheck(TestCase):
     """Use a list of URLs and expected status codes to ensure every
         page returns the expected code."""
-    
+
     def _clientUrlStatus(self, urlsuffix=''):
         """Return response code of given URL, or 500 if failed"""
         response = self.client.get(baseUrl + urlsuffix)
@@ -69,6 +69,6 @@ class urlStatusCheck(TestCase):
         # Sets the names for the test functions
         name = _testFunc.__name__
         vars()[name] = _testFunc
-    
+
     # Deletes variables so they don't leak into help documentation
     del case, name, _testFunc
