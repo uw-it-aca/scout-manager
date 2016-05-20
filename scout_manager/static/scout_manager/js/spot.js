@@ -1,9 +1,45 @@
 var Spot = {
     submit_spot: function (e) {
         var form_data = Spot.get_edit_form_data();
+        var is_create= Spot._get_is_add(form_data);
+
+        if (is_create === false) {
+            Spot._edit_spot(form_data);
+        } else {
+            Spot._create_spot(form_data)
+        }
+
+
+    },
+
+    _get_is_add: function(form_data) {
+        if (form_data.id === undefined){
+            return true
+        }
+        return false
+    },
+
+    _edit_spot: function (form_data) {
         $.ajax({
             url: "/manager/api/spot/" + form_data.id,
             type: "PUT",
+            data: JSON.stringify(form_data),
+            contentType: "application/json",
+            dataType: "json",
+            headers: {'X-CSRFToken': Cookies.get('csrftoken')},
+            success: function(results) {
+                $("#pub_error").html();
+            },
+            error: function(xhr, status, error) {
+                $("#pub_error").html(error + ": " + xhr.responseText);
+            }
+        });
+    },
+
+    _create_spot: function (form_data) {
+        $.ajax({
+            url: "/manager/api/spot/",
+            type: "POST",
             data: JSON.stringify(form_data),
             contentType: "application/json",
             dataType: "json",
