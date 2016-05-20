@@ -320,17 +320,18 @@
 
 <h3>Space Actions</h3>
 <!-- When a user clicks to change status to PUBLISH, then we should validate form. It would be ideal to provide them with a condensed list of required and invalid fields that they need to address (maybe as intersticial, which they can cancel from. -->
-<p>Publish Status: <span class="scope">Published</span>&nbsp;<span class="scope">Unpublished</span></p>
-<p><span>If published: <a href="/detail/{{ spot.spot_id }}">view in client</a></span></p>
+
 <fieldset>
     <legend>Publish Status</legend>
-    <div>Space is Hidden: <input type="checkbox" name="extended_info:is_hidden"{% if spot.is_hidden %} checked{% endif %}></input></div>
+    <p>Status: <span>{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED <a href="/detail/{{ spot.spot_id }}">view in client</a>{% endif %}</span></p>
+    <p>Unpublish?:&nbsp;<input type="checkbox" name="extended_info:is_hidden"{% if spot.is_hidden %} checked{% endif %}></input></p>
 </fieldset>
 
     <div style="margin-bottom:2em;">
         {{ spot.etag }}
         <!-- if UNPUBLISHED -->
-        <input type="button" value="Publish" class="scope"></input> ^ Using this button for now to handle PUTing the form back to spotseeker
+        <input type="button" value="Publish"></input>
+        <p>^ Using this button for now to handle PUTing the form back to spotseeker</p>
 
         <!-- This is just a temp place to put publishing errors while we're developing, will probably change once we have validation -->
         <div id="pub_error">
