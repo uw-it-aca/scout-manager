@@ -323,7 +323,7 @@
 
 <fieldset>
     <legend>Publish Status</legend>
-    <p>Status: <span>{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED <a href="/detail/{{ spot.spot_id }}">view in client</a>{% endif %}</span></p>
+    <p>Status: <span>{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED <a href="/detail/{{ spot.spot_id }}" target="_blank">preview in client</a>{% endif %}</span></p>
     <p>Unpublish?:&nbsp;<input type="checkbox" name="extended_info:is_hidden"{% if spot.is_hidden %} checked{% endif %}></input></p>
 </fieldset>
 
