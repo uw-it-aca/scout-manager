@@ -4,6 +4,9 @@ returns the expected code.
 """
 
 from django.test import TestCase
+from django.test.utils import override_settings
+
+DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
 
 baseUrl = '/manager'
 
@@ -49,6 +52,7 @@ def _makeTestFunc(name, path, status=OK, issue=None):
     return _testFunc
 
 
+@override_settings(SPOTSEEKER_DAO_CLASS=DAO)
 class urlStatusCheck(TestCase):
     """Use a list of URLs and expected status codes to ensure every
         page returns the expected code."""
