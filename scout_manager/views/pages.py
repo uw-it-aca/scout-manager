@@ -85,9 +85,3 @@ def spaces_edit(request, spot_id):
             'scout_manager/spaces_edit.html',
             context,
             context_instance=RequestContext(request))
-
-
-def unpublished(request):
-    return render_to_response(
-            'scout_manager/unpublished.html',
-            context_instance=RequestContext(request))
