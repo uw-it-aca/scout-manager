@@ -6,11 +6,18 @@
 
     <div style="margin-bottom:1em;">Total: <span class="">{{ count }}</span> <a href="/manager/spaces/add/">Add New Space</a></div>
 
-    <div style="margin-bottom:1em;">Filter by: <span class="dummy">All</span> | <span class="dummy">Food</span> | <span class="dummy">Study</span> | <span class="dummy">Other</span></div>
+<div style="margin-bottom:1em;">
+    Filter by type: <span class="scope">food</span> | <span class="scope">study</span> | <span class="scope">all</span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Visibility: <span class="scope">published</span> | <span class="scope">unpublished</span> |
+    <span class="scope">all</span>
+</div>
 
+    <!--
     <div>
         <button type="button" class="dummy">Download CSV of listed Spaces</button>
     </div>
+    -->
 
     <ol>
         {% for spot in spots %}
@@ -30,7 +37,7 @@
             <div>Space Type: {% for type in spot.spot_types %}
                 <span class="">{{ type.name }}</span> {% endfor %}
             </div>
-            <div>Items: <span class="dummy">has_items (Yes or No)</span><span class="dummy">item_type.name <!--could be multiple --></span></div>
+            <!--<div>Items: <span class="dummy">has_items (Yes or No)</span><span class="dummy">item_type.name</span></div>-->
             <div>Publish Status: <span>{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED <a href="/detail/{{ spot.spot_id }}" target="_blank">preview in client</a>{% endif %}</span>
                 <!--<button type="button" class="dummy">Toggle Publish Status</button>-->
             </div>
