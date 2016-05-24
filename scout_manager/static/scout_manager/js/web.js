@@ -15,7 +15,7 @@ $(document).on('ready', function(event) {
         console.log("at manager");
         // if at /manager.... load space and items content via ajax
         $("#spaces").load("/manager/spaces/");
-        $("#items").load("/manager/items/");
+        //$("#items").load("/manager/items/");
     }
 
     Forms.init_form();
