@@ -1,0 +1,71 @@
+<!--  if "study" app_type -->
+<h3>Study Extended Info</h3>
+
+<label for="space-types" class="dummy">Type of space:
+    <fieldset>
+        <legend>Spot types</legend>
+        <div id="food_spot_types">
+            <label><input type="checkbox" value="xxxxx">Study room</label>
+            <label><input type="checkbox" value="xxxxx">Study area</label>
+            <label><input type="checkbox" value="xxxxx">Computer lab</label>
+            <label><input type="checkbox" value="xxxxx">Production studio</label>
+            <label><input type="checkbox" value="xxxxx">Conference/classroom</label>
+            <label><input type="checkbox" value="xxxxx">Open space</label>
+            <label><input type="checkbox" value="xxxxx">Lounge</label>
+            <label><input type="checkbox" value="xxxxx">Cafe</label>
+            <label><input type="checkbox" value="xxxxx">Outdoor area</label>
+        </div>
+    </fieldset>
+</label>
+
+<!-- if computer_lab -->
+<label for="computer-count" class="dummy"># of computers
+    <input type="number" id="computer-count">
+</label>
+
+<label for="capacity" class="dummy">Capacity
+    <input type="number" id="capacity">
+</label>
+
+<fieldset class="dummy">
+    <legend>Has Resources:</legend>
+    <label><input type="checkbox" value="computer">Computer</label>
+    <label><input type="checkbox" value="display">Large Display (for laptop)</label>
+    <label><input type="checkbox" value="outlets">Outlets</label>
+    <label><input type="checkbox" value="printing">Printing</label>
+    <label><input type="checkbox" value="projector">Projector</label>
+    <label><input type="checkbox" value="scanning">Scanning</label>
+    <label><input type="checkbox" value="whiteboard">Whiteboard</label>
+</fieldset>
+
+<fieldset class="dummy">
+    <legend>Lighting</legend>
+    <label>
+        <input type="checkbox" name="lighting" value="natural">Has Natural Light</label>
+</fieldset>
+
+<fieldset class="dummy">
+    <legend>Noise Level</legend>
+    <label><input type="radio" name="noise" value="noise_level1">noise_level 1 (Silent)</label>
+    <label><input type="radio" name="noise" value="noise_level2">noise_level 2 (Low hum)</label>
+    <label><input type="radio" name="noise" value="noise_level3">noise_level 3 (Chatter)</label>
+</fieldset>
+
+<fieldset class="dummy">
+    <legend>Labstats</legend>
+    <label for="has-labstats">Labstats integration URL
+        <input id="has-labstats" type="url">
+    </label>
+    <label for="labstats-id">Labstats ID:
+        <input id="labstats-id" type="text">
+    </label>
+</fieldset>
+
+<fieldset class="dummy">
+    <legend>Reservations</legend>
+    <label for="has-reservations-study">
+        <input id="has-reservations-study" type="checkbox">Can Reserve Space</label>
+    <label for="reservation-notes-study">Reservation Notes:
+        <textarea id="reservation-notes-study"></textarea>
+    </label>
+</fieldset>
