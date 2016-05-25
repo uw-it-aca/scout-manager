@@ -10,15 +10,13 @@ var Maps = {
             var spot_lat = $("#space_latitude").attr('value');
             var spot_lng = $("#space_longitude").attr('value');
 
-            var latlng_input = $('input[name="location.latitude|location.longitude"]'),
-            picker = $("#gmap_chooser"),
+            var picker = $("#gmap_chooser"),
             map, marker, latlng, zoom, m, original_val,
             setLatLongValue = function(latLng) {
 
-                //latlng_input.val([latLng.lat(), latLng.lng()].join(', '));
-
-                $("#space_latitude").val(latLng.lat());
-                $("#space_longitude").val(latLng.lng());
+                $("#space_latitude").val(latLng.lat().toFixed(8));
+                $("#space_longitude").val(latLng.lng().toFixed(8));
+                
             },
             setMarker = function (latlng) {
                 if (marker) {
@@ -47,10 +45,8 @@ var Maps = {
 
                 if (spot_lat && spot_lng) {
                     latlng = new google.maps.LatLng(spot_lat, spot_lng);
-                    zoom = 18;
                 } else {
                     latlng = new google.maps.LatLng(47.653787, -122.307808);
-                    zoom = 16;
                 }
 
                 map = new google.maps.Map(picker.get(0), {
@@ -60,7 +56,7 @@ var Maps = {
                     zoomControlOptions: true,
                     streetViewControl: false,
                     center: latlng,
-                    zoom: zoom,
+                    zoom: 16,
                     scrollwheel: false,
                 });
 
