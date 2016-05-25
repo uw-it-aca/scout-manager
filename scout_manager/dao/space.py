@@ -5,6 +5,23 @@ from scout.dao.space import add_cuisine_names, add_foodtype_names_to_spot, \
 import json
 
 
+def get_spot_list():
+    spot_client = Spotseeker()
+    res = []
+    try:
+        spots = spot_client.search_spots([('limit', 0),
+                                         ('extended_info:app_type', 'food')])
+        for spot in spots:
+            spot = process_extended_info(spot)
+            if spot is not None:
+                res.append(spot)
+    except DataFailureException:
+        # TODO: consider logging on failure
+        pass
+
+    return res
+
+
 def get_spot_by_id(spot_id):
         spot_client = Spotseeker()
         res = spot_client.get_spot_by_id(spot_id)
