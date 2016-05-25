@@ -13,11 +13,12 @@ var Maps = {
             var latlng_input = $('input[name="location.latitude|location.longitude"]'),
             picker = $("#gmap_chooser"),
             map, marker, latlng, zoom, m, original_val,
-            parseLatLongValue = function (s) {
-                return s.match(/^([-]?[\d\.]+)\s*,\s*([-]?[\d\.]+)$/);
-            },
             setLatLongValue = function(latLng) {
-                latlng_input.val([latLng.lat(), latLng.lng()].join(', '));
+
+                //latlng_input.val([latLng.lat(), latLng.lng()].join(', '));
+
+                $("#space_latitude").val(latLng.lat());
+                $("#space_longitude").val(latLng.lng());
             },
             setMarker = function (latlng) {
                 if (marker) {
@@ -43,9 +44,9 @@ var Maps = {
             };
 
             if (picker.length) {
-                m = parseLatLongValue(latlng_input.val());
-                if (m && m.length) {
-                    latlng = new google.maps.LatLng(m[1],m[2]);
+
+                if (spot_lat && spot_lng) {
+                    latlng = new google.maps.LatLng(spot_lat, spot_lng);
                     zoom = 18;
                 } else {
                     latlng = new google.maps.LatLng(47.653787, -122.307808);
@@ -62,7 +63,7 @@ var Maps = {
                     zoom: zoom
                 });
 
-                if (m && m.length) {
+                if (spot_lat && spot_lng) {
                     setMarker(latlng);
                 }
 
@@ -72,41 +73,23 @@ var Maps = {
                     }
                 });
 
-                latlng_input.prev().bind('displayed', function () {
-                    google.maps.event.trigger(map, 'resize');
-                    if (marker) {
-                        map.setCenter(marker.getPosition());
-                    } else if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(function (position) {
-                            centerMarker(new google.maps.LatLng(position.coords.latitude,
-                                                                position.coords.longitude));
-                        }, function (perr) {
-                            map.setCenter(new google.maps.LatLng(47.653787, -122.307808));
-                            console.log('problem getting lat/long (' + perr.code + ') ' + perr.message);
-                        });
-                    } else {
-                        map.setCenter(new google.maps.LatLng(47.653787, -122.307808));
-                    }
+                // handle keypress and input field changes
+                $("#space_latitude").change(function () {
+                    console.log("space_latitude changed");
                 });
 
-                latlng_input.change(function () {
-                    var m = parseLatLongValue($(this).val());
-
-                    if (m && m.length) {
-                        centerMarker(new google.maps.LatLng(m[1], m[2]));
-                    }
+                $("#space_latitude").keypress(function (event) {
+                    console.log("space_latitude keypress");
                 });
 
-                latlng_input.keypress(function (event) {
-                    original_val = $(event.target).val();
-                    var x = window.spacescout_admin.isNumberInput(event),
-                        y = [32,44,45].indexOf(event.keyCode);
-
-                    if (!(window.spacescout_admin.isNumberInput(event)
-                          || [32, 44, 45, 46].indexOf(event.which) >= 0)) {
-                        event.preventDefault();
-                    }
+                $("#space_longitude").change(function () {
+                    console.log("space_latitude changed");
                 });
+
+                $("#space_longitude").keypress(function (event) {
+                    console.log("space_latitude keypress");
+                });
+
             }
 
         }
