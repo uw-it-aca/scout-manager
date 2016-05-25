@@ -3,9 +3,13 @@ Cases to test navigation from page to page
 """
 from bs4 import BeautifulSoup
 from django.test import TestCase
+from django.test.utils import override_settings
 
 baseUrl = '/manager/spaces/'
+DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
 
+
+@override_settings(SPOTSEEKER_DAO_CLASS=DAO)
 class NavigationTests(TestCase):
 
     ####################Start helper methods####################
@@ -37,6 +41,6 @@ class NavigationTests(TestCase):
 
     #Edit page to home
     def test_editPage(self):
-        page = self.makeSoup(baseUrl + '1/'))
+        page = self.makeSoup(baseUrl + '1/')
         self.assertTrue(self.checkLinkExists(page, '/manager/'))
     #CURRENTLY DOESN'T WORK CAUSE no attribute 'get_building_list'  

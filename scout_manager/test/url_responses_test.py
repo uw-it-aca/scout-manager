@@ -3,9 +3,14 @@ A simple test using python for loading urls
 """
 
 from django.test import TestCase
+from django.test.utils import override_settings
 
 baseUrl = '/manager'
 
+DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
+
+
+@override_settings(SPOTSEEKER_DAO_CLASS=DAO)
 class urlStatusCheck(TestCase):
 
     ####################Start helper methods####################
@@ -42,5 +47,5 @@ class urlStatusCheck(TestCase):
 
     #Checks to see if entering an invalid URL results in a 404
     def test_badURL(self):
-        self.matchUrlStatus(404, '/rando/' )
+        self.matchUrlStatus(404, '/rando/')
 
