@@ -31,6 +31,7 @@ class NavigationTests(TestCase):
 
     def test_main_page_to_space(self):
         """Assert that main page has a link to a space page"""
+        page = self.makeSoup(baseUrl)
         self.assertTrue(self.checkLinkExists(page, baseUrl + '1/'))
 
     def test_mainEmail(self):
