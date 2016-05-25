@@ -1,7 +1,9 @@
 <h3>Hours and Access</h3>
 
+
+<div class="clearfix">
 {% for day_hours in spot.grouped_hours %}
-<fieldset class="mgr-hours" data-day="{{ day_hours.day }}">
+<fieldset class="mgr-hours" data-day="{{ day_hours.day }}" style="float:left; margin-right: 10px; width: 13%; ">
     <legend>{{ day_hours.day|capfirst }}:</legend>
     <ul>
         <li class="flex-container">
@@ -29,6 +31,7 @@
     </ul>
 </fieldset>
 {% endfor %}
+</div>
 
 <label for="hours-notes">Hours Notes/Exceptions:
     <textarea id="hours-notes"name="extended_info:hours_notes">{% if spot.hours_notes %}{{spot.hours_notes}}{% endif %}</textarea>
