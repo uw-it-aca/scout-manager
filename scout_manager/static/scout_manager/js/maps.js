@@ -16,7 +16,7 @@ var Maps = {
 
                 $("#space_latitude").val(latLng.lat().toFixed(8));
                 $("#space_longitude").val(latLng.lng().toFixed(8));
-                
+
             },
             setMarker = function (latlng) {
                 if (marker) {
@@ -56,7 +56,7 @@ var Maps = {
                     zoomControlOptions: true,
                     streetViewControl: false,
                     center: latlng,
-                    zoom: 16,
+                    zoom: 19,
                     scrollwheel: false,
                 });
 
