@@ -27,7 +27,6 @@ class NavigationTests(TestCase):
         page = self.makeSoup(baseUrl)
         self.assertTrue(self.checkLinkExists(page, baseUrl + 'add/'))
         self.assertTrue(self.checkLinkExists(page, baseUrl +'1/'))
-        self.assertTrue(self.checkLinkExists(page, '/detail/1/'))
 
     #Main page to email help
     def test_mainEmail(self):
