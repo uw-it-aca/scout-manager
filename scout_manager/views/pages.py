@@ -2,8 +2,9 @@ from django.conf import settings
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from htmlmin.decorators import minified_response
-from scout.dao.space import get_spot_list, get_spot_by_id
+from scout.dao.space import get_spot_list
 from scout_manager.dao.space import get_spot_by_id as manager_get_spot_by_id
+from scout_manager.dao.space import get_spot_hours_by_day
 from spotseeker_restclient.spotseeker import Spotseeker
 
 
@@ -65,7 +66,8 @@ def spaces_add(request):
     # building search only returns study buildings by default
     buildings = spot_client.get_building_list()
     buildings += spot_client.get_building_list("food")
-    context = {"buildings": buildings}
+    context = {"buildings": buildings,
+               "spot": {"grouped_hours": get_spot_hours_by_day(None)}}
     return render_to_response(
             'scout_manager/spaces_add.html',
             context,
