@@ -39,10 +39,7 @@ class urlStatusCheck(TestCase):
         self.matchUrlStatus(200, '/spaces/add/')
         self.matchUrlStatus(200, '/spaces/1/') #This one is causing a problem
 
-    #Checks to see if the schedule works
-    def test_spacePage(self):
-        self.matchUrlStatus(200, '/schedule/1')
-            
+
     #Checks to see if entering an invalid URL results in a 404
     def test_badURL(self):
         self.matchUrlStatus(404, '/rando/' )
