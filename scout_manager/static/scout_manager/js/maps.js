@@ -60,7 +60,8 @@ var Maps = {
                     zoomControlOptions: true,
                     streetViewControl: false,
                     center: latlng,
-                    zoom: zoom
+                    zoom: zoom,
+                    scrollwheel: false,
                 });
 
                 if (spot_lat && spot_lng) {
