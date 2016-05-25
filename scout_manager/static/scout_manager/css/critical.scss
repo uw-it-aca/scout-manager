@@ -72,7 +72,8 @@ body { font-size: 14px; padding: 0; }
 }
 
 input:required {
-  box-shadow: 0px 0px 5px rgba(200, 0, 0, 0.85);
+  //box-shadow: 0px 0px 5px rgba(200, 0, 0, 0.85);
+  border: 1px solid lime;
 }
 
 /**
@@ -80,7 +81,7 @@ input:required {
  * attribute and a focus state
  */
 input:required:focus {
-  border: 1px solid red;
+  border: 1px solid lime;
   outline: none;
 }
 

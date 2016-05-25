@@ -53,12 +53,16 @@
         </select>
     </label>
 
-    <label for="space-latitude">Latitude
-        <input name="location:latitude" id="space-latitude" type="text" value="{% if spot.latitude %}{{ spot.latitude }}{% endif %}" required />
+    <label for="space-latitude">Lat Long Chooser:
+        <div style="border: solid 1px red; height:300px; margin: 8px 0;" id="gmap_chooser">Google Maps here</div>
     </label>
 
-    <label for="space-longitude">Longitude
-        <input name="location:longitude" id="space-longitude" type="text" value="{% if spot.longitude %}{{ spot.longitude }}{% endif %}" required />
+    <label for="space-latitude">Latitude:
+        <input name="location:latitude" id="space_latitude" type="text" value="{% if spot.latitude %}{{ spot.latitude }}{% endif %}" required />
+    </label>
+
+    <label for="space-longitude">Longitude:
+        <input name="location:longitude" id="space_longitude" type="text" value="{% if spot.longitude %}{{ spot.longitude }}{% endif %}" required />
     </label>
 
     {# How are we determining this? #}

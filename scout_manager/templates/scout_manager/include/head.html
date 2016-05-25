@@ -86,9 +86,17 @@
 <script async="async" src="{% static 'vendor/js/jquery-1.11.0.min.js' %}"></script>
 <script async="async" src="{% static 'vendor/js/js-cookie-2.1.1.js' %}"></script>
 <script async="async" src="{% static 'scout_manager/js/forms.js' %}"></script>
+<script async="async" src="{% static 'scout_manager/js/maps.js' %}"></script>
 <script async="async" src="{% static 'scout_manager/js/web.js' %}"></script>
 <script async="async" src="{% static 'scout_manager/js/spot.js' %}"></script>
 {% endcompress %}
+
+<!-- googlme maps -->
+{% if google_maps %}
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3&amp;key={{ google_maps }}&amp;libraries=geometry"></script>
+{% else %}
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=geometry"></script>
+{% endif %}
 
 <link href="https://fonts.googleapis.com/css?family=Raleway:700,900" rel='stylesheet' type='text/css'>
 
