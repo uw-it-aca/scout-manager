@@ -20,7 +20,7 @@ $(document).on('ready', function(event) {
 
     Forms.init_form();
 
-    Maps.init_maps();
+    Maps.init_picker();
 
     // Function to serialize form data into an JS object
     $.fn.serializeObject = function() {
