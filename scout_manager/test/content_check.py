@@ -2,10 +2,14 @@
 A simple test using python for loading urls
 """
 import unittest
-
 from django.test import LiveServerTestCase
 from django.test import Client
+from django.test.utils import override_settings
 
+DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
+
+
+@override_settings(SPOTSEEKER_DAO_CLASS=DAO)
 class urlStatusCheck(LiveServerTestCase):
 
     def setUp(self):

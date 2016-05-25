@@ -5,6 +5,23 @@ from scout.dao.space import add_cuisine_names, add_foodtype_names_to_spot, \
 import json
 
 
+def get_spot_list():
+    spot_client = Spotseeker()
+    res = []
+    try:
+        spots = spot_client.search_spots([('limit', 0),
+                                         ('extended_info:app_type', 'food')])
+        for spot in spots:
+            spot = process_extended_info(spot)
+            if spot is not None:
+                res.append(spot)
+    except DataFailureException:
+        # TODO: consider logging on failure
+        pass
+
+    return res
+
+
 def get_spot_by_id(spot_id):
         spot_client = Spotseeker()
         res = spot_client.get_spot_by_id(spot_id)
@@ -16,7 +33,7 @@ def process_extended_info(spot):
         spot = add_cuisine_names(spot)
         spot = add_payment_names(spot)
         spot = add_additional_info(spot)
-        spot = sort_hours_by_day(spot)
+        spot.grouped_hours = get_spot_hours_by_day(spot)
         for item in spot.extended_info:
             if item.key == "owner":
                 spot.owner = item.value
@@ -27,7 +44,7 @@ def process_extended_info(spot):
         return spot
 
 
-def sort_hours_by_day(spot):
+def get_spot_hours_by_day(spot):
     days = ["monday",
             "tuesday",
             "wednesday",
@@ -37,13 +54,15 @@ def sort_hours_by_day(spot):
             "sunday"]
     hours_objects = []
     for day in days:
-        day_hours = \
-            [hours for hours in spot.spot_availability if hours.day == day]
+        try:
+            day_hours = \
+                [hours for hours in spot.spot_availability if hours.day == day]
+        except AttributeError:
+            day_hours = None
         hours_objects.append({"day": day,
                               "hours": day_hours
                               })
-    spot.grouped_hours = hours_objects
-    return spot
+    return hours_objects
 
 
 def update_spot(data, spot_id):

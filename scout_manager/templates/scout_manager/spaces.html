@@ -1,39 +1,60 @@
 {% load staticfiles %}
 
-<h2>Spaces you manage</h2>
+<h2>SPACES</h2>
 
 <div>
 
     <div style="margin-bottom:1em;">Total: <span class="">{{ count }}</span> <a href="/manager/spaces/add/">Add New Space</a></div>
 
-    <div style="margin-bottom:1em;">Filter by: <span class="dummy">All</span> | <span class="dummy">Food</span> | <span class="dummy">Study</span> | <span class="dummy">Other</span></div>
+<div style="margin-bottom:1em;">
+    Filter by type: <span class="scope">food</span> | <span class="scope">study</span> | <span class="scope">all</span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Visibility: <span class="scope">published</span> | <span class="scope">unpublished</span> |
+    <span class="scope">all</span>
+</div>
 
+    <!--
     <div>
         <button type="button" class="dummy">Download CSV of listed Spaces</button>
     </div>
+    -->
 
     <ol>
         {% for spot in spots %}
         <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">
-            <div><a href="/manager/spaces/{{ spot.spot_id }}/">Edit</a></div>
-            <div>Image: {% if spot.images %}
-                <div style="border:solid 1px #eee; background: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=200') no-repeat center center; background-size:contain; width:100px; height:100px;">&nbsp;</div>
-                {% endif %}
+
+            <div style="line-height:30px;"><a href="/manager/spaces/{{ spot.spot_id }}/">Edit</a></div>
+
+            <div class="clearfix">
+
+                <div style="float:left; width:110px; margin-bottom:1em;">
+                    {% if spot.images %}
+                    <div style="border:solid 1px #eee; background: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=200') no-repeat center center; background-size:contain; width:100px; height:100px;">&nbsp;</div>
+                    {% else %}
+                    <div style="border:solid 1px #eee; width:100px; height:100px; line-height:100px; text-align:center; color:#666;">no image</div>
+                    {% endif %}
+                </div>
+
+                <div style="float:left; width: 80%;">
+                    <div>Name: <span class="">{{ spot.name }}</span></div>
+                    <div>Campus: <span class="">{{ spot.campus }}</span></div>
+                    <div>App Type: <span>{{ spot.app_type | capfirst }}</span></div>
+                    <div>Building: <span class="">{{ spot.building_name }}</span></div>
+                    {% if spot.has_alert %}
+                    <div>Alert:<span class="">{{ spot.alert_notes }}</span></div>
+                    {% endif %}
+                    <div>Space Type: {% for type in spot.spot_types %}
+                        <span class="">{{ type.name }}</span> {% endfor %}
+                    </div>
+                    <!--<div>Items: <span class="dummy">has_items (Yes or No)</span><span class="dummy">item_type.name</span></div>-->
+                    <div>Publish Status: <span>{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED <a href="/detail/{{ spot.spot_id }}" target="_blank">preview in client</a>{% endif %}</span>
+                        <!--<button type="button" class="dummy">Toggle Publish Status</button>-->
+                    </div>
+                </div>
+
             </div>
-            <div>Name: <span class="">{{ spot.name }}</span></div>
-            <div>Campus: <span class="">{{ spot.campus }}</span></div>
-            <div>App Type: <span>{{ spot.app_type | capfirst }}</span></div>
-            <div>Building: <span class="">{{ spot.building_name }}</span></div>
-            {% if spot.has_alert %}
-            <div>Alert:<span class="">{{ spot.alert_notes }}</span></div>
-            {% endif %}
-            <div>Space Type: {% for type in spot.spot_types %}
-                <span class="">{{ type.name }}</span> {% endfor %}
-            </div>
-            <div>Items: <span class="dummy">has_items (Yes or No)</span><span class="dummy">item_type.name <!--could be multiple --></span></div>
-            <div>Publish Status: <span class="scope">Published</span> <span class="scope">Unpublished</span>
-                <button type="button" class="dummy">Toggle Publish Status</button>
-            </div>
+
+            <!--
             <div>Future Changes: <span class="dummy">change_date (Yes or No)</span> <span class="dummy"><a href="/manager/schedule/{{ spot.spot_id }}/">spot.change_date</a></span></div>
             <div>Needs ACA Review: <span class="dummy">needs_aca_review (Yes or No)</span>
                 <button type="button" class="dummy">Clear Review Flag</button>
@@ -41,7 +62,7 @@
             <div>
                 <button type="button" class="dummy">Delete Space</button>
             </div>
-            <div><span>If published: <a href="/detail/{{ spot.spot_id }}/">view in client</a></span></div>
+            -->
         </li>
         {% endfor %}
     </ol>
