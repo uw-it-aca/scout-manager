@@ -7,6 +7,7 @@ var Forms = {
         Forms.image_upload();
         Forms.image_delete();
         Forms.image_check_count();
+        Forms.toggle_extended_info();
     },
 
     // hours functions
@@ -71,6 +72,22 @@ var Forms = {
         else {
             $('#mgr_list_spot_empty').hide();
         }
-    }
+    },
+
+    toggle_extended_info: function() {
+
+        // handle extended_info field for adding new space
+        $("#add_new_extended_info input[name='extended_info:app_type']").change(function(e){
+            if($(this).val() == 'food') {
+                $("#extended_food_template").show();
+                $("#extended_study_template").hide();
+            }
+            else {
+                $("#extended_food_template").hide();
+                $("#extended_study_template").show();
+            }
+        });
+
+    },
 
 };
