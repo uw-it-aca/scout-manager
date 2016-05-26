@@ -79,6 +79,7 @@ def spaces_edit(request, spot_id):
     # building search only returns study buildings by default
     buildings = spot_client.get_building_list()
     buildings += spot_client.get_building_list("food")
+    print buildings
     context = {"spot": spot,
                "buildings": buildings,
                }
