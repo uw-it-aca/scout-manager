@@ -300,5 +300,3 @@ def get_building_list_by_campus(campus):
             buildings.append(building)
     buildings.sort()
     return buildings
-    
-
