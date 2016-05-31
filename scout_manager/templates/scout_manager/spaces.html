@@ -1,17 +1,27 @@
 {% extends "scout_manager/base.html" %}
 {% load staticfiles %}
 
+{% block title %}Spaces{% endblock %}
+
 {% block web_content %}
-<h2>SPACES</h2>
+
+<div class="mgr-content-header clearfix">
+
+    <div style="padding: 0 15px;">
+
+        <h2 style="display:inline-block;">SPACES</h2>
+
+        <div style="display:inline-block; float:right;">
+        Total: <span class="">{{ count }}</span> <a href="/manager/spaces/add/">Add New Space</a>
+        &nbsp;&nbsp;&nbsp;
+        Filter by type: <span class="scope">published</span> | <span class="scope">unpublished</span> |
+            <span class="scope">all</span>
+        </div>
+
+    </div>
+</div>
 
 <div>
-
-    <div style="margin-bottom:1em;">Total: <span class="">{{ count }}</span> <a href="/manager/spaces/add/">Add New Space</a></div>
-
-    <div style="margin-bottom:1em;">
-        Filter by type: <span class="scope">published</span> | <span class="scope">unpublished</span> |
-        <span class="scope">all</span>
-    </div>
 
     <!--
     <div>
@@ -68,4 +78,5 @@
     </ol>
 
 </div>
+
 {% endblock %}
