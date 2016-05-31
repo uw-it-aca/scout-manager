@@ -16,7 +16,10 @@ body { font-size: 14px; padding: 0; overflow: hidden; }
 //sidebar
 
 .mgr-sidebar { position: fixed; top: 0; bottom:0; left:0; width: $sidebar-width; background: #f1f1f1;
-    .mgr-sidebar-content { margin-top: $header-height; padding: 15px; }
+    .mgr-sidebar-content { margin-top: $header-height; padding: 15px;
+        li { line-height: 20px; }
+        a { color: #fff; }
+    }
 }
 
 // header
