@@ -11,13 +11,12 @@ $footer-height: 45px;
 $sidebar-width: 300px;
 
 
-body { font-size: 14px; padding: 0; }
+body { font-size: 14px; padding: 0; background: #f1f1f1; }
 
 //sidebar
 
 .mgr-sidebar { position: fixed; top: 0; bottom:0; left:0; width: $sidebar-width; background: #f1f1f1;
-    padding-top: $header-height;
-    padding-bottom: $footer-height;
+    .mgr-sidebar-content { margin-top: $header-height; padding: 15px; }
 }
 
 // header
@@ -48,7 +47,7 @@ body { font-size: 14px; padding: 0; }
 }
 
 // content
-.mgr-content { margin-left: $sidebar-width; padding: 15px;
+.mgr-content { margin-left: $sidebar-width; padding: 15px; background: #fff;
 
     h2 {
         color: #333;
@@ -57,7 +56,7 @@ body { font-size: 14px; padding: 0; }
         color: #666;
     }
 
-    ul,, ol { list-style: none; margin:0; padding:0; }
+    ul, ol { list-style: none; margin:0; padding:0; }
 
 }
 
