@@ -8,16 +8,25 @@ $header-height: 55px;
 $footer-color: #bdc3c7;
 $footer-height: 45px;
 
+$sidebar-width: 300px;
+
 
 body { font-size: 14px; padding: 0; }
 
+//sidebar
+
+.mgr-sidebar { position: fixed; top: 0; bottom:0; left:0; width: $sidebar-width; background: #f1f1f1;
+    padding-top: $header-height;
+    padding-bottom: $footer-height;
+}
+
 // header
 .mgr-header {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    z-index: 999;
+    width: $sidebar-width;
+
     background: $header-color url('../img/scout-default.png') no-repeat 10px 50%;
     background-size: 30px;
     //border-bottom: 2px #777 solid;
@@ -39,9 +48,7 @@ body { font-size: 14px; padding: 0; }
 }
 
 // content
-.mgr-content {
-
-    padding: ($header-height + 2) 15px ($footer-height + 2);
+.mgr-content { margin-left: $sidebar-width; padding: 15px;
 
     h2 {
         color: #333;
@@ -50,16 +57,21 @@ body { font-size: 14px; padding: 0; }
         color: #666;
     }
 
+    ul,, ol { list-style: none; margin:0; padding:0; }
+
 }
 
 // footer
 .mgr-footer {
+    position: absolute;
+    bottom:0;
+    left:0;
+    width: $sidebar-width;
+
     line-height: $footer-height;
-    //position: fixed;
     background: $footer-color url('../img/w-mini_wht.png') no-repeat 5px 50%;
     background-size: 30px;
     color: white;
-    width: 100%;
     font-size: 75%;
     bottom: 0;
     text-align: center;
