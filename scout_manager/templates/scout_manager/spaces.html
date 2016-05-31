@@ -1,5 +1,7 @@
+{% extends "scout_manager/base.html" %}
 {% load staticfiles %}
 
+{% block web_content %}
 <h2>SPACES</h2>
 
 <div>
@@ -7,9 +9,7 @@
     <div style="margin-bottom:1em;">Total: <span class="">{{ count }}</span> <a href="/manager/spaces/add/">Add New Space</a></div>
 
 <div style="margin-bottom:1em;">
-    Filter by type: <span class="scope">food</span> | <span class="scope">study</span> | <span class="scope">all</span>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    Visibility: <span class="scope">published</span> | <span class="scope">unpublished</span> |
+    Filter by type: <span class="scope">published</span> | <span class="scope">unpublished</span> |
     <span class="scope">all</span>
 </div>
 
@@ -68,3 +68,4 @@
     </ol>
 
 </div>
+{% endblock %}
