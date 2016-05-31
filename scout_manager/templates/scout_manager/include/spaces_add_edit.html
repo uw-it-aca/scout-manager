@@ -6,6 +6,9 @@
     <div style="padding: 0 15px;">
         <h2 style="display:inline-block;">{% if spot.name %}{{ spot.name }}{% else %}Add New Space{% endif %}</h2>
         <div style="display:inline-block; float:right;">{{ spot.etag }}&nbsp;&nbsp;<input type="button" value="Save Changes" style="display:inline-block;"></input></div>
+
+        <div id="pub_error"></div>
+        
     </div>
 </div>
 
@@ -208,20 +211,6 @@
     <p>Status: <span>{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED <a href="/detail/{{ spot.spot_id }}" target="_blank">preview in client</a>{% endif %}</span></p>
     <p>Unpublish?:&nbsp;<input type="checkbox" name="extended_info:is_hidden"{% if spot.is_hidden %} checked{% endif %}></input></p>
 </fieldset>
-
-    <div style="margin-bottom:2em;">
-
-
-
-        <!-- This is just a temp place to put publishing errors while we're developing, will probably change once we have validation -->
-        <div id="pub_error"></div>
-
-        <!-- Publish will be conditional to form validation -->
-        <!-- if PUBLISHED space WITH changes. Validate form. -->
-        <!--<input type="submit" value="Publish Changes" class="dummy"></input>-->
-        <!-- if PUBLISHED -->
-        <!--<input type="button" value="Unpublish" class="dummy"></input>-->
-    </div>
 
 <!--
     <div class="dummy" style="margin-bottom:2em;">
