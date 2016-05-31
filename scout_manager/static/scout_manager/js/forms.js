@@ -34,10 +34,10 @@ var Forms = {
     image_upload: function(){
 
         // upload image
-        $("#mgr_upload_image").change(function(){
-            // add image to list of images list
-            Forms.image_add(this);
-        });
+        //$("#mgr_upload_image").change(function(){
+        //    // add image to list of images list
+        //    Forms.image_add(this);
+        //});
     },
 
     image_add: function(input) {

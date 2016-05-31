@@ -4,6 +4,7 @@ from django.http import HttpResponse
 import json
 import re
 
+from spotseeker_restclient.spotseeker import Spotseeker
 
 class Spot(RESTDispatch):
     """
@@ -14,11 +15,14 @@ class Spot(RESTDispatch):
         return HttpResponse('it works')
 
     def PUT(self, request, spot_id):
-        data = json.loads(request.body)
-        try:
-            update_spot(data, spot_id)
-        except Exception as ex:
-            return HttpResponse(json.dumps({'error': str(ex)}), status=400)
+        # data = json.loads(request.body)
+        form_data = process_form_data(request)
+        # try:
+        # update_spot(json.loads(form_data['json']), spot_id)
+        sc = Spotseeker()
+        sc.post_image(spot_id, form_data['file'])
+        # except Exception as ex:
+        #     return HttpResponse(json.dumps({'error': str(ex)}), status=400)
         return HttpResponse(json.dumps({'status': 'it works'}))
 
 
@@ -34,7 +38,7 @@ def process_form_data(request):
     for block in blocks:
         for line in block.splitlines():
             if "Content-Disposition" in line:
-                match = re.findall(r'name=\"(.*)\"', line)
+                match = re.findall(r'name=\"(.*?)\"', line)
                 block_name = match[0]
             elif len(line) > 0 and line != "--":
                 form_data[block_name] = line
