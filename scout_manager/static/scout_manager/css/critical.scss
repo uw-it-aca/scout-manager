@@ -8,10 +8,10 @@ $header-height: 55px;
 $footer-color: #bdc3c7;
 $footer-height: 45px;
 
-$sidebar-width: 300px;
+$sidebar-width: 280px;
 
 
-body { font-size: 14px; padding: 0; background: #f1f1f1; }
+body { font-size: 14px; padding: 0; overflow: hidden; }
 
 //sidebar
 
@@ -33,12 +33,12 @@ body { font-size: 14px; padding: 0; background: #f1f1f1; }
         margin: 0;
         line-height: $header-height;
         height: $header-height;
-        padding-left: ($header-height - 5);
+        padding-left: ($header-height);
         color: $main-color;
         text-transform: uppercase;
         font-family: "Raleway",sans-serif;
         font-weight: 900;
-        font-size: 25px;
+        font-size: 23px;
         a {
             color: $main-color;
             text-decoration: none;
@@ -47,11 +47,11 @@ body { font-size: 14px; padding: 0; background: #f1f1f1; }
 }
 
 // content
-.mgr-content { margin-left: $sidebar-width; padding: 15px; background: #fff;
+.mgr-content { padding: $header-height 15px $footer-height 15px; background: #fff; position: fixed; top: 0; left: $sidebar-width; right:0; bottom:0; overflow-y: scroll;
 
-    h2 {
-        color: #333;
-    }
+    .mgr-content-header { position: fixed; top:0; right: 0; left: $sidebar-width; background: #f9f9f9; }
+
+    h2 { color: #333; margin: 0; line-height: $header-height; }
     h3 {
         color: #666;
     }

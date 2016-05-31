@@ -6,8 +6,6 @@
     </head>
     <body {% if request.is_mobile or request.is_tablet %}data-mobile="true"{% endif %}>
 
-
-
         <div id="sidebar" class="mgr-sidebar">
 
             <div id="header" class="mgr-header">
@@ -16,9 +14,10 @@
 
             <div class="mgr-sidebar-content">
                 <h2>Spaces</h2>
-                <ul>
+                <ul style="padding-left: 15px;">
                     <li><a href="/manager/spaces/?app_type=food">Food</a></li>
                     <li><a href="/manager/spaces/">Study</a></li>
+                    <li><a href="/manager/spaces/add/">Add New Space</a></li>
                 </ul>
             </div>
 
@@ -28,12 +27,9 @@
 
         </div>
 
-
         <div id="content" class="mgr-content">
             {% block web_content %}{% endblock %}
         </div>
-
-
 
     </body>
 </html>

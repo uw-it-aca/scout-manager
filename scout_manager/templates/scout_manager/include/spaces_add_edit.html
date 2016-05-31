@@ -1,5 +1,14 @@
 {% load staticfiles %}
 {% csrf_token %}
+
+<div class="mgr-content-header clearfix">
+
+    <div style="padding: 0 15px;">
+        <h2 style="display:inline-block;">{% if spot.name %}{{ spot.name }}{% else %}Add New Space{% endif %}</h2>
+        <div style="display:inline-block; float:right;">{{ spot.etag }}&nbsp;&nbsp;<input type="button" value="Save Changes" style="display:inline-block;"></input></div>
+    </div>
+</div>
+
 <h3>General Info</h3>
 
 <label for="space-name">Name:
@@ -202,15 +211,10 @@
 
     <div style="margin-bottom:2em;">
 
-        {{ spot.etag }}
-        <!-- if UNPUBLISHED -->
-        <input type="button" value="Save Changes"></input>
-        <p>^ Using this button for now to handle PUTing the form back to spotseeker</p>
+
 
         <!-- This is just a temp place to put publishing errors while we're developing, will probably change once we have validation -->
-        <div id="pub_error">
-
-        </div>
+        <div id="pub_error"></div>
 
         <!-- Publish will be conditional to form validation -->
         <!-- if PUBLISHED space WITH changes. Validate form. -->
