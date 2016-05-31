@@ -12,34 +12,39 @@ DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
 @override_settings(SPOTSEEKER_DAO_CLASS=DAO)
 class NavigationTests(TestCase):
 
-    ####################Start helper methods####################
+    # Helper methods
+
     def makeSoup(self, link):
         webResponse = self.client.get(link)
-        soup = BeautifulSoup(webResponse.content, "html.parser")
+        soup = BeautifulSoup(webResponse.content, 'html.parser')
         return soup
 
     def checkLinkExists(self, soup, reference):
         return bool(soup.find('a', href=reference))
-    ####################End helper methods#######################
 
-    #Main page to edit space and add space
-    def test_mainPage(self):
+    # Test methods
+
+    def test_main_page_to_add(self):
+        """Assert that main page has a link to add page"""
         page = self.makeSoup(baseUrl)
         self.assertTrue(self.checkLinkExists(page, baseUrl + 'add/'))
-        self.assertTrue(self.checkLinkExists(page, baseUrl +'1/'))
 
-    #Main page to email help
+    def test_main_page_to_space(self):
+        """Assert that main page has a link to a space page"""
+        page = self.makeSoup(baseUrl)
+        self.assertTrue(self.checkLinkExists(page, baseUrl + '1/'))
+
     def test_mainEmail(self):
+        """Assert that the main page has a "help" email link"""
         page = self.makeSoup('/manager/')
         self.assertTrue(self.checkLinkExists(page, 'mailto:help@uw.edu'))
 
-    #Add page to home
     def test_addPage(self):
+        """Assert that the add page has a link to main page"""
         page = self.makeSoup(baseUrl + 'add/')
         self.assertTrue(self.checkLinkExists(page, '/manager/'))
 
-    #Edit page to home
     def test_editPage(self):
+        """Assert that the edit page has a link to main page"""
         page = self.makeSoup(baseUrl + '1/')
         self.assertTrue(self.checkLinkExists(page, '/manager/'))
-    #CURRENTLY DOESN'T WORK CAUSE no attribute 'get_building_list'  
