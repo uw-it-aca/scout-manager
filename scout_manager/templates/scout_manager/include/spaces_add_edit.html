@@ -10,53 +10,55 @@
         <div id="pub_error"></div>
 
     </div>
+
 </div>
 
-<h3>General Info</h3>
+<h3 class="visually-hidden">General Info</h3>
 
-<label for="space-name">Name:
-    <input id="space-name" type="text" name="name" value="{% if spot.name %}{{ spot.name }}{% endif %}" required="required" />
-    <input type="hidden" name="id" value="{{ spot.spot_id }}" />
-    <input type="hidden" name="etag" value="{{ spot.etag }}" />
-</label>
-
-<fieldset>
-    <legend>Primary use: (required)</legend>
-
-    <div style="float:left; width:25%; margin-right:1%;">
-
+<div style="background:#fafafa; min-height: 100px; border-bottom:solid 1px #eee; margin:0 -15px;" class="clearfix">
+    <div style="float:left; width:50%;">
+        <div style="padding:15px;">
+        <label for="space-name">Name:
+            <input id="space-name" type="text" name="name" value="{% if spot.name %}{{ spot.name }}{% endif %}" required="required" />
+            <input type="hidden" name="id" value="{{ spot.spot_id }}" />
+            <input type="hidden" name="etag" value="{{ spot.etag }}" />
+        </label>
+        </div>
+    </div>
+    <div style="float:right; width:50%;">
+        <div style="padding:15px;">
+        <div style="margin-top:10px;">Type: (required)</div>
         {% if spot.app_type == "food" %}
-            <label><input type="radio" name="extended_info:app_type" required value="food" checked>Food</label>
-            <label><input type="radio" name="extended_info:app_type" required value="study" disabled>Study</label>
+            <label style="display: inline-block; margin-right:10px;"><input type="radio" name="extended_info:app_type" required value="food" checked>Food</label>
+            <label style="display: inline-block; margin-right:10px;"><input type="radio" name="extended_info:app_type" required value="study" disabled>Study</label>
             <p>Please contact ADMINS if you need to change this space's app_type</p>
         {% elif spot.app_type == "study" %}
-            <label><input type="radio" name="extended_info:app_type" required value="food" disabled>Food</label>
-            <label><input type="radio" name="extended_info:app_type" required value="study" checked>Study</label>
+            <label style="display: inline-block; margin-right:10px;"><input type="radio" name="extended_info:app_type" required value="food" disabled>Food</label>
+            <label style="display: inline-block; margin-right:10px;"><input type="radio" name="extended_info:app_type" required value="study" checked>Study</label>
             <p>Please contact ADMINS if you need to change this space's app_type</p>
         {% else %}
             <div id="add_new_extended_info">
-                <label><input type="radio" name="extended_info:app_type" value="food">Food</label>
-                <label><input type="radio" name="extended_info:app_type" value="study">Study</label>
+                <label style="display: inline-block; margin-right:10px;"><input type="radio" name="extended_info:app_type" value="food">Food</label>
+                <label style="display: inline-block; margin-right:10px;"><input type="radio" name="extended_info:app_type" value="study">Study</label>
             </div>
         {% endif %}
-
+        </div>
     </div>
+</div>
 
-    <div style="float:left; width:74%;">
-        {% if spot.app_type == "food" %}
-            {% include "scout_manager/include/extend_food.html" %}
-        {% elif spot.app_type == "study" %}
-            {% include "scout_manager/include/extend_study.html" %}
-        {% else %}
-            <p>Choose the primary use for this space... and extended info fields will appear below!</p>
-            <div id="extended_food_template" style="display:none;">
-            {% include "scout_manager/include/extend_food.html" %}
-            </div>
-            <div id="extended_study_template" style="display:none;">
-            {% include "scout_manager/include/extend_study.html" %}
-            </div>
-        {% endif %}
+
+{% if spot.app_type == "food" %}
+    {% include "scout_manager/include/extend_food.html" %}
+{% elif spot.app_type == "study" %}
+    {% include "scout_manager/include/extend_study.html" %}
+{% else %}
+    <div id="extended_food_template" style="display:none;">
+    {% include "scout_manager/include/extend_food.html" %}
     </div>
+    <div id="extended_study_template" style="display:none;">
+    {% include "scout_manager/include/extend_study.html" %}
+    </div>
+{% endif %}
 
 </fieldset>
 
