@@ -22,7 +22,7 @@ $fh-input-height: 30px !default;
 $fh-input-width: 100% !default;
 $fh-input-max-width: 100% !default;
 $fh-input-bg-color: #fff !default;
-$fh-focus-bg-color: rgb(220, 220, 220) !default;
+$fh-focus-bg-color: transparent !default;
 $fh-focus-border-color: $blue !default;
 $fh-focus-font-color: $fh-font-color !default;
 
@@ -279,7 +279,8 @@ button:focus  {
 
 input[type="checkbox"]:focus,
 input[type="radio"]:focus {
-	outline: $fh-focus-border-color solid 1px;
+    background-color: $fh-focus-border-color;
+	outline: $fh-focus-border-color solid 2px;
     box-shadow: 0 0 5px $blue;
 }
 
