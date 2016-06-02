@@ -10,10 +10,11 @@ def get_spot_list(app_type=None):
     res = []
     try:
         if app_type:
-            spots = spot_client.search_spots([('limit', 0),
-                                             ('extended_info:app_type', app_type)])
+            filters = [('limit', 0),
+                       ('extended_info:app_type', app_type)]
         else:
-            spots = spot_client.search_spots([('limit', 0)])
+            filters = [('limit', 0)]
+        spots = spot_client.search_spots(filters)
         for spot in spots:
             spot = process_extended_info(spot)
             if spot is not None:
