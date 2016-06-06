@@ -1,35 +1,41 @@
-<!DOCTYPE html>
-<html class="no-js">
-    <head>
-        <title>{% block title %}{% endblock %} &middot; Scout Manager</title>
-        {% include "scout_manager/include/head.html" %}
-    </head>
-    <body {% if request.is_mobile or request.is_tablet %}data-mobile="true"{% endif %}>
+{% extends 'supporttools/base.html' %}
 
-        <div id="sidebar" class="mgr-sidebar">
+{% load compress %}
+{% load staticfiles %}
 
-            <div id="header" class="mgr-header">
-                <h1><a href="/manager/">Scout Manager</a></h1>
-            </div>
+{% block extra_css %}
 
-            <div class="mgr-sidebar-content">
-                <h2>Spaces</h2>
-                <ul style="padding-left: 15px;">
-                    <li><a class="scope" href="/manager/spaces/?app_type=food">Food</a></li>
-                    <li><a class="scope" href="/manager/spaces/">Study</a></li>
-                    <li><a href="/manager/spaces/add/">Add New Space</a></li>
-                </ul>
-            </div>
+{% compress css inline %}
+<link rel="stylesheet" href="{% static 'vendor/css/normalize-3.0.1.min.css' %}">
+<link rel="stylesheet" href="{% static 'vendor/css/font-awesome-4.5.0.min.css' %}">
+<link rel="stylesheet" href="{% static 'scout_manager/css/formhack.scss' %}" type="text/x-scss">
+<link rel="stylesheet" href="{% static 'scout_manager/css/loading.scss' %}" type="text/x-scss">
+<link rel="stylesheet" href="{% static 'scout_manager/css/critical.scss' %}" type="text/x-scss">
+{% endcompress %}
+<!-- async (mobile) -->
+{% compress css %}
+<link rel="stylesheet" href="{% static 'scout_manager/css/mobile.scss' %}" type="text/x-scss">
+{% endcompress %}
 
-            <div id="footer" class="mgr-footer">
-                <span>Courtesy of UW-IT ACA</span><span style="float:right;"><a href="mailto:help@uw.edu">Contact Support</a></span>
-            </div>
+{% endblock extra_css %}
 
-        </div>
+{% block content %}
+{% csrf_token %}
 
-        <div id="content" class="mgr-content">
-            {% block web_content %}{% endblock %}
-        </div>
+<div id="main" role="main">
+    <div class="inner">
+        {% block admin_content %}{% endblock %}
+    </div>
+</div>
+{% endblock content %}
 
-    </body>
-</html>
+{% block extra_js %}
+
+{% compress js %}
+<script src="{% static 'scout_manager/js/web.js' %}"></script>
+<script src="{% static 'scout_manager/js/forms.js' %}"></script>
+<script src="{% static 'scout_manager/js/maps.js' %}"></script>
+<script src="{% static 'scout_manager/js/spot.js' %}"></script>
+{% endcompress %}
+
+{% endblock extra_js %}

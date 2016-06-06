@@ -3,6 +3,10 @@ $(document).on('ready', function(event) {
     /// async load css by flipping the media attribute to all
     $('link[rel="stylesheet"]').attr('media', 'all');
 
+    // quick hack to fix scrolling sidebar
+    $(".tool-list-inner").css( "height", "auto" );
+    $(".tool-list-inner").css( "overflow-y", "visible" );
+
     // page based JS calls
     var page_path = window.location.pathname;
 
