@@ -9,12 +9,12 @@ def get_spot_list(app_type=None, groups=[]):
     spot_client = Spotseeker()
     res = []
     filters = []
+    filters.append(('limit', 0))
     try:
         if app_type:
             filters.append(('extended_info:app_type', app_type))
         for group in groups:
             filters.append(('extended_info:group', group))
-        filters.append(('limit', 0))
         spots = spot_client.search_spots(filters)
         for spot in spots:
             spot = process_extended_info(spot)
