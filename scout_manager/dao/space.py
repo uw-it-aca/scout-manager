@@ -5,15 +5,16 @@ from scout.dao.space import add_cuisine_names, add_foodtype_names_to_spot, \
 import json
 
 
-def get_spot_list(app_type=None):
+def get_spot_list(app_type=None, groups=[]):
     spot_client = Spotseeker()
     res = []
+    filters = []
     try:
         if app_type:
-            filters = [('limit', 0),
-                       ('extended_info:app_type', app_type)]
-        else:
-            filters = [('limit', 0)]
+            filters.append(('extended_info:app_type', app_type))
+        for group in groups:
+            filters.append(('extended_info:group', group))
+        filters.append(('limit', 0))
         spots = spot_client.search_spots(filters)
         for spot in spots:
             spot = process_extended_info(spot)
