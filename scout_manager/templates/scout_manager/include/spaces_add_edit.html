@@ -3,12 +3,10 @@
 
 <div class="mgr-content-header clearfix">
 
-
-        <h2 style="display:inline-block;">{% if spot.name %}{{ spot.name }}{% else %}Add New Space{% endif %}</h2>
-        <div style="display:inline-block; float:right; line-height: 55px;">{{ spot.etag }}&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" value="Save Changes" style="display:inline-block;"></input></div>
+        <h2 class="pull-left">{% if spot.name %}{{ spot.name }}{% else %}Add New Space{% endif %}</h2>
+        <div class="pull-right">{{ spot.etag }}&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" value="Save Changes" style="display:inline-block;"></input></div>
 
         <div id="pub_error"></div>
-
 </div>
 
 <h3 class="visually-hidden">General Info</h3>
