@@ -1,4 +1,4 @@
-from django.test import TestCase, LiveServerTestCase
+from django.test import TestCase
 from django.test.utils import override_settings
 
 DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
