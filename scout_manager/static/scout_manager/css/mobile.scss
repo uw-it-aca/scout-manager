@@ -22,7 +22,7 @@ $clouds: #ecf0f1;
 .mgr-header { position: relative; text-align: center;
 
     .mgr-user-name { padding-right: 20px; visibility: hidden; }
-    .mgr-menu-button { position: absolute; top:5px; left:0; font-size: 26px; color: $asbestos; }
+    .mgr-menu-button { position: absolute; top:5px; left:0; font-size: 26px; color: $asbestos; background: transparent; }
 }
 
 .mgr-sidebar { max-height: 500px; overflow-y: hidden; font-family: 'Oswald', sans-serif;  font-size: 16px; font-weight: 300; color: #999; text-transform: uppercase;
