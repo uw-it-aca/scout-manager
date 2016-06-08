@@ -3,29 +3,26 @@
 
 <div class="mgr-content-header clearfix">
 
-    <div style="padding: 0 15px;">
+
         <h2 style="display:inline-block;">{% if spot.name %}{{ spot.name }}{% else %}Add New Space{% endif %}</h2>
         <div style="display:inline-block; float:right; line-height: 55px;">{{ spot.etag }}&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" value="Save Changes" style="display:inline-block;"></input></div>
 
         <div id="pub_error"></div>
 
-    </div>
-
 </div>
 
 <h3 class="visually-hidden">General Info</h3>
 
-<div style="background:#fafafa; min-height: 100px; border-bottom:solid 1px #eee; margin:0 -15px;" class="clearfix">
-    <div style="float:left; width:50%;">
-        <div style="padding:15px;">
-        <label for="space-name">Name:
-            <input id="space-name" type="text" name="name" value="{% if spot.name %}{{ spot.name }}{% endif %}" required="required" />
+<div style="min-height: 200px;">
+
+        <div class="form-group">
+            <label for="space-name">Name:</label>
+            <input type="text" class="form-control" id="space-name" value="{% if spot.name %}{{ spot.name }}{% endif %}" required="required" />
             <input type="hidden" name="id" value="{{ spot.spot_id }}" />
             <input type="hidden" name="etag" value="{{ spot.etag }}" />
-        </label>
         </div>
-    </div>
-    <div style="float:right; width:50%;">
+
+
         <div style="padding:15px;">
         <div style="margin-top:10px;">Type: (required)</div>
         {% if spot.app_type == "food" %}
@@ -43,7 +40,7 @@
             </div>
         {% endif %}
         </div>
-    </div>
+
 </div>
 
 
