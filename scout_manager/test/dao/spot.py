@@ -1,17 +1,13 @@
 """
 Tests for the scout-manager spot DAO
 """
-from django.test import TestCase
-from django.test.utils import override_settings
 from scout_manager.dao.space import get_spot_hours_by_day
 from spotseeker_restclient.spotseeker import Spotseeker
+from scout_manager.test import ScoutTest
 import datetime
 
-DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
 
-
-@override_settings(SPOTSEEKER_DAO_CLASS=DAO)
-class SpotDaoTest(TestCase):
+class SpotDaoTest(ScoutTest):
 
     def test_make_hours_no_spot(self):
         spot_hours = get_spot_hours_by_day(None)
