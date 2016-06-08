@@ -1,7 +1,60 @@
-.mgr-hours {
+$base: #16a085;
+$asphault: #34495e;
 
-    label {
-        select, input[type='time'] { margin-left: 5px; max-width: 400px;  }
+$asbestos: #7f8c8d;
+$clouds: #ecf0f1;
+
+.mgr-header { position: fixed; top:0; z-index: 999; width: 100%; height: 66px !important; text-align: left;
+    h1 { height:56px;  font-size: 30px; line-height: 56px; }
+    .mgr-user-name { padding-right: 20px; visibility: visible; }
+    .mgr-menu-button { display: none; }
+}
+
+.mgr-sidebar { position: fixed; top:66px; bottom: 0; z-index: 999; width: 220px; height: 100%; max-height: 2000px; background: #fff; border-right: solid 1px #e1e1e8;
+
+    .mgr-sidebar-actions { padding: 0;
+        ul { padding: 10px 20px;
+
+            li { line-height: 35px; }
+        }
+        a { line-height: 35px; }
+    }
+}
+
+.mgr-content { margin-top: 80px;  margin-left: 240px;
+
+
+    .mgr-content-inner { padding: 20px;
+
+        hr { margin: 3em -20px 2em -20px; }
+
+        h2 { margin-top: 0; }
+
+        .mgr-dataset-list {
+            .mgr-dataset-name {  }
+            .mgr-dataset-owner {  position: absolute;  top:10px; right: 10px; display:inline-block; font-size: 14px;}
+            .mgr-dataset-modified { }
+            .mgr-dataset-desc { display: inline-block; width: 50%;  }
+        }
+
+        .mgr-query-list {
+            .mgr-query-code {  }
+            .mgr-query-date {  position: absolute;  top:10px; right: 10px; display:inline-block; font-size: 14px;}
+            .mgr-query-status { display: inline-block; width: 50%;  }
+        }
+        .mgr-search-bar { position: fixed; top:10px; left: 240px; z-index: 99999; width: 500px;  height: 56px; padding: 0; margin: 0; line-height: 56px; background: transparent;
+            input[type="text"] { width: 84%; }
+            input[type="submit"] { width: 15%; }
+        }
+
+        .mgr-dataset-actions { width: 50%; margin-bottom: 1em; text-align: right;
+            a, button {
+                span { display: inline-block; color: $asbestos; }
+            }
+        }
+
     }
 
 }
+
+.mgr-footer { margin-left: 240px; color: #666; }

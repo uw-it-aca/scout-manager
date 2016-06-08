@@ -6,29 +6,38 @@
     </head>
     <body {% if request.is_mobile or request.is_tablet %}data-mobile="true"{% endif %}>
 
-        <div id="sidebar" class="mgr-sidebar">
+        <div id="header" class="mgr-header">
+            <h1><a href="/manager/">Scout<span>Manager</span></a> <span class="logo-beta">BETA</span></h1>
+            <span class="mgr-user-name">{{ user.username }}</span>
+            <button onclick="document.getElementById('sidebar').classList.toggle('closed');" type="button" class="btn mgr-menu-button"><i class="fa fa-bars"></i></button>
+        </div>
 
-            <div id="header" class="mgr-header">
-                <h1><a href="/manager/">Scout Manager</a></h1>
-            </div>
-
-            <div class="mgr-sidebar-content">
-                <h2>Spaces</h2>
-                <ul style="padding-left: 15px;">
-                    <li><a class="scope" href="/manager/spaces/?app_type=food">Food</a></li>
+        <div id="sidebar" class="mgr-sidebar {% if request.is_mobile or request.is_tablet %}closed{% endif %}">
+            <div class="mgr-sidebar-actions">
+                <h3>Spaces</h3>
+                <ul>
+                    <li><a class="" href="/manager/spaces/?app_type=food">Food</a></li>
                     <li><a class="scope" href="/manager/spaces/">Study</a></li>
                     <li><a href="/manager/spaces/add/">Add New Space</a></li>
                 </ul>
+                <h3>Items</h3>
+                <ul>
+                    <li><a class="dummy">category 1</a></li>
+                    <li><a class="dummy">category 2</a></li>
+                </ul>
             </div>
+        </div>
 
-            <div id="footer" class="mgr-footer">
-                <span>Courtesy of UW-IT ACA</span><span style="float:right;"><a href="mailto:help@uw.edu">Contact Support</a></span>
+        <div id="content" class="mgr-content">
+
+            <div class="mgr-content-inner">
+                {% block web_content %}{% endblock %}
             </div>
 
         </div>
 
-        <div id="content" class="mgr-content">
-            {% block web_content %}{% endblock %}
+        <div id="footer" class="mgr-footer">
+            <p>Copyright &copy; {% now "Y" %}  <span>Courtesy of UW-IT ACA</span><span style="float:right;"><a href="mailto:help@uw.edu">Contact Support</a></span><span><a href="http://www.washington.edu/online/privacy/">Privacy</a></span> <span><a href="http://www.washington.edu/online/terms/">Terms</a></span></p>
         </div>
 
     </body>

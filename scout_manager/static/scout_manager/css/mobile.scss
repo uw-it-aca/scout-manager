@@ -1,33 +1,6 @@
 // sass variables
 
 
-// forms
-
-textarea {
-    height: 120px;
-}
-
-label {
-
-    input[type='checkbox'],
-    input[type='radio'] {
-        display: inline-block;
-        margin-right: 5px;
-    }
-}
-
-
-
-.mgr-hours {
-
-    ul { margin: 0; padding: 0; }
-    label { line-height: 30px; margin-bottom: 5px;
-        select, input[type='time'] { display: inline-block; margin: 0; margin-left: 0px; }
-    }
-
-}
-
-
 // Temporary Classes [Delete]
 .dummy {
     color: #bdc3c7 !important;
@@ -37,4 +10,189 @@ label {
 .scope {
     color: #e74c3c !important;
     * { color: #e74c3c !important; }
+}
+
+
+$base: #16a085;
+$asphault: #34495e;
+
+$asbestos: #7f8c8d;
+$clouds: #ecf0f1;
+
+.mgr-header { position: relative; text-align: center;
+
+    .mgr-user-name { padding-right: 20px; visibility: hidden; }
+    .mgr-menu-button { position: absolute; top:5px; left:0; font-size: 26px; color: $asbestos; }
+}
+
+.mgr-sidebar { max-height: 500px; overflow-y: hidden; font-family: 'Oswald', sans-serif;  font-size: 16px; font-weight: 300; color: #999; text-transform: uppercase;
+
+    transition-duration: .8s;
+	transition-property: max-height;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+	.mgr-sidebar-actions { padding: 0;
+
+        ul { padding: 10px;  margin-bottom: 0; list-style: none; border-bottom: solid 1px darken($clouds, 5%);
+
+            li { line-height: 40px; }
+        }
+        a {  display: block; line-height: 40px; color: $base; }
+    }
+
+}
+.closed { max-height: 0; }
+
+.mgr-content {
+
+    .mgr-content-inner { position: relative;
+
+        hr { height: 0; margin: 3em -10px 2em -10px; border: 0; border-top: 1px solid darken($clouds, 5%); }
+
+        .well { margin: 15px 0;  background: #fff; border-color: #eee;
+            p {  margin: 0; line-height: 50px; text-align: center; }
+        }
+
+        .mgr-dataset-list { padding: 0;
+
+            a { text-decoration: none;
+                &:hover { text-decoration: none; }
+            }
+            .mgr-dataset-name { display: block; margin-bottom: 5px;  font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; color: $base; text-decoration: none !important; text-transform: uppercase;
+                i { margin-left: 5px; color: $asbestos; }
+            }
+            .mgr-dataset-owner { position: absolute; top:10px; right:0; display: inline-block; font-size: 12px; font-weight: normal; color: #aaa; text-transform: uppercase;  }
+            .mgr-dataset-modified { display: block; color: #aaa;}
+            .mgr-dataset-desc { display: block; color: #777; }
+
+            .mgr-dataset-list-item { position: relative; display: block; padding: 10px; border-top: solid 1px #eee;
+                &:first-child { border: none; }
+            }
+
+            .jscroll-added {
+                .mgr-dataset-list-item { position: relative; display: block; padding: 10px; border-top: solid 1px #eee; }
+            }
+
+            .label { font-size: 10px; font-weight: normal; }
+            .label-default {  color: $asbestos; background: #fff; border: solid 1px $clouds; }
+        }
+
+        .mgr-query-list { padding: 0;
+
+            a { text-decoration: none;
+                &:hover { text-decoration: none; }
+            }
+            .mgr-query-code { display: block; margin-bottom: 5px;  font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; color: $base; text-decoration: none !important; text-transform: uppercase; }
+            .mgr-query-date { display: inline-block; font-size: 12px; color: #aaa;  }
+            .mgr-query-status { display: block; color: #aaa; }
+
+            .mgr-query-list-item { position: relative; display: block; padding: 10px; border-top: solid 1px #eee;
+                &:first-child { border: none; }
+            }
+
+        }
+
+        .mgr-dataset-owner { margin-right: 10px; color: #777;
+            i { color: #ccc; }
+        }
+        .mgr-dataset-modified { color: #777;
+            i { color: #ccc; }
+        }
+
+        .mgr-dataset-title {
+            input[type=text] { border-color: #eee;  }
+        }
+        .mgr-dataset-desc {
+            textarea { border-color: #eee; resize: vertical; }
+        }
+
+        .mgr-search-bar {
+            input[type=text] { display:inline-block; width: 73%; }
+            input[type=submit] { display:inline-block; width: 25%; }
+        }
+
+        .mgr-dataset-actions { position:absolute; top:-5px; right:0; width:280px; text-align:right;  margin-bottom: 1em; text-align: right;
+
+            form { display: inline-block; }
+            button {
+                span { display: none; color: $asbestos; }
+            }
+            a { color: #333; text-decoration: none;
+                span { display: none; }
+            }
+
+            /* action buttons (small) */
+            .btn { border-color: transparent; /*box-shadow: none;*/ }
+            .btn-default { min-width: 32px; color: $base; background: lighten($clouds, 4%); border-color: transparent; }
+            .btn-danger { color: #d9534f; background: lighten($clouds, 4%); border-color: transparent;}
+        }
+
+        /* global buttons (large) */
+        .btn { border-color: transparent; border-radius: 3px; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1); }
+        .btn-default { color: $asphault;  text-transform: uppercase; background: $clouds; }
+        .btn-primary { text-transform: uppercase; background: $base; }
+        .btn-danger { text-transform: uppercase; }
+
+    }
+
+    .mgr-upload-target { position:relative; width: 100%; height: 200px; margin-bottom:1em; text-align:center;  border: 2px solid lighten($base,10%); border-radius: 4px;
+
+        .mgr-upload-link { position:absolute; top: 45%; width:100%; text-align:center;
+            a { color: $base; text-decoration: underline; }
+        }
+    }
+
+}
+
+.mgr-footer { margin: 20px 10px;
+    a { display: inline-block; margin-left: 5px; color: $base; text-decoration: underline; }
+}
+
+/* code mirror */
+
+.CodeMirror {
+    width: 100%;
+    height: 100px;
+    padding: 0;
+    margin: 15px 0;
+    background-color: #fff;
+    border: 2px solid lighten($base,10%);
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+
+    .CodeMirror-gutters { z-index: 0; }
+
+    .CodeMirror-scroll {
+        height: auto;
+        min-height: 100px;
+        padding-bottom: 0;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    .CodeMirror-placeholder { color: #999; }
+
+}
+
+/* twitter typeahead */
+
+.twitter-typeahead { display: block !important;
+
+    .tt-input { }
+    .tt-menu { width: 100%; padding: 10px;  background: #ccc !important;  border-radius: 4px; }
+    .tt-dataset { }
+    .tt-suggestion { }
+    .tt-empty { }
+    .tt-open { }
+    .tt-cursor { }
+    .tt-highlight { background: yellow; }
+}
+
+/* jscroll + bootstrap overrides */
+
+.jscroll-added {
+    .list-group-item {
+        &:first-child { border-top-right-radius: 0; border-top-left-radius: 0; }
+        &:last-child {  margin-bottom: -1px; border-bottom-right-radius: 0; border-bottom-left-radius: 0; }
+    }
 }
