@@ -47,7 +47,7 @@ $clouds: #ecf0f1;
             input[type="submit"] { width: 15%; }
         }
 
-        .mgr-dataset-actions { width: 50%; margin-bottom: 1em; text-align: right;
+        .mgr-dataset-actions {
             a, button {
                 span { display: inline-block; color: $asbestos; }
             }
