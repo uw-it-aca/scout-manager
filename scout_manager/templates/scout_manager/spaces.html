@@ -51,7 +51,7 @@
                         <span class="">{{ type.name }}</span> {% endfor %}
                     </div>
                     <!--<div>Items: <span class="dummy">has_items (Yes or No)</span><span class="dummy">item_type.name</span></div>-->
-                    <div>Publish Status: <span>{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED <a href="/detail/{{ spot.spot_id }}" target="_blank">preview in client</a>{% endif %}</span>
+                    <div>Publish Status: <span>{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED{% endif %}</span>
                         <!--<button type="button" class="dummy">Toggle Publish Status</button>-->
                     </div>
                 </div>
@@ -69,6 +69,9 @@
             -->
 
             <div class="mgr-dataset-actions">
+                {% if not spot.is_hidden %}
+                <a class="btn btn-default btn-sm" href="/detail/{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View</span></a>
+                {% endif %}
                 <a class="btn btn-default btn-sm" href="/manager/spaces/{{ spot.spot_id }}/"><i class="fa fa-pencil"></i> <span>Edit</span></a>
                 <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
             </div>
