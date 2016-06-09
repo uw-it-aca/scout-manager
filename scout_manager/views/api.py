@@ -6,6 +6,7 @@ import re
 
 from spotseeker_restclient.spotseeker import Spotseeker
 
+
 class Spot(RESTDispatch):
     """
     Handles changes to spots
@@ -35,11 +36,24 @@ def process_form_data(request):
             # add two dashes, for some reason
             boundary = "--" + boundary
     blocks = request.body.split(boundary)
+
     for block in blocks:
-        for line in block.splitlines():
+        block_data = ''
+        file_start_idx = None
+        for index, line in enumerate(block.splitlines()):
             if "Content-Disposition" in line:
                 match = re.findall(r'name=\"(.*?)\"', line)
                 block_name = match[0]
-            elif len(line) > 0 and line != "--":
-                form_data[block_name] = line
+            elif len(line) > 0 and line != "--" and "Content-Type" not in line:
+                if file_start_idx is None:
+                    file_start_idx = index
+                print "append"
+                block_data += line
+        if len(block_data) > 0:
+            if block_name == "file":
+                file_block = block.splitlines(True)[file_start_idx:]
+                file_data = ''.join(file_block)
+                form_data[block_name] = file_data.strip()
+            else:
+                form_data[block_name] = block_data
     return form_data
