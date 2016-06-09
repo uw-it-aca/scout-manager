@@ -1,7 +1,7 @@
 {% load staticfiles %}
 {% csrf_token %}
 
-<div class="mgr-content-header clearfix">
+<div class="clearfix">
 
     <h2 class="pull-left">{% if spot.name %}{{ spot.name }}{% else %}Add New Space{% endif %}</h2>
     <div class="pull-right">
@@ -13,42 +13,49 @@
 
 <h3 class="sr-only">General Info</h3>
 
-<div style="min-height: 200px;">
-
-        <div class="form-group">
-            <label for="space-name">Name:</label>
-            <input type="text" class="form-control" id="space-name" value="{% if spot.name %}{{ spot.name }}{% endif %}" required="required" />
-            <input type="hidden" name="id" value="{{ spot.spot_id }}" />
-            <input type="hidden" name="etag" value="{{ spot.etag }}" />
-        </div>
-
-        <div class="form-group">
-            <label for="space-description">Description:</label>
-            <textarea name="extended_info:location_description" class="form-control" id="space-description" type="text">{% if spot.location_description %}{{spot.location_description}}{% endif %}</textarea>
-        </div>
-
-        <hr>
-
-        <div style="padding:15px;">
-        <div style="margin-top:10px;">Type: (required)</div>
-        {% if spot.app_type == "food" %}
-            <label style="display: inline-block; margin-right:10px;"><input type="radio" name="extended_info:app_type" required value="food" checked>Food</label>
-            <label style="display: inline-block; margin-right:10px;"><input type="radio" name="extended_info:app_type" required value="study" disabled>Study</label>
-            <p>Please contact ADMINS if you need to change this space's app_type</p>
-        {% elif spot.app_type == "study" %}
-            <label style="display: inline-block; margin-right:10px;"><input type="radio" name="extended_info:app_type" required value="food" disabled>Food</label>
-            <label style="display: inline-block; margin-right:10px;"><input type="radio" name="extended_info:app_type" required value="study" checked>Study</label>
-            <p>Please contact ADMINS if you need to change this space's app_type</p>
-        {% else %}
-            <div id="add_new_extended_info">
-                <label style="display: inline-block; margin-right:10px;"><input type="radio" name="extended_info:app_type" value="food">Food</label>
-                <label style="display: inline-block; margin-right:10px;"><input type="radio" name="extended_info:app_type" value="study">Study</label>
-            </div>
-        {% endif %}
-        </div>
-
+<div class="form-group">
+    <label for="space-name">Name:</label>
+    <input type="text" class="form-control" id="space-name" value="{% if spot.name %}{{ spot.name }}{% endif %}" required="required" />
+    <input type="hidden" name="id" value="{{ spot.spot_id }}" />
+    <input type="hidden" name="etag" value="{{ spot.etag }}" />
 </div>
 
+<div class="form-group">
+    <label for="space-description">Description:</label>
+    <textarea name="extended_info:location_description" rows="4" class="form-control" id="space-description" type="text">{% if spot.location_description %}{{spot.location_description}}{% endif %}</textarea>
+</div>
+
+<hr>
+
+<fieldset>
+    <legend>Type: (required)</legend>
+    {% if spot.app_type == "food" %}
+        <div class="radio">
+            <label><input type="radio" name="extended_info:app_type" required value="food" checked>Food</label>
+        </div>
+        <div class="radio disabled">
+            <label><input type="radio" name="extended_info:app_type" required value="study" disabled>Study</label>
+        </div>
+        <small class="text-muted">Please contact ADMINS if you need to change this space's app_type</small>
+    {% elif spot.app_type == "study" %}
+        <div class="radio disabled">
+            <label><input type="radio" name="extended_info:app_type" required value="food" disabled>Food</label>
+        </div>
+        <div class="radio">
+            <label><input type="radio" name="extended_info:app_type" required value="study" checked>Study</label>
+        </div>
+        <small class="texty-muted">Please contact ADMINS if you need to change this space's app_type</small>
+    {% else %}
+        <div id="add_new_extended_info">
+            <div class="radio">
+                <label><input type="radio" name="extended_info:app_type" value="food">Food</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="extended_info:app_type" value="study">Study</label>
+            </div>
+        </div>
+    {% endif %}
+</fieldset>
 
 {% if spot.app_type == "food" %}
     {% include "scout_manager/include/extend_food.html" %}
@@ -63,7 +70,6 @@
     </div>
 {% endif %}
 
-</fieldset>
 
 
 <fieldset>
@@ -160,10 +166,27 @@
 
 <fieldset>
     <legend>Contact Info</legend>
-    <label for="owner">Owner/Admin Group:<input id="owner" name="extended_info:owner" type="text" value="{% if spot.owner %}{{ spot.owner }}{% endif %}"></label>
-    <label for="manager-name">Manager Name:<input id="manager-name" name="manager" type="text" value="{% if spot.manager %}{{ spot.manager }}{% endif %}"></label>
-    <label for="email" class="">Email:<input id="email" type="email" value="{% if spot.email %}{{ spot.email }}{% endif %}"></label>
-    <label for="phone" class="">Phone:<input id="phone" name="phone" type="tel" value="{% if spot.phone %}{{ spot.phone }}{% endif %}"></label>
+
+    <div class="form-group">
+        <label for="owner">Owner/Admin Group:</label>
+        <input class="form-control" id="owner" name="extended_info:owner" type="text" value="{% if spot.owner %}{{ spot.owner }}{% endif %}">
+    </div>
+
+    <div class="form-group">
+        <label for="manager-name">Manager Name:</label>
+        <input class="form-control" id="manager-name" name="manager" type="text" value="{% if spot.manager %}{{ spot.manager }}{% endif %}">
+    </div>
+
+    <div class="form-group">
+        <label for="email" class="">Email:</label>
+        <input class="form-control" id="email" type="email" value="{% if spot.email %}{{ spot.email }}{% endif %}">
+    </div>
+
+    <div class="form-group">
+        <label for="phone" class="">Phone:</label>
+        <input class="form-control" id="phone" name="phone" type="tel" value="{% if spot.phone %}{{ spot.phone }}{% endif %}">
+    </div>
+
 </fieldset>
 
 <!--

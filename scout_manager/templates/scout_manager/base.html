@@ -7,8 +7,8 @@
     <body {% if request.is_mobile or request.is_tablet %}data-mobile="true"{% endif %}>
 
         <div id="header" class="mgr-header">
-            <h1><a href="/manager/">Scout<span>Manager</span></a> <span class="logo-beta">BETA</span></h1>
-            <span class="mgr-user-name">{{ user.username }}</span>
+            <h1><a href="/manager/">Scout<span>Manager</span></a></h1>
+            <span class="mgr-user-name scope">{{ user.username }}</span>
             <button onclick="document.getElementById('sidebar').classList.toggle('mgr-sidebar-closed');" type="button" class="btn mgr-menu-button"><i class="fa fa-bars"></i></button>
         </div>
 
