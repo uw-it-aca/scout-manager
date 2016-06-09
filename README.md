@@ -22,17 +22,3 @@ This README documents whatever steps are necessary to get your application up an
         ...
         'scout_manager',
     )
-
-    TEMPLATES = [
-        {
-            'OPTIONS': {
-                'context_processors': [
-                    ...
-                    'scout_manager.context_processors.is_branded',
-                ],
-            },
-        },
-    ]
-
-    #scout manager
-    SCOUT_MGR_BRANDING = True
