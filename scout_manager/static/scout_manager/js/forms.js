@@ -15,17 +15,17 @@ var Forms = {
     hours_clear: function(){
         // clear hours for a given day
         $(".mgr-clear-hours").click(function(e) {
-            $(this).parent().find("input[type=time]").val("");
+            $(this).parent().siblings().find("input[type=time]").val("");
         });
     },
 
     hours_add: function(){
         // add hours input fields
         $(".mgr-add-hours").click(function(e) {
-            var hours_blocks = $(this).siblings('.mgr-current-hours');
+            var hours_blocks = $(this).parent().siblings('.mgr-current-hours');
             var empty_hours = $(hours_blocks[0]).clone();
             $(empty_hours).find("input").val("");
-            $($(this).parent()).append(empty_hours);
+            $($(this).parent()).prepend(empty_hours);
         });
     },
 

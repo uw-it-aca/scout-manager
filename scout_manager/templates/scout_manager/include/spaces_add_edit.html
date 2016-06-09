@@ -1,51 +1,61 @@
 {% load staticfiles %}
 {% csrf_token %}
 
-<div class="mgr-content-header clearfix">
+<div class="clearfix">
 
-    <div style="padding: 0 15px;">
-        <h2 style="display:inline-block;">{% if spot.name %}{{ spot.name }}{% else %}Add New Space{% endif %}</h2>
-        <div style="display:inline-block; float:right; line-height: 55px;">{{ spot.etag }}&nbsp;&nbsp;&nbsp;<input type="button" value="Save Changes" style="display:inline-block;"></input></div>
-
-        <div id="pub_error"></div>
-
+    <h2 class="pull-left">{% if spot.name %}{{ spot.name }}{% else %}Add New Space{% endif %}</h2>
+    <div class="pull-right">
+        {{ spot.etag }}&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" value="Save Changes" style="display:inline-block;"></input>
     </div>
+    <div id="pub_error"></div>
 
 </div>
 
-<h3 class="visually-hidden">General Info</h3>
+<h3 class="sr-only">General Info</h3>
 
-<div style="background:#fafafa; min-height: 100px; border-bottom:solid 1px #eee; margin:0 -15px;" class="clearfix">
-    <div style="float:left; width:50%;">
-        <div style="padding:15px;">
-        <label for="space-name">Name:
-            <input id="space-name" type="text" name="name" value="{% if spot.name %}{{ spot.name }}{% endif %}" required="required" />
-            <input type="hidden" name="id" value="{{ spot.spot_id }}" />
-            <input type="hidden" name="etag" value="{{ spot.etag }}" />
-        </label>
+<div class="form-group">
+    <label for="space-name">Name:</label>
+    <input type="text" class="form-control" id="space-name" value="{% if spot.name %}{{ spot.name }}{% endif %}" required="required" />
+    <input type="hidden" name="id" value="{{ spot.spot_id }}" />
+    <input type="hidden" name="etag" value="{{ spot.etag }}" />
+</div>
+
+<div class="form-group">
+    <label for="space-description">Description:</label>
+    <textarea name="extended_info:location_description" rows="4" class="form-control" id="space-description" type="text">{% if spot.location_description %}{{spot.location_description}}{% endif %}</textarea>
+</div>
+
+<hr>
+
+<fieldset>
+    <legend>Type: (required)</legend>
+    {% if spot.app_type == "food" %}
+        <div class="radio">
+            <label><input type="radio" name="extended_info:app_type" required value="food" checked>Food</label>
         </div>
-    </div>
-    <div style="float:right; width:50%;">
-        <div style="padding:15px;">
-        <div style="margin-top:10px;">Type: (required)</div>
-        {% if spot.app_type == "food" %}
-            <label style="display: inline-block; margin-right:10px;"><input type="radio" name="extended_info:app_type" required value="food" checked>Food</label>
-            <label style="display: inline-block; margin-right:10px;"><input type="radio" name="extended_info:app_type" required value="study" disabled>Study</label>
-            <p>Please contact ADMINS if you need to change this space's app_type</p>
-        {% elif spot.app_type == "study" %}
-            <label style="display: inline-block; margin-right:10px;"><input type="radio" name="extended_info:app_type" required value="food" disabled>Food</label>
-            <label style="display: inline-block; margin-right:10px;"><input type="radio" name="extended_info:app_type" required value="study" checked>Study</label>
-            <p>Please contact ADMINS if you need to change this space's app_type</p>
-        {% else %}
-            <div id="add_new_extended_info">
-                <label style="display: inline-block; margin-right:10px;"><input type="radio" name="extended_info:app_type" value="food">Food</label>
-                <label style="display: inline-block; margin-right:10px;"><input type="radio" name="extended_info:app_type" value="study">Study</label>
+        <div class="radio disabled">
+            <label><input type="radio" name="extended_info:app_type" required value="study" disabled>Study</label>
+        </div>
+        <small class="text-muted">Please contact ADMINS if you need to change this space's app_type</small>
+    {% elif spot.app_type == "study" %}
+        <div class="radio disabled">
+            <label><input type="radio" name="extended_info:app_type" required value="food" disabled>Food</label>
+        </div>
+        <div class="radio">
+            <label><input type="radio" name="extended_info:app_type" required value="study" checked>Study</label>
+        </div>
+        <small class="texty-muted">Please contact ADMINS if you need to change this space's app_type</small>
+    {% else %}
+        <div id="add_new_extended_info">
+            <div class="radio">
+                <label><input type="radio" name="extended_info:app_type" value="food">Food</label>
             </div>
-        {% endif %}
+            <div class="radio">
+                <label><input type="radio" name="extended_info:app_type" value="study">Study</label>
+            </div>
         </div>
-    </div>
-</div>
-
+    {% endif %}
+</fieldset>
 
 {% if spot.app_type == "food" %}
     {% include "scout_manager/include/extend_food.html" %}
@@ -60,19 +70,18 @@
     </div>
 {% endif %}
 
-</fieldset>
 
-<label for="space-description">Description:
-    <textarea name="extended_info:location_description" id="space-description" type="text">{% if spot.location_description %}{{spot.location_description}}{% endif %}</textarea>
-</label>
 
 <fieldset>
 
     <legend>Images</legend>
 
-    <label>Choose: <input type="file" name="" accept="image/*" id="mgr_upload_image"></label>
+    <div class="form-group">
+        <label>Image input:</label>
+        <input type="file" name="" accept="image/*" id="mgr_upload_image">
+    </div>
 
-    <p>Preview images:</p>
+    <strong>Preview images:</strong>
 
     <ul id="mgr_list_spot_images">
         {% for image in spot.images %}
@@ -83,75 +92,88 @@
          </li>
         {% endfor %}
     </ul>
-    <p id="mgr_list_spot_empty">Image list is empty! Add some images.</p>
+    <p id="mgr_list_spot_empty" class="help-block">Image list is empty! Add some images.</p>
 
 </fieldset>
 
 <fieldset class="clearfix">
     <legend>Location:</legend>
 
-    <div style="float:left; width:25%; margin-right:1%;">
-        <label for="space-campus" required>Campus:
-            <select name="extended_info:campus">
-                <option disabled selected value>select a campus...</option>
-                <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
-                <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
-                <option value="south_lake_union" {% if spot.campus == "south_lake_union" %} selected {% endif %}>South Lake Union</option>
-                <option value="tacoma" {% if spot.campus == "tacoma" %} selected {% endif %}>Tacoma</option>
-            </select>
-        </label>
+    <div class="form-group">
+        <label for="space-campus" required>Campus:</label>
+        <select class="form-control" name="extended_info:campus">
+            <option disabled selected value>select a campus...</option>
+            <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
+            <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
+            <option value="south_lake_union" {% if spot.campus == "south_lake_union" %} selected {% endif %}>South Lake Union</option>
+            <option value="tacoma" {% if spot.campus == "tacoma" %} selected {% endif %}>Tacoma</option>
+        </select>
+    </div>
 
-        <label for="space-latitude">Latitude:
-            <input name="location:latitude" id="space_latitude" type="text" value="{% if spot.latitude %}{{ spot.latitude }}{% endif %}" required />
-        </label>
+    <div class="form-group">
+        <label for="space-latitude">Latitude:</label>
+        <input class="form-control" name="location:latitude" id="space_latitude" type="text" value="{% if spot.latitude %}{{ spot.latitude }}{% endif %}" required />
+    </div>
 
-        <label for="space-longitude">Longitude:
-            <input name="location:longitude" id="space_longitude" type="text" value="{% if spot.longitude %}{{ spot.longitude }}{% endif %}" required />
-        </label>
+    <div class="form-group">
+        <label for="space-longitude">Longitude:</label>
+        <input class="form-control" name="location:longitude" id="space_longitude" type="text" value="{% if spot.longitude %}{{ spot.longitude }}{% endif %}" required />
+    </div>
 
-        {# How are we determining this? #}
+    {# How are we determining this? #}
+    <div class="checkbox">
         <label class="dummy"><input type="checkbox" value="Outdoor" disabled>Outdoor location</label>
+    </div>
 
-        <!-- Hide if outdoor location. We suggest/enforce building options. -->
-        <label for="building-name">Building:
-            <select name="location:building_name">
-                <option disabled selected value>select a building...</option>
-                {% for building in buildings %}
-                <option value="{{ building }}" {% if spot.building_name == building %} selected {% endif %}>{{ building }}</option>
-                {% endfor %}
-            </select>
-        </label>
+    <!-- Hide if outdoor location. We suggest/enforce building options. -->
+    <div class="form-group">
+        <label for="building-name">Building:</label>
+        <select class="form-control" name="location:building_name">
+            <option disabled selected value>select a building...</option>
+            {% for building in buildings %}
+            <option value="{{ building }}" {% if spot.building_name == building %} selected {% endif %}>{{ building }}</option>
+            {% endfor %}
+        </select>
+    </div>
 
-        <!-- Hide if outdoor location. We suggest floor options. -->
-        <label for="floor">Floor:
-            <input id="floor" name="location:floor" type="text" value="{% if spot.floor %}{{ spot.floor }}{% endif %}">
-        </label>
 
-        <!-- Hide if outdoor location -->
-        <label for="room-number">Room #:
-            <input id="room-number" name="location:room_number" type="text" value="{% if spot.room_number %}{{ spot.room_number }}{% endif %}">
-        </label>
+    <!-- Hide if outdoor location. We suggest floor options. -->
+    <div class="form-group">
+        <label for="floor">Floor:</label>
+        <input class="form-control" id="floor" name="location:floor" type="text" value="{% if spot.floor %}{{ spot.floor }}{% endif %}">
+    </div>
 
-        {# How are we determining this? #}
+    <!-- Hide if outdoor location -->
+    <div class="form-group">
+        <label for="room-number">Room #:</label>
+        <input class="form-control" id="room-number" name="location:room_number" type="text" value="{% if spot.room_number %}{{ spot.room_number }}{% endif %}">
+    </div>
+
+    {# How are we determining this? #}
+    <div class="checkbox">
         <label class="dummy"><input type="checkbox" value="ADA" disabled>ADA Accessible</label>
     </div>
-    <div style="float:left; width:74%;">
-        <label for="space-latitude">
-            Location chooser:
-            <div style="border: solid 1px #c8c8c8; border-radius:3px; height:500px; margin: 8px 0;" id="gmap_chooser">Google Maps here</div>
-            <p>If new, click on map to drop a pin on the location of your space and drag marker for precise positioning.</p>
-            <p>If edit, drag the marker to the desired location of the space.</p>
-        </label>
+
+
+    <div class="form-group">
+        <label for="space-latitude">Location chooser:</label>
+        <div style="border: solid 1px #c8c8c8; border-radius:3px; height:500px; margin: 8px 0;" id="gmap_chooser">Google Maps here</div>
+        <p class="help-block">If new, click on map to drop a pin on the location of your space and drag marker for precise positioning.</p>
+        <p class="help-block">If edit, drag the marker to the desired location of the space.</p>
     </div>
 
 </fieldset>
 
 <h3>Current Alert</h3> {# we need to set has_alert too to show it #}
-<label><input name="extended_info:has_alert" type="checkbox" value="has_alert" {% if spot.has_alert %}checked{% endif %}>Alert Enabled</label>
 
-<label for="alert-notes">Post this Alert message:
-    <textarea id="alert-notes" name="extended_info:alert_notes" type="text" value="{% if spot.alert_notes %}{{ spot.alert_notes }}{% endif %}"></textarea>
-</label>
+<div class="checkbox">
+    <label><input name="extended_info:has_alert" type="checkbox" value="has_alert" {% if spot.has_alert %}checked{% endif %}>Alert Enabled</label>
+</div>
+
+<div class="form-group">
+    <label for="alert-notes">Post this Alert message:</label>
+    <textarea class="form-control" id="alert-notes" name="extended_info:alert_notes" type="text" value="{% if spot.alert_notes %}{{ spot.alert_notes }}{% endif %}"></textarea>
+</div>
 
 <!-- include the hour and access form -->
 {% include "scout_manager/include/form_hours.html" %}
@@ -160,10 +182,27 @@
 
 <fieldset>
     <legend>Contact Info</legend>
-    <label for="owner">Owner/Admin Group:<input id="owner" name="extended_info:owner" type="text" value="{% if spot.owner %}{{ spot.owner }}{% endif %}"></label>
-    <label for="manager-name">Manager Name:<input id="manager-name" name="manager" type="text" value="{% if spot.manager %}{{ spot.manager }}{% endif %}"></label>
-    <label for="email" class="">Email:<input id="email" type="email" value="{% if spot.email %}{{ spot.email }}{% endif %}"></label>
-    <label for="phone" class="">Phone:<input id="phone" name="phone" type="tel" value="{% if spot.phone %}{{ spot.phone }}{% endif %}"></label>
+
+    <div class="form-group">
+        <label for="owner">Owner/Admin Group:</label>
+        <input class="form-control" id="owner" name="extended_info:owner" type="text" value="{% if spot.owner %}{{ spot.owner }}{% endif %}">
+    </div>
+
+    <div class="form-group">
+        <label for="manager-name">Manager Name:</label>
+        <input class="form-control" id="manager-name" name="manager" type="text" value="{% if spot.manager %}{{ spot.manager }}{% endif %}">
+    </div>
+
+    <div class="form-group">
+        <label for="email" class="">Email:</label>
+        <input class="form-control" id="email" type="email" value="{% if spot.email %}{{ spot.email }}{% endif %}">
+    </div>
+
+    <div class="form-group">
+        <label for="phone" class="">Phone:</label>
+        <input class="form-control" id="phone" name="phone" type="tel" value="{% if spot.phone %}{{ spot.phone }}{% endif %}">
+    </div>
+
 </fieldset>
 
 <!--

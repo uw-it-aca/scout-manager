@@ -7,17 +7,14 @@
 
 <div class="mgr-content-header clearfix">
 
-    <div style="padding: 0 15px;">
+    <h2 class="pull-left">SPACES</h2>
 
-        <h2 style="display:inline-block;">SPACES</h2>
-
-        <div style="display:inline-block; float:right; line-height: 55px; ">
-        Total: <span class="">{{ count }}</span>
-        &nbsp;&nbsp;&nbsp;
-        Filter by type: <a href="#" class="scope">all</a> | <a href="#" class="scope">published</a> | <a class="scope" href="#">unpublished</a>
-        </div>
-
+    <div class="pull-right">
+    Total: <span class="">{{ count }}</span>
+    &nbsp;&nbsp;&nbsp;
+    Filter by type: <a href="#" class="scope">all</a> | <a href="#" class="scope">published</a> | <a class="scope" href="#">unpublished</a>
     </div>
+
 </div>
 
 <div style="margin-top: 15px;">
@@ -31,8 +28,6 @@
     <ol>
         {% for spot in spots %}
         <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">
-
-            <div style="line-height:30px;"><a href="/manager/spaces/{{ spot.spot_id }}/">Edit</a></div>
 
             <div class="clearfix">
 
@@ -72,7 +67,15 @@
                 <button type="button" class="dummy">Delete Space</button>
             </div>
             -->
+
+            <div class="mgr-dataset-actions">
+                <a class="btn btn-default btn-sm" href="/manager/spaces/{{ spot.spot_id }}/"><i class="fa fa-pencil"></i> <span>Edit</span></a>
+                <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+            </div>
+
         </li>
+        {% empty %}
+        There are no spots for you to see!
         {% endfor %}
     </ol>
 
