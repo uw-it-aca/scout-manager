@@ -25,6 +25,11 @@
     <textarea name="extended_info:location_description" rows="4" class="form-control" id="space-description" type="text">{% if spot.location_description %}{{spot.location_description}}{% endif %}</textarea>
 </div>
 
+<div>
+    <p>Status: <span>{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED <a href="/detail/{{ spot.spot_id }}" target="_blank">preview in client</a>{% endif %}</span></p>
+    <p>Unpublish?:&nbsp;<input type="checkbox" name="extended_info:is_hidden"{% if spot.is_hidden %} checked{% endif %}></input></p>
+</div>
+
 <hr>
 
 <fieldset>
@@ -72,97 +77,91 @@
 
 
 
-<fieldset>
+<h3>Images</h3>
 
-    <legend>Images</legend>
+<div class="form-group">
+    <label>Image input:</label>
+    <input type="file" name="" accept="image/*" id="mgr_upload_image">
+</div>
 
-    <div class="form-group">
-        <label>Image input:</label>
-        <input type="file" name="" accept="image/*" id="mgr_upload_image">
-    </div>
+<strong>Preview images:</strong>
 
-    <strong>Preview images:</strong>
+<ul id="mgr_list_spot_images">
+    {% for image in spot.images %}
+     <li>
+         <img src="/images/{{ spot.spot_id }}/image/{{ image.image_id }}?width=100">
+         <label for="study-default-image-1" class="scope"><input type="radio" name="default-study-img" id="study-default-image-1" />default</label>
+         <input type="button" value="Delete image" class="mgr-delete-image" />
+     </li>
+    {% endfor %}
+</ul>
+<p id="mgr_list_spot_empty" class="help-block">Image list is empty! Add some images.</p>
 
-    <ul id="mgr_list_spot_images">
-        {% for image in spot.images %}
-         <li>
-             <img src="/images/{{ spot.spot_id }}/image/{{ image.image_id }}?width=100">
-             <label for="study-default-image-1" class="scope"><input type="radio" name="default-study-img" id="study-default-image-1" />default</label>
-             <input type="button" value="Delete image" class="mgr-delete-image" />
-         </li>
+
+<h3>Location</h3>
+
+<div class="form-group">
+    <label for="space-campus" required>Campus:</label>
+    <select class="form-control" name="extended_info:campus">
+        <option disabled selected value>select a campus...</option>
+        <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
+        <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
+        <option value="south_lake_union" {% if spot.campus == "south_lake_union" %} selected {% endif %}>South Lake Union</option>
+        <option value="tacoma" {% if spot.campus == "tacoma" %} selected {% endif %}>Tacoma</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="space-latitude">Latitude:</label>
+    <input class="form-control" name="location:latitude" id="space_latitude" type="text" value="{% if spot.latitude %}{{ spot.latitude }}{% endif %}" required />
+</div>
+
+<div class="form-group">
+    <label for="space-longitude">Longitude:</label>
+    <input class="form-control" name="location:longitude" id="space_longitude" type="text" value="{% if spot.longitude %}{{ spot.longitude }}{% endif %}" required />
+</div>
+
+{# How are we determining this? #}
+<div class="checkbox">
+    <label class="dummy"><input type="checkbox" value="Outdoor" disabled>Outdoor location</label>
+</div>
+
+<!-- Hide if outdoor location. We suggest/enforce building options. -->
+<div class="form-group">
+    <label for="building-name">Building:</label>
+    <select class="form-control" name="location:building_name">
+        <option disabled selected value>select a building...</option>
+        {% for building in buildings %}
+        <option value="{{ building }}" {% if spot.building_name == building %} selected {% endif %}>{{ building }}</option>
         {% endfor %}
-    </ul>
-    <p id="mgr_list_spot_empty" class="help-block">Image list is empty! Add some images.</p>
-
-</fieldset>
-
-<fieldset class="clearfix">
-    <legend>Location:</legend>
-
-    <div class="form-group">
-        <label for="space-campus" required>Campus:</label>
-        <select class="form-control" name="extended_info:campus">
-            <option disabled selected value>select a campus...</option>
-            <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
-            <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
-            <option value="south_lake_union" {% if spot.campus == "south_lake_union" %} selected {% endif %}>South Lake Union</option>
-            <option value="tacoma" {% if spot.campus == "tacoma" %} selected {% endif %}>Tacoma</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="space-latitude">Latitude:</label>
-        <input class="form-control" name="location:latitude" id="space_latitude" type="text" value="{% if spot.latitude %}{{ spot.latitude }}{% endif %}" required />
-    </div>
-
-    <div class="form-group">
-        <label for="space-longitude">Longitude:</label>
-        <input class="form-control" name="location:longitude" id="space_longitude" type="text" value="{% if spot.longitude %}{{ spot.longitude }}{% endif %}" required />
-    </div>
-
-    {# How are we determining this? #}
-    <div class="checkbox">
-        <label class="dummy"><input type="checkbox" value="Outdoor" disabled>Outdoor location</label>
-    </div>
-
-    <!-- Hide if outdoor location. We suggest/enforce building options. -->
-    <div class="form-group">
-        <label for="building-name">Building:</label>
-        <select class="form-control" name="location:building_name">
-            <option disabled selected value>select a building...</option>
-            {% for building in buildings %}
-            <option value="{{ building }}" {% if spot.building_name == building %} selected {% endif %}>{{ building }}</option>
-            {% endfor %}
-        </select>
-    </div>
+    </select>
+</div>
 
 
-    <!-- Hide if outdoor location. We suggest floor options. -->
-    <div class="form-group">
-        <label for="floor">Floor:</label>
-        <input class="form-control" id="floor" name="location:floor" type="text" value="{% if spot.floor %}{{ spot.floor }}{% endif %}">
-    </div>
+<!-- Hide if outdoor location. We suggest floor options. -->
+<div class="form-group">
+    <label for="floor">Floor:</label>
+    <input class="form-control" id="floor" name="location:floor" type="text" value="{% if spot.floor %}{{ spot.floor }}{% endif %}">
+</div>
 
-    <!-- Hide if outdoor location -->
-    <div class="form-group">
-        <label for="room-number">Room #:</label>
-        <input class="form-control" id="room-number" name="location:room_number" type="text" value="{% if spot.room_number %}{{ spot.room_number }}{% endif %}">
-    </div>
+<!-- Hide if outdoor location -->
+<div class="form-group">
+    <label for="room-number">Room #:</label>
+    <input class="form-control" id="room-number" name="location:room_number" type="text" value="{% if spot.room_number %}{{ spot.room_number }}{% endif %}">
+</div>
 
-    {# How are we determining this? #}
-    <div class="checkbox">
-        <label class="dummy"><input type="checkbox" value="ADA" disabled>ADA Accessible</label>
-    </div>
+{# How are we determining this? #}
+<div class="checkbox">
+    <label class="dummy"><input type="checkbox" value="ADA" disabled>ADA Accessible</label>
+</div>
 
 
-    <div class="form-group">
-        <label for="space-latitude">Location chooser:</label>
-        <div style="border: solid 1px #c8c8c8; border-radius:3px; height:500px; margin: 8px 0;" id="gmap_chooser">Google Maps here</div>
-        <p class="help-block">If new, click on map to drop a pin on the location of your space and drag marker for precise positioning.</p>
-        <p class="help-block">If edit, drag the marker to the desired location of the space.</p>
-    </div>
+<div class="form-group">
+    <label for="space-latitude">Location chooser:</label>
+    <div style="border: solid 1px #c8c8c8; border-radius:3px; height:500px; margin: 8px 0;" id="gmap_chooser">Google Maps here</div>
+    <p class="help-block">{% if spot.name %}Drag the marker to the desired location of the space.{% else %}Click on map to drop a pin on the location of your space and drag marker for precise positioning.{% endif %}</p>
+</div>
 
-</fieldset>
 
 <h3>Current Alert</h3> {# we need to set has_alert too to show it #}
 
@@ -180,30 +179,26 @@
 
 <h3>Administration</h3>
 
-<fieldset>
-    <legend>Contact Info</legend>
+<div class="form-group">
+    <label for="owner">Owner/Admin Group:</label>
+    <input class="form-control" id="owner" name="extended_info:owner" type="text" value="{% if spot.owner %}{{ spot.owner }}{% endif %}">
+</div>
 
-    <div class="form-group">
-        <label for="owner">Owner/Admin Group:</label>
-        <input class="form-control" id="owner" name="extended_info:owner" type="text" value="{% if spot.owner %}{{ spot.owner }}{% endif %}">
-    </div>
+<div class="form-group">
+    <label for="manager-name">Manager Name:</label>
+    <input class="form-control" id="manager-name" name="manager" type="text" value="{% if spot.manager %}{{ spot.manager }}{% endif %}">
+</div>
 
-    <div class="form-group">
-        <label for="manager-name">Manager Name:</label>
-        <input class="form-control" id="manager-name" name="manager" type="text" value="{% if spot.manager %}{{ spot.manager }}{% endif %}">
-    </div>
+<div class="form-group">
+    <label for="email" class="">Email:</label>
+    <input class="form-control" id="email" type="email" value="{% if spot.email %}{{ spot.email }}{% endif %}">
+</div>
 
-    <div class="form-group">
-        <label for="email" class="">Email:</label>
-        <input class="form-control" id="email" type="email" value="{% if spot.email %}{{ spot.email }}{% endif %}">
-    </div>
+<div class="form-group">
+    <label for="phone" class="">Phone:</label>
+    <input class="form-control" id="phone" name="phone" type="tel" value="{% if spot.phone %}{{ spot.phone }}{% endif %}">
+</div>
 
-    <div class="form-group">
-        <label for="phone" class="">Phone:</label>
-        <input class="form-control" id="phone" name="phone" type="tel" value="{% if spot.phone %}{{ spot.phone }}{% endif %}">
-    </div>
-
-</fieldset>
 
 <!--
 <h3>Item Integration</h3>
@@ -241,19 +236,7 @@
         </li>
     </ol>
 </fieldset>
--->
 
-
-<h3>Space Actions</h3>
-<!-- When a user clicks to change status to PUBLISH, then we should validate form. It would be ideal to provide them with a condensed list of required and invalid fields that they need to address (maybe as intersticial, which they can cancel from. -->
-
-<fieldset>
-    <legend>Publish Status</legend>
-    <p>Status: <span>{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED <a href="/detail/{{ spot.spot_id }}" target="_blank">preview in client</a>{% endif %}</span></p>
-    <p>Unpublish?:&nbsp;<input type="checkbox" name="extended_info:is_hidden"{% if spot.is_hidden %} checked{% endif %}></input></p>
-</fieldset>
-
-<!--
     <div class="dummy" style="margin-bottom:2em;">
         <input type="submit" value="Save Changes" />
         <input type="button" value="Cancel" />
