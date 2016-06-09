@@ -1,12 +1,12 @@
 <h3>Hours and Access</h3>
 
 {% for day_hours in spot.grouped_hours %}
-<fieldset data-day="{{ day_hours.day }}" style="margin-bottom:1em;">
+<fieldset class="mgr-hours" data-day="{{ day_hours.day }}" style="margin-bottom:1em;">
     <legend>{{ day_hours.day|capfirst }}:</legend>
 
         <div class="mgr-current-hours">
             {% for period in day_hours.hours %}
-            <div class="form-inline">
+            <div class="form-inline mgr-hours-block">
                 <div class="form-group">
                     <label for="">Open:</label>
                     <input class="form-control" type="time" name="" value="{{ period.start_time|time:"H:i" }}" />
@@ -17,7 +17,7 @@
                 </div>
             </div>
             {% empty %}
-            <div class="form-inline">
+            <div class="form-inline mgr-hours-block">
                 <div class="form-group">
                     <label for="">Open:</label>
                     <input class="form-control" type="time" name="" value="" />
