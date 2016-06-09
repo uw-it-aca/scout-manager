@@ -1,6 +1,7 @@
 // sass variables
 
-$base: #16a085;
+$base: #6564A8;
+
 $asphault: #34495e;
 $asbestos: #7f8c8d;
 $clouds: #ecf0f1;
@@ -15,7 +16,7 @@ body { margin: 0; background: $clouds !important; }
 
         a { text-decoration: none; color: $base;
             &:hover { text-decoration: none; }
-            span { color: $asphault; }
+            span { color: $asbestos; }
         }
 
     }

@@ -77,13 +77,6 @@
 <link href='//fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Roboto:400,500,700,900' rel='stylesheet' type='text/css'>
 
-{% if is_branded %}
-{% compress css %}
-<!-- brand css goes last -->
-<link rel="stylesheet" href="{% static 'scout_manager/css/brand.scss' %}" type="text/x-scss">
-{% endcompress %}
-{% endif %}
-
 <!-- javascript -->
 {% compress js %}
 <script async="async" src="{% static 'vendor/js/jquery-1.11.0.min.js' %}"></script>
