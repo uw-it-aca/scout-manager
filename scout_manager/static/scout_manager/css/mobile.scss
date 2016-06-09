@@ -89,3 +89,8 @@ $clouds: #ecf0f1;
 .mgr-footer { margin: 20px 10px;
     a { display: inline-block; margin-left: 5px; color: $base; text-decoration: underline; }
 }
+
+
+// bootstrap overrides
+
+legend { border: none; margin: 0 !important; font-family: 'Oswald',sans-serif; font-weight: 400; text-transform: uppercase; font-size: 14px; }

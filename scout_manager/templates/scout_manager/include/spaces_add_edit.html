@@ -99,62 +99,67 @@
 <fieldset class="clearfix">
     <legend>Location:</legend>
 
-    <div>
+    <div class="form-group">
+        <label for="space-campus" required>Campus:</label>
+        <select class="form-control" name="extended_info:campus">
+            <option disabled selected value>select a campus...</option>
+            <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
+            <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
+            <option value="south_lake_union" {% if spot.campus == "south_lake_union" %} selected {% endif %}>South Lake Union</option>
+            <option value="tacoma" {% if spot.campus == "tacoma" %} selected {% endif %}>Tacoma</option>
+        </select>
+    </div>
 
-        <div class="form-group">
-            <label for="space-campus" required>Campus:</label>
-            <select class="form-control" name="extended_info:campus">
-                <option disabled selected value>select a campus...</option>
-                <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
-                <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
-                <option value="south_lake_union" {% if spot.campus == "south_lake_union" %} selected {% endif %}>South Lake Union</option>
-                <option value="tacoma" {% if spot.campus == "tacoma" %} selected {% endif %}>Tacoma</option>
-            </select>
-        </div>
+    <div class="form-group">
+        <label for="space-latitude">Latitude:</label>
+        <input class="form-control" name="location:latitude" id="space_latitude" type="text" value="{% if spot.latitude %}{{ spot.latitude }}{% endif %}" required />
+    </div>
 
-        <div class="form-group">
-            <label for="space-latitude">Latitude:</label>
-            <input class="form-control" name="location:latitude" id="space_latitude" type="text" value="{% if spot.latitude %}{{ spot.latitude }}{% endif %}" required />
-        </div>
+    <div class="form-group">
+        <label for="space-longitude">Longitude:</label>
+        <input class="form-control" name="location:longitude" id="space_longitude" type="text" value="{% if spot.longitude %}{{ spot.longitude }}{% endif %}" required />
+    </div>
 
-        <div class="form-group">
-            <label for="space-longitude">Longitude:</label>
-            <input class="form-control" name="location:longitude" id="space_longitude" type="text" value="{% if spot.longitude %}{{ spot.longitude }}{% endif %}" required />
-        </div>
-
-        {# How are we determining this? #}
+    {# How are we determining this? #}
+    <div class="checkbox">
         <label class="dummy"><input type="checkbox" value="Outdoor" disabled>Outdoor location</label>
+    </div>
 
-        <!-- Hide if outdoor location. We suggest/enforce building options. -->
-        <label for="building-name">Building:
-            <select name="location:building_name">
-                <option disabled selected value>select a building...</option>
-                {% for building in buildings %}
-                <option value="{{ building }}" {% if spot.building_name == building %} selected {% endif %}>{{ building }}</option>
-                {% endfor %}
-            </select>
-        </label>
+    <!-- Hide if outdoor location. We suggest/enforce building options. -->
+    <div class="form-group">
+        <label for="building-name">Building:</label>
+        <select class="form-control" name="location:building_name">
+            <option disabled selected value>select a building...</option>
+            {% for building in buildings %}
+            <option value="{{ building }}" {% if spot.building_name == building %} selected {% endif %}>{{ building }}</option>
+            {% endfor %}
+        </select>
+    </div>
 
-        <!-- Hide if outdoor location. We suggest floor options. -->
-        <label for="floor">Floor:
-            <input id="floor" name="location:floor" type="text" value="{% if spot.floor %}{{ spot.floor }}{% endif %}">
-        </label>
 
-        <!-- Hide if outdoor location -->
-        <label for="room-number">Room #:
-            <input id="room-number" name="location:room_number" type="text" value="{% if spot.room_number %}{{ spot.room_number }}{% endif %}">
-        </label>
+    <!-- Hide if outdoor location. We suggest floor options. -->
+    <div class="form-group">
+        <label for="floor">Floor:</label>
+        <input class="form-control" id="floor" name="location:floor" type="text" value="{% if spot.floor %}{{ spot.floor }}{% endif %}">
+    </div>
 
-        {# How are we determining this? #}
+    <!-- Hide if outdoor location -->
+    <div class="form-group">
+        <label for="room-number">Room #:</label>
+        <input class="form-control" id="room-number" name="location:room_number" type="text" value="{% if spot.room_number %}{{ spot.room_number }}{% endif %}">
+    </div>
+
+    {# How are we determining this? #}
+    <div class="checkbox">
         <label class="dummy"><input type="checkbox" value="ADA" disabled>ADA Accessible</label>
     </div>
-    <div>
-        <label for="space-latitude">
-            Location chooser:
-            <div style="border: solid 1px #c8c8c8; border-radius:3px; height:500px; margin: 8px 0;" id="gmap_chooser">Google Maps here</div>
-            <p>If new, click on map to drop a pin on the location of your space and drag marker for precise positioning.</p>
-            <p>If edit, drag the marker to the desired location of the space.</p>
-        </label>
+
+
+    <div class="form-group">
+        <label for="space-latitude">Location chooser:</label>
+        <div style="border: solid 1px #c8c8c8; border-radius:3px; height:500px; margin: 8px 0;" id="gmap_chooser">Google Maps here</div>
+        <p class="help-block">If new, click on map to drop a pin on the location of your space and drag marker for precise positioning.</p>
+        <p class="help-block">If edit, drag the marker to the desired location of the space.</p>
     </div>
 
 </fieldset>
