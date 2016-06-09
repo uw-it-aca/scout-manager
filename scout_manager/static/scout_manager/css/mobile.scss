@@ -60,7 +60,7 @@ $clouds: #ecf0f1;
 
         .mgr-dataset-actions {
 
-            form { display: inline-block; }
+            .btn { margin-right: 5px; }
             button {
                 span { display: none; color: $asbestos; }
             }

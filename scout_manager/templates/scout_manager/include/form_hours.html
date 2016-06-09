@@ -16,9 +16,7 @@
                     <input class="form-control" type="time" name="" value="{{ period.end_time|time:"H:i" }}" />
                 </div>
             </div>
-
             {% empty %}
-            no hours.. add some?
             <div class="form-inline">
                 <div class="form-group">
                     <label for="">Open:</label>
@@ -33,7 +31,7 @@
         </div>
 
         <div class="mgr-dataset-actions">
-            <button type="button" value="clear hours" title="clear hours" class="btn btn-default btn-sm mgr-clear-hours"><i class="fa fa-eraser"></i> <span>Clean hours</span></button>
+            <button type="button" value="clear hours" title="clear hours" class="btn btn-default btn-sm mgr-clear-hours"><i class="fa fa-eraser"></i> <span>Clear hours</span></button>
             <button type="button" value="add hours" title="add hours" class="btn btn-default btn-sm mgr-add-hours"><i class="fa fa-plus"></i> <span>Add hours</span></button>
         </div>
 

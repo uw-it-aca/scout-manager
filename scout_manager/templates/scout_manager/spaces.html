@@ -29,8 +29,6 @@
         {% for spot in spots %}
         <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">
 
-            <div style="line-height:30px;"><a href="/manager/spaces/{{ spot.spot_id }}/">Edit</a></div>
-
             <div class="clearfix">
 
                 <div style="float:left; width:110px; margin-bottom:1em;">
@@ -71,7 +69,8 @@
             -->
 
             <div class="mgr-dataset-actions">
-            <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <span>DELETE</span></button>
+                <a class="btn btn-default btn-sm" href="/manager/spaces/{{ spot.spot_id }}/"><i class="fa fa-pencil"></i> <span>Edit</span></a>
+                <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <span>Delete</span></button>
             </div>
 
         </li>
