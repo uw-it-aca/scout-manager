@@ -26,8 +26,19 @@
 </div>
 
 <div>
-    <p>Status: <span>{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED <a href="/detail/{{ spot.spot_id }}" target="_blank">preview in client</a>{% endif %}</span></p>
+    <p>Status: <span>{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED{% endif %}</span></p>
     <p>Unpublish?:&nbsp;<input type="checkbox" name="extended_info:is_hidden"{% if spot.is_hidden %} checked{% endif %}></input></p>
+</div>
+
+<div class="mgr-dataset-actions">
+    {% if spot.is_hidden %}
+    <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-eye"></i> <span>Publish</span></button>
+    {% else %}
+    <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-eye-slash"></i> <span>Unpublish</span></button>
+    <a class="btn btn-default btn-sm" href="/detail/{{ spot.spot_id }}" target="_blank"><i class="fa fa-hand-o-right"></i> <span>Preview</span></a>
+    {% endif %}
+
+    <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
 </div>
 
 <hr>
