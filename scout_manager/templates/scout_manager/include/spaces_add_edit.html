@@ -15,7 +15,7 @@
 
 <div class="form-group">
     <label for="space-name">Name:</label>
-    <input type="text" class="form-control" id="space-name" value="{% if spot.name %}{{ spot.name }}{% endif %}" required="required" />
+    <input type="text" class="form-control" name="name" id="space-name" value="{% if spot.name %}{{ spot.name }}{% endif %}" required="required" />
     <input type="hidden" name="id" value="{{ spot.spot_id }}" />
     <input type="hidden" name="etag" value="{{ spot.etag }}" />
 </div>
