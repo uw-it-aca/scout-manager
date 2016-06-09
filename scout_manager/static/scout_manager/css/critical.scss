@@ -1,4 +1,4 @@
-// default variables
+// sass variables
 
 $base: #16a085;
 $asphault: #34495e;
@@ -6,6 +6,8 @@ $asbestos: #7f8c8d;
 $clouds: #ecf0f1;
 
 body { margin: 0; background: $clouds !important; }
+
+// header
 
 .mgr-header { background: #fff; border-top: solid 10px $base; border-bottom: solid 1px #d0d1d5; height: 76px; position: relative; text-transform: uppercase; font-family: 'Oswald', sans-serif;
 
@@ -23,15 +25,11 @@ body { margin: 0; background: $clouds !important; }
 
 }
 
+// content
+
 .mgr-content { margin: 0; background: #fff;
 
-    .mgr-content-inner { padding: 10px;
-
-        .mgr-search-bar {  background: $clouds; margin: -10px; padding: 10px; margin-bottom: 0;
-            button { text-transform: uppercase; font-family: 'Oswald', sans-serif; font-weight: 400; }
-        }
-
-    }
+    .mgr-content-inner { padding: 10px; }
 
     h2 {  font-family: 'Oswald', sans-serif; text-transform: uppercase; font-weight: 400; font-size: 20px; position: relative; color: $asphault;
         span { position: absolute; right: 0; font-size: 14px; font-weight: 300; }
@@ -39,11 +37,11 @@ body { margin: 0; background: $clouds !important; }
 
     h3 { text-transform: uppercase; font-family: 'Oswald', sans-serif; font-weight: 400; font-size: 16px; color: $asbestos;}
 
-    .mgr-new-query-textarea { resize: vertical; }
 
 }
 
 // flexbox
+
 .flex-container {
     display: flex;
     flex-flow: row wrap;
@@ -55,30 +53,3 @@ body { margin: 0; background: $clouds !important; }
 }
 
 .flex-item:first-child { margin-right: 10px;}
-
-
-
-
-// accessibility & helper classes
-
-.clearfix:after { // aka clearfix hack
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.hidden {
-    display:none;
-    visibility:hidden;
-}
-
-.visually-hidden { /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/
-    position: absolute !important;
-    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-    clip: rect(1px, 1px, 1px, 1px);
-    padding:0 !important;
-    border:0 !important;
-    height: 1px !important;
-    width: 1px !important;
-    overflow: hidden;
-}
