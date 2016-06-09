@@ -1,8 +1,6 @@
 // sass variables
 
 $base: #6564A8;
-
-$asphault: #34495e;
 $asbestos: #7f8c8d;
 $clouds: #ecf0f1;
 
@@ -31,7 +29,7 @@ body { margin: 0; background: $clouds !important; }
 
     .mgr-content-inner { padding: 10px; }
 
-    h2 {  font-family: 'Oswald', sans-serif; text-transform: uppercase; font-weight: 400; font-size: 20px; position: relative; color: $asphault;
+    h2 {  font-family: 'Oswald', sans-serif; text-transform: uppercase; font-weight: 400; font-size: 20px; position: relative; color: $asbestos;
         span { position: absolute; right: 0; font-size: 14px; font-weight: 300; }
     }
 
