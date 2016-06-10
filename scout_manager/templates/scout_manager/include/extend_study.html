@@ -1,69 +1,122 @@
 <!--  if "study" app_type -->
 <h3>Study Extended Info</h3>
 
-<fieldset class="scope">
+<fieldset>
     <legend>Spot types</legend>
     <div id="food_spot_types">
+
+        <div class="checkbox scope">
         <label><input type="checkbox" value="xxxxx">Study room</label>
-        <label><input type="checkbox" value="xxxxx">Study area</label>
-        <label><input type="checkbox" value="xxxxx">Computer lab</label>
-        <label><input type="checkbox" value="xxxxx">Production studio</label>
-        <label><input type="checkbox" value="xxxxx">Conference/classroom</label>
-        <label><input type="checkbox" value="xxxxx">Open space</label>
-        <label><input type="checkbox" value="xxxxx">Lounge</label>
-        <label><input type="checkbox" value="xxxxx">Cafe</label>
-        <label><input type="checkbox" value="xxxxx">Outdoor area</label>
+        </div>
+        <div class="checkbox scope">
+            <label><input type="checkbox" value="xxxxx">Study area</label>
+        </div>
+        <div class="checkbox scope">
+            <label><input type="checkbox" value="xxxxx">Computer lab</label>
+        </div>
+        <div class="checkbox scope">
+            <label><input type="checkbox" value="xxxxx">Production studio</label>
+        </div>
+        <div class="checkbox scope">
+            <label><input type="checkbox" value="xxxxx">Conference/classroom</label>
+        </div>
+        <div class="checkbox scope">
+            <label><input type="checkbox" value="xxxxx">Open space</label>
+        </div>
+        <div class="checkbox scope">
+            <label><input type="checkbox" value="xxxxx">Lounge</label>
+        </div>
+        <div class="checkbox scope">
+            <label><input type="checkbox" value="xxxxx">Cafe</label>
+        </div>
+        <div class="checkbox scope">
+            <label><input type="checkbox" value="xxxxx">Outdoor area</label>
+        </div>
+
     </div>
 </fieldset>
 
 <!-- if computer_lab -->
-<label for="computer-count" class="scope"># of computers
-    <input type="number" id="computer-count">
-</label>
 
-<label for="capacity" class="scope">Capacity
-    <input type="number" id="capacity">
-</label>
+<div class="form-group">
+    <label for="computer-count" class="scope"># of computers</label>
+    <input class="form-control" type="number" id="computer-count">
+</div>
 
-<fieldset class="scope">
+<div class="form-group">
+    <label for="capacity" class="scope">Capacity</label>
+    <input class="form-control" type="number" id="capacity">
+</div>
+
+<fieldset>
     <legend>Has Resources:</legend>
-    <label><input type="checkbox" value="computer">Computer</label>
-    <label><input type="checkbox" value="display">Large Display (for laptop)</label>
-    <label><input type="checkbox" value="outlets">Outlets</label>
-    <label><input type="checkbox" value="printing">Printing</label>
-    <label><input type="checkbox" value="projector">Projector</label>
-    <label><input type="checkbox" value="scanning">Scanning</label>
-    <label><input type="checkbox" value="whiteboard">Whiteboard</label>
+
+    <div class="checkbox scope">
+        <label><input type="checkbox" value="computer">Computer</label>
+    </div>
+    <div class="checkbox scope">
+        <label><input type="checkbox" value="display">Large Display (for laptop)</label>
+    </div>
+    <div class="checkbox scope">
+        <label><input type="checkbox" value="outlets">Outlets</label>
+    </div>
+    <div class="checkbox scope">
+        <label><input type="checkbox" value="printing">Printing</label>
+    </div>
+    <div class="checkbox scope">
+        <label><input type="checkbox" value="projector">Projector</label>
+    </div>
+    <div class="checkbox scope">
+        <label><input type="checkbox" value="scanning">Scanning</label>
+    </div>
+    <div class="checkbox scope">
+        <label><input type="checkbox" value="whiteboard">Whiteboard</label>
+    </div>
+
 </fieldset>
 
-<fieldset class="scope">
-    <legend>Lighting</legend>
-    <label>
-        <input type="checkbox" name="lighting" value="natural">Has Natural Light</label>
-</fieldset>
+<div class="checkbox scope">
+    <label><input type="checkbox" name="lighting" value="natural">Has Natural Light</label>
+</div>
 
-<fieldset class="scope">
+<fieldset>
     <legend>Noise Level</legend>
-    <label><input type="radio" name="noise" value="noise_level1">noise_level 1 (Silent)</label>
-    <label><input type="radio" name="noise" value="noise_level2">noise_level 2 (Low hum)</label>
-    <label><input type="radio" name="noise" value="noise_level3">noise_level 3 (Chatter)</label>
+    <div class="radio scope">
+        <label><input type="radio" name="noise" value="noise_level1">noise_level 1 (Silent)</label>
+    </div>
+    <div class="radio scope">
+        <label><input type="radio" name="noise" value="noise_level2">noise_level 2 (Low hum)</label>
+    </div>
+    <div class="radio scope">
+        <label><input type="radio" name="noise" value="noise_level3">noise_level 3 (Chatter)</label>
+    </div>
 </fieldset>
 
-<fieldset class="scope">
+<fieldset>
     <legend>Labstats</legend>
-    <label for="has-labstats">Labstats integration URL
-        <input id="has-labstats" type="url">
-    </label>
-    <label for="labstats-id">Labstats ID:
-        <input id="labstats-id" type="text">
-    </label>
+
+    <div class="form-group scope">
+        <label for="has-labstats">Labstats integration URL</label>
+        <input class="form-control" id="has-labstats" type="url">
+    </div>
+
+    <div class="form-group scope">
+        <label for="labstats-id">Labstats ID:</label>
+        <input class="form-control" id="labstats-id" type="text">
+    </div>
+
 </fieldset>
 
-<fieldset class="scope">
+<fieldset>
     <legend>Reservations</legend>
-    <label for="has-reservations-study">
-        <input id="has-reservations-study" type="checkbox">Can Reserve Space</label>
-    <label for="reservation-notes-study">Reservation Notes:
-        <textarea id="reservation-notes-study"></textarea>
-    </label>
+
+    <div class="checkbox scope">
+        <label for="has-reservations-study"><input id="has-reservations-study" type="checkbox">Can Reserve Space</label>
+    </div>
+
+    <div class="form-group scope">
+        <label for="reservation-notes-study">Reservation Notes:</label>
+        <textarea rows="4" class="form-control" id="reservation-notes-study"></textarea>
+    </div>
+
 </fieldset>
