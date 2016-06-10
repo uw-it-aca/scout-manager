@@ -54,11 +54,7 @@ $clouds: #ecf0f1;
 
         hr { height: 0; margin: 3em -10px 2em -10px; border: 0; border-top: 1px solid darken($clouds, 5%); }
 
-        .well { margin: 15px 0;  background: #fff; border-color: #eee;
-            p {  margin: 0; line-height: 50px; text-align: center; }
-        }
-
-        .mgr-dataset-actions {
+        .mgr-dataset-actions { margin-top: 1em;
 
             .btn { margin-right: 5px; }
             button {
@@ -93,7 +89,12 @@ $clouds: #ecf0f1;
 
 // bootstrap overrides
 
-legend { border: none; margin: 0 !important; margin-bottom: 5px; font-weight: 700; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+legend { border: none; margin-bottom: 5px; font-weight: 700; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 14px;
     line-height: 1.42857143;
     color: #333; }
+
+
+.form-inline {
+    .form-group { margin-right: 5px; }
+}

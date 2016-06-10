@@ -1,7 +1,8 @@
 <h3>Hours and Access</h3>
 
 {% for day_hours in spot.grouped_hours %}
-<fieldset class="mgr-hours" data-day="{{ day_hours.day }}" style="margin-bottom:1em;">
+<div class="well well-sm">
+<fieldset class="mgr-hours" data-day="{{ day_hours.day }}">
     <legend>{{ day_hours.day|capfirst }}:</legend>
 
         <div class="mgr-current-hours">
@@ -36,14 +37,14 @@
         </div>
 
 </fieldset>
-
+</div>
 {% endfor %}
 
 <div class="form-group">
     <label for="hours-notes">Hours Notes/Exceptions:</label>
-    <textarea class="form-control" id="hours-notes"name="extended_info:hours_notes">{% if spot.hours_notes %}{{spot.hours_notes}}{% endif %}</textarea>
+    <textarea class="form-control" rows="4" id="hours-notes"name="extended_info:hours_notes">{% if spot.hours_notes %}{{spot.hours_notes}}{% endif %}</textarea>
 </div>
 <div class="form-group">
     <label for="access-notes">Access Notes:</label>
-    <textarea class="form-control" id="access-notes"name="extended_info:access_notes">{% if spot.access_notes %}{{spot.access_notes}}{% endif %}</textarea>
+    <textarea class="form-control" rows="4" id="access-notes"name="extended_info:access_notes">{% if spot.access_notes %}{{spot.access_notes}}{% endif %}</textarea>
 </div>
