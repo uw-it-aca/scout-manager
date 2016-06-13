@@ -1,14 +1,19 @@
+{% extends "scout_manager/base.html" %}
 {% load staticfiles %}
 
-<h2>Items you manage</h2>
-<div>
+{% block title %}Items{% endblock %}
 
-    <div>Total: <span class="dummy">Total # of items in items list</span></div>
+{% block web_content %}
 
-    <div>
-        <button type="button">Download CSV of listed Items</button>
+<div class="mgr-content-header clearfix">
+
+    <h2 class="pull-left">Items</h2>
+
+    <div class="pull-right">
+    Total: <span class="dummy">{{ count }}xxxx</span>
     </div>
-    <div><a href="/manager/items/add/">Add New Item</a></div>
+
+</div>
 
     <ol>
         <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">
@@ -33,4 +38,5 @@
         <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
     </ol>
 
-</div>
+
+{% endblock %}
