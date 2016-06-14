@@ -86,27 +86,8 @@
     </div>
 {% endif %}
 
-
-
-<h3>Images</h3>
-
-<div class="form-group">
-    <label>Image input:</label>
-    <input type="file" name="" accept="image/*" id="mgr_upload_image">
-</div>
-
-<strong>Preview images:</strong>
-
-<ul id="mgr_list_spot_images">
-    {% for image in spot.images %}
-     <li class="well">
-         <img src="/images/{{ spot.spot_id }}/image/{{ image.image_id }}?width=100">
-         <label for="study-default-image-1" class="scope"><input type="radio" name="default-study-img" id="study-default-image-1" />default</label>
-         <input type="button" value="Delete image" class="mgr-delete-image" />
-     </li>
-    {% endfor %}
-</ul>
-<p id="mgr_list_spot_empty" class="help-block">Image list is empty! Add some images.</p>
+<!-- include the images form -->
+{% include "scout_manager/include/form_images.html" %}
 
 <h3>Location</h3>
 
