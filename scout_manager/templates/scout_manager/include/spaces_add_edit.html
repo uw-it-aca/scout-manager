@@ -187,6 +187,8 @@
 <!-- include the hour and access form -->
 {% include "scout_manager/include/form_hours.html" %}
 
+<hr/>
+
 <h3>Administration</h3>
 
 <div class="form-group">
@@ -210,62 +212,35 @@
 </div>
 
 
-<!--
-<h3>Item Integration</h3>
+<hr/>
 
-<fieldset>
-    <legend>Items</legend>
-    <p><a href="/manager/items/add/">Add New Item</a></p>
-    <p>Total: <span class="dummy">Total # of items in items list</span></p>
-    <ol>
-        <li>
-            <div><a href="/manager/items/601234">Edit</a></div>
-            <div>Name: <span class="dummy">item.name</span></div>
-            <div>Type:<span class="dummy">item_type.name</span></div>
-            <div>Category:<span class="dummy">item_category.name</span></div>
-            <div>Brand:<span class="dummy">item.brand</span></div>
-            <div>Model:<span class="dummy">item.model</span></div>
-            <div>Quantity:<span class="dummy">item.quantity</span></div>
-            <div>STF Funded: <span class="dummy">Yes</span></div>
-            <div>
-                <input type="button" value="Delete item" class="dummy"></input>
-            </div>
-        </li>
-        <li>
-            <div><a href="/manager/items/475786">Edit</a></div>
-            <div>Name: <span class="dummy">item.name</span></div>
-            <div>Type:<span class="dummy">item_type.name</span></div>
-            <div>Category:<span class="dummy">item_category.name</span></div>
-            <div>Brand:<span class="dummy">item.brand</span></div>
-            <div>Model:<span class="dummy">item.model</span></div>
-            <div>Quantity:<span class="dummy">item.quantity</span></div>
-            <div>STF Funded: <span class="dummy">Yes</span></div>
-            <div>
-                <input type="button" value="Delete item" class="dummy"></input>
-            </div>
-        </li>
-    </ol>
-</fieldset>
+<!-- if space has items -->
 
-    <div class="dummy" style="margin-bottom:2em;">
-        <input type="submit" value="Save Changes" />
-        <input type="button" value="Cancel" />
+<h3>Space Item(s)</h3>
+
+<p><a class="scope" href="/manager/items/add/">Add New Item to this space</a></p>
+<p>Total: <span class="dummy">Total # of items in items list</span></p>
+<ol>
+<li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">
+    <div>Image:<span class="dummy">item.default_image</span></div>
+    <div>Name: <span class="dummy">item.name</span></div>
+    <div>Type:<span class="dummy">item_type.name</span></div>
+    <div>Category:<span class="dummy">item_category.name</span></div>
+    <div>Brand:<span class="dummy">item.brand</span></div>
+    <div>Model:<span class="dummy">item.model</span></div>
+    <div>Quantity:<span class="dummy">item.quantity</span></div>
+    <div>Space item is in:<span class="dummy">space.name</span></div>
+    <div>Building item is in:<span class="dummy">building.name</span></div>
+    <div>STF Funded: <span class="dummy">Yes</span></div>
+
+    <div class="mgr-dataset-actions">
+        <a class="btn btn-default btn-sm dummy" href="/detail/{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View</span></a>
+        <a class="btn btn-default btn-sm" href="/manager/items/5555/"><i class="fa fa-pencil"></i> <span>Edit</span></a>
+        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
     </div>
 
-    <div class="dummy" style="margin-bottom:2em;">
-        <input type="button" value="Download CSV of Space"></input>
-    </div>
-
-    <div class="dummy">
-        <input type="button" value="Delete Space"></input>
-    </div>
-
-
-<h3>Incomplete items</h3>
-<p>You must complete </p>
-<ul class="dummy">
-    <li>Invalid field name 1</li>
-    <li>Invalid field name 2</li>
-</ul>
-
--->
+</li>
+<li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
+<li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
+<li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
+</ol>
