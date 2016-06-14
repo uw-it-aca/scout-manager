@@ -1,243 +1,240 @@
-<h3>General Information</h3>
-<label for="item-name">Name:
-    <input id="item-name" type="text" required>
-</label>
 
-<label for="item-quantity">Quantity:
-    <input id="item-quantity" type="number" required>
-</label>
+<div class="clearfix">
+    <h2 class="pull-left">{% if item.name %}{{ item.name }}{% else %}Add New Item{% endif %}</h2>
+    <div class="pull-right">
+        {{ item.etag }}&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" value="Save Changes" style="display:inline-block;"></input>
+    </div>
+</div>
+
+<h3>General Information</h3>
+
+<div class="form-group">
+    <label for="item-name">Name:</label>
+    <input id="item-name" class="form-control" type="text" required>
+</div>
+
+<div class="form-group">
+    <label for="item-name">Brand:</label>
+    <input id="item-brand" class="form-control" type="text" required>
+</div>
+
+<div class="form-group">
+    <label for="item-name">Model:</label>
+    <input id="item-model" class="form-control" type="text" required>
+</div>
+
+<div class="form-group">
+    <label for="item-quantity">Quantity:</label>
+    <input id="item-quantity" class="form-control" type="number" required>
+</div>
 
 {# How are we determining this? #}
-<label>
-    <input type="checkbox" value="STF">STF Funded</label>
+<div class="checkbox">
+    <label><input type="checkbox" value="STF">STF Funded</label>
+</div>
 
-<h3>Location:</h3>
+<div class="mgr-dataset-actions">
+    <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+</div>
 
-<fieldset>
-    <legend>Item location</legend>
-
-    <p>Total: {{ count }}</p>
-
-    <label for="space-campus" required>Space:
-        <select id="item-category" multiple required style="height:300px;">
-            <option disabled selected value>select a space...</option>
-
-            {% for spot in spots %}
-            <option>{{spot.name}}</option>
-            {% endfor %}
-
-        </select>
-    </label>
-
-</fieldset>
-
-<h3>Current Alert</h3>
-<label for="alert-notes">Post this Alert:
-    <textarea id="alert-notes" type="text"></textarea>
-</label>
-
+<hr/>
 
 <h3>Item Description</h3>
 
-<label for="item-category">Category of Item:
+<div class="form-group">
+    <label for="item-category">Category of Item:</label>
     <!-- list of ACA predefined categories -->
-    <select id="item-category" required>
+    <select class="form-control" id="item-category" required>
         <option disabled selected value>select a category...</option>
         <option>Prototyping</option>
         <option>Defined Category 2</option>
         <option>...</option>
     </select>
-</label>
+</div>
 
-<label for="item-type">Type of Item:
-    <input id="item-type" type="text" list="item-type-list" required>
+<div class="form-group">
+    <label for="item-type">Item Type:</label>
+    <input class="form-control" id="item-type" list="item-type-list" required>
     <!-- list of predefined types, based on selected category. -->
     <datalist id="item-type-list">
         <option>3D printer</option>
         <option>Defined Type 2</option>
         <option>...</option>
     </datalist>
-</label>
-
-<label for="item-description">Description:
-    <textarea id="item-description" type="text"></textarea>
-</label>
-
-<label for="item_info_website">Website for item info:
-    <input id="item_info_website" type="url">
-</label>
+</div>
 
 
+<div class="form-group">
+    <label for="item-description">Description:</label>
+    <textarea rows="4" class="form-control" id="item-description" type="text"></textarea>
+</div>
 
-<fieldset class="dummy">
-
-    <legend>Images</legend>
-    <label>Choose: <input type="file" name="" accept="image/*">
-        <input type="button" value="Upload image"></input>
-    </label>
-
-    <p>Uploaded images:</p>
-    <ul>
-        <li class="dummy">
-            <span><a href="#" target="_blank" title="preview image">Image 1 URL</a></span>
-            <label for="default-image-1">
-                <input type="radio" name="default" id="default-image-1">default</label>
-            <input type="button" value="Delete image"></input>
-        </li>
-        <li class="dummy">
-            <span><a href="#" target="_blank" title="preview image">Image 2 URL</a></span>
-            <label for="default-image-2">
-                <input type="radio" name="default" id="default-image-2">default</label>
-            <input type="button" value="Delete image"></input>
-        </li>
-    </ul>
-</fieldset>
-
-<fieldset class="dummy">
-    <legend>Serial numbers</legend>
-
-    <label for="item-serial">Serial Number(s):
-        <input id="item-serial" type="text">
-        <p>Note: separate multiple serial numbers with a comma.</p>
-    </label>
+<div class="form-group">
+    <label for="item_info_website">Website for item info:</label>
+    <input class="form-control" id="item_info_website" type="url">
+</div>
 
 
-    <label for="item-UWtag">UW Tag Number(s):
-        <input id="item-UWtag" type="text">
-        <p>Note: separate multiple UW Tag numbers with a comma.</p>
-    </label>
+<h3>Location</h3>
 
-</fieldset>
+<div class="form-group">
+    <label for="space-campus" required>Space:</label>
+    <select class="form-control" id="item-category" multiple required style="height:300px;">
+        <option disabled selected value>select a space...</option>
+
+        {% for spot in spots %}
+        <option>{{spot.name}}</option>
+        {% endfor %}
+
+    </select>
+</div>
+
+
+<h3>Current Alert</h3>
+
+<div class="checkbox">
+    <label><input name="extended_info:has_alert" type="checkbox" value="has_alert" {% if item.has_alert %}checked{% endif %}>Alert Enabled</label>
+</div>
+
+<div class="form-group">
+    <label for="alert-notes">Post this Alert message:</label>
+    <textarea class="form-control" rows="4" id="alert-notes" name="extended_info:alert_notes" type="text" value="{% if item.alert_notes %}{{ item.alert_notes }}{% endif %}"></textarea>
+</div>
+
+
+<h3>Images</h3>
+<p>images include here</p>
+
+
+<h3>Serial numbers</h3>
+
+<div class="form-group">
+    <label for="item-serial">Serial Number(s):</label>
+    <input class="form-control" id="item-serial" type="text">
+    <p>Note: separate multiple serial numbers with a comma.</p>
+</div>
+
+<div class="form-group">
+    <label for="item-UWtag">UW Tag Number(s):</label>
+    <input class="form-control" id="item-UWtag" type="text">
+    <p>Note: separate multiple UW Tag numbers with a comma.</p>
+</div>
+
 
 <h3>Access Restrictions</h3>
 <fieldset>
     <legend>Prerequisites?</legend>
-    <label>
-        <input type="radio" name="prereqs" value="yes">Yes</label>
-    <label>
-        <input type="radio" name="prereqs" value="no" checked>No</label>
 
-    <!-- if YES -->
-    <label for="prereq-notes">Notes:
-        <textarea id="prereq-notes" type="text"></textarea>
-    </label>
+    <div class="checkbox">
+        <label for=""><input id="" type="checkbox">Has Prerequisites?</label>
+    </div>
+
+    <div class="form-group">
+        <label for="">Prerequisites Notes:</label>
+        <textarea rows="4" class="form-control" id=""></textarea>
+    </div>
 
 </fieldset>
+
 <fieldset>
     <legend>Reservable?</legend>
-    <label>
-        <input type="radio" name="item-reservability" value="yes">Yes</label>
-    <label>
-        <input type="radio" name="item-reservability" value="no" checked>No</label>
 
-    <!-- if YES -->
-    <label for="reservation-notes">Notes:
-        <textarea id="reservation-notes" type="text"></textarea>
-    </label>
+    <div class="checkbox">
+        <label for=""><input id="" type="checkbox">Is Reservable?</label>
+    </div>
 
-</fieldset>
-<fieldset>
-    <legend>Item Access</legend>
-    <fieldset>
-        <!-- Selection determines which access fieldsets are shown below -->
-        <legend>Available to general public?</legend>
-        <label>
-            <input type="radio" name="item-access-limit" value="yes" checked>Yes</label>
-        <label>
-            <input type="radio" name="item-access-limit" value="no">No</label>
-    </fieldset>
-
-    <!-- If NO, show this fieldset. Selection here determines which access fieldsets are shown below. -->
-    <fieldset>
-        <legend>Access limited to:</legend>
-
-        <label>
-            <input type="checkbox" value="access_netid">UW NetID</label>
-        <label>
-            <input type="checkbox" value="access_role">Specific role (student/staff/faculty)</label>
-        <label>
-            <input type="checkbox" value="access_school">Specific School affiliation</label>
-        <label>
-            <input type="checkbox" value="access_dept">Specific Department affiliation</label>
-
-        <fieldset>
-            <!-- If ROLE selected, show this fieldset.  -->
-            <legend>Select role(s)</legend>
-            <label>
-                <input type="checkbox" value="access_student">Students</label>
-            <label>
-                <input type="checkbox" value="access_faculty">Staff</label>
-            <label>
-                <input type="checkbox" value="access_staff">Faculty</label>
-        </fieldset>
-
-        <label for="">School:
-            <!-- If SCHOOL AFFILIATION selected, show this div.  -->
-            <select multiple>
-                <option disabled selected value>choose school...</option>
-                <option>UW School 1</option>
-                <option>UW School 2</option>
-                <option>...</option>
-            </select>
-        </label>
-
-        <label for="">Department
-            <!-- If DEPARTMENT AFFILIATION selected, show this div. If SCHOOL(s) chosen, then limit list to depts within school(s). -->
-            <select multiple>
-                <option disabled selected value>choose department...</option>
-                <option>UW Dept 1</option>
-                <option>UW Dept 2</option>
-                <option>...</option>
-            </select>
-        </label>
-
-    </fieldset>
-
-    <label for="access-notes">Access Notes:
-        <textarea id="access-notes" type="text"></textarea>
-    </label>
+    <div class="form-group">
+        <label for="">Reservation Notes:</label>
+        <textarea rows="4" class="form-control" id=""></textarea>
+    </div>
 
 </fieldset>
 
 
-<h3>Item Administration</h3>
-<fieldset>
-    <legend>Contact Info</legend>
-    <label for="manager-name">Manager Name:
-        <input id="manager-name" type="text">
-    </label>
-
-    <label for="phone">Phone:
-        <input id="phone" type="tel">
-    </label>
-
-    <label for="email">Email:
-        <input id="email" type="email">
-    </label>
-
-</fieldset>
-
-<h3>Item Actions</h3>
-
-<div>
-
-    <div style="margin-bottom:2em;">
-        <input type="button" value="Download CSV of Item"></input>
-    </div>
-
-    <div style="margin-bottom:2em;">
-        <input type="button" value="Delete Item"></input>
-    </div>
-
-    <div style="margin-bottom:2em;">
-        <input type="submit" value="Save Changes" />
-        <input type="button" value="Cancel" />
-    </div>
+<div class="checkbox">
+    <label><input id="" type="checkbox">Available to general public?</label>
 </div>
 
-<h3>Incomplete items</h3>
-<p>You must complete </p>
-<ul class="dummy">
-    <li>Invalid field name 1</li>
-    <li>Invalid field name 2</li>
-</ul>
+<!-- If NO, show this fieldset. Selection here determines which access fieldsets are shown below. -->
+<fieldset>
+    <legend>Access limited to:</legend>
+
+    <div class="checkbox">
+        <label><input type="checkbox" value="access_netid">UW NetID</label>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" value="access_role">Specific role (student/staff/faculty)</label>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" value="access_school">Specific School affiliation</label>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" value="access_dept">Specific Department affiliation</label>
+    </div>
+</fieldset>
+
+<fieldset>
+    <!-- If ROLE selected, show this fieldset.  -->
+    <legend>Select role(s)</legend>
+
+    <div class="checkbox">
+        <label><input type="checkbox" value="access_student">Students</label>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" value="access_faculty">Staff</label>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" value="access_staff">Faculty</label>
+    </div>
+</fieldset>
+
+<div class="form-group">
+    <label for="">School:</label>
+    <!-- If SCHOOL AFFILIATION selected, show this div.  -->
+    <select class="form-control" multiple>
+        <option disabled selected value>choose school...</option>
+        <option>UW School 1</option>
+        <option>UW School 2</option>
+        <option>...</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="">Department</label>
+    <!-- If DEPARTMENT AFFILIATION selected, show this div. If SCHOOL(s) chosen, then limit list to depts within school(s). -->
+    <select class="form-control" multiple>
+        <option disabled selected value>choose department...</option>
+        <option>UW Dept 1</option>
+        <option>UW Dept 2</option>
+        <option>...</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="access-notes">Access Notes:</label>
+    <textarea rows="4" class="form-control" id="access-notes" type="text"></textarea>
+</div>
+
+<hr/>
+
+<h3>Administration</h3>
+
+<div class="form-group">
+    <label for="owner">Owner/Admin Group:</label>
+    <input class="form-control" id="owner" name="extended_info:owner" type="text" value="{% if item.owner %}{{ item.owner }}{% endif %}">
+</div>
+
+<div class="form-group">
+    <label for="manager-name">Manager Name:</label>
+    <input class="form-control" id="manager-name" name="manager" type="text" value="{% if item.manager %}{{ item.manager }}{% endif %}">
+</div>
+
+<div class="form-group">
+    <label for="email" class="">Email:</label>
+    <input class="form-control" id="email" type="email" value="{% if item.email %}{{ item.email }}{% endif %}">
+</div>
+
+<div class="form-group">
+    <label for="phone" class="">Phone:</label>
+    <input class="form-control" id="phone" name="phone" type="tel" value="{% if item.phone %}{{ item.phone }}{% endif %}">
+</div>
