@@ -101,10 +101,8 @@
     <textarea class="form-control" rows="4" id="alert-notes" name="extended_info:alert_notes" type="text" value="{% if item.alert_notes %}{{ item.alert_notes }}{% endif %}"></textarea>
 </div>
 
-
-<h3>Images</h3>
-<p>images include here</p>
-
+<!-- include the images form -->
+{% include "scout_manager/include/form_images.html" %}
 
 <h3>Serial numbers</h3>
 
