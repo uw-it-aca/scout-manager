@@ -9,7 +9,7 @@
 
 <ul id="mgr_list_spot_images">
     {% for image in spot.images %}
-     <li>
+     <li class="well">
          <img src="/images/{{ spot.spot_id }}/image/{{ image.image_id }}?width=100">
          <label for="study-default-image-1" class="scope"><input type="radio" name="default-study-img" id="study-default-image-1" />default</label>
          <input type="button" value="Delete image" class="mgr-delete-image" />

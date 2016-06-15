@@ -50,7 +50,7 @@ var Forms = {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
-                $('#mgr_list_spot_images').append('<li><img src="' + e.target.result +'" style="width:100px;"><label for="" class="scope"><input type="radio" name="" id="" />default</label><input type="button" value="Delete image" class="mgr-delete-image" /></li>');
+                $('#mgr_list_spot_images').append('<li class="well"><img src="' + e.target.result +'" style="width:100px;"><label for="" class="scope"><input type="radio" name="" id="" />default</label><input type="button" value="Delete image" class="mgr-delete-image" /></li>');
                 Forms.image_check_count();
             }
             reader.readAsDataURL(input.files[0]);

@@ -1,36 +1,44 @@
+{% extends "scout_manager/base.html" %}
 {% load staticfiles %}
 
-<h2>Items you manage</h2>
-<div>
+{% block title %}Items{% endblock %}
 
-    <div>Total: <span class="dummy">Total # of items in items list</span></div>
+{% block web_content %}
 
-    <div>
-        <button type="button">Download CSV of listed Items</button>
+<div class="mgr-content-header clearfix">
+
+    <h2 class="pull-left">Items</h2>
+
+    <div class="pull-right">
+    Total: <span class="dummy">{{ count }}xxxx</span>
     </div>
-    <div><a href="/manager/items/add/">Add New Item</a></div>
-
-    <ol>
-        <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">
-            <div class="dummy"><a href="/manager/items/5555/">Edit</a></div>
-            <div>Image:<span class="dummy">item.default_image</span></div>
-            <div>Name: <span class="dummy">item.name</span></div>
-            <div>Building item is in:<span class="dummy">space.building_name</span></div>
-            <div>Type:<span class="dummy">item_type.name</span></div>
-            <div>Category:<span class="dummy">item_category.name</span></div>
-            <div>Brand:<span class="dummy">item.brand</span></div>
-            <div>Model:<span class="dummy">item.model</span></div>
-            <div>Quantity:<span class="dummy">item.quantity</span></div>
-            <div>Space item is in:<span class="dummy">space.name</span></div>
-            <div><span>If space published: <a href="/detail/{{ spot.spot_id }}">view in client</a></span></div>
-            <div>STF Funded: <span class="dummy">Yes</span></div>
-            <div>
-                <button type="button">Delete Item</button>
-            </div>
-        </li>
-        <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
-        <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
-        <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
-    </ol>
 
 </div>
+
+<ol>
+    <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">
+        <div>Image:<span class="dummy">item.default_image</span></div>
+        <div>Name: <span class="dummy">item.name</span></div>
+        <div>Type:<span class="dummy">item_type.name</span></div>
+        <div>Category:<span class="dummy">item_category.name</span></div>
+        <div>Brand:<span class="dummy">item.brand</span></div>
+        <div>Model:<span class="dummy">item.model</span></div>
+        <div>Quantity:<span class="dummy">item.quantity</span></div>
+        <div>Space item is in:<span class="dummy">space.name</span></div>
+        <div>Building item is in:<span class="dummy">building.name</span></div>
+        <div>STF Funded: <span class="dummy">Yes</span></div>
+
+        <div class="mgr-dataset-actions">
+            <a class="btn btn-default btn-sm dummy" href="/detail/{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View</span></a>
+            <a class="btn btn-default btn-sm" href="/manager/items/5555/"><i class="fa fa-pencil"></i> <span>Edit</span></a>
+            <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+        </div>
+
+    </li>
+    <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
+    <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
+    <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
+</ol>
+
+
+{% endblock %}
