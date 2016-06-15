@@ -1,6 +1,7 @@
 <!--  if "food" app_type -->
 <h3>Food Extended Info</h3>
 
+
 <fieldset>
     <legend>Spot types</legend>
     <div id="food_spot_types">
@@ -60,15 +61,6 @@
 
 </fieldset>
 
-<div class="form-group">
-    <label for="website">Website URL:</label>
-    <input class="form-control" id="website" name="extended_info:s_website_url" type="url" value="{% if spot.website_url %}{{spot.website_url}}{% endif %}" />
-</div>
-<div class="form-group">
-    <label for="menu-url">Menu URL:</label>
-    <input class="form-control" id="menu-url" name="extended_info:s_menu_url" type="url" value="{% if spot.menu_url %}{{spot.menu_url}}{% endif %}" />
-</div>
-
 <fieldset>
     <legend>Food served</legend>
     <div id="food_select">
@@ -125,6 +117,37 @@
     </div>
 </fieldset>
 
+<fieldset>
+    <legend>Payment Type</legend>
+
+    <div class="checkbox">
+        <label><input type="checkbox" name="extended_info:s_pay" {% if "Cash" in spot.payment_names %} checked {% endif %} value="s_pay_cash">Cash</label>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" name="extended_info:s_pay" {% if "Husky Card" in spot.payment_names %} checked {% endif %} value="s_pay_husky">Husky Card</label>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" name="extended_info:s_pay" {% if "Dining Account" in spot.payment_names %} checked {% endif %} value="s_pay_dining">Dining Card</label>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" name="extended_info:s_pay" {% if "Visa" in spot.payment_names %} checked {% endif %} value="s_pay_visa">Visa</label>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" name="extended_info:s_pay" {% if "Mastercard" in spot.payment_names %} checked {% endif %} value="s_pay_mastercard">Mastercard</label>
+    </div>
+
+</fieldset>
+
+
+
+<div class="form-group">
+    <label for="website">Website URL:</label>
+    <input class="form-control" id="website" name="extended_info:s_website_url" type="url" value="{% if spot.website_url %}{{spot.website_url}}{% endif %}" />
+</div>
+<div class="form-group">
+    <label for="menu-url">Menu URL:</label>
+    <input class="form-control" id="menu-url" name="extended_info:s_menu_url" type="url" value="{% if spot.menu_url %}{{spot.menu_url}}{% endif %}" />
+</div>
 
 <div class="form-group">
     <label for="coupon-url">Coupon URL:</label>
@@ -146,27 +169,6 @@
         <label for="reservation-notes-food">Reservation Notes:</label>
         <textarea rows="4" class="form-control" id="reservation-notes-food" name="extended_info:s_reservation_notes">{% if spot.reservation_notes %}{{spot.reservation_notes}}{% endif %}</textarea>
         <p class="help-block">Note: Reservation notes will only be displayed to clients IF the "Accepts Reservations" checkbox is checked.</p>
-    </div>
-
-</fieldset>
-
-<fieldset>
-    <legend>Payment Type</legend>
-
-    <div class="checkbox">
-        <label><input type="checkbox" name="extended_info:s_pay" {% if "Cash" in spot.payment_names %} checked {% endif %} value="s_pay_cash">Cash</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" name="extended_info:s_pay" {% if "Husky Card" in spot.payment_names %} checked {% endif %} value="s_pay_husky">Husky Card</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" name="extended_info:s_pay" {% if "Dining Account" in spot.payment_names %} checked {% endif %} value="s_pay_dining">Dining Card</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" name="extended_info:s_pay" {% if "Visa" in spot.payment_names %} checked {% endif %} value="s_pay_visa">Visa</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" name="extended_info:s_pay" {% if "Mastercard" in spot.payment_names %} checked {% endif %} value="s_pay_mastercard">Mastercard</label>
     </div>
 
 </fieldset>
