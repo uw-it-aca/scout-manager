@@ -22,7 +22,7 @@
     <div class="pull-right">
         {{ spot.etag }}&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" value="Save Changes" style="display:inline-block;"></input>
     </div>
-    
+
 </div>
 
 <h3 class="sr-only">General Info</h3>
@@ -56,26 +56,24 @@
 </div>
 {% endif %}
 
-<hr>
-
-<fieldset>
+<fieldset style="margin-top:1em;">
     <legend>Type: (required)</legend>
     {% if spot.app_type == "food" %}
-        <div class="radio">
-            <label><input type="radio" name="extended_info:app_type" required value="food" checked>Food</label>
+        <div class="radio disabled">
+            <label><input type="radio" name="extended_info:app_type" required value="food" checked disabled>Food</label>
         </div>
         <div class="radio disabled">
             <label><input type="radio" name="extended_info:app_type" required value="study" disabled>Study</label>
         </div>
-        <small class="text-muted">Please contact ADMINS if you need to change this space's app_type</small>
+        <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
     {% elif spot.app_type == "study" %}
         <div class="radio disabled">
             <label><input type="radio" name="extended_info:app_type" required value="food" disabled>Food</label>
         </div>
-        <div class="radio">
-            <label><input type="radio" name="extended_info:app_type" required value="study" checked>Study</label>
+        <div class="radio disabled">
+            <label><input type="radio" name="extended_info:app_type" required value="study" checked disabled>Study</label>
         </div>
-        <small class="texty-muted">Please contact ADMINS if you need to change this space's app_type</small>
+        <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
     {% else %}
         <div id="add_new_extended_info">
             <div class="radio">
@@ -87,6 +85,8 @@
         </div>
     {% endif %}
 </fieldset>
+
+<hr>
 
 {% if spot.app_type == "food" %}
     {% include "scout_manager/include/extend_food.html" %}
@@ -101,8 +101,12 @@
     </div>
 {% endif %}
 
+<hr/>
+
 <!-- include the images form -->
 {% include "scout_manager/include/form_images.html" %}
+
+<hr/>
 
 <h3>Location</h3>
 
@@ -168,6 +172,7 @@
     <p class="help-block">{% if spot.name %}Drag the marker to the desired location of the space.{% else %}Click on map to drop a pin on the location of your space and drag marker for precise positioning.{% endif %}</p>
 </div>
 
+<hr/>
 
 <h3>Current Alert</h3> {# we need to set has_alert too to show it #}
 
@@ -180,6 +185,8 @@
     <textarea class="form-control" rows="4" id="alert-notes" name="extended_info:alert_notes" type="text" value="{% if spot.alert_notes %}{{ spot.alert_notes }}{% endif %}"></textarea>
     <p class="help-block">Note: Alert message will only be displayed to clients IF the "Alert Enabled" checkbox is checked.</p>
 </div>
+
+<hr/>
 
 <!-- include the hour and access form -->
 {% include "scout_manager/include/form_hours.html" %}
