@@ -7,13 +7,15 @@
 
 <strong>Preview images:</strong>
 
-<ul id="mgr_list_spot_images">
+<div id="mgr_list_spot_images" class="row">
     {% for image in spot.images %}
-     <li class="well">
+     <div class="col-md-2">
+         <div class="well" style="height:200px;">
          <img src="/images/{{ spot.spot_id }}/image/{{ image.image_id }}?width=100">
          <label for="study-default-image-1" class="scope"><input type="radio" name="default-study-img" id="study-default-image-1" />default</label>
          <input type="button" value="Delete image" class="mgr-delete-image" />
-     </li>
+        </div>
+    </div>
     {% endfor %}
-</ul>
+</div>
 <p id="mgr_list_spot_empty" class="help-block">Image list is empty! Add some images.</p>
