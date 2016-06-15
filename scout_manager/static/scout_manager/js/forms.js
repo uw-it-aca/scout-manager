@@ -4,7 +4,6 @@ var Forms = {
 
         Forms.hours_clear();
         Forms.hours_add();
-        Forms.image_upload();
         Forms.image_delete();
         Forms.image_check_count();
         Forms.toggle_extended_info();
@@ -31,14 +30,6 @@ var Forms = {
 
     // image handling functions
 
-    image_upload: function(){
-
-        // upload image
-        //$("#mgr_upload_image").change(function(){
-        //    // add image to list of images list
-        //    Forms.image_add(this);
-        //});
-    },
 
     image_add: function(input) {
 
@@ -57,6 +48,12 @@ var Forms = {
 
         // remove image from list to be uploaded
         $('#mgr_list_spot_images').on('click', '.mgr-delete-image', function() {
+            var image_id = $(this).siblings("img").first().attr("data-id");
+            if(window.removed_images !== undefined){
+                window.removed_images.push(image_id);
+            } else {
+                window.removed_images = [image_id];
+            }
             $(this).parent("li").remove();
             Forms.image_check_count();
         });

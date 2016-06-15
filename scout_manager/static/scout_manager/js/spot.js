@@ -63,6 +63,7 @@ var Spot = {
         var form = $("form").first();
         var serialized_form = form.serializeObject();
         serialized_form["available_hours"] = Spot._get_spot_hours();
+        serialized_form["removed_images"] = window.removed_images;
         return serialized_form;
 
     },

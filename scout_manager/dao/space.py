@@ -65,30 +65,32 @@ def get_spot_hours_by_day(spot):
     return hours_objects
 
 
-def update_spot(data, spot_id):
+def update_spot(form_data, spot_id, image=None):
+    json_data = json.loads(form_data['json'])
+
     # handles case where single box is checked doesn't return a list
-    if isinstance(data["type"], unicode):
-        data["type"] = [data["type"]]
+    if isinstance(json_data["type"], unicode):
+        json_data["type"] = [json_data["type"]]
     # formats extended info
     extended_info = {}
 
-    cuisines = data.pop("extended_info:s_cuisine", [])
+    cuisines = json_data.pop("extended_info:s_cuisine", [])
     for cuisine in cuisines:
         extended_info[cuisine] = True
 
-    foods = data.pop("extended_info:s_food", [])
+    foods = json_data.pop("extended_info:s_food", [])
     for food in foods:
         extended_info[food] = True
 
-    payments = data.pop("extended_info:s_pay", [])
+    payments = json_data.pop("extended_info:s_pay", [])
     for payment in payments:
         extended_info[payment] = True
 
-    for key in list(data):
+    for key in list(json_data):
         if "extended_info" in key:
-            value = data[key]
+            value = json_data[key]
             name = key.split(":")[1]
-            data.pop(key)
+            json_data.pop(key)
             if value != "None" and len(value) > 0:
                 if value == "true":
                     extended_info[name] = True
@@ -100,20 +102,20 @@ def update_spot(data, spot_id):
 
     # formats location data
     location_data = {}
-    for key in list(data):
+    for key in list(json_data):
         if "location" in key:
             name = key.split(":")[1]
-            location_data[name] = data[key]
-            data.pop(key)
+            location_data[name] = json_data[key]
+            json_data.pop(key)
 
     try:
-        phone = data.pop("phone")
+        phone = json_data.pop("phone")
         extended_info["s_phone"] = phone
     except KeyError:
         pass
 
-    data["extended_info"] = extended_info
-    data["location"] = location_data
+    json_data["extended_info"] = extended_info
+    json_data["location"] = location_data
 
     spot_client = Spotseeker()
 
@@ -121,4 +123,11 @@ def update_spot(data, spot_id):
     # between a GET and PUT
     spot = get_spot_by_id(spot_id)
     etag = spot.etag
-    spot_client.put_spot(spot_id, json.dumps(data), etag)
+    spot_client.put_spot(spot_id, json.dumps(json_data), etag)
+
+    if 'removed_images' in json_data:
+        for img_id in json_data['removed_images']:
+            spot_client.delete_image(spot_id, img_id, etag)
+
+    if form_data['file'] is not None and form_data['file'] != "undefined":
+        spot_client.post_image(spot_id, form_data['file'])

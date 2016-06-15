@@ -4,8 +4,6 @@ from django.http import HttpResponse
 import json
 import re
 
-from spotseeker_restclient.spotseeker import Spotseeker
-
 
 class Spot(RESTDispatch):
     """
@@ -19,9 +17,7 @@ class Spot(RESTDispatch):
         # data = json.loads(request.body)
         form_data = process_form_data(request)
         # try:
-        # update_spot(json.loads(form_data['json']), spot_id)
-        sc = Spotseeker()
-        sc.post_image(spot_id, form_data['file'])
+        update_spot(form_data, spot_id)
         # except Exception as ex:
         #     return HttpResponse(json.dumps({'error': str(ex)}), status=400)
         return HttpResponse(json.dumps({'status': 'it works'}))
