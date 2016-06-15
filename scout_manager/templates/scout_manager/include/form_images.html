@@ -9,7 +9,7 @@
 
 <div id="mgr_list_spot_images" class="row">
     {% for image in spot.images %}
-     <div class="col-md-2">
+     <div class="col-md-4">
          <div class="well" style="height:200px;">
          <img src="/images/{{ spot.spot_id }}/image/{{ image.image_id }}?width=100">
          <label for="study-default-image-1" class="scope"><input type="radio" name="default-study-img" id="study-default-image-1" />default</label>

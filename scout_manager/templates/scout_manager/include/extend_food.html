@@ -42,7 +42,7 @@
 
     <fieldset class="col-md-2">
         <legend>Spot types</legend>
-        <div class="well well-sm" id="food_spot_types">
+        <div class="well" id="food_spot_types">
 
             <div class="checkbox">
                 <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafe" in type.name %} checked {% endif %}{% endfor %} value="cafe">Cafe</label>
@@ -68,7 +68,7 @@
 
     <fieldset class="col-md-2">
         <legend>Cuisine</legend>
-        <div class="well well-sm">
+        <div class="well">
 
             <div class="checkbox">
                 <label><input type="checkbox" name="extended_info:s_cuisine" {% if "American" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_american">American</label>
@@ -102,7 +102,7 @@
 
     <fieldset class="col-md-2">
         <legend>Food served</legend>
-        <div class="well well-sm" id="food_select">
+        <div class="well" id="food_select">
 
             <div class="checkbox">
                 <label><input type="checkbox" name="extended_info:s_food" {% if "Burgers" in spot.foodtype_names %} checked {% endif %} value="s_food_burgers">Burgers</label>
@@ -158,7 +158,7 @@
 
     <fieldset class="col-md-2">
         <legend>Payment Type</legend>
-        <div class="well well-sm">
+        <div class="well">
 
             <div class="checkbox">
                 <label><input type="checkbox" name="extended_info:s_pay" {% if "Cash" in spot.payment_names %} checked {% endif %} value="s_pay_cash">Cash</label>

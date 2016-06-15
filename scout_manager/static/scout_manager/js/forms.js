@@ -35,7 +35,8 @@ var Forms = {
     },
 
     hours_grouping_clearfix: function(){
-        $("<div class='clearfix'></div>").insertBefore(".mgr-hours-group .col-md-2:last");
+        $("<div class='clearfix'></div>").insertBefore(".mgr-hours-group .col-md-4:nth-child(4)");
+        $("<div class='clearfix'></div>").insertBefore(".mgr-hours-group .col-md-4:last");
     },
 
     // image handling functions
@@ -55,7 +56,7 @@ var Forms = {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
-                $('#mgr_list_spot_images').append('<div class="col-md-2"><div class="well" style="height:200px;"><img src="' + e.target.result +'" style="width:100px;"><label for="" class="scope"><input type="radio" name="" id="" />default</label><input type="button" value="Delete image" class="mgr-delete-image" /></div></div>');
+                $('#mgr_list_spot_images').append('<div class="col-md-4"><div class="well" style="height:200px;"><img src="' + e.target.result +'" style="width:100px;"><label for="" class="scope"><input type="radio" name="" id="" />default</label><input type="button" value="Delete image" class="mgr-delete-image" /></div></div>');
                 Forms.image_check_count();
             }
             reader.readAsDataURL(input.files[0]);
