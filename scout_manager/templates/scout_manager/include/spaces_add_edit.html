@@ -4,10 +4,25 @@
 <div class="alert hidden" role="alert" id="pub_error"></div>
 
 <div class="clearfix">
-    <h2 class="pull-left">{% if spot.name %}{{ spot.name }}{% else %}Add New Space{% endif %}</h2>
+
+    <h2 class="pull-left">
+        <span class="fa-stack fa-lg" style="position:relative; margin-top:-3px;">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            {% if spot.app_type == "food" %}
+            <i class="fa fa-cutlery fa-stack-1x fa-inverse"></i>
+            {% elif spot.app_type == "study" %}
+            <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+            {% else %}
+            <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
+            {% endif %}
+        </span>
+        {% if spot.name %}{{ spot.name }}{% else %}Add New Space{% endif %}
+    </h2>
+
     <div class="pull-right">
         {{ spot.etag }}&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" value="Save Changes" style="display:inline-block;"></input>
     </div>
+    
 </div>
 
 <h3 class="sr-only">General Info</h3>
