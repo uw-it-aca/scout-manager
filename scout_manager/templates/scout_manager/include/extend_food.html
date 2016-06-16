@@ -1,10 +1,39 @@
+<hr/>
 
 <div class="row">
 
     <!--  if "food" app_type -->
     <h3 class="col-md-12">Food Extended Info</h3>
 
+
     <div class="col-md-4">
+
+        <fieldset>
+            <legend>Spot types</legend>
+            <div class="well" id="food_spot_types">
+
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafe" in type.name %} checked {% endif %}{% endfor %} value="cafe">Cafe</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "food_court" in type.name %} checked {% endif %}{% endfor %} value="food_court">Food Court</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "food_truck" in type.name %} checked {% endif %}{% endfor %} value="food_truck">Food Truck</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "market" in type.name %} checked {% endif %}{% endfor %} value="market">Market</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "restaurant" in type.name %} checked {% endif %}{% endfor %} value="restaurant">Restaurant</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafeteria" in type.name %} checked {% endif %}{% endfor %} value="cafeteria">Cafeteria</label>
+                </div>
+
+            </div>
+        </fieldset>
+
         <div class="form-group">
             <label for="website">Website URL:</label>
             <input class="form-control" id="website" name="extended_info:s_website_url" type="url" value="{% if spot.website_url %}{{spot.website_url}}{% endif %}" />
@@ -24,83 +53,19 @@
         </div>
 
         <fieldset>
-            <legend>Reservations</legend>
-
+            <legend>Reservation notes:</legend>
             <div class="checkbox">
                 <label for="has-reservations-food"><input id="has-reservations-food" name="extended_info:s_has_reservation"type="checkbox" value="true" {% if spot.has_reservation %}checked{% endif%} />Accepts Reservations</label>
             </div>
-
             <div class="form-group">
-                <label for="reservation-notes-food">Reservation Notes:</label>
                 <textarea rows="4" class="form-control" id="reservation-notes-food" name="extended_info:s_reservation_notes">{% if spot.reservation_notes %}{{spot.reservation_notes}}{% endif %}</textarea>
                 <p class="help-block">Note: Reservation notes will only be displayed to clients IF the "Accepts Reservations" checkbox is checked.</p>
             </div>
-
         </fieldset>
 
     </div>
 
-    <fieldset class="col-md-2">
-        <legend>Spot types</legend>
-        <div class="well" id="food_spot_types">
-
-            <div class="checkbox">
-                <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafe" in type.name %} checked {% endif %}{% endfor %} value="cafe">Cafe</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "food_court" in type.name %} checked {% endif %}{% endfor %} value="food_court">Food Court</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "food_truck" in type.name %} checked {% endif %}{% endfor %} value="food_truck">Food Truck</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "market" in type.name %} checked {% endif %}{% endfor %} value="market">Market</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "restaurant" in type.name %} checked {% endif %}{% endfor %} value="restaurant">Restaurant</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafeteria" in type.name %} checked {% endif %}{% endfor %} value="cafeteria">Cafeteria</label>
-            </div>
-
-        </div>
-    </fieldset>
-
-    <fieldset class="col-md-2">
-        <legend>Cuisine</legend>
-        <div class="well">
-
-            <div class="checkbox">
-                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "American" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_american">American</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "BBQ" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_bbq">BBQ</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Chinese" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_chinese">Chinese</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Hawaiian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_hawaiian">Hawaiian</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Indian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_indian">Indian</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Italian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_italian">Italian</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Korean" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_korean">Korean</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Mexian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_mexican">Mexican</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Vietnamese" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_vietnamese">Vietnamese</label>
-            </div>
-        </div>
-    </fieldset>
-
-    <fieldset class="col-md-2">
+    <fieldset class="col-md-4">
         <legend>Food served</legend>
         <div class="well" id="food_select">
 
@@ -156,7 +121,41 @@
         </div>
     </fieldset>
 
-    <fieldset class="col-md-2">
+    <fieldset class="col-md-4">
+        <legend>Cuisine</legend>
+        <div class="well">
+
+            <div class="checkbox">
+                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "American" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_american">American</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "BBQ" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_bbq">BBQ</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Chinese" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_chinese">Chinese</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Hawaiian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_hawaiian">Hawaiian</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Indian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_indian">Indian</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Italian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_italian">Italian</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Korean" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_korean">Korean</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Mexian" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_mexican">Mexican</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" name="extended_info:s_cuisine" {% if "Vietnamese" in spot.cuisinetype_names %} checked {% endif %} value="s_cuisine_vietnamese">Vietnamese</label>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="col-md-4">
         <legend>Payment Type</legend>
         <div class="well">
 
@@ -179,3 +178,5 @@
     </fieldset>
 
 </div>
+
+<hr/>
