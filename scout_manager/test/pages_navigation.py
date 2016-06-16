@@ -55,62 +55,62 @@ class NavigationTests(TestCase):
 
     def test_food_page_to_space(self):
         """Assert that food page has a link to edit space page"""
-        page = self.makeSoup(baseSpaceUrl + "?app_type=food")
+        page = self.makeSoup(foodUrl)
         self.assertTrue(self.checkLinkExists(page, editUrl))
 
     def test_food_page_to_study_page(self):
         """Assert that food page has a link to study spaces page"""
-        page = self.makeSoup(baseSpaceUrl + "?app_type=food")
-        self.assertTrue(self.checkLinkExists(page, studyUrl)
+        page = self.makeSoup(foodUrl)
+        self.assertTrue(self.checkLinkExists(page, studyUrl))
 
     def test_food_page_to_add(self):
         """Assert that food page has a link to add space page"""
-        page = self.makeSoup(baseSpaceUrl + "?app_type=food")
+        page = self.makeSoup(foodUrl)
         self.assertTrue(self.checkLinkExists(page, addUrl))
 
     def test_add_page_to_main(self):
         """Assert that the add page has a link to main page"""
-        page = self.makeSoup(baseSpaceUrl + 'add/')
+        page = self.makeSoup(addUrl)
         self.assertTrue(self.checkLinkExists(page, baseUrl))
 
     def test_add_page_to_food_page(self):
         """Assert that the add page has a link to food page"""
-        page = self.makeSoup(baseSpaceUrl + 'add/')
+        page = self.makeSoup(addUrl)
         self.assertTrue(self.checkLinkExists(page, foodUrl))
 
     def test_add_page_to_study_page(self):
         """Assert that the add page has a link to study page"""
-        page = self.makeSoup(baseSpaceUrl + 'add/')
+        page = self.makeSoup(addUrl)
         self.assertTrue(self.checkLinkExists(page, studyUrl))
 
     def test_study_page_to_main(self):
         """Assert that the add page has a link to main page"""
-        page = self.makeSoup(baseSpaceUrl + 'add/')
+        page = self.makeSoup(studyUrl)
         self.assertTrue(self.checkLinkExists(page, baseUrl))
 
     def test_study_page_to_food_page(self):
         """Assert that the add page has a link to food page"""
-        page = self.makeSoup(baseSpaceUrl + 'add/')
+        page = self.makeSoup(studyUrl)
         self.assertTrue(self.checkLinkExists(page, foodUrl))
 
     def test_study_page_to_add_page(self):
         """Assert that the add page has a link to add page"""
-        page = self.makeSoup(baseSpaceUrl + 'add/')
+        page = self.makeSoup(studyUrl)
         self.assertTrue(self.checkLinkExists(page, addUrl))
 
     def test_edit_page_to_main(self):
         """Assert that the edit page has a link to main page"""
-        page = self.makeSoup(baseSpaceUrl + '1/')
+        page = self.makeSoup(editUrl)
         self.assertTrue(self.checkLinkExists(page, baseUrl))
 
     def test_edit_page_to_food_page(self):
         """Assert that the edit page has a link to food page"""
-        page = self.makeSoup(baseSpaceUrl + '1/')
+        page = self.makeSoup(editUrl)
         self.assertTrue(self.checkLinkExists(page, foodUrl))
 
     def test_edit_page_to_study_page(self):
         """Assert that the edit page has a link to study page"""
-        page = self.makeSoup(baseSpaceUrl + '1/')
+        page = self.makeSoup(editUrl)
         self.assertTrue(self.checkLinkExists(page, studyUrl))
 
     def check_footer_links(self, url):
