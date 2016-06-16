@@ -6,7 +6,7 @@ from django.test import TestCase
 from django.test.utils import override_settings
 
 baseUrl = '/manager/'
-baseSpacesUrl = baseUrl + 'spaces/'
+baseSpaceUrl = baseUrl + 'spaces/'
 DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
 
 
@@ -37,38 +37,60 @@ class NavigationTests(TestCase):
     def test_main_page_to_add(self):
         """Assert that main page has a link to add page"""
         page = self.makeSoup(baseUrl)
-        self.assertTrue(self.checkLinkExists(page, baseSpacesUrl + 'add/'))
+        self.assertTrue(self.checkLinkExists(page, baseSpaceUrl + 'add/'))
 
     def test_main_page_to_food(self):
         """Assert that main page has a link to a list of food spaces"""
         page = self.makeSoup(baseUrl)
-        self.assertTrue(self.checkLinkExists(page, baseSpacesUrl + '?app_type=food'))
+        self.assertTrue(self.checkLinkExists(page, baseSpaceUrl + '?app_type=food'))
 
     """
     This hasn't been implemented yet...
     def test_main_page_to_study(self):
         # Assert that main page has a link to a list of study spaces
         page = self.makeSoup(baseUrl)
-        self.assertTrue(self.checkLinkExists(page, baseSpacesUrl + '?app_type=spaces'))
+        self.assertTrue(self.checkLinkExists(page, baseSpaceUrl + '?app_type=spaces'))
     """
 
     def test_food_page_to_space(self):
         """Assert that food page has a link to edit space page"""
-        page = self.makeSoup(baseSpacesUrl + "?app_type=food")
-        self.assertTrue(self.checkLinkExists(page, baseSpacesUrl + '1/'))
-
-    def test_main_page_to_email(self):
-        """Assert that the main page has a "help" email link"""
-        page = self.makeSoup(baseUrl)
-        self.assertTrue(self.checkLinkExists(page, 'mailto:help@uw.edu'))
+        page = self.makeSoup(baseSpaceUrl + "?app_type=food")
+        self.assertTrue(self.checkLinkExists(page, baseSpaceUrl + '1/'))
 
     def test_add_page_to_main(self):
         """Assert that the add page has a link to main page"""
-        page = self.makeSoup(baseSpacesUrl + 'add/')
+        page = self.makeSoup(baseSpaceUrl + 'add/')
         self.assertTrue(self.checkLinkExists(page, baseUrl))
 
     def test_edit_page_to_main(self):
         """Assert that the edit page has a link to main page"""
-        page = self.makeSoup(baseSpacesUrl + '1/')
+        page = self.makeSoup(baseSpaceUrl + '1/')
         self.assertTrue(self.checkLinkExists(page, baseUrl))
+
+    def check_footer_links(self, url):
+        """Given a URL checks if the Privacy/Terms links are present"""
+        page = self.makeSoup(url)
+        self.assertTrue(self.checkLinkExists(page, 'http://www.washington.edu/online/privacy/'))
+        self.assertTrue(self.checkLinkExists(page, 'http://www.washington.edu/online/terms/'))
+        self.assertTrue(self.checkLinkExists(page, 'mailto:help@uw.edu'))
+
+    def test_main_page_footer_links(self):
+        """Assert that the main page has footer links"""
+        self.check_footer_links(baseUrl)
+
+    def test_add_page_footer_links(self):
+        """Assert that the add page has footer links"""
+        self.check_footer_links(baseSpaceUrl + 'add/')
+
+    def test_food_page_footer_links(self):
+        """Assert that the food page has footer links"""
+        self.check_footer_links(baseSpaceUrl + '?app_type=food')
+
+    def test_study_page_footer_links(self):
+        """Assert that the space page has footer links"""
+        self.check_footer_links(baseSpaceUrl)
+
+    def test_edit_page_footer_links(self):
+        """Assert that the edit page has footer links"""
+        self.check_footer_links(baseSpaceUrl + '1/')
 
