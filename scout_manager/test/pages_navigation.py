@@ -6,7 +6,10 @@ from django.test import TestCase
 from django.test.utils import override_settings
 
 baseUrl = '/manager/'
-baseSpaceUrl = baseUrl + 'spaces/'
+studyUrl = baseUrl + 'spaces/'
+foodUrl = baseUrl + 'spaces/?app_type=food'
+addUrl = baseUrl + 'spaces/add/'
+
 DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
 
 
@@ -57,10 +60,30 @@ class NavigationTests(TestCase):
         page = self.makeSoup(baseSpaceUrl + "?app_type=food")
         self.assertTrue(self.checkLinkExists(page, baseSpaceUrl + '1/'))
 
+    def test_food_page_to_study_page(self):
+        """Assert that food page has a link to study spaces page"""
+        page = self.makeSoup(baseSpaceUrl + "?app_type=food")
+        self.assertTrue(self.checkLinkExists(page, baseSpaceUrl))
+
+    def test_food_page_to_add(self):
+        """Assert that food page has a link to add space page"""
+        page = self.makeSoup(baseSpaceUrl + "?app_type=food")
+        self.assertTrue(self.checkLinkExists(page, baseSpaceUrl + 'add/'))
+
     def test_add_page_to_main(self):
         """Assert that the add page has a link to main page"""
         page = self.makeSoup(baseSpaceUrl + 'add/')
         self.assertTrue(self.checkLinkExists(page, baseUrl))
+
+    def test_add_page_to_food_page(self):
+        """Assert that the add page has a link to food page"""
+        page = self.makeSoup(baseSpaceUrl + 'add/')
+        self.assertTrue(self.checkLinkExists(page, baseSpaceUrl + "?app_type=food"))
+
+    def test_add_page_to_study_page(self):
+        """Assert that the add page has a link to study page"""
+        page = self.makeSoup(baseSpaceUrl + 'add/')
+        self.assertTrue(self.checkLinkExists(page, baseSpaceUrl))
 
     def test_edit_page_to_main(self):
         """Assert that the edit page has a link to main page"""
