@@ -83,10 +83,35 @@ class NavigationTests(TestCase):
         page = self.makeSoup(baseSpaceUrl + 'add/')
         self.assertTrue(self.checkLinkExists(page, studyUrl))
 
+    def test_study_page_to_main(self):
+        """Assert that the add page has a link to main page"""
+        page = self.makeSoup(baseSpaceUrl + 'add/')
+        self.assertTrue(self.checkLinkExists(page, baseUrl))
+
+    def test_study_page_to_food_page(self):
+        """Assert that the add page has a link to food page"""
+        page = self.makeSoup(baseSpaceUrl + 'add/')
+        self.assertTrue(self.checkLinkExists(page, foodUrl))
+
+    def test_study_page_to_add_page(self):
+        """Assert that the add page has a link to add page"""
+        page = self.makeSoup(baseSpaceUrl + 'add/')
+        self.assertTrue(self.checkLinkExists(page, addUrl))
+
     def test_edit_page_to_main(self):
         """Assert that the edit page has a link to main page"""
         page = self.makeSoup(baseSpaceUrl + '1/')
         self.assertTrue(self.checkLinkExists(page, baseUrl))
+
+    def test_edit_page_to_food_page(self):
+        """Assert that the edit page has a link to food page"""
+        page = self.makeSoup(baseSpaceUrl + '1/')
+        self.assertTrue(self.checkLinkExists(page, foodUrl))
+
+    def test_edit_page_to_study_page(self):
+        """Assert that the edit page has a link to study page"""
+        page = self.makeSoup(baseSpaceUrl + '1/')
+        self.assertTrue(self.checkLinkExists(page, studyUrl))
 
     def check_footer_links(self, url):
         """Given a URL checks if the Privacy/Terms links are present"""
