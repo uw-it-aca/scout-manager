@@ -52,17 +52,6 @@
             <input class="form-control" id="coupon-date" name="extended_info:s_coupon_expiration" type="text" value="{% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% endif %}" placeholder="mm/dd/yyyy" />
         </div>
 
-        <fieldset>
-            <legend>Reservation notes:</legend>
-            <div class="checkbox">
-                <label for="has-reservations-food"><input id="has-reservations-food" name="extended_info:s_has_reservation"type="checkbox" value="true" {% if spot.has_reservation %}checked{% endif%} />Accepts Reservations</label>
-            </div>
-            <div class="form-group">
-                <textarea rows="4" class="form-control" id="reservation-notes-food" name="extended_info:s_reservation_notes">{% if spot.reservation_notes %}{{spot.reservation_notes}}{% endif %}</textarea>
-                <p class="help-block">Note: Reservation notes will only be displayed to clients IF the "Accepts Reservations" checkbox is checked.</p>
-            </div>
-        </fieldset>
-
     </div>
 
     <fieldset class="col-md-4">
@@ -174,6 +163,19 @@
             <div class="checkbox">
                 <label><input type="checkbox" name="extended_info:s_pay" {% if "Mastercard" in spot.payment_names %} checked {% endif %} value="s_pay_mastercard">Mastercard</label>
             </div>
+        </div>
+    </fieldset>
+
+    <div class="clearfix"></div>
+
+    <fieldset class="col-md-4">
+        <legend>Reservation notes:</legend>
+        <div class="checkbox">
+            <label for="has-reservations-food"><input id="has-reservations-food" name="extended_info:s_has_reservation"type="checkbox" value="true" {% if spot.has_reservation %}checked{% endif%} />Accepts Reservations</label>
+        </div>
+        <div class="form-group">
+            <textarea rows="4" class="form-control" id="reservation-notes-food" name="extended_info:s_reservation_notes">{% if spot.reservation_notes %}{{spot.reservation_notes}}{% endif %}</textarea>
+            <p class="help-block">Note: Reservation notes will only be displayed to clients IF the "Accepts Reservations" checkbox is checked.</p>
         </div>
     </fieldset>
 
