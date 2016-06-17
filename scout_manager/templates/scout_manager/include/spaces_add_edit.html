@@ -10,7 +10,7 @@
             <i class="fa fa-circle fa-stack-2x"></i>
             {% if spot.app_type == "food" %}
             <i class="fa fa-cutlery fa-stack-1x fa-inverse"></i>
-            {% elif spot.app_type == "study" or spot.app_type == None %}
+            {% elif spot.app_type == "study" %}
             <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
             {% else %}
             <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
@@ -57,7 +57,8 @@
 {% endif %}
 
 <fieldset style="margin-top:1em;">
-    <legend>Type: (required)</legend>
+    <legend>Type: <span style="color:green; font-weight:normal;">({{ spot.app_type }})</span></legend>
+
     {% if spot.app_type == "food" %}
         <div class="radio disabled">
             <label><input type="radio" name="extended_info:app_type" required value="food" checked disabled>Food</label>
@@ -66,7 +67,7 @@
             <label><input type="radio" name="extended_info:app_type" required value="study" disabled>Study</label>
         </div>
         <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
-    {% elif spot.app_type == "study" or spot.app_type == None %}
+    {% elif spot.app_type == "study" %}
         <div class="radio disabled">
             <label><input type="radio" name="extended_info:app_type" required value="food" disabled>Food</label>
         </div>
@@ -84,8 +85,8 @@
             </div>
         </div>
     {% endif %}
-</fieldset>
 
+</fieldset>
 
 {% if spot.app_type == "food" %}
     {% include "scout_manager/include/extend_food.html" %}
@@ -99,8 +100,6 @@
     {% include "scout_manager/include/extend_study.html" %}
     </div>
 {% endif %}
-
-
 
 <!-- include the images form -->
 {% include "scout_manager/include/form_images.html" %}
