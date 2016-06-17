@@ -1,161 +1,177 @@
 <hr/>
 
-<!--  if "study" app_type -->
-<h3>Study Extended Info</h3>
+<div class="row">
 
-<fieldset>
-    <legend>Spot types</legend>
-    <div id="food_spot_types">
+    <!--  if "study" app_type -->
+    <h3 class="col-md-12">Study Extended Info</h3>
 
-        <div class="checkbox scope">
-            <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "study_room" in type.name %} checked {% endif %}{% endfor %} value="study_room">Study room</label>
+    <div class="col-md-4">
+        <fieldset>
+            <legend>Spot types</legend>
+            <div class="well" id="food_spot_types">
+
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "study_room" in type.name %} checked {% endif %}{% endfor %} value="study_room">Study room</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "study_area" in type.name %} checked {% endif %}{% endfor %} value="study_area">Study area</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "computer_lab" in type.name %} checked {% endif %}{% endfor %} value="computer_lab">Computer lab</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "studio" in type.name %} checked {% endif %}{% endfor %} value="studio">Production studio</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "classroom" in type.name %} checked {% endif %}{% endfor %} value="classroom">Conference/classroom</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "open" in type.name %} checked {% endif %}{% endfor %} value="open">Open space</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "lounge" in type.name %} checked {% endif %}{% endfor %} value="lounge">Lounge</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafe" in type.name %} checked {% endif %}{% endfor %} value="cafe">Cafe</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "outdoor" in type.name %} checked {% endif %}{% endfor %} value="outdoor">Outdoor area</label>
+                </div>
+
+            </div>
+        </fieldset>
+
+        <div class="checkbox ">
+            <label><input type="checkbox" name="computers" {% if spot.computers %} checked {% endif %} value="computers">Has Computers</label>
         </div>
-        <div class="checkbox scope">
-            <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "study_area" in type.name %} checked {% endif %}{% endfor %} value="study_area">Study area</label>
+
+        <div class="form-group">
+            <label for="computer-count" class=""># of computers</label>
+            <input class="form-control" type="number" name="num_computers" id="computer-count" value="{% if spot.num_computers %}{{spot.num_computers}}{% endif %}">
         </div>
-        <div class="checkbox scope">
-            <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "computer_lab" in type.name %} checked {% endif %}{% endfor %} value="computer_lab">Computer lab</label>
+
+        <div class="form-group">
+            <label for="capacity" class="">Capacity</label>
+            <input class="form-control" type="number" name="capacity" id="capacity" value="{% if spot.capacity %}{{spot.capacity}}{% endif %}">
         </div>
-        <div class="checkbox scope">
-            <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "studio" in type.name %} checked {% endif %}{% endfor %} value="studio">Production studio</label>
+
+
+        <div class="checkbox ">
+            <label><input type="checkbox" name="lighting" {% if spot.natural_light %} checked {% endif %} value="natural">Has Natural Light</label>
         </div>
-        <div class="checkbox scope">
-            <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "classroom" in type.name %} checked {% endif %}{% endfor %} value="classroom">Conference/classroom</label>
-        </div>
-        <div class="checkbox scope">
-            <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "open" in type.name %} checked {% endif %}{% endfor %} value="open">Open space</label>
-        </div>
-        <div class="checkbox scope">
-            <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "lounge" in type.name %} checked {% endif %}{% endfor %} value="lounge">Lounge</label>
-        </div>
-        <div class="checkbox scope">
-            <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafe" in type.name %} checked {% endif %}{% endfor %} value="cafe">Cafe</label>
-        </div>
-        <div class="checkbox scope">
-            <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "outdoor" in type.name %} checked {% endif %}{% endfor %} value="outdoor">Outdoor area</label>
-        </div>
+
+        <fieldset>
+            <legend>Labstats</legend>
+
+            <div class="checkbox ">
+                <label><input type="checkbox" name="labstats" {% if spot.labstats %} checked {% endif %} value="labstats">Has Labstats</label>
+            </div>
+
+            <div class="form-group ">
+                <label for="labstats-id">Labstats ID:</label>
+                <input class="form-control" id="labstats-id" type="text" name="labstats_id" value="{% if spot.labstats_id %}{{spot.labstats_id}}{% endif %}">
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Reservations</legend>
+
+            <div class="checkbox ">
+                <label for="has-reservations-study"><input id="has-reservations-study" type="checkbox" name="reservable" {% if spot.reservable %}checked{% endif%}>Can Reserve Space</label>
+            </div>
+
+            <div class="form-group ">
+                <label for="reservation-notes-study">Reservation Notes:</label>
+                <textarea rows="4" class="form-control" id="reservation-notes-study" name="extended_info:reservation_notes">{% if spot.reservation_notes %}{{spot.reservation_notes}}{% endif %}</textarea>
+                <p class="help-block">Note: Reservation notes will only be displayed to clients IF the "Can Reserve Space" checkbox is checked.</p>
+            </div>
+
+        </fieldset>
+
 
     </div>
-</fieldset>
 
-<!-- if computer_lab -->
+    <fieldset class="col-md-4">
+        <legend>Has Resources:</legend>
+        <div class="well">
+            <div class="checkbox">
+                <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Computers" in resource %} checked {% endif %}{% endfor %} value="computer">Computer</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Display" in resource %} checked {% endif %}{% endfor %} value="display">Large Display (for laptop)</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Outlets" in resource %} checked {% endif %}{% endfor %} value="outlets">Outlets</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Printing" in resource %} checked {% endif %}{% endfor %} value="printing">Printing</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Projector" in resource %} checked {% endif %}{% endfor %} value="projector">Projector</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Scanning" in resource %} checked {% endif %}{% endfor %} value="scanning">Scanning</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Whiteboards" in resource %} checked {% endif %}{% endfor %} value="whiteboard">Whiteboard</label>
+            </div>
+        </div>
+    </fieldset>
 
-<div class="checkbox scope">
-    <label><input type="checkbox" name="computers" {% if spot.computers %} checked {% endif %} value="computers">Has Computers</label>
+    <div class="col-md-4">
+        <fieldset>
+            <legend>Noise Level</legend>
+            <div class="well">
+                <div class="radio">
+                    <label><input type="radio" name="noise" {% if spot.spot_noise == "silent" %} checked {% endif %} value="silent">Silent</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="noise" {% if spot.spot_noise == "quiet" %} checked {% endif %} value="quiet">Quiet</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="noise" {% if spot.spot_noise == "moderate" %} checked {% endif %} value="moderate">Chatter</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="noise" {% if spot.spot_noise == "variable" %} checked {% endif %} value="variable">Variable</label>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Food Nearby</legend>
+            <div class="well">
+                <div class="radio">
+                    <label><input type="radio" name="food_nearby" {% if spot.food_nearby == "space" %} checked {% endif %} value="space">Space</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="food_nearby" {% if spot.food_nearby == "neighboring" %} checked {% endif %} value="neighboring">Neighboring</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="food_nearby" {% if spot.food_nearby == "building" %} checked {% endif %} value="building">Building</label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="clearfix"></div>
+
+
+    <fieldset class="col-md-12">
+        <legend>Access Notes</legend>
+
+        <div class="checkbox">
+            <label for="has-access-rest-study"><input id="has-access-restr-study" type="checkbox" name="access_restrictions" {% if spot.access_restrictions %}checked{% endif%} value="access_restrictions">Has Access Restrictions</label>
+        </div>
+
+        <div class="form-group">
+            <label for="access-notes-study">Access Notes:</label>
+            <textarea rows="4" class="form-control" id="access-notes-study" name="extended_info:access_notes">{% if spot.access_notes %}{{spot.access_notes}}{% endif %}</textarea>
+            <p class="help-block">Note: Access notes will only be displayed to clients IF the "Has Access Restrictions" checkbox is checked.</p>
+        </div>
+
+    </fieldset>
+
 </div>
-
-<div class="form-group">
-    <label for="computer-count" class="scope"># of computers</label>
-    <input class="form-control" type="number" name="num_computers" id="computer-count" value="{% if spot.num_computers %}{{spot.num_computers}}{% endif %}">
-</div>
-
-<div class="form-group">
-    <label for="capacity" class="scope">Capacity</label>
-    <input class="form-control" type="number" name="capacity" id="capacity" value="{% if spot.capacity %}{{spot.capacity}}{% endif %}">
-</div>
-
-<fieldset>
-    <legend>Has Resources:</legend>
-
-    <div class="checkbox scope">
-        <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Computers" in resource %} checked {% endif %}{% endfor %} value="computer">Computer</label>
-    </div>
-    <div class="checkbox scope">
-        <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Display" in resource %} checked {% endif %}{% endfor %} value="display">Large Display (for laptop)</label>
-    </div>
-    <div class="checkbox scope">
-        <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Outlets" in resource %} checked {% endif %}{% endfor %} value="outlets">Outlets</label>
-    </div>
-    <div class="checkbox scope">
-        <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Printing" in resource %} checked {% endif %}{% endfor %} value="printing">Printing</label>
-    </div>
-    <div class="checkbox scope">
-        <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Projector" in resource %} checked {% endif %}{% endfor %} value="projector">Projector</label>
-    </div>
-    <div class="checkbox scope">
-        <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Scanning" in resource %} checked {% endif %}{% endfor %} value="scanning">Scanning</label>
-    </div>
-    <div class="checkbox scope">
-        <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Whiteboards" in resource %} checked {% endif %}{% endfor %} value="whiteboard">Whiteboard</label>
-    </div>
-
-</fieldset>
-
-<div class="checkbox scope">
-    <label><input type="checkbox" name="lighting" {% if spot.natural_light %} checked {% endif %} value="natural">Has Natural Light</label>
-</div>
-
-<fieldset>
-    <legend>Noise Level</legend>
-    <div class="radio scope">
-        <label><input type="radio" name="noise" {% if spot.spot_noise == "silent" %} checked {% endif %} value="silent">Silent</label>
-    </div>
-    <div class="radio scope">
-        <label><input type="radio" name="noise" {% if spot.spot_noise == "quiet" %} checked {% endif %} value="quiet">Quiet</label>
-    </div>
-    <div class="radio scope">
-        <label><input type="radio" name="noise" {% if spot.spot_noise == "moderate" %} checked {% endif %} value="moderate">Chatter</label>
-    </div>
-    <div class="radio scope">
-        <label><input type="radio" name="noise" {% if spot.spot_noise == "variable" %} checked {% endif %} value="variable">Variable</label>
-    </div>
-</fieldset>
-
-<fieldset>
-    <legend>Food Nearby</legend>
-    <div class="radio scope">
-        <label><input type="radio" name="food_nearby" {% if spot.food_nearby == "space" %} checked {% endif %} value="space">Space</label>
-    </div>
-    <div class="radio scope">
-        <label><input type="radio" name="food_nearby" {% if spot.food_nearby == "neighboring" %} checked {% endif %} value="neighboring">Neighboring</label>
-    </div>
-    <div class="radio scope">
-        <label><input type="radio" name="food_nearby" {% if spot.food_nearby == "building" %} checked {% endif %} value="building">Building</label>
-    </div>
-</fieldset>
-
-<fieldset>
-    <legend>Labstats</legend>
-
-    <div class="checkbox scope">
-        <label><input type="checkbox" name="labstats" {% if spot.labstats %} checked {% endif %} value="labstats">Has Labstats</label>
-    </div>
-
-    <div class="form-group scope">
-        <label for="labstats-id">Labstats ID:</label>
-        <input class="form-control" id="labstats-id" type="text" name="labstats_id" value="{% if spot.labstats_id %}{{spot.labstats_id}}{% endif %}">
-    </div>
-
-</fieldset>
-
-<fieldset>
-    <legend>Reservations</legend>
-
-    <div class="checkbox scope">
-        <label for="has-reservations-study"><input id="has-reservations-study" type="checkbox" name="reservable" {% if spot.reservable %}checked{% endif%}>Can Reserve Space</label>
-    </div>
-
-    <div class="form-group scope">
-        <label for="reservation-notes-study">Reservation Notes:</label>
-        <textarea rows="4" class="form-control" id="reservation-notes-study" name="extended_info:reservation_notes">{% if spot.reservation_notes %}{{spot.reservation_notes}}{% endif %}</textarea>
-        <p class="help-block">Note: Reservation notes will only be displayed to clients IF the "Can Reserve Space" checkbox is checked.</p>
-    </div>
-
-</fieldset>
-
-<fieldset>
-    <legend>Access Notes</legend>
-
-    <div class="checkbox scope">
-        <label for="has-access-rest-study"><input id="has-access-restr-study" type="checkbox" name="access_restrictions" {% if spot.access_restrictions %}checked{% endif%} value="access_restrictions">Has Access Restrictions</label>
-    </div>
-
-    <div class="form-group scope">
-        <label for="access-notes-study">Access Notes:</label>
-        <textarea rows="4" class="form-control" id="access-notes-study" name="extended_info:access_notes">{% if spot.access_notes %}{{spot.access_notes}}{% endif %}</textarea>
-        <p class="help-block">Note: Access notes will only be displayed to clients IF the "Has Access Restrictions" checkbox is checked.</p>
-    </div>
-
-</fieldset>
 
 <hr/>

@@ -10,7 +10,7 @@
             <i class="fa fa-circle fa-stack-2x"></i>
             {% if spot.app_type == "food" %}
             <i class="fa fa-cutlery fa-stack-1x fa-inverse"></i>
-            {% elif spot.app_type == "study" %}
+            {% elif spot.app_type == "study" or spot.app_type == None %}
             <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
             {% else %}
             <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
@@ -66,7 +66,7 @@
             <label><input type="radio" name="extended_info:app_type" required value="study" disabled>Study</label>
         </div>
         <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
-    {% elif spot.app_type == "study" %}
+    {% elif spot.app_type == "study" or spot.app_type == None %}
         <div class="radio disabled">
             <label><input type="radio" name="extended_info:app_type" required value="food" disabled>Food</label>
         </div>
