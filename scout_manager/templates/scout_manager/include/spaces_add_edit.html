@@ -60,8 +60,8 @@
     <legend>Type: <span style="color:green; font-weight:normal;">({{ spot.app_type }})</span></legend>
 
     {% if spot.app_type == "food" %}
-        <div class="radio disabled">
-            <label><input type="radio" name="extended_info:app_type" required value="food" checked disabled>Food</label>
+        <div class="radio">
+            <label><input type="radio" name="extended_info:app_type" required value="food" checked>Food</label>
         </div>
         <div class="radio disabled">
             <label><input type="radio" name="extended_info:app_type" required value="study" disabled>Study</label>
@@ -71,8 +71,8 @@
         <div class="radio disabled">
             <label><input type="radio" name="extended_info:app_type" required value="food" disabled>Food</label>
         </div>
-        <div class="radio disabled">
-            <label><input type="radio" name="extended_info:app_type" required value="study" checked disabled>Study</label>
+        <div class="radio">
+            <label><input type="radio" name="extended_info:app_type" required value="study" checked>Study</label>
         </div>
         <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
     {% else %}
