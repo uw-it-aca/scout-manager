@@ -89,7 +89,7 @@
 
 {% if spot.app_type == "food" %}
     {% include "scout_manager/include/extend_food.html" %}
-{% elif spot.app_type == "study" or spot.app_type == None %}
+{% elif spot.app_type == "study" %}
     {% include "scout_manager/include/extend_study.html" %}
 {% else %}
     <div id="extended_food_template" style="display:none;">
