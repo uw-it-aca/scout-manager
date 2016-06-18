@@ -47,9 +47,10 @@
 </div>
 
 <div class="form-group">
-    <label for="hours-notes">Hours Notes/Exceptions:</label>
+    <label for="hours-notes">Hours Notes:</label>
     <textarea class="form-control" rows="4" id="hours-notes"name="extended_info:hours_notes">{% if spot.hours_notes %}{{spot.hours_notes}}{% endif %}</textarea>
 </div>
+
 <div class="form-group">
     <label for="access-notes">Access Notes:</label>
     <textarea class="form-control" rows="4" id="access-notes"name="extended_info:access_notes">{% if spot.access_notes %}{{spot.access_notes}}{% endif %}</textarea>
