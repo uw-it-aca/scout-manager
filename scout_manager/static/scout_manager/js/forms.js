@@ -9,6 +9,7 @@ var Forms = {
         Forms.image_delete();
         Forms.image_check_count();
         Forms.toggle_extended_info();
+        Forms.toggle_is_hidden();
     },
 
     // hours functions
@@ -96,6 +97,19 @@ var Forms = {
                 $("#extended_food_template").hide();
                 $("#extended_study_template").show();
             }
+        });
+
+    },
+
+    toggle_is_hidden: function() {
+
+        $("#toggle_is_hidden").click(function() {
+            var checkBoxes = $("input[name='extended_info:is_hidden']");
+            checkBoxes.prop("checked", !checkBoxes.prop("checked"));
+            // submit "save changes"
+
+            Spot.submit_spot();
+
         });
 
     },
