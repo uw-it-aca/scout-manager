@@ -20,6 +20,9 @@ var Spot = {
     },
 
     _edit_spot: function (form_data) {
+
+        console.log(form_data);
+
         $.ajax({
             url: "/manager/api/spot/" + form_data.id,
             type: "PUT",
@@ -38,6 +41,7 @@ var Spot = {
                 $("#pub_error").html(error + ": " + xhr.responseText);
             }
         });
+
     },
 
     _create_spot: function (form_data) {

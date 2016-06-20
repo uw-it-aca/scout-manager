@@ -6,7 +6,7 @@ $clouds: #ecf0f1;
 
 // header
 .mgr-header { position: fixed; top:0; z-index: 999; width: 100%; height: 66px !important; text-align: left;
-    h1 { height:56px;  font-size: 30px; line-height: 56px; }
+    h1 { height:56px;  font-size: 25px; line-height: 56px; }
     .mgr-user-name { padding-right: 20px; visibility: visible; }
     .mgr-menu-button { display: none; }
 }
@@ -40,6 +40,11 @@ $clouds: #ecf0f1;
             a, button {
                 span { display: inline-block; color: $asbestos; }
             }
+        }
+
+        .mgr-location {
+            .mgr-location-meta {  }
+            .mgr-location-chooser { }
         }
 
     }
