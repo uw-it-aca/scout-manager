@@ -34,7 +34,7 @@ body { overflow-x: hidden; }
 	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 
     .fa { width: 23px; text-align: center; }
-    
+
 	.mgr-sidebar-actions { padding: 0;
 
         ul { padding: 10px;  margin-bottom: 0; list-style: none; border-bottom: solid 1px darken($clouds, 5%);
@@ -105,3 +105,17 @@ textarea { resize: vertical; }
 }
 
 .well { background: #fff; }
+
+// sticky header
+
+.sticky { background: #fff; }
+
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  padding: 0 10px 15px 10px;
+  border-bottom: solid 1px #dde4e6;
+}

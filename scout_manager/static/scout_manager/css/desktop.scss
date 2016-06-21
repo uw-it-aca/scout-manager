@@ -54,3 +54,18 @@ $clouds: #ecf0f1;
 // footer
 
 .mgr-footer { margin-left: 240px; color: #666; }
+
+
+// sticky header
+
+.sticky { background: #fff; }
+
+.fixed {
+    position: fixed;
+    top: 66px;
+    left:240px;
+    right: 0;
+    z-index: 9999;
+    padding: 20px;
+    border-bottom: solid 1px #dde4e6;
+}
