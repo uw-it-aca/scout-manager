@@ -2,6 +2,7 @@ from spotseeker_restclient.spotseeker import Spotseeker
 from spotseeker_restclient.exceptions import DataFailureException
 from scout.dao.space import add_cuisine_names, add_foodtype_names_to_spot, \
     add_payment_names, add_additional_info, add_study_info
+from scout_manager.dao.groups import add_group
 import json
 
 
@@ -77,6 +78,11 @@ def update_spot(data, spot_id):
         data["type"] = [data["type"]]
     # formats extended info
     extended_info = {}
+
+    auth_group = data.get("extended_info:owner", None)
+    if auth_group is not None:
+        # TODO: pass some error to clients if this isn't included
+        add_group(auth_group.lower())
 
     cuisines = data.pop("extended_info:s_cuisine", [])
     for cuisine in cuisines:

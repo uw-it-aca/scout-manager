@@ -1,4 +1,5 @@
 from restclients.gws import GWS
+from restclients.exceptions import DataFailureException
 from scout_manager.models import Group, Person, GroupMembership
 
 
@@ -11,13 +12,21 @@ def get_members(group_id):
 def add_group(group_id):
     group, created = Group.objects.get_or_create(group_id=group_id)
     if created:
-        _update_group(group)
+        try:
+            _update_group(group)
+        except DataFailureException:
+            #TODO: do something here since a missing group is bad
+            pass
 
 
 def update_groups():
     groups_to_update = Group.objects.all()
     for group in groups_to_update:
-        _update_group(group)
+        try:
+            _update_group(group)
+        except DataFailureException:
+            #TODO: do something here since a missing group is bad
+            pass
 
     _remove_orphaned_people()
 
