@@ -14,26 +14,23 @@
 
         <div id="sidebar" class="mgr-sidebar {% if request.is_mobile or request.is_tablet %}mgr-sidebar-closed{% endif %}">
             <div class="mgr-sidebar-actions">
-                <h3 class="sr-only">Spaces</h3>
+                <small class="text-muted" style="padding: 15px 20px 0 20px; display:block;">Manage Places</small>
                 <ul>
-                    <li><a class="" href="/manager/spaces/?app_type=food">Food</a></li>
-                    <li><a class="scope" href="/manager/spaces/">Study</a></li>
-                    <li><a class="dummy" href="/manager/spaces/?app_type=tech">Technology</a></li>
+                    <li><a class="" href="/manager/spaces/?app_type=food"><i class="fa fa-cutlery" aria-hidden="true"></i> Food</a></li>
+                    <li><a class="scope" href="/manager/spaces/"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Study</a></li>
+                    <li><a class="dummy" href="/manager/spaces/?app_type=parking"><i class="fa fa-car" aria-hidden="true"></i> Parking</a></li>
+                    <li><a class="dummy" href="/manager/spaces/?app_type=outdoor"><i class="fa fa-tree" aria-hidden="true"></i> Outdoor</a></li>
+                    <li><a class="scope" href="/manager/spaces/?app_type=tech"><i class="fa fa-laptop" aria-hidden="true"></i> Tech Checkout</a></li>
+                    <li style="font-weight:400;"><a href="/manager/spaces/add/"><i class="fa fa-plus" aria-hidden="true"></i> Add New Space</a></li>
                 </ul>
-                <ul style="font-weight:400;">
-                    <li><a href="/manager/spaces/add/">Add New Space</a></li>
-                </ul>
-                <h3 class="sr-only">Items</h3>
+                <small class="text-muted" style="padding: 15px 20px 0 20px; display:block;">Manage Things</small>
                 <ul>
-                    <li><a class="dummy" href="/manager/items/">Item Type 1</a></li>
-                    <li><a class="dummy" href="/manager/items/">Item Type 2</a></li>
-                    <li><a class="dummy" href="/manager/items/">Item Type 3</a></li>
-                    <li><a class="dummy" href="/manager/items/">Item Type 4</a></li>
-                    <li><a class="dummy" href="/manager/items/">Item Type 5</a></li>
-                    <li><a class="dummy" href="/manager/items/">Item Type 6</a></li>
-                </ul>
-                <ul style="font-weight:400;">
-                    <li><a href="/manager/items/add/" class="dummy">Add New Item</a></li>
+                    <li><a class="scope" href="/manager/items/"><i class="fa fa-laptop" aria-hidden="true"></i> TECHNOLOGY (STF)</a></li>
+                    <li><a class="dummy" href="/manager/items/"><i class="fa fa-birthday-cake" aria-hidden="true"></i> KITCHEN APPLIANCES</a></li>
+                    <li><a class="dummy" href="/manager/items/"><i class="fa fa-rocket" aria-hidden="true"></i> Item Type 4</a></li>
+                    <li><a class="dummy" href="/manager/items/"><i class="fa fa-rocket" aria-hidden="true"></i> Item Type 5</a></li>
+                    <li><a class="dummy" href="/manager/items/"><i class="fa fa-rocket" aria-hidden="true"></i> Item Type 6</a></li>
+                    <li style="font-weight:400;"><a href="/manager/items/add/" class="dummy"><i class="fa fa-plus" aria-hidden="true"></i> Add New Item</a></li>
                 </ul>
             </div>
         </div>

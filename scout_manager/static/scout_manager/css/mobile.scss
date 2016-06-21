@@ -33,6 +33,8 @@ body { overflow-x: hidden; }
 	transition-property: max-height;
 	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 
+    .fa { width: 23px; text-align: center; }
+    
 	.mgr-sidebar-actions { padding: 0;
 
         ul { padding: 10px;  margin-bottom: 0; list-style: none; border-bottom: solid 1px darken($clouds, 5%);
