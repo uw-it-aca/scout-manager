@@ -171,7 +171,7 @@
     <fieldset class="col-md-4">
         <legend>Reservation notes:</legend>
         <div class="checkbox">
-            <label for="has-reservations-food"><input id="has-reservations-food" name="extended_info:s_has_reservation"type="checkbox" value="true" {% if spot.has_reservation %}checked{% endif%} />Accepts Reservations</label>
+            <label for="has-reservations-food"><input id="has-reservations-food" name="extended_info:s_has_reservation" type="checkbox" value="true" {% if spot.has_reservation %}checked{% endif%}>Accepts Reservations</label>
         </div>
         <div class="form-group">
             <textarea rows="4" class="form-control" id="reservation-notes-food" name="extended_info:s_reservation_notes">{% if spot.reservation_notes %}{{spot.reservation_notes}}{% endif %}</textarea>
