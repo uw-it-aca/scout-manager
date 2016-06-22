@@ -20,13 +20,13 @@ class MembershipManager(models.Manager):
 
 
 class Person(models.Model):
-    netid = models.CharField(max_length=40)
+    netid = models.CharField(max_length=40, unique=True)
     added_on = models.DateTimeField(auto_now_add=True)
     objects = PersonManager()
 
 
 class Group(models.Model):
-    group_id = models.CharField(max_length=500)
+    group_id = models.CharField(max_length=500, unique=True)
     added_on = models.DateTimeField(auto_now_add=True)
 
 
