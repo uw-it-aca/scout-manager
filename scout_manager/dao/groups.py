@@ -15,7 +15,7 @@ def add_group(group_id):
         try:
             _update_group(group)
         except DataFailureException:
-            #TODO: do something here since a missing group is bad
+            # TODO: do something here since a missing group is bad
             pass
 
 
@@ -25,7 +25,7 @@ def update_groups():
         try:
             _update_group(group)
         except DataFailureException:
-            #TODO: do something here since a missing group is bad
+            # TODO: do something here since a missing group is bad
             pass
 
     _remove_orphaned_people()

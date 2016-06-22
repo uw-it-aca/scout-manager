@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.exceptions import ObjectDoesNotExist
 
+
 class PersonManager(models.Manager):
     def is_provisioned(self, netid):
         return len(Person.objects.filter(netid=netid)) > 0

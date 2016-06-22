@@ -61,5 +61,3 @@ def can_edit_spot(spot_id):
 def _get_current_spot_group(spot_id):
     spot = get_spot_by_id(spot_id)
     return spot.owner
-
-
