@@ -7,7 +7,7 @@
 
 <div class="mgr-content-header clearfix">
 
-    <h2 class="pull-left scope">FOOD, STUDY, or TECH</h2>
+    <h2 class="pull-left">SPOTS: {{ app_type }}</h2>
 
     <div class="pull-right">
     Total: <span class="">{{ count }}</span>
@@ -19,17 +19,12 @@
 
 <div style="margin-top: 15px;">
 
-    <!--
-    <div>
-        <button type="button" class="dummy">Download CSV of listed Spaces</button>
-    </div>
-    -->
-
     <table class="table">
         <thead>
             <tr>
                 <th>ID</td>
                 <th>Name</td>
+                <th>Campus</td>
                 <th>Building</td>
                 <th>Space type</td>
                 <th>Status</td>
@@ -42,6 +37,7 @@
             <tr>
                 <td><a href="/manager/spaces/{{ spot.spot_id }}/">{{ spot.spot_id }}</a></td>
                 <td><strong>{{ spot.name }}</strong></td>
+                <td>{{ spot.campus }}</td>
                 <td>{{ spot.building_name }}</td>
                 <td>{% for type in spot.spot_types %}{{ type.name }}, {% endfor %}</td>
                 <td>{% if spot.is_hidden %}UNPUBLISHED{% else %}<a href="/detail/{{ spot.spot_id }}" target="_blank">PUBLISHED</a>{% endif %}</td>
