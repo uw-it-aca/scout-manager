@@ -21,6 +21,7 @@ class GroupAuthTest(TestCase):
     def test_group_sync(self):
         group = Group.objects.get(group_id=self.test_group)
         self.assertEqual(group.group_id, self.test_group)
+        print "num of people: %s" % len(Person.objects.all())
         javerage = Person.objects.get(netid=self.test_user)
         membership = GroupMembership.objects.filter(person=javerage,
                                                     group_id=group)
