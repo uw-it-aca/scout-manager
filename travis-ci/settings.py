@@ -39,7 +39,8 @@ INSTALLED_APPS = (
     'scout_manager',
     'turbolinks',
     'spotseeker_restclient',
-    'compressor'
+    'compressor',
+    'restclients'
 )
 
 MIDDLEWARE_CLASSES = (
