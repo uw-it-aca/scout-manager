@@ -5,7 +5,12 @@ from scout_manager.models import Group, Person, GroupMembership
 
 def get_members(group_id):
     gws = GWS()
-    members = gws.get_effective_members(group_id)
+    try:
+        members = gws.get_effective_members(group_id)
+    except Exception as ex:
+        print ex
+    print len(members)
+    print members
     return members
 
 
