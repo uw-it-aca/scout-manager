@@ -5,12 +5,7 @@ from scout_manager.models import Group, Person, GroupMembership
 
 def get_members(group_id):
     gws = GWS()
-    try:
-        members = gws.get_effective_members(group_id)
-    except Exception as ex:
-        print ex
-    print len(members)
-    print members
+    members = gws.get_effective_members(group_id)
     return members
 
 
@@ -18,7 +13,6 @@ def add_group(group_id):
     group, created = Group.objects.get_or_create(group_id=group_id)
     if created:
         try:
-            print "GROUP %s Created" % group.group_id
             _update_group(group)
         except DataFailureException:
             # TODO: do something here since a missing group is bad
@@ -53,8 +47,6 @@ def _update_group(group):
     remote_people = []
     for member in remote_members:
         person, created = Person.objects.get_or_create(netid=member.name)
-        if created:
-            print "person: %s Created" % person.netid
         remote_people.append(person)
 
     # Remove local group members who are not in remote group
