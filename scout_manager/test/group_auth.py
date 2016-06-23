@@ -16,7 +16,7 @@ class GroupAuthTest(TestCase):
 
     def setUp(self):
         add_group(self.test_group)
-        update_groups()
+        # update_groups()
 
     def test_group_sync(self):
         group = Group.objects.get(group_id=self.test_group)

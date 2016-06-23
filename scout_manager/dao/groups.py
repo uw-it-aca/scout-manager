@@ -13,6 +13,7 @@ def add_group(group_id):
     group, created = Group.objects.get_or_create(group_id=group_id)
     if created:
         try:
+            print "GROUP %s Created" % group
             _update_group(group)
         except DataFailureException:
             # TODO: do something here since a missing group is bad
