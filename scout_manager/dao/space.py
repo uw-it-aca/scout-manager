@@ -79,14 +79,17 @@ def update_spot(data, spot_id):
     extended_info = {}
 
     cuisines = data.pop("extended_info:s_cuisine", [])
+    cuisines = _process_checkbox_array(cuisines)
     for cuisine in cuisines:
         extended_info[cuisine] = True
 
     foods = data.pop("extended_info:s_food", [])
+    foods = _process_checkbox_array(foods)
     for food in foods:
         extended_info[food] = True
 
     payments = data.pop("extended_info:s_pay", [])
+    payments = _process_checkbox_array(payments)
     for payment in payments:
         extended_info[payment] = True
 
@@ -128,3 +131,10 @@ def update_spot(data, spot_id):
     spot = get_spot_by_id(spot_id)
     etag = spot.etag
     spot_client.put_spot(spot_id, json.dumps(data), etag)
+
+
+def _process_checkbox_array(data):
+    if type(data) == list:
+        return data
+    else:
+        return [data]
