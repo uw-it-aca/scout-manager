@@ -2,15 +2,12 @@
 Cases to test navigation from page to page
 """
 from bs4 import BeautifulSoup
-from django.test import TestCase
-from django.test.utils import override_settings
+from scout_manager.test import ScoutTest
 
 baseUrl = '/manager/spaces/'
-DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
 
 
-@override_settings(SPOTSEEKER_DAO_CLASS=DAO)
-class NavigationTests(TestCase):
+class NavigationTests(ScoutTest):
 
     # Helper methods
 
