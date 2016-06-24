@@ -16,6 +16,8 @@ $base: #6564A8;
 $asbestos: #7f8c8d;
 $clouds: #ecf0f1;
 
+body { overflow-x: hidden; }
+
 // header
 
 .mgr-header { position: relative; text-align: center;
@@ -25,11 +27,13 @@ $clouds: #ecf0f1;
 }
 
 // sidebar
-.mgr-sidebar { max-height: 500px; overflow-y: hidden; font-family: 'Oswald', sans-serif;  font-size: 16px; font-weight: 300; color: #999; text-transform: uppercase;
+.mgr-sidebar { max-height: 500px; overflow-y: hidden; font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 300; color: #999; text-transform: uppercase;
 
     transition-duration: .8s;
 	transition-property: max-height;
 	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+    .fa { width: 23px; text-align: center; }
 
 	.mgr-sidebar-actions { padding: 0;
 
@@ -54,7 +58,7 @@ $clouds: #ecf0f1;
 
         hr { height: 0; margin: 3em -10px 2em -10px; border: 0; border-top: 1px solid darken($clouds, 5%); }
 
-        .mgr-dataset-actions { margin-top: 1em;
+        .mgr-dataset-actions {
 
             .btn { margin-right: 5px; }
             button {
@@ -101,3 +105,18 @@ textarea { resize: vertical; }
 }
 
 .well { background: #fff; }
+
+// sticky header
+
+.sticky { background: #fff; }
+
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  padding: 0 10px 15px 10px;
+  // border-bottom: solid 1px #dde4e6;
+  box-shadow: 0 0 5px rgba(57,70,78,.2);
+}

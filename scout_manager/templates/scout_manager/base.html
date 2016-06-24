@@ -14,19 +14,37 @@
 
         <div id="sidebar" class="mgr-sidebar {% if request.is_mobile or request.is_tablet %}mgr-sidebar-closed{% endif %}">
             <div class="mgr-sidebar-actions">
-                <h3 class="sr-only">Spaces</h3>
+                <small class="text-muted" style="padding: 15px 20px 0 20px; display:block;">Spots</small>
                 <ul>
-                    <li><a class="" href="/manager/spaces/?app_type=food">Food</a></li>
-                    <li><a class="scope" href="/manager/spaces/">Study</a></li>
+                    <li><a class="" href="/manager/spaces/?app_type=food"><i class="fa fa-cutlery" aria-hidden="true"></i> Food</a></li>
+                    <li><a class="scope" href="/manager/spaces/?app_type=study"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Study</a></li>
+                    <li><a class="dummy" href="/manager/spaces/?app_type=parking"><i class="fa fa-car" aria-hidden="true"></i> Parking</a></li>
+                    <li><a class="dummy" href="/manager/spaces/?app_type=outdoor"><i class="fa fa-tree" aria-hidden="true"></i> Outdoor</a></li>
+                    <li><a class="scope" href="/manager/spaces/?app_type=tech"><i class="fa fa-laptop" aria-hidden="true"></i> Tech Checkout</a></li>
+
                 </ul>
                 <ul style="font-weight:400;">
-                    <li><a href="/manager/spaces/add/">Add New Space</a></li>
+                    <li><a href="/manager/spaces/add/"><i class="fa fa-plus" aria-hidden="true"></i> Add Space</a></li>
+                    <li><a class="scope" href="/manager/spaces/add/"><i class="fa fa-upload" aria-hidden="true"></i> Upload Spaces</a></li>
+                </ul>
+                <small class="text-muted" style="padding: 15px 20px 0 20px; display:block;">Items</small>
+                <ul>
+                    <li><a class="scope" href="/manager/items/"><i class="fa fa-laptop" aria-hidden="true"></i> Technology (STF)</a></li>
+                    <li><a class="dummy" href="/manager/items/"><i class="fa fa-birthday-cake" aria-hidden="true"></i> Kitchen Appliances</a></li>
+                    <li><a class="dummy" href="/manager/items/"><i class="fa fa-futbol-o" aria-hidden="true"></i> Sports Equipment</a></li>
+                    <li><a class="dummy" href="/manager/items/"><i class="fa fa-rocket" aria-hidden="true"></i> Rocket ships</a></li>
+                    <li><a class="dummy" href="/manager/items/"><i class="fa fa-ship" aria-hidden="true"></i> Ocean Vessels</a></li>
+                    <li><a class="dummy" href="/manager/items/"><i class="fa fa-truck" aria-hidden="true"></i> Fleet Vehicles</a></li>
+
+                </ul>
+                <ul style="font-weight:400;">
+                    <li><a href="/manager/items/add/" class="dummy"><i class="fa fa-plus" aria-hidden="true"></i> Add New Item</a></li>
                 </ul>
             </div>
         </div>
 
         <div id="content" class="mgr-content">
-            <div class="mgr-content-inner">
+            <div class="mgr-content-inner container-fluid">
                 {% block web_content %}{% endblock %}
             </div>
         </div>
