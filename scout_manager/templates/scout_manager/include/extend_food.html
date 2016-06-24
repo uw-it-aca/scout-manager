@@ -43,6 +43,10 @@
             <input class="form-control" id="menu-url" name="extended_info:s_menu_url" type="url" value="{% if spot.menu_url %}{{spot.menu_url}}{% endif %}" />
         </div>
 
+        <div class="checkbox">
+            <label for="has-coupon"><input id="has-coupon" name="extended_info:s_has_coupon" type="checkbox" value="true" {% if spot.has_coupon %}checked{% endif%}>Accepts Coupons</label>
+        </div>
+
         <div class="form-group">
             <label for="coupon-url">Coupon URL:</label>
             <input class="form-control" id="coupon-url" name="extended_info:s_coupon_url" type="url" value="{% if spot.coupon_url %}{{ spot.coupon_url }}{% endif %}" />
@@ -51,6 +55,7 @@
             <label for="coupon-date">Expiration Date:</label>
             <input class="form-control" id="coupon-date" name="extended_info:s_coupon_expiration" type="text" value="{% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% endif %}" placeholder="mm/dd/yyyy" />
         </div>
+        <p class="help-block">Note: Coupon link will only be displayed to clients IF the "Accepts Coupoons" checkbox is checked.</p>
 
     </div>
 
