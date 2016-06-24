@@ -1,85 +1,46 @@
-// default variables
+// sass variables
 
-$main-color: #34495e;
+$base: #6564A8;
+$asbestos: #7f8c8d;
+$clouds: #ecf0f1;
 
-$header-color: transparent;
-$header-height: 55px;
-
-$footer-color: transparent;
-$footer-height: 45px;
-
-$sidebar-color: #ecf0f1;
-$sidebar-width: 280px;
-
-body { font-size: 14px; padding: 0; overflow: hidden; }
-
-//sidebar
-
-.mgr-sidebar { position: fixed; top: 0; bottom:0; left:0; width: $sidebar-width; background: $sidebar-color;
-    .mgr-sidebar-content { margin-top: $header-height; padding: 15px;
-        li { line-height: 20px; }
-        a { color: $main-color; }
-    }
-}
+body { margin: 0; background: $clouds !important; }
 
 // header
-.mgr-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: $sidebar-width;
 
-    background: $header-color url('../img/scout-default.png') no-repeat 10px 50%;
-    background-size: 30px;
-    //border-bottom: 2px #777 solid;
-    h1 {
-        margin: 0;
-        line-height: $header-height;
-        height: $header-height;
-        padding-left: ($header-height);
-        color: $main-color;
-        text-transform: uppercase;
-        font-family: "Raleway",sans-serif;
-        font-weight: 900;
-        font-size: 23px;
-        a {
-            color: $main-color;
-            text-decoration: none;
+.mgr-header { background: #fff; border-top: solid 10px $base; border-bottom: solid 1px #d0d1d5; height: 76px; position: relative; text-transform: uppercase; font-family: 'Oswald', sans-serif;
+
+    h1 { margin: 0 10px; line-height: 66px; height:66px; font-weight: 400; font-size: 30px;
+
+        a { text-decoration: none; color: $base;
+            &:hover { text-decoration: none; }
+            span { color: $asbestos; }
         }
+
     }
+
+    .mgr-user-name { position: absolute; top:0; right: 0; padding-right:10px; font-size: 18px; font-weight: 300; line-height: 56px; color: $base; }
+
 }
 
 // content
-.mgr-content { padding: $header-height 15px $footer-height 15px; background: #fff; position: fixed; top: 0; left: $sidebar-width; right:0; bottom:0; overflow-y: scroll;
 
-    .mgr-content-header { position: fixed; top:0; right: 0; left: $sidebar-width; background: #f9f9f9; z-index: 9999;}
+.mgr-content { margin: 0; background: #fff;
 
-    h2 { color: #333; margin: 0; line-height: $header-height; }
-    h3 {
-        color: #666;
+    .mgr-content-inner { padding: 10px; }
+
+    h2 {  font-family: 'Oswald', sans-serif; text-transform: uppercase; font-weight: 400; font-size: 20px; position: relative; color: $asbestos;
+        span { position: absolute; right: 0; font-size: 14px; font-weight: 300; }
+        .fa-circle { color: $base; }
     }
 
-    ul, ol { list-style: none; margin:0; padding:0; }
+    h3 { text-transform: uppercase; font-family: 'Oswald', sans-serif; font-weight: 400; font-size: 16px; color: $asbestos;}
 
-}
 
-// footer
-.mgr-footer {
-    position: absolute;
-    bottom:0;
-    left:0;
-    width: $sidebar-width;
-
-    line-height: $footer-height;
-    background: $footer-color url('../img/w-mini_wht.png') no-repeat 5px 50%;
-    background-size: 30px;
-    color: white;
-    font-size: 75%;
-    bottom: 0;
-    text-align: center;
 }
 
 // flexbox
+
 .flex-container {
     display: flex;
     flex-flow: row wrap;
@@ -91,27 +52,3 @@ body { font-size: 14px; padding: 0; overflow: hidden; }
 }
 
 .flex-item:first-child { margin-right: 10px;}
-
-// accessibility & helper classes
-
-.clearfix:after { // aka clearfix hack
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.hidden {
-    display:none;
-    visibility:hidden;
-}
-
-.visually-hidden { /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/
-    position: absolute !important;
-    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-    clip: rect(1px, 1px, 1px, 1px);
-    padding:0 !important;
-    border:0 !important;
-    height: 1px !important;
-    width: 1px !important;
-    overflow: hidden;
-}

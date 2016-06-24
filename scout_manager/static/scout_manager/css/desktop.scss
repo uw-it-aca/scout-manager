@@ -1,7 +1,74 @@
-.mgr-hours {
+// sass variables
 
-    label {
-        select, input[type='time'] { margin-left: 5px; max-width: 400px;  }
+$base: #6564A8;
+$asbestos: #7f8c8d;
+$clouds: #ecf0f1;
+
+// header
+.mgr-header { position: fixed; top:0; z-index: 999; width: 100%; height: 66px !important; text-align: left;
+    h1 { height:56px;  font-size: 25px; line-height: 56px; }
+    .mgr-user-name { padding-right: 20px; visibility: visible; }
+    .mgr-menu-button { display: none; }
+}
+
+// sidebar
+
+.mgr-sidebar { position: fixed; top:66px; bottom: 0; z-index: 999; width: 220px; height: 100%; max-height: 2000px; background: #fff; border-right: solid 1px #e1e1e8;
+
+    .mgr-sidebar-actions { padding: 0;
+        ul { padding: 10px 20px;
+
+            li { line-height: 35px; }
+        }
+        a { line-height: 35px; }
+    }
+}
+
+// content
+
+.mgr-content { margin-top: 75px;  margin-left: 230px;
+
+
+    .mgr-content-inner { padding: 20px;
+
+        .alert { position: fixed; top: 20px; right: 10px; left: 230px; z-index: 9999; padding: 5px 10px; }
+
+        hr { margin: 3em -20px 2em -20px; }
+
+        h2 { margin-top: 0; }
+
+
+        .mgr-dataset-actions {
+            a, button {
+                span { display: inline-block; color: $asbestos; }
+            }
+        }
+
+        .mgr-location {
+            .mgr-location-meta {  }
+            .mgr-location-chooser { }
+        }
+
     }
 
+}
+
+// footer
+
+.mgr-footer { margin-left: 240px; color: #666; }
+
+
+// sticky header
+
+.sticky { background: #fff; }
+
+.fixed {
+    position: fixed;
+    top: 66px;
+    left:230px;
+    right: 0;
+    z-index: 9999;
+    padding: 20px;
+    // border-bottom: solid 1px #dde4e6;
+    box-shadow: 0 0 5px rgba(57,70,78,.2);
 }

@@ -1,19 +1,20 @@
 from spotseeker_restclient.spotseeker import Spotseeker
 from spotseeker_restclient.exceptions import DataFailureException
 from scout.dao.space import add_cuisine_names, add_foodtype_names_to_spot, \
-    add_payment_names, add_additional_info
+    add_payment_names, add_additional_info, add_study_info
 import json
 
 
-def get_spot_list(app_type=None):
+def get_spot_list(app_type=None, groups=[]):
     spot_client = Spotseeker()
     res = []
+    filters = []
+    filters.append(('limit', 0))
     try:
         if app_type:
-            filters = [('limit', 0),
-                       ('extended_info:app_type', app_type)]
-        else:
-            filters = [('limit', 0)]
+            filters.append(('extended_info:app_type', app_type))
+        for group in groups:
+            filters.append(('extended_info:group', group))
         spots = spot_client.search_spots(filters)
         for spot in spots:
             spot = process_extended_info(spot)
@@ -37,6 +38,7 @@ def process_extended_info(spot):
         spot = add_cuisine_names(spot)
         spot = add_payment_names(spot)
         spot = add_additional_info(spot)
+        spot = add_study_info(spot)
         spot.grouped_hours = get_spot_hours_by_day(spot)
         for item in spot.extended_info:
             if item.key == "owner":
@@ -77,14 +79,17 @@ def update_spot(data, spot_id):
     extended_info = {}
 
     cuisines = data.pop("extended_info:s_cuisine", [])
+    cuisines = _process_checkbox_array(cuisines)
     for cuisine in cuisines:
         extended_info[cuisine] = True
 
     foods = data.pop("extended_info:s_food", [])
+    foods = _process_checkbox_array(foods)
     for food in foods:
         extended_info[food] = True
 
     payments = data.pop("extended_info:s_pay", [])
+    payments = _process_checkbox_array(payments)
     for payment in payments:
         extended_info[payment] = True
 
@@ -126,3 +131,10 @@ def update_spot(data, spot_id):
     spot = get_spot_by_id(spot_id)
     etag = spot.etag
     spot_client.put_spot(spot_id, json.dumps(data), etag)
+
+
+def _process_checkbox_array(data):
+    if type(data) == list:
+        return data
+    else:
+        return [data]

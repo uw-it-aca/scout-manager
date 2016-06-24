@@ -1,0 +1,22 @@
+<h3>Images</h3>
+
+<div class="form-group">
+    <label>Image input:</label>
+    <input type="file" name="" accept="image/*" id="mgr_upload_image">
+</div>
+
+<strong>Preview images:</strong>
+
+<div id="mgr_list_spot_images" class="row">
+
+    {% for image in spot.images %}
+     <div class="col-md-4">
+         <div class="well" style="height:200px;">
+         <img src="/images/{{ spot.spot_id }}/image/{{ image.image_id }}?width=100">
+         <label for="study-default-image-1" class="scope"><input type="radio" name="default-study-img" id="study-default-image-1" />default</label>
+         <input type="button" value="Delete image" class="mgr-delete-image" />
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<p id="mgr_list_spot_empty" class="help-block">Image list is empty! Add some images.</p>
