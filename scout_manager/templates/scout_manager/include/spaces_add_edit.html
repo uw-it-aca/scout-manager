@@ -112,12 +112,12 @@
 
         <div class="form-group">
             <label for="email" class="">Email:</label>
-            <input class="form-control" id="email" type="email" value="{% if spot.email %}{{ spot.email }}{% endif %}">
+            <input class="form-control" id="email" name="extended_info:s_email" type="email" value="{% if spot.email %}{{ spot.email }}{% endif %}">
         </div>
 
         <div class="form-group">
             <label for="phone" class="">Phone:</label>
-            <input class="form-control" id="phone" name="phone" type="tel" value="{% if spot.phone %}{{ spot.phone }}{% endif %}">
+            <input class="form-control" id="phone" name="extended_info:s_phone" type="tel" value="{% if spot.phone %}{{ spot.phone }}{% endif %}">
         </div>
 
         <p class="help-block">Note: Some admin information may not be displayed to clients depending.</p>
