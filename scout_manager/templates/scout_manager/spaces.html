@@ -12,7 +12,12 @@
     <div class="pull-right">
     Total: <span class="">{{ count }}</span>
     &nbsp;&nbsp;&nbsp;
-    Display: <a href="#" class="scope">all</a> | <a href="#" class="scope">published</a> | <a class="scope" href="#">unpublished</a>
+    Display:
+    {% if app_type == "food" %}
+    <a href="/manager/spaces/?app_type=food">all</a> | <a href="/manager/spaces/?app_type=food&is_hidden=false" class="scope">published</a> | <a class="scope" href="/manager/spaces/?app_type=food&is_hidden=true">unpublished</a>
+    {% elif app_type == "study" %}
+    <a href="/manager/spaces/?app_type=study">all</a> | <a href="/manager/spaces/?app_type=study&is_hidden=false" class="scope">published</a> | <a class="scope" href="/manager/spaces/?app_type=study&is_hidden=true">unpublished</a>
+    {% endif %}
     </div>
 
 </div>
