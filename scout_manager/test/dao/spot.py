@@ -1,7 +1,8 @@
 """
 Tests for the scout-manager spot DAO
 """
-from scout_manager.dao.space import get_spot_hours_by_day, _process_checkbox_array
+from scout_manager.dao.space import get_spot_hours_by_day, _process_checkbox_array,\
+    get_spot_list
 from spotseeker_restclient.spotseeker import Spotseeker
 from scout_manager.test import ScoutTest
 import datetime
@@ -34,5 +35,10 @@ class SpotDaoTest(ScoutTest):
         ee_string = 's_cuisine_indian'
         ee_list = ['s_cuisine_indian', 's_cuisine_asian']
 
-        self.assertEqual(type(_process_checkbox_array(ee_string)), list)
-        self.assertEqual(type(_process_checkbox_array(ee_list)), list)
+        self.assertIsInstance(_process_checkbox_array(ee_string), list)
+        self.assertIsInstance(_process_checkbox_array(ee_list), list)
+
+    def test_get_spot_list(self):
+        self.assertEqual(len(get_spot_list(app_type='food')), 3)
+        self.assertEqual(len(get_spot_list(app_type='study')), 0)
+        self.assertEqual(len(get_spot_list(app_type='nonexistant')), 0)
