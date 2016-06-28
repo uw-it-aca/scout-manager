@@ -34,12 +34,17 @@ var Spot = {
             dataType: "json",
             headers: {'X-CSRFToken': Cookies.get('csrftoken')},
             success: function(results) {
+                $("#pub_error").removeClass("hidden");
+                $("#pub_error").addClass("alert-success");
                 $("#pub_error").html();
             },
             error: function(xhr, status, error) {
+                $("#pub_error").removeClass("hidden");
+                $("#pub_error").addClass("alert-danger");
                 $("#pub_error").html(error + ": " + xhr.responseText);
             }
         });
+
     },
 
     _create_spot: function (form_data) {
@@ -51,9 +56,13 @@ var Spot = {
             dataType: "json",
             headers: {'X-CSRFToken': Cookies.get('csrftoken')},
             success: function(results) {
+                $("#pub_error").removeClass("hidden");
+                $("#pub_error").addClass("alert-success");
                 $("#pub_error").html();
             },
             error: function(xhr, status, error) {
+                $("#pub_error").removeClass("hidden");
+                $("#pub_error").addClass("alert-danger");
                 $("#pub_error").html(error + ": " + xhr.responseText);
             }
         });

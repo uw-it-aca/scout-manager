@@ -1,17 +1,14 @@
 """
 Tests for the scout-manager spot DAO
 """
-from django.test import TestCase
-from django.test.utils import override_settings
-from scout_manager.dao.space import get_spot_hours_by_day
+from scout_manager.dao.space import get_spot_hours_by_day, _process_checkbox_array,\
+    get_spot_list
 from spotseeker_restclient.spotseeker import Spotseeker
+from scout_manager.test import ScoutTest
 import datetime
 
-DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
 
-
-@override_settings(SPOTSEEKER_DAO_CLASS=DAO)
-class SpotDaoTest(TestCase):
+class SpotDaoTest(ScoutTest):
 
     def test_make_hours_no_spot(self):
         spot_hours = get_spot_hours_by_day(None)
@@ -33,3 +30,15 @@ class SpotDaoTest(TestCase):
         monday_end = datetime.time(hour=14, minute=30, second=00)
         self.assertEqual(monday_hours[0].start_time, monday_start)
         self.assertEqual(monday_hours[0].end_time, monday_end)
+
+    def test_process_checkbox(self):
+        ee_string = 's_cuisine_indian'
+        ee_list = ['s_cuisine_indian', 's_cuisine_asian']
+
+        self.assertIsInstance(_process_checkbox_array(ee_string), list)
+        self.assertIsInstance(_process_checkbox_array(ee_list), list)
+
+    def test_get_spot_list(self):
+        self.assertEqual(len(get_spot_list(app_type='food')), 3)
+        self.assertEqual(len(get_spot_list(app_type='study')), 0)
+        self.assertEqual(len(get_spot_list(app_type='nonexistant')), 0)

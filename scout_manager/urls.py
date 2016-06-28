@@ -1,4 +1,6 @@
-from django.conf.urls import patterns, url
+from django.conf import settings
+from django.conf.urls import patterns, include, url
+from django.views.generic import TemplateView
 from scout_manager.views.api import Spot
 # from django.contrib import admin
 # admin.autodiscover()
@@ -53,3 +55,12 @@ urlpatterns = patterns(
         Spot().run)
 
 )
+
+# debug routes for developing error pages
+if settings.DEBUG:
+    urlpatterns += patterns(
+        '',
+        url(r'^500/$', TemplateView.as_view(template_name='500.html')),
+        url(r'^404/$', TemplateView.as_view(template_name='404.html')),
+        url(r'^403/$', TemplateView.as_view(template_name='403.html')),
+    )

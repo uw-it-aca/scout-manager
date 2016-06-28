@@ -2,15 +2,12 @@
 Cases to test navigation from page to page
 """
 from bs4 import BeautifulSoup
-from django.test import TestCase
-from django.test.utils import override_settings
+from scout_manager.test import ScoutTest
 
 baseUrl = '/manager/spaces/'
-DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
 
 
-@override_settings(SPOTSEEKER_DAO_CLASS=DAO)
-class NavigationTests(TestCase):
+class NavigationTests(ScoutTest):
 
     # Helper methods
 
@@ -29,9 +26,9 @@ class NavigationTests(TestCase):
         page = self.makeSoup(baseUrl)
         self.assertTrue(self.checkLinkExists(page, baseUrl + 'add/'))
 
-    def test_main_page_to_space(self):
+    def test_main_page_to_food_space(self):
         """Assert that main page has a link to a space page"""
-        page = self.makeSoup(baseUrl)
+        page = self.makeSoup(baseUrl + "?app_type=food")
         self.assertTrue(self.checkLinkExists(page, baseUrl + '1/'))
 
     def test_mainEmail(self):

@@ -2,6 +2,10 @@
 
 // Config -----------------------------
 
+// Colors
+
+$blue: rgba(82, 168, 236, 0.9);
+
 // Font
 $fh-font-family: sans-serif !default;
 $fh-font-size: 13px !default;
@@ -18,8 +22,8 @@ $fh-input-height: 30px !default;
 $fh-input-width: 100% !default;
 $fh-input-max-width: 100% !default;
 $fh-input-bg-color: #fff !default;
-$fh-focus-bg-color: rgb(220, 220, 220) !default;
-$fh-focus-border-color: $fh-border-color !default;
+$fh-focus-bg-color: transparent !default;
+$fh-focus-border-color: $blue !default;
 $fh-focus-font-color: $fh-font-color !default;
 
 // Select Vendor Styling
@@ -270,11 +274,14 @@ option:focus,
 button:focus  {
 	background-color: $fh-focus-bg-color;
 	border-color: $fh-focus-border-color;
+    box-shadow: 0 0 5px $blue;
 }
 
 input[type="checkbox"]:focus,
 input[type="radio"]:focus {
+    background-color: $fh-focus-border-color;
 	outline: $fh-focus-border-color solid 2px;
+    box-shadow: 0 0 5px $blue;
 }
 
 button:hover,

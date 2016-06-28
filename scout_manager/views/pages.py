@@ -52,9 +52,11 @@ def schedule(request, spot_id):
 def spaces(request):
     # TODO: filter this by spot manager
     # TODO: add support for multiple spot types (Eg items)
-    spots = get_spot_list()
+    app_type = request.GET.get('app_type', None)
+    spots = get_spot_list(app_type)
     context = {"spots": spots,
-               "count": len(spots)}
+               "count": len(spots),
+               "app_type": app_type}
     return render_to_response(
             'scout_manager/spaces.html',
             context,

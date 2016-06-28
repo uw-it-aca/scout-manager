@@ -1,17 +1,12 @@
 {% extends "scout_manager/base.html" %}
 {% load staticfiles %}
 
-{% block title %}Add item{% endblock %}
+{% block title %}Add new item{% endblock %}
 
 {% block web_content %}
 
-<p>This is add.html. You step through this page to add items/spaces.</p>
-
-<h2>Add new Item</h2>
 <form>
-
     {% include "scout_manager/include/items_add_edit.html" %}
-
 </form>
 
 {% endblock %}

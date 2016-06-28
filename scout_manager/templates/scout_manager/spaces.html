@@ -7,76 +7,56 @@
 
 <div class="mgr-content-header clearfix">
 
-    <div style="padding: 0 15px;">
+    <h2 class="pull-left">SPOTS: {{ app_type }}</h2>
 
-        <h2 style="display:inline-block;">SPACES</h2>
-
-        <div style="display:inline-block; float:right; line-height: 55px; ">
-        Total: <span class="">{{ count }}</span> <a href="/manager/spaces/add/">Add New Space</a>
-        &nbsp;&nbsp;&nbsp;
-        Filter by type: <span class="scope">published</span> | <span class="scope">unpublished</span> |
-            <span class="scope">all</span>
-        </div>
-
+    <div class="pull-right">
+    Total: <span class="">{{ count }}</span>
+    &nbsp;&nbsp;&nbsp;
+    Display:
+    {% if app_type == "food" %}
+    <a class="btn btn-primary btn-xs" href="/manager/spaces/?app_type=food">all</a> <a class="btn btn-primary btn-xs scope" href="/manager/spaces/?app_type=food&is_hidden=false">published</a> <a class="btn btn-primary btn-xs scope" href="/manager/spaces/?app_type=food&is_hidden=true">unpublished</a>
+    {% elif app_type == "study" %}
+    <a class="btn btn-primary btn-xs" href="/manager/spaces/?app_type=study">all</a> <a class="btn btn-primary btn-xs scope" href="/manager/spaces/?app_type=study&is_hidden=false">published</a> <a class="btn btn-primary btn-xs scope" href="/manager/spaces/?app_type=study&is_hidden=true">unpublished</a>
+    {% endif %}
     </div>
+
 </div>
 
-<div>
+<div style="margin-top: 15px;" class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</td>
+                <th>Name</td>
+                <th>Campus</td>
+                <th>Building</td>
+                <th>Space type</td>
+                <th>Status</td>
+                <th><span class="sr-only">Actions</span></td>
+            </tr>
+        </thead>
+        <tbody>
 
-    <!--
-    <div>
-        <button type="button" class="dummy">Download CSV of listed Spaces</button>
-    </div>
-    -->
-
-    <ol>
-        {% for spot in spots %}
-        <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">
-
-            <div style="line-height:30px;"><a href="/manager/spaces/{{ spot.spot_id }}/">Edit</a></div>
-
-            <div class="clearfix">
-
-                <div style="float:left; width:110px; margin-bottom:1em;">
-                    {% if spot.images %}
-                    <div style="border:solid 1px #eee; background: url('/images/{{ spot.spot_id }}/image/{{ spot.images.0.image_id }}?width=200') no-repeat center center; background-size:contain; width:100px; height:100px;">&nbsp;</div>
-                    {% else %}
-                    <div style="border:solid 1px #eee; width:100px; height:100px; line-height:100px; text-align:center; color:#666;">no image</div>
-                    {% endif %}
-                </div>
-
-                <div style="float:left; width: 80%;">
-                    <div>Name: <span class="">{{ spot.name }}</span></div>
-                    <div>Campus: <span class="">{{ spot.campus }}</span></div>
-                    <div>App Type: <span>{{ spot.app_type | capfirst }}</span></div>
-                    <div>Building: <span class="">{{ spot.building_name }}</span></div>
-                    {% if spot.has_alert %}
-                    <div>Alert:<span class="">{{ spot.alert_notes }}</span></div>
-                    {% endif %}
-                    <div>Space Type: {% for type in spot.spot_types %}
-                        <span class="">{{ type.name }}</span> {% endfor %}
+            {% for spot in spots %}
+            <tr>
+                <td><a href="/manager/spaces/{{ spot.spot_id }}/">{{ spot.spot_id }}</a></td>
+                <td><strong>{{ spot.name }}</strong></td>
+                <td>{{ spot.campus }}</td>
+                <td>{{ spot.building_name }}</td>
+                <td>{% for type in spot.spot_types %}{{ type.name }}, {% endfor %}</td>
+                <td>{% if spot.is_hidden %}UNPUBLISHED{% else %}<a href="/detail/{{ spot.spot_id }}" target="_blank">PUBLISHED</a>{% endif %}</td>
+                <td>
+                    <div class="mgr-dataset-actions">
+                        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
                     </div>
-                    <!--<div>Items: <span class="dummy">has_items (Yes or No)</span><span class="dummy">item_type.name</span></div>-->
-                    <div>Publish Status: <span>{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED <a href="/detail/{{ spot.spot_id }}" target="_blank">preview in client</a>{% endif %}</span>
-                        <!--<button type="button" class="dummy">Toggle Publish Status</button>-->
-                    </div>
-                </div>
+                </td>
+            </tr>
+            {% empty %}
+            There are no spots for you to see!
+            {% endfor %}
 
-            </div>
-
-            <!--
-            <div>Future Changes: <span class="dummy">change_date (Yes or No)</span> <span class="dummy"><a href="/manager/schedule/{{ spot.spot_id }}/">spot.change_date</a></span></div>
-            <div>Needs ACA Review: <span class="dummy">needs_aca_review (Yes or No)</span>
-                <button type="button" class="dummy">Clear Review Flag</button>
-            </div>
-            <div>
-                <button type="button" class="dummy">Delete Space</button>
-            </div>
-            -->
-        </li>
-        {% endfor %}
-    </ol>
-
+        </tbody>
+    </table>
 </div>
 
 {% endblock %}

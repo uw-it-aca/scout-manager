@@ -1,16 +1,13 @@
 {% extends "scout_manager/base.html" %}
 {% load staticfiles %}
 
-{% block title %}Edit ITEM_NAME{% endblock %}
+{% block title %}{{ item.name }}{% endblock %}
 
 
 {% block web_content %}
 
-<h2><span class="dummy">item.name</span></h2>
-
 <form>
-
      {% include "scout_manager/include/items_add_edit.html" %}
-
 </form>
+
 {% endblock %}
