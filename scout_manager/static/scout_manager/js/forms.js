@@ -86,11 +86,16 @@ var Forms = {
 
         // remove image from list to be uploaded
         $('#mgr_list_spot_images').on('click', '.mgr-delete-image', function() {
-            var image_id = $(this).siblings("img").first().attr("data-id");
+            var wrapper_elm = $(this).siblings("div.mgr-edit-img-container").first();
+            var image_id = $(wrapper_elm).attr("data-id");
+            var image_etag = $(wrapper_elm).attr("data-etag");
+
             if(window.removed_images !== undefined){
-                window.removed_images.push(image_id);
+                window.removed_images.push({id: image_id,
+                                           etag: image_etag});
             } else {
-                window.removed_images = [image_id];
+                window.removed_images = [{id: image_id,
+                                          etag: image_etag}];
             }
             $(this).parent("div").remove();
             Forms.image_check_count();

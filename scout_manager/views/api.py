@@ -43,7 +43,6 @@ def process_form_data(request):
             elif len(line) > 0 and line != "--" and "Content-Type" not in line:
                 if file_start_idx is None:
                     file_start_idx = index
-                print "append"
                 block_data += line
         if len(block_data) > 0:
             if block_name == "file":
