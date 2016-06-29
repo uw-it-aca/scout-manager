@@ -20,14 +20,17 @@ var Spot = {
     },
 
     _edit_spot: function (form_data) {
-
-        console.log(form_data);
-
+        var f_data = new FormData();
+        f_data.append("json", JSON.stringify(form_data));
+        var image = $("#mgr_upload_image")[0];
+        var file = image.files[0];
+        f_data.append("file", file);
         $.ajax({
             url: "/manager/api/spot/" + form_data.id,
             type: "PUT",
-            data: JSON.stringify(form_data),
-            contentType: "application/json",
+            data: f_data,
+            contentType: false,
+            processData: false,
             dataType: "json",
             headers: {'X-CSRFToken': Cookies.get('csrftoken')},
             success: function(results) {
@@ -69,6 +72,7 @@ var Spot = {
         var form = $("form").first();
         var serialized_form = form.serializeObject();
         serialized_form["available_hours"] = Spot._get_spot_hours();
+        serialized_form["removed_images"] = window.removed_images;
         return serialized_form;
 
     },

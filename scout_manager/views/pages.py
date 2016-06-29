@@ -5,7 +5,9 @@ from scout_manager.dao.space import get_spot_by_id as manager_get_spot_by_id
 from scout_manager.dao.space import get_spot_hours_by_day, get_spot_list
 from scout_manager.dao.buildings import get_building_list, \
     get_building_list_by_campus
-from spotseeker_restclient.spotseeker import Spotseeker
+from scout.dao.image import get_image
+from django.http import Http404, HttpResponse
+import base64
 
 
 def home(request):
@@ -86,3 +88,17 @@ def spaces_edit(request, spot_id):
             'scout_manager/spaces_edit.html',
             context,
             context_instance=RequestContext(request))
+
+
+def image(request, image_id, spot_id):
+    width = request.GET.get('width', None)
+    try:
+        resp, content = get_image(spot_id, image_id, width)
+        etag = resp.get('etag', None)
+        encoded_content = base64.b64encode(content)
+        response = HttpResponse(encoded_content,
+                                content_type=resp['content-type'])
+        response['etag'] = etag
+        return response
+    except Exception:
+        raise Http404()

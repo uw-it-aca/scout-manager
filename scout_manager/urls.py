@@ -25,11 +25,6 @@ urlpatterns = patterns(
         'scout_manager.views.pages.items_add',
         name='items_add'),
 
-    # /unpublished/
-    url(r'^unpublished/$',
-        'scout_manager.views.pages.unpublished',
-        name='unpublished'),
-
     # /spaces/
     url(r'^spaces/$',
         'scout_manager.views.pages.spaces',
@@ -57,7 +52,12 @@ urlpatterns = patterns(
 
     # /api/
     url(r'api/spot/(?P<spot_id>[0-9]{1,5})',
-        Spot().run)
+        Spot().run),
+
+    # manager image view
+    url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',
+        'scout_manager.views.pages.image',
+        name='manager_image')
 
 )
 
