@@ -149,26 +149,6 @@
 
     <h3 class="col-md-12">Location</h3>
 
-    <label>Choose: <input type="file" name="" accept="image/*" id="mgr_upload_image"></label>
-
-    <p>Preview images:</p>
-
-    <ul id="mgr_list_spot_images">
-        {% for image in spot.images %}
-         <li>
-             <img src="/images/{{ spot.spot_id }}/image/{{ image.image_id }}?width=100" data-id="{{ image.image_id }}">
-             <label for="study-default-image-1" class="scope"><input type="radio" name="default-study-img" id="study-default-image-1" />default</label>
-             <input type="button" value="Delete image" class="mgr-delete-image" />
-         </li>
-        {% endfor %}
-    </ul>
-    <p id="mgr_list_spot_empty">Image list is empty! Add some images.</p>
-
-</fieldset>
-
-<fieldset class="clearfix">
-    <legend>Location:</legend>
-
 <div class="col-md-4 mgr-location-meta">
         <div class="form-group">
             <label for="space-campus" required>Campus:</label>

@@ -5,7 +5,7 @@ var Forms = {
         Forms.hours_clear();
         Forms.hours_add();
         Forms.hours_grouping_clearfix();
-        Forms.image_upload();
+        Forms.load_images();
         Forms.image_delete();
         Forms.image_check_count();
         Forms.toggle_extended_info();
@@ -42,6 +42,32 @@ var Forms = {
 
     // image handling functions
 
+    load_images: function() {
+        // Get the image URLs and load them via AJAX
+        var images = $(".mgr-edit-img-container");
+        $.each(images, function(idx, image_container){
+            var url = $(image_container).attr("data-url");
+            $.ajax({
+                url: url,
+                type: "GET",
+                process_data: false,
+                success: function(data, textStatus, request) {
+                    Forms.attach_image(image_container, data, request.getResponseHeader('etag'))
+                },
+                error: function(xhr, status, error) {
+                }
+            });
+        });
+    },
+
+    attach_image: function(container, image_data, etag) {
+        // AJAX callback to attach images to DOM
+        // and set data-csrf to returned CSRF header
+        $(container).attr('data-etag', etag);
+        var img = $("<img>", {src:"data:image/png;base64,"+image_data,
+                              width: '100'});
+        $(container).append(img);
+    },
 
     image_add: function(input) {
 
@@ -51,7 +77,7 @@ var Forms = {
             reader.onload = function (e) {
                 $('#mgr_list_spot_images').append('<div class="col-md-4"><div class="well" style="height:200px;"><img src="' + e.target.result +'" style="width:100px;"><label for="" class="scope"><input type="radio" name="" id="" />default</label><input type="button" value="Delete image" class="mgr-delete-image" /></div></div>');
                 Forms.image_check_count();
-            }
+            };
             reader.readAsDataURL(input.files[0]);
         }
     },
