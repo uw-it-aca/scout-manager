@@ -64,9 +64,7 @@ var Forms = {
         // AJAX callback to attach images to DOM
         // and set data-csrf to returned CSRF header
         $(container).attr('data-etag', etag);
-        var img = $("<img>", {src:"data:image/png;base64,"+image_data,
-                              width: '100'});
-        $(container).append(img);
+        $(container).css("background-image" , "url(data:image/png;base64,"+image_data,+")");
     },
 
     image_add: function(input) {
@@ -75,7 +73,7 @@ var Forms = {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
-                $('#mgr_list_spot_images').append('<div class="col-md-4"><div class="well" style="height:200px;"><img src="' + e.target.result +'" style="width:100px;"><label for="" class="scope"><input type="radio" name="" id="" />default</label><input type="button" value="Delete image" class="mgr-delete-image" /></div></div>');
+                //$('#mgr_list_spot_images').append('<div class="col-md-4"><div class="well" style="padding:0;"><div class="mgr-edit-img-container" style="url(' + e.target.result +')"></div>');
                 Forms.image_check_count();
             };
             reader.readAsDataURL(input.files[0]);
@@ -97,7 +95,7 @@ var Forms = {
                 window.removed_images = [{id: image_id,
                                           etag: image_etag}];
             }
-            $(this).parent("div").remove();
+            $(this).parent().parent("div").remove();
             Forms.image_check_count();
         });
     },

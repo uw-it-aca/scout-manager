@@ -80,6 +80,9 @@ body { overflow-x: hidden; }
         .btn-primary { text-transform: uppercase; background: $base; }
         .btn-danger { text-transform: uppercase; }
 
+        /* images */
+        .mgr-edit-img-container { background-size: cover; background-repeat: no-repeat; border-top-left-radius: 3px; border-top-right-radius: 3px; height: 200px; }
+
     }
 
 }
