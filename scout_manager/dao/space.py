@@ -13,6 +13,9 @@ def get_spot_list(app_type=None, groups=[]):
     try:
         if app_type:
             filters.append(('extended_info:app_type', app_type))
+        else:
+            # study spots have no app_type, and must filter on something else
+            filters.append(('open_now', 'true'))
         for group in groups:
             filters.append(('extended_info:group', group))
         spots = spot_client.search_spots(filters)
