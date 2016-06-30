@@ -15,8 +15,8 @@
     Display:
     {% if app_type == "food" %}
     <a class="btn btn-primary btn-xs" href="/manager/spaces/?app_type=food">all</a> <a class="btn btn-primary btn-xs scope" href="/manager/spaces/?app_type=food&is_hidden=false">published</a> <a class="btn btn-primary btn-xs scope" href="/manager/spaces/?app_type=food&is_hidden=true">unpublished</a>
-    {% elif app_type == "study" %}
-    <a class="btn btn-primary btn-xs" href="/manager/spaces/?app_type=study">all</a> <a class="btn btn-primary btn-xs scope" href="/manager/spaces/?app_type=study&is_hidden=false">published</a> <a class="btn btn-primary btn-xs scope" href="/manager/spaces/?app_type=study&is_hidden=true">unpublished</a>
+    {% else %}
+    <a class="btn btn-primary btn-xs" href="/manager/spaces/">all</a> <a class="btn btn-primary btn-xs scope" href="/manager/spaces/?is_hidden=false">published</a> <a class="btn btn-primary btn-xs scope" href="/manager/spaces/?app_type=study&is_hidden=true">unpublished</a>
     {% endif %}
     </div>
 
