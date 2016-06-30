@@ -70,8 +70,36 @@ def get_spot_hours_by_day(spot):
                               })
     return hours_objects
 
+def create_spot(form_data):
+    json_data = _build_spot_json(form_data)
+    spot_client = Spotseeker()
+    spot_client.post_spot(json.dumps(json_data))
+
+    if 'removed_images' in json_data:
+        for image in json_data['removed_images']:
+            spot_client.delete_image(spot_id, image['id'], image['etag'])
+
+    if form_data['file'] is not None and form_data['file'] != "undefined":
+        spot_client.post_image(spot_id, form_data['file'])
+
 
 def update_spot(form_data, spot_id, image=None):
+    json_data = _build_spot_json(form_data)
+    spot_client = Spotseeker()
+    # this is really hacky, but the etag seems to keep getting reset
+    # between a GET and PUT
+    spot = get_spot_by_id(spot_id)
+    etag = spot.etag
+    spot_client.put_spot(spot_id, json.dumps(json_data), etag)
+
+    if 'removed_images' in json_data:
+        for image in json_data['removed_images']:
+            spot_client.delete_image(spot_id, image['id'], image['etag'])
+
+    if form_data['file'] is not None and form_data['file'] != "undefined":
+        spot_client.post_image(spot_id, form_data['file'])
+
+def _build_spot_json(form_data):
     json_data = json.loads(form_data['json'])
 
     # handles case where single box is checked doesn't return a list
@@ -125,22 +153,7 @@ def update_spot(form_data, spot_id, image=None):
 
     json_data["extended_info"] = extended_info
     json_data["location"] = location_data
-
-    spot_client = Spotseeker()
-
-    # this is really hacky, but the etag seems to keep getting reset\
-    # between a GET and PUT
-    spot = get_spot_by_id(spot_id)
-    etag = spot.etag
-    spot_client.put_spot(spot_id, json.dumps(json_data), etag)
-
-    if 'removed_images' in json_data:
-        for image in json_data['removed_images']:
-            spot_client.delete_image(spot_id, image['id'], image['etag'])
-
-    if form_data['file'] is not None and form_data['file'] != "undefined":
-        spot_client.post_image(spot_id, form_data['file'])
-
+    return json_data
 
 def _process_checkbox_array(data):
     if isinstance(data, list):

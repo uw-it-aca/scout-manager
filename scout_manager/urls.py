@@ -54,6 +54,9 @@ urlpatterns = patterns(
     url(r'api/spot/(?P<spot_id>[0-9]{1,5})',
         Spot().run),
 
+    url(r'api/spot/',
+        Spot().run),
+
     # manager image view
     url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',
         'scout_manager.views.pages.image',
