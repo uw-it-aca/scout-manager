@@ -1,40 +1,84 @@
 
-<div class="clearfix">
+<div class="clearfix sticky" style="margin-bottom:1em;">
     <h2 class="pull-left">{% if item.name %}{{ item.name }}{% else %}Add New Item{% endif %}</h2>
     <div class="pull-right">
         {{ item.etag }}&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" value="Save Changes" style="display:inline-block;"></input>
     </div>
 </div>
 
-<h3>General Information</h3>
 
-<div class="form-group">
-    <label for="item-name">Name:</label>
-    <input id="item-name" class="form-control" type="text" required>
-</div>
+<div class="row">
 
-<div class="form-group">
-    <label for="item-name">Brand:</label>
-    <input id="item-brand" class="form-control" type="text" required>
-</div>
+    <div class="col-md-8">
 
-<div class="form-group">
-    <label for="item-name">Model:</label>
-    <input id="item-model" class="form-control" type="text" required>
-</div>
+        <h3>General Information</h3>
 
-<div class="form-group">
-    <label for="item-quantity">Quantity:</label>
-    <input id="item-quantity" class="form-control" type="number" required>
-</div>
+        <div class="form-group">
+            <label for="item-name">Name:</label>
+            <input id="item-name" class="form-control" type="text" required>
+        </div>
 
-{# How are we determining this? #}
-<div class="checkbox">
-    <label><input type="checkbox" value="STF">STF Funded</label>
-</div>
+        <div class="form-group">
+            <label for="item-name">Brand:</label>
+            <input id="item-brand" class="form-control" type="text" required>
+        </div>
 
-<div class="mgr-dataset-actions">
-    <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+        <div class="form-group">
+            <label for="item-name">Model:</label>
+            <input id="item-model" class="form-control" type="text" required>
+        </div>
+
+        <div class="form-group">
+            <label for="item-quantity">Quantity:</label>
+            <input id="item-quantity" class="form-control" type="number" required>
+        </div>
+
+
+        <div class="mgr-dataset-actions">
+            <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+        </div>
+
+        <fieldset style="margin-top:1em;">
+            <legend>Context/Type:</legend>
+
+            <div class="radio">
+                <label><input type="radio" name="extended_info:item_app_type" value="stf" checked>STF Funded</label>
+            </div>
+            <div class="radio disabled">
+                <label><input type="radio" name="extended_info:item_app_type" value="kitchen" disabled>Kitchen Appliances</label>
+            </div>
+            <div class="radio disabled">
+                <label><input type="radio" name="extended_info:item_app_type" value="aca" disabled>ACA Inventory</label>
+            </div>
+
+        </fieldset>
+    </div>
+
+    <div class="col-md-4">
+
+        <h3>Administration</h3>
+
+        <div class="form-group">
+            <label for="owner">Owner/Admin Group:</label>
+            <input class="form-control" id="owner" name="extended_info:owner" type="text" value="{% if item.owner %}{{ item.owner }}{% endif %}">
+        </div>
+
+        <div class="form-group">
+            <label for="manager-name">Manager Name:</label>
+            <input class="form-control" id="manager-name" name="manager" type="text" value="{% if item.manager %}{{ item.manager }}{% endif %}">
+        </div>
+
+        <div class="form-group">
+            <label for="email" class="">Email:</label>
+            <input class="form-control" id="email" type="email" value="{% if item.email %}{{ item.email }}{% endif %}">
+        </div>
+
+        <div class="form-group">
+            <label for="phone" class="">Phone:</label>
+            <input class="form-control" id="phone" name="phone" type="tel" value="{% if item.phone %}{{ item.phone }}{% endif %}">
+        </div>
+
+    </div>
 </div>
 
 <hr/>
@@ -42,7 +86,7 @@
 <h3>Item Description</h3>
 
 <div class="form-group">
-    <label for="item-category">Category of Item:</label>
+    <label for="item-category">Category:</label>
     <!-- list of ACA predefined categories -->
     <select class="form-control" id="item-category" required>
         <option disabled selected value>select a category...</option>
@@ -53,8 +97,8 @@
 </div>
 
 <div class="form-group">
-    <label for="item-type">Item Type:</label>
-    <input class="form-control" id="item-type" list="item-type-list" required>
+    <label for="item-type">Sub category:</label>
+    <input class="form-control" id="item-sub-category" list="item-type-list" required>
     <!-- list of predefined types, based on selected category. -->
     <datalist id="item-type-list">
         <option>3D printer</option>
@@ -74,6 +118,8 @@
     <input class="form-control" id="item_info_website" type="url">
 </div>
 
+
+<hr/>
 
 <h3>Location</h3>
 
@@ -214,25 +260,3 @@
 </div>
 
 <hr/>
-
-<h3>Administration</h3>
-
-<div class="form-group">
-    <label for="owner">Owner/Admin Group:</label>
-    <input class="form-control" id="owner" name="extended_info:owner" type="text" value="{% if item.owner %}{{ item.owner }}{% endif %}">
-</div>
-
-<div class="form-group">
-    <label for="manager-name">Manager Name:</label>
-    <input class="form-control" id="manager-name" name="manager" type="text" value="{% if item.manager %}{{ item.manager }}{% endif %}">
-</div>
-
-<div class="form-group">
-    <label for="email" class="">Email:</label>
-    <input class="form-control" id="email" type="email" value="{% if item.email %}{{ item.email }}{% endif %}">
-</div>
-
-<div class="form-group">
-    <label for="phone" class="">Phone:</label>
-    <input class="form-control" id="phone" name="phone" type="tel" value="{% if item.phone %}{{ item.phone }}{% endif %}">
-</div>
