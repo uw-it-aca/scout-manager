@@ -7,38 +7,96 @@
 
 <div class="mgr-content-header clearfix">
 
-    <h2 class="pull-left">Items</h2>
+    <h2 class="pull-left">Items: Technology STF</h2>
 
     <div class="pull-right">
-    Total: <span class="dummy">{{ count }}xxxx</span>
+    Total: <span class="">{{ count }}</span>
+    &nbsp;&nbsp;&nbsp;
+    Display:
+    {% if app_type == "food" %}
+    <a class="btn btn-primary btn-xs" href="/manager/spaces/?app_type=food">all</a> <a class="btn btn-primary btn-xs scope" href="/manager/spaces/?app_type=food&is_hidden=false">published</a> <a class="btn btn-primary btn-xs scope" href="/manager/spaces/?app_type=food&is_hidden=true">unpublished</a>
+    {% else %}
+    <a class="btn btn-primary btn-xs" href="/manager/spaces/">all</a> <a class="btn btn-primary btn-xs scope" href="/manager/spaces/?is_hidden=false">published</a> <a class="btn btn-primary btn-xs scope" href="/manager/spaces/?app_type=study&is_hidden=true">unpublished</a>
+    {% endif %}
     </div>
 
 </div>
 
-<ol>
-    <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">
-        <div>Image:<span class="dummy">item.default_image</span></div>
-        <div>Name: <span class="dummy">item.name</span></div>
-        <div>Type:<span class="dummy">item_type.name</span></div>
-        <div>Category:<span class="dummy">item_category.name</span></div>
-        <div>Brand:<span class="dummy">item.brand</span></div>
-        <div>Model:<span class="dummy">item.model</span></div>
-        <div>Quantity:<span class="dummy">item.quantity</span></div>
-        <div>Space item is in:<span class="dummy">space.name</span></div>
-        <div>Building item is in:<span class="dummy">building.name</span></div>
-        <div>STF Funded: <span class="dummy">Yes</span></div>
+<div style="margin-top: 15px;" class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</td>
+                <th>Name</td>
+                <th>Type</td>
+                <th>Category</td>
+                <th>Brand</td>
+                <th>Model</td>
+                <th><span class="sr-only">Actions</span></td>
+            </tr>
+        </thead>
+        <tbody>
 
-        <div class="mgr-dataset-actions">
-            <a class="btn btn-default btn-sm dummy" href="/detail/{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View</span></a>
-            <a class="btn btn-default btn-sm" href="/manager/items/5555/"><i class="fa fa-pencil"></i> <span>Edit</span></a>
-            <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
-        </div>
+            <tr>
+                <td>0001</td>
+                <td>Solidoodle 4 (Black)</td>
+                <td>Printer</td>
+                <td>3d Printer</td>
+                <td>Solidoodle</td>
+                <td>4</td>
+                <td>
+                    <div class="mgr-dataset-actions">
+                        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>0002</td>
+                <td>Nikon D7000 DSLR Camera</td>
+                <td>Digital Camera</td>
+                <td>Camera</td>
+                <td>Nikon</td>
+                <td>D7000</td>
+                <td>
+                    <div class="mgr-dataset-actions">
+                        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>0003</td>
+                <td>Apple Macbook Pro 2011</td>
+                <td>Laptop</td>
+                <td>Cool Laptops</td>
+                <td>Apple</td>
+                <td>Macbook Pro</td>
+                <td>
+                    <div class="mgr-dataset-actions">
+                        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                    </div>
+                </td>
+            </tr>
 
-    </li>
-    <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
-    <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
-    <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
-</ol>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.item_id }}</a></td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.category }}</td>
+                <td>{{ item.sub_category }}</td>
+                <td>{{ item.brand }}</td>
+                <td>{{ item.model }}</td>
+                <td>
+                    <div class="mgr-dataset-actions">
+                        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            There are no items for you to see!
+            {% endfor %}
 
+        </tbody>
+    </table>
+</div>
 
 {% endblock %}
