@@ -64,14 +64,14 @@
         {% endif %}
 
         <fieldset style="margin-top:1em;">
-            <legend>Type: <span style="color:green; font-weight:normal;">({{ spot.app_type }})</span></legend>
+            <legend>Type:</legend>
 
             {% if spot.app_type == "food" %}
                 <div class="radio disabled">
                     <label><input type="radio" name="extended_info:app_type" required value="food" checked>Food</label>
                 </div>
                 <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" required disabled>Study</label>
+                    <label><input type="radio" required disabled>Study</label>
                 </div>
                 <div class="radio disabled">
                     <label><input type="radio" name="extended_info:app_type" required value="tech" disabled>Tech</label>
@@ -82,7 +82,7 @@
                     <label><input type="radio" name="extended_info:app_type" required value="food" disabled>Food</label>
                 </div>
                 <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" required checked>Study</label>
+                    <label><input type="radio" required checked>Study</label>
                 </div>
                 <div class="radio disabled">
                     <label><input type="radio" name="extended_info:app_type" required value="tech" disabled>Tech</label>
@@ -93,7 +93,7 @@
                     <label><input type="radio" name="extended_info:app_type" required value="food" disabled>Food</label>
                 </div>
                 <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" required disabled>Study</label>
+                    <label><input type="radio" required disabled>Study</label>
                 </div>
                 <div class="radio disabled">
                     <label><input type="radio" name="extended_info:app_type" required value="tech" checked>Tech</label>
@@ -105,7 +105,7 @@
                         <label><input type="radio" name="extended_info:app_type" value="food">Food</label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" name="extended_info:app_type">Study</label>
+                        <label><input id="study_radio" type="radio">Study</label>
                     </div>
                     <div class="radio">
                         <label><input type="radio" name="extended_info:app_type" value="tech">Tech</label>
