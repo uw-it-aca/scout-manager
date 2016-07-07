@@ -7,7 +7,7 @@
 
 <div class="mgr-content-header clearfix">
 
-    <h2 class="pull-left">SPOTS: {{ app_type }}</h2>
+    <h2 class="pull-left">SPOTS: {% if app_type %}{{ app_type }}{% else %}Study{% endif %}</h2>
 
     <div class="pull-right">
     Total: <span class="">{{ count }}</span>
