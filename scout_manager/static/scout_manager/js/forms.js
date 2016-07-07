@@ -143,8 +143,8 @@ var Forms = {
         $("#toggle_is_hidden").click(function() {
             var checkBoxes = $("input[name='extended_info:is_hidden']");
             checkBoxes.prop("checked", !checkBoxes.prop("checked"));
-            // submit "save changes"
 
+            // submit "save changes"
             Spot.submit_spot();
 
         });
