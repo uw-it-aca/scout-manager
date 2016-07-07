@@ -10,14 +10,7 @@
     <h2 class="pull-left">Items: Technology STF</h2>
 
     <div class="pull-right">
-    Total: <span class="">{{ count }}</span>
-    &nbsp;&nbsp;&nbsp;
-    Display:
-    {% if app_type == "food" %}
-    <a class="btn btn-primary btn-xs" href="/manager/spaces/?app_type=food">all</a> <a class="btn btn-primary btn-xs scope" href="/manager/spaces/?app_type=food&is_hidden=false">published</a> <a class="btn btn-primary btn-xs scope" href="/manager/spaces/?app_type=food&is_hidden=true">unpublished</a>
-    {% else %}
-    <a class="btn btn-primary btn-xs" href="/manager/spaces/">all</a> <a class="btn btn-primary btn-xs scope" href="/manager/spaces/?is_hidden=false">published</a> <a class="btn btn-primary btn-xs scope" href="/manager/spaces/?app_type=study&is_hidden=true">unpublished</a>
-    {% endif %}
+    Total: <span class="scope">{{ count }}xxxxxxx</span>
     </div>
 
 </div>
