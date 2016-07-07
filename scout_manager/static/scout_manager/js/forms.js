@@ -120,7 +120,12 @@ var Forms = {
                 $("#extended_food_template").show();
                 $("#extended_study_template").hide();
             }
-            else {
+            else if($(this).val() == 'tech') {
+                console.log("tech lksadfjsd")
+                $("#extended_food_template").hide();
+                $("#extended_study_template").hide();
+            }
+            else { // study
                 $("#extended_food_template").hide();
                 $("#extended_study_template").show();
             }

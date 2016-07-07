@@ -71,7 +71,10 @@
                     <label><input type="radio" name="extended_info:app_type" required value="food" checked>Food</label>
                 </div>
                 <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" required value="study" disabled>Study</label>
+                    <label><input type="radio" name="extended_info:app_type" required disabled>Study</label>
+                </div>
+                <div class="radio disabled">
+                    <label><input type="radio" name="extended_info:app_type" required value="tech" disabled>Tech</label>
                 </div>
                 <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
             {% elif spot.app_type == "study" %}
@@ -79,7 +82,21 @@
                     <label><input type="radio" name="extended_info:app_type" required value="food" disabled>Food</label>
                 </div>
                 <div class="radio disabled">
-                    <label><input type="radio" required checked>Study</label>
+                    <label><input type="radio" name="extended_info:app_type" required checked>Study</label>
+                </div>
+                <div class="radio disabled">
+                    <label><input type="radio" name="extended_info:app_type" required value="tech" disabled>Tech</label>
+                </div>
+                <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
+            {% elif spot.app_type == "tech" %}
+                <div class="radio disabled">
+                    <label><input type="radio" name="extended_info:app_type" required value="food" disabled>Food</label>
+                </div>
+                <div class="radio disabled">
+                    <label><input type="radio" name="extended_info:app_type" required disabled>Study</label>
+                </div>
+                <div class="radio disabled">
+                    <label><input type="radio" name="extended_info:app_type" required value="tech" checked>Tech</label>
                 </div>
                 <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
             {% else %}
@@ -88,7 +105,10 @@
                         <label><input type="radio" name="extended_info:app_type" value="food">Food</label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" name="extended_info:app_type" value="study">Study</label>
+                        <label><input type="radio" name="extended_info:app_type">Study</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="extended_info:app_type" value="tech">Tech</label>
                     </div>
                 </div>
             {% endif %}
@@ -237,35 +257,88 @@
 <!-- include the hour and access form -->
 {% include "scout_manager/include/form_hours.html" %}
 
-<hr/>
+<hr style="border-top:solid 10px #ecf0f1;"/>
 
 <!-- if space has items -->
 
-<h3>Space Item(s)</h3>
+<h3>Item(s)</h3>
 
 <p><a class="scope" href="/manager/items/add/">Add New Item to this space</a></p>
-<p>Total: <span class="dummy">Total # of items in items list</span></p>
-<ol>
-<li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">
-    <div>Image:<span class="dummy">item.default_image</span></div>
-    <div>Name: <span class="dummy">item.name</span></div>
-    <div>Type:<span class="dummy">item_type.name</span></div>
-    <div>Category:<span class="dummy">item_category.name</span></div>
-    <div>Brand:<span class="dummy">item.brand</span></div>
-    <div>Model:<span class="dummy">item.model</span></div>
-    <div>Quantity:<span class="dummy">item.quantity</span></div>
-    <div>Space item is in:<span class="dummy">space.name</span></div>
-    <div>Building item is in:<span class="dummy">building.name</span></div>
-    <div>STF Funded: <span class="dummy">Yes</span></div>
+<p>Total: <span class="scope">xxxxxx</span></p>
 
-    <div class="mgr-dataset-actions">
-        <a class="btn btn-default btn-sm dummy" href="/detail/{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View</span></a>
-        <a class="btn btn-default btn-sm" href="/manager/items/5555/"><i class="fa fa-pencil"></i> <span>Edit</span></a>
-        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
-    </div>
+<div style="margin-top: 15px;" class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</td>
+                <th>Name</td>
+                <th>Type</td>
+                <th>Category</td>
+                <th>Brand</td>
+                <th>Model</td>
+                <th><span class="sr-only">Actions</span></td>
+            </tr>
+        </thead>
+        <tbody>
 
-</li>
-<li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
-<li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
-<li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
-</ol>
+            <tr>
+                <td>0001</td>
+                <td>Solidoodle 4 (Black)</td>
+                <td>Printer</td>
+                <td>3d Printer</td>
+                <td>Solidoodle</td>
+                <td>4</td>
+                <td>
+                    <div class="mgr-dataset-actions">
+                        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>0002</td>
+                <td>Nikon D7000 DSLR Camera</td>
+                <td>Digital Camera</td>
+                <td>Camera</td>
+                <td>Nikon</td>
+                <td>D7000</td>
+                <td>
+                    <div class="mgr-dataset-actions">
+                        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>0003</td>
+                <td>Apple Macbook Pro 2011</td>
+                <td>Laptop</td>
+                <td>Cool Laptops</td>
+                <td>Apple</td>
+                <td>Macbook Pro</td>
+                <td>
+                    <div class="mgr-dataset-actions">
+                        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                    </div>
+                </td>
+            </tr>
+
+            {% for item in items %}
+            <tr>
+                <td>{{ item.item_id }}</a></td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.category }}</td>
+                <td>{{ item.sub_category }}</td>
+                <td>{{ item.brand }}</td>
+                <td>{{ item.model }}</td>
+                <td>
+                    <div class="mgr-dataset-actions">
+                        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            There are no items for you to see!
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
