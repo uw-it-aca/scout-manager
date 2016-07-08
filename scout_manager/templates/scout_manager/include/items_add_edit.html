@@ -19,20 +19,26 @@
         </div>
 
         <div class="form-group">
-            <label for="item-name">Brand:</label>
-            <input id="item-brand" class="form-control" type="text" required>
+            <label for="item-category">Category:</label>
+            <!-- list of ACA predefined categories -->
+            <select class="form-control" id="item-category" required>
+                <option disabled selected value>select a category...</option>
+                <option>Prototyping</option>
+                <option>Defined Category 2</option>
+                <option>...</option>
+            </select>
         </div>
 
         <div class="form-group">
-            <label for="item-name">Model:</label>
-            <input id="item-model" class="form-control" type="text" required>
+            <label for="item-type">Sub category:</label>
+            <input class="form-control" id="item-sub-category" list="item-type-list" required>
+            <!-- list of predefined types, based on selected category. -->
+            <datalist id="item-type-list">
+                <option>3D printer</option>
+                <option>Defined Type 2</option>
+                <option>...</option>
+            </datalist>
         </div>
-
-        <div class="form-group">
-            <label for="item-quantity">Quantity:</label>
-            <input id="item-quantity" class="form-control" type="number" required>
-        </div>
-
 
         <div class="mgr-dataset-actions">
             <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
@@ -83,41 +89,12 @@
 
 <hr/>
 
-<h3>Item Description</h3>
+{% include "scout_manager/include/extend_stf.html" %}
 
-<div class="form-group">
-    <label for="item-category">Category:</label>
-    <!-- list of ACA predefined categories -->
-    <select class="form-control" id="item-category" required>
-        <option disabled selected value>select a category...</option>
-        <option>Prototyping</option>
-        <option>Defined Category 2</option>
-        <option>...</option>
-    </select>
-</div>
+<hr/>
 
-<div class="form-group">
-    <label for="item-type">Sub category:</label>
-    <input class="form-control" id="item-sub-category" list="item-type-list" required>
-    <!-- list of predefined types, based on selected category. -->
-    <datalist id="item-type-list">
-        <option>3D printer</option>
-        <option>Defined Type 2</option>
-        <option>...</option>
-    </datalist>
-</div>
-
-
-<div class="form-group">
-    <label for="item-description">Description:</label>
-    <textarea rows="4" class="form-control" id="item-description" type="text"></textarea>
-</div>
-
-<div class="form-group">
-    <label for="item_info_website">Website for item info:</label>
-    <input class="form-control" id="item_info_website" type="url">
-</div>
-
+<!-- include the images form -->
+{% include "scout_manager/include/form_images.html" %}
 
 <hr/>
 
@@ -135,6 +112,7 @@
     </select>
 </div>
 
+<hr />
 
 <h3>Current Alert</h3>
 
@@ -146,117 +124,3 @@
     <label for="alert-notes">Post this Alert message:</label>
     <textarea class="form-control" rows="4" id="alert-notes" name="extended_info:alert_notes" type="text" value="{% if item.alert_notes %}{{ item.alert_notes }}{% endif %}"></textarea>
 </div>
-
-<!-- include the images form -->
-{% include "scout_manager/include/form_images.html" %}
-
-<h3>Serial numbers</h3>
-
-<div class="form-group">
-    <label for="item-serial">Serial Number(s):</label>
-    <input class="form-control" id="item-serial" type="text">
-    <p>Note: separate multiple serial numbers with a comma.</p>
-</div>
-
-<div class="form-group">
-    <label for="item-UWtag">UW Tag Number(s):</label>
-    <input class="form-control" id="item-UWtag" type="text">
-    <p>Note: separate multiple UW Tag numbers with a comma.</p>
-</div>
-
-
-<h3>Access Restrictions</h3>
-<fieldset>
-    <legend>Prerequisites?</legend>
-
-    <div class="checkbox">
-        <label for=""><input id="" type="checkbox">Has Prerequisites?</label>
-    </div>
-
-    <div class="form-group">
-        <label for="">Prerequisites Notes:</label>
-        <textarea rows="4" class="form-control" id=""></textarea>
-    </div>
-
-</fieldset>
-
-<fieldset>
-    <legend>Reservable?</legend>
-
-    <div class="checkbox">
-        <label for=""><input id="" type="checkbox">Is Reservable?</label>
-    </div>
-
-    <div class="form-group">
-        <label for="">Reservation Notes:</label>
-        <textarea rows="4" class="form-control" id=""></textarea>
-    </div>
-
-</fieldset>
-
-
-<div class="checkbox">
-    <label><input id="" type="checkbox">Available to general public?</label>
-</div>
-
-<!-- If NO, show this fieldset. Selection here determines which access fieldsets are shown below. -->
-<fieldset>
-    <legend>Access limited to:</legend>
-
-    <div class="checkbox">
-        <label><input type="checkbox" value="access_netid">UW NetID</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="access_role">Specific role (student/staff/faculty)</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="access_school">Specific School affiliation</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="access_dept">Specific Department affiliation</label>
-    </div>
-</fieldset>
-
-<fieldset>
-    <!-- If ROLE selected, show this fieldset.  -->
-    <legend>Select role(s)</legend>
-
-    <div class="checkbox">
-        <label><input type="checkbox" value="access_student">Students</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="access_faculty">Staff</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="access_staff">Faculty</label>
-    </div>
-</fieldset>
-
-<div class="form-group">
-    <label for="">School:</label>
-    <!-- If SCHOOL AFFILIATION selected, show this div.  -->
-    <select class="form-control" multiple>
-        <option disabled selected value>choose school...</option>
-        <option>UW School 1</option>
-        <option>UW School 2</option>
-        <option>...</option>
-    </select>
-</div>
-
-<div class="form-group">
-    <label for="">Department</label>
-    <!-- If DEPARTMENT AFFILIATION selected, show this div. If SCHOOL(s) chosen, then limit list to depts within school(s). -->
-    <select class="form-control" multiple>
-        <option disabled selected value>choose department...</option>
-        <option>UW Dept 1</option>
-        <option>UW Dept 2</option>
-        <option>...</option>
-    </select>
-</div>
-
-<div class="form-group">
-    <label for="access-notes">Access Notes:</label>
-    <textarea rows="4" class="form-control" id="access-notes" type="text"></textarea>
-</div>
-
-<hr/>
