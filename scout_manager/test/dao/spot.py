@@ -1,8 +1,8 @@
 """
 Tests for the scout-manager spot DAO
 """
-from scout_manager.dao.space import get_spot_hours_by_day, _process_checkbox_array,\
-    get_spot_list
+from scout_manager.dao.space import get_spot_hours_by_day, \
+    _process_checkbox_array, get_spot_list, _get_spot_id_from_url
 from spotseeker_restclient.spotseeker import Spotseeker
 from scout_manager.test import ScoutTest
 import datetime
@@ -42,3 +42,7 @@ class SpotDaoTest(ScoutTest):
         self.assertEqual(len(get_spot_list(app_type='food')), 3)
         self.assertEqual(len(get_spot_list(app_type='study')), 0)
         self.assertEqual(len(get_spot_list(app_type='nonexistant')), 0)
+
+    def test_get_id(self):
+        url = "http://spotseeker-test-app1.cac.washington.edu/api/v1/spot/5213"
+        self.assertEqual(_get_spot_id_from_url(url), '5213')

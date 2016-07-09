@@ -1,5 +1,5 @@
 from scout_manager.views.rest_dispatch import RESTDispatch
-from scout_manager.dao.space import update_spot
+from scout_manager.dao.space import update_spot, create_spot
 from django.http import HttpResponse
 import json
 import re
@@ -10,16 +10,12 @@ class Spot(RESTDispatch):
     Handles changes to spots
     """
 
-    def POST(self, request):
-        return HttpResponse('it works')
-
     def PUT(self, request, spot_id):
-        # data = json.loads(request.body)
         form_data = process_form_data(request)
-        # try:
-        update_spot(form_data, spot_id)
-        # except Exception as ex:
-        #     return HttpResponse(json.dumps({'error': str(ex)}), status=400)
+        try:
+            update_spot(form_data, spot_id)
+        except Exception as ex:
+            return HttpResponse(json.dumps({'error': str(ex)}), status=400)
         return HttpResponse(json.dumps({'status': 'it works'}))
 
 
@@ -52,3 +48,17 @@ def process_form_data(request):
             else:
                 form_data[block_name] = block_data
     return form_data
+
+
+class SpotCreate(RESTDispatch):
+    """
+    Handles Spot creation, using PUT to deal with django issues
+    """
+
+    def PUT(self, request):
+        form_data = process_form_data(request)
+        # try:
+        create_spot(form_data)
+        # except Exception as ex:
+        #     return HttpResponse(json.dumps({'error': str(ex)}), status=400)
+        return HttpResponse(json.dumps({'status': 'it works'}))
