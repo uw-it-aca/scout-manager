@@ -3,20 +3,18 @@ var Spot = {
         var form_data = Spot.get_edit_form_data();
         var is_create= Spot._get_is_add(form_data);
 
-        if (is_create === false) {
-            Spot._edit_spot(form_data);
+        if (is_create) {
+            Spot._create_spot(form_data);
+
         } else {
-            Spot._create_spot(form_data)
+            Spot._edit_spot(form_data);
         }
 
 
     },
 
     _get_is_add: function(form_data) {
-        if (form_data.id === undefined){
-            return true
-        }
-        return false
+        return !(form_data.id.length > 0);
     },
 
     _edit_spot: function (form_data) {
@@ -48,11 +46,17 @@ var Spot = {
     },
 
     _create_spot: function (form_data) {
+        var f_data = new FormData();
+        f_data.append("json", JSON.stringify(form_data));
+        var image = $("#mgr_upload_image")[0];
+        var file = image.files[0];
+        f_data.append("file", file)
         $.ajax({
             url: "/manager/api/spot/",
-            type: "POST",
-            data: JSON.stringify(form_data),
-            contentType: "application/json",
+            type: "PUT",
+            data: f_data,
+            contentType: false,
+            processData: false,
             dataType: "json",
             headers: {'X-CSRFToken': Cookies.get('csrftoken')},
             success: function(results) {

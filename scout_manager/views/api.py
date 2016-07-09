@@ -10,16 +10,6 @@ class Spot(RESTDispatch):
     Handles changes to spots
     """
 
-    def POST(self, request):
-        form_data = process_form_data(request)
-        try:
-            create_spot(form_data)
-        except Exception as ex:
-            return HttpResponse(json.dumps({'error': str(ex)}), status=400)
-        return HttpResponse(json.dumps({'status': 'it works'}))
-
-        return HttpResponse('it works')
-
     def PUT(self, request, spot_id):
         form_data = process_form_data(request)
         try:
@@ -58,3 +48,17 @@ def process_form_data(request):
             else:
                 form_data[block_name] = block_data
     return form_data
+
+
+class SpotCreate(RESTDispatch):
+    """
+    Handles Spot creation, using PUT to deal with django issues
+    """
+
+    def PUT(self, request):
+        form_data = process_form_data(request)
+        # try:
+        create_spot(form_data)
+        # except Exception as ex:
+        #     return HttpResponse(json.dumps({'error': str(ex)}), status=400)
+        return HttpResponse(json.dumps({'status': 'it works'}))
