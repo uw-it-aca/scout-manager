@@ -20,7 +20,15 @@
     </h2>
 
     <div class="pull-right">
-        {{ spot.etag }}&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" value="Save Changes" style="display:inline-block;"></input>
+
+        {% if spot.name %}
+        {{ spot.etag }}&nbsp;&nbsp;&nbsp;
+        {% if spot.is_hidden %}<input id="save_draft" type="button" class="btn btn-default" value="Save Draft" style="display:inline-block;"></input>&nbsp;&nbsp;{% endif %}
+        <input id="save_publish" type="button" class="btn btn-primary" value="Publish changes" style="display:inline-block;"></input>
+        {% else %}
+        <input id="save_draft" type="button" class="btn btn-default" value="Save Draft" style="display:inline-block;"></input>
+        {% endif %}
+
     </div>
 
 </div>
@@ -32,8 +40,10 @@
         <h3 class="">General Info</h3>
 
         <div class="form-group">
-            <label for="space-name">Name:</label>
-            <input type="text" class="form-control" name="name" id="space-name" value="{% if spot.name %}{{ spot.name }}{% endif %}" required="required" />
+            <label for="space-name" class="control-label">Name:</label>
+            <input type="text" class="form-control" name="name" id="space-name" value="{% if spot.name %}{{ spot.name }}{% endif %}" required data-error="Please provide a name for this spot." />
+            <div class="help-block with-errors"></div>
+
             <input type="hidden" name="id" value="{{ spot.spot_id }}" />
             <input type="hidden" name="etag" value="{{ spot.etag }}" />
         </div>
@@ -61,42 +71,46 @@
 
             <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
         </div>
+        {% else %}
+        <div class="checkbox hidden">
+            <label><input type="checkbox" name="extended_info:is_hidden" checked></input>Is Hidden?</label>
+        </div>
         {% endif %}
 
-        <fieldset style="margin-top:1em;">
-            <legend>Context/Type:</legend>
+        <fieldset style="margin-top:1em;" class="has-error">
+            <legend class="control-label">Context/Type:</legend>
 
             {% if spot.app_type == "food" %}
                 <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" required value="food" checked>Food</label>
+                    <label><input type="radio" name="extended_info:app_type" value="food" checked>Food</label>
                 </div>
                 <div class="radio disabled">
-                    <label><input type="radio" required disabled>Study</label>
+                    <label><input type="radio" disabled>Study</label>
                 </div>
                 <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" required value="tech" disabled>Tech</label>
+                    <label><input type="radio" name="extended_info:app_type" value="tech" disabled>Tech</label>
                 </div>
                 <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
             {% elif spot.app_type == "study" %}
                 <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" required value="food" disabled>Food</label>
+                    <label><input type="radio" name="extended_info:app_type" value="food" disabled>Food</label>
                 </div>
                 <div class="radio disabled">
-                    <label><input type="radio" required checked>Study</label>
+                    <label><input type="radio" checked>Study</label>
                 </div>
                 <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" required value="tech" disabled>Tech</label>
+                    <label><input type="radio" name="extended_info:app_type" value="tech" disabled>Tech</label>
                 </div>
                 <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
             {% elif spot.app_type == "tech" %}
                 <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" required value="food" disabled>Food</label>
+                    <label><input type="radio" name="extended_info:app_type" value="food" disabled>Food</label>
                 </div>
                 <div class="radio disabled">
-                    <label><input type="radio" required disabled>Study</label>
+                    <label><input type="radio" disabled>Study</label>
                 </div>
                 <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" required value="tech" checked>Tech</label>
+                    <label><input type="radio" name="extended_info:app_type" value="tech" checked>Tech</label>
                 </div>
                 <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
             {% else %}
@@ -111,6 +125,7 @@
                         <label><input type="radio" name="extended_info:app_type" value="tech">Tech</label>
                     </div>
                 </div>
+                <div class="help-block with-errors">Please select an app_type. TODO.. need to handle radio group validation via jquery.</div>
             {% endif %}
 
         </fieldset>
@@ -173,7 +188,7 @@
 
 <div class="col-md-4 mgr-location-meta">
         <div class="form-group">
-            <label for="space-campus" required>Campus:</label>
+            <label for="space-campus">Campus:</label>
             <select class="form-control" name="extended_info:campus">
                 <option disabled selected value>select a campus...</option>
                 <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
@@ -184,13 +199,15 @@
         </div>
 
         <div class="form-group">
-            <label for="space-latitude">Latitude:</label>
-            <input class="form-control" name="location:latitude" id="space_latitude" type="text" value="{% if spot.latitude %}{{ spot.latitude }}{% endif %}" required />
+            <label for="space-latitude" class="control-label">Latitude:</label>
+            <input class="form-control" name="location:latitude" id="space_latitude" type="text" value="{% if spot.latitude %}{{ spot.latitude }}{% endif %}" required data-error="Use the location chooser form to get coords." />
+            <div class="help-block with-errors"></div>
         </div>
 
         <div class="form-group">
-            <label for="space-longitude">Longitude:</label>
-            <input class="form-control" name="location:longitude" id="space_longitude" type="text" value="{% if spot.longitude %}{{ spot.longitude }}{% endif %}" required />
+            <label for="space-longitude" class="control-label">Longitude:</label>
+            <input class="form-control" name="location:longitude" id="space_longitude" type="text" value="{% if spot.longitude %}{{ spot.longitude }}{% endif %}" required data-error="Use the location chooser form to get coords." />
+            <div class="help-block with-errors"></div>
         </div>
 
 

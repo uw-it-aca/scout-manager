@@ -103,11 +103,13 @@ legend { border: none; margin-bottom: 5px; font-weight: 700; font-family: "Helve
 
 textarea { resize: vertical; }
 
+fieldset { margin-bottom: 20px; }
+
 .form-inline {
     .form-group { margin-right: 5px; }
 }
 
-.well { background: #fff; }
+.well { background: #fff; padding: 8px 19px; margin-bottom: 0; }
 
 // sticky header
 

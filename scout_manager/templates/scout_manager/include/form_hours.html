@@ -3,7 +3,7 @@
 <div class="row mgr-hours-group">
 
     {% for day_hours in spot.grouped_hours %}
-    <div class="col-md-4">
+    <div class="col-md-4" style="margin-bottom: 20px;">
         <div class="well">
             <fieldset class="mgr-hours" data-day="{{ day_hours.day }}">
                 <legend>{{ day_hours.day|capfirst }}:</legend>

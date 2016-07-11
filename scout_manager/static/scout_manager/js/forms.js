@@ -10,6 +10,10 @@ var Forms = {
         Forms.image_check_count();
         Forms.toggle_extended_info();
         Forms.toggle_is_hidden();
+
+
+
+        $('#add_form').validator('validate');
     },
 
     // hours functions
@@ -120,6 +124,8 @@ var Forms = {
                 $("#extended_food_template").show();
                 $("#extended_study_template").hide();
                 $("#study_radio").prop('checked', false);
+
+                $('#add_form').validator('validate');
             }
             else if($(this).val() == 'tech') {
                 console.log("tech lksadfjsd")
@@ -127,6 +133,9 @@ var Forms = {
                 $("#extended_study_template").hide();
                 $("#study_radio").prop('checked', false);
             }
+
+
+
         });
 
         // handle radio lick event for study type
@@ -134,6 +143,9 @@ var Forms = {
             $("#extended_food_template").hide();
             $("#extended_study_template").show();
             $("#add_new_extended_info input[name='extended_info:app_type']").prop('checked', false);
+
+            $('#add_form').validator('validate');
+
         });
 
     },

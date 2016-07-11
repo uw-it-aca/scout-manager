@@ -103,6 +103,10 @@ var Spot = {
     },
 
     init_events: function () {
-        $("input[value='Save Changes']").click(Spot.submit_spot);
+        // todo: always make sure spot is_hidden=true
+        $("#save_draft").click(Spot.submit_spot);
+
+        //todo: always remove is_hidden flag
+        $("#save_publish").click(Spot.submit_spot);
     }
 };

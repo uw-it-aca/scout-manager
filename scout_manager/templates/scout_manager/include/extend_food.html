@@ -6,10 +6,9 @@
 
     <div class="col-md-4">
 
-        <fieldset>
-            <legend>Spot types</legend>
-            <div class="well" id="food_spot_types">
-
+        <fieldset class="has-error">
+            <legend class="control-label">Spot types</legend>
+            <div class="well form-group" id="food_spot_types">
                 <div class="checkbox">
                     <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafe" in type.name %} checked {% endif %}{% endfor %} value="cafe">Cafe</label>
                 </div>
@@ -28,8 +27,8 @@
                 <div class="checkbox">
                     <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafeteria" in type.name %} checked {% endif %}{% endfor %} value="cafeteria">Cafeteria</label>
                 </div>
-
             </div>
+            <div class="help-block with-errors">Please select at least 1 spot type. TODO.. need to handle checkbox group validation via jquery.</div>
         </fieldset>
 
         <div class="form-group">
@@ -60,8 +59,8 @@
 
     </div>
 
-    <fieldset class="col-md-4">
-        <legend>Food served</legend>
+    <fieldset class="col-md-4 has-error">
+        <legend class="control-label">Food served</legend>
         <div class="well" id="food_select">
 
             <div class="checkbox">
@@ -117,6 +116,7 @@
             </div>
 
         </div>
+        <div class="help-block with-errors">Please select at least 1 food served. TODO.. need to handle checkbox group validation via jquery.</div>
     </fieldset>
 
     <fieldset class="col-md-4">
@@ -153,8 +153,8 @@
         </div>
     </fieldset>
 
-    <fieldset class="col-md-4">
-        <legend>Payment Type</legend>
+    <fieldset class="col-md-4 has-error">
+        <legend class="control-label">Payment Type</legend>
         <div class="well">
 
             <div class="checkbox">
@@ -173,6 +173,7 @@
                 <label><input type="checkbox" name="extended_info:s_pay" {% if "Mastercard" in spot.payment_names %} checked {% endif %} value="s_pay_mastercard">Mastercard</label>
             </div>
         </div>
+        <div class="help-block with-errors">Please select at least 1 payment type. TODO.. need to handle checkbox group validation via jquery.</div>
     </fieldset>
 
     <div class="clearfix"></div>
