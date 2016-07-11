@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from scout_manager.test import ScoutTest
 
 baseUrl = '/manager/'
-studyUrl = baseUrl + 'spaces/'
+studyUrl = baseUrl + 'spaces/?app_type=study'
 foodUrl = baseUrl + 'spaces/?app_type=food'
 addUrl = baseUrl + 'spaces/add/'
 editUrl = baseUrl + 'spaces/1/'
