@@ -5,11 +5,33 @@ from bs4 import BeautifulSoup
 from scout_manager.test import ScoutTest
 
 baseUrl = '/manager/'
-studyUrl = baseUrl + 'spaces/'
-foodUrl = baseUrl + 'spaces/?app_type=food'
-addUrl = baseUrl + 'spaces/add/'
-editUrl = baseUrl + 'spaces/1/'
 
+urls = {
+    'home': baseUrl,
+    'study': baseUrl + 'spaces/',
+    'food': baseUrl + 'spaces/?app_type=food',
+    'add': baseUrl + 'spaces/add/',
+    'edit': baseUrl + 'spaces/1/'
+}
+
+_testCases = {
+    'home': ('study', 'food', 'add'),
+    'food': ('edit', 'study', 'add'),
+    'add': ('home', 'food', 'study'),
+    'study': ('home', 'food', 'add'),
+    'edit': ('home', 'food', 'study'),
+}
+
+def _makeTestFunc(start, end):
+    """Returns a function that tests the navigation between two pages"""
+
+    def _testFunc(self):
+        page = self.makeSoup(urls[start])
+        self.assertTrue(self.checkLinkExists(page, urls[end]))
+
+    _testFunc.__name__ = 'test_%s_to_%s' %(start, end)
+    _testFunc.__doc__ = 'Assert that %s has a link to %s' %(start, end)
+    return _testFunc
 
 class NavigationTests(ScoutTest):
 
@@ -17,6 +39,14 @@ class NavigationTests(ScoutTest):
     def setUpClass(cls):
         super(NavigationTests, cls).setUpClass()
         cls.soups = {}
+
+    for start, ends in _testCases.items():
+        for end in ends:
+            testFunc = _makeTestFunc(start, end)
+            name = testFunc.__name__
+            vars()[name] = testFunc
+
+    del start, ends, end, testFunc, name
 
     # Helper methods
 
@@ -33,7 +63,7 @@ class NavigationTests(ScoutTest):
         return bool(soup.find('a', href=reference))
 
     # Test methods (from one page to another)
-
+    '''
     def test_main_page_to_add(self):
         """Assert that main page has a link to add page"""
         page = self.makeSoup(baseUrl)
@@ -137,4 +167,5 @@ class NavigationTests(ScoutTest):
     def test_edit_page_footer_links(self):
         """Assert that the edit page has footer links"""
         self.check_footer_links(editUrl)
+        '''
 
