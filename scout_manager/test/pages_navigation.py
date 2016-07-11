@@ -32,7 +32,7 @@ class NavigationTests(ScoutTest):
     def checkLinkExists(self, soup, reference):
         return bool(soup.find('a', href=reference))
 
-    # Test methods
+    # Test methods (from one page to another)
 
     def test_main_page_to_add(self):
         """Assert that main page has a link to add page"""
@@ -108,6 +108,8 @@ class NavigationTests(ScoutTest):
         """Assert that the edit page has a link to study page"""
         page = self.makeSoup(editUrl)
         self.assertTrue(self.checkLinkExists(page, studyUrl))
+
+    # Following tests look at the footer links
 
     def check_footer_links(self, url):
         """Given a URL checks if the Privacy/Terms links are present"""
