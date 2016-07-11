@@ -75,6 +75,12 @@ def spaces_add(request):
             context_instance=RequestContext(request))
 
 
+def spaces_upload(request):
+    return render_to_response(
+            'scout_manager/spaces_upload.html',
+            context_instance=RequestContext(request))
+
+
 def spaces_edit(request, spot_id):
     spot = manager_get_spot_by_id(spot_id)
     buildings = get_building_list_by_campus(spot.campus)

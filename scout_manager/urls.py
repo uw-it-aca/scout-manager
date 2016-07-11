@@ -50,6 +50,11 @@ urlpatterns = patterns(
         'scout_manager.views.pages.spaces_add',
         name='spaces_add'),
 
+    # /spaces/add/
+    url(r'^spaces/upload/$',
+        'scout_manager.views.pages.spaces_upload',
+        name='spaces_upload'),
+
     # /api/
     url(r'api/spot/(?P<spot_id>[0-9]{1,5})',
         Spot().run),
