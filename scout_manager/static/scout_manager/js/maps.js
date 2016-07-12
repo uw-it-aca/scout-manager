@@ -35,6 +35,10 @@ var Maps = {
                 }
 
                 setLatLongValue(latlng);
+
+                // call the bootstrap vailidator function after setting the lat/lng coords
+                $('#add_form').validator('validate');
+
             },
             centerMarker = function (ctr) {
                 map.setCenter(ctr);
