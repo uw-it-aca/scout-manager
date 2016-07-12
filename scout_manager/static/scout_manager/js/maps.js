@@ -15,7 +15,10 @@ var Maps = {
             setLatLongValue = function(latLng) {
 
                 $("#space_latitude").val(latLng.lat().toFixed(8));
+                $("#space_latitude").focus();
                 $("#space_longitude").val(latLng.lng().toFixed(8));
+                $("#space_longitude").focus();
+                $("select[name='location:building_name']").focus();
 
             },
             setMarker = function (latlng) {
@@ -35,9 +38,6 @@ var Maps = {
                 }
 
                 setLatLongValue(latlng);
-
-                // call the bootstrap vailidator function after setting the lat/lng coords
-                $('#add_form').validator('validate');
 
             },
             centerMarker = function (ctr) {
