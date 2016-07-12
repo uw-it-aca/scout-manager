@@ -111,6 +111,16 @@ fieldset { margin-bottom: 20px; }
 
 .well { background: #fff; padding: 8px 19px; margin-bottom: 0; }
 
+// bootstrap form validator
+
+.with-errors {
+    display: none;
+}
+
+.has-error {
+    .with-errors { display: block !important; }
+}
+
 // sticky header
 
 .sticky { background: #fff; }

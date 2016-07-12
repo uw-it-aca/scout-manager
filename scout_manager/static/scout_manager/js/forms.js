@@ -160,11 +160,14 @@ var Forms = {
     validate_required_checkbox_group: function() {
 
         // handle clicks for any checkboxes in a "checkbox-group"
-        $(".checkbox-group.required input[type='checkbox']").change(function() {
+        $(".checkbox-group.required input[type='checkbox']").change(function(e) {
 
-            // find the nearest ".well" and see if at least 1 checkbox is checked
-            if ( $(this).closest(".well input[name='type']:checkbox:checked").length > 0 ) {
-                // remove the has-error class
+            //var count_checked = $(this).closest("fieldset input[type='checkbox']:checked").length;
+            var count_checked = $(".checkbox-group.required [type='checkbox']:checked").length;
+
+            console.log(count_checked);
+
+            if(count_checked > 0) {
                 $(this).closest(".checkbox-group").removeClass("has-error");
             }
             else {
