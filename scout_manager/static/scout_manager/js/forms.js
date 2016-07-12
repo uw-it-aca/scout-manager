@@ -17,6 +17,9 @@ var Forms = {
         // custom checkbox group validator
         Forms.handle_checkbox_group_clicks();
         Forms.validate_required_checkbox_group();
+
+        Forms.handle_app_type_clicks();
+        Forms.validate_required_app_type();
     },
 
     // hours functions
@@ -185,6 +188,31 @@ var Forms = {
         // handle clicks for any checkboxes in a "checkbox-group" grouping
         $(".checkbox-group.required input[type='checkbox']").change(function(e) {
             Forms.validate_required_checkbox_group();
+        });
+    },
+
+    validate_required_app_type: function() {
+
+        $(".radio-group.required input[type='radio']").each(function() {
+
+            var count_checked = $("#app_type_radio [type='radio']:checked").length;
+
+            // if more than 1 checked, remove error css
+            if(count_checked > 0) {
+                $("#app_type_radio").removeClass("has-error");
+            }
+            else {
+                $("#app_type_radio").addClass("has-error")
+            }
+
+        });
+
+    },
+
+    handle_app_type_clicks: function() {
+        // handle clicks for any checkboxes in a "checkbox-group" grouping
+        $("#app_type_radio input[type='radio']").change(function(e) {
+            Forms.validate_required_app_type();
         });
     },
 

@@ -77,7 +77,7 @@
         </div>
         {% endif %}
 
-        <fieldset style="margin-top:1em;" class="has-error">
+        <fieldset style="margin-top:1em;" class="radio-group required" id="app_type_radio">
             <legend class="control-label">Context/Type:</legend>
 
             {% if spot.app_type == "food" %}
@@ -122,10 +122,10 @@
                         <label><input id="study_radio" type="radio">Study</label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" name="extended_info:app_type" value="tech">Tech</label>
+                        <label><input type="radio" name="extended_info:app_type" value="tech">Tech Checkout</label>
                     </div>
                 </div>
-                <div class="help-block with-errors">Please select an app_type. TODO.. need to handle radio group validation via jquery.</div>
+                <div class="help-block with-errors">Please select an app_type.</div>
             {% endif %}
 
         </fieldset>
