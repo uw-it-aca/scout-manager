@@ -159,13 +159,15 @@ var Forms = {
 
     validate_required_checkbox_group: function() {
 
-        // handle clicks for any checkboxes in a "checkbox-group"
+        // handle clicks for any checkboxes in a "checkbox-group" grouping
         $(".checkbox-group.required input[type='checkbox']").change(function(e) {
 
-            var count_checked = $(".checkbox-group.required [type='checkbox']:checked").length;
+            // get the checkbox groupings id
+            var group_id = $(this).closest(".well").attr('id');
+            // get count of checkboxes checked for given grouping
+            var count_checked = $("#"+group_id+" [type='checkbox']:checked").length;
 
-            console.log(count_checked);
-
+            // if more than 1 checked, remove error css
             if(count_checked > 0) {
                 $(this).closest(".checkbox-group").removeClass("has-error");
             }

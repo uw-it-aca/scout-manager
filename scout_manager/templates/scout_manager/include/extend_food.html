@@ -28,7 +28,7 @@
                     <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafeteria" in type.name %} checked {% endif %}{% endfor %} value="cafeteria">Cafeteria</label>
                 </div>
             </div>
-            <div class="help-block with-errors">Please select at least 1 spot type. TODO.. need to handle checkbox group validation via jquery.</div>
+            <div class="help-block with-errors">Please select at least 1 spot type.</div>
         </fieldset>
 
         <div class="form-group">
@@ -115,7 +115,7 @@
             </div>
 
         </div>
-        <div class="help-block with-errors">Please select at least 1 food served. TODO.. need to handle checkbox group validation via jquery.</div>
+        <div class="help-block with-errors">Please select at least 1 food served.</div>
     </fieldset>
 
     <fieldset class="col-md-4">
@@ -152,9 +152,9 @@
         </div>
     </fieldset>
 
-    <fieldset class="col-md-4 has-error">
+    <fieldset class="col-md-4 checkbox-group required has-error">
         <legend class="control-label">Payment Type</legend>
-        <div class="well">
+        <div class="well" id="food_payment_type">
 
             <div class="checkbox">
                 <label><input type="checkbox" name="extended_info:s_pay" {% if "Cash" in spot.payment_names %} checked {% endif %} value="s_pay_cash">Cash</label>
@@ -172,7 +172,7 @@
                 <label><input type="checkbox" name="extended_info:s_pay" {% if "Mastercard" in spot.payment_names %} checked {% endif %} value="s_pay_mastercard">Mastercard</label>
             </div>
         </div>
-        <div class="help-block with-errors">Please select at least 1 payment type. TODO.. need to handle checkbox group validation via jquery.</div>
+        <div class="help-block with-errors">Please select at least 1 payment type.</div>
     </fieldset>
 
     <div class="clearfix"></div>
