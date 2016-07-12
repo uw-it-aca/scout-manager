@@ -40,8 +40,9 @@ class SpotDaoTest(ScoutTest):
 
     def test_get_spot_list(self):
         self.assertEqual(len(get_spot_list(app_type='food')), 3)
-        self.assertEqual(len(get_spot_list(app_type='study')), 0)
+        self.assertEqual(len(get_spot_list(app_type='study')), 1)
         self.assertEqual(len(get_spot_list(app_type='nonexistant')), 0)
+        self.assertEqual(len(get_spot_list()), 3)
 
     def test_get_id(self):
         url = "http://spotseeker-test-app1.cac.washington.edu/api/v1/spot/5213"

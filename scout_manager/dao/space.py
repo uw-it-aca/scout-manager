@@ -7,27 +7,55 @@ import re
 
 
 def get_spot_list(app_type=None, groups=[]):
+    filters = []
+    for group in groups:
+        filters.append(('extended_info:group', group))
+    filters.append(('limit', 0))
+
+    if app_type is None:
+        return _get_all_spots(filters)
+    if app_type == "study":
+        return _get_study_spots(filters)
+    else:
+        return _get_spots_by_app_type(app_type, filters)
+
+
+def _get_spots_by_app_type(app_type, filters):
     spot_client = Spotseeker()
     res = []
-    filters = []
-    filters.append(('limit', 0))
     try:
-        if app_type:
-            filters.append(('extended_info:app_type', app_type))
-        else:
-            # study spots have no app_type, and must filter on something else
-            filters.append(('open_now', 'true'))
-        for group in groups:
-            filters.append(('extended_info:group', group))
+        filters.append(('extended_info:app_type', app_type))
         spots = spot_client.search_spots(filters)
         for spot in spots:
             spot = process_extended_info(spot)
             if spot is not None:
                 res.append(spot)
     except DataFailureException:
-        # TODO: consider logging on failure
         pass
+        # TODO: consider logging on failure
+    return res
 
+
+def _get_study_spots(filters):
+    spots = _get_all_spots(filters)
+    res = []
+    for spot in spots:
+        if spot.app_type == "study":
+            res.append(spot)
+    return res
+
+
+def _get_all_spots(filters):
+    spot_client = Spotseeker()
+    res = []
+    try:
+        spots = spot_client.all_spots()
+        for spot in spots:
+            spot = process_extended_info(spot)
+            res.append(spot)
+    except DataFailureException:
+        pass
+        # TODO: consider logging on failure
     return res
 
 
@@ -169,3 +197,15 @@ def _process_checkbox_array(data):
         return data
     else:
         return [data]
+
+
+def get_all_study_spots():
+    spot_client = Spotseeker()
+    spots = spot_client.all_spots()
+    for spot in spots:
+        for ee in spot.extended_info:
+            from pprint import pprint
+            pprint(vars(ee))
+
+        break
+    return spots
