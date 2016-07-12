@@ -142,8 +142,9 @@
         <h3 class="">Administration</h3>
 
         <div class="form-group">
-            <label for="owner">Owner/Admin Group:</label>
-            <input class="form-control" id="owner" name="extended_info:owner" type="text" value="{% if spot.owner %}{{ spot.owner }}{% endif %}">
+            <label for="owner" class="control-label">Owner/Admin Group:</label>
+            <input class="form-control" id="owner" name="extended_info:owner" type="text" value="{% if spot.owner %}{{ spot.owner }}{% endif %}" required data-error="An owner group must be provided.">
+            <div class="help-block with-errors"></div>
         </div>
 
         <div class="form-group">
