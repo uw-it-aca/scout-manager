@@ -81,6 +81,7 @@
             <legend class="control-label">Context/Type:</legend>
 
             {% if spot.app_type == "food" %}
+            <div class="well">
                 <div class="radio disabled">
                     <label><input type="radio" name="extended_info:app_type" value="food" checked>Food</label>
                 </div>
@@ -90,8 +91,10 @@
                 <div class="radio disabled">
                     <label><input type="radio" name="extended_info:app_type" value="tech" disabled>Tech</label>
                 </div>
-                <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
+            </div>
+            <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
             {% elif spot.app_type == "study" %}
+            <div class="well">
                 <div class="radio disabled">
                     <label><input type="radio" name="extended_info:app_type" value="food" disabled>Food</label>
                 </div>
@@ -101,8 +104,10 @@
                 <div class="radio disabled">
                     <label><input type="radio" name="extended_info:app_type" value="tech" disabled>Tech</label>
                 </div>
-                <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
+            </div>
+            <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
             {% elif spot.app_type == "tech" %}
+            <div class="well">
                 <div class="radio disabled">
                     <label><input type="radio" name="extended_info:app_type" value="food" disabled>Food</label>
                 </div>
@@ -112,20 +117,21 @@
                 <div class="radio disabled">
                     <label><input type="radio" name="extended_info:app_type" value="tech" checked>Tech</label>
                 </div>
-                <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
+            </div>
+            <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
             {% else %}
-                <div id="add_new_extended_info">
-                    <div class="radio">
-                        <label><input type="radio" name="extended_info:app_type" value="food">Food</label>
-                    </div>
-                    <div class="radio">
-                        <label><input id="study_radio" type="radio">Study</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" name="extended_info:app_type" value="tech">Tech Checkout</label>
-                    </div>
+            <div id="add_new_extended_info" class="well">
+                <div class="radio">
+                    <label><input type="radio" name="extended_info:app_type" value="food">Food</label>
                 </div>
-                <div class="help-block with-errors">Please select an app_type.</div>
+                <div class="radio">
+                    <label><input id="study_radio" type="radio">Study</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="extended_info:app_type" value="tech">Tech Checkout</label>
+                </div>
+            </div>
+            <div class="help-block with-errors">Please select an app_type.</div>
             {% endif %}
 
         </fieldset>

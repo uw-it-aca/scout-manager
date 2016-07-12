@@ -119,6 +119,7 @@ fieldset { margin-bottom: 20px; }
 
 .has-error {
     .with-errors { display: block !important; }
+    .well { border-color: #a94442; }
 }
 
 // sticky header
