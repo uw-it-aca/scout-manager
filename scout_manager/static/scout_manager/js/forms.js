@@ -162,7 +162,6 @@ var Forms = {
         // handle clicks for any checkboxes in a "checkbox-group"
         $(".checkbox-group.required input[type='checkbox']").change(function(e) {
 
-            //var count_checked = $(this).closest("fieldset input[type='checkbox']:checked").length;
             var count_checked = $(".checkbox-group.required [type='checkbox']:checked").length;
 
             console.log(count_checked);
