@@ -15,6 +15,7 @@ var Forms = {
         $('#add_form').validator('validate');
 
         // custom checkbox group validator
+        Forms.handle_checkbox_group_clicks();
         Forms.validate_required_checkbox_group();
     },
 
@@ -159,8 +160,8 @@ var Forms = {
 
     validate_required_checkbox_group: function() {
 
-        // handle clicks for any checkboxes in a "checkbox-group" grouping
-        $(".checkbox-group.required input[type='checkbox']").change(function(e) {
+        // get the count of all checkboxes for a given grouping
+        $(".checkbox-group.required input[type='checkbox']").each(function() {
 
             // get the checkbox groupings id
             var group_id = $(this).closest(".well").attr('id');
@@ -175,11 +176,15 @@ var Forms = {
                 $(this).closest(".checkbox-group").addClass("has-error")
             }
 
-
         });
-
     },
 
+    handle_checkbox_group_clicks: function() {
+        // handle clicks for any checkboxes in a "checkbox-group" grouping
+        $(".checkbox-group.required input[type='checkbox']").change(function(e) {
+            Forms.validate_required_checkbox_group();
+        });
+    },
 
 
 };
