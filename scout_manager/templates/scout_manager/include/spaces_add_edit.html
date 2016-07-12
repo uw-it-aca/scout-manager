@@ -213,13 +213,14 @@
 
         <!-- Hide if outdoor location. We suggest/enforce building options. -->
         <div class="form-group">
-            <label for="building-name">Building:</label>
-            <select class="form-control" name="location:building_name">
+            <label for="building-name" class="control-label">Building:</label>
+            <select class="form-control" name="location:building_name" required data-error="Please select a building">
                 <option disabled selected value>select a building...</option>
                 {% for building in buildings %}
                 <option value="{{ building }}" {% if spot.building_name == building %} selected {% endif %}>{{ building }}</option>
                 {% endfor %}
             </select>
+            <div class="help-block with-errors"></div>
         </div>
 
         <!-- Hide if outdoor location. We suggest floor options. -->

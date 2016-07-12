@@ -158,6 +158,8 @@ var Forms = {
 
     },
 
+    // custom validation stuff
+
     validate_required_checkbox_group: function() {
 
         // get the count of all checkboxes for a given grouping
@@ -185,6 +187,5 @@ var Forms = {
             Forms.validate_required_checkbox_group();
         });
     },
-
 
 };
