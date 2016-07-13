@@ -12,7 +12,7 @@ var Forms = {
         Forms.toggle_is_hidden();
 
         // initial client validation stuff
-        $('#add_form').validator('validate');
+        $('#add_edit_form').validator('validate');
 
         // custom checkbox group validator
         Forms.handle_checkbox_group_clicks();
