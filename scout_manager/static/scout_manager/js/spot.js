@@ -11,7 +11,7 @@ var Spot = {
         }
     },
 
-    delete_spot: function (spot_id, etag) {
+    delete_spot: function (spot_id, etag, success_callback) {
         $.ajax({
             url: "/manager/api/spot/" + spot_id,
             type: "DELETE",
@@ -19,6 +19,9 @@ var Spot = {
             dataType: "text",
             headers: {'X-CSRFToken': Cookies.get('csrftoken')},
             success: function(results) {
+                if (typeof success_callback !== "undefined") {
+                    success_callback();
+                }
             },
             error: function(xhr, status, error) {
             }
@@ -113,12 +116,4 @@ var Spot = {
         return avalible_hours;
 
     },
-
-    init_events: function () {
-        // todo: always make sure spot is_hidden=true
-        $("#save_unpublished").click(Spot.submit_spot);
-
-        //todo: always remove is_hidden flag
-        $("#save_published").click(Spot.submit_spot);
-    }
 };

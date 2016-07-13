@@ -6,22 +6,29 @@ $(document).on('ready', function(event) {
     // page based JS calls
     var page_path = window.location.pathname;
 
-    if (page_path.indexOf("manager/spaces") !== -1) {
+    // ignore query params
+    page_path = page_path.split("?")[0];
+
+
+    var list_path = new RegExp("\/manager\/spaces\/?$");
+    var items_edit_path = new RegExp("\/manager\/items\/[0-9].+\/?$");
+    var items_add_path = new RegExp("\/manager\/items\/add\/?$");
+    var spaces_add_path = new RegExp("\/manager\/spaces\/add\/?$");
+    var spaces_edit_path = new RegExp("\/manager\/spaces\/[0-9].+\/?$");
+
+    if (spaces_add_path.test(page_path) || spaces_edit_path.test(page_path)) {
         console.log("at spaces");
-        Spot.init_events();
-        List.init();
-    } else if (page_path.indexOf("manager/items") !== -1){
+        Forms.init_form();
+        Maps.init_picker();
+    } else if (items_add_path.test(page_path) || items_edit_path.test(page_path)) {
         console.log("at items");
+    } else if (list_path.test(page_path)) {
+        List.init();
+        console.log('list view')
     } else {
         console.log("at home");
-        // if at /manager.... load space and items content via ajax
-        //$("#spaces").load("/manager/spaces/");
-        //$("#items").load("/manager/items/");
     }
 
-    Forms.init_form();
-
-    Maps.init_picker();
 
     // Function to serialize form data into an JS object
     $.fn.serializeObject = function() {
