@@ -34,7 +34,7 @@ var Spot = {
             success: function(results) {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-success");
-                $("#pub_error").html();
+                $("#pub_error").html("yay all good!");
             },
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");

@@ -49,8 +49,9 @@
         </div>
 
         <div class="form-group">
-            <label for="capacity" class="">Capacity</label>
-            <input class="form-control" type="number" name="capacity" id="capacity" value="{% if spot.capacity %}{{spot.capacity}}{% endif %}">
+            <label for="capacity" class="control-label">Capacity</label>
+            <input class="form-control" type="number" min="0" name="capacity" id="capacity" value="{% if spot.capacity %}{{spot.capacity}}{% endif %}" data-error="number can't be negative">
+            <div class="help-block with-errors"></div>
         </div>
 
 
