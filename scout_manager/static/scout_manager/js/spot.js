@@ -104,9 +104,9 @@ var Spot = {
 
     init_events: function () {
         // todo: always make sure spot is_hidden=true
-        $("#save_upblished").click(Spot.submit_spot);
+        $("#save_unpublished").click(Spot.submit_spot);
 
         //todo: always remove is_hidden flag
-        $("#save_publish").click(Spot.submit_spot);
+        $("#save_published").click(Spot.submit_spot);
     }
 };

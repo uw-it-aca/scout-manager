@@ -22,11 +22,15 @@
     <div class="pull-right">
 
         {% if spot.name %}
-        {{ spot.etag }}&nbsp;&nbsp;&nbsp;
-        {% if spot.is_hidden %}<input id="save_draft" type="button" class="btn btn-default" value="Save Unpublished" style="display:inline-block;"></input>&nbsp;&nbsp;{% endif %}
-        <input id="save_publish" type="button" class="btn btn-primary" value="Save Published" style="display:inline-block;"></input>
+
+            {{ spot.etag }}&nbsp;&nbsp;&nbsp;
+            {% if spot.is_hidden %}
+                <input id="save_unpublished" type="button" class="btn btn-primary" value="Save Unpublished" style="display:inline-block;"></input>
+            {% else %}
+                <input id="save_published" type="button" class="btn btn-primary" value="Save Published" style="display:inline-block;"></input>
+            {% endif %}
         {% else %}
-        <input id="save_unpublished" type="button" class="btn btn-default" value="Save Unpublished" style="display:inline-block;"></input>
+        <input id="save_unpublished" type="button" class="btn btn-primary" value="Save Unpublished" style="display:inline-block;"></input>
         {% endif %}
 
     </div>
