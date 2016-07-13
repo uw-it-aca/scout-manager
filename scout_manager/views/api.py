@@ -1,5 +1,5 @@
 from scout_manager.views.rest_dispatch import RESTDispatch
-from scout_manager.dao.space import update_spot, create_spot
+from scout_manager.dao.space import update_spot, create_spot, delete_spot
 from django.http import HttpResponse
 import json
 import re
@@ -14,6 +14,14 @@ class Spot(RESTDispatch):
         form_data = process_form_data(request)
         try:
             update_spot(form_data, spot_id)
+        except Exception as ex:
+            return HttpResponse(json.dumps({'error': str(ex)}), status=400)
+        return HttpResponse(json.dumps({'status': 'it works'}))
+
+    def DELETE(self, request, spot_id):
+        etag = request.body
+        try:
+            delete_spot(spot_id, etag)
         except Exception as ex:
             return HttpResponse(json.dumps({'error': str(ex)}), status=400)
         return HttpResponse(json.dumps({'status': 'it works'}))

@@ -6,6 +6,11 @@ import json
 import re
 
 
+def delete_spot(spot_id, etag):
+    spot_client = Spotseeker()
+    spot_client.delete_spot(spot_id, etag)
+
+
 def get_spot_list(app_type=None, groups=[]):
     filters = []
     for group in groups:

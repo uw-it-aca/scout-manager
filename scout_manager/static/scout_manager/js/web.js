@@ -9,6 +9,7 @@ $(document).on('ready', function(event) {
     if (page_path.indexOf("manager/spaces") !== -1) {
         console.log("at spaces");
         Spot.init_events();
+        List.init();
     } else if (page_path.indexOf("manager/items") !== -1){
         console.log("at items");
     } else {

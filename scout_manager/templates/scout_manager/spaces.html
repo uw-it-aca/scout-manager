@@ -38,7 +38,7 @@
         <tbody>
 
             {% for spot in spots %}
-            <tr>
+            <tr data-spotid="{{ spot.spot_id }}" data-etag="{{ spot.etag }}">
                 <td><a href="/manager/spaces/{{ spot.spot_id }}/">{{ spot.spot_id }}</a></td>
                 <td><strong>{{ spot.name }}</strong></td>
                 <td>{{ spot.campus }}</td>
@@ -47,7 +47,7 @@
                 <td>{% if spot.is_hidden %}UNPUBLISHED{% else %}<a href="/detail/{{ spot.spot_id }}" target="_blank">PUBLISHED</a>{% endif %}</td>
                 <td>
                     <div class="mgr-dataset-actions">
-                        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                        <button type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
                     </div>
                 </td>
             </tr>

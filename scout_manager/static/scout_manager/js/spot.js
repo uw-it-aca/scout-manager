@@ -9,8 +9,20 @@ var Spot = {
         } else {
             Spot._edit_spot(form_data);
         }
+    },
 
-
+    delete_spot: function (spot_id, etag) {
+        $.ajax({
+            url: "/manager/api/spot/" + spot_id,
+            type: "DELETE",
+            data: etag,
+            dataType: "text",
+            headers: {'X-CSRFToken': Cookies.get('csrftoken')},
+            success: function(results) {
+            },
+            error: function(xhr, status, error) {
+            }
+        });
     },
 
     _get_is_add: function(form_data) {

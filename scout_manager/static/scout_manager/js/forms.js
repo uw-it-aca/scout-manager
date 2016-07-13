@@ -216,4 +216,22 @@ var Forms = {
         });
     },
 
+    init_delete_button: function () {
+        $("button.btn-delete").on("click", function(e) {
+            var spot_id = Forms._get_spot_id();
+            console.log(spot_id)
+            var etag = Forms._get_spot_etag();
+            console.log(etag)
+            Spot.delete_spot(spot_id, etag);
+        });
+    },
+
+    _get_spot_id: function () {
+        return $('input[name="id"]').attr("value")
+    },
+
+    _get_spot_etag: function () {
+        return $('input[name="etag"]').attr("value")
+    }
+
 };
