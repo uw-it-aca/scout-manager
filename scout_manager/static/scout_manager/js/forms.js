@@ -24,6 +24,21 @@ var Forms = {
         // submit spot to server
         $("#submit_spot").click(Spot.submit_spot);
 
+
+        // get number of validation errors on page
+        var num_errors = $('.has-error').length;
+        console.log(num_errors);
+
+        // control whether the publish button can be clicked or not
+        if (num_errors > 0) {
+            console.log("spot cannot be published")
+            $("#toogle_is_hidden").attr('disabled', 'disabled');
+        }
+        else {
+            console.log("spot can be published")
+            $("#toogle_is_hidden").removeAttr("disabled");
+        }
+
     },
 
     // hours functions
