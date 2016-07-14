@@ -20,11 +20,10 @@ var Forms = {
 
         Forms.handle_app_type_clicks();
         Forms.validate_required_app_type();
-        // todo: always make sure spot is_hidden=true
-        $("#save_unpublished").click(Spot.submit_spot);
 
-        //todo: always remove is_hidden flag
-        $("#save_published").click(Spot.submit_spot);
+        // submit spot to server
+        $("#submit_spot").click(Spot.submit_spot);
+
     },
 
     // hours functions

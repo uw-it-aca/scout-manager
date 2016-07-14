@@ -22,15 +22,14 @@
     <div class="pull-right">
 
         {% if spot.name %}
-
             {{ spot.etag }}&nbsp;&nbsp;&nbsp;
             {% if spot.is_hidden %}
-                <input id="save_unpublished" type="button" class="btn btn-primary" value="Save Unpublished" style="display:inline-block;"></input>
+                <input id="submit_spot" type="button" class="btn btn-primary" value="Save Changes" style="display:inline-block;"></input>
             {% else %}
-                <input id="save_published" type="button" class="btn btn-primary" value="Save Published" style="display:inline-block;"></input>
+                <input id="submit_spot" type="button" class="btn btn-primary" value="Save Changes" style="display:inline-block;"></input>
             {% endif %}
         {% else %}
-        <input id="save_unpublished" type="button" class="btn btn-primary" value="Save Unpublished" style="display:inline-block;"></input>
+        <input id="submit_spot" type="button" class="btn btn-primary" value="Create Space" style="display:inline-block;"></input>
         {% endif %}
 
     </div>
@@ -56,30 +55,6 @@
             <label for="space-description">Description:</label>
             <textarea name="extended_info:location_description" rows="4" class="form-control" id="space-description" type="text">{% if spot.location_description %}{{spot.location_description}}{% endif %}</textarea>
         </div>
-
-        {% if spot.name %}
-        <div>
-            <p>Status: <span>{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED{% endif %}</span></p>
-        </div>
-        <div class="mgr-dataset-actions">
-
-            <div class="checkbox hidden">
-                <label><input type="checkbox" name="extended_info:is_hidden" {% if spot.is_hidden %} checked{% endif %}></input>Is Hidden?</label>
-            </div>
-            {% if spot.is_hidden %}
-            <button type="button" id="toggle_is_hidden" class="btn btn-default btn-sm"><i class="fa fa-eye"></i> <span>Publish</span></button>
-            {% else %}
-            <button type="button" id="toggle_is_hidden" class="btn btn-default btn-sm"><i class="fa fa-eye-slash"></i> <span>Unpublish</span></button>
-            <a class="btn btn-default btn-sm" href="/{{spot.app_type}}/{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View</span></a>
-            {% endif %}
-
-            <button type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
-        </div>
-        {% else %}
-        <div class="checkbox hidden">
-            <label><input type="checkbox" name="extended_info:is_hidden" checked></input>Is Hidden?</label>
-        </div>
-        {% endif %}
 
         <fieldset style="margin-top:1em;" class="radio-group required" id="app_type_radio">
             <legend class="control-label">Context/Type:</legend>
@@ -142,6 +117,36 @@
 
     </div>
     <div class="col-md-4">
+
+        {% if spot.name %}
+        <h3 class="">Publishing</h3>
+
+        <div class="form-group">
+            <div>
+                <label>State: <span style="font-weight:normal;">{% if spot.is_hidden %}DRAFT{% else %}PUBLISHED{% endif %}</span></label>
+            </div>
+            <div class="mgr-dataset-actions">
+                <div class="checkbox hidden">
+                    <label><input type="checkbox" name="extended_info:is_hidden" {% if spot.is_hidden %} checked{% endif %}></input>Is Hidden?</label>
+                </div>
+                {% if spot.is_hidden %}
+                <button type="button" disabled id="toggle_is_hidden" class="btn btn-default btn-sm"><i class="fa fa-eye"></i> <span>Publish</span></button>
+                <button type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                <div class="help-block">Note: You can publish changes if there are no validation errors.</div>
+                {% else %}
+                <button type="button" id="toggle_is_hidden" class="btn btn-default btn-sm"><i class="fa fa-eye-slash"></i> <span>Unpublish</span></button>
+                <a class="btn btn-default btn-sm" href="/{{spot.app_type}}/{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View</span></a>
+                <button type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                <div class="help-block">Note: Unpublishing a spot will remove it from all client apps.</div>
+                {% endif %}
+
+            </div>
+        </div>
+        {% else %}
+        <div class="checkbox hidden">
+            <label><input type="checkbox" name="extended_info:is_hidden" checked></input>Is Hidden?</label>
+        </div>
+        {% endif %}
 
         <h3 class="">Administration</h3>
 
