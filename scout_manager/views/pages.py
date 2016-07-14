@@ -113,6 +113,3 @@ def image(request, image_id, spot_id):
         return response
     except Exception:
         raise Http404()
-
-
-
