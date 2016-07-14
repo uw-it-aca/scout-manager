@@ -11,34 +11,25 @@ var Forms = {
         Forms.toggle_extended_info();
         Forms.toggle_is_hidden();
 
-        // initial client validation stuff
+        // validate form
         $('#add_edit_form').validator('validate');
 
-        // custom checkbox group validator
+        // form validation callback
+        $("#add_edit_form").on('input.bs.validator', function (e) {
+            Forms.check_publish_validation();
+        })
+
+        // custom validators
         Forms.handle_checkbox_group_clicks();
         Forms.validate_required_checkbox_group();
-
         Forms.handle_app_type_clicks();
         Forms.validate_required_app_type();
 
-        // submit spot to server
+        // handle submitting spot to server
         $("#submit_spot").click(Spot.submit_spot);
 
-
-        // get number of validation errors on page
-        var num_errors = $('.has-error').length;
-        console.log(num_errors);
-
-        // control whether the publish button can be clicked or not
-        if (num_errors > 0) {
-            console.log("spot cannot be published")
-            $("#toogle_is_hidden").attr('disabled', 'disabled');
-        }
-        else {
-            console.log("spot can be published")
-            $("#toogle_is_hidden").removeAttr("disabled");
-        }
-
+        // validate if spot can be published
+        Forms.check_publish_validation();
     },
 
     // hours functions
@@ -201,6 +192,8 @@ var Forms = {
             }
 
         });
+
+        Forms.check_publish_validation();
     },
 
     handle_checkbox_group_clicks: function() {
@@ -208,6 +201,8 @@ var Forms = {
         $(".checkbox-group.required input[type='checkbox']").change(function(e) {
             Forms.validate_required_checkbox_group();
         });
+
+        Forms.check_publish_validation();
     },
 
     validate_required_app_type: function() {
@@ -226,6 +221,8 @@ var Forms = {
 
         });
 
+        Forms.check_publish_validation();
+
     },
 
     handle_app_type_clicks: function() {
@@ -233,6 +230,26 @@ var Forms = {
         $("#app_type_radio input[type='radio']").change(function(e) {
             Forms.validate_required_app_type();
         });
+
+        Forms.check_publish_validation();
+    },
+
+    check_publish_validation: function() {
+
+        // get number of validation errors on page
+        var num_errors = $('.has-error').length;
+        console.log(num_errors);
+
+        // control whether the publish button can be clicked or not
+        if (num_errors > 0) {
+            console.log("spot cannot be published")
+            $("#toggle_is_hidden").attr('disabled', 'disabled');
+        }
+        else {
+            console.log("spot can be published")
+            $("#toggle_is_hidden").removeAttr("disabled");
+        }
+
     },
 
     init_delete_button: function () {
