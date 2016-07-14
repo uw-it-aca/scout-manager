@@ -230,7 +230,6 @@
             <div class="help-block with-errors"></div>
         </div>
 
-
         <!-- Hide if outdoor location. We suggest/enforce building options. -->
         <div class="form-group">
             <label for="building-name" class="control-label">Building:</label>
@@ -254,18 +253,6 @@
             <label for="room-number">Room #:</label>
             <input class="form-control" id="room-number" name="location:room_number" type="text" value="{% if spot.room_number %}{{ spot.room_number }}{% endif %}">
         </div>
-
-        <fieldset>
-            <legend class="dummy">TBD</legend>
-            {# How are we determining this? #}
-            <div class="checkbox">
-                <label class="dummy"><input type="checkbox" value="ADA" disabled>ADA Accessible</label>
-            </div>
-            {# How are we determining this? #}
-            <div class="checkbox">
-                <label class="dummy"><input type="checkbox" value="Outdoor" disabled>Outdoor location</label>
-            </div>
-        </fieldset>
 
     </div>
     <div class="col-md-8 mgr-location-chooser">
@@ -297,10 +284,11 @@
 <!-- include the hour and access form -->
 {% include "scout_manager/include/form_hours.html" %}
 
+{% if spot.name %}
+
 <hr style="border-top:solid 10px #ecf0f1;"/>
 
 <!-- if space has items -->
-
 <h3>Item(s)</h3>
 
 <p><a class="scope" href="/manager/items/add/">Add New Item to this space</a></p>
@@ -382,3 +370,4 @@
         </tbody>
     </table>
 </div>
+{% endif %}
