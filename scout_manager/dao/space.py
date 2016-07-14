@@ -11,7 +11,7 @@ def delete_spot(spot_id, etag):
     spot_client.delete_spot(spot_id, etag)
 
 
-def get_spot_list(app_type=None, groups=[]):
+def get_spot_list(app_type=None, published=None, groups=[]):
     filters = []
     for group in groups:
         filters.append(('extended_info:group', group))
@@ -22,18 +22,33 @@ def get_spot_list(app_type=None, groups=[]):
     if app_type == "study":
         return _get_study_spots(filters)
     else:
-        return _get_spots_by_app_type(app_type, filters)
+        return _get_spots_by_app_type(app_type, filters, published)
 
 
-def _get_spots_by_app_type(app_type, filters):
+def _get_spots_by_app_type(app_type, filters, published):
     spot_client = Spotseeker()
     res = []
+    if published is not None and not published:
+        filters.append(('extended_info:is_hidden', 'true'))
+
     try:
         filters.append(('extended_info:app_type', app_type))
         spots = spot_client.search_spots(filters)
         for spot in spots:
             spot = process_extended_info(spot)
             if spot is not None:
+                if published:
+                    if hasattr(spot, "is_hidden"):
+                        if not spot.is_hidden:
+                            # in case we start setting is_hidden to false
+                            # rather than removing the attr
+                            res.append(spot)
+                        else:
+                            # don't include spot as it's hidden
+                            continue
+                    else:
+                        # no attr == false
+                        pass
                 res.append(spot)
     except DataFailureException:
         pass
@@ -202,15 +217,3 @@ def _process_checkbox_array(data):
         return data
     else:
         return [data]
-
-
-def get_all_study_spots():
-    spot_client = Spotseeker()
-    spots = spot_client.all_spots()
-    for spot in spots:
-        for ee in spot.extended_info:
-            from pprint import pprint
-            pprint(vars(ee))
-
-        break
-    return spots

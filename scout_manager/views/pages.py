@@ -53,9 +53,14 @@ def schedule(request, spot_id):
 
 def spaces(request):
     # TODO: filter this by spot manager
-    # TODO: add support for multiple spot types (Eg items)
     app_type = request.GET.get('app_type', None)
-    spots = get_spot_list(app_type)
+    is_published = request.GET.get('is_published', None)
+    if is_published is not None:
+        if is_published == "true":
+            is_published = True
+        elif is_published == "false":
+            is_published = False
+    spots = get_spot_list(app_type, is_published)
     context = {"spots": spots,
                "count": len(spots),
                "app_type": app_type}
@@ -108,3 +113,6 @@ def image(request, image_id, spot_id):
         return response
     except Exception:
         raise Http404()
+
+
+
