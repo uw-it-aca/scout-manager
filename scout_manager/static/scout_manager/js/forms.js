@@ -14,9 +14,9 @@ var Forms = {
         // validate form
         $('#add_edit_form').validator('validate');
 
-        // form validation callback
+        // form validation callback, if needed
         $("#add_edit_form").on('input.bs.validator', function (e) {
-            Forms.check_publish_validation();
+
         })
 
         // custom validators
@@ -28,7 +28,7 @@ var Forms = {
         // handle submitting spot to server
         $("#submit_spot").click(Spot.submit_spot);
 
-        // validate if spot can be published
+        // validate if spot can be published ONLY on load
         Forms.check_publish_validation();
     },
 
@@ -192,8 +192,6 @@ var Forms = {
             }
 
         });
-
-        Forms.check_publish_validation();
     },
 
     handle_checkbox_group_clicks: function() {
@@ -220,9 +218,6 @@ var Forms = {
             }
 
         });
-
-        Forms.check_publish_validation();
-
     },
 
     handle_app_type_clicks: function() {
@@ -230,8 +225,6 @@ var Forms = {
         $("#app_type_radio input[type='radio']").change(function(e) {
             Forms.validate_required_app_type();
         });
-
-        Forms.check_publish_validation();
     },
 
     check_publish_validation: function() {
@@ -244,10 +237,14 @@ var Forms = {
         if (num_errors > 0) {
             console.log("spot cannot be published")
             $("#toggle_is_hidden").attr('disabled', 'disabled');
+            $("#msg_can_publish").hide();
+            $("#msg_no_publish").show();
         }
         else {
             console.log("spot can be published")
             $("#toggle_is_hidden").removeAttr("disabled");
+            $("#msg_can_publish").show();
+            $("#msg_no_publish").hide();
         }
 
     },
