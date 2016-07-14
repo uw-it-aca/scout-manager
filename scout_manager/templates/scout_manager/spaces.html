@@ -42,10 +42,10 @@
                 <td>{{ spot.campus }}</td>
                 <td>{{ spot.building_name }}</td>
                 <td>{% for type in spot.spot_types %}{{ type.name }}, {% endfor %}</td>
-                <td>{% if spot.is_hidden %}UNPUBLISHED{% else %}<a href="/detail/{{ spot.spot_id }}" target="_blank">PUBLISHED</a>{% endif %}</td>
+                <td>{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED{% endif %}</td>
                 <td>
                     <div class="mgr-dataset-actions">
-                        <button type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                        <button type="button" class="btn btn-danger btn-sm btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
                     </div>
                 </td>
             </tr>
