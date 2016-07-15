@@ -119,11 +119,11 @@
     <div class="col-md-4">
 
         {% if spot.name %}
-        <h3 class="">Publishing</h3>
+        <h3 class="">Publish</h3>
 
-        <div class="form-group">
+        <div class="form-group well">
             <div>
-                <label>State: <span style="font-weight:normal;">{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED{% endif %}</span></label>
+                <label>Status: <span style="font-weight:normal;">{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED{% endif %}</span></label>
             </div>
             <div class="mgr-dataset-actions">
                 <div class="checkbox hidden">

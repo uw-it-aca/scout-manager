@@ -12,15 +12,12 @@ var Maps = {
 
             var picker = $("#gmap_chooser"),
             map, marker, latlng, zoom, m, original_val,
+
             setLatLongValue = function(latLng) {
-
                 $("#space_latitude").val(latLng.lat().toFixed(8));
-                $("#space_latitude").focus();
                 $("#space_longitude").val(latLng.lng().toFixed(8));
-                $("#space_longitude").focus();
-                $("select[name='location:building_name']").focus();
-
             },
+
             setMarker = function (latlng) {
                 if (marker) {
                     marker.setPosition(latlng);
@@ -40,6 +37,7 @@ var Maps = {
                 setLatLongValue(latlng);
 
             },
+
             centerMarker = function (ctr) {
                 map.setCenter(ctr);
                 setMarker(ctr);
@@ -66,11 +64,18 @@ var Maps = {
 
                 if (spot_lat && spot_lng) {
                     setMarker(latlng);
+
                 }
 
                 google.maps.event.addListener(map, 'click', function(e) {
                     if (!marker) {
                         setMarker(e.latLng);
+
+                        // set focus on these fields to clear validation
+                        $("#space_latitude").focus();
+                        $("#space_longitude").focus();
+                        $("select[name='location:building_name']").focus();
+
                     }
                 });
 
