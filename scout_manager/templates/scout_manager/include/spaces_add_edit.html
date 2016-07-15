@@ -24,9 +24,9 @@
         {% if spot.name %}
             {{ spot.etag }}&nbsp;&nbsp;&nbsp;
             {% if spot.is_hidden %}
-                <input id="submit_spot" type="button" class="btn btn-primary" value="Save Changes" style="display:inline-block;"></input>
+                <input id="submit_spot" type="button" class="btn btn-primary" value="Save Draft" style="display:inline-block;"></input>
             {% else %}
-                <input id="submit_spot" type="button" class="btn btn-primary" value="Save Changes" style="display:inline-block;"></input>
+                <input id="submit_spot" type="button" class="btn btn-primary" value="Publish Changes" style="display:inline-block;"></input>
             {% endif %}
         {% else %}
         <input id="submit_spot" type="button" class="btn btn-primary" value="Create Space" style="display:inline-block;"></input>
@@ -123,7 +123,7 @@
 
         <div class="form-group well">
             <div>
-                <label>Status: <span style="font-weight:normal;">{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED{% endif %}</span></label>
+                <label>Status: <span style="font-weight:normal;">{% if spot.is_hidden %}DRAFT{% else %}PUBLISHED{% endif %}</span></label>
             </div>
             <div class="mgr-dataset-actions">
                 <div class="checkbox hidden">
@@ -139,7 +139,7 @@
                 <button type="button" id="toggle_is_hidden" class="btn btn-default btn-sm"><i class="fa fa-eye-slash"></i> <span>Unpublish</span></button>
                 <a class="btn btn-default btn-sm" href="/{{spot.app_type}}/{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View</span></a>
                 <button type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
-                <div class="help-block">Note: Unpublishing a spot will remove it from all client apps.</div>
+                <div class="help-block">Note: Unpublishing a spot will remove it from all client apps and set it to Draft.</div>
                 {% endif %}
 
             </div>

@@ -14,7 +14,7 @@
         <div class="pull-right">
         {% if app_type == "food" %}
     Display:
-    <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type=food">all</a> <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type=food&is_published=true">published</a> <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type=food&is_published=false">unpublished</a>
+    <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type=food">all</a> <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type=food&is_published=true">published</a> <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type=food&is_published=false">Draft</a>
     {% endif %}
         </div>
     </div>
@@ -43,7 +43,7 @@
                 <td>{{ spot.campus }}</td>
                 <td>{{ spot.building_name }}</td>
                 <td>{% for type in spot.spot_types %}{{ type.name }}, {% endfor %}</td>
-                <td>{% if spot.is_hidden %}UNPUBLISHED{% else %}PUBLISHED{% endif %}</td>
+                <td>{% if spot.is_hidden %}DRAFT{% else %}PUBLISHED{% endif %}</td>
                 <td>
                     <div class="mgr-dataset-actions">
                         <button type="button" class="btn btn-danger btn-sm btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
