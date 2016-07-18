@@ -2,10 +2,12 @@
 Tests for the scout-manager spot DAO
 """
 from scout_manager.dao.space import get_spot_hours_by_day, \
-    _process_checkbox_array, get_spot_list, _get_spot_id_from_url
+    _process_checkbox_array, get_spot_list, _get_spot_id_from_url, \
+    _build_spot_json
 from spotseeker_restclient.spotseeker import Spotseeker
 from scout_manager.test import ScoutTest
 import datetime
+import json
 
 
 class SpotDaoTest(ScoutTest):
@@ -47,3 +49,36 @@ class SpotDaoTest(ScoutTest):
     def test_get_id(self):
         url = "http://spotseeker-test-app1.cac.washington.edu/api/v1/spot/5213"
         self.assertEqual(_get_spot_id_from_url(url), '5213')
+
+
+class BuildSpotJsonTest(ScoutTest):
+
+    def test_simple_json(self):
+
+        # Foo should remain untouched, while type is required
+        json_data = {'foo': 'bar', 'type': 'baz'}
+        out = _build_spot_json(wrap_json(json_data))
+        expected = {
+            'type': ['baz'],
+            'foo': 'bar',
+            'extended_info': {},
+            'location': {}
+        }
+
+        self.assertEqual(out, expected)
+
+    def test_extended_foods_json(self):
+
+        cuisines = ['one', 'two']
+        json_data = {
+            'extended_info:s_cuisine': cuisines,
+            'type': 'foo'
+        }
+        out = _build_spot_json(wrap_json(json_data))
+        ei = out['extended_info']
+        for cuisine in cuisines:
+            self.assertEqual(ei[cuisine], 'true')
+
+
+def wrap_json(jsdata):
+    return {'json': json.dumps(jsdata)}

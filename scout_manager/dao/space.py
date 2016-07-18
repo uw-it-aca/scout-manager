@@ -159,45 +159,33 @@ def _build_spot_json(form_data):
     json_data = json.loads(form_data['json'])
 
     # handles case where single box is checked doesn't return a list
-    if isinstance(json_data["type"], basestring):
-        json_data["type"] = [json_data["type"]]
-    # formats extended info
-    extended_info = {}
+    json_data['type'] = _process_checkbox_array(json_data['type'])
 
+    # formats extended info
     cuisines = json_data.pop("extended_info:s_cuisine", [])
     cuisines = _process_checkbox_array(cuisines)
-    for cuisine in cuisines:
-        extended_info[cuisine] = True
 
     foods = json_data.pop("extended_info:s_food", [])
     foods = _process_checkbox_array(foods)
-    for food in foods:
-        extended_info[food] = True
 
     payments = json_data.pop("extended_info:s_pay", [])
     payments = _process_checkbox_array(payments)
-    for payment in payments:
-        extended_info[payment] = True
+
+    extended_info = dict.fromkeys(cuisines + foods + payments, 'true')
 
     for key in list(json_data):
-        if "extended_info" in key:
+        if key.startswith('extended_info'):
             value = json_data[key]
-            name = key.split(":")[1]
+            name = key.split(':', 1)[1]
             json_data.pop(key)
             if value != "None" and len(value) > 0:
-                if value == "true":
-                    extended_info[name] = True
-                if value == "on":
-                    # if a checkbox is checked, set to true
-                    extended_info[name] = True
-                else:
-                    extended_info[name] = value
+                extended_info[name] = value
 
     # formats location data
     location_data = {}
     for key in list(json_data):
-        if "location" in key:
-            name = key.split(":")[1]
+        if key.startswith('location'):
+            name = key.split(":", 1)[1]
             location_data[name] = json_data[key]
             json_data.pop(key)
 
