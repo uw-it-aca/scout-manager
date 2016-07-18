@@ -76,6 +76,8 @@ var Maps = {
                         $("#space_longitude").focus();
                         $("select[name='location:building_name']").focus();
 
+                        Forms.validate_create();
+
                     }
                 });
 

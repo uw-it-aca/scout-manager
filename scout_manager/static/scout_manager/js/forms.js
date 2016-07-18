@@ -15,8 +15,9 @@ var Forms = {
         $('#add_edit_form').validator('validate');
 
         // form validation callback, if needed
-        $("#add_edit_form").on('input.bs.validator', function (e) {
-
+        $("#add_edit_form").on('valid.bs.validator', function (e) {
+            console.log("valid field");
+            Forms.validate_create();
         })
 
         // custom validators
@@ -25,11 +26,15 @@ var Forms = {
         Forms.handle_app_type_clicks();
         Forms.validate_required_app_type();
 
+        // validate if spot can be published ONLY on load
+        Forms.validate_publish();
+
+        // validate if spot can be created
+        Forms.validate_create();
+
         // handle submitting spot to server
         $("#submit_spot").click(Spot.submit_spot);
 
-        // validate if spot can be published ONLY on load
-        Forms.check_publish_validation();
     },
 
     // hours functions
@@ -200,7 +205,7 @@ var Forms = {
             Forms.validate_required_checkbox_group();
         });
 
-        Forms.check_publish_validation();
+        Forms.validate_publish();
     },
 
     validate_required_app_type: function() {
@@ -217,6 +222,8 @@ var Forms = {
                 $("#app_type_radio").addClass("has-error")
             }
 
+            Forms.validate_create();
+
         });
     },
 
@@ -227,10 +234,11 @@ var Forms = {
         });
     },
 
-    check_publish_validation: function() {
+    validate_publish: function() {
 
         // get number of validation errors on page
-        var num_errors = $('.has-error').length;
+        var num_errors = 0;
+        num_errors = $('.has-error').length;
         console.log(num_errors);
 
         // control whether the publish button can be clicked or not
@@ -245,6 +253,27 @@ var Forms = {
             $("#toggle_is_hidden").removeAttr("disabled");
             $("#msg_can_publish").show();
             $("#msg_no_publish").hide();
+        }
+
+    },
+
+    validate_create: function() {
+
+        console.log("validate create called");
+        // get number of validation errors on page
+        var num_x_errors = $('.has-error').length;
+        console.log(num_x_errors);
+
+        // control whether the publish button can be clicked or not
+        if (num_x_errors > 0) {
+            console.log("spot cannot be created")
+            $(".scout-create #submit_spot").attr('disabled', 'disabled');
+            $(".scout-create span").show();
+        }
+        else {
+            console.log("spot can be created")
+            $(".scout-create #submit_spot").removeAttr("disabled");
+            $(".scout-create span").hide();
         }
 
     },
