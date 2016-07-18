@@ -11,26 +11,7 @@ var Forms = {
         Forms.toggle_extended_info();
         Forms.toggle_is_hidden();
 
-        // validate form
-        $('#add_edit_form').validator('validate');
-
-        // form validation callback, if needed
-        $("#add_edit_form").on('valid.bs.validator', function (e) {
-            console.log("valid field");
-            Forms.validate_create();
-        })
-
-        // custom validators
-        Forms.handle_checkbox_group_clicks();
-        Forms.validate_required_checkbox_group();
-        Forms.handle_app_type_clicks();
-        Forms.validate_required_app_type();
-
-        // validate if spot can be published ONLY on load
-        Forms.validate_publish();
-
-        // validate if spot can be created
-        Forms.validate_create();
+        Forms.init_validate();
 
         // handle submitting spot to server
         $("#submit_spot").click(Spot.submit_spot);
@@ -205,7 +186,6 @@ var Forms = {
             Forms.validate_required_checkbox_group();
         });
 
-        Forms.validate_publish();
     },
 
     validate_required_app_type: function() {
@@ -222,16 +202,61 @@ var Forms = {
                 $("#app_type_radio").addClass("has-error")
             }
 
-            Forms.validate_create();
-
         });
+
     },
 
     handle_app_type_clicks: function() {
         // handle clicks for any checkboxes in a "checkbox-group" grouping
         $("#app_type_radio input[type='radio']").change(function(e) {
-            Forms.validate_required_app_type();
+            //Forms.validate_required_app_type();
+            Forms.init_validate();
         });
+    },
+
+    init_validate: function() {
+
+        // page based JS calls
+        var page_path = window.location.pathname;
+
+        // ignore query params
+        page_path = page_path.split("?")[0];
+
+        // path for spot create form
+        var spaces_add_path = new RegExp("\/manager\/spaces\/add\/?$");
+
+        // validate form
+        $('#add_edit_form').validator('validate');
+
+        Forms.handle_app_type_clicks();
+        Forms.handle_checkbox_group_clicks();
+
+        if (spaces_add_path.test(page_path)) {
+            console.log("at space add");
+
+            // require app_type prior to create
+            Forms.validate_required_app_type();
+
+            // validate if spot can be created
+            Forms.validate_create();
+
+        }
+        else {
+
+            // custom validators
+            Forms.validate_required_checkbox_group();
+            Forms.validate_required_app_type();
+
+            // validate if spot can be published (ONLY during spot edit)
+            Forms.validate_publish();
+
+        }
+
+        // form validation callback, if needed
+        $("#add_edit_form").on('valid.bs.validator', function (e) {
+            Forms.validate_create();
+        })
+
     },
 
     validate_publish: function() {
@@ -259,13 +284,12 @@ var Forms = {
 
     validate_create: function() {
 
-        console.log("validate create called");
         // get number of validation errors on page
-        var num_x_errors = $('.has-error').length;
-        console.log(num_x_errors);
+        var num_errors = $('.has-error').length;
+        console.log(num_errors);
 
         // control whether the publish button can be clicked or not
-        if (num_x_errors > 0) {
+        if (num_errors > 0) {
             console.log("spot cannot be created")
             $(".scout-create #submit_spot").attr('disabled', 'disabled');
             $(".scout-create span").show();
