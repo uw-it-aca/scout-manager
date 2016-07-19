@@ -209,8 +209,7 @@ var Forms = {
     handle_app_type_clicks: function() {
         // handle clicks for any checkboxes in a "checkbox-group" grouping
         $("#app_type_radio input[type='radio']").change(function(e) {
-            //Forms.validate_required_app_type();
-            Forms.init_validate();
+            Forms.validate_required_app_type();
         });
     },
 
@@ -245,17 +244,18 @@ var Forms = {
         else {
 
             // custom validators
-            Forms.validate_required_checkbox_group();
             Forms.validate_required_app_type();
+            Forms.validate_required_checkbox_group();
 
             // validate if spot can be published (ONLY during spot edit)
             Forms.validate_publish();
 
         }
 
-        // form validation callback, if needed
-        $("#add_edit_form").on('valid.bs.validator', function (e) {
+        // form validation callback after any validation occurs
+        $("#add_edit_form").on('validated.bs.validator', function (e) {
             Forms.validate_create();
+            Forms.validate_publish();
         })
 
     },
