@@ -271,19 +271,19 @@ var Forms = {
         if (num_errors > 0) {
             console.log("spot cannot be published")
 
+            // for draft, don't allow publish if errors exist
             $(".scout-draft-publish #toggle_is_hidden").attr('disabled', 'disabled');
 
+            // for published, don't allow unpublish or submit if errors exist
             $(".scout-unpublish #toggle_is_hidden").attr('disabled', 'disabled');
-
-            // for published, don't allow submit if errors exist
             $(".scout-publish #submit_spot").attr('disabled', 'disabled');
 
         }
         else {
             console.log("spot can be published")
 
+            $(".scout-draft-publish #toggle_is_hidden").removeAttr("disabled");
             $(".scout-unpublish #toggle_is_hidden").removeAttr("disabled");
-
             $(".scout-publish #submit_spot").removeAttr("disabled");
         }
 
