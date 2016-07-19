@@ -67,19 +67,57 @@ class BuildSpotJsonTest(ScoutTest):
         }
         self.assertEqual(out, expected)
 
-    def test_extended_foods_json(self):
-        '''Test extended info handling'''
+    def test_extended_info_json(self):
+        '''
+        Test that _build_spot_json correctly handles parameters specified
+        as both a list or single item
+        '''
         cuisines = ['one', 'two']
+        foods = ['tofu', 'pizza']
+        payment = 'cash'
         json_data = {
             'extended_info:s_cuisine': cuisines,
+            'extended_info:s_food': foods,
+            'extended_info:s_pay': payment,
+            'extended_info:test': 'bar',
             'type': 'foo'
         }
         out = _build_spot_json(wrap_json(json_data))
-        # Cuisines should not be in their own keys in the EI rather than
-        # being inside of the ei:s_cuisine key
-        ei = out['extended_info']
-        for cuisine in cuisines:
-            self.assertEqual(ei[cuisine], 'true')
+        # Cuisine/food/payment types should end up in their own keys
+        # rather than a list
+        expected = {
+            'type': ['foo'],
+            'extended_info': {
+                'one': 'true',
+                'two': 'true',
+                'tofu': 'true',
+                'pizza': 'true',
+                'cash': 'true',
+                'test': 'bar'
+            },
+            'location': {}
+        }
+        self.assertEqual(out, expected)
+
+    def test_location_json(self):
+        '''Test location parsing'''
+        json_data = {
+            'location:longitude': '24',
+            'location:latitude': '34',
+            'location:other': '67',
+            'type': 'foo'
+        }
+        out = _build_spot_json(wrap_json(json_data))
+        expected = {
+            'type': ['foo'],
+            'extended_info': {},
+            'location': {
+                'longitude': '24',
+                'latitude': '34',
+                'other': '67'
+            }
+        }
+        self.assertEqual(out, expected)
 
 
 def wrap_json(jsdata):
