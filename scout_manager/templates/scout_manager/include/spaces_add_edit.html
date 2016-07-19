@@ -22,7 +22,7 @@
     <div class="pull-right">
 
         {% if spot.name %}
-            {{ spot.etag }}&nbsp;&nbsp;&nbsp;
+            Status: {% if spot.is_hidden %}DRAFT{% else %}PUBLISHED{% endif %}&nbsp;&nbsp;&nbsp;
             {% if spot.is_hidden %}
                 <input id="submit_spot" type="button" class="btn btn-primary" value="Save Draft" style="display:inline-block;"></input>
             {% else %}
