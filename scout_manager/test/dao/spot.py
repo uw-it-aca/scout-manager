@@ -52,9 +52,10 @@ class SpotDaoTest(ScoutTest):
 
 
 class BuildSpotJsonTest(ScoutTest):
+    '''Unit tests for the _build_spot_json function'''
 
     def test_simple_json(self):
-
+        '''Bare minimum plus handling of generic (not special case) keys'''
         # Foo should remain untouched, while type is required
         json_data = {'foo': 'bar', 'type': 'baz'}
         out = _build_spot_json(wrap_json(json_data))
@@ -64,21 +65,23 @@ class BuildSpotJsonTest(ScoutTest):
             'extended_info': {},
             'location': {}
         }
-
         self.assertEqual(out, expected)
 
     def test_extended_foods_json(self):
-
+        '''Test extended info handling'''
         cuisines = ['one', 'two']
         json_data = {
             'extended_info:s_cuisine': cuisines,
             'type': 'foo'
         }
         out = _build_spot_json(wrap_json(json_data))
+        # Cuisines should not be in their own keys in the EI rather than
+        # being inside of the ei:s_cuisine key
         ei = out['extended_info']
         for cuisine in cuisines:
             self.assertEqual(ei[cuisine], 'true')
 
 
 def wrap_json(jsdata):
+    '''Prepare json for use in _build_spot_json'''
     return {'json': json.dumps(jsdata)}
