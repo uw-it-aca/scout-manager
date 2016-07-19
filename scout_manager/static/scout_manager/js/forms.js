@@ -270,9 +270,10 @@ var Forms = {
         // control whether the publish button can be clicked or not
         if (num_errors > 0) {
             console.log("spot cannot be published")
-            $("#toggle_is_hidden").attr('disabled', 'disabled');
-            $("#msg_can_publish").hide();
-            $("#msg_no_publish").show();
+
+            $(".scout-draft-publish #toggle_is_hidden").attr('disabled', 'disabled');
+
+            $(".scout-unpublish #toggle_is_hidden").attr('disabled', 'disabled');
 
             // for published, don't allow submit if errors exist
             $(".scout-publish #submit_spot").attr('disabled', 'disabled');
@@ -280,9 +281,8 @@ var Forms = {
         }
         else {
             console.log("spot can be published")
-            $("#toggle_is_hidden").removeAttr("disabled");
-            $("#msg_can_publish").show();
-            $("#msg_no_publish").hide();
+
+            $(".scout-unpublish #toggle_is_hidden").removeAttr("disabled");
 
             $(".scout-publish #submit_spot").removeAttr("disabled");
         }

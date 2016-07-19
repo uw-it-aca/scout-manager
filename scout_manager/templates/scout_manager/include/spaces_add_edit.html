@@ -138,13 +138,16 @@
                     <label><input type="checkbox" name="extended_info:is_hidden" {% if spot.is_hidden %} checked{% endif %} value="true"></input>Is Hidden?</label>
                 </div>
                 {% if spot.is_hidden %}
-                <button type="button" id="toggle_is_hidden" class="btn btn-default btn-sm"><i class="fa fa-eye"></i> <span>Publish</span></button>
-                <div id="msg_no_publish" class="help-block" style="color:#a94442;">Note: Due to validation errors, this space cannot be published at this time.</div>
-                <div id="msg_can_publish" class="help-block">Note: This space can be published.</div>
+                <div class="scout-draft-publish">
+                    <button type="button" id="toggle_is_hidden" class="btn btn-default btn-sm"><i class="fa fa-eye"></i> <span>Publish</span></button>
+                    <div class="help-block">Note: All validation must pass before a space can be published.</div>
+                </div>
                 {% else %}
-                <button type="button" id="toggle_is_hidden" class="btn btn-default btn-sm"><i class="fa fa-eye-slash"></i> <span>Unpublish</span></button>
-                <a class="btn btn-default btn-sm" href="/{{spot.app_type}}/{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View in Scout</span></a>
-                <div class="help-block">Note: Unpublishing a spot will remove it from all client apps and set it to Draft.</div>
+                <div class="scout-unpublish">
+                    <button type="button" id="toggle_is_hidden" class="btn btn-default btn-sm"><i class="fa fa-eye-slash"></i> <span>Unpublish</span></button>
+                    <a class="btn btn-default btn-sm" href="/{{spot.app_type}}/{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View in Scout</span></a>
+                    <div class="help-block">Note: Unpublishing a spot will remove it from all client apps and set it to Draft.</div>
+                </div>
                 {% endif %}
 
             </div>
