@@ -273,12 +273,18 @@ var Forms = {
             $("#toggle_is_hidden").attr('disabled', 'disabled');
             $("#msg_can_publish").hide();
             $("#msg_no_publish").show();
+
+            // for published, don't allow submit if errors exist
+            $(".scout-publish #submit_spot").attr('disabled', 'disabled');
+
         }
         else {
             console.log("spot can be published")
             $("#toggle_is_hidden").removeAttr("disabled");
             $("#msg_can_publish").show();
             $("#msg_no_publish").hide();
+
+            $(".scout-publish #submit_spot").removeAttr("disabled");
         }
 
     },
