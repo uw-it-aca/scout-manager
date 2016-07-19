@@ -78,6 +78,7 @@ var Spot = {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-success");
                 $("#pub_error").html();
+                Spot._navigate_after_create();
             },
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");
@@ -114,6 +115,16 @@ var Spot = {
 
         });
         return avalible_hours;
-
     },
+
+    _navigate_after_create: function() {
+        var type_inputs = $("div.mgr-set-app-type input:checked");
+        var app_type;
+        $(type_inputs).each(function (idx, input){
+            app_type = $(input).val();
+        });
+        if (app_type !== undefined){
+            window.location.href ="../?app_type=" + app_type;
+        }
+    }
 };
