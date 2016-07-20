@@ -171,7 +171,7 @@ def _build_spot_json(form_data):
     payments = json_data.pop("extended_info:s_pay", [])
     payments = _process_checkbox_array(payments)
 
-    extended_info = dict.fromkeys(cuisines + foods + payments, 'true')
+    extended_info = dict.fromkeys(cuisines + foods + payments, True)
 
     for key in list(json_data):
         if key.startswith('extended_info'):

@@ -72,9 +72,9 @@ class BuildSpotJsonTest(ScoutTest):
         Test that _build_spot_json correctly handles parameters specified
         as both a list or single item
         '''
-        cuisines = ['one', 'two']
-        foods = ['tofu', 'pizza']
-        payment = 'cash'
+        cuisines = ['s_cuisine_one', 's_cuisine_two']
+        foods = ['s_food_tofu', 's_food_pizza']
+        payment = 's_pay_cash'
         json_data = {
             'extended_info:s_cuisine': cuisines,
             'extended_info:s_food': foods,
@@ -88,11 +88,11 @@ class BuildSpotJsonTest(ScoutTest):
         expected = {
             'type': ['foo'],
             'extended_info': {
-                'one': 'true',
-                'two': 'true',
-                'tofu': 'true',
-                'pizza': 'true',
-                'cash': 'true',
+                's_cuisine_one': True,
+                's_cuisine_two': True,
+                's_food_tofu': True,
+                's_food_pizza': True,
+                's_pay_cash': True,
                 'test': 'bar'
             },
             'location': {}
