@@ -36,20 +36,19 @@ def _get_spots_by_app_type(app_type, filters, published):
         spots = spot_client.search_spots(filters)
         for spot in spots:
             spot = process_extended_info(spot)
-            if spot is not None:
-                if published:
-                    if hasattr(spot, "is_hidden"):
-                        if not spot.is_hidden:
-                            # in case we start setting is_hidden to false
-                            # rather than removing the attr
-                            res.append(spot)
-                        else:
-                            # don't include spot as it's hidden
-                            continue
+            if published:
+                if hasattr(spot, "is_hidden"):
+                    if not spot.is_hidden:
+                        # in case we start setting is_hidden to false
+                        # rather than removing the attr
+                        res.append(spot)
                     else:
-                        # no attr == false
-                        pass
-                res.append(spot)
+                        # don't include spot as it's hidden
+                        continue
+                else:
+                    # no attr == false
+                    pass
+            res.append(spot)
     except DataFailureException:
         pass
         # TODO: consider logging on failure
