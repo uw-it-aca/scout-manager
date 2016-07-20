@@ -52,10 +52,10 @@ class SpotDaoTest(ScoutTest):
 
 
 class BuildSpotJsonTest(ScoutTest):
-    '''Unit tests for the _build_spot_json function'''
+    """Unit tests for the _build_spot_json function"""
 
     def test_simple_json(self):
-        '''Bare minimum plus handling of generic (not special case) keys'''
+        """Bare minimum plus handling of generic (not special case) keys"""
         # Foo should remain untouched, while type is required
         json_data = {'foo': 'bar', 'type': 'baz'}
         out = _build_spot_json(wrap_json(json_data))
@@ -68,10 +68,10 @@ class BuildSpotJsonTest(ScoutTest):
         self.assertEqual(out, expected)
 
     def test_extended_info_json(self):
-        '''
+        """
         Test that _build_spot_json correctly handles parameters specified
         as both a list or single item
-        '''
+        """
         cuisines = ['s_cuisine_one', 's_cuisine_two']
         foods = ['s_food_tofu', 's_food_pizza']
         payment = 's_pay_cash'
@@ -100,7 +100,7 @@ class BuildSpotJsonTest(ScoutTest):
         self.assertEqual(out, expected)
 
     def test_location_json(self):
-        '''Test location parsing'''
+        """Test location parsing"""
         json_data = {
             'location:longitude': '24',
             'location:latitude': '34',
@@ -121,5 +121,5 @@ class BuildSpotJsonTest(ScoutTest):
 
 
 def wrap_json(jsdata):
-    '''Prepare json for use in _build_spot_json'''
+    """Prepare json for use in _build_spot_json"""
     return {'json': json.dumps(jsdata)}
