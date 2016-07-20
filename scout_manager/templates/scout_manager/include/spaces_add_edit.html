@@ -24,18 +24,18 @@
         {% if spot.name %}
             {% if spot.is_hidden %}
             <div class="scout-draft">
-                <span>You can save changes regardless of validation errors.</span>&nbsp;&nbsp;&nbsp;
+                <span class="text-muted"></span>&nbsp;&nbsp;&nbsp;
                 <input id="submit_spot" type="button" class="btn btn-primary" value="Save Draft" style="display:inline-block;"></input>
             </div>
             {% else %}
-            <div class="scout-publish">
-                <span>This space is published and any changes will be shown immediately in client apps.</span>&nbsp;&nbsp;&nbsp;
+            <div class="scout-published">
+                <span class="text-muted"></span>&nbsp;&nbsp;&nbsp;
                 <input id="submit_spot" type="button" class="btn btn-primary" value="Publish Changes" style="display:inline-block;"></input>
             </div>
             {% endif %}
         {% else %}
         <div class="scout-create">
-            <span class="text-danger">All required fields must be filled before you can create.</span>&nbsp;&nbsp;&nbsp;
+            <span class="text-danger">Note: All required fields must be filled before you can create.</span>&nbsp;&nbsp;&nbsp;
             <input id="submit_spot" type="button" class="btn btn-primary" value="Create Space" style="display:inline-block;"></input>
         </div>
         {% endif %}
@@ -138,12 +138,12 @@
                     <label><input type="checkbox" name="extended_info:is_hidden" {% if spot.is_hidden %} checked{% endif %} value="true"></input>Is Hidden?</label>
                 </div>
                 {% if spot.is_hidden %}
-                <div class="scout-draft-publish">
+                <div class="scout-draft-actions">
                     <button type="button" id="toggle_is_hidden" class="btn btn-default btn-sm"><i class="fa fa-eye"></i> <span>Publish</span></button>
-                    <div class="help-block">Note: All validation must pass before a space can be published.</div>
+                    <div class="help-block"></div>
                 </div>
                 {% else %}
-                <div class="scout-unpublish">
+                <div class="scout-published-actions">
                     <button type="button" id="toggle_is_hidden" class="btn btn-default btn-sm"><i class="fa fa-eye-slash"></i> <span>Unpublish</span></button>
                     <a class="btn btn-default btn-sm" href="/{{spot.app_type}}/{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View in Scout</span></a>
                     <div class="help-block">Note: Unpublishing a spot will remove it from all client apps and set it to Draft.</div>

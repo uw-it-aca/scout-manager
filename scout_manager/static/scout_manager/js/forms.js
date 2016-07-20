@@ -272,19 +272,37 @@ var Forms = {
             console.log("spot cannot be published")
 
             // for draft, don't allow publish if errors exist
-            $(".scout-draft-publish #toggle_is_hidden").attr('disabled', 'disabled');
+            $(".scout-draft span").html("Note: You have validation errors, but can still save!")
+
+            $(".scout-draft-actions #toggle_is_hidden").attr('disabled', 'disabled');
+            $(".scout-draft-actions .help-block").css('color', '#a94442');
+            $(".scout-draft-actions .help-block").html("Note: Validation errors prevent this spot from being published.");
 
             // for published, don't allow unpublish or submit if errors exist
-            $(".scout-unpublish #toggle_is_hidden").attr('disabled', 'disabled');
-            $(".scout-publish #submit_spot").attr('disabled', 'disabled');
+            $(".scout-published-actions #toggle_is_hidden").attr('disabled', 'disabled');
+            $(".scout-published-actions .help-block").css('color', '#a94442');
+            $(".scout-published-actions .help-block").html("Note: Validation errors prevent this spot from being un-published.");
 
+            $(".scout-published #submit_spot").attr('disabled', 'disabled');
+            $(".scout-published span").addClass("text-danger");
+            $(".scout-published span").html("Note: Validation errors prevent any changes from being published.")
         }
         else {
             console.log("spot can be published")
 
-            $(".scout-draft-publish #toggle_is_hidden").removeAttr("disabled");
-            $(".scout-unpublish #toggle_is_hidden").removeAttr("disabled");
-            $(".scout-publish #submit_spot").removeAttr("disabled");
+            $(".scout-draft span").html("Note: While in draft, you can save changes regardless of validation errors.")
+
+            $(".scout-draft-actions #toggle_is_hidden").removeAttr("disabled");
+            $(".scout-draft-actions .help-block").css('color', '');
+            $(".scout-draft-actions  .help-block").html("Note: Publishing this space will make it visible in all client apps!");
+
+            $(".scout-published-actions #toggle_is_hidden").removeAttr("disabled");
+            $(".scout-published-actions .help-block").css('color', '');
+            $(".scout-published-actions .help-block").html("Note: Unpublishing this space will remove it from being seen in client apps.");
+
+            $(".scout-published #submit_spot").removeAttr("disabled");
+            $(".scout-published span").removeClass("text-danger");
+            $(".scout-published span").html("Note: This space is published and any changes will be shown immediately in client apps.")
         }
 
     },
