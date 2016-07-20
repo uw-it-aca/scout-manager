@@ -128,7 +128,6 @@
 
         {% if spot.name %}
         <h3 class="">Publish</h3>
-
         <div class="form-group well">
             <div>
                 <label>Status: <span style="font-weight:normal;">{% if spot.is_hidden %}DRAFT{% else %}PUBLISHED{% endif %}</span></label>
@@ -152,18 +151,6 @@
 
             </div>
         </div>
-
-        <h3 class="">DELETE</h3>
-        <div class="form-group well">
-            <div>
-                <label>Delete this space?</label>
-            </div>
-            <div class="mgr-dataset-actions">
-                <button type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
-                <div class="help-block">Note: This action cannot be undone!</div>
-            </div>
-        </div>
-
         {% else %}
         <div class="checkbox hidden">
             <label><input type="checkbox" name="extended_info:is_hidden" checked value="true"></input>Is Hidden?</label>
@@ -171,9 +158,7 @@
         {% endif %}
 
 
-
         <h3 class="">Administration</h3>
-
         <div class="form-group">
             <label for="owner" class="control-label">Owner/Admin Group:</label>
             <input class="form-control" id="owner" name="extended_info:owner" type="text" value="{% if spot.owner %}{{ spot.owner }}{% endif %}" required data-error="An owner group must be provided.">
@@ -198,6 +183,19 @@
         </div>
 
         <p class="help-block">Note: Admin information is not visible in some client applications.</p>
+
+        {% if spot.name %}
+        <h3 class="">DELETE</h3>
+        <div class="form-group well">
+            <div>
+                <label>Delete this space?</label>
+            </div>
+            <div class="mgr-dataset-actions">
+                <button type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                <div class="help-block">Note: This action cannot be undone!</div>
+            </div>
+        </div>
+        {% endif %}
 
     </div>
 
