@@ -189,12 +189,6 @@ def _build_spot_json(form_data):
             location_data[name] = json_data[key]
             json_data.pop(key)
 
-    try:
-        phone = json_data.pop("phone")
-        extended_info["s_phone"] = phone
-    except KeyError:
-        pass
-
     json_data["extended_info"] = extended_info
     json_data["location"] = location_data
     return json_data
