@@ -11,7 +11,7 @@
     {% for image in spot.images %}
      <div class="col-md-4">
          <div class="well" style="padding:0;">
-             <div class="mgr-edit-img-container" data-url="/manager/images/{{ spot.spot_id }}/image/{{ image.image_id }}" data-id="{{ image.image_id }}"></div>
+             <div class="mgr-edit-img-container" data-url="/manager/images/{{ spot.spot_id }}/image/{{ image.image_id }}/" data-id="{{ image.image_id }}"></div>
              <div class="mgr-dataset-actions" style="padding:19px;">
                  {% if forloop.first %}
                  Default
