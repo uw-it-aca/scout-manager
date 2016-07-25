@@ -102,13 +102,13 @@ def process_extended_info(spot):
 
 
 def get_spot_hours_by_day(spot):
-    days = ["monday",
+    days = ("monday",
             "tuesday",
             "wednesday",
             "thursday",
             "friday",
             "saturday",
-            "sunday"]
+            "sunday")
     hours_objects = []
     for day in days:
         try:
