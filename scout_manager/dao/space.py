@@ -102,13 +102,13 @@ def process_extended_info(spot):
 
 
 def get_spot_hours_by_day(spot):
-    days = ["monday",
+    days = ("monday",
             "tuesday",
             "wednesday",
             "thursday",
             "friday",
             "saturday",
-            "sunday"]
+            "sunday")
     hours_objects = []
     for day in days:
         try:
@@ -170,14 +170,16 @@ def _build_spot_json(form_data):
     payments = json_data.pop("extended_info:s_pay", [])
     payments = _process_checkbox_array(payments)
 
-    extended_info = dict.fromkeys(cuisines + foods + payments, True)
+    extended_info = dict.fromkeys(cuisines + foods + payments, 'true')
 
     for key in list(json_data):
         if key.startswith('extended_info'):
             value = json_data[key]
             name = key.split(':', 1)[1]
             json_data.pop(key)
-            if value != "None" and len(value) > 0:
+            if value == 'true' or value == 'on':
+                extended_info[name] = 'true'
+            if value != "None" and value:
                 extended_info[name] = value
 
     # formats location data
