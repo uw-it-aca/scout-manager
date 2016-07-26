@@ -40,9 +40,9 @@
             <tr data-spotid="{{ spot.spot_id }}" data-etag="{{ spot.etag }}">
                 <td><a href="/manager/spaces/{{ spot.spot_id }}/">{{ spot.spot_id }}</a></td>
                 <td><strong>{{ spot.name }}</strong></td>
-                <td>{{ spot.campus }}</td>
-                <td>{{ spot.building_name }}</td>
-                <td>{% for type in spot.spot_types %}{{ type.name }}, {% endfor %}</td>
+                <td>{% if spot.campus %}{{ spot.campus }}{% else %}<small class="text-danger">missing</small>{% endif %}</td>
+                <td>{% if spot.building_name %}{{ spot.building_name }}{% else %}<small class="text-danger">missing</small>{% endif %}</td>
+                <td>{% for type in spot.spot_types %}{{ type.name }}, {% empty %}<small class="text-danger">missing</small>{% endfor %}</td>
                 <td>{% if spot.is_hidden %}DRAFT{% else %}PUBLISHED{% endif %}</td>
                 <td>
                     <div class="mgr-dataset-actions">
