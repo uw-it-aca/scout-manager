@@ -5,34 +5,34 @@
     <div class="col-md-4">
 
         <div class="form-group">
-            <label for="item-description">Description:</label>
-            <textarea rows="4" class="form-control" id="item-description" type="text"></textarea>
+            <label for="">Description:</label>
+            <textarea rows="4" class="form-control" id="" type="text" name="extended_info:i_description"></textarea>
         </div>
 
         <div class="form-group">
-            <label for="item-name">Brand:</label>
-            <input id="item-brand" class="form-control" type="text" required>
+            <label for="">Brand:</label>
+            <input id="" class="form-control" type="text" name="extended_info:i_brand">
         </div>
 
         <div class="form-group">
-            <label for="item-name">Model:</label>
-            <input id="item-model" class="form-control" type="text" required>
+            <label for="">Model:</label>
+            <input id="" class="form-control" type="text" name="extended_info:i_model">
         </div>
 
         <div class="form-group">
-            <label for="item-quantity">Quantity:</label>
-            <input id="item-quantity" class="form-control" type="number" required>
+            <label for="">Quantity:</label>
+            <input id="" class="form-control" type="number" name="extended_info:i_quantity">
         </div>
 
         <div class="form-group">
-            <label for="item-serial">Serial Number(s):</label>
-            <input class="form-control" id="item-serial" type="text">
+            <label for="">Serial Number(s):</label>
+            <input class="form-control" id="" type="text" name="extended_info:i_serial_number">
             <p class="help-block">Note: separate multiple serial numbers with a comma.</p>
         </div>
 
         <div class="form-group">
-            <label for="item-UWtag">UW Tag Number(s):</label>
-            <input class="form-control" id="item-UWtag" type="text">
+            <label for="">UW Tag Number(s):</label>
+            <input class="form-control" id="" type="text" name="extended_info:i_uw_tag_number">
             <p class="help-block">Note: separate multiple UW Tag numbers with a comma.</p>
         </div>
 
@@ -43,20 +43,20 @@
     <div class="col-md-4">
 
         <div class="form-group">
-            <label for="item_info_website">Website for item info:</label>
-            <input class="form-control" id="item_info_website" type="url">
+            <label for="">Website for item info:</label>
+            <input class="form-control" id="" type="url" name="extended_info:i_website">
         </div>
 
         <fieldset>
             <legend>Prerequisites?</legend>
 
             <div class="checkbox">
-                <label for=""><input id="" type="checkbox">Has Prerequisites?</label>
+                <label for=""><input id="" type="checkbox" name="extended_info:i_has_prereqs" value="true">Has Prerequisites?</label>
             </div>
 
             <div class="form-group">
                 <label for="">Prerequisites Notes:</label>
-                <textarea rows="4" class="form-control" id=""></textarea>
+                <textarea rows="4" class="form-control" id="" name="extended_info:i_prereq_notes"></textarea>
             </div>
 
         </fieldset>
@@ -65,12 +65,12 @@
             <legend>Reservable?</legend>
 
             <div class="checkbox">
-                <label for=""><input id="" type="checkbox">Is Reservable?</label>
+                <label for=""><input id="" type="checkbox" name="extended_info:i_has_reservation" value="true">Is Reservable?</label>
             </div>
 
             <div class="form-group">
                 <label for="">Reservation Notes:</label>
-                <textarea rows="4" class="form-control" id=""></textarea>
+                <textarea rows="4" class="form-control" id="" name="extended_info:i_reservation_notes"></textarea>
             </div>
         </fieldset>
 
@@ -82,35 +82,35 @@
             <legend>Access Restrictions</legend>
 
             <div class="checkbox">
-                <label><input id="" type="checkbox">Has access restrictions?</label>
+                <label><input id="" type="checkbox" name="extended_info:i_has_access_restriction" value="true">Has access restrictions?</label>
             </div>
 
             <label>Access limited to:</label>
             <div class="well">
                 <div class="checkbox">
-                    <label><input type="checkbox" value="access_netid">UW NetID</label>
+                    <label><input type="checkbox" name="extended_info:i_access_limit_uwnetid" value="true">UW NetID</label>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" value="access_role">Specific role (student/staff/faculty)</label>
+                    <label><input type="checkbox" name="extended_info:i_access_limit_role" value="true">Specific role (student/staff/faculty)</label>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" value="access_school">Specific School affiliation</label>
+                    <label><input type="checkbox" name="extended_info:i_access_limit_school" value="true">Specific School affiliation</label>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" value="access_dept">Specific Department affiliation</label>
+                    <label><input type="checkbox" name="extended_info:i_access_limit_department" value="true">Specific Department affiliation</label>
                 </div>
             </div>
 
             <label>Select role(s): (show based on checkbox)</label>
             <div class="well">
                 <div class="checkbox">
-                    <label><input type="checkbox" value="access_student">Students</label>
+                    <label><input type="checkbox" name="extended_info:i_access_role_students" value="true">Students</label>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" value="access_faculty">Staff</label>
+                    <label><input type="checkbox" name="extended_info:i_access_role_staff" value="true">Staff</label>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" value="access_staff">Faculty</label>
+                    <label><input type="checkbox" name="extended_info:i_access_role_faculty" value="true">Faculty</label>
                 </div>
             </div>
 
@@ -139,8 +139,8 @@
 
 
             <div class="form-group">
-                <label for="access-notes">Access Notes:</label>
-                <textarea rows="4" class="form-control" id="access-notes" type="text"></textarea>
+                <label for="">Access Notes:</label>
+                <textarea rows="4" class="form-control" id="" type="text" name="extended_info:i_access_notes"></textarea>
             </div>
 
             <p class="help-block">Note: Access restritions and notes will only be displayed to clients IF the "Has access restrictions" checkbox is checked.</p>
