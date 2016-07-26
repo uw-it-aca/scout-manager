@@ -58,7 +58,7 @@ var Maps = {
                     zoomControlOptions: true,
                     streetViewControl: false,
                     center: latlng,
-                    zoom: 19,
+                    zoom: 18,
                     scrollwheel: false,
                 });
 
