@@ -88,11 +88,11 @@ class BuildSpotJsonTest(ScoutTest):
         expected = {
             'type': ['foo'],
             'extended_info': {
-                's_cuisine_one': True,
-                's_cuisine_two': True,
-                's_food_tofu': True,
-                's_food_pizza': True,
-                's_pay_cash': True,
+                's_cuisine_one': "true",
+                's_cuisine_two': "true",
+                's_food_tofu': "true",
+                's_food_pizza': "true",
+                's_pay_cash': "true",
                 'test': 'bar'
             },
             'location': {}
