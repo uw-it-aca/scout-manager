@@ -164,7 +164,8 @@
             <input class="form-control" id="owner" name="extended_info:owner" type="text" value="{% if spot.owner %}{{ spot.owner }}{% endif %}" required data-error="An owner group must be provided.">
             <div class="help-block with-errors"></div>
         </div>
-
+        <p class="help-block">Note: Use the <a href="https://groups.uw.edu/" target="_blank">UW Groups</a> service to create or manage your groups.</p>
+        
         <div class="form-group">
             <label for="manager-name">Manager Name:</label>
             <input class="form-control" id="manager-name" name="manager" type="text" value="{% if spot.manager %}{{ spot.manager }}{% endif %}">
@@ -275,7 +276,7 @@
         </div>
 
     </div>
-    
+
     <div class="col-md-8 mgr-location-chooser">
         <div class="form-group">
             <label for="space-latitude">Location chooser:</label>

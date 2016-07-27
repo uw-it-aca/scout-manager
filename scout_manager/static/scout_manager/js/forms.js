@@ -7,6 +7,7 @@ var Forms = {
         Forms.hours_grouping_clearfix();
         Forms.load_images();
         Forms.image_delete();
+        Forms.image_upload();
         Forms.image_check_count();
         Forms.toggle_extended_info();
         Forms.toggle_is_hidden();
@@ -104,6 +105,25 @@ var Forms = {
             $(this).parent().parent("div").remove();
             Forms.image_check_count();
         });
+    },
+
+    image_upload: function() {
+
+        $('#mgr_upload_image').bind("change",function() {
+            if ($('#mgr_upload_image').get(0).files.length !== 0) {
+                console.log("Files here.");
+                $("#mgr_upload_button").show();
+            }
+            else {
+                $("#mgr_upload_button").hide();
+            }
+        });
+
+        $('#mgr_upload_button').click(function() {
+            // submit spot
+            Spot.submit_spot();
+        });
+
     },
 
     image_check_count: function() {
