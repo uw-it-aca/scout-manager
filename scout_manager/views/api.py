@@ -1,7 +1,6 @@
 from scout_manager.views.rest_dispatch import RESTDispatch
 from scout_manager.dao.space import update_spot, create_spot, delete_spot
 from django.http import JsonResponse
-import json
 import re
 
 
