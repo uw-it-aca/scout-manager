@@ -158,7 +158,10 @@ def _build_spot_json(form_data):
     json_data = json.loads(form_data['json'])
 
     # handles case where single box is checked doesn't return a list
-    json_data['type'] = _process_checkbox_array(json_data['type'])
+    try:
+        json_data['type'] = _process_checkbox_array(json_data['type'])
+    except KeyError:
+        pass
 
     # formats extended info
     cuisines = json_data.pop("extended_info:s_cuisine", [])

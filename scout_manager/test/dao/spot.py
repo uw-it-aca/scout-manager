@@ -119,6 +119,16 @@ class BuildSpotJsonTest(ScoutTest):
         }
         self.assertEqual(out, expected)
 
+    def test_no_type(self):
+        json_data = {
+            'extended_info:test': 'bar',
+        }
+        try:
+            _build_spot_json(wrap_json(json_data))
+        except KeyError:
+            self.fail("_build_spot_json raised a KeyError with no type set")
+
+
 
 def wrap_json(jsdata):
     """Prepare json for use in _build_spot_json"""
