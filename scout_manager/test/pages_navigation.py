@@ -8,7 +8,7 @@ baseUrl = '/manager/'
 
 urls = {
     'home': baseUrl,
-    'study': baseUrl + 'spaces/',
+    'study': baseUrl + 'spaces/?app_type=study',
     'food': baseUrl + 'spaces/?app_type=food',
     'add': baseUrl + 'spaces/add/',
     'edit': baseUrl + 'spaces/1/'
