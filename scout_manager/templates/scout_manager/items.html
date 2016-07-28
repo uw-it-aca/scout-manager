@@ -20,11 +20,10 @@
         <thead>
             <tr>
                 <th>ID</td>
+                <th>Location</td>
                 <th>Name</td>
-                <th>Type</td>
-                <th>Category</td>
-                <th>Brand</td>
-                <th>Model</td>
+                <th>Category (Type)</td>
+                <th>Sub Category</td>
                 <th><span class="sr-only">Actions</span></td>
             </tr>
         </thead>
@@ -32,11 +31,10 @@
 
             <tr>
                 <td><a class="scope" href="/manager/items/1234/">0001</a></td>
+                <td>Tech Stuff R'Us</td>
                 <td>Solidoodle 4 (Black)</td>
                 <td>Printer</td>
                 <td>3d Printer</td>
-                <td>Solidoodle</td>
-                <td>4</td>
                 <td>
                     <div class="mgr-dataset-actions">
                         <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
@@ -45,11 +43,10 @@
             </tr>
             <tr>
                 <td><a class="scope" href="/manager/items/1234/">0002</a></td>
+                <td>Tech Stuff R'Us</td>
                 <td>Nikon D7000 DSLR Camera</td>
                 <td>Digital Camera</td>
                 <td>Camera</td>
-                <td>Nikon</td>
-                <td>D7000</td>
                 <td>
                     <div class="mgr-dataset-actions">
                         <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
@@ -58,11 +55,10 @@
             </tr>
             <tr>
                 <td><a class="scope" href="/manager/items/1234/">0003</a></td>
+                <td>Jason's Lab</td>
                 <td>Apple Macbook Pro 2011</td>
                 <td>Laptop</td>
                 <td>Cool Laptops</td>
-                <td>Apple</td>
-                <td>Macbook Pro</td>
                 <td>
                     <div class="mgr-dataset-actions">
                         <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
@@ -73,11 +69,10 @@
             {% for item in items %}
             <tr>
                 <td>{{ item.item_id }}</a></td>
+                <td>{{ spot.name }}</td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.category }}</td>
                 <td>{{ item.sub_category }}</td>
-                <td>{{ item.brand }}</td>
-                <td>{{ item.model }}</td>
                 <td>
                     <div class="mgr-dataset-actions">
                         <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
