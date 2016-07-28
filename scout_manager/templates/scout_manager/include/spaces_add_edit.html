@@ -306,90 +306,86 @@
 <!-- include the hour and access form -->
 {% include "scout_manager/include/form_hours.html" %}
 
-{% if spot.name %}
+<!-- FOR NOW: items for tech spaces -->
+{% if spot.name and spot.app_type == "tech" %}
 
-<hr style="border-top:solid 10px #ecf0f1;"/>
+    <hr style="border-top:solid 10px #ecf0f1;"/>
 
-<!-- if space has items -->
-<h3>Item(s)</h3>
+    <h3>Item(s)</h3>
 
-<p><a class="scope" href="/manager/items/add/">Add New Item to this space</a></p>
-<p>Total: <span class="scope">xxxxxx</span></p>
+    <p><a class="scope" href="/manager/items/add/">Add New Item to this space</a></p>
+    <p>Total: <span class="scope">xxxxxx</span></p>
 
-<div style="margin-top: 15px;" class="table-responsive">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</td>
-                <th>Name</td>
-                <th>Type</td>
-                <th>Category</td>
-                <th>Brand</td>
-                <th>Model</td>
-                <th><span class="sr-only">Actions</span></td>
-            </tr>
-        </thead>
-        <tbody>
+    <div style="margin-top: 15px;" class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</td>
+                    <th>Location</td>
+                    <th>Name</td>
+                    <th>Category (Type)</td>
+                    <th>Sub Category</td>
+                    <th><span class="sr-only">Actions</span></td>
+                </tr>
+            </thead>
+            <tbody>
 
-            <tr>
-                <td>0001</td>
-                <td>Solidoodle 4 (Black)</td>
-                <td>Printer</td>
-                <td>3d Printer</td>
-                <td>Solidoodle</td>
-                <td>4</td>
-                <td>
-                    <div class="mgr-dataset-actions">
-                        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>0002</td>
-                <td>Nikon D7000 DSLR Camera</td>
-                <td>Digital Camera</td>
-                <td>Camera</td>
-                <td>Nikon</td>
-                <td>D7000</td>
-                <td>
-                    <div class="mgr-dataset-actions">
-                        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>0003</td>
-                <td>Apple Macbook Pro 2011</td>
-                <td>Laptop</td>
-                <td>Cool Laptops</td>
-                <td>Apple</td>
-                <td>Macbook Pro</td>
-                <td>
-                    <div class="mgr-dataset-actions">
-                        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
-                    </div>
-                </td>
-            </tr>
+                <tr>
+                    <td><a class="scope" href="/manager/items/1234/">0001</a></td>
+                    <td>Tech Stuff R'Us</td>
+                    <td>Solidoodle 4 (Black)</td>
+                    <td>Printer</td>
+                    <td>3d Printer</td>
+                    <td>
+                        <div class="mgr-dataset-actions">
+                            <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a class="scope" href="/manager/items/1234/">0002</a></td>
+                    <td>Tech Stuff R'Us</td>
+                    <td>Nikon D7000 DSLR Camera</td>
+                    <td>Digital Camera</td>
+                    <td>Camera</td>
+                    <td>
+                        <div class="mgr-dataset-actions">
+                            <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a class="scope" href="/manager/items/1234/">0003</a></td>
+                    <td>Jason's Lab</td>
+                    <td>Apple Macbook Pro 2011</td>
+                    <td>Laptop</td>
+                    <td>Cool Laptops</td>
+                    <td>
+                        <div class="mgr-dataset-actions">
+                            <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                        </div>
+                    </td>
+                </tr>
 
-            {% for item in items %}
-            <tr>
-                <td>{{ item.item_id }}</a></td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.category }}</td>
-                <td>{{ item.sub_category }}</td>
-                <td>{{ item.brand }}</td>
-                <td>{{ item.model }}</td>
-                <td>
-                    <div class="mgr-dataset-actions">
-                        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
-                    </div>
-                </td>
-            </tr>
-            {% empty %}
-            There are no items for you to see!
-            {% endfor %}
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.item_id }}</a></td>
+                    <td>{{ spot.name }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.category }}</td>
+                    <td>{{ item.sub_category }}</td>
+                    <td>
+                        <div class="mgr-dataset-actions">
+                            <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                There are no items for you to see!
+                {% endfor %}
 
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
+
 {% endif %}
