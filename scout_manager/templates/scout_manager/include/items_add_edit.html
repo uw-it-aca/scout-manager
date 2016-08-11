@@ -1,0 +1,173 @@
+
+<div class="clearfix sticky" style="margin-bottom:1em;">
+    <h2 class="pull-left">{% if item.name %}{{ item.name }}{% else %}Add New Item{% endif %}</h2>
+    <div class="pull-right">
+
+        {% if item.name %}
+        <input type="button" class="btn btn-primary" value="Save Changes" style="display:inline-block;"></input>
+        {% else %}
+            <span class="text-danger">Note: All required fields must be filled before you can create.</span>&nbsp;&nbsp;&nbsp;
+            <input type="button" class="btn btn-primary" value="Create Item" style="display:inline-block;"></input>
+        {% endif %}
+
+    </div>
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-8">
+
+        <h3>General Information</h3>
+
+        <div class="form-group">
+            <label for="">Name:</label>
+            <input id="" name="name" value="" class="form-control" type="text">
+        </div>
+
+        <div class="row">
+
+            <div class="form-group col-md-6">
+                <label for="">Category:</label>
+                <!-- list of ACA predefined categories -->
+                <select multiple class="form-control" id="">
+                    <option disabled selected value>select a category...</option>
+                    <option>Prototyping</option>
+                    <option>Defined Category 2</option>
+                    <option>...</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="">Sub category:</label>
+                <!-- list of predefined types, based on selected category. -->
+                <select multiple class="form-control" id="">
+                    <option disabled selected value>select a sub category...</option>
+                    <option>3D printer</option>
+                    <option>Defined Type 2</option>
+                    <option>...</option>
+                </select>
+            </div>
+
+        </div>
+
+        <fieldset style="margin-top:1em;">
+            <legend>Context/Type:</legend>
+
+            <div class="radio">
+                <label><input type="radio" name="extended_info:i_context_type" value="stf" checked>STF Funded</label>
+            </div>
+            <div class="radio disabled">
+                <label><input type="radio" name="extended_info:i_context_type" value="kitchen" disabled>Kitchen Appliances</label>
+            </div>
+            <div class="radio disabled">
+                <label><input type="radio" name="extended_info:i_context_type" value="aca" disabled>ACA Inventory</label>
+            </div>
+        </fieldset>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <fieldset>
+            <legend>Status</legend>
+            <div class="checkbox">
+                <label><input id="" type="checkbox"  name="extended_info:i_is_valid" value="true">Is valid?</label>
+            </div>
+            <p class="help-block">Note: Only valid items will be visible in client apps!</p>
+        </fieldset>
+
+        <h3>Administration</h3>
+
+        <div class="form-group">
+            <label for="">Owner/Admin Group:</label>
+            <input class="form-control" id="" name="extended_info:i_owner" type="text" value="{% if item.owner %}{{ item.owner }}{% endif %}">
+        </div>
+
+        <div class="form-group">
+            <label for="">Manager Name:</label>
+            <input class="form-control" id="" name="extended_info:i_manager" type="text" value="{% if item.manager %}{{ item.manager }}{% endif %}">
+        </div>
+
+        <div class="form-group">
+            <label for="" class="">Email:</label>
+            <input class="form-control" id="" type="extended_info:i_email" value="{% if item.email %}{{ item.email }}{% endif %}">
+        </div>
+
+        <div class="form-group">
+            <label for="" class="">Phone:</label>
+            <input class="form-control" id="" name="extended_info:i_phone" type="tel" value="{% if item.phone %}{{ item.phone }}{% endif %}">
+        </div>
+
+        <div class="mgr-dataset-actions">
+            <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+        </div>
+
+    </div>
+</div>
+
+<hr/>
+
+{% include "scout_manager/include/extend_stf.html" %}
+
+<hr/>
+
+<!-- include the images form -->
+{% include "scout_manager/include/form_images.html" %}
+
+<hr/>
+
+<div class="row">
+
+    <h3 class="col-md-12">Location</h3>
+
+    <div class="col-md-4">
+
+        <div class="form-group scope">
+            <label class="control-label" for="">Campus:</label>
+            <select class="form-control">
+                <option disabled selected value>select a campus...</option>
+                <option value="seattle">Seattle</option>
+                <option value="bothell">Bothell</option>
+                <option value="south_lake_union">South Lake Union</option>
+                <option value="tacoma">Tacoma</option>
+            </select>
+        </div>
+        <div class="form-group scope">
+            <label for="" class="control-label">Building:</label>
+            <select class="form-control">
+                <option disabled selected value>select a building...</option>
+                {% for building in buildings %}
+                <option value="{{ building }}">{{ building }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <p class="help-block">Note: Select a campus and building to narrow down the list of spaces.</p>
+
+    </div>
+
+    <div class="col-md-8">
+        <div class="form-group">
+            <label for="">Space:</label>
+            <select class="form-control" id="" multiple style="height:300px;">
+                <option disabled selected value>select a space...</option>
+                {% for spot in spots %}
+                <option>{{spot.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<h3>Current Alert</h3>
+
+<div class="checkbox">
+    <label><input name="extended_info:i_has_alert" type="checkbox" value="true" {% if item.has_alert %}checked{% endif %}>Alert Enabled</label>
+</div>
+
+<div class="form-group">
+    <label for="">Post this Alert message:</label>
+    <textarea class="form-control" rows="4" id="" name="extended_info:i_alert_notes" type="text" value="{% if item.alert_notes %}{{ item.alert_notes }}{% endif %}"></textarea>
+</div>
