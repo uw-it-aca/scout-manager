@@ -66,7 +66,9 @@ BUILDING_LIST = {
     'Intramural Activities Building (IMA)': {
         'campus': 'seattle'
     },
-
+    'Kane Hall (KNE)': {
+        'campus': 'seattle'
+    },
     'Lander Hall (LAH)': {
         'campus': 'seattle'
     },
