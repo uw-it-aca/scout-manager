@@ -45,16 +45,18 @@ class Command(BaseCommand):
 
         # Replace <spot_id> with the appropriate spot id.
         spot_kane = client.getURL(
-            "/api/v1/spot/<spot_id>",
+            "/api/v1/spot/5279",
             headers
         )
         spot_kane = json.loads(spot_kane[1])
+        spot_kane["items"] = []
 
         spot_health = client.getURL(
-            "/api/v1/spot/<spot_id>",
+            "/api/v1/spot/5278",
             headers
         )
         spot_health = json.loads(spot_health[1])
+        spot_health["items"] = []
 
         row = 2
         while sheet_types['A' + str(row)].value:
@@ -175,16 +177,14 @@ class Command(BaseCommand):
                 item["extended_info"]["i_description"] = item_description
 
                 item["extended_info"]["i_reserve_url"] =\
-                    urllib.quote_plus(sheet_descriptions['D' + str(row)].value)
+                    str(sheet_descriptions['D' + str(row)].value)
                 if(sheet_descriptions['E' + str(row)].value):
                     item["extended_info"]["i_manual_url"] =\
-                        urllib.quote_plus(
-                            sheet_descriptions['E' + str(row)].value
-                        )
+                        str(sheet_descriptions['E' + str(row)].value)
                 return item
             row += 1
 
         # Some generic description and urls!
         item["extended_info"]["i_reserve_url"] =\
-            urllib.quote_plus("https://www.cte.uw.edu/stfequip/request")
+            "https://www.cte.uw.edu/stfequip/request"
         return item
