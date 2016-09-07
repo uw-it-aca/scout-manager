@@ -4,7 +4,6 @@ from spotseeker_restclient.dao_implementation.spotseeker import Live
 from django.core.management.base import BaseCommand
 import re
 import json
-import urllib
 
 
 class Command(BaseCommand):
@@ -45,14 +44,14 @@ class Command(BaseCommand):
 
         # Replace <spot_id> with the appropriate spot id.
         spot_kane = client.getURL(
-            "/api/v1/spot/5279",
+            "/api/v1/spot/<spot_id>",
             headers
         )
         spot_kane = json.loads(spot_kane[1])
         spot_kane["items"] = []
 
         spot_health = client.getURL(
-            "/api/v1/spot/5278",
+            "/api/v1/spot/<spot_id>",
             headers
         )
         spot_health = json.loads(spot_health[1])
