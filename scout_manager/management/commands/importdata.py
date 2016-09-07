@@ -44,7 +44,8 @@ class Command(BaseCommand):
             },
             "extended_info": {
                 "has_whiteboards": "true",
-                "app_type": "tech"
+                "app_type": "tech",
+                "campus": "seattle"
             },
             "items": []
         }
@@ -56,7 +57,8 @@ class Command(BaseCommand):
             },
             "extended_info": {
                 "has_whiteboards": "true",
-                "app_type": "tech"
+                "app_type": "tech",
+                "campus": "seattle"
             },
             "items": []
         }
@@ -68,7 +70,8 @@ class Command(BaseCommand):
             },
             "extended_info": {
                 "has_whiteboards": "true",
-                "app_type": "tech"
+                "app_type": "tech",
+                "campus": "seattle"
             },
             "items": []
         }
@@ -80,7 +83,8 @@ class Command(BaseCommand):
             },
             "extended_info": {
                 "has_whiteboards": "true",
-                "app_type": "tech"
+                "app_type": "tech",
+                "campus": "seattle"
             },
             "items": []
         }
@@ -106,7 +110,7 @@ class Command(BaseCommand):
                 item["extended_info"]["i_has_access_restriction"] = "true"
                 item["extended_info"]["i_access_limit_role"] = "true"
                 item["extended_info"]["i_access_role_students"] = "true"
-                item["extended_info"]["i_reservaion_required"] = "true"
+                item["extended_info"]["i_reservation_required"] = "true"
                 # needs to check if data is active in equipment table?
                 item["extended_info"]["i_is_active"] = "true"
                 item_location = sheet_types["C" + str(row)].value
