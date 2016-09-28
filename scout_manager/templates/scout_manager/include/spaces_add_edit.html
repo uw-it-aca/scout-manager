@@ -110,7 +110,7 @@
                     <label><input id="study_radio" type="radio" value="study">Study</label>
                 </div>
                 <div class="radio">
-                    <label><input type="radio" name="extended_info:app_type" value="tech">Technology</label>
+                    <label><input type="radio" name="extended_info:app_type" value="tech">Tech</label>
                 </div>
             </div>
             <div class="help-block with-errors">Please select an app_type.</div>
@@ -153,13 +153,15 @@
         {% endif %}
 
 
-        <h3 class="">Administration</h3>
+        <h3 class="">Admin Group</h3>
         <div class="form-group">
             <label for="owner" class="control-label">Owner/Admin Group:</label>
             <input class="form-control" id="owner" name="extended_info:owner" type="text" value="{% if spot.owner %}{{ spot.owner }}{% endif %}" required data-error="An owner group must be provided.">
             <div class="help-block with-errors"></div>
         </div>
         <p class="help-block">Note: Use the <a href="https://groups.uw.edu/" target="_blank">UW Groups</a> service to create or manage your groups.</p>
+
+        <h3 class="">Contact Info</h3>
 
         <div class="form-group">
             <label for="manager-name">Manager Name:</label>
@@ -213,10 +215,11 @@
     </div>
 {% endif %}
 
+{% if spot.name %}
 <!-- include the images form -->
 {% include "scout_manager/include/form_images.html" %}
-
 <hr/>
+{% endif %}
 
 <div class="row mgr-location">
 
@@ -288,6 +291,8 @@
 
 </div>
 
+{% if spot.name %}
+
 <hr/>
 
 <h3>Current Alert</h3> {# we need to set has_alert too to show it #}
@@ -306,6 +311,8 @@
 
 <!-- include the hour and access form -->
 {% include "scout_manager/include/form_hours.html" %}
+
+{% endif %}
 
 <!-- FOR NOW: items for tech spaces -->
 {% if spot.name and spot.app_type == "tech" %}

@@ -140,25 +140,26 @@ var Forms = {
 
     toggle_extended_info: function() {
 
+
         // handle radio button change for non-study types
         $("#add_new_extended_info input[name='extended_info:app_type']").change(function(e){
             if($(this).val() == 'food') {
-                $("#extended_food_template").show();
-                $("#extended_study_template").hide();
+                //$("#extended_food_template").show();
+                //$("#extended_study_template").hide();
                 $("#study_radio").prop('checked', false);
             }
             else if($(this).val() == 'tech') {
                 console.log("tech lksadfjsd")
-                $("#extended_food_template").hide();
-                $("#extended_study_template").hide();
+                //$("#extended_food_template").hide();
+                //$("#extended_study_template").hide();
                 $("#study_radio").prop('checked', false);
             }
         });
 
         // handle radio lick event for study type
         $("#study_radio").click(function(e){
-            $("#extended_food_template").hide();
-            $("#extended_study_template").show();
+            //$("#extended_food_template").hide();
+            //$("#extended_study_template").show();
             $("#add_new_extended_info input[name='extended_info:app_type']").prop('checked', false);
         });
 
