@@ -6,6 +6,8 @@ from scout_manager.dao.space import get_spot_hours_by_day, get_spot_list
 from scout_manager.dao.buildings import get_building_list, \
     get_building_list_by_campus
 from scout.dao.image import get_image
+from scout.dao.item import get_item_by_id, get_filtered_items, \
+    get_item_count, add_item_info
 from django.http import Http404, HttpResponse
 import base64
 
@@ -17,10 +19,16 @@ def home(request):
 
 
 def items(request):
-    return render_to_response(
-            'scout_manager/items.html',
-            context_instance=RequestContext(request))
+    spots = get_spot_list('tech')
+    spots = get_filtered_items(spots, request)
+    count = get_item_count(spots)
+    if count <= 0:
+        spots = []
 
+    context = {"spots": spots,
+               "count": count}
+    return render_to_response('scout_manager/items.html', context,
+                              context_instance=RequestContext(request))
 
 def items_add(request):
     spots = get_spot_list()

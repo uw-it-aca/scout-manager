@@ -7,10 +7,10 @@
 
 <div class="mgr-content-header clearfix">
 
-    <h2 class="pull-left">Items: Technology STF</h2>
+    <h2 class="pull-left">Items: STF Funded</h2>
 
     <div class="pull-right">
-    Total: <span class="scope">{{ count }}xxxxxxx</span>
+    Total: <span class="">{{ count }}</span>
     </div>
 
 </div>
@@ -19,69 +19,30 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ID</td>
-                <th>Location</td>
-                <th>Name</td>
-                <th>Category (Type)</td>
-                <th>Sub Category</td>
-                <th><span class="sr-only">Actions</span></td>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Sub Category (type)</th>
+                <th>Location (space)</th>
+                <th>Space ID</th>
+                <th>Campus</th>
+                <th>Building</th>
             </tr>
         </thead>
         <tbody>
 
+        {% for spot in spots %}
+            {% for item in spot.items %}
             <tr>
-                <td><a class="scope" href="/manager/items/1234/">0001</a></td>
-                <td>Tech Stuff R'Us</td>
-                <td>Solidoodle 4 (Black)</td>
-                <td>Printer</td>
-                <td>3d Printer</td>
-                <td>
-                    <div class="mgr-dataset-actions">
-                        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td><a class="scope" href="/manager/items/1234/">0002</a></td>
-                <td>Tech Stuff R'Us</td>
-                <td>Nikon D7000 DSLR Camera</td>
-                <td>Digital Camera</td>
-                <td>Camera</td>
-                <td>
-                    <div class="mgr-dataset-actions">
-                        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td><a class="scope" href="/manager/items/1234/">0003</a></td>
-                <td>Jason's Lab</td>
-                <td>Apple Macbook Pro 2011</td>
-                <td>Laptop</td>
-                <td>Cool Laptops</td>
-                <td>
-                    <div class="mgr-dataset-actions">
-                        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
-                    </div>
-                </td>
-            </tr>
-
-            {% for item in items %}
-            <tr>
-                <td>{{ item.item_id }}</a></td>
+                <td><a href="/manager/items/{{item.item_id}}/">{{ item.item_id }}</a></td>
+                <td><strong>{{ item.name }}</strong></td>
+                <td>{{ item.subcategory }}</td>
                 <td>{{ spot.name }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.category }}</td>
-                <td>{{ item.sub_category }}</td>
-                <td>
-                    <div class="mgr-dataset-actions">
-                        <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
-                    </div>
-                </td>
+                <td>{{ spot.spot_id }}</td>
+                <td>{{ spot.campus }}</td>
+                <td>{{ spot.building_name }}</td>
             </tr>
-            {% empty %}
-            There are no items for you to see!
             {% endfor %}
+        {% endfor %}
 
         </tbody>
     </table>
