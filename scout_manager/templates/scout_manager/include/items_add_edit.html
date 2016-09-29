@@ -260,8 +260,8 @@
 
     <div class="col-md-4">
 
-        <div class="form-group scope">
-            <label class="control-label" for="">Campus:</label>
+        <div class="form-group">
+            <label class="control-label" for="">Campus: {{ spot.campus }}</label>
             <select class="form-control">
                 <option disabled selected value>select a campus...</option>
                 <option value="seattle">Seattle</option>
@@ -269,8 +269,8 @@
                 <option value="tacoma">Tacoma</option>
             </select>
         </div>
-        <div class="form-group scope">
-            <label for="" class="control-label">Building:</label>
+        <div class="form-group">
+            <label for="" class="control-label">Building: {{ spot.building_name}}</label>
             <select class="form-control">
                 <option disabled selected value>select a building...</option>
                 {% for building in buildings %}
