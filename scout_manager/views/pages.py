@@ -47,9 +47,6 @@ def items_edit(request, item_id):
     buildings = get_building_list()
     spots = get_spot_list()
     spot = get_item_by_id(int(item_id))
-    if not spot:
-        return custom_404_response(request)
-
     context = {"spot": spot,
                "spots": spots,
                "buildings": buildings,
