@@ -1,9 +1,9 @@
 
 <div class="clearfix sticky" style="margin-bottom:1em;">
-    <h2 class="pull-left">{% if item.name %}{{ item.name }}{% else %}Add New Item{% endif %}</h2>
+    <h2 class="pull-left">{% if spot.item.name %}{{ spot.item.name }}{% else %}Add New Item{% endif %}</h2>
     <div class="pull-right">
 
-        {% if item.name %}
+        {% if spot.item.name %}
         <input type="button" class="btn btn-primary" value="Save Changes" style="display:inline-block;"></input>
         {% else %}
             <span class="text-danger">Note: All required fields must be filled before you can create.</span>&nbsp;&nbsp;&nbsp;
@@ -22,7 +22,7 @@
 
         <div class="form-group">
             <label for="">Name:</label>
-            <input id="" name="name" value="" class="form-control" type="text">
+            <input id="" name="name" value="{% if spot.item.name %}{{ spot.item.name }}{% endif %}" class="form-control" type="text">
         </div>
 
         <div class="row">
@@ -30,39 +30,27 @@
             <div class="form-group col-md-6">
                 <label for="">Category:</label>
                 <!-- list of ACA predefined categories -->
-                <select multiple class="form-control" id="">
-                    <option disabled selected value>select a category...</option>
-                    <option>Prototyping</option>
-                    <option>Defined Category 2</option>
-                    <option>...</option>
-                </select>
+                <p class="note">This will be an AXDD controlled list of high level categories.</p>
             </div>
 
             <div class="form-group col-md-6">
-                <label for="">Sub category:</label>
+                <label for="">Sub category (type):</label>
                 <!-- list of predefined types, based on selected category. -->
                 <select multiple class="form-control" id="">
-                    <option disabled selected value>select a sub category...</option>
-                    <option>3D printer</option>
-                    <option>Defined Type 2</option>
-                    <option>...</option>
+                    <option>{{ spot.item.subcategory }}</option>
                 </select>
+                <p class="scope">get a list of all subcategories</p>
             </div>
 
         </div>
 
         <fieldset style="margin-top:1em;">
-            <legend>Context/Type:</legend>
+            <legend>Funding:</legend>
 
             <div class="radio">
                 <label><input type="radio" name="extended_info:i_context_type" value="stf" checked>STF Funded</label>
             </div>
-            <div class="radio disabled">
-                <label><input type="radio" name="extended_info:i_context_type" value="kitchen" disabled>Kitchen Appliances</label>
-            </div>
-            <div class="radio disabled">
-                <label><input type="radio" name="extended_info:i_context_type" value="aca" disabled>AX2D Inventory</label>
-            </div>
+
         </fieldset>
 
     </div>
@@ -108,9 +96,158 @@
 
 <hr/>
 
-{% include "scout_manager/include/extend_tech.html" %}
+<div class="row">
 
-<hr/>
+    <h3 class="col-md-12 scope">STF Extended Information</h3>
+
+    <div class="col-md-4">
+
+        <div class="form-group">
+            <label for="">Description:</label>
+            <textarea rows="4" class="form-control" id="" type="text" name="extended_info:i_description"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="">Brand:</label>
+            <input id="" class="form-control" type="text" value="{{spot.item.brand}}" name="extended_info:i_brand">
+        </div>
+
+        <div class="form-group">
+            <label for="">Model:</label>
+            <input id="" class="form-control" type="text" name="extended_info:i_model">
+        </div>
+
+        <div class="form-group">
+            <label for="">Quantity:</label>
+            <input id="" class="form-control" type="number" name="extended_info:i_quantity">
+        </div>
+
+        <div class="form-group">
+            <label for="">Serial Number(s):</label>
+            <input class="form-control" id="" type="text" name="extended_info:i_serial_number">
+            <p class="help-block">Note: separate multiple serial numbers with a comma.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="">UW Tag Number(s):</label>
+            <input class="form-control" id="" type="text" name="extended_info:i_uw_tag_number">
+            <p class="help-block">Note: separate multiple UW Tag numbers with a comma.</p>
+        </div>
+
+
+    </div>
+
+
+    <div class="col-md-4">
+
+        <div class="form-group">
+            <label for="">Website for item info:</label>
+            <input class="form-control" id="" type="url" name="extended_info:i_website">
+        </div>
+
+        <fieldset>
+            <legend>Prerequisites?</legend>
+
+            <div class="checkbox">
+                <label for=""><input id="" type="checkbox" name="extended_info:i_has_prereqs" value="true">Has Prerequisites?</label>
+            </div>
+
+            <div class="form-group">
+                <label for="">Prerequisites Notes:</label>
+                <textarea rows="4" class="form-control" id="" name="extended_info:i_prereq_notes"></textarea>
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Reservable?</legend>
+
+            <div class="checkbox">
+                <label for=""><input id="" type="checkbox" name="extended_info:i_has_reservation" value="true">Is Reservable?</label>
+            </div>
+
+            <div class="form-group">
+                <label for="">Reservation Notes:</label>
+                <textarea rows="4" class="form-control" id="" name="extended_info:i_reservation_notes"></textarea>
+            </div>
+        </fieldset>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <fieldset>
+            <legend>Access Restrictions</legend>
+
+            <div class="checkbox">
+                <label><input id="" type="checkbox" name="extended_info:i_has_access_restriction" value="true">Has access restrictions?</label>
+            </div>
+
+            <label>Access limited to:</label>
+            <div class="well">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:i_access_limit_uwnetid" value="true">UW NetID</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:i_access_limit_role" value="true">Specific role (student/staff/faculty)</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:i_access_limit_school" value="true">Specific School affiliation</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:i_access_limit_department" value="true">Specific Department affiliation</label>
+                </div>
+            </div>
+
+            <label>Select role(s): (show based on checkbox)</label>
+            <div class="well">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:i_access_role_students" value="true">Students</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:i_access_role_staff" value="true">Staff</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:i_access_role_faculty" value="true">Faculty</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="">Select School: (show based on checkbox)</label>
+                <!-- If SCHOOL AFFILIATION selected, show this div.  -->
+                <select class="form-control" multiple>
+                    <option disabled selected value>choose school...</option>
+                    <option>UW School 1</option>
+                    <option>UW School 2</option>
+                    <option>...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="">Select Department: (show based on checkbox)</label>
+                <!-- If DEPARTMENT AFFILIATION selected, show this div. If SCHOOL(s) chosen, then limit list to depts within school(s). -->
+                <select class="form-control" multiple>
+                    <option disabled selected value>choose department...</option>
+                    <option>UW Dept 1</option>
+                    <option>UW Dept 2</option>
+                    <option>...</option>
+                </select>
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="">Access Notes:</label>
+                <textarea rows="4" class="form-control" id="" type="text" name="extended_info:i_access_notes"></textarea>
+            </div>
+
+            <p class="help-block">Note: Access restritions and notes will only be displayed to clients IF the "Has access restrictions" checkbox is checked.</p>
+
+        </fieldset>
+
+    </div>
+
+</div>
 
 <!-- include the images form -->
 {% include "scout_manager/include/form_images.html" %}
@@ -129,7 +266,6 @@
                 <option disabled selected value>select a campus...</option>
                 <option value="seattle">Seattle</option>
                 <option value="bothell">Bothell</option>
-                <option value="south_lake_union">South Lake Union</option>
                 <option value="tacoma">Tacoma</option>
             </select>
         </div>
@@ -148,26 +284,13 @@
 
     <div class="col-md-8">
         <div class="form-group">
-            <label for="">Space:</label>
+            <label for="">Space:</label> {{spot.name}}
             <select class="form-control" id="" multiple style="height:300px;">
-                <option disabled selected value>select a space...</option>
-                {% for spot in spots %}
-                <option>{{spot.name}}</option>
+                <option disabled value>select a space...</option>
+                {% for blah in spots %}
+                <option value="{{blah.name}}" data-campus="{{blah.campus}}" {% if blah.name == spot.name %}selected{% endif %}>{{blah.name}}</option>
                 {% endfor %}
             </select>
         </div>
     </div>
-</div>
-
-<hr />
-
-<h3>Current Alert</h3>
-
-<div class="checkbox">
-    <label><input name="extended_info:i_has_alert" type="checkbox" value="true" {% if item.has_alert %}checked{% endif %}>Alert Enabled</label>
-</div>
-
-<div class="form-group">
-    <label for="">Post this Alert message:</label>
-    <textarea class="form-control" rows="4" id="" name="extended_info:i_alert_notes" type="text" value="{% if item.alert_notes %}{{ item.alert_notes }}{% endif %}"></textarea>
 </div>

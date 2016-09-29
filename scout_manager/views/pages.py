@@ -30,6 +30,7 @@ def items(request):
     return render_to_response('scout_manager/items.html', context,
                               context_instance=RequestContext(request))
 
+
 def items_add(request):
     spots = get_spot_list()
     context = {"spots": spots,
@@ -42,12 +43,15 @@ def items_add(request):
 
 def items_edit(request, item_id):
     spots = get_spot_list()
-    context = {"spots": spots,
-               "count": len(spots)}
-    return render_to_response(
-            'scout_manager/items_edit.html',
-            context,
-            context_instance=RequestContext(request))
+    spot = get_item_by_id(int(item_id))
+    if not spot:
+        return custom_404_response(request)
+
+    context = {"spot": spot,
+               "spots": spots,
+               "app_type": 'tech'}
+    return render_to_response('scout_manager/items_edit.html', context,
+                              context_instance=RequestContext(request))
 
 
 def schedule(request, spot_id):
