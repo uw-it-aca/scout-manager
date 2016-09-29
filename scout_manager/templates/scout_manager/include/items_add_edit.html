@@ -288,7 +288,7 @@
             <select class="form-control" id="" multiple style="height:300px;">
                 <option disabled value>select a space...</option>
                 {% for blah in spots %}
-                <option value="{{blah.name}}" data-campus="{{blah.campus}}" {% if blah.name == spot.name %}selected{% endif %}>{{blah.name}}</option>
+                <option value="{{blah.name}}" data-campus="{{blah.campus}}" data-building="{{blah.building_name}}" {% if blah.name == spot.name %}selected{% endif %}>{{blah.name}}</option>
                 {% endfor %}
             </select>
         </div>
