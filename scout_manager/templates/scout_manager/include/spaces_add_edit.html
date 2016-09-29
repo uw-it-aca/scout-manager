@@ -251,7 +251,7 @@
     <h3>Item(s)</h3>
 
     <p><a class="scope" href="/manager/items/add/">Add New Item to this space</a></p>
-    <p>Total: <span class="scope">xxxxxx</span></p>
+    <p>Total: <span class="scope">{{ spot.items|length }}</span></p>
 
     <div style="margin-top: 15px;" class="table-responsive">
         <table class="table">
@@ -267,50 +267,13 @@
             </thead>
             <tbody>
 
-                <tr>
-                    <td><a class="scope" href="/manager/items/1234/">0001</a></td>
-                    <td>Tech Stuff R'Us</td>
-                    <td>Solidoodle 4 (Black)</td>
-                    <td>Printer</td>
-                    <td>3d Printer</td>
-                    <td>
-                        <div class="mgr-dataset-actions">
-                            <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><a class="scope" href="/manager/items/1234/">0002</a></td>
-                    <td>Tech Stuff R'Us</td>
-                    <td>Nikon D7000 DSLR Camera</td>
-                    <td>Digital Camera</td>
-                    <td>Camera</td>
-                    <td>
-                        <div class="mgr-dataset-actions">
-                            <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><a class="scope" href="/manager/items/1234/">0003</a></td>
-                    <td>Jason's Lab</td>
-                    <td>Apple Macbook Pro 2011</td>
-                    <td>Laptop</td>
-                    <td>Cool Laptops</td>
-                    <td>
-                        <div class="mgr-dataset-actions">
-                            <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
-                        </div>
-                    </td>
-                </tr>
-
-                {% for item in items %}
+                {% for item in spot.items %}
                 <tr>
                     <td>{{ item.item_id }}</a></td>
                     <td>{{ spot.name }}</td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.category }}</td>
-                    <td>{{ item.sub_category }}</td>
+                    <td>{{ item.subcategory }}</td>
                     <td>
                         <div class="mgr-dataset-actions">
                             <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
