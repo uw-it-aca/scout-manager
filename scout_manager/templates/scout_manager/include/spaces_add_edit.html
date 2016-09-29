@@ -161,6 +161,7 @@
         </div>
         <p class="help-block">Note: Use the <a href="https://groups.uw.edu/" target="_blank">UW Groups</a> service to create or manage your groups.</p>
 
+        {% if spot.name %}
         <h3 class="">Contact Info</h3>
 
         <div class="form-group">
@@ -182,7 +183,6 @@
 
         <p class="help-block">Note: Admin information is not visible in some client applications.</p>
 
-        {% if spot.name %}
         <h3 class="">DELETE</h3>
         <div class="form-group well">
             <div>
