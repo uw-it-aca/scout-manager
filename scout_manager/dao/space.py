@@ -28,7 +28,7 @@ def get_spot_list(app_type=None, published=None, groups=[]):
 def _get_spots_by_app_type(app_type, filters, published):
     spot_client = Spotseeker()
     res = []
-    if published is not None and not published:
+    if published is False:
         filters.append(('extended_info:is_hidden', 'true'))
 
     try:
@@ -36,19 +36,17 @@ def _get_spots_by_app_type(app_type, filters, published):
         spots = spot_client.search_spots(filters)
         for spot in spots:
             spot = process_extended_info(spot)
+            # If we want only published spots, check is_hidden attribute
             if published:
-                if hasattr(spot, "is_hidden"):
-                    if not spot.is_hidden:
-                        # in case we start setting is_hidden to false
-                        # rather than removing the attr
-                        res.append(spot)
-                    else:
-                        # don't include spot as it's hidden
-                        continue
-                else:
-                    # no attr == false
-                    pass
-            res.append(spot)
+                # This is a string value rather than proper boolean.
+                # Check against 'false' in case we start setting is_hidden to
+                # false rather than removing it.
+                if getattr(spot, 'is_hidden', 'false') == 'false':
+                    res.append(spot)
+            else:
+                # If we don't care about whether it's published, add it
+                # unconditionally
+                res.append(spot)
     except DataFailureException:
         pass
         # TODO: consider logging on failure
