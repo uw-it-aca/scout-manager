@@ -254,19 +254,18 @@
 
     <h3>Item(s)</h3>
 
-    <p><a class="scope" href="/manager/items/add/">Add New Item to this space</a></p>
-    <p>Total: <span class="scope">{{ spot.items|length }}</span></p>
+    <p><a class="" href="/manager/items/add/">Add New Item to this space</a></p>
+    <p>Total: <span class="">{{ spot.items|length }}</span></p>
 
     <div style="margin-top: 15px;" class="table-responsive">
         <table class="table">
             <thead>
                 <tr>
-                    <th>ID</td>
-                    <th>Location</td>
-                    <th>Name</td>
-                    <th>Category (Type)</td>
-                    <th>Sub Category</td>
-                    <th><span class="sr-only">Actions</span></td>
+                    <th>ID</th>
+                    <th>Location</th
+                    <th>Name</th>
+                    <th>Category (Type)</th>
+                    <th>Sub Category</th>
                 </tr>
             </thead>
             <tbody>
@@ -278,11 +277,7 @@
                     <td>{{ item.name }}</td>
                     <td>{{ item.category }}</td>
                     <td>{{ item.subcategory }}</td>
-                    <td>
-                        <div class="mgr-dataset-actions">
-                            <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
-                        </div>
-                    </td>
+
                 </tr>
                 {% empty %}
                 There are no items for you to see!

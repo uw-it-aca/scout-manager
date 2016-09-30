@@ -30,7 +30,7 @@
             <div class="form-group col-md-6">
                 <label for="">Category:</label>
                 <!-- list of ACA predefined categories -->
-                <p class="note">This will be an AXDD controlled list of high level categories.</p>
+                <p class="help-block scope">UX TODO: This will be an AXDD controlled list of high level categories.</p>
             </div>
 
             <div class="form-group col-md-6">
@@ -39,7 +39,7 @@
                 <select multiple class="form-control" id="">
                     <option>{{ spot.item.subcategory }}</option>
                 </select>
-                <p class="scope">get a list of all subcategories</p>
+                <p class="help-block scope">DEV TODO: dynamically get a list of all subcategories. Item's subcategory should be selected.</p>
             </div>
 
         </div>
@@ -47,15 +47,11 @@
         <fieldset style="margin-top:1em;">
             <legend>Funding:</legend>
 
-            <div class="radio">
-                <label><input type="radio" name="extended_info:i_context_type" value="stf" checked>STF Funded</label>
+            <div class="checkbox">
+                <label><input type="checkbox" name="extended_info:i_context_type" value="stf" checked>STF Funded</label>
             </div>
 
         </fieldset>
-
-    </div>
-
-    <div class="col-md-4">
 
         <fieldset>
             <legend>Status</legend>
@@ -64,6 +60,10 @@
             </div>
             <p class="help-block">Note: Only valid items will be visible in client apps!</p>
         </fieldset>
+
+    </div>
+
+    <div class="col-md-4">
 
         <h3>Administration</h3>
 
@@ -98,7 +98,7 @@
 
 <div class="row">
 
-    <h3 class="col-md-12 scope">STF Extended Information</h3>
+    <h3 class="col-md-12">STF Extended Information</h3>
 
     <div class="col-md-4">
 
@@ -136,7 +136,6 @@
 
 
     </div>
-
 
     <div class="col-md-4">
 
@@ -258,10 +257,12 @@
 
     <h3 class="col-md-12">Location</h3>
 
+    <p class="col-md-12 help-block scope">DEV TODO: Space list should filter based on Campus and Building selection.</p>
+
     <div class="col-md-4">
 
         <div class="form-group">
-            <label class="control-label" for="">Campus: {{ spot.campus }}</label>
+            <label class="control-label" for="">Campus:</label> {{ spot.campus }}
             <select class="form-control">
                 <option disabled selected value>select a campus...</option>
                 <option value="seattle">Seattle</option>
@@ -270,7 +271,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="" class="control-label">Building: {{ spot.building_name}}</label>
+            <label for="" class="control-label">Building:</label> {{ spot.building_name}}
             <select class="form-control">
                 <option disabled selected value>select a building...</option>
                 {% for building in buildings %}
