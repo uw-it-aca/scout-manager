@@ -26,7 +26,7 @@ class Spot(RESTDispatch):
             delete_spot(spot_id, etag)
         except Exception as ex:
             return HttpResponse(json.dumps({'error': str(ex)}), status=400,
-                            content_type='application/json')
+                                content_type='application/json')
         return HttpResponse(json.dumps({'status': 'it works'}),
                             content_type='application/json')
 
