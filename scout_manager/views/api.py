@@ -15,16 +15,20 @@ class Spot(RESTDispatch):
         try:
             update_spot(form_data, spot_id)
         except Exception as ex:
-            return HttpResponse(json.dumps({'error': str(ex)}), status=400)
-        return HttpResponse(json.dumps({'status': 'it works'}))
+            return HttpResponse(json.dumps({'error': str(ex)}), status=400,
+                                content_type='application/json')
+        return HttpResponse(json.dumps({'status': 'it works'}),
+                            content_type='application/json')
 
     def DELETE(self, request, spot_id):
         etag = request.body
         try:
             delete_spot(spot_id, etag)
         except Exception as ex:
-            return HttpResponse(json.dumps({'error': str(ex)}), status=400)
-        return HttpResponse(json.dumps({'status': 'it works'}))
+            return HttpResponse(json.dumps({'error': str(ex)}), status=400,
+                            content_type='application/json')
+        return HttpResponse(json.dumps({'status': 'it works'}),
+                            content_type='application/json')
 
 
 def process_form_data(request):
@@ -68,5 +72,7 @@ class SpotCreate(RESTDispatch):
         # try:
         create_spot(form_data)
         # except Exception as ex:
-        #     return HttpResponse(json.dumps({'error': str(ex)}), status=400)
-        return HttpResponse(json.dumps({'status': 'it works'}))
+        #     return HttpResponse(json.dumps({'error': str(ex)}), status=400,
+        #                         content_type='application/json')
+        return HttpResponse(json.dumps({'status': 'it works'}),
+                            content_type='application/json')

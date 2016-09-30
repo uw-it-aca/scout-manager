@@ -64,8 +64,10 @@ var Spot = {
         var f_data = new FormData();
         f_data.append("json", JSON.stringify(form_data));
         var image = $("#mgr_upload_image")[0];
-        var file = image.files[0];
-        f_data.append("file", file)
+        if (image && image.files && image.files[0]) {
+            var file = image.files[0];
+            f_data.append("file", file)
+        }
         $.ajax({
             url: "/manager/api/spot/",
             type: "PUT",
