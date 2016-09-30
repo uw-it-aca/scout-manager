@@ -128,7 +128,9 @@ def create_spot(form_data):
     resp = spot_client.post_spot(json.dumps(json_data))
     spot_id = _get_spot_id_from_url(resp['location'])
 
-    if form_data['file'] is not None and form_data['file'] != "undefined":
+    if 'file' in form_data \
+            and form_data['file'] is not None \
+            and form_data['file'] != "undefined":
         spot_client.post_image(spot_id, form_data['file'])
 
 
