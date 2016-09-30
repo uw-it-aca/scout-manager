@@ -123,17 +123,16 @@
         </div>
 
         <div class="form-group">
-            <label for="">Serial Number(s):</label>
+            <label for="">Serial Number:</label>
             <input class="form-control" id="" type="text" name="extended_info:i_serial_number">
             <p class="help-block">Note: separate multiple serial numbers with a comma.</p>
         </div>
 
         <div class="form-group">
-            <label for="">UW Tag Number(s):</label>
+            <label for="">UW Tag Number:</label>
             <input class="form-control" id="" type="text" name="extended_info:i_uw_tag_number">
             <p class="help-block">Note: separate multiple UW Tag numbers with a comma.</p>
         </div>
-
 
     </div>
 
@@ -265,17 +264,17 @@
             <label class="control-label" for="">Campus:</label> {{ spot.campus }}
             <select class="form-control">
                 <option disabled selected value>select a campus...</option>
-                <option value="seattle">Seattle</option>
-                <option value="bothell">Bothell</option>
-                <option value="tacoma">Tacoma</option>
+                <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
+                <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
+                <option value="tacoma" {% if spot.campus == "tacoma" %} selected {% endif %}>Tacoma</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="" class="control-label">Building:</label> {{ spot.building_name}}
+            <label for="" class="control-label">Building:</label> {{ spot.building_name }}
             <select class="form-control">
                 <option disabled selected value>select a building...</option>
                 {% for building in buildings %}
-                <option value="{{ building }}">{{ building }}</option>
+                <option value="{{ building }}" {% if spot.building_name == building %} selected {% endif %}>{{ building }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -288,8 +287,8 @@
             <label for="">Space:</label> {{spot.name}}
             <select class="form-control" id="" multiple style="height:300px;">
                 <option disabled value>select a space...</option>
-                {% for blah in spots %}
-                <option value="{{blah.name}}" data-campus="{{blah.campus}}" data-building="{{blah.building_name}}" {% if blah.name == spot.name %}selected{% endif %}>{{blah.name}}</option>
+                {% for s in spots %}
+                <option value="{{s.name}}" data-campus="{{s.campus}}" data-building="{{s.building_name}}" {% if s.name == spot.name %}selected{% endif %}>{{s.name}}</option>
                 {% endfor %}
             </select>
         </div>
