@@ -139,7 +139,11 @@
                 {% else %}
                 <div class="scout-published-actions">
                     <button type="button" id="toggle_is_hidden" class="btn btn-default btn-sm"><i class="fa fa-eye-slash"></i> <span>Unpublish</span></button>
-                    <a class="btn btn-default btn-sm" href="/{{spot.app_type}}/{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View in Scout</span></a>
+                    {% if spot.app_type == "tech" %}
+                    <a class="btn btn-default btn-sm" href="/{{spot.campus}}/{{spot.app_type}}#{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View in Scout</span></a>
+                    {% else %}
+                    <a class="btn btn-default btn-sm" href="/{{spot.campus}}/{{spot.app_type}}/{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View in Scout</span></a>
+                    {% endif %}
                     <div class="help-block">Note: Unpublishing a spot will remove it from all client apps and set it to Draft.</div>
                 </div>
                 {% endif %}
