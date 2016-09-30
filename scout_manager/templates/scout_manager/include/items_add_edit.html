@@ -123,6 +123,11 @@
         </div>
 
         <div class="form-group">
+            <label for="">Manual URL:</label>
+            <input class="form-control" id="" type="url" value="{{ spot.item.manual_url }}" name="extended_info:i_manual_url">
+        </div>
+
+        <div class="form-group">
             <label for="">Serial Number:</label>
             <input class="form-control" id="" type="text" name="extended_info:i_serial_number">
             <p class="help-block">Note: separate multiple serial numbers with a comma.</p>
@@ -137,11 +142,6 @@
     </div>
 
     <div class="col-md-4">
-
-        <div class="form-group">
-            <label for="">Website for item info:</label>
-            <input class="form-control" id="" type="url" name="extended_info:i_website">
-        </div>
 
         <fieldset>
             <legend>Prerequisites?</legend>
@@ -162,6 +162,16 @@
 
             <div class="checkbox">
                 <label for=""><input id="" type="checkbox" name="extended_info:i_has_reservation" value="true">Is Reservable?</label>
+            </div>
+
+            <div class="form-group">
+                <label for="">Reserve URL:</label>
+                <input class="form-control" id="" type="text" value="{{ spot.item.reserve_url }}" name="extended_info:i_reserve_url">
+            </div>
+
+            <div class="form-group">
+                <label for="">Checkout Period:</label>
+                <input class="form-control" id="" type="text" value="{{ spot.item.checkout_period }}" name="extended_info:i_checkout_period">
             </div>
 
             <div class="form-group">
