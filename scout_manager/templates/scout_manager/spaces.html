@@ -12,10 +12,7 @@
     <div {% if is_desktop %}class="pull-right"{% endif%}>
         <div class="pull-left" style="margin-right:20px;">Total: <span class="">{{ count }}</span></div>
         <div class="pull-right">
-        {% if app_type == "food" %}
-    Display:
-    <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type=food">all</a> <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type=food&is_published=true">published</a> <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type=food&is_published=false">Draft</a>
-    {% endif %}
+            Display: <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type={{ app_type }}">all</a> <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type={{ app_type }}&is_published=true">published</a> <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type={{ app_type }}&is_published=false">Draft</a>
         </div>
     </div>
 
