@@ -27,7 +27,7 @@
 
         <div class="row">
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 dummy">
                 <label for="">Category:</label>
                 <!-- list of ACA predefined categories -->
                 <p class="help-block scope">UX TODO: This will be an AXDD controlled list of high level categories.</p>
@@ -61,21 +61,20 @@
                     <div class="radio"><label><input type="radio" name="subcategory" {% if "Voice Recorder/MP3 player" in spot.item.subcategory %} checked {% endif %} value="Voice Recorder/MP3 player">Voice Recorder/MP3 player</label></div>
                     <div class="radio"><label><input type="radio" name="subcategory" {% if "Wireless Microphone System" in spot.item.subcategory %} checked {% endif %} value="Wireless Microphone System">Wireless Microphone System</label></div>
                 </div>
-                <div class="help-block with-errors">Please select at least 1 spot type.</div>
+                <div class="help-block with-errors">Please select at least 1 item subcategory.</div>
             </fieldset>
 
         </div>
 
-        <fieldset style="margin-top:1em;">
+        <fieldset class="scope" style="margin-top:1em;">
             <legend>Funding:</legend>
-
             <div class="checkbox">
                 <label><input type="checkbox" name="extended_info:i_context_type" value="stf" checked>STF Funded</label>
             </div>
 
         </fieldset>
 
-        <fieldset>
+        <fieldset class="scope">
             <legend>Status</legend>
             <div class="checkbox">
                 <label><input id="" type="checkbox"  name="extended_info:i_is_valid" value="true">Is valid?</label>
@@ -92,6 +91,7 @@
             <label for="">Owner/Admin Group:</label>
             <input class="form-control" id="" name="extended_info:i_owner" type="text" value="{% if item.owner %}{{ item.owner }}{% endif %}">
         </div>
+        <p class="help-block">Note: Use the <a href="https://groups.uw.edu/" target="_blank">UW Groups</a> service to create or manage your groups.</p>
 
         <h3 class="">Contact Info</h3>
         <div class="form-group">
@@ -141,7 +141,7 @@
             <input id="" class="form-control" type="text" value="{{spot.item.brand}}" name="extended_info:i_brand">
         </div>
 
-        <div class="form-group">
+        <div class="form-group dummy">
             <label for="">Model:</label>
             <input id="" class="form-control" type="text" name="extended_info:i_model">
         </div>
@@ -176,7 +176,7 @@
             <legend>Prerequisites?</legend>
 
             <div class="checkbox">
-                <label for=""><input id="" type="checkbox" name="extended_info:i_has_prereqs" value="true">Has Prerequisites?</label>
+                <label for="has_prereqs"><input id="has_prereqs" type="checkbox" name="extended_info:i_has_prereqs" value="true">Has Prerequisites?</label>
             </div>
 
             <div class="form-group">
@@ -190,7 +190,7 @@
             <legend>Reservable?</legend>
 
             <div class="checkbox">
-                <label for=""><input id="" type="checkbox" name="extended_info:i_has_reservation" value="true">Is Reservable?</label>
+                <label for="is_reservable"><input id="is_reservable" type="checkbox" name="extended_info:i_has_reservation" value="true">Is Reservable?</label>
             </div>
 
             <div class="form-group">
