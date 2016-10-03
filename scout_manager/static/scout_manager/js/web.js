@@ -22,6 +22,7 @@ $(document).on('ready', function(event) {
         Maps.init_picker();
     } else if (items_add_path.test(page_path) || items_edit_path.test(page_path)) {
         console.log("at items");
+        Forms.init_form();
     } else if (list_path.test(page_path)) {
         List.init();
         console.log('list view')

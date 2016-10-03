@@ -62,11 +62,15 @@ urlpatterns = patterns(
     url(r'api/spot/',
         SpotCreate().run),
 
-    # manager image view
+    # manager spot image
     url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',
         'scout_manager.views.pages.image',
-        name='manager_image')
+        name='manager_image'),
 
+    # manager item image
+    url(r'^item/images/(?P<item_id>\d+)/image/(?P<image_id>\d+)/$',
+        'scout_manager.views.pages.item_image',
+        name='manager_item_image'),
 )
 
 # debug routes for developing error pages
