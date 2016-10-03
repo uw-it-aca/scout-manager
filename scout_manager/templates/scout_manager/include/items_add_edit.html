@@ -66,12 +66,12 @@
     <div class="col-md-4">
 
         <h3>Administration</h3>
-
         <div class="form-group">
             <label for="">Owner/Admin Group:</label>
             <input class="form-control" id="" name="extended_info:i_owner" type="text" value="{% if item.owner %}{{ item.owner }}{% endif %}">
         </div>
 
+        <h3 class="">Contact Info</h3>
         <div class="form-group">
             <label for="">Manager Name:</label>
             <input class="form-control" id="" name="extended_info:i_manager" type="text" value="{% if item.manager %}{{ item.manager }}{% endif %}">
@@ -87,8 +87,15 @@
             <input class="form-control" id="" name="extended_info:i_phone" type="tel" value="{% if item.phone %}{{ item.phone }}{% endif %}">
         </div>
 
-        <div class="mgr-dataset-actions">
-            <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+        <h3 class="">DELETE</h3>
+        <div class="form-group well">
+            <div>
+                <label>Delete this Item?</label>
+            </div>
+            <div class="mgr-dataset-actions">
+                <button type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                <div class="help-block">Note: This action cannot be undone!</div>
+            </div>
         </div>
 
     </div>

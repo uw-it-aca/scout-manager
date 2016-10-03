@@ -118,6 +118,12 @@
 
         </fieldset>
 
+        <div class="form-group">
+            <label for="space-description">Space Description: <span class="label label-info">F</span></label>
+            <textarea name="extended_info:description" rows="4" class="form-control" id="description" type="text">{% if spot.description %}{{spot.description}}{% endif %}</textarea>
+            <p class="help-block">Note: description of the space</p>
+        </div>
+
     </div>
     <div class="col-md-4">
 
@@ -258,18 +264,19 @@
     <p>Total: <span class="">{{ spot.items|length }}</span></p>
 
     <div style="margin-top: 15px;" class="table-responsive">
+
+        {% if spot.items|length > 0 %}
         <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Location</th
+                    <th>Location</th>
                     <th>Name</th>
                     <th>Category (Type)</th>
                     <th>Sub Category</th>
                 </tr>
             </thead>
             <tbody>
-
                 {% for item in spot.items %}
                 <tr>
                     <td>{{ item.item_id }}</a></td>
@@ -277,14 +284,13 @@
                     <td>{{ item.name }}</td>
                     <td>{{ item.category }}</td>
                     <td>{{ item.subcategory }}</td>
-
                 </tr>
-                {% empty %}
-                There are no items for you to see!
                 {% endfor %}
-
             </tbody>
         </table>
+        {% else %}
+        There are no items in this space!
+        {% endif %}
     </div>
 
 {% endif %}
