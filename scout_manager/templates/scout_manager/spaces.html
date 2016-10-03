@@ -28,7 +28,6 @@
                 <th>Building</td>
                 <th>Space type</td>
                 <th>Status</td>
-                <th><span class="sr-only">Actions</span></td>
             </tr>
         </thead>
         <tbody>
@@ -41,11 +40,6 @@
                 <td>{% if spot.building_name %}{{ spot.building_name }}{% else %}<small class="text-danger">missing</small>{% endif %}</td>
                 <td>{% for type in spot.spot_types %}{{ type.name }}, {% empty %}<small class="text-danger">missing</small>{% endfor %}</td>
                 <td>{% if spot.is_hidden %}DRAFT{% else %}PUBLISHED{% endif %}</td>
-                <td>
-                    <div class="mgr-dataset-actions">
-                        <button type="button" class="btn btn-danger btn-sm btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
-                    </div>
-                </td>
             </tr>
             {% empty %}
             There are no spots for you to see!

@@ -24,7 +24,7 @@ $(document).on('ready', function(event) {
         console.log("at items");
         Forms.init_form();
     } else if (list_path.test(page_path)) {
-        List.init();
+        //List.init();
         console.log('list view')
     } else {
         console.log("at home");
