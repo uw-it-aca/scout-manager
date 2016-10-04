@@ -1,7 +1,6 @@
 var Forms = {
 
-    init_form: function(){
-
+    init_form: function(form_type){
         Forms.hours_clear();
         Forms.hours_add();
         Forms.hours_grouping_clearfix();
@@ -11,8 +10,17 @@ var Forms = {
         Forms.image_check_count();
         Forms.toggle_extended_info();
         Forms.toggle_is_hidden();
-
         Forms.init_validate();
+        Forms.init_campus_building_filter();
+        Forms.sort_building_list();
+
+        $("#campus_select").trigger("change");
+
+        if(form_type === "items") {
+            Forms.init_building_spot_filter();
+            Forms.sort_spot_list();
+            $("#building_select").trigger("change");
+        }
 
         // handle submitting spot to server
         $("#submit_spot").click(Spot.submit_spot);
@@ -351,10 +359,80 @@ var Forms = {
     init_delete_button: function () {
         $("button.btn-delete").on("click", function(e) {
             var spot_id = Forms._get_spot_id();
-            console.log(spot_id)
             var etag = Forms._get_spot_etag();
-            console.log(etag)
             Spot.delete_spot(spot_id, etag);
+        });
+    },
+
+    init_building_spot_filter: function () {
+        $("#building_select").change(function(e){
+            var building = $(e.target).val();
+            Forms._filter_spots_by_building(building);
+        });
+    },
+
+    init_campus_building_filter: function () {
+        $("#campus_select").change(function(e){
+            var campus = $(e.target).val();
+            var pre_selected = $("#building_select>option:selected");
+            var selected;
+            Forms._filter_buildings_by_campus(campus);
+            // Keep current selected on first load
+            if(pre_selected.length > 0 && $.contains($("#building_select")[0], pre_selected[0])) {
+                selected = pre_selected;
+            } else {
+                var default_select = $("#building_select>option:disabled");
+                selected = default_select;
+            }
+            $(selected).prop('selected', true);
+
+            // Manually fire event as building filtering doesn't trigger change
+            $("#building_select").trigger("change");
+        });
+    },
+
+    sort_building_list: function () {
+        Forms._sort_select($("#building_select"));
+    },
+
+    sort_spot_list: function () {
+        Forms._sort_select($("#spot_select"));
+    },
+
+    _sort_select: function (select) {
+        var options = select.find("option");
+        var selected = select.val();
+        options.sort(function(a, b){
+            if (a.text > b.text) return 1;
+            if (a.text < b.text) return -1;
+            return 0;
+        });
+        select.empty().append(options);
+        select.val(selected);
+    },
+
+    _filter_buildings_by_campus: function (campus) {
+        Forms._filter_select_by_attribute($("#building_select"), "data-campus", campus);
+    },
+
+    _filter_spots_by_building: function (building) {
+        Forms._filter_select_by_attribute($("#spot_select"), "data-building", building);
+    },
+
+    _filter_select_by_attribute: function (select, attribute, value) {
+        var options = select.find("option");
+
+        // store full building list so we can re-filter if campus changes
+        if (select.data("optionsHTML") === undefined) {
+            select.data("optionsHTML", options);
+        }
+
+        $(select).empty();
+        $(select.data("optionsHTML")).each(function (idx, option){
+            var attr_value = $(option).attr(attribute);
+            if (attr_value === value || $(option).prop('disabled')){
+                $(select).append(option);
+            }
         });
     },
 

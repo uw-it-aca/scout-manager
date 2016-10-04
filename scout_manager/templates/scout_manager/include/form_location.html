@@ -7,7 +7,7 @@
     <div class="col-md-4 mgr-location-meta">
         <div class="form-group">
             <label class="control-label" for="space-campus">Campus:</label>
-            <select class="form-control" name="extended_info:campus" {% if spot.name %}required data-error="Campus must be specified"{% endif %}>
+            <select id="campus_select" class="form-control" name="extended_info:campus" {% if spot.name %}required data-error="Campus must be specified"{% endif %}>
                 <option disabled selected value>select a campus...</option>
                 <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
                 <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
@@ -30,10 +30,10 @@
         <!-- Hide if outdoor location. We suggest/enforce building options. -->
         <div class="form-group">
             <label for="building-name" class="control-label">Building:</label>
-            <select class="form-control" name="location:building_name" {% if spot.name %}required data-error="Please select a building"{% endif %}>
-                <option disabled selected value>select a building...</option>
-                {% for building in buildings %}
-                <option value="{{ building }}" {% if spot.building_name == building %} selected {% endif %}>{{ building }}</option>
+            <select id="building_select" class="form-control" name="location:building_name" {% if spot.name %}required data-error="Please select a building"{% endif %}>
+                <option disabled {% if spot == None %}selected{% endif %} value>select a building...</option>
+                {% for building, campus in buildings.items %}
+                <option value="{{ building }}" {% if spot.building_name == building %} selected {% endif %} data-campus="{{ campus }}">{{ building }}</option>
                 {% endfor %}
             </select>
             <div class="help-block with-errors"></div>

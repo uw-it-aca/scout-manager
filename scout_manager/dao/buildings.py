@@ -302,15 +302,19 @@ BUILDING_LIST = {
 
 
 def get_building_list():
-    building_list = BUILDING_LIST.keys()
-    building_list.sort()
-    return building_list
+    return flatten_building_list(BUILDING_LIST)
 
 
 def get_building_list_by_campus(campus):
-    buildings = []
+    buildings = {}
     for building in BUILDING_LIST:
         if BUILDING_LIST[building]['campus'] == campus:
-            buildings.append(building)
-    buildings.sort()
-    return buildings
+            buildings[building] = BUILDING_LIST[building]
+    return flatten_building_list(buildings)
+
+
+def flatten_building_list(buildings):
+    flat_list = {}
+    for building in buildings:
+        flat_list[building] = buildings[building]['campus']
+    return flat_list
