@@ -1,5 +1,6 @@
 from scout_manager.views.rest_dispatch import RESTDispatch
-from scout_manager.dao.space import update_spot, create_spot, delete_spot, get_spot_by_id
+from scout_manager.dao.space import update_spot, create_spot, delete_spot,\
+    get_spot_by_id
 from django.http import HttpResponse
 from scout_manager.models import Person, GroupMembership
 from userservice.user import UserService
