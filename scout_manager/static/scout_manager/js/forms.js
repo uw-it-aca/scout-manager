@@ -11,6 +11,7 @@ var Forms = {
         Forms.toggle_extended_info();
         Forms.toggle_is_hidden();
         Forms.init_validate();
+        Forms.init_delete_button();
         Forms.init_campus_building_filter();
         Forms.sort_building_list();
 
@@ -357,10 +358,13 @@ var Forms = {
     },
 
     init_delete_button: function () {
-        $("button.btn-delete").on("click", function(e) {
+        $("#spot_delete").on("click", function(e) {
+            console.log("delete button clicked");
             var spot_id = Forms._get_spot_id();
             var etag = Forms._get_spot_etag();
-            Spot.delete_spot(spot_id, etag);
+
+            // delete the spot, then redirect back to manager home (dashboard)
+            Spot.delete_spot(spot_id, etag, function(){document.location.replace("/manager/");});
         });
     },
 

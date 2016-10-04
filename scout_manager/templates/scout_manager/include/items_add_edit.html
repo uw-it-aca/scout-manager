@@ -4,11 +4,24 @@
     <div class="pull-right">
 
         {% if spot.item.name %}
-        <input type="button" class="btn btn-primary" value="Save Changes" style="display:inline-block;"></input>
+            {% if spot.item.is_active %}
+            <div class="scout-draft">
+                <span class="text-muted"></span>&nbsp;&nbsp;&nbsp;
+                <input id="submit_item" type="button" class="btn btn-primary" value="Publish Changes" style="display:inline-block;"></input>
+            </div>
+            {% else %}
+            <div class="scout-published">
+                <span class="text-muted"></span>&nbsp;&nbsp;&nbsp;
+                <input id="submit_item" type="button" class="btn btn-primary" value="Save Draft" style="display:inline-block;"></input>
+            </div>
+            {% endif %}
         {% else %}
+        <div class="scout-create">
             <span class="text-danger">Note: All required fields must be filled before you can create.</span>&nbsp;&nbsp;&nbsp;
-            <input type="button" class="btn btn-primary" value="Create Item" style="display:inline-block;"></input>
+            <input id="submit_item" type="button" class="btn btn-primary" value="Create Item" style="display:inline-block;"></input>
+        </div>
         {% endif %}
+
 
     </div>
 </div>
@@ -66,12 +79,11 @@
 
         </div>
 
-        <fieldset class="scope" style="margin-top:1em;">
+        <fieldset style="margin-top:1em;">
             <legend>Is this STF Funded:</legend>
             <div class="checkbox">
                 <label><input type="checkbox" name="extended_info:i_is_stf" value="true" checked>Is STF?</label>
             </div>
-
         </fieldset>
 
     </div>
@@ -118,6 +130,7 @@
         </div>
         <p class="help-block">Note: Use the <a href="https://groups.uw.edu/" target="_blank">UW Groups</a> service to create or manage your groups.</p>
 
+        {% if spot.item.name %}
         <h3 class="">Contact Info</h3>
         <div class="form-group">
             <label for="">Manager Name:</label>
@@ -144,10 +157,12 @@
                 <div class="help-block">Note: This action cannot be undone!</div>
             </div>
         </div>
+        {% endif %}
 
     </div>
 </div>
 
+{% if spot.item.name %}
 <hr/>
 
 <div class="row">
@@ -246,9 +261,12 @@
     </div>
 
 </div>
+{% endif %}
 
+{% if spot.item.name %}
 <!-- include the images form -->
 {% include "scout_manager/include/form_images.html" %}
+{% endif %}
 
 <hr/>
 
@@ -259,7 +277,7 @@
     <div class="col-md-4">
 
         <div class="form-group">
-            <label class="control-label" for="">Campus:</label> {{ spot.campus }}
+            <label class="control-label" for="">Campus: (do not submit)</label>
             <select id="campus_select" class="form-control">
                 <option disabled selected value>select a campus...</option>
                 <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
@@ -268,7 +286,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="" class="control-label">Building:</label> {{ spot.building_name }}
+            <label for="" class="control-label">Building: (do not submit)</label>
             <select id="building_select" class="form-control">
                 <option disabled  {% if spot == None %}selected{% endif %} value="">select a building...</option>
                 {% for building, campus in buildings.items %}
