@@ -27,33 +27,54 @@
 
         <div class="row">
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 dummy">
                 <label for="">Category:</label>
                 <!-- list of ACA predefined categories -->
                 <p class="help-block scope">UX TODO: This will be an AXDD controlled list of high level categories.</p>
             </div>
 
-            <div class="form-group col-md-6">
-                <label for="">Sub category (type):</label>
-                <!-- list of predefined types, based on selected category. -->
-                <select multiple class="form-control" id="">
-                    <option>{{ spot.item.subcategory }}</option>
-                </select>
-                <p class="help-block scope">DEV TODO: dynamically get a list of all subcategories. Item's subcategory should be selected.</p>
-            </div>
+            <fieldset class="col-md-6 checkbox-group">
+                <legend class="control-label">Subcategory (type) <span class="label label-warning">CTE</span></legend>
+                <div class="well" id="study_spot_types">
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Laptop Computer" in spot.item.subcategory %} checked {% endif %} value="Laptop Computer">Laptop Computer</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Tablet Computer" in spot.item.subcategory %} checked {% endif %} value="Tablet Computer">Tablet Computer</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Digital Camera" in spot.item.subcategory %} checked {% endif %} value="Digital Camera">Digital Camera</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Digital Video Camera" in spot.item.subcategory %} checked {% endif %} value="Digital Video Camera">Digital Video Camera</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - Light Kit" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - Light Kit">Light Kit</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - Macro Lens" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - Macro Lens">Macro Lens</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - Macro Ring Lite Flash" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - Macro Ring Lite Flash">Macro Ring Lite Flash</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - Shoe Mount Flash" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - Shoe Mount Flash">Shoe Mount Flash</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - SLR Remote" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - SLR Remote">SLR Remote</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - Telephoto Lens" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - Telephoto Lens">Telephoto Lens</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - Wide Angle Lens" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - Wide Angle Lens">Wide Angle Lens</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Blu-ray Burner" in spot.item.subcategory %} checked {% endif %} value="Blu-ray Burner">Blu-ray Burner</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Calculator" in spot.item.subcategory %} checked {% endif %} value="Calculator">Calculator</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Data Projector" in spot.item.subcategory %} checked {% endif %} value="Data Projector">Data Projector</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Digital Pen Tablet" in spot.item.subcategory %} checked {% endif %} value="Digital Pen Tablet">Digital Pen Tablet</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "External Hard Drive" in spot.item.subcategory %} checked {% endif %} value="External Hard Drive">External Hard Drive</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Microphone Stands" in spot.item.subcategory %} checked {% endif %} value="Microphone Stands">Microphone Stands</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Portable Audio System" in spot.item.subcategory %} checked {% endif %} value="Portable Audio System">Portable Audio System</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Power Point Remote" in spot.item.subcategory %} checked {% endif %} value="Power Point Remote">Power Point Remote</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Projection Screen" in spot.item.subcategory %} checked {% endif %} value="Projection Screen">Projection Screen</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Shotgun Microphone" in spot.item.subcategory %} checked {% endif %} value="Shotgun Microphone">Shotgun Microphone</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Tripod" in spot.item.subcategory %} checked {% endif %} value="Tripod">Tripod</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Voice Recorder/MP3 player" in spot.item.subcategory %} checked {% endif %} value="Voice Recorder/MP3 player">Voice Recorder/MP3 player</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Wireless Microphone System" in spot.item.subcategory %} checked {% endif %} value="Wireless Microphone System">Wireless Microphone System</label></div>
+                </div>
+                <div class="help-block with-errors">Please select at least 1 item subcategory.</div>
+            </fieldset>
 
         </div>
 
-        <fieldset style="margin-top:1em;">
+        <fieldset class="scope" style="margin-top:1em;">
             <legend>Funding:</legend>
-
             <div class="checkbox">
                 <label><input type="checkbox" name="extended_info:i_context_type" value="stf" checked>STF Funded</label>
             </div>
 
         </fieldset>
 
-        <fieldset>
+        <fieldset class="scope">
             <legend>Status</legend>
             <div class="checkbox">
                 <label><input id="" type="checkbox"  name="extended_info:i_is_valid" value="true">Is valid?</label>
@@ -66,12 +87,13 @@
     <div class="col-md-4">
 
         <h3>Administration</h3>
-
         <div class="form-group">
             <label for="">Owner/Admin Group:</label>
             <input class="form-control" id="" name="extended_info:i_owner" type="text" value="{% if item.owner %}{{ item.owner }}{% endif %}">
         </div>
+        <p class="help-block">Note: Use the <a href="https://groups.uw.edu/" target="_blank">UW Groups</a> service to create or manage your groups.</p>
 
+        <h3 class="">Contact Info</h3>
         <div class="form-group">
             <label for="">Manager Name:</label>
             <input class="form-control" id="" name="extended_info:i_manager" type="text" value="{% if item.manager %}{{ item.manager }}{% endif %}">
@@ -87,8 +109,15 @@
             <input class="form-control" id="" name="extended_info:i_phone" type="tel" value="{% if item.phone %}{{ item.phone }}{% endif %}">
         </div>
 
-        <div class="mgr-dataset-actions">
-            <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+        <h3 class="">DELETE</h3>
+        <div class="form-group well">
+            <div>
+                <label>Delete this Item?</label>
+            </div>
+            <div class="mgr-dataset-actions">
+                <button type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                <div class="help-block">Note: This action cannot be undone!</div>
+            </div>
         </div>
 
     </div>
@@ -103,22 +132,22 @@
     <div class="col-md-4">
 
         <div class="form-group">
-            <label for="">Description:</label>
+            <label for="">Description: <span class="label label-warning">CTE</span></label>
             <textarea rows="4" class="form-control" id="" type="text" name="extended_info:i_description">{{ spot.item.description }}</textarea>
         </div>
 
         <div class="form-group">
-            <label for="">Brand:</label>
+            <label for="">Brand: <span class="label label-warning">CTE</span></label>
             <input id="" class="form-control" type="text" value="{{spot.item.brand}}" name="extended_info:i_brand">
         </div>
 
-        <div class="form-group">
+        <div class="form-group dummy">
             <label for="">Model:</label>
             <input id="" class="form-control" type="text" name="extended_info:i_model">
         </div>
 
         <div class="form-group">
-            <label for="">Quantity:</label>
+            <label for="">Quantity: <span class="label label-warning">CTE</span></label>
             <input id="" class="form-control" type="number" value="{{ spot.item.quantity }}" name="extended_info:i_quantity">
         </div>
 
@@ -147,7 +176,7 @@
             <legend>Prerequisites?</legend>
 
             <div class="checkbox">
-                <label for=""><input id="" type="checkbox" name="extended_info:i_has_prereqs" value="true">Has Prerequisites?</label>
+                <label for="has_prereqs"><input id="has_prereqs" type="checkbox" name="extended_info:i_has_prereqs" value="true">Has Prerequisites?</label>
             </div>
 
             <div class="form-group">
@@ -161,7 +190,7 @@
             <legend>Reservable?</legend>
 
             <div class="checkbox">
-                <label for=""><input id="" type="checkbox" name="extended_info:i_has_reservation" value="true">Is Reservable?</label>
+                <label for="is_reservable"><input id="is_reservable" type="checkbox" name="extended_info:i_has_reservation" value="true">Is Reservable?</label>
             </div>
 
             <div class="form-group">
@@ -170,7 +199,7 @@
             </div>
 
             <div class="form-group">
-                <label for="">Checkout Duration (days):</label>
+                <label for="">Checkout Duration (days): <span class="label label-warning">CTE</span></label>
                 <input class="form-control" id="" type="text" value="{{ spot.item.checkout_period }}" name="extended_info:i_checkout_period">
             </div>
 

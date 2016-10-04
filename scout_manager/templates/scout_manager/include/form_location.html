@@ -5,15 +5,6 @@
     <h3 class="col-md-12">Location</h3>
 
     <div class="col-md-4 mgr-location-meta">
-        <div class="form-group">
-            <label class="control-label" for="space-campus">Campus:</label>
-            <select id="campus_select" class="form-control" name="extended_info:campus" {% if spot.name %}required data-error="Campus must be specified"{% endif %}>
-                <option disabled selected value>select a campus...</option>
-                <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
-                <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
-                <option value="tacoma" {% if spot.campus == "tacoma" %} selected {% endif %}>Tacoma</option>
-            </select>
-        </div>
 
         <div class="form-group">
             <label for="space-latitude" class="control-label">Latitude:</label>
@@ -25,6 +16,18 @@
             <label for="space-longitude" class="control-label">Longitude:</label>
             <input class="form-control" name="location:longitude" id="space_longitude" type="text" value="{% if spot.longitude %}{{ spot.longitude }}{% endif %}" required data-error="Use the location chooser form to get coords." />
             <div class="help-block with-errors"></div>
+        </div>
+
+        <hr/>
+
+        <div class="form-group">
+            <label class="control-label" for="space-campus">Campus:</label>
+            <select id="campus_select" class="form-control" name="extended_info:campus" {% if spot.name %}required data-error="Campus must be specified"{% endif %}>
+                <option disabled selected value>select a campus...</option>
+                <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
+                <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
+                <option value="tacoma" {% if spot.campus == "tacoma" %} selected {% endif %}>Tacoma</option>
+            </select>
         </div>
 
         <!-- Hide if outdoor location. We suggest/enforce building options. -->
@@ -39,20 +42,22 @@
             <div class="help-block with-errors"></div>
         </div>
 
+        <hr/>
+
         <!-- Hide if outdoor location. We suggest floor options. -->
         <div class="form-group">
-            <label for="floor">Floor:</label>
+            <label for="floor">Floor: <span class="label label-info">F</span></label>
             <input class="form-control" id="floor" name="location:floor" type="text" value="{% if spot.floor %}{{ spot.floor }}{% endif %}">
         </div>
 
         <!-- Hide if outdoor location -->
         <div class="form-group">
-            <label for="room-number">Room #:</label>
+            <label for="room-number">Room #: <span class="label label-info">F</span></label>
             <input class="form-control" id="room-number" name="location:room_number" type="text" value="{% if spot.room_number %}{{ spot.room_number }}{% endif %}">
         </div>
 
         <div class="form-group">
-            <label for="space-description">Location Description:</label>
+            <label for="space-description">Location Description: <span class="label label-primary">S</span></label>
             <textarea name="extended_info:location_description" rows="2" class="form-control" id="space-description" type="text">{% if spot.location_description %}{{spot.location_description}}{% endif %}</textarea>
             <p class="help-block">Note: This field can be used as an alternative display for Building, Floor, and Room number.</p>
         </div>
