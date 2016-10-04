@@ -3,7 +3,7 @@ Core data
 """
 # item.name
 # item.category
-# item.sub_category
+# item.subcategory
 
 """
 Core data... space location id
@@ -20,6 +20,8 @@ Extended info... item information
 """
 # i_context_type
 # i_is_active
+# i_is_published
+# i_is_stf
 
 # i_description
 # i_quantity
