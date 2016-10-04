@@ -20,7 +20,6 @@ Extended info... item information
 """
 # i_context_type
 # i_is_active
-# i_is_published
 # i_is_stf
 
 # i_description

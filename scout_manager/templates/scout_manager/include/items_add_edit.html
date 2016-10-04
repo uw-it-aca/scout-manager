@@ -74,12 +74,12 @@
 
         </fieldset>
 
-        <fieldset class="scope">
+        <fieldset>
             <legend>Status</legend>
             <div class="checkbox">
-                <label><input id="" type="checkbox"  name="extended_info:i_is_valid" value="true">Is valid?</label>
+                <label><input id="" type="checkbox" {% if spot.item.is_active %} checked{% endif %}  name="extended_info:i_is_active" value="true">Is active (published)?</label>
             </div>
-            <p class="help-block">Note: Only valid items will be visible in client apps!</p>
+            <p class="help-block">Note: Only active items will be visible in client apps!</p>
         </fieldset>
 
     </div>
