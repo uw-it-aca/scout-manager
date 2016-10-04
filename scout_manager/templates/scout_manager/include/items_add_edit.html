@@ -323,9 +323,9 @@
 
     <div class="col-md-8">
         <div class="form-group">
-            <label for="">Space:</label> {{spot.name}}
-            <select id="spot_select" class="form-control" id="" multiple style="height:300px;">
-                <option disabled value>select a space...</option>
+            <label for="" class="control-label">Space:</label> {{spot.name}}
+            <select id="spot_select" class="form-control">
+                <option disabled selected value>select a space...</option>
                 {% for s in spots %}
                 <option value="{{s.name}}" data-campus="{{s.campus}}" data-building="{{s.building_name}}" {% if s.name == spot.name %}selected{% endif %}>{{s.name}}</option>
                 {% endfor %}
