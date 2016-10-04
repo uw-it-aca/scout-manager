@@ -118,11 +118,13 @@
 
         </fieldset>
 
+        {% if spot.name %}
         <div class="form-group">
             <label for="space-description">Space Description: <span class="label label-info">F</span></label>
             <textarea name="extended_info:description" rows="4" class="form-control" id="description" type="text">{% if spot.description %}{{spot.description}}{% endif %}</textarea>
             <p class="help-block">Note: description of the space</p>
         </div>
+        {% endif %}
 
     </div>
     <div class="col-md-4">
@@ -214,13 +216,6 @@
     {% include "scout_manager/include/extend_food.html" %}
 {% elif spot.app_type == "study" %}
     {% include "scout_manager/include/extend_study.html" %}
-{% else %}
-    <div id="extended_food_template" style="display:none;">
-    {% include "scout_manager/include/extend_food.html" %}
-    </div>
-    <div id="extended_study_template" style="display:none;">
-    {% include "scout_manager/include/extend_study.html" %}
-    </div>
 {% endif %}
 
 {% if spot.name %}
@@ -256,7 +251,7 @@
 <!-- FOR NOW: items for tech spaces -->
 {% if spot.name and spot.app_type == "tech" %}
 
-    <hr style="border-top:solid 10px #ecf0f1;"/>
+    <hr/>
 
     <h3>Item(s)</h3>
 
