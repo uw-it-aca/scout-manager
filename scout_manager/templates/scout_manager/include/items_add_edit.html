@@ -40,15 +40,29 @@
 
         <div class="row">
 
-            <div class="form-group col-md-6 dummy">
-                <label for="">Category:</label>
-                <!-- list of ACA predefined categories -->
-                <p class="help-block scope">UX TODO: This will be an AXDD controlled list of high level categories.</p>
+            <div class="form-group col-md-6">
+                <label for="">Category: {{ spot.item.category }}</label>
+                <div class="well" id="item_categories">
+                    <div class="radio"><label><input type="radio" name="category">Cameras</label></div>
+                    <div class="radio"><label><input type="radio" name="category">Computers</label></div>
+                    <div class="radio"><label><input type="radio" name="category">DSLR Accessories</label></div>
+                    <div class="radio"><label><input type="radio" name="category">Other Types</label></div>
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="">Sub Category (not cte):</label>
+                <div class="well" id="item_subcategories">
+                    <div class="radio"><label><input type="radio" name="subcategory">asjldk</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory">safd</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory">safdfsda</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory">asfddasfas</label></div>
+                </div>
             </div>
 
             <fieldset class="col-md-6 checkbox-group">
-                <legend class="control-label">Subcategory (type) <span class="label label-warning">CTE</span></legend>
-                <div class="well" id="study_spot_types">
+                <legend class="control-label">Subcategory (cte types) <span class="label label-warning">CTE</span></legend>
+                <div class="well" id="item_cte_subcategories">
                     <div class="radio"><label><input type="radio" name="subcategory" {% if "Laptop Computer" in spot.item.subcategory %} checked {% endif %} value="Laptop Computer">Laptop Computer</label></div>
                     <div class="radio"><label><input type="radio" name="subcategory" {% if "Tablet Computer" in spot.item.subcategory %} checked {% endif %} value="Tablet Computer">Tablet Computer</label></div>
                     <div class="radio"><label><input type="radio" name="subcategory" {% if "Digital Camera" in spot.item.subcategory %} checked {% endif %} value="Digital Camera">Digital Camera</label></div>

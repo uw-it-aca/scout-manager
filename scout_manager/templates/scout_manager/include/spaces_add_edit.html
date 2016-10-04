@@ -267,17 +267,15 @@
                     <th>ID</th>
                     <th>Location</th>
                     <th>Name</th>
-                    <th>Category (Type)</th>
-                    <th>Sub Category</th>
+                    <th>Sub Category (type)</th>
                 </tr>
             </thead>
             <tbody>
                 {% for item in spot.items %}
                 <tr>
-                    <td>{{ item.item_id }}</a></td>
+                    <td><a href="/manager/items/{{ item.item_id }}/">{{ item.item_id }}</a></td>
                     <td>{{ spot.name }}</td>
                     <td>{{ item.name }}</td>
-                    <td>{{ item.category }}</td>
                     <td>{{ item.subcategory }}</td>
                 </tr>
                 {% endfor %}
