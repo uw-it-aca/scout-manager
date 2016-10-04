@@ -1,8 +1,8 @@
 from scout_manager.views.rest_dispatch import RESTDispatch
-from scout_manager.dao.space import update_spot, get_spot_by_id
+from scout_manager.dao.space import update_spot, create_spot, delete_spot, get_spot_by_id
+from django.http import HttpResponse
 from scout_manager.models import Person, GroupMembership
 from userservice.user import UserService
-from django.http import HttpResponse
 from django.core.exceptions import PermissionDenied
 import json
 import re
@@ -17,14 +17,26 @@ class Spot(RESTDispatch):
         return HttpResponse('it works')
 
     def PUT(self, request, spot_id):
-        data = json.loads(request.body)
+        form_data = process_form_data(request)
         if not can_edit_spot(spot_id):
             raise PermissionDenied
         try:
-            update_spot(data, spot_id)
+            update_spot(form_data, spot_id)
         except Exception as ex:
-            return HttpResponse(json.dumps({'error': str(ex)}), status=400)
-        return HttpResponse(json.dumps({'status': 'it works'}))
+            return HttpResponse(json.dumps({'error': str(ex)}), status=400,
+                                content_type='application/json')
+        return HttpResponse(json.dumps({'status': 'it works'}),
+                            content_type='application/json')
+
+    def DELETE(self, request, spot_id):
+        etag = request.body
+        try:
+            delete_spot(spot_id, etag)
+        except Exception as ex:
+            return HttpResponse(json.dumps({'error': str(ex)}), status=400,
+                                content_type='application/json')
+        return HttpResponse(json.dumps({'status': 'it works'}),
+                            content_type='application/json')
 
 
 def process_form_data(request):
@@ -36,13 +48,25 @@ def process_form_data(request):
             # add two dashes, for some reason
             boundary = "--" + boundary
     blocks = request.body.split(boundary)
+
     for block in blocks:
-        for line in block.splitlines():
+        block_data = ''
+        file_start_idx = None
+        for index, line in enumerate(block.splitlines()):
             if "Content-Disposition" in line:
-                match = re.findall(r'name=\"(.*)\"', line)
+                match = re.findall(r'name=\"(.*?)\"', line)
                 block_name = match[0]
-            elif len(line) > 0 and line != "--":
-                form_data[block_name] = line
+            elif len(line) > 0 and line != "--" and "Content-Type" not in line:
+                if file_start_idx is None:
+                    file_start_idx = index
+                block_data += line
+        if len(block_data) > 0:
+            if block_name == "file":
+                file_block = block.splitlines(True)[file_start_idx:]
+                file_data = ''.join(file_block)
+                form_data[block_name] = file_data.strip()
+            else:
+                form_data[block_name] = block_data
     return form_data
 
 
@@ -61,3 +85,19 @@ def can_edit_spot(spot_id):
 def _get_current_spot_group(spot_id):
     spot = get_spot_by_id(spot_id)
     return spot.owner
+
+
+class SpotCreate(RESTDispatch):
+    """
+    Handles Spot creation, using PUT to deal with django issues
+    """
+
+    def PUT(self, request):
+        form_data = process_form_data(request)
+        # try:
+        create_spot(form_data)
+        # except Exception as ex:
+        #     return HttpResponse(json.dumps({'error': str(ex)}), status=400,
+        #                         content_type='application/json')
+        return HttpResponse(json.dumps({'status': 'it works'}),
+                            content_type='application/json')

@@ -8,10 +8,9 @@
 
     <div class="col-md-4">
 
-        <fieldset>
-            <legend>Spot types</legend>
+        <fieldset class="checkbox-group {% if spot.name %}required{% endif %}">
+            <legend class="control-label">Spot types</legend>
             <div class="well" id="food_spot_types">
-
                 <div class="checkbox">
                     <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafe" in type.name %} checked {% endif %}{% endfor %} value="cafe">Cafe</label>
                 </div>
@@ -30,8 +29,8 @@
                 <div class="checkbox">
                     <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafeteria" in type.name %} checked {% endif %}{% endfor %} value="cafeteria">Cafeteria</label>
                 </div>
-
             </div>
+            <div class="help-block with-errors">Please select at least 1 spot type.</div>
         </fieldset>
 
         <div class="form-group">
@@ -43,21 +42,29 @@
             <input class="form-control" id="menu-url" name="extended_info:s_menu_url" type="url" value="{% if spot.menu_url %}{{spot.menu_url}}{% endif %}" />
         </div>
 
-        <div class="form-group">
-            <label for="coupon-url">Coupon URL:</label>
-            <input class="form-control" id="coupon-url" name="extended_info:s_coupon_url" type="url" value="{% if spot.coupon_url %}{{ spot.coupon_url }}{% endif %}" />
-        </div>
-        <div class="form-group">
-            <label for="coupon-date">Expiration Date:</label>
-            <input class="form-control" id="coupon-date" name="extended_info:s_coupon_expiration" type="text" value="{% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% endif %}" placeholder="mm/dd/yyyy" />
-        </div>
+        <fieldset>
+            <legend>Coupon Information</legend>
+            <div class="checkbox">
+                <label for="has-coupon"><input id="has-coupon" name="extended_info:s_has_coupon" type="checkbox" value="true" {% if spot.has_coupon %}checked{% endif%}>Accepts Coupons</label>
+            </div>
+
+            <div class="form-group">
+                <label for="coupon-url">Coupon URL:</label>
+                <input class="form-control" id="coupon-url" name="extended_info:s_coupon_url" type="url" value="{% if spot.coupon_url %}{{ spot.coupon_url }}{% endif %}" />
+            </div>
+            <div class="form-group">
+                <label for="coupon-date">Expiration Date:</label>
+                <input class="form-control" id="coupon-date" name="extended_info:s_coupon_expiration" type="text" value="{% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% endif %}" placeholder="mm/dd/yyyy" />
+            </div>
+            <p class="help-block">Note: Coupon link will only be displayed to clients IF the "Accepts Coupoons" checkbox is checked.</p>
+        </fieldset>
 
     </div>
 
-    <fieldset class="col-md-4">
-        <legend>Food served</legend>
+    <!--
+    <fieldset class="col-md-4 checkbox-group {% if spot.name %}required{% endif %}">
+        <legend class="control-label">Food served</legend>
         <div class="well" id="food_select">
-
             <div class="checkbox">
                 <label><input type="checkbox" name="extended_info:s_food" {% if "Burgers" in spot.foodtype_names %} checked {% endif %} value="s_food_burgers">Burgers</label>
             </div>
@@ -78,6 +85,9 @@
             </div>
             <div class="checkbox">
                 <label><input type="checkbox" name="extended_info:s_food" {% if "Frozen Yogurt" in spot.foodtype_names %} checked {% endif %} value="s_food_frozen_yogurt">Frozen Yogurt</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" name="extended_info:s_food" {% if "Groceries" in spot.foodtype_names %} checked {% endif %} value="s_food_groceries">Groceries</label>
             </div>
             <div class="checkbox">
                 <label><input type="checkbox" name="extended_info:s_food" {% if "Pasta" in spot.foodtype_names %} checked {% endif %} value="s_food_pasta">Pasta</label>
@@ -108,6 +118,7 @@
             </div>
 
         </div>
+        <div class="help-block with-errors">Please select at least 1 food served.</div>
     </fieldset>
 
     <fieldset class="col-md-4">
@@ -143,10 +154,11 @@
             </div>
         </div>
     </fieldset>
+    -->
 
-    <fieldset class="col-md-4">
-        <legend>Payment Type</legend>
-        <div class="well">
+    <fieldset class="col-md-4 checkbox-group {% if spot.name %}required{% endif %}">
+        <legend class="control-label">Payment Type</legend>
+        <div class="well" id="food_payment_type">
 
             <div class="checkbox">
                 <label><input type="checkbox" name="extended_info:s_pay" {% if "Cash" in spot.payment_names %} checked {% endif %} value="s_pay_cash">Cash</label>
@@ -164,21 +176,21 @@
                 <label><input type="checkbox" name="extended_info:s_pay" {% if "Mastercard" in spot.payment_names %} checked {% endif %} value="s_pay_mastercard">Mastercard</label>
             </div>
         </div>
+        <div class="help-block with-errors">Please select at least 1 payment type.</div>
     </fieldset>
 
     <div class="clearfix"></div>
 
     <fieldset class="col-md-4">
-        <legend>Reservation notes:</legend>
+        <legend>Reservation Information</legend>
         <div class="checkbox">
-            <label for="has-reservations-food"><input id="has-reservations-food" name="extended_info:s_has_reservation"type="checkbox" value="true" {% if spot.has_reservation %}checked{% endif%} />Accepts Reservations</label>
+            <label for="has-reservations-food"><input id="has-reservations-food" name="extended_info:s_has_reservation" type="checkbox" value="true" {% if spot.has_reservation %}checked{% endif%}>Accepts Reservations</label>
         </div>
         <div class="form-group">
+            <label>Reservatio Notes:</label>
             <textarea rows="4" class="form-control" id="reservation-notes-food" name="extended_info:s_reservation_notes">{% if spot.reservation_notes %}{{spot.reservation_notes}}{% endif %}</textarea>
-            <p class="help-block">Note: Reservation notes will only be displayed to clients IF the "Accepts Reservations" checkbox is checked.</p>
         </div>
+        <p class="help-block">Note: Reservation notes will only be displayed to clients IF the "Accepts Reservations" checkbox is checked.</p>
     </fieldset>
 
 </div>
-
-<hr/>

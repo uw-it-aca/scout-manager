@@ -1,0 +1,75 @@
+<hr/>
+
+<div class="row mgr-location">
+
+    <h3 class="col-md-12">Location</h3>
+
+    <div class="col-md-4 mgr-location-meta">
+
+        <div class="form-group">
+            <label for="space-latitude" class="control-label">Latitude:</label>
+            <input class="form-control" name="location:latitude" id="space_latitude" type="text" value="{% if spot.latitude %}{{ spot.latitude }}{% endif %}" required data-error="Use the location chooser form to get coords." />
+            <div class="help-block with-errors"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="space-longitude" class="control-label">Longitude:</label>
+            <input class="form-control" name="location:longitude" id="space_longitude" type="text" value="{% if spot.longitude %}{{ spot.longitude }}{% endif %}" required data-error="Use the location chooser form to get coords." />
+            <div class="help-block with-errors"></div>
+        </div>
+
+        <hr/>
+
+        <div class="form-group">
+            <label class="control-label" for="space-campus">Campus:</label>
+            <select id="campus_select" class="form-control" name="extended_info:campus" {% if spot.name %}required data-error="Campus must be specified"{% endif %}>
+                <option disabled selected value>select a campus...</option>
+                <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
+                <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
+                <option value="tacoma" {% if spot.campus == "tacoma" %} selected {% endif %}>Tacoma</option>
+            </select>
+        </div>
+
+        <!-- Hide if outdoor location. We suggest/enforce building options. -->
+        <div class="form-group">
+            <label for="building-name" class="control-label">Building:</label>
+            <select id="building_select" class="form-control" name="location:building_name" {% if spot.name %}required data-error="Please select a building"{% endif %}>
+                <option disabled {% if spot == None %}selected{% endif %} value>select a building...</option>
+                {% for building, campus in buildings.items %}
+                <option value="{{ building }}" {% if spot.building_name == building %} selected {% endif %} data-campus="{{ campus }}">{{ building }}</option>
+                {% endfor %}
+            </select>
+            <div class="help-block with-errors"></div>
+        </div>
+
+        <hr/>
+
+        <!-- Hide if outdoor location. We suggest floor options. -->
+        <div class="form-group">
+            <label for="floor">Floor: <span class="label label-info">F</span></label>
+            <input class="form-control" id="floor" name="location:floor" type="text" value="{% if spot.floor %}{{ spot.floor }}{% endif %}">
+        </div>
+
+        <!-- Hide if outdoor location -->
+        <div class="form-group">
+            <label for="room-number">Room #: <span class="label label-info">F</span></label>
+            <input class="form-control" id="room-number" name="location:room_number" type="text" value="{% if spot.room_number %}{{ spot.room_number }}{% endif %}">
+        </div>
+
+        <div class="form-group">
+            <label for="space-description">Location Description: <span class="label label-primary">S</span></label>
+            <textarea name="extended_info:location_description" rows="2" class="form-control" id="space-description" type="text">{% if spot.location_description %}{{spot.location_description}}{% endif %}</textarea>
+            <p class="help-block">Note: This field can be used as an alternative display for Building, Floor, and Room number.</p>
+        </div>
+
+    </div>
+
+    <div class="col-md-8 mgr-location-chooser">
+        <div class="form-group">
+            <label for="space-latitude">Location chooser:</label>
+            <div style="border: solid 1px #c8c8c8; border-radius:3px; height:500px; margin: 0;" id="gmap_chooser">Google Maps here</div>
+            <p class="help-block">{% if spot.name %}Drag the marker to the desired location of the space.{% else %}Click on map to drop a pin on the location of your space and drag marker for precise positioning.{% endif %}</p>
+        </div>
+    </div>
+
+</div>

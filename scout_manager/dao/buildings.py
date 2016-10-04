@@ -2,6 +2,9 @@ BUILDING_LIST = {
     'Alder Hall': {
         'campus': 'seattle'
     },
+    'Alder Hall (ALD)': {
+        'campus': 'seattle'
+    },
     'Allen Library (ALB)': {
         'campus': 'seattle'
     },
@@ -17,25 +20,7 @@ BUILDING_LIST = {
     'Art Building (ART)': {
         'campus': 'seattle'
     },
-    'Beardslee Building (UWBB)': {
-        'campus': 'bothell'
-    },
-    'Birmingham Block (BB)': {
-        'campus': 'seattle'
-    },
-    'Birmingham Hay and Seed (BHS)': {
-        'campus': 'seattle'
-    },
-    'Bothell Bookstore': {
-        'campus': 'seattle'
-    },
-    'Bothell Building UW1': {
-        'campus': 'seattle'
-    },
-    'Bothell Building UW2': {
-        'campus': 'seattle'
-    },
-    'Bothell Library': {
+    'Burke Memorial-Washington State Museum (BMM)': {
         'campus': 'seattle'
     },
     'Burke Memorial-Washington State Museum (BMM)': {
@@ -44,19 +29,13 @@ BUILDING_LIST = {
     'Business Hall (BHQ)': {
         'campus': 'seattle'
     },
-    'Cherry Parkes (CP)': {
-        'campus': 'seattle'
-    },
     'Computer Science and Engineering Building (CSE)': {
         'campus': 'seattle'
     },
-    'Discovery Hall (DISC)': {
-        'campus': 'seattle'
-    },
-    'Dougan (DOU)': {
-        'campus': 'seattle'
-    },
     'Electrical Engineering Building (EEB)': {
+        'campus': 'seattle'
+    },
+    'Elm Hall': {
         'campus': 'seattle'
     },
     'Engineering Library (ELB)': {
@@ -65,16 +44,11 @@ BUILDING_LIST = {
     'Fishery Sciences (FSH)': {
         'campus': 'seattle'
     },
-    'Garretson Woodruff & Pratt (GWP)': {
-        'campus': 'tacoma'
-    },
+
     'Gould Hall (GLD)': {
         'campus': 'seattle'
     },
     'Gowen Hall (GWN)': {
-        'campus': 'seattle'
-    },
-    'HUB (Husky Union Building)': {
         'campus': 'seattle'
     },
     'Haggett Hall (HGT)': {
@@ -83,13 +57,7 @@ BUILDING_LIST = {
     'Hitchcock Hall (HCK)': {
         'campus': 'seattle'
     },
-    'Husky Hall (HH)': {
-        'campus': 'seattle'
-    },
     'Husky Union Building (HUB)': {
-        'campus': 'seattle'
-    },
-    'Husky Village': {
         'campus': 'seattle'
     },
     'Hutchinson Hall (HUT)': {
@@ -98,13 +66,10 @@ BUILDING_LIST = {
     'Intramural Activities Building (IMA)': {
         'campus': 'seattle'
     },
-    'Joy': {
+    'Kane Hall (KNE)': {
         'campus': 'seattle'
     },
-    'Library': {
-        'campus': 'seattle'
-    },
-    'Longshoremen\'s Hall (LSH)': {
+    'Lander Hall (LAH)': {
         'campus': 'seattle'
     },
     'Magnuson Health Sciences Center A (HSA)': {
@@ -128,13 +93,17 @@ BUILDING_LIST = {
     'Mary Gates Hall (MGH)': {
         'campus': 'seattle'
     },
-    'Mattress Factory (MAT)': {
+    'Mary Gates Hall (MGH)': {
         'campus': 'seattle'
     },
+
     'McCarty Hall (MCC)': {
         'campus': 'seattle'
     },
     'McMahon Hall (MCM)': {
+        'campus': 'seattle'
+    },
+    'Mercer Court (MRC)': {
         'campus': 'seattle'
     },
     'Miller Hall (MLR)': {
@@ -155,109 +124,34 @@ BUILDING_LIST = {
     'Padelford Hall (PDL)': {
         'campus': 'seattle'
     },
-    'Physics/Astronomy Building (PAB) Tower': {
-        'campus': 'seattle'
-    },
-    'Pinkerton (PNK)': {
-        'campus': 'seattle'
-    },
-    'Poplar Hall (UTO)': {
-        'campus': 'seattle'
-    },
-    'Science Building (SCI)': {
-        'campus': 'seattle'
-    },
-    'Smith Hall (SMI)': {
-        'campus': 'seattle'
-    },
-    'Snoqualmie (SNO)': {
-        'campus': 'seattle'
-    },
-    'Social Work/Speech & Hearing Sciences Building (SWS)': {
-        'campus': 'seattle'
-    },
-    'South Campus Center (SOCC)': {
-        'campus': 'seattle'
-    },
-    'Suzzallo Library (SUZ)': {
-        'campus': 'seattle'
-    },
-    'Tioga Library Building (TLB)': {
-        'campus': 'seattle'
-    },
-    'Walsh Gardner (WG)': {
-        'campus': 'seattle'
-    },
-    'West Coast Grocery (WCG)': {
-        'campus': 'seattle'
-    },
-    'William H. Foege Genome Sciences (GNOM)': {
-        'campus': 'seattle'
-    },
-    'William H. Gates Hall (LAW)': {
-        'campus': 'seattle'
-    },
-    'William Phillip Hall (WPH)': {
-        'campus': 'seattle'
-    },
-    'Alder Hall (ALD)': {
-        'campus': 'seattle'
-    },
-    'Art Building (ART)': {
-        'campus': 'seattle'
-    },
-    'Brotman Building (BFB)': {
-        'campus': 'seattle'
-    },
-    'Burke Memorial-Washington State Museum (BMM)': {
-        'campus': 'seattle'
-    },
-    'Computer Science and Engineering Building (CSE)': {
-        'campus': 'seattle'
-    },
-    'Elm Hall': {
-        'campus': 'seattle'
-    },
-    'Husky Union Building (HUB)': {
-        'campus': 'seattle'
-    },
-    'Intramural Activities Building (IMA)': {
-        'campus': 'seattle'
-    },
-    'Lander Hall (LAH)': {
-        'campus': 'seattle'
-    },
-    'Magnuson Health Sciences Center T (HST)': {
-        'campus': 'seattle'
-    },
-    'Mary Gates Hall (MGH)': {
-        'campus': 'seattle'
-    },
-    'Mattress Factory (MAT)': {
-        'campus': 'seattle'
-    },
-    'McMahon Hall (MCM)': {
-        'campus': 'seattle'
-    },
-    'Mercer Court (MRC)': {
-        'campus': 'seattle'
-    },
-    'Odegaard Undergraduate Library (OUGL)': {
-        'campus': 'seattle'
-    },
-    'Paccar Hall (PCAR)': {
-        'campus': 'seattle'
-    },
     'Parrington Hall (PAR)': {
         'campus': 'seattle'
     },
+    'Physics/Astronomy Building (PAB) Tower': {
+        'campus': 'seattle'
+    },
     'Physics / Astronomy Building (PAB)': {
+        'campus': 'seattle'
+    },
+    'Poplar Hall (UTO)': {
         'campus': 'seattle'
     },
     'Red Square': {
         'campus': 'seattle'
     },
     'Roosevelt Clinic': {
+        'campus': 'seattle'
+    },
+    'Science Building (SCI)': {
+        'campus': 'tacoma'
+    },
+    'Smith Hall (SMI)': {
+        'campus': 'seattle'
+    },
+    'Social Work/Speech & Hearing Sciences Building (SWS)': {
+        'campus': 'seattle'
+    },
+    'South Campus Center (SOCC)': {
         'campus': 'seattle'
     },
     'South Campus Center': {
@@ -275,7 +169,7 @@ BUILDING_LIST = {
     'UW Tower Building A (UWTA)': {
         'campus': 'seattle'
     },
-    'West Coast Grocery (WCG)': {
+    'William H. Foege Genome Sciences (GNOM)': {
         'campus': 'seattle'
     },
     'William H. Foege Bioengineering (BIOE)': {
@@ -283,20 +177,144 @@ BUILDING_LIST = {
     },
     'William H. Gates Hall (LAW)': {
         'campus': 'seattle'
+    },
+
+
+
+    'Brotman Building (BFB)': {
+        'campus': 'south_lake_union'
+    },
+
+
+    'Activities and Recreation Center': {
+        'campus': 'bothell'
+    },
+    'Beardslee Building (UWBB)': {
+        'campus': 'bothell'
+    },
+    'Bothell Bookstore (LB2)': {
+        'campus': 'bothell'
+    },
+    'Bothell Library (LB1)': {
+        'campus': 'bothell'
+    },
+    'Bothell Library Annex (LBA)': {
+        'campus': 'bothell'
+    },
+    'Founders Hall (UW1)': {
+        'campus': 'bothell'
+    },
+    'Chase House': {
+        'campus': 'bothell'
+    },
+    'Commons Hall (UW2)': {
+        'campus': 'bothell'
+    },
+    'Discovery Hall (UW3)': {
+        'campus': 'bothell'
+    },
+    'Husky Hall (HH)': {
+        'campus': 'bothell'
+    },
+    'Husky Village Apartments': {
+        'campus': 'bothell'
+    },
+    'North Creek Events Center': {
+        'campus': 'bothell'
+    },
+
+    'Truly House': {
+        'campus': 'bothell'
+    },
+
+
+    'Academic Building (ADMC)': {
+        'campus': 'tacoma'
+    },
+    'Birmingham Block (BB)': {
+        'campus': 'tacoma'
+    },
+    'Birmingham Hay & Seed (BHS)': {
+        'campus': 'tacoma'
+    },
+    'Carlton Center (CAR)': {
+        'campus': 'tacoma'
+    },
+    'Cherry Parkes (CP)': {
+        'campus': 'tacoma'
+    },
+    'Dougan (DOU)': {
+        'campus': 'tacoma'
+    },
+    'Garretson Woodruff & Pratt (GWP)': {
+        'campus': 'tacoma'
+    },
+    'Russell T. Joy': {
+        'campus': 'tacoma'
+    },
+    'Joy': {
+        'campus': 'tacoma'
+    },
+    'Keystone (KEY)': {
+        'campus': 'tacoma'
+    },
+    'Laborer\'s Hall': {
+        'campus': 'tacoma'
+    },
+    'Longshoremen\'s Hall (LSH)': {
+        'campus': 'tacoma'
+    },
+    'Mattress Factory (MAT)': {
+        'campus': 'tacoma'
+    },
+    'McDonald Smith (MDS)': {
+        'campus': 'tacoma'
+    },
+    'Pinkerton (PNK)': {
+        'campus': 'tacoma'
+    },
+    'Science (SCI)': {
+        'campus': 'tacoma'
+    },
+    'Snoqualmie Building (SNO)': {
+        'campus': 'tacoma'
+    },
+    'The Whitney': {
+        'campus': 'tacoma'
+    },
+    'Tioga Library Building (TLB)': {
+        'campus': 'tacoma'
+    },
+    'University Y Student Center': {
+        'campus': 'tacoma'
+    },
+    'Walsh Gardner (WG)': {
+        'campus': 'tacoma'
+    },
+    'West Coast Grocery (WCG)': {
+        'campus': 'tacoma'
+    },
+    'William W. Phillip Hall (WPH)': {
+        'campus': 'tacoma'
     }
+
 }
 
 
 def get_building_list():
-    building_list = BUILDING_LIST.keys()
-    building_list.sort()
-    return building_list
+    return flatten_building_list(BUILDING_LIST)
 
 
 def get_building_list_by_campus(campus):
-    buildings = []
+    buildings = {}
     for building in BUILDING_LIST:
         if BUILDING_LIST[building]['campus'] == campus:
-            buildings.append(building)
-    buildings.sort()
-    return buildings
+            buildings[building] = BUILDING_LIST[building]
+    return flatten_building_list(buildings)
+
+
+def flatten_building_list(buildings):
+    flat_list = {}
+    for building in buildings:
+        flat_list[building] = buildings[building]['campus']
+    return flat_list

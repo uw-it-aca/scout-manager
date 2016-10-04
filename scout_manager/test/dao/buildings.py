@@ -24,12 +24,12 @@ scout_manager.dao.buildings.BUILDING_LIST = TEST_BUILDING_LIST
 
 class BuildingDaoTest(TestCase):
     def test_get_all_buildings(self):
-        self.assertEqual(len(get_building_list()), 3)
-        self.assertEqual(get_building_list(),
-                         ['Bot Building', 'Sea Building', 'Tac Building'])
+        buildings = get_building_list()
+        self.assertEqual(len(buildings), 3)
+        self.assertEqual(buildings, {'Tac Building': 'tacoma', 'Sea Building': 'seattle', 'Bot Building': 'bothell'})
 
     def test_get_by_campus(self):
         self.assertEqual(len(get_building_list_by_campus('tacoma')), 1)
         self.assertEqual((get_building_list_by_campus('tacoma')),
-                         ['Tac Building'])
+                         {'Tac Building': 'tacoma'})
         self.assertEqual(len(get_building_list_by_campus('not a campus')), 0)

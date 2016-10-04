@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView
-from scout_manager.views.api import Spot
+from scout_manager.views.api import Spot, SpotCreate
 # from django.contrib import admin
 # admin.autodiscover()
 
@@ -24,11 +24,6 @@ urlpatterns = patterns(
     url(r'^items/add/$',
         'scout_manager.views.pages.items_add',
         name='items_add'),
-
-    # /unpublished/
-    url(r'^unpublished/$',
-        'scout_manager.views.pages.unpublished',
-        name='unpublished'),
 
     # /spaces/
     url(r'^spaces/$',
@@ -55,10 +50,27 @@ urlpatterns = patterns(
         'scout_manager.views.pages.spaces_add',
         name='spaces_add'),
 
+    # /spaces/add/
+    url(r'^spaces/upload/$',
+        'scout_manager.views.pages.spaces_upload',
+        name='spaces_upload'),
+
     # /api/
     url(r'api/spot/(?P<spot_id>[0-9]{1,5})',
-        Spot().run)
+        Spot().run),
 
+    url(r'api/spot/',
+        SpotCreate().run),
+
+    # manager spot image
+    url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',
+        'scout_manager.views.pages.image',
+        name='manager_image'),
+
+    # manager item image
+    url(r'^item/images/(?P<item_id>\d+)/image/(?P<image_id>\d+)/$',
+        'scout_manager.views.pages.item_image',
+        name='manager_item_image'),
 )
 
 # debug routes for developing error pages

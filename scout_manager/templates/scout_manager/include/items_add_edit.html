@@ -1,238 +1,335 @@
 
-<div class="clearfix">
-    <h2 class="pull-left">{% if item.name %}{{ item.name }}{% else %}Add New Item{% endif %}</h2>
+<div class="clearfix sticky" style="margin-bottom:1em;">
+    <h2 class="pull-left">{% if spot.item.name %}{{ spot.item.name }}{% else %}Add New Item{% endif %}</h2>
     <div class="pull-right">
-        {{ item.etag }}&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-primary" value="Save Changes" style="display:inline-block;"></input>
+
+        {% if spot.item.name %}
+        <input type="button" class="btn btn-primary" value="Save Changes" style="display:inline-block;"></input>
+        {% else %}
+            <span class="text-danger">Note: All required fields must be filled before you can create.</span>&nbsp;&nbsp;&nbsp;
+            <input type="button" class="btn btn-primary" value="Create Item" style="display:inline-block;"></input>
+        {% endif %}
+
     </div>
 </div>
 
-<h3>General Information</h3>
 
-<div class="form-group">
-    <label for="item-name">Name:</label>
-    <input id="item-name" class="form-control" type="text" required>
-</div>
+<div class="row">
 
-<div class="form-group">
-    <label for="item-name">Brand:</label>
-    <input id="item-brand" class="form-control" type="text" required>
-</div>
+    <div class="col-md-8">
 
-<div class="form-group">
-    <label for="item-name">Model:</label>
-    <input id="item-model" class="form-control" type="text" required>
-</div>
+        <h3>General Information</h3>
 
-<div class="form-group">
-    <label for="item-quantity">Quantity:</label>
-    <input id="item-quantity" class="form-control" type="number" required>
-</div>
+        <div class="form-group">
+            <label for="">Name:</label>
+            <input id="" name="name" value="{% if spot.item.name %}{{ spot.item.name }}{% endif %}" class="form-control" type="text">
+        </div>
 
-{# How are we determining this? #}
-<div class="checkbox">
-    <label><input type="checkbox" value="STF">STF Funded</label>
-</div>
+        <div class="row">
 
-<div class="mgr-dataset-actions">
-    <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
+            <div class="form-group col-md-6 dummy">
+                <label for="">Category:</label>
+                <!-- list of ACA predefined categories -->
+                <p class="help-block scope">UX TODO: This will be an AXDD controlled list of high level categories.</p>
+            </div>
+
+            <fieldset class="col-md-6 checkbox-group">
+                <legend class="control-label">Subcategory (type) <span class="label label-warning">CTE</span></legend>
+                <div class="well" id="study_spot_types">
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Laptop Computer" in spot.item.subcategory %} checked {% endif %} value="Laptop Computer">Laptop Computer</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Tablet Computer" in spot.item.subcategory %} checked {% endif %} value="Tablet Computer">Tablet Computer</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Digital Camera" in spot.item.subcategory %} checked {% endif %} value="Digital Camera">Digital Camera</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Digital Video Camera" in spot.item.subcategory %} checked {% endif %} value="Digital Video Camera">Digital Video Camera</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - Light Kit" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - Light Kit">Light Kit</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - Macro Lens" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - Macro Lens">Macro Lens</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - Macro Ring Lite Flash" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - Macro Ring Lite Flash">Macro Ring Lite Flash</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - Shoe Mount Flash" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - Shoe Mount Flash">Shoe Mount Flash</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - SLR Remote" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - SLR Remote">SLR Remote</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - Telephoto Lens" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - Telephoto Lens">Telephoto Lens</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - Wide Angle Lens" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - Wide Angle Lens">Wide Angle Lens</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Blu-ray Burner" in spot.item.subcategory %} checked {% endif %} value="Blu-ray Burner">Blu-ray Burner</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Calculator" in spot.item.subcategory %} checked {% endif %} value="Calculator">Calculator</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Data Projector" in spot.item.subcategory %} checked {% endif %} value="Data Projector">Data Projector</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Digital Pen Tablet" in spot.item.subcategory %} checked {% endif %} value="Digital Pen Tablet">Digital Pen Tablet</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "External Hard Drive" in spot.item.subcategory %} checked {% endif %} value="External Hard Drive">External Hard Drive</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Microphone Stands" in spot.item.subcategory %} checked {% endif %} value="Microphone Stands">Microphone Stands</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Portable Audio System" in spot.item.subcategory %} checked {% endif %} value="Portable Audio System">Portable Audio System</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Power Point Remote" in spot.item.subcategory %} checked {% endif %} value="Power Point Remote">Power Point Remote</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Projection Screen" in spot.item.subcategory %} checked {% endif %} value="Projection Screen">Projection Screen</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Shotgun Microphone" in spot.item.subcategory %} checked {% endif %} value="Shotgun Microphone">Shotgun Microphone</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Tripod" in spot.item.subcategory %} checked {% endif %} value="Tripod">Tripod</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Voice Recorder/MP3 player" in spot.item.subcategory %} checked {% endif %} value="Voice Recorder/MP3 player">Voice Recorder/MP3 player</label></div>
+                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Wireless Microphone System" in spot.item.subcategory %} checked {% endif %} value="Wireless Microphone System">Wireless Microphone System</label></div>
+                </div>
+                <div class="help-block with-errors">Please select at least 1 item subcategory.</div>
+            </fieldset>
+
+        </div>
+
+        <fieldset class="scope" style="margin-top:1em;">
+            <legend>Funding:</legend>
+            <div class="checkbox">
+                <label><input type="checkbox" name="extended_info:i_context_type" value="stf" checked>STF Funded</label>
+            </div>
+
+        </fieldset>
+
+        <fieldset class="scope">
+            <legend>Status</legend>
+            <div class="checkbox">
+                <label><input id="" type="checkbox"  name="extended_info:i_is_valid" value="true">Is valid?</label>
+            </div>
+            <p class="help-block">Note: Only valid items will be visible in client apps!</p>
+        </fieldset>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <h3>Administration</h3>
+        <div class="form-group">
+            <label for="">Owner/Admin Group:</label>
+            <input class="form-control" id="" name="extended_info:i_owner" type="text" value="{% if item.owner %}{{ item.owner }}{% endif %}">
+        </div>
+        <p class="help-block">Note: Use the <a href="https://groups.uw.edu/" target="_blank">UW Groups</a> service to create or manage your groups.</p>
+
+        <h3 class="">Contact Info</h3>
+        <div class="form-group">
+            <label for="">Manager Name:</label>
+            <input class="form-control" id="" name="extended_info:i_manager" type="text" value="{% if item.manager %}{{ item.manager }}{% endif %}">
+        </div>
+
+        <div class="form-group">
+            <label for="" class="">Email:</label>
+            <input class="form-control" id="" type="extended_info:i_email" value="{% if item.email %}{{ item.email }}{% endif %}">
+        </div>
+
+        <div class="form-group">
+            <label for="" class="">Phone:</label>
+            <input class="form-control" id="" name="extended_info:i_phone" type="tel" value="{% if item.phone %}{{ item.phone }}{% endif %}">
+        </div>
+
+        <h3 class="">DELETE</h3>
+        <div class="form-group well">
+            <div>
+                <label>Delete this Item?</label>
+            </div>
+            <div class="mgr-dataset-actions">
+                <button type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                <div class="help-block">Note: This action cannot be undone!</div>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 <hr/>
 
-<h3>Item Description</h3>
+<div class="row">
 
-<div class="form-group">
-    <label for="item-category">Category of Item:</label>
-    <!-- list of ACA predefined categories -->
-    <select class="form-control" id="item-category" required>
-        <option disabled selected value>select a category...</option>
-        <option>Prototyping</option>
-        <option>Defined Category 2</option>
-        <option>...</option>
-    </select>
-</div>
+    <h3 class="col-md-12">STF Extended Information</h3>
 
-<div class="form-group">
-    <label for="item-type">Item Type:</label>
-    <input class="form-control" id="item-type" list="item-type-list" required>
-    <!-- list of predefined types, based on selected category. -->
-    <datalist id="item-type-list">
-        <option>3D printer</option>
-        <option>Defined Type 2</option>
-        <option>...</option>
-    </datalist>
-</div>
+    <div class="col-md-4">
+
+        <div class="form-group">
+            <label for="">Description: <span class="label label-warning">CTE</span></label>
+            <textarea rows="4" class="form-control" id="" type="text" name="extended_info:i_description">{{ spot.item.description }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="">Brand: <span class="label label-warning">CTE</span></label>
+            <input id="" class="form-control" type="text" value="{{spot.item.brand}}" name="extended_info:i_brand">
+        </div>
+
+        <div class="form-group dummy">
+            <label for="">Model:</label>
+            <input id="" class="form-control" type="text" name="extended_info:i_model">
+        </div>
+
+        <div class="form-group">
+            <label for="">Quantity: <span class="label label-warning">CTE</span></label>
+            <input id="" class="form-control" type="number" value="{{ spot.item.quantity }}" name="extended_info:i_quantity">
+        </div>
+
+        <div class="form-group">
+            <label for="">Manual URL:</label>
+            <input class="form-control" id="" type="url" value="{{ spot.item.manual_url }}" name="extended_info:i_manual_url">
+        </div>
+
+        <div class="form-group">
+            <label for="">Serial Number:</label>
+            <input class="form-control" id="" type="text" name="extended_info:i_serial_number">
+            <p class="help-block">Note: separate multiple serial numbers with a comma.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="">UW Tag Number:</label>
+            <input class="form-control" id="" type="text" name="extended_info:i_uw_tag_number">
+            <p class="help-block">Note: separate multiple UW Tag numbers with a comma.</p>
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <fieldset>
+            <legend>Prerequisites?</legend>
+
+            <div class="checkbox">
+                <label for="has_prereqs"><input id="has_prereqs" type="checkbox" name="extended_info:i_has_prereqs" value="true">Has Prerequisites?</label>
+            </div>
+
+            <div class="form-group">
+                <label for="">Prerequisites Notes:</label>
+                <textarea rows="4" class="form-control" id="" name="extended_info:i_prereq_notes"></textarea>
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Reservable?</legend>
+
+            <div class="checkbox">
+                <label for="is_reservable"><input id="is_reservable" type="checkbox" name="extended_info:i_has_reservation" value="true">Is Reservable?</label>
+            </div>
+
+            <div class="form-group">
+                <label for="">Reserve URL:</label>
+                <input class="form-control" id="" type="text" value="{{ spot.item.reserve_url }}" name="extended_info:i_reserve_url">
+            </div>
+
+            <div class="form-group">
+                <label for="">Checkout Duration (days): <span class="label label-warning">CTE</span></label>
+                <input class="form-control" id="" type="text" value="{{ spot.item.checkout_period }}" name="extended_info:i_checkout_period">
+            </div>
+
+            <div class="form-group">
+                <label for="">Reservation Notes:</label>
+                <textarea rows="4" class="form-control" id="" name="extended_info:i_reservation_notes"></textarea>
+            </div>
+        </fieldset>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <fieldset>
+            <legend>Access Restrictions</legend>
+
+            <div class="checkbox">
+                <label><input id="" type="checkbox" name="extended_info:i_has_access_restriction" value="true">Has access restrictions?</label>
+            </div>
+
+            <label>Access limited to:</label>
+            <div class="well">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:i_access_limit_uwnetid" value="true">UW NetID</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:i_access_limit_role" value="true">Specific role (student/staff/faculty)</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:i_access_limit_school" value="true">Specific School affiliation</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:i_access_limit_department" value="true">Specific Department affiliation</label>
+                </div>
+            </div>
+
+            <label>Select role(s): (show based on checkbox)</label>
+            <div class="well">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:i_access_role_students" value="true">Students</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:i_access_role_staff" value="true">Staff</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:i_access_role_faculty" value="true">Faculty</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="">Select School: (show based on checkbox)</label>
+                <!-- If SCHOOL AFFILIATION selected, show this div.  -->
+                <select class="form-control" multiple>
+                    <option disabled selected value>choose school...</option>
+                    <option>UW School 1</option>
+                    <option>UW School 2</option>
+                    <option>...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="">Select Department: (show based on checkbox)</label>
+                <!-- If DEPARTMENT AFFILIATION selected, show this div. If SCHOOL(s) chosen, then limit list to depts within school(s). -->
+                <select class="form-control" multiple>
+                    <option disabled selected value>choose department...</option>
+                    <option>UW Dept 1</option>
+                    <option>UW Dept 2</option>
+                    <option>...</option>
+                </select>
+            </div>
 
 
-<div class="form-group">
-    <label for="item-description">Description:</label>
-    <textarea rows="4" class="form-control" id="item-description" type="text"></textarea>
-</div>
 
-<div class="form-group">
-    <label for="item_info_website">Website for item info:</label>
-    <input class="form-control" id="item_info_website" type="url">
-</div>
+            <div class="form-group">
+                <label for="">Access Notes:</label>
+                <textarea rows="4" class="form-control" id="" type="text" name="extended_info:i_access_notes"></textarea>
+            </div>
 
+            <p class="help-block">Note: Access restritions and notes will only be displayed to clients IF the "Has access restrictions" checkbox is checked.</p>
 
-<h3>Location</h3>
+        </fieldset>
 
-<div class="form-group">
-    <label for="space-campus" required>Space:</label>
-    <select class="form-control" id="item-category" multiple required style="height:300px;">
-        <option disabled selected value>select a space...</option>
+    </div>
 
-        {% for spot in spots %}
-        <option>{{spot.name}}</option>
-        {% endfor %}
-
-    </select>
-</div>
-
-
-<h3>Current Alert</h3>
-
-<div class="checkbox">
-    <label><input name="extended_info:has_alert" type="checkbox" value="has_alert" {% if item.has_alert %}checked{% endif %}>Alert Enabled</label>
-</div>
-
-<div class="form-group">
-    <label for="alert-notes">Post this Alert message:</label>
-    <textarea class="form-control" rows="4" id="alert-notes" name="extended_info:alert_notes" type="text" value="{% if item.alert_notes %}{{ item.alert_notes }}{% endif %}"></textarea>
 </div>
 
 <!-- include the images form -->
 {% include "scout_manager/include/form_images.html" %}
 
-<h3>Serial numbers</h3>
-
-<div class="form-group">
-    <label for="item-serial">Serial Number(s):</label>
-    <input class="form-control" id="item-serial" type="text">
-    <p>Note: separate multiple serial numbers with a comma.</p>
-</div>
-
-<div class="form-group">
-    <label for="item-UWtag">UW Tag Number(s):</label>
-    <input class="form-control" id="item-UWtag" type="text">
-    <p>Note: separate multiple UW Tag numbers with a comma.</p>
-</div>
-
-
-<h3>Access Restrictions</h3>
-<fieldset>
-    <legend>Prerequisites?</legend>
-
-    <div class="checkbox">
-        <label for=""><input id="" type="checkbox">Has Prerequisites?</label>
-    </div>
-
-    <div class="form-group">
-        <label for="">Prerequisites Notes:</label>
-        <textarea rows="4" class="form-control" id=""></textarea>
-    </div>
-
-</fieldset>
-
-<fieldset>
-    <legend>Reservable?</legend>
-
-    <div class="checkbox">
-        <label for=""><input id="" type="checkbox">Is Reservable?</label>
-    </div>
-
-    <div class="form-group">
-        <label for="">Reservation Notes:</label>
-        <textarea rows="4" class="form-control" id=""></textarea>
-    </div>
-
-</fieldset>
-
-
-<div class="checkbox">
-    <label><input id="" type="checkbox">Available to general public?</label>
-</div>
-
-<!-- If NO, show this fieldset. Selection here determines which access fieldsets are shown below. -->
-<fieldset>
-    <legend>Access limited to:</legend>
-
-    <div class="checkbox">
-        <label><input type="checkbox" value="access_netid">UW NetID</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="access_role">Specific role (student/staff/faculty)</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="access_school">Specific School affiliation</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="access_dept">Specific Department affiliation</label>
-    </div>
-</fieldset>
-
-<fieldset>
-    <!-- If ROLE selected, show this fieldset.  -->
-    <legend>Select role(s)</legend>
-
-    <div class="checkbox">
-        <label><input type="checkbox" value="access_student">Students</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="access_faculty">Staff</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="access_staff">Faculty</label>
-    </div>
-</fieldset>
-
-<div class="form-group">
-    <label for="">School:</label>
-    <!-- If SCHOOL AFFILIATION selected, show this div.  -->
-    <select class="form-control" multiple>
-        <option disabled selected value>choose school...</option>
-        <option>UW School 1</option>
-        <option>UW School 2</option>
-        <option>...</option>
-    </select>
-</div>
-
-<div class="form-group">
-    <label for="">Department</label>
-    <!-- If DEPARTMENT AFFILIATION selected, show this div. If SCHOOL(s) chosen, then limit list to depts within school(s). -->
-    <select class="form-control" multiple>
-        <option disabled selected value>choose department...</option>
-        <option>UW Dept 1</option>
-        <option>UW Dept 2</option>
-        <option>...</option>
-    </select>
-</div>
-
-<div class="form-group">
-    <label for="access-notes">Access Notes:</label>
-    <textarea rows="4" class="form-control" id="access-notes" type="text"></textarea>
-</div>
-
 <hr/>
 
-<h3>Administration</h3>
+<div class="row">
 
-<div class="form-group">
-    <label for="owner">Owner/Admin Group:</label>
-    <input class="form-control" id="owner" name="extended_info:owner" type="text" value="{% if item.owner %}{{ item.owner }}{% endif %}">
-</div>
+    <h3 class="col-md-12">Location</h3>
 
-<div class="form-group">
-    <label for="manager-name">Manager Name:</label>
-    <input class="form-control" id="manager-name" name="manager" type="text" value="{% if item.manager %}{{ item.manager }}{% endif %}">
-</div>
+    <p class="col-md-12 help-block scope">DEV TODO: Space list should filter based on Campus and Building selection.</p>
 
-<div class="form-group">
-    <label for="email" class="">Email:</label>
-    <input class="form-control" id="email" type="email" value="{% if item.email %}{{ item.email }}{% endif %}">
-</div>
+    <div class="col-md-4">
 
-<div class="form-group">
-    <label for="phone" class="">Phone:</label>
-    <input class="form-control" id="phone" name="phone" type="tel" value="{% if item.phone %}{{ item.phone }}{% endif %}">
+        <div class="form-group">
+            <label class="control-label" for="">Campus:</label> {{ spot.campus }}
+            <select id="campus_select" class="form-control">
+                <option disabled selected value>select a campus...</option>
+                <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
+                <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
+                <option value="tacoma" {% if spot.campus == "tacoma" %} selected {% endif %}>Tacoma</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="" class="control-label">Building:</label> {{ spot.building_name }}
+            <select id="building_select" class="form-control">
+                <option disabled  {% if spot == None %}selected{% endif %} value="">select a building...</option>
+                {% for building, campus in buildings.items %}
+                <option value="{{ building }}" {% if spot.building_name == building %} selected {% endif %} data-campus="{{ campus }}">{{ building }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <p class="help-block">Note: Select a campus and building to narrow down the list of spaces.</p>
+
+    </div>
+
+    <div class="col-md-8">
+        <div class="form-group">
+            <label for="">Space:</label> {{spot.name}}
+            <select id="spot_select" class="form-control" id="" multiple style="height:300px;">
+                <option disabled value>select a space...</option>
+                {% for s in spots %}
+                <option value="{{s.name}}" data-campus="{{s.campus}}" data-building="{{s.building_name}}" {% if s.name == spot.name %}selected{% endif %}>{{s.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
 </div>

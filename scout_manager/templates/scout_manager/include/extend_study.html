@@ -6,10 +6,9 @@
     <h3 class="col-md-12">Study Extended Info</h3>
 
     <div class="col-md-4">
-        <fieldset>
-            <legend>Spot types</legend>
-            <div class="well" id="food_spot_types">
-
+        <fieldset class="checkbox-group {% if spot.name %}required{% endif %}">
+            <legend class="control-label">Spot types</legend>
+            <div class="well" id="study_spot_types">
                 <div class="checkbox">
                     <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "study_room" in type.name %} checked {% endif %}{% endfor %} value="study_room">Study room</label>
                 </div>
@@ -37,8 +36,8 @@
                 <div class="checkbox">
                     <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "outdoor" in type.name %} checked {% endif %}{% endfor %} value="outdoor">Outdoor area</label>
                 </div>
-
             </div>
+            <div class="help-block with-errors">Please select at least 1 spot type.</div>
         </fieldset>
 
         <div class="checkbox ">
@@ -51,8 +50,9 @@
         </div>
 
         <div class="form-group">
-            <label for="capacity" class="">Capacity</label>
-            <input class="form-control" type="number" name="capacity" id="capacity" value="{% if spot.capacity %}{{spot.capacity}}{% endif %}">
+            <label for="capacity" class="control-label">Capacity</label>
+            <input class="form-control" type="number" min="0" name="capacity" id="capacity" value="{% if spot.capacity %}{{spot.capacity}}{% endif %}" data-error="number can't be negative">
+            <div class="help-block with-errors"></div>
         </div>
 
 
@@ -157,5 +157,3 @@
     <div class="clearfix"></div>
 
 </div>
-
-<hr/>

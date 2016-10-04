@@ -7,38 +7,45 @@
 
 <div class="mgr-content-header clearfix">
 
-    <h2 class="pull-left">Items</h2>
+    <h2 class="pull-left">Items: STF Funded</h2>
 
     <div class="pull-right">
-    Total: <span class="dummy">{{ count }}xxxx</span>
+    Total: <span class="">{{ count }}</span>
     </div>
 
 </div>
 
-<ol>
-    <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">
-        <div>Image:<span class="dummy">item.default_image</span></div>
-        <div>Name: <span class="dummy">item.name</span></div>
-        <div>Type:<span class="dummy">item_type.name</span></div>
-        <div>Category:<span class="dummy">item_category.name</span></div>
-        <div>Brand:<span class="dummy">item.brand</span></div>
-        <div>Model:<span class="dummy">item.model</span></div>
-        <div>Quantity:<span class="dummy">item.quantity</span></div>
-        <div>Space item is in:<span class="dummy">space.name</span></div>
-        <div>Building item is in:<span class="dummy">building.name</span></div>
-        <div>STF Funded: <span class="dummy">Yes</span></div>
+<div style="margin-top: 15px;" class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Sub Category (type)</th>
+                <th>Location (space)</th>
+                <th>Space ID</th>
+                <th>Campus</th>
+                <th>Building</th>
+            </tr>
+        </thead>
+        <tbody>
 
-        <div class="mgr-dataset-actions">
-            <a class="btn btn-default btn-sm dummy" href="/detail/{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View</span></a>
-            <a class="btn btn-default btn-sm" href="/manager/items/5555/"><i class="fa fa-pencil"></i> <span>Edit</span></a>
-            <button type="button" class="btn btn-danger btn-sm scope"><i class="fa fa-trash"></i> <span>Delete</span></button>
-        </div>
+        {% for spot in spots %}
+            {% for item in spot.items %}
+            <tr>
+                <td><a href="/manager/items/{{item.item_id}}/">{{ item.item_id }}</a></td>
+                <td><strong>{{ item.name }}</strong></td>
+                <td>{{ item.subcategory }}</td>
+                <td>{{ spot.name }}</td>
+                <td>{{ spot.spot_id }}</td>
+                <td>{{ spot.campus }}</td>
+                <td>{{ spot.building_name }}</td>
+            </tr>
+            {% endfor %}
+        {% endfor %}
 
-    </li>
-    <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
-    <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
-    <li style="margin-bottom:2em; border:solid 1px #ddd; padding: 10px;">another item</li>
-</ol>
-
+        </tbody>
+    </table>
+</div>
 
 {% endblock %}
