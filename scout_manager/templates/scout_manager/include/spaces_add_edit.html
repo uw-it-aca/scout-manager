@@ -119,9 +119,7 @@
                 {% else %}
                 <div class="scout-published-actions">
                     <button type="button" id="toggle_is_hidden" class="btn btn-default btn-sm"><i class="fa fa-eye-slash"></i> <span>Unpublish</span></button>
-                    {% if spot.app_type == "tech" %}
-                    <a class="btn btn-default btn-sm" href="/{{spot.campus}}/{{spot.app_type}}#{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View in Scout</span></a>
-                    {% else %}
+                    {% if not spot.app_type == "tech" %}
                     <a class="btn btn-default btn-sm" href="/{{spot.campus}}/{{spot.app_type}}/{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View in Scout</span></a>
                     {% endif %}
                     <div class="help-block">Note: Unpublishing a spot will remove it from all client apps and set it to Draft.</div>
@@ -145,6 +143,7 @@
         </div>
         <p class="help-block">Note: Use the <a href="https://groups.uw.edu/" target="_blank">UW Groups</a> service to create or manage your groups.</p>
 
+
         {% if spot.name %}
         <h3 class="">Contact Info</h3>
 
@@ -163,20 +162,9 @@
             <label for="phone" class="control-label">Phone:</label>
             <input class="form-control" id="phone" name="extended_info:s_phone" type="tel" pattern="^\d{10}$" value="{% if spot.phone %}{{ spot.phone }}{% endif %}" data-error="please provide 10 digit phone number no dashses">
             <div class="help-block with-errors"></div>
-        </div>
+        </div
 
         <p class="help-block">Note: Admin information is not visible in some client applications.</p>
-
-        <h3 class="">DELETE</h3>
-        <div class="form-group well">
-            <div>
-                <label>Delete this space?</label>
-            </div>
-            <div class="mgr-dataset-actions">
-                <button id="spot_delete" type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
-                <div class="help-block">Note: This action cannot be undone!</div>
-            </div>
-        </div>
         {% endif %}
 
     </div>
@@ -217,6 +205,19 @@
 
     <!-- include the hour and access form -->
     {% include "scout_manager/include/form_hours.html" %}
+
+    <hr/>
+
+    <h3 class="">DELETE</h3>
+    <div class="form-group well">
+        <div>
+            <label>Delete this space?</label>
+        </div>
+        <div class="mgr-dataset-actions">
+            <button id="spot_delete" type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
+            <div class="help-block">Note: This action cannot be undone!</div>
+        </div>
+    </div>
 
 {% endif %}
 
