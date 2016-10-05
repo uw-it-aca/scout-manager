@@ -40,40 +40,33 @@
             <div class="help-block with-errors">Please select at least 1 spot type.</div>
         </fieldset>
 
-        <div class="checkbox ">
-            <label><input type="checkbox" name="computers" {% if spot.computers %} checked {% endif %} value="computers">Has Computers</label>
-        </div>
-
-        <div class="form-group">
-            <label for="computer-count" class=""># of computers</label>
-            <input class="form-control" type="number" min="1" name="num_computers" id="computer-count" value="{% if spot.num_computers %}{{spot.num_computers}}{% endif %}" data-error="number can't be negative or decimal">
-            <div class="help-block with-errors"></div>
-        </div>
-
-        <div class="form-group">
-            <label for="capacity" class="control-label">Capacity</label>
-            <input class="form-control" type="number" min="1" name="capacity" id="capacity" value="{% if spot.capacity %}{{spot.capacity}}{% endif %}" data-error="number can't be negative or decimal">
-            <div class="help-block with-errors"></div>
-        </div>
-
-
-        <div class="checkbox ">
-            <label><input type="checkbox" name="lighting" {% if spot.natural_light %} checked {% endif %} value="natural">Has Natural Light</label>
-        </div>
+        <fieldset>
+            <legend>Computers</legend>
+            <div class="well">
+                <div class="checkbox ">
+                    <label><input type="checkbox" name="computers" {% if spot.computers %} checked {% endif %} value="computers">Has Computers</label>
+                </div>
+                <div class="form-group">
+                    <label for="computer-count" class=""># of computers</label>
+                    <input class="form-control" type="number" min="1" name="num_computers" id="computer-count" value="{% if spot.num_computers %}{{spot.num_computers}}{% endif %}" data-error="number can't be negative or decimal">
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+        </fieldset>
 
         <fieldset>
-            <legend>Labstats</legend>
-
-            <div class="checkbox ">
-                <label><input type="checkbox" name="labstats" {% if spot.labstats %} checked {% endif %} value="labstats">Has Labstats</label>
+            <legend>Labstats API</legend>
+            <div class="well">
+                <div class="checkbox ">
+                    <label><input type="checkbox" name="labstats" {% if spot.labstats %} checked {% endif %} value="labstats">Has Labstats</label>
+                </div>
+                <div class="form-group ">
+                    <label for="labstats-id">Labstats ID:</label>
+                    <input class="form-control" id="labstats-id" type="text" name="labstats_id" value="{% if spot.labstats_id %}{{spot.labstats_id}}{% endif %}">
+                </div>
             </div>
-
-            <div class="form-group ">
-                <label for="labstats-id">Labstats ID:</label>
-                <input class="form-control" id="labstats-id" type="text" name="labstats_id" value="{% if spot.labstats_id %}{{spot.labstats_id}}{% endif %}">
-            </div>
-
         </fieldset>
+
 
         <fieldset>
             <legend>Reservations</legend>
@@ -90,35 +83,43 @@
 
         </fieldset>
 
-
     </div>
 
-    <fieldset class="col-md-4">
-        <legend>Has Resources:</legend>
-        <div class="well">
-            <div class="checkbox">
-                <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Computers" in resource %} checked {% endif %}{% endfor %} value="computer">Computer</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Display" in resource %} checked {% endif %}{% endfor %} value="display">Large Display (for laptop)</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Outlets" in resource %} checked {% endif %}{% endfor %} value="outlets">Outlets</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Printing" in resource %} checked {% endif %}{% endfor %} value="printing">Printing</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Projector" in resource %} checked {% endif %}{% endfor %} value="projector">Projector</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Scanning" in resource %} checked {% endif %}{% endfor %} value="scanning">Scanning</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Whiteboards" in resource %} checked {% endif %}{% endfor %} value="whiteboard">Whiteboard</label>
-            </div>
+    <div class="col-md-4">
+
+        <div class="form-group">
+            <label for="capacity" class="control-label">Space Capacity</label>
+            <input class="form-control" type="number" min="1" name="capacity" id="capacity" value="{% if spot.capacity %}{{spot.capacity}}{% endif %}" data-error="number can't be negative or decimal">
+            <div class="help-block with-errors"></div>
         </div>
-    </fieldset>
+
+        <fieldset>
+            <legend>Has Resources:</legend>
+            <div class="well">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Computers" in resource %} checked {% endif %}{% endfor %} value="computer">Computer</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Display" in resource %} checked {% endif %}{% endfor %} value="display">Large Display (for laptop)</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Outlets" in resource %} checked {% endif %}{% endfor %} value="outlets">Outlets</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Printing" in resource %} checked {% endif %}{% endfor %} value="printing">Printing</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Projector" in resource %} checked {% endif %}{% endfor %} value="projector">Projector</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Scanning" in resource %} checked {% endif %}{% endfor %} value="scanning">Scanning</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Whiteboards" in resource %} checked {% endif %}{% endfor %} value="whiteboard">Whiteboard</label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
 
     <div class="col-md-4">
         <fieldset>
@@ -153,6 +154,16 @@
                 </div>
             </div>
         </fieldset>
+
+        <fieldset>
+            <legend>Lighting</legend>
+            <div class="well">
+                <div class="checkbox ">
+                    <label><input type="checkbox" name="lighting" {% if spot.natural_light %} checked {% endif %} value="natural">Has Natural Light</label>
+                </div>
+            </div>
+        </fieldset>
+
     </div>
 
     <div class="clearfix"></div>
