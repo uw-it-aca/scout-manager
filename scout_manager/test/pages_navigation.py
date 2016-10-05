@@ -7,19 +7,21 @@ from scout_manager.test import ScoutTest
 baseUrl = '/manager/spaces/'
 
 urls = {
-    'home': baseUrl,
+    # 'home': baseUrl,
     'study': baseUrl + '?app_type=study',
     'food': baseUrl + '?app_type=food',
+    'tech': baseUrl + '?app_type=tech',
     'add': baseUrl + 'add/',
     'edit': baseUrl + '1/'
 }
 
 _testCases = {
-    'home': ('study', 'food', 'add'),
-    'food': ('edit', 'study', 'add'),
-    'add': ('home', 'food', 'study'),
-    'study': ('home', 'food', 'add'),
-    'edit': ('home', 'food', 'study'),
+    # 'home': ('study', 'food', 'add'),
+    'food': ('tech', 'study', 'add', 'edit'),
+    'tech': ('study', 'food', 'add'),
+    'study': ('food', 'tech', 'add'),
+    'add': ('food', 'study', 'tech'),
+    'edit': ('food', 'study', 'tech'),
 }
 
 def _makeTestFunc(start, end):

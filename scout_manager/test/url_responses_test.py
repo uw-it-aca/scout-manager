@@ -12,8 +12,8 @@ redir = 301
 notfound = 404
 
 _testCases = (
-    ('Home', '/', OK, 'SCOUT-122'),
-    ('Home redir', '', redir, 'SCOUT-129'),
+    # ('Home', '/', OK, 'SCOUT-122'),
+    # ('Home redir', '', redir, 'SCOUT-129'),
     ('Items', '/items/', OK, 'SCOUT-122'),
     ('Items redir', '/items', redir, 'SCOUT-129'),
     ('Items add', '/items/add/', OK, 'SCOUT-122'),
