@@ -4,14 +4,14 @@ Cases to test navigation from page to page
 from bs4 import BeautifulSoup
 from scout_manager.test import ScoutTest
 
-baseUrl = '/manager/'
+baseUrl = '/manager/spaces/'
 
 urls = {
     'home': baseUrl,
-    'study': baseUrl + 'spaces/?app_type=study',
-    'food': baseUrl + 'spaces/?app_type=food',
-    'add': baseUrl + 'spaces/add/',
-    'edit': baseUrl + 'spaces/1/'
+    'study': baseUrl + '?app_type=study',
+    'food': baseUrl + '?app_type=food',
+    'add': baseUrl + 'add/',
+    'edit': baseUrl + '1/'
 }
 
 _testCases = {
@@ -77,4 +77,3 @@ class NavigationTests(ScoutTest):
 
     def checkLinkExists(self, soup, reference):
         return bool(soup.find('a', href=reference))
-

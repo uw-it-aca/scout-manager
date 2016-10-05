@@ -46,12 +46,13 @@
 
         <div class="form-group">
             <label for="computer-count" class=""># of computers</label>
-            <input class="form-control" type="number" name="num_computers" id="computer-count" value="{% if spot.num_computers %}{{spot.num_computers}}{% endif %}">
+            <input class="form-control" type="number" min="1" name="num_computers" id="computer-count" value="{% if spot.num_computers %}{{spot.num_computers}}{% endif %}" data-error="number can't be negative or decimal">
+            <div class="help-block with-errors"></div>
         </div>
 
         <div class="form-group">
             <label for="capacity" class="control-label">Capacity</label>
-            <input class="form-control" type="number" min="0" name="capacity" id="capacity" value="{% if spot.capacity %}{{spot.capacity}}{% endif %}" data-error="number can't be negative">
+            <input class="form-control" type="number" min="1" name="capacity" id="capacity" value="{% if spot.capacity %}{{spot.capacity}}{% endif %}" data-error="number can't be negative or decimal">
             <div class="help-block with-errors"></div>
         </div>
 
