@@ -12,6 +12,8 @@
             <i class="fa fa-cutlery fa-stack-1x fa-inverse"></i>
             {% elif spot.app_type == "study" %}
             <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+            {% elif spot.app_type == "tech" %}
+            <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
             {% else %}
             <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
             {% endif %}
@@ -60,47 +62,17 @@
         </div>
 
         <fieldset style="margin-top:1em;" class="radio-group required" id="app_type_radio">
-            <legend class="control-label">App Type:</legend>
+            <legend class="control-label">App Type: {{ spot.app_type }}</legend>
 
-            {% if spot.app_type == "food" %}
-            <div class="well">
-                <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" value="food" checked>Food</label>
-                </div>
-                <div class="radio disabled">
-                    <label><input type="radio" disabled>Study</label>
-                </div>
-                <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" value="tech" disabled>Technology</label>
-                </div>
-            </div>
-            <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
-            {% elif spot.app_type == "study" %}
-            <div class="well">
-                <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" value="food" disabled>Food</label>
-                </div>
-                <div class="radio disabled">
-                    <label><input type="radio" checked>Study</label>
-                </div>
-                <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" value="tech" disabled>Tech</label>
-                </div>
-            </div>
-            <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
-            {% elif spot.app_type == "tech" %}
-            <div class="well">
-                <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" value="food" disabled>Food</label>
-                </div>
-                <div class="radio disabled">
-                    <label><input type="radio" disabled>Study</label>
-                </div>
-                <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" value="tech" checked>Technology</label>
-                </div>
-            </div>
-            <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
+            {% if spot.name %}
+                {% if spot.app_type == "food" %}
+                <input type="hidden" name="extended_info:app_type" value="food" checked />
+                {% elif spot.app_type == "study" %}
+                <input type="hidden" checked />
+                {% elif spot.app_type == "tech" %}
+                <input type="hidden" name="extended_info:app_type" value="tech" checked />
+                {% endif %}
+                <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
             {% else %}
             <div id="add_new_extended_info" class="well mgr-set-app-type">
                 <div class="radio">
@@ -265,8 +237,8 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Location</th>
                     <th>Name</th>
+                    <th>Category</th>
                     <th>Sub Category (type)</th>
                 </tr>
             </thead>
@@ -274,8 +246,8 @@
                 {% for item in spot.items %}
                 <tr>
                     <td><a href="/manager/items/{{ item.item_id }}/">{{ item.item_id }}</a></td>
-                    <td>{{ spot.name }}</td>
                     <td>{{ item.name }}</td>
+                    <td>{{ item.category }}</td>
                     <td>{{ item.subcategory }}</td>
                 </tr>
                 {% endfor %}
