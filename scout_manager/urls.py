@@ -1,17 +1,16 @@
 from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView
+from django.views.generic.base import RedirectView
 from scout_manager.views.api import Spot, SpotCreate
 # from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    # Examples:
 
     # /manager/
-    url(r'^$', 'scout_manager.views.pages.home',
-        name='home'),
+    url(r'^$', RedirectView.as_view(url='/manager/spaces/')),
 
     # /items/
     url(r'^items/$', 'scout_manager.views.pages.items',
