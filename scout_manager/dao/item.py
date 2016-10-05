@@ -1,3 +1,36 @@
+from spotseeker_restclient.spotseeker import Spotseeker
+from spotseeker_restclient.exceptions import DataFailureException
+from scout_manager.dao.space import process_extended_info
+
+
+def get_item_by_id(item_id):
+    from scout.dao.item import add_item_info
+
+    spot_client = Spotseeker()
+    spot = None
+    try:
+        spots = spot_client.search_spots([
+            ('item:id', item_id),
+            ('extended_info:app_type', 'tech'),
+        ])
+        if spots:
+            spot = process_extended_info(spots[0])
+            spot = add_item_info(spot)
+            spot = _filter_spot_items(item_id, spot)
+    except DataFailureException:
+        pass
+        # TODO: consider logging on failure
+
+    return spot
+
+
+def _filter_spot_items(item_id, spot):
+    for item in spot.items:
+        if item.item_id == item_id:
+            spot.item = item
+    return spot
+
+
 """
 Core data
 """

@@ -1,13 +1,13 @@
 from django.conf import settings
 from django.template import RequestContext
 from django.shortcuts import render_to_response
+from scout_manager.dao.item import get_item_by_id as manager_get_item_by_id
 from scout_manager.dao.space import get_spot_by_id as manager_get_spot_by_id
 from scout_manager.dao.space import get_spot_hours_by_day, get_spot_list
 from scout_manager.dao.buildings import get_building_list, \
     get_building_list_by_campus
 from scout.dao.image import get_spot_image, get_item_image
-from scout.dao.item import get_item_by_id, get_filtered_items, \
-    get_item_count, add_item_info
+from scout.dao.item import get_filtered_items, get_item_count
 from django.http import Http404, HttpResponse
 import base64
 
@@ -46,7 +46,7 @@ def items_add(request):
 def items_edit(request, item_id):
     buildings = get_building_list()
     spots = get_spot_list()
-    spot = get_item_by_id(int(item_id))
+    spot = manager_get_item_by_id(int(item_id))
     context = {"spot": spot,
                "spots": spots,
                "buildings": buildings,
