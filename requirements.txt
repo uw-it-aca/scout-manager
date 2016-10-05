@@ -1,4 +1,4 @@
--e git+https://github.com/uw-it-aca/scout.git@develop#egg=scout
+-e git+https://github.com/uw-it-aca/scout.git@story/admin-01#egg=scout
 -e git+https://github.com/uw-it-aca/spotseeker_client.git#egg=spotseeker-restclient
 -e git+https://github.com/uw-it-aca/uw-restclients.git#egg=RestClients
 -e git+https://github.com/uw-it-aca/django-userservice.git#egg=Django-UserService

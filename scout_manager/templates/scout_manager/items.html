@@ -23,9 +23,9 @@
                 <th>Name</th>
                 <th>Sub Category (type)</th>
                 <th>Location (space)</th>
-                <th>Space ID</th>
                 <th>Campus</th>
                 <th>Building</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
@@ -37,9 +37,9 @@
                 <td><strong>{{ item.name }}</strong></td>
                 <td>{{ item.subcategory }}</td>
                 <td>{{ spot.name }}</td>
-                <td>{{ spot.spot_id }}</td>
                 <td>{{ spot.campus }}</td>
                 <td>{{ spot.building_name }}</td>
+                <td>{{ item.is_active }}</td>
             </tr>
             {% endfor %}
         {% endfor %}

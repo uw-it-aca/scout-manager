@@ -12,6 +12,8 @@
             <i class="fa fa-cutlery fa-stack-1x fa-inverse"></i>
             {% elif spot.app_type == "study" %}
             <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+            {% elif spot.app_type == "tech" %}
+            <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
             {% else %}
             <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
             {% endif %}
@@ -60,47 +62,17 @@
         </div>
 
         <fieldset style="margin-top:1em;" class="radio-group required" id="app_type_radio">
-            <legend class="control-label">App Type:</legend>
+            <legend class="control-label">App Type: {{ spot.app_type }}</legend>
 
-            {% if spot.app_type == "food" %}
-            <div class="well">
-                <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" value="food" checked>Food</label>
-                </div>
-                <div class="radio disabled">
-                    <label><input type="radio" disabled>Study</label>
-                </div>
-                <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" value="tech" disabled>Technology</label>
-                </div>
-            </div>
-            <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
-            {% elif spot.app_type == "study" %}
-            <div class="well">
-                <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" value="food" disabled>Food</label>
-                </div>
-                <div class="radio disabled">
-                    <label><input type="radio" checked>Study</label>
-                </div>
-                <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" value="tech" disabled>Tech</label>
-                </div>
-            </div>
-            <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
-            {% elif spot.app_type == "tech" %}
-            <div class="well">
-                <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" value="food" disabled>Food</label>
-                </div>
-                <div class="radio disabled">
-                    <label><input type="radio" disabled>Study</label>
-                </div>
-                <div class="radio disabled">
-                    <label><input type="radio" name="extended_info:app_type" value="tech" checked>Technology</label>
-                </div>
-            </div>
-            <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
+            {% if spot.name %}
+                {% if spot.app_type == "food" %}
+                <input type="hidden" name="extended_info:app_type" value="food" checked />
+                {% elif spot.app_type == "study" %}
+                <input type="hidden" checked />
+                {% elif spot.app_type == "tech" %}
+                <input type="hidden" name="extended_info:app_type" value="tech" checked />
+                {% endif %}
+                <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
             {% else %}
             <div id="add_new_extended_info" class="well mgr-set-app-type">
                 <div class="radio">
@@ -118,11 +90,13 @@
 
         </fieldset>
 
+        {% if spot.name %}
         <div class="form-group">
             <label for="space-description">Space Description: <span class="label label-info">F</span></label>
             <textarea name="extended_info:description" rows="4" class="form-control" id="description" type="text">{% if spot.description %}{{spot.description}}{% endif %}</textarea>
             <p class="help-block">Note: description of the space</p>
         </div>
+        {% endif %}
 
     </div>
     <div class="col-md-4">
@@ -145,9 +119,7 @@
                 {% else %}
                 <div class="scout-published-actions">
                     <button type="button" id="toggle_is_hidden" class="btn btn-default btn-sm"><i class="fa fa-eye-slash"></i> <span>Unpublish</span></button>
-                    {% if spot.app_type == "tech" %}
-                    <a class="btn btn-default btn-sm" href="/{{spot.campus}}/{{spot.app_type}}#{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View in Scout</span></a>
-                    {% else %}
+                    {% if not spot.app_type == "tech" %}
                     <a class="btn btn-default btn-sm" href="/{{spot.campus}}/{{spot.app_type}}/{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View in Scout</span></a>
                     {% endif %}
                     <div class="help-block">Note: Unpublishing a spot will remove it from all client apps and set it to Draft.</div>
@@ -171,6 +143,7 @@
         </div>
         <p class="help-block">Note: Use the <a href="https://groups.uw.edu/" target="_blank">UW Groups</a> service to create or manage your groups.</p>
 
+
         {% if spot.name %}
         <h3 class="">Contact Info</h3>
 
@@ -186,23 +159,11 @@
         </div>
 
         <div class="form-group">
-            <label for="phone" class="control-label">Phone:</label>
+            <label for="phone" class="control-label">Phone: <span class="label label-info">F</span></label>
             <input class="form-control" id="phone" name="extended_info:s_phone" type="tel" pattern="^\d{10}$" value="{% if spot.phone %}{{ spot.phone }}{% endif %}" data-error="please provide 10 digit phone number no dashses">
             <div class="help-block with-errors"></div>
         </div>
 
-        <p class="help-block">Note: Admin information is not visible in some client applications.</p>
-
-        <h3 class="">DELETE</h3>
-        <div class="form-group well">
-            <div>
-                <label>Delete this space?</label>
-            </div>
-            <div class="mgr-dataset-actions">
-                <button type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
-                <div class="help-block">Note: This action cannot be undone!</div>
-            </div>
-        </div>
         {% endif %}
 
     </div>
@@ -214,13 +175,6 @@
     {% include "scout_manager/include/extend_food.html" %}
 {% elif spot.app_type == "study" %}
     {% include "scout_manager/include/extend_study.html" %}
-{% else %}
-    <div id="extended_food_template" style="display:none;">
-    {% include "scout_manager/include/extend_food.html" %}
-    </div>
-    <div id="extended_study_template" style="display:none;">
-    {% include "scout_manager/include/extend_study.html" %}
-    </div>
 {% endif %}
 
 {% if spot.name %}
@@ -251,12 +205,25 @@
     <!-- include the hour and access form -->
     {% include "scout_manager/include/form_hours.html" %}
 
+    <hr/>
+
+    <h3 class="">DELETE</h3>
+    <div class="form-group well">
+        <div>
+            <label>Delete this space?</label>
+        </div>
+        <div class="mgr-dataset-actions">
+            <button id="spot_delete" type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
+            <div class="help-block">Note: This action cannot be undone!</div>
+        </div>
+    </div>
+
 {% endif %}
 
 <!-- FOR NOW: items for tech spaces -->
 {% if spot.name and spot.app_type == "tech" %}
 
-    <hr style="border-top:solid 10px #ecf0f1;"/>
+    <hr/>
 
     <h3>Item(s)</h3>
 
@@ -270,17 +237,15 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Location</th>
                     <th>Name</th>
-                    <th>Category (Type)</th>
-                    <th>Sub Category</th>
+                    <th>Category</th>
+                    <th>Sub Category (type)</th>
                 </tr>
             </thead>
             <tbody>
                 {% for item in spot.items %}
                 <tr>
-                    <td>{{ item.item_id }}</a></td>
-                    <td>{{ spot.name }}</td>
+                    <td><a href="/manager/items/{{ item.item_id }}/">{{ item.item_id }}</a></td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.category }}</td>
                     <td>{{ item.subcategory }}</td>

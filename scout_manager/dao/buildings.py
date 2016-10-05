@@ -44,7 +44,9 @@ BUILDING_LIST = {
     'Fishery Sciences (FSH)': {
         'campus': 'seattle'
     },
-
+    'Fluke Hall (FLK)': {
+        'campus': 'seattle'
+    },
     'Gould Hall (GLD)': {
         'campus': 'seattle'
     },
