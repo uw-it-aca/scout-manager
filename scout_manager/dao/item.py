@@ -1,6 +1,18 @@
+from spotseeker_restclient.dao import SPOTSEEKER_DAO
 from spotseeker_restclient.spotseeker import Spotseeker
 from spotseeker_restclient.exceptions import DataFailureException
 from scout_manager.dao.space import process_extended_info
+import json
+
+
+def delete_item(item_id, spot_id):
+    spot_client = Spotseeker()
+    json_data = _get_spot_json(spot_id)
+    etag = json_data['etag']
+    for item in json_data['items']:
+        if item['id'] == int(item_id):
+            json_data['items'].remove(item)
+    spot_client.put_spot(spot_id, json.dumps(json_data), etag)
 
 
 def get_item_by_id(item_id):
@@ -29,6 +41,16 @@ def _filter_spot_items(item_id, spot):
         if item.item_id == item_id:
             spot.item = item
     return spot
+
+
+def _get_spot_json(spot_id):
+    url = "/api/v1/spot/%s" % spot_id
+    dao = SPOTSEEKER_DAO()
+    resp, content = dao.getURL(url, {})
+
+    if resp.status != 200:
+        raise DataFailureException(url, resp.status, content)
+    return json.loads(content)
 
 
 """

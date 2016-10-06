@@ -400,10 +400,9 @@ var Forms = {
             console.log("delete button clicked");
             var item_id = Forms._get_item_id();
             var spot_id = Forms._get_spot_id();
-            var etag = Forms._get_spot_etag();
 
             // delete the item, then redirect back to spot
-            Item.delete_item(item_id, etag, function(){document.location.replace("/manager/spaces/" + spot_id);});
+            Item.delete_item(item_id, spot_id, function(){document.location.replace("/manager/spaces/" + spot_id);});
         });
     },
 
