@@ -38,7 +38,7 @@
                 <td><strong>{{ spot.name }}</strong></td>
                 <td>{% if spot.campus %}{{ spot.campus }}{% else %}<small class="text-danger">missing</small>{% endif %}</td>
                 <td>{% if spot.building_name %}{{ spot.building_name }}{% else %}<small class="text-danger">missing</small>{% endif %}</td>
-                <td>{% if not app_type = 'tech' %}{% for type in spot.spot_types %}{{ type.name }}, {% empty %}<small class="text-danger">missing</small>{% endfor %}{% else %}---{% endif %}</td>
+                <td>{% for type in spot.spot_types %}{{ type.name }}, {% empty %}<small class="text-danger">missing</small>{% endfor %}</td>
                 <td>{% if spot.is_hidden %}DRAFT{% else %}PUBLISHED{% endif %}</td>
             </tr>
             {% empty %}

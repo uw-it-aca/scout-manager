@@ -69,18 +69,24 @@
 
 
         <fieldset>
-            <legend>Reservations</legend>
+            <legend>Reservability</legend>
+            <p class="help-block scope">SCOUT-488: Reservability actually has three states</p>
 
-            <div class="checkbox ">
-                <label for="has-reservations-study"><input id="has-reservations-study" type="checkbox" name="reservable" {% if spot.reservable %}checked{% endif%}>Can Reserve Space</label>
+            <div class="well">
+
+                <div class="form-group ">
+                    <div class="checkbox ">
+                        <label for="has-reservations-study"><input id="has-reservations-study" type="checkbox" name="reservable" {% if spot.reservable %}checked{% endif%}>Reservable</label>
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <label for="reservation-notes-study">Reservation Notes:</label>
+                    <textarea rows="4" class="form-control" id="reservation-notes-study" name="extended_info:reservation_notes">{% if spot.reservation_notes %}{{spot.reservation_notes}}{% endif %}</textarea>
+                    <p class="help-block">Note: Reservation notes will only be displayed to clients IF the "Reservable" checkbox is checked.</p>
+                </div>
+
             </div>
-
-            <div class="form-group ">
-                <label for="reservation-notes-study">Reservation Notes:</label>
-                <textarea rows="4" class="form-control" id="reservation-notes-study" name="extended_info:reservation_notes">{% if spot.reservation_notes %}{{spot.reservation_notes}}{% endif %}</textarea>
-                <p class="help-block">Note: Reservation notes will only be displayed to clients IF the "Can Reserve Space" checkbox is checked.</p>
-            </div>
-
         </fieldset>
 
     </div>
