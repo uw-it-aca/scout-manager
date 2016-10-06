@@ -76,3 +76,47 @@ class SpotCreate(RESTDispatch):
         #                         content_type='application/json')
         return HttpResponse(json.dumps({'status': 'it works'}),
                             content_type='application/json')
+
+
+class Item(RESTDispatch):
+    """
+    Handles changes to items
+    """
+
+    def PUT(self, request, item_id):
+        form_data = process_form_data(request)
+        try:
+            pass
+            # update_item(form_data, item_id)
+        except Exception as ex:
+            return HttpResponse(json.dumps({'error': str(ex)}), status=400,
+                                content_type='application/json')
+        return HttpResponse(json.dumps({'status': 'it works'}),
+                            content_type='application/json')
+
+    def DELETE(self, request, item_id):
+        etag = request.body
+        try:
+            pass
+            # delete_item(item_id, etag)
+        except Exception as ex:
+            return HttpResponse(json.dumps({'error': str(ex)}), status=400,
+                                content_type='application/json')
+        return HttpResponse(json.dumps({'status': 'it works'}),
+                            content_type='application/json')
+
+
+class ItemCreate(RESTDispatch):
+    """
+    Handles Item creation, using PUT to deal with django issues
+    """
+
+    def PUT(self, request):
+        form_data = process_form_data(request)
+        # try:
+        # create_item(form_data)
+        # except Exception as ex:
+        #     return HttpResponse(json.dumps({'error': str(ex)}), status=400,
+        #                         content_type='application/json')
+        return HttpResponse(json.dumps({'status': 'it works'}),
+                            content_type='application/json')

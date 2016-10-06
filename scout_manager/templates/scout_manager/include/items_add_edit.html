@@ -1,6 +1,8 @@
 {% load staticfiles %}
 {% csrf_token %}
 
+<div class="alert hidden" role="alert" id="pub_error"></div>
+
 <div class="clearfix sticky" style="margin-bottom:1em;">
     <h2 class="pull-left">{% if spot.item.name %}{{ spot.item.name }}{% else %}Add New Item{% endif %}</h2>
     <div class="pull-right">
@@ -9,18 +11,18 @@
             {% if spot.item.is_active %}
             <div class="scout-published">
                 <span class="text-muted"></span>&nbsp;&nbsp;&nbsp;
-                <input id="submit_spot" type="button" class="btn btn-primary" value="Publish Changes" style="display:inline-block;"></input>
+                <input id="submit_item" type="button" class="btn btn-primary" value="Publish Changes" style="display:inline-block;"></input>
             </div>
             {% else %}
             <div class="scout-draft">
                 <span class="text-muted"></span>&nbsp;&nbsp;&nbsp;
-                <input id="submit_spot" type="button" class="btn btn-primary" value="Save Draft" style="display:inline-block;"></input>
+                <input id="submit_item" type="button" class="btn btn-primary" value="Save Draft" style="display:inline-block;"></input>
             </div>
             {% endif %}
         {% else %}
         <div class="scout-create">
             <span class="text-danger">Note: All required fields must be filled before you can create.</span>&nbsp;&nbsp;&nbsp;
-            <input id="submit_spot" type="button" class="btn btn-primary" value="Create Item" style="display:inline-block;"></input>
+            <input id="submit_item" type="button" class="btn btn-primary" value="Create Item" style="display:inline-block;"></input>
         </div>
         {% endif %}
 
@@ -39,6 +41,10 @@
             <label for="item_name">Name:</label>
             <input id="item_name" name="name" value="{% if spot.item.name %}{{ spot.item.name }}{% endif %}" class="form-control" type="text" required data-error="Please provide a name for this item." />
             <div class="help-block with-errors"></div>
+
+            <input type="hidden" name="id" value="{{ spot.item.item_id }}" />
+            <input type="hidden" name="spot_id" value="{{ spot.spot_id }}" />
+            <input type="hidden" name="etag" value="{{ spot.etag }}" />
         </div>
 
         <fieldset>
@@ -197,7 +203,7 @@
                 <label>Delete this Item?</label>
             </div>
             <div class="mgr-dataset-actions">
-                <button type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                <button id="item_delete" type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
                 <div class="help-block">Note: This action cannot be undone!</div>
             </div>
         </div>
