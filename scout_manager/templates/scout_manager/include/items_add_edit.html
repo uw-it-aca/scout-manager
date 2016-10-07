@@ -1,3 +1,5 @@
+{% load staticfiles %}
+{% csrf_token %}
 
 <div class="clearfix sticky" style="margin-bottom:1em;">
     <h2 class="pull-left">{% if spot.item.name %}{{ spot.item.name }}{% else %}Add New Item{% endif %}</h2>
@@ -34,8 +36,9 @@
         <h3>General Information</h3>
 
         <div class="form-group">
-            <label for="">Name:</label>
-            <input id="" name="name" value="{% if spot.item.name %}{{ spot.item.name }}{% endif %}" class="form-control" type="text">
+            <label for="item_name">Name:</label>
+            <input id="item_name" name="name" value="{% if spot.item.name %}{{ spot.item.name }}{% endif %}" class="form-control" type="text" required data-error="Please provide a name for this item." />
+            <div class="help-block with-errors"></div>
         </div>
 
         <fieldset>
@@ -47,6 +50,7 @@
             </div>
         </fieldset>
 
+        {% if spot.item.name %}
         <div class="form-group">
             <label for="">Category: {{ spot.item.category }}</label>
             <div class="well" id="item_categories">
@@ -121,7 +125,7 @@
             <div class="help-block with-errors">Please select at least 1 item subcategory.</div>
         </div>
 
-
+        {% endif %}
 
     </div>
 
@@ -163,9 +167,12 @@
 
         <div class="form-group">
             <label for="">Owner/Admin Group:</label>
-            <input class="form-control" id="" name="extended_info:i_owner" type="text" value="{% if item.owner %}{{ item.owner }}{% endif %}">
+            <input class="form-control" id="" name="extended_info:i_owner" type="text" value="{% if item.owner %}{{ item.owner }}{% endif %}" required data-error="An owner group must be provided.">
+            <div class="help-block with-errors"></div>
         </div>
         <p class="help-block">Note: Use the <a href="https://groups.uw.edu/" target="_blank">UW Groups</a> service to create or manage your groups.</p>
+
+
 
         {% if spot.item.name %}
         <h3 class="">Contact Info</h3>
@@ -360,12 +367,13 @@
     <div class="col-md-8">
         <div class="form-group">
             <label for="" class="control-label">Space:</label> {{spot.name}}
-            <select id="spot_select" class="form-control">
+            <select id="spot_select" class="form-control" required  data-error="Please select a space for this item.">
                 <option disabled selected value>select a space...</option>
                 {% for s in spots %}
                 <option value="{{s.name}}" data-campus="{{s.campus}}" data-building="{{s.building_name}}" {% if s.name == spot.name %}selected{% endif %}>{{s.name}}</option>
                 {% endfor %}
             </select>
+            <div class="help-block with-errors"></div>
         </div>
     </div>
 </div>

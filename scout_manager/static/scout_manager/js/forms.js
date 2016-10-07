@@ -255,8 +255,8 @@ var Forms = {
         var spaces_add_path = new RegExp("\/manager\/spaces\/add\/?$");
 
         // validate form
-        $('#add_edit_form').validator({'focus': false});
-        $('#add_edit_form').validator('validate');
+        $('#submit_form').validator({'focus': false});
+        $('#submit_form').validator('validate');
 
         Forms.handle_app_type_clicks();
         Forms.handle_checkbox_group_clicks();
@@ -283,7 +283,7 @@ var Forms = {
         }
 
         // form validation callback after any validation occurs
-        $("#add_edit_form").on('validated.bs.validator', function (e) {
+        $("#submit_form").on('validated.bs.validator', function (e) {
             Forms.validate_create();
             Forms.validate_publish();
         })
