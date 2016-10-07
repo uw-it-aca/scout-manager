@@ -180,16 +180,16 @@
         <legend class="control-label">Spot types</legend>
         <div class="well" id="tech_spot_types">
             <div class="checkbox">
-                <label><input type="checkbox" name="type" value="checkout">Equipment Checkout</label>
+                <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "checkout" in type.name %} checked {% endif %}{% endfor %}  value="checkout">Equipment Checkout</label>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" name="type" value="conference">Conference Room</label>
+                <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "conference" in type.name %} checked {% endif %}{% endfor %}  value="conference">Conference Room</label>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" name="type" value="maker_space">Maker Space</label>
+                <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "maker_space" in type.name %} checked {% endif %}{% endfor %} value="maker_space">Maker Space</label>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" name="type" value="studio">Production Studio</label>
+                <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "studio" in type.name %} checked {% endif %}{% endfor %}  value="studio">Production Studio</label>
             </div>
         </div>
         <div class="help-block with-errors">Please select at least 1 spot type.</div>
