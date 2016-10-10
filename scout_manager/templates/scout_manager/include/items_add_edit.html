@@ -7,20 +7,20 @@
 
         {% if spot.item.name %}
             {% if spot.item.is_active %}
-            <div class="scout-draft">
-                <span class="text-muted"></span>&nbsp;&nbsp;&nbsp;
-                <input id="submit_item" type="button" class="btn btn-primary" value="Publish Changes" style="display:inline-block;"></input>
-            </div>
-            {% else %}
             <div class="scout-published">
                 <span class="text-muted"></span>&nbsp;&nbsp;&nbsp;
-                <input id="submit_item" type="button" class="btn btn-primary" value="Save Draft" style="display:inline-block;"></input>
+                <input id="submit_spot" type="button" class="btn btn-primary" value="Publish Changes" style="display:inline-block;"></input>
+            </div>
+            {% else %}
+            <div class="scout-draft">
+                <span class="text-muted"></span>&nbsp;&nbsp;&nbsp;
+                <input id="submit_spot" type="button" class="btn btn-primary" value="Save Draft" style="display:inline-block;"></input>
             </div>
             {% endif %}
         {% else %}
         <div class="scout-create">
             <span class="text-danger">Note: All required fields must be filled before you can create.</span>&nbsp;&nbsp;&nbsp;
-            <input id="submit_item" type="button" class="btn btn-primary" value="Create Item" style="display:inline-block;"></input>
+            <input id="submit_spot" type="button" class="btn btn-primary" value="Create Item" style="display:inline-block;"></input>
         </div>
         {% endif %}
 
@@ -133,7 +133,7 @@
 
 
         {% if spot.item.name %}
-        <h3 class="">Publish</h3>
+        <h3 class="">Publish Item</h3>
         <div class="form-group well">
             <div>
                 <label>Status: <span style="font-weight:normal;">{% if spot.item.is_active %}PUBLISHED{% else %}DRAFT{% endif %}</span></label>
