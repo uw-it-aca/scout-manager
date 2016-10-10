@@ -177,7 +177,7 @@
         {% if spot.item.name %}
         <h3 class="">Contact Info</h3>
         <div class="form-group">
-            <label for="">Manager Name:</label>
+            <label for="">Item Manager Name:</label>
             <input class="form-control" id="" name="extended_info:i_manager" type="text" value="{% if item.manager %}{{ item.manager }}{% endif %}">
         </div>
 
@@ -217,22 +217,24 @@
     <div class="col-md-4">
 
         <div class="form-group">
-            <label for="">Description: <span class="label label-warning">CTE</span></label>
-            <textarea rows="4" class="form-control" id="" type="text" name="extended_info:i_description">{{ spot.item.description }}</textarea>
+            <label for="">Description:</label>
+            <textarea rows="4" class="form-control" id="" type="text" required name="extended_info:i_description">{{ spot.item.description }}</textarea>
+            <div class="help-block with-errors"></div>
         </div>
 
         <div class="form-group">
-            <label for="">Brand: <span class="label label-warning">CTE</span></label>
-            <input id="" class="form-control" type="text" value="{{spot.item.brand}}" name="extended_info:i_brand">
+            <label for="">Brand:</label>
+            <input id="" class="form-control" type="text" value="{{spot.item.brand}}" required name="extended_info:i_brand">
+            <div class="help-block with-errors"></div>
         </div>
 
         <div class="form-group">
-            <label for="">Model:  <span class="label label-warning">CTE</span></label>
+            <label for="">Model: </label>
             <input id="" class="form-control" type="text" value="{{ spot.item.model }}" name="extended_info:i_model">
         </div>
 
         <div class="form-group">
-            <label for="">Quantity: <span class="label label-warning">CTE</span></label>
+            <label for="">Quantity:</label>
             <input id="" class="form-control" type="number" value="{{ spot.item.quantity }}" name="extended_info:i_quantity">
         </div>
 
@@ -252,8 +254,8 @@
             <div class="well">
 
                 <div class="form-group">
-                    <label for="">Checkout Duration (days): <span class="label label-warning">CTE</span></label>
-                    <input class="form-control" id="" type="text" value="{{ spot.item.checkout_period }}" name="extended_info:i_checkout_period">
+                    <label for="">Checkout Duration (days):</label>
+                    <input class="form-control" id="" type="number" value="{{ spot.item.checkout_period }}" name="extended_info:i_checkout_period">
                 </div>
 
                 <div class="form-group">
