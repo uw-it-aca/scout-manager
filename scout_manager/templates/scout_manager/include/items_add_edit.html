@@ -243,7 +243,7 @@
 
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-8">
 
 
         <fieldset>
@@ -252,20 +252,13 @@
             <div class="well">
 
                 <div class="form-group">
-                    {{ spot.item.reservation_required }}
-                    <div class="checkbox">
-                        <label for="is_reservable"><input id="is_reservable" type="checkbox" name="extended_info:i_reservation_required" value="true">Reservation required?</label>
-                    </div>
+                    <label for="">Checkout Duration (days): <span class="label label-warning">CTE</span></label>
+                    <input class="form-control" id="" type="text" value="{{ spot.item.checkout_period }}" name="extended_info:i_checkout_period">
                 </div>
 
                 <div class="form-group">
                     <label for="">Reserve URL:</label>
                     <input class="form-control" id="" type="text" value="{{ spot.item.reserve_url }}" name="extended_info:i_reserve_url">
-                </div>
-
-                <div class="form-group">
-                    <label for="">Checkout Duration (days): <span class="label label-warning">CTE</span></label>
-                    <input class="form-control" id="" type="text" value="{{ spot.item.checkout_period }}" name="extended_info:i_checkout_period">
                 </div>
 
                 <div class="form-group">
@@ -278,53 +271,6 @@
 
     </div>
 
-    <div class="col-md-4">
-
-        <fieldset>
-            <legend>Usage Restrictions </legend>
-
-            <div class="well">
-
-                <div class="form-group">
-                    {{ spot.item.has_access_restriction }}
-                    <div class="checkbox">
-                        <label><input id="" type="checkbox" name="extended_info:i_has_access_restriction" value="true">Has usage restrictions?</label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Usage limited to:</label>
-                    <div class="well">
-                        {{ spot.item.access_limit_role }}
-                        <div class="radio">
-                            <label><input type="radio" name="extended_info:i_access_limit_role" checked value="true">Specific role</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Select role(s):</label>
-                    <div class="well">
-                        {{ spot.item.access_role_students }}
-                        {{ spot.item.access_role_staff }}
-                        {{ spot.item.access_role_faculty }}
-                        <div class="checkbox">
-                            <label><input type="checkbox" name="extended_info:i_access_role_students" value="true">Students</label>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" name="extended_info:i_access_role_staff" value="true">Staff</label>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" name="extended_info:i_access_role_faculty" value="true">Faculty</label>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </fieldset>
-
-    </div>
 
 </div>
 {% endif %}
