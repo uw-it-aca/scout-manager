@@ -188,14 +188,17 @@
     <div class="col-md-4">
         <fieldset>
             <legend>Reservation Information</legend>
-            <div class="checkbox">
-                <label for="has-reservations-food"><input id="has-reservations-food" name="extended_info:s_has_reservation" type="checkbox" value="true" {% if spot.has_reservation %}checked{% endif%}>Accepts Reservations</label>
+
+            <div class="well">
+                <div class="checkbox">
+                    <label for="has-reservations-food"><input id="has-reservations-food" name="extended_info:s_has_reservation" type="checkbox" value="true" {% if spot.s_has_reservation %}checked{% endif%}>Accepts Reservations</label>
+                </div>
+                <div class="form-group">
+                    <label>Reservatio Notes:</label>
+                    <textarea rows="4" class="form-control" id="reservation-notes-food" name="extended_info:s_reservation_notes">{% if spot.s_reservation_notes %}{{spot.s_reservation_notes}}{% endif %}</textarea>
+                </div>
+                <p class="help-block">Note: Reservation notes will only be displayed to clients IF the "Accepts Reservations" checkbox is checked.</p>
             </div>
-            <div class="form-group">
-                <label>Reservatio Notes:</label>
-                <textarea rows="4" class="form-control" id="reservation-notes-food" name="extended_info:s_reservation_notes">{% if spot.reservation_notes %}{{spot.reservation_notes}}{% endif %}</textarea>
-            </div>
-            <p class="help-block">Note: Reservation notes will only be displayed to clients IF the "Accepts Reservations" checkbox is checked.</p>
         </fieldset>
     </div>
 

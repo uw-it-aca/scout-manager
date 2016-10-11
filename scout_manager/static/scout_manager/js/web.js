@@ -48,6 +48,11 @@ $(document).on('ready', function(event) {
         return o;
     };
 
+    // datatables
+    $('#sortable_datatables').DataTable({
+        "paging": false
+    });
+
 });
 
 $(window).scroll(function(){

@@ -149,7 +149,6 @@ var Forms = {
 
     toggle_extended_info: function() {
 
-
         // handle radio button change for non-study types
         $("#add_new_extended_info input[name='extended_info:app_type']").change(function(e){
             if($(this).val() == 'food') {
@@ -158,7 +157,6 @@ var Forms = {
                 $("#study_radio").prop('checked', false);
             }
             else if($(this).val() == 'tech') {
-                console.log("tech lksadfjsd")
                 //$("#extended_food_template").hide();
                 //$("#extended_study_template").hide();
                 $("#study_radio").prop('checked', false);
@@ -170,6 +168,14 @@ var Forms = {
             //$("#extended_food_template").hide();
             //$("#extended_study_template").show();
             $("#add_new_extended_info input[name='extended_info:app_type']").prop('checked', false);
+        });
+
+        // handle radio button change for item category
+        $("#item_category input[name='category']").change(function(e){
+            // hide all subcategory forms
+            $(".subcategory").hide();
+            // show only subcategory form that corresponds to clicked category
+            $("#category_" + $(this).val()).show();
         });
 
     },
@@ -255,8 +261,8 @@ var Forms = {
         var spaces_add_path = new RegExp("\/manager\/spaces\/add\/?$");
 
         // validate form
-        $('#add_edit_form').validator({'focus': false});
-        $('#add_edit_form').validator('validate');
+        $('#submit_form').validator({'focus': false});
+        $('#submit_form').validator('validate');
 
         Forms.handle_app_type_clicks();
         Forms.handle_checkbox_group_clicks();
@@ -283,7 +289,7 @@ var Forms = {
         }
 
         // form validation callback after any validation occurs
-        $("#add_edit_form").on('validated.bs.validator', function (e) {
+        $("#submit_form").on('validated.bs.validator', function (e) {
             Forms.validate_create();
             Forms.validate_publish();
         })

@@ -18,7 +18,6 @@ Images
 """
 Extended info... item information
 """
-# i_context_type
 # i_is_active
 # i_is_stf
 
@@ -27,19 +26,17 @@ Extended info... item information
 # i_model
 # i_brand
 # i_website
+# i_manual_url
 
 """
-Extended info... alerts, prereqs, and reservations
+Extended info... checkout and reservation
 """
-
-# i_has_prereqs ("true")
-# i_prereq_notes
-
-# i_reservation_required ("true")
+# i_checkout_period
+# i_reserve_url
 # i_reservation_notes
 
 """
-Extended info... access restrictions
+Extended info... access restrictions (deprecated)
 """
 # i_has_access_restriction ("true")
 # i_access_notes
