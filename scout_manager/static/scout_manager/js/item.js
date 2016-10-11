@@ -99,13 +99,8 @@ var Item = {
     },
 
     _navigate_after_create: function() {
-        var type_inputs = $("div.mgr-set-app-type input:checked");
-        var app_type;
-        $(type_inputs).each(function (idx, input) {
-            app_type = $(input).val();
-        });
-        if (app_type !== undefined) {
-            window.location.href ="../?app_type=" + app_type;
-        }
+        var spot_select = $("#spot_select");
+        var spot_id = spot_select.val();
+        window.location.href ="/manager/spaces/" + spot_id;
     }
 };
