@@ -8,6 +8,7 @@ from scout_manager.dao.buildings import get_building_list, \
 from scout.dao.image import get_spot_image, get_item_image
 from scout.dao.item import get_item_by_id, get_filtered_items, \
     get_item_count, add_item_info
+from scout.views import CAMPUS_LOCATIONS
 from django.http import Http404, HttpResponse
 import base64
 
@@ -76,7 +77,7 @@ def spaces(request):
     spots = get_spot_list(app_type, is_published)
     context = {"spots": spots,
                "count": len(spots),
-               "app_type": app_type}
+               "app_type": app_type,}
     return render_to_response(
             'scout_manager/spaces.html',
             context,
@@ -86,7 +87,8 @@ def spaces(request):
 def spaces_add(request):
     buildings = get_building_list()
     context = {"buildings": buildings,
-               "spot": {"grouped_hours": get_spot_hours_by_day(None)}}
+               "spot": {"grouped_hours": get_spot_hours_by_day(None)},
+               "campus_locations": CAMPUS_LOCATIONS}
     return render_to_response(
             'scout_manager/spaces_add.html',
             context,
@@ -107,6 +109,7 @@ def spaces_edit(request, spot_id):
         buildings = get_building_list()
     context = {"spot": spot,
                "buildings": buildings,
+               "campus_locations": CAMPUS_LOCATIONS
                }
     return render_to_response(
             'scout_manager/spaces_edit.html',

@@ -381,6 +381,7 @@ var Forms = {
             var pre_selected = $("#building_select>option:selected");
             var selected;
             Forms._filter_buildings_by_campus(campus);
+            Maps.set_campus_center(campus);
             // Keep current selected on first load
             if(pre_selected.length > 0 && $.contains($("#building_select")[0], pre_selected[0])) {
                 selected = pre_selected;
