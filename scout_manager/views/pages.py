@@ -134,7 +134,8 @@ def item_image(request, image_id, item_id):
         resp, content = get_item_image(item_id, image_id, width)
         etag = resp.get('etag', None)
         encoded_content = base64.b64encode(content)
-        response = HttpResponse(content, content_type=resp['content-type'])
+        response = HttpResponse(encoded_content,
+                                content_type=resp['content-type'])
         response['etag'] = etag
         return response
     except Exception:
