@@ -63,11 +63,6 @@ var Item = {
     _create_item: function (form_data) {
         var f_data = new FormData();
         f_data.append("json", JSON.stringify(form_data));
-        var image = $("#mgr_upload_image")[0];
-        if (image && image.files && image.files[0]) {
-            var file = image.files[0];
-            f_data.append("file", file)
-        }
         $.ajax({
             url: "/manager/api/item/",
             type: "PUT",
