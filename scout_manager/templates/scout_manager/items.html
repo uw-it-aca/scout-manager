@@ -7,7 +7,7 @@
 
 <div class="mgr-content-header clearfix">
 
-    <h2 class="pull-left" id="sub_header">Items: STF Funded</h2>
+    <h2 class="pull-left" id="sub_header">Your Items</h2>
 
     <div class="pull-right">
     Total: <span class="">{{ count }}</span>
@@ -20,6 +20,7 @@
         <thead>
             <tr>
                 <th>ID</th>
+                <th>STF</th>
                 <th>Name</th>
                 <th>Sub Category (type)</th>
                 <th>Location (space)</th>
@@ -34,6 +35,7 @@
             {% for item in spot.items %}
             <tr>
                 <td><a href="/manager/items/{{item.item_id}}/">{{ item.item_id }}</a></td>
+                <td><strong>{{ item.is_stf }}</strong></td>
                 <td><strong>{{ item.name }}</strong></td>
                 <td>{{ item.subcategory }}</td>
                 <td>{{ spot.name }}</td>
