@@ -318,10 +318,10 @@
     <div class="col-md-8">
         <div class="form-group">
             <label for="" class="control-label">Space:</label> {{spot.name}}
-            <select id="spot_select" class="form-control" required  data-error="Please select a space for this item.">
+            <select id="spot_select" class="form-control" name="new_spot_id" required  data-error="Please select a space for this item.">
                 <option disabled selected value>select a space...</option>
                 {% for s in spots %}
-                <option value="{{s.name}}" data-campus="{{s.campus}}" data-building="{{s.building_name}}" {% if s.name == spot.name %}selected{% endif %}>{{s.name}}</option>
+                <option value="{{s.spot_id}}" data-campus="{{s.campus}}" data-building="{{s.building_name}}" {% if s.name == spot.name %}selected{% endif %}>{{s.name}}</option>
                 {% endfor %}
             </select>
             <div class="help-block with-errors"></div>

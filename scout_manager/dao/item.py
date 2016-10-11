@@ -43,6 +43,19 @@ def _filter_spot_items(item_id, spot):
     return spot
 
 
+def create_item(form_data):
+    item_json = _build_item_json(form_data)
+    spot_id = item_json.pop('new_spot_id')
+    item_json.pop('id')
+    item_json.pop('spot_id')
+
+    spot_client = Spotseeker()
+    json_data = _get_spot_json(spot_id)
+    etag = json_data['etag']
+    json_data['items'].append(item_json)
+    spot_client.put_spot(spot_id, json.dumps(json_data), etag)
+
+
 def _get_spot_json(spot_id):
     url = "/api/v1/spot/%s" % spot_id
     dao = SPOTSEEKER_DAO()
@@ -51,6 +64,23 @@ def _get_spot_json(spot_id):
     if resp.status != 200:
         raise DataFailureException(url, resp.status, content)
     return json.loads(content)
+
+
+def _build_item_json(form_data):
+    json_data = json.loads(form_data['json'])
+
+    extended_info = {}
+
+    for key in list(json_data):
+        if key.startswith('extended_info'):
+            value = json_data[key]
+            name = key.split(':', 1)[1]
+            json_data.pop(key)
+            if value != "None" and len(value) > 0:
+                extended_info[name] = value
+
+    json_data["extended_info"] = extended_info
+    return json_data
 
 
 """
