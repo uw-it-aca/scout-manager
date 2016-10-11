@@ -56,7 +56,6 @@
             </div>
         </fieldset>
 
-        {% if spot.item.name %}
         <div class="form-group">
             <label for="">Category: {{ spot.item.category }}/{{ spot.item.subcategory }}</label>
             <div class="well" id="item_category">
@@ -130,8 +129,6 @@
             </div>
             <div class="help-block with-errors">Please select 1 item subcategory.</div>
         </div>
-
-        {% endif %}
 
     </div>
 
