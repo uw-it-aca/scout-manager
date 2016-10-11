@@ -66,8 +66,38 @@ def _get_spot_json(spot_id):
     return json.loads(content)
 
 
+def update_item(form_data, item_id, image=None):
+    item_json = _build_item_json(form_data)
+    spot_id = item_json.pop('spot_id')
+    new_spot_id = item_json.pop('new_spot_id')
+
+    # Can we make item move work while preserving item id?
+    # if not new_spot_id == spot_id:
+    #     delete_item(item_id, spot_id)
+    #     create_item(form_data)
+    #     return
+
+    spot_client = Spotseeker()
+    json_data = _get_spot_json(spot_id)
+    etag = json_data["etag"]
+    for i, item in enumerate(json_data['items']):
+        if item['id'] == int(item_id):
+            json_data['items'][i] = item_json
+    spot_client.put_spot(spot_id, json.dumps(json_data), etag)
+
+    if 'removed_images' in item_json:
+        for image in item_json['removed_images']:
+            spot_client.delete_item_image(item_id, image['id'], image['etag'])
+
+    if form_data['file'] is not None and form_data['file'] != "undefined":
+        spot_client.post_item_image(item_id, form_data['file'])
+
+
 def _build_item_json(form_data):
     json_data = json.loads(form_data['json'])
+
+    if len(json_data['id']):
+        json_data['id'] = int(json_data['id'])
 
     extended_info = {}
 
