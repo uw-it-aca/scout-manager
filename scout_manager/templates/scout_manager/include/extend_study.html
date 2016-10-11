@@ -67,7 +67,6 @@
             </div>
         </fieldset>
 
-
         <fieldset>
             <legend>Reservability</legend>
             <p class="help-block scope">SCOUT-488: Reservability actually has three states</p>
@@ -75,15 +74,20 @@
             <div class="well">
 
                 <div class="form-group ">
-                    <div class="checkbox ">
-                        <label for="has-reservations-study"><input id="has-reservations-study" type="checkbox" name="reservable" {% if spot.reservable %}checked{% endif%}>Reservable</label>
+                    <div class="radio">
+                        <label for="no_reservations"><input id="no_reservations" type="radio" name="extended_info:reservable" value="" {% if not spot.reservable %}checked{% endif%}>No reservations</label>
+                    </div>
+                    <div class="radio">
+                        <label for="is_reservable"><input id="is_reservable" type="radio" name="extended_info:reservable" value="true" {% if spot.reservable == 'true' %}checked{% endif%}>Reservations allowed</label>
+                    </div>
+                    <div class="radio">
+                        <label for="reservations_required"><input id="reservations_required" type="radio" name="extended_info:reservable" value="reservations" {% if spot.reservable == 'reservations' %}checked{% endif%}>Reservations required</label>
                     </div>
                 </div>
 
                 <div class="form-group ">
                     <label for="reservation-notes-study">Reservation Notes:</label>
                     <textarea rows="4" class="form-control" id="reservation-notes-study" name="extended_info:reservation_notes">{% if spot.reservation_notes %}{{spot.reservation_notes}}{% endif %}</textarea>
-                    <p class="help-block">Note: Reservation notes will only be displayed to clients IF the "Reservable" checkbox is checked.</p>
                 </div>
 
             </div>
