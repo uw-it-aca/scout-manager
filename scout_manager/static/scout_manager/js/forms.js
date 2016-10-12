@@ -377,19 +377,33 @@ var Forms = {
         var num_errors = $('.has-error').length;
         console.log(num_errors);
 
-        // control whether the publish button can be clicked or not
+        // control whether the save draft or continue buttons can be clicked or not
         if (num_errors > 0) {
-            console.log("spot cannot be created")
+            console.log("spot draft cannot be saved")
+            $(".scout-create span").show();
+            
+             // save draft button disabled
             $(".scout-create #submit_spot").attr('disabled', 'disabled');
             $(".scout-create #submit_item").attr('disabled', 'disabled');
-            $(".scout-create span").show();
+            
+            // continue button disabled
+            $(".scout-create-continue #submit_spot_continue").attr('disabled', 'disabled');
+            $(".scout-create-continue #submit_item_continue").attr('disabled', 'disabled');
         }
         else {
-            console.log("spot can be created")
+            console.log("spot draft can be saved")
+            $(".scout-create span").hide();
+            
+            // save draft button enabled
             $(".scout-create #submit_spot").removeAttr("disabled");
             $(".scout-create #submit_item").removeAttr("disabled");
-            $(".scout-create span").hide();
+        
+            // continue button enabled
+            $(".scout-create-continue #submit_spot_continue").removeAttr("disabled");
+            $(".scout-create-continue #submit_item_continue").removeAttr("disabled");
         }
+        
+        // control whether the create_continue button can be clicked or not
 
     },
 

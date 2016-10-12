@@ -36,10 +36,13 @@
             </div>
             {% endif %}
         {% else %}
-        <div class="scout-create">
-            <span class="text-danger">Note: All required fields must be filled before you can create.</span>&nbsp;&nbsp;&nbsp;
-            <input id="submit_spot" type="button" class="btn btn-primary" value="Create Space" style="display:inline-block;"></input>
-        </div>
+        <span class="scout-create ">
+            <span class="text-danger">Error: Required fields must be filled out.</span>&nbsp;&nbsp;&nbsp;
+            <input id="submit_spot" type="button" class="btn" value="Save Draft" style="display:inline-block;"></input>
+        </span>
+        <span class="scout-create-continue">
+            <input id="submit_spot_continue" type="button" class="btn btn-primary" value="Save & Continue" style="display:inline-block;"></input>
+        </span>
         {% endif %}
 
     </div>
