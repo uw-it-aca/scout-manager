@@ -102,7 +102,7 @@ var Forms = {
 
         // remove image from list to be uploaded
         $('#mgr_list_spot_images').on('click', '.mgr-delete-image', function() {
-            var wrapper_elm = $(this).siblings("div.mgr-edit-img-container").first();
+            var wrapper_elm = $(this).parent().siblings("div.mgr-edit-img-container").first();
             var image_id = $(wrapper_elm).attr("data-id");
             var image_etag = $(wrapper_elm).attr("data-etag");
 
