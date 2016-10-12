@@ -33,7 +33,11 @@ var Forms = {
     hours_clear: function(){
         // clear hours for a given day
         $(".mgr-clear-hours").click(function(e) {
-            $(this).parent().siblings().find("input[type=time]").val("");
+            var hours_inputs = $(this).parent().siblings().find("input[type=time]");
+            var hours_block = $(this).parent().siblings().find(".mgr-hours-block");
+            // clear hours and remove all but first element
+            $(hours_inputs).val("");
+            $(hours_block).slice(1).remove();
         });
     },
 
