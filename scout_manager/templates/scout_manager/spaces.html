@@ -10,9 +10,9 @@
     <h2 {% if is_desktop %}class="pull-left"{% endif%} id="sub_header">{% if app_type %}{{ app_type }}{% else %}All Spaces{% endif %}</h2>
 
     <div {% if is_desktop %}class="pull-right"{% endif%}>
-        <div class="pull-left" style="margin-right:20px;">Total: <span class="">{{ count }}</span></div>
+        <div class="pull-left" style="margin-right:20px;">Total <span class="visually-hidden">spaces in list</span>: <span class="">{{ count }}</span></div>
         <div class="pull-right">
-            Display: <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type={{ app_type }}">all</a> <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type={{ app_type }}&is_published=true">published</a> <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type={{ app_type }}&is_published=false">Draft</a>
+            Display: <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type={{ app_type }}" title="Show all spaces">all</a> <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type={{ app_type }}&is_published=true" title="Show only published spaces">published</a> <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type={{ app_type }}&is_published=false" title="Show unpublished spaces">Draft</a>
         </div>
     </div>
 
@@ -22,12 +22,12 @@
     <table class="table" id="sortable_datatables">
         <thead>
             <tr>
-                <th>ID</td>
-                <th>Name</td>
-                <th>Campus</td>
-                <th>Building</td>
-                <th>Space type</td>
-                <th>Status</td>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Campus</th>
+                <th>Building</th>
+                <th>Space type</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
