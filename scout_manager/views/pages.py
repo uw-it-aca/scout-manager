@@ -34,7 +34,10 @@ def items(request):
 def items_add(request):
     buildings = get_building_list()
     spots = get_spot_list()
-    context = {"spots": spots,
+    spot = manager_get_spot_by_id(request.GET.get('spot_id')) \
+        if request.GET.get('spot_id') else None
+    context = {"spot": spot,
+               "spots": spots,
                "buildings": buildings,
                "count": len(spots)}
     return render_to_response(
