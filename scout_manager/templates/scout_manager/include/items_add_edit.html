@@ -51,7 +51,7 @@
             <legend>Is this STF Funded:</legend>
             <div class="well">
                 <div class="checkbox">
-                    <label><input type="checkbox" name="extended_info:i_is_stf" value="true" checked>Is STF?</label>
+                    <label><input type="checkbox" name="extended_info:i_is_stf" value="true" {% if spot.item.is_stf %}checked{% endif %}>Is STF?</label>
                 </div>
             </div>
         </fieldset>
@@ -136,7 +136,7 @@
 
 
         {% if spot.item.name %}
-        <h3 class="">Publish Item</h3>
+        <h3 class="">Publishing</h3>
         <div class="form-group well">
             <div>
                 <label>Status: <span style="font-weight:normal;">{% if spot.item.is_active %}PUBLISHED{% else %}DRAFT{% endif %}</span></label>
@@ -147,13 +147,13 @@
                 </div>
                 {% if spot.item.is_active %}
                 <div class="scout-draft-actions">
-                    <button type="button" id="toggle_item_active" class="btn btn-default btn-sm"><i class="fa fa-eye-slash"></i> <span>Unpublish</span></button>
-                    <div class="help-block"></div>
+                    <button type="button" id="toggle_item_active" class="btn btn-default btn-sm"><i class="fa fa-eye-slash"></i> <span>Unpublish Item</span></button>
+                    <div class="help-block">sadkljfadsfk</div>
                 </div>
                 {% else %}
                 <div class="scout-published-actions">
-                    <button type="button" id="toggle_item_active" class="btn btn-default btn-sm"><i class="fa fa-eye"></i> <span>Publish</span></button>
-                    <div class="help-block">Note: Unpublishing an item will remove it from all client apps and set it to Draft.</div>
+                    <button type="button" id="toggle_item_active" class="btn btn-default btn-sm"><i class="fa fa-eye"></i> <span>Publish Item</span></button>
+                    <div class="help-block">asdfasdf</div>
                 </div>
                 {% endif %}
 
@@ -161,7 +161,7 @@
         </div>
         {% else %}
         <div class="checkbox hidden">
-            <label><input type="checkbox" name="extended_info:i_is_active" checked value="true"></input>Is Active?</label>
+            <label><input type="checkbox" name="extended_info:i_is_active" value="true"></input>Is Active?</label>
         </div>
         {% endif %}
 
@@ -175,25 +175,7 @@
         </div>
         <p class="help-block">Note: Use the <a href="https://groups.uw.edu/" target="_blank">UW Groups</a> service to create or manage your groups.</p>
 
-
-
         {% if spot.item.name %}
-        <h3 class="">Contact Info</h3>
-        <div class="form-group">
-            <label for="">Item Manager Name:</label>
-            <input class="form-control" id="" name="extended_info:i_manager" type="text" value="{% if spot.item.manager %}{{ spot.item.manager }}{% endif %}">
-        </div>
-
-        <div class="form-group">
-            <label for="" class="">Email:</label>
-            <input class="form-control" id="" type="extended_info:i_email" value="{% if spot.item.email %}{{ spot.item.email }}{% endif %}">
-        </div>
-
-        <div class="form-group">
-            <label for="" class="">Phone:</label>
-            <input class="form-control" id="" name="extended_info:i_phone" type="tel" value="{% if spot.item.phone %}{{ spot.item.phone }}{% endif %}">
-        </div>
-
         <h3 class="">DELETE</h3>
         <div class="form-group well">
             <div>
@@ -268,7 +250,7 @@
 
                 <div class="form-group">
                     <label for="">Reservation Notes:</label>
-                    <textarea rows="4" class="form-control" id="" name="extended_info:i_reservation_notes"></textarea>
+                    <textarea rows="4" class="form-control" id="" name="extended_info:i_reservation_notes">{{ spot.item.reservation_notes }}</textarea>
                 </div>
 
             </div>
