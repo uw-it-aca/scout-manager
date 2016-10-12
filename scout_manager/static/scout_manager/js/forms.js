@@ -131,8 +131,11 @@ var Forms = {
         });
 
         $('#mgr_upload_button').click(function() {
-            // submit spot
-            Spot.submit_spot();
+            if ($(this).val() == "upload-item-image")
+                Item.submit_item();
+            else
+                // submit spot
+                Spot.submit_spot();
         });
 
     },
