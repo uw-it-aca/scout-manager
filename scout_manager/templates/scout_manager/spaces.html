@@ -31,7 +31,7 @@
 
             {% for spot in spots %}
             <tr data-spotid="{{ spot.spot_id }}" data-etag="{{ spot.etag }}">
-                <td><a href="/manager/spaces/{{ spot.spot_id }}/" title="Manage {{ spot.name }} ({% if spot.is_hidden %}DRAFT{% else %}PUBLISHED{% endif %})">{{ spot.spot_id }}</a></td>
+                <td><a href="/manager/spaces/{{ spot.spot_id }}/" title="Manage Space: {{ spot.name }} ({% if spot.is_hidden %}DRAFT{% else %}PUBLISHED{% endif %})">{{ spot.spot_id }}</a></td>
                 <td><strong>{{ spot.name }}</strong></td>
                 <td>{% if spot.campus %}{{ spot.campus }}{% else %}<small class="text-danger">missing</small>{% endif %}</td>
                 <td>{% if spot.building_name %}{{ spot.building_name }}{% else %}<small class="text-danger">missing</small>{% endif %}</td>
