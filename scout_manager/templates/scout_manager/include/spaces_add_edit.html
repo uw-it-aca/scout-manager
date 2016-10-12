@@ -53,8 +53,8 @@
         <h3 class="">General Info</h3>
 
         <div class="form-group">
-            <label for="space-name" class="control-label">Name:</label>
-            <input type="text" class="form-control" name="name" id="space-name" value="{% if spot.name %}{{ spot.name }}{% endif %}" required data-error="Please provide a name for this spot." />
+            <label for="space-name" class="control-label">Space Name:  <span class="visually-hidden">Required</span></label>
+            <input type="text" class="form-control" name="name" id="space-name" value="{% if spot.name %}{{ spot.name }}{% endif %}" required data-error="A name for this space is required." />
             <div class="help-block with-errors"></div>
 
             <input type="hidden" name="id" value="{{ spot.spot_id }}" />
@@ -62,7 +62,7 @@
         </div>
 
         <fieldset style="margin-top:1em;" class="radio-group required" id="app_type_radio">
-            <legend class="control-label">App Type: {{ spot.app_type }}</legend>
+            <legend class="control-label">Primary purpose of Space: {{ spot.app_type }}</legend>
 
             {% if spot.name %}
                 {% if spot.app_type == "food" %}
@@ -82,10 +82,10 @@
                     <label><input id="study_radio" type="radio" value="study">Study</label>
                 </div>
                 <div class="radio">
-                    <label><input type="radio" name="extended_info:app_type" value="tech">Tech</label>
+                    <label><input type="radio" name="extended_info:app_type" value="tech">Access to Tech</label>
                 </div>
             </div>
-            <div class="help-block with-errors">Please select an app_type.</div>
+            <div class="help-block with-errors">A primary purpose selection is required. </div>
             {% endif %}
 
         </fieldset>
@@ -135,10 +135,10 @@
         {% endif %}
 
 
-        <h3 class="">Admin Group</h3>
+        <h3 class="">Space Management</h3>
         <div class="form-group">
-            <label for="owner" class="control-label">Owner/Admin Group:</label>
-            <input class="form-control" id="owner" name="extended_info:owner" type="text" value="{% if spot.owner %}{{ spot.owner }}{% endif %}" required data-error="An owner group must be provided.">
+            <label for="owner" class="control-label">Space Manager Group: <span class="visually-hidden">Required</span></label>
+            <input class="form-control" id="owner" name="extended_info:owner" type="text" value="{% if spot.owner %}{{ spot.owner }}{% endif %}" required data-error="A UW Group is required.">
             <div class="help-block with-errors"></div>
         </div>
         <p class="help-block">Note: Use the <a href="https://groups.uw.edu/" target="_blank">UW Groups</a> service to create or manage your groups.</p>
