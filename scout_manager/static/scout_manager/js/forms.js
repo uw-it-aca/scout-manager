@@ -10,6 +10,7 @@ var Forms = {
         Forms.image_check_count();
         Forms.toggle_extended_info();
         Forms.toggle_is_hidden();
+        Forms.toggle_item_active();
         Forms.init_validate();
         Forms.init_delete_button();
         Forms.init_campus_building_filter();
@@ -25,6 +26,7 @@ var Forms = {
 
         // handle submitting spot to server
         $("#submit_spot").click(Spot.submit_spot);
+        $("#submit_item").click(Item.submit_item);
 
     },
 
@@ -104,7 +106,7 @@ var Forms = {
 
         // remove image from list to be uploaded
         $('#mgr_list_spot_images').on('click', '.mgr-delete-image', function() {
-            var wrapper_elm = $(this).siblings("div.mgr-edit-img-container").first();
+            var wrapper_elm = $(this).parent().siblings("div.mgr-edit-img-container").first();
             var image_id = $(wrapper_elm).attr("data-id");
             var image_etag = $(wrapper_elm).attr("data-etag");
 
@@ -133,8 +135,11 @@ var Forms = {
         });
 
         $('#mgr_upload_button').click(function() {
-            // submit spot
-            Spot.submit_spot();
+            if ($(this).val() == "upload-item-image")
+                Item.submit_item();
+            else
+                // submit spot
+                Spot.submit_spot();
         });
 
     },
@@ -192,6 +197,19 @@ var Forms = {
 
             // submit "save changes"
             Spot.submit_spot();
+
+        });
+
+    },
+
+    toggle_item_active: function() {
+
+        $("#toggle_item_active").click(function() {
+            var checkBoxes = $("input[name='extended_info:i_is_active']");
+            checkBoxes.prop("checked", !checkBoxes.prop("checked"));
+
+            // submit "save changes"
+            Item.submit_item();
 
         });
 
@@ -315,15 +333,18 @@ var Forms = {
             $(".scout-draft span").html("Note: You have validation errors, but can still save!")
 
             $(".scout-draft-actions #toggle_is_hidden").attr('disabled', 'disabled');
+            $(".scout-draft-actions #toggle_item_active").attr('disabled', 'disabled');
             $(".scout-draft-actions .help-block").css('color', '#a94442');
             $(".scout-draft-actions .help-block").html("Note: Validation errors prevent this spot from being published.");
 
             // for published, don't allow unpublish or submit if errors exist
             $(".scout-published-actions #toggle_is_hidden").attr('disabled', 'disabled');
+            $(".scout-published-actions #toggle_item_active").attr('disabled', 'disabled');
             $(".scout-published-actions .help-block").css('color', '#a94442');
             $(".scout-published-actions .help-block").html("Note: Validation errors prevent this spot from being un-published.");
 
             $(".scout-published #submit_spot").attr('disabled', 'disabled');
+            $(".scout-published #submit_item").attr('disabled', 'disabled');
             $(".scout-published span").addClass("text-danger");
             $(".scout-published span").html("Note: Validation errors prevent any changes from being published.")
         }
@@ -333,14 +354,17 @@ var Forms = {
             $(".scout-draft span").html("Note: While in draft, you can save changes regardless of validation errors.")
 
             $(".scout-draft-actions #toggle_is_hidden").removeAttr("disabled");
+            $(".scout-draft-actions #toggle_item_active").removeAttr("disabled");
             $(".scout-draft-actions .help-block").css('color', '');
-            $(".scout-draft-actions  .help-block").html("Note: Publishing this space will make it visible in all client apps!");
+            //$(".scout-draft-actions  .help-block").html("Note: Publishing this space will make it visible in all client apps!");
 
             $(".scout-published-actions #toggle_is_hidden").removeAttr("disabled");
+            $(".scout-published-actions #toggle_item_active").removeAttr("disabled");
             $(".scout-published-actions .help-block").css('color', '');
-            $(".scout-published-actions .help-block").html("Note: Unpublishing this space will remove it from being seen in client apps.");
+            // $(".scout-published-actions .help-block").html("Note: Unpublishing this space will remove it from being seen in client apps.");
 
             $(".scout-published #submit_spot").removeAttr("disabled");
+            $(".scout-published #submit_item").removeAttr("disabled");
             $(".scout-published span").removeClass("text-danger");
             $(".scout-published span").html("Note: This space is published and any changes will be shown immediately in client apps.")
         }
@@ -357,11 +381,13 @@ var Forms = {
         if (num_errors > 0) {
             console.log("spot cannot be created")
             $(".scout-create #submit_spot").attr('disabled', 'disabled');
+            $(".scout-create #submit_item").attr('disabled', 'disabled');
             $(".scout-create span").show();
         }
         else {
             console.log("spot can be created")
             $(".scout-create #submit_spot").removeAttr("disabled");
+            $(".scout-create #submit_item").removeAttr("disabled");
             $(".scout-create span").hide();
         }
 
@@ -375,6 +401,15 @@ var Forms = {
 
             // delete the spot, then redirect back to manager home (dashboard)
             Spot.delete_spot(spot_id, etag, function(){document.location.replace("/manager/");});
+        });
+
+        $("#item_delete").on("click", function(e) {
+            console.log("delete button clicked");
+            var item_id = Forms._get_item_id();
+            var spot_id = Forms._get_spot_id();
+
+            // delete the item, then redirect back to spot
+            Item.delete_item(item_id, spot_id, function(){document.location.replace("/manager/spaces/" + spot_id);});
         });
     },
 
@@ -451,6 +486,13 @@ var Forms = {
     },
 
     _get_spot_id: function () {
+        if ($('input[name="spot_id"]').length)
+            return $('input[name="spot_id"]').attr("value")
+        else
+            return $('input[name="id"]').attr("value")
+    },
+
+    _get_item_id: function () {
         return $('input[name="id"]').attr("value")
     },
 
