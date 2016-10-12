@@ -7,7 +7,7 @@
 
 <div class="mgr-content-header clearfix">
 
-    <h2 {% if is_desktop %}class="pull-left"{% endif%} id="sub_header">{% if app_type %}{{ app_type }}{% else %}All Spaces{% endif %}</h2>
+    <h2 {% if is_desktop %}class="pull-left"{% endif%} id="sub_header">{% if app_type %}{{ app_type }}{% else %}All{% endif %} Spaces</h2>
 
     <div {% if is_desktop %}class="pull-right"{% endif%}>
         <div class="pull-left" style="margin-right:20px;">Total <span class="visually-hidden">spaces in list</span>: <span class="">{{ count }}</span></div>
@@ -34,15 +34,15 @@
 
             {% for spot in spots %}
             <tr data-spotid="{{ spot.spot_id }}" data-etag="{{ spot.etag }}">
-                <td><a href="/manager/spaces/{{ spot.spot_id }}/">{{ spot.spot_id }}</a></td>
+                <td><a href="/manager/spaces/{{ spot.spot_id }}/" title="Manage {{ spot.name }} ({% if spot.is_hidden %}DRAFT{% else %}PUBLISHED{% endif %})">{{ spot.spot_id }}</a></td>
                 <td><strong>{{ spot.name }}</strong></td>
                 <td>{% if spot.campus %}{{ spot.campus }}{% else %}<small class="text-danger">missing</small>{% endif %}</td>
                 <td>{% if spot.building_name %}{{ spot.building_name }}{% else %}<small class="text-danger">missing</small>{% endif %}</td>
-                <td>{% for type in spot.spot_types %}{{ type.name }}, {% empty %}<small class="text-danger">missing</small>{% endfor %}</td>
+                <td>{% for type in spot.spot_types %}{{ type.name }}{% if not forloop.last %},{% endif %} {% empty %}<small class="text-danger">missing</small>{% endfor %}</td>
                 <td>{% if spot.is_hidden %}DRAFT{% else %}PUBLISHED{% endif %}</td>
             </tr>
             {% empty %}
-            There are no spots for you to see!
+            You don't manage any spaces. 
             {% endfor %}
 
         </tbody>
