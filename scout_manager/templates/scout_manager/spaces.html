@@ -11,9 +11,6 @@
 
     <div {% if is_desktop %}class="pull-right"{% endif%}>
         <div class="pull-left" style="margin-right:20px;">Total <span class="visually-hidden">spaces in list</span>: <span class="">{{ count }}</span></div>
-        <div class="pull-right">
-            Display: <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type={{ app_type }}" title="Show all spaces">all</a> <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type={{ app_type }}&is_published=true" title="Show only published spaces">published</a> <a class="btn btn-default btn-xs" href="/manager/spaces/?app_type={{ app_type }}&is_published=false" title="Show unpublished spaces">Draft</a>
-        </div>
     </div>
 
 </div>
