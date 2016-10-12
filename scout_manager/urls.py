@@ -3,6 +3,7 @@ from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
 from scout_manager.views.api import Spot, SpotCreate
+from scout_manager.views.api import Item, ItemCreate
 # from django.contrib import admin
 # admin.autodiscover()
 
@@ -60,6 +61,13 @@ urlpatterns = patterns(
 
     url(r'api/spot/',
         SpotCreate().run),
+
+    # /api/
+    url(r'api/item/(?P<item_id>[0-9]{1,5})',
+        Item().run),
+
+    url(r'api/item/',
+        ItemCreate().run),
 
     # manager spot image
     url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',

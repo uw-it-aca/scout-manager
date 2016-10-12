@@ -8,7 +8,7 @@
     <p class="help-block">Note: You must click on "Upload Image" after selecting your image.</p>
 
     <div class="mgr-dataset-actions">
-        <button class="btn btn-default btn-sm" id="mgr_upload_button" type="button" style="display:none;"><i class="fa fa-upload"></i> <span>Upload Image</span></button>
+        <button class="btn btn-default btn-sm" id="mgr_upload_button" type="button" style="display:none;" value="upload-{% if spot.item %}item-{% endif %}image"><i class="fa fa-upload"></i> <span>Upload Image</span></button>
     </div>
 
 </div>
@@ -16,7 +16,7 @@
 <div id="mgr_list_spot_images" class="row">
 
 
-    {% if spot.app_type == "tech" %}
+    {% if spot.item %}
 
         {% for image in spot.item.images %}
         <div class="col-md-4">
