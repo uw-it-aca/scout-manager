@@ -419,6 +419,11 @@ var Forms = {
             return 0;
         });
         select.empty().append(options);
+        // Move default, disabled option to top of list
+        var default_opt = $(select).find(":disabled");
+        default_opt.detach();
+        select.prepend(default_opt);
+
         select.val(selected);
     },
 
