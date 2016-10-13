@@ -37,7 +37,7 @@
             {% endif %}
         {% else %}
         <span class="scout-create ">
-            <span class="text-danger">Error: Required fields must be filled out.</span>&nbsp;&nbsp;&nbsp;
+            <span class="text-danger" role="alert">Error: Required fields must be filled out.</span>&nbsp;&nbsp;&nbsp;
             <input id="submit_spot" type="button" class="btn" value="Save Draft" style="display:inline-block;"></input>
         </span>
         <span class="scout-create-continue">
@@ -64,18 +64,27 @@
             <input type="hidden" name="etag" value="{{ spot.etag }}" />
         </div>
 
-        <fieldset style="margin-top:1em;" class="radio-group required" id="app_type_radio">
-            <legend class="control-label">Primary purpose of Space: {{ spot.app_type }}</legend>
+        <fieldset style="margin-top:2em;" class="radio-group required" id="app_type_radio">
+            <legend class="">Primary purpose of Space: 
+              <em>{% if spot.name %}
+                {% if spot.app_type == "food" %}
+                For Food  
+                {% elif spot.app_type == "study" %}
+                For Studying
+                {% elif spot.app_type == "tech" %}
+                Access to Tech
+                {% endif %}
+                {% endif %}</em></legend>
 
             {% if spot.name %}
                 {% if spot.app_type == "food" %}
-                <input type="hidden" name="extended_info:app_type" value="food" checked />
+                <input type="hidden" name="extended_info:app_type" value="food" checked /> 
                 {% elif spot.app_type == "study" %}
                 <input type="hidden" checked />
                 {% elif spot.app_type == "tech" %}
                 <input type="hidden" name="extended_info:app_type" value="tech" checked />
                 {% endif %}
-                <p class="help-block">Note: Please contact ADMINS if you need to change this space's app_type</p>
+                <p class="help-block">Note: Please <a href="mailto:help@uw.edu">contact us</a> if you need to change this attribute.</p>
             {% else %}
             <div id="add_new_extended_info" class="well mgr-set-app-type">
                 <div class="radio">
@@ -97,7 +106,7 @@
         <div class="form-group">
             <label for="space-description">Space Description: <span class="label label-info">F</span></label>
             <textarea name="extended_info:description" rows="4" class="form-control" id="description" type="text">{% if spot.description %}{{spot.description}}{% endif %}</textarea>
-            <p class="help-block">Note: description of the space</p>
+            <p class="help-block">Briefly describe what people can expect.</p>
         </div>
         {% endif %}
 
@@ -148,10 +157,10 @@
 
 
         {% if spot.name %}
-        <h3 class="">Contact Info</h3>
+        <h3 class="">Space Manager Contact Info</h3>
 
         <div class="form-group">
-            <label for="manager-name">Manager Name:</label>
+            <label for="manager-name">Name:</label>
             <input class="form-control" id="manager-name" name="manager" type="text" value="{% if spot.manager %}{{ spot.manager }}{% endif %}">
         </div>
 

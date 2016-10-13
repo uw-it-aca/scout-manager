@@ -330,28 +330,28 @@ var Forms = {
             console.log("spot cannot be published")
 
             // for draft, don't allow publish if errors exist
-            $(".scout-draft span").html("Note: You have validation errors, but can still save!")
 
             $(".scout-draft-actions #toggle_is_hidden").attr('disabled', 'disabled');
             $(".scout-draft-actions #toggle_item_active").attr('disabled', 'disabled');
             $(".scout-draft-actions .help-block").css('color', '#a94442');
-            $(".scout-draft-actions .help-block").html("Note: Validation errors prevent this spot from being published.");
+            $(".scout-draft-actions .help-block").attr('role', 'alert');
+            $(".scout-draft-actions .help-block").html("Error: Form validation errors prevent this spot from being published.");
 
             // for published, don't allow unpublish or submit if errors exist
             $(".scout-published-actions #toggle_is_hidden").attr('disabled', 'disabled');
             $(".scout-published-actions #toggle_item_active").attr('disabled', 'disabled');
+            $(".scout-published-actions .help-block").attr('role', 'alert');
             $(".scout-published-actions .help-block").css('color', '#a94442');
-            $(".scout-published-actions .help-block").html("Note: Validation errors prevent this spot from being un-published.");
+            $(".scout-published-actions .help-block").html("Error: Form validation errors prevent this spot from being un-published.");
 
             $(".scout-published #submit_spot").attr('disabled', 'disabled');
             $(".scout-published #submit_item").attr('disabled', 'disabled');
+            $(".scout-published span").attr('role', 'alert');
             $(".scout-published span").addClass("text-danger");
-            $(".scout-published span").html("Note: Validation errors prevent any changes from being published.")
+            $(".scout-published span").html("Error: Form validation errors prevent any changes from being published.")
         }
         else {
             console.log("spot can be published")
-
-            $(".scout-draft span").html("Note: While in draft, you can save changes regardless of validation errors.")
 
             $(".scout-draft-actions #toggle_is_hidden").removeAttr("disabled");
             $(".scout-draft-actions #toggle_item_active").removeAttr("disabled");
