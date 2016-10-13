@@ -1,7 +1,6 @@
 var Maps = {
 
     init_picker: function() {
-
         var mapExists = document.getElementById("gmap_chooser");
         var isMobile = $("body").data("mobile");
 
@@ -36,11 +35,6 @@ var Maps = {
 
                 setLatLongValue(latlng);
 
-            },
-
-            centerMarker = function (ctr) {
-                map.setCenter(ctr);
-                setMarker(ctr);
             };
 
             if (picker.length) {
@@ -100,9 +94,21 @@ var Maps = {
                 });
 
             }
+            window.map = map;
 
         }
 
     },
+
+    set_campus_center: function (campus) {
+        if (window.map!== undefined
+            && window.campus_locations !== undefined
+            && window.campus_locations[campus] !== undefined){
+            var campus_coords = window.campus_locations[campus];
+            var latlng = new google.maps.LatLng(campus_coords.latitude,
+                campus_coords.longitude);
+            window.map.setCenter(latlng);
+        }
+    }
 
 };

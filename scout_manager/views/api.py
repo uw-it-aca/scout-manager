@@ -1,7 +1,11 @@
 from scout_manager.views.rest_dispatch import RESTDispatch
-from scout_manager.dao.space import update_spot, create_spot, delete_spot
+from scout_manager.dao.space import update_spot, create_spot, delete_spot,\
+    get_spot_by_id
 from scout_manager.dao.item import update_item, create_item, delete_item
 from django.http import HttpResponse
+from scout_manager.models import Person, GroupMembership
+from userservice.user import UserService
+from django.core.exceptions import PermissionDenied
 import json
 import re
 
@@ -11,8 +15,13 @@ class Spot(RESTDispatch):
     Handles changes to spots
     """
 
+    def POST(self, request):
+        return HttpResponse('it works')
+
     def PUT(self, request, spot_id):
         form_data = process_form_data(request)
+        if not can_edit_spot(spot_id):
+            raise PermissionDenied
         try:
             update_spot(form_data, spot_id)
         except Exception as ex:
@@ -61,6 +70,23 @@ def process_form_data(request):
             else:
                 form_data[block_name] = block_data
     return form_data
+
+
+def can_edit_spot(spot_id):
+    """
+    Determines if a user can edit the given spot based on them being a member
+    of the existing group attached to the spot
+    """
+    user = UserService().get_user()
+    if not Person.objects.is_provisioned(user):
+        return False
+    group_id = _get_current_spot_group(spot_id)
+    return GroupMembership.objects.is_member(user, group_id)
+
+
+def _get_current_spot_group(spot_id):
+    spot = get_spot_by_id(spot_id)
+    return spot.owner
 
 
 class SpotCreate(RESTDispatch):
