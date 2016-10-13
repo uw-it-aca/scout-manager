@@ -80,7 +80,7 @@ def spaces(request):
     spots = get_spot_list(app_type, is_published)
     context = {"spots": spots,
                "count": len(spots),
-               "app_type": app_type,}
+               "app_type": app_type}
     return render_to_response(
             'scout_manager/spaces.html',
             context,
