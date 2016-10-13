@@ -1,5 +1,5 @@
 from restclients.gws import GWS
-from restclients.exceptions import DataFailureException
+from restclients.exceptions import DataFailureException, InvalidGroupID
 from scout_manager.models import Group, Person, GroupMembership
 
 
@@ -7,6 +7,14 @@ def get_members(group_id):
     gws = GWS()
     members = gws.get_effective_members(group_id)
     return members
+
+
+def is_member(group_id, member_id):
+    gws = GWS()
+    try:
+        return gws.is_effective_member(group_id, member_id)
+    except InvalidGroupID:
+        return False
 
 
 def add_group(group_id):
