@@ -26,6 +26,8 @@ var Forms = {
 
         // handle submitting spot to server
         $("#submit_spot").click(Spot.submit_spot);
+        $("#submit_spot_continue").click(Spot.submit_spot_continue);
+        
         $("#submit_item").click(Item.submit_item);
 
     },
@@ -381,11 +383,11 @@ var Forms = {
         if (num_errors > 0) {
             console.log("spot draft cannot be saved")
             $(".scout-create span").show();
-            
+
              // save draft button disabled
             $(".scout-create #submit_spot").attr('disabled', 'disabled');
             $(".scout-create #submit_item").attr('disabled', 'disabled');
-            
+
             // continue button disabled
             $(".scout-create-continue #submit_spot_continue").attr('disabled', 'disabled');
             $(".scout-create-continue #submit_item_continue").attr('disabled', 'disabled');
@@ -393,16 +395,16 @@ var Forms = {
         else {
             console.log("spot draft can be saved")
             $(".scout-create span").hide();
-            
+
             // save draft button enabled
             $(".scout-create #submit_spot").removeAttr("disabled");
             $(".scout-create #submit_item").removeAttr("disabled");
-        
+
             // continue button enabled
             $(".scout-create-continue #submit_spot_continue").removeAttr("disabled");
             $(".scout-create-continue #submit_item_continue").removeAttr("disabled");
         }
-        
+
         // control whether the create_continue button can be clicked or not
 
     },

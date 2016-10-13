@@ -1,4 +1,5 @@
 var Spot = {
+
     submit_spot: function (e) {
         var form_data = Spot.get_edit_form_data();
         var is_create= Spot._get_is_add(form_data);
@@ -7,6 +8,15 @@ var Spot = {
             Spot._create_spot(form_data);
 
         } else {
+            Spot._edit_spot(form_data);
+        }
+    },
+
+    submit_spot_continue: function (e) {
+        var form_data = Spot.get_edit_form_data();
+        var is_create= Spot._get_is_add(form_data);
+
+        if (is_create) {
             Spot._edit_spot(form_data);
         }
     },
@@ -50,6 +60,9 @@ var Spot = {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-success");
                 $("#pub_error").html("yay all good!");
+
+                // reload the page
+                window.location.reload(true);
             },
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");
@@ -80,6 +93,8 @@ var Spot = {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-success");
                 $("#pub_error").html();
+
+                // go back to app_type list
                 Spot._navigate_after_create();
             },
             error: function(xhr, status, error) {
@@ -129,4 +144,5 @@ var Spot = {
             window.location.href ="../?app_type=" + app_type;
         }
     }
+
 };
