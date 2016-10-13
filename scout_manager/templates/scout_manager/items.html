@@ -7,10 +7,10 @@
 
 <div class="mgr-content-header clearfix">
 
-    <h2 class="pull-left">Items: STF Funded</h2>
+    <h2 class="pull-left" id="sub_header">All Items</h2>
 
     <div class="pull-right">
-    Total: <span class="">{{ count }}</span>
+    Total <span class="visually-hidden">items you manage</span>: <span class="">{{ count }}</span>
     </div>
 
 </div>
@@ -19,13 +19,14 @@
     <table class="table" id="sortable_datatables">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Sub Category (type)</th>
-                <th>Location (space)</th>
-                <th>Campus</th>
-                <th>Building</th>
-                <th>Status</th>
+                <th scope="col">ID</th>
+                <th scope="col">STF</th>
+                <th scope="col">Name</th>
+                <th scope="col">Sub Category (type)</th>
+                <th scope="col">Location (space)</th>
+                <th scope="col">Campus</th>
+                <th scope="col">Building</th>
+                <th scope="col">Status</th>
             </tr>
         </thead>
         <tbody>
@@ -33,7 +34,8 @@
         {% for spot in spots %}
             {% for item in spot.items %}
             <tr>
-                <td><a href="/manager/items/{{item.item_id}}/">{{ item.item_id }}</a></td>
+                <td><a href="/manager/items/{{item.item_id}}/" title="Manage Item: {{ item.name }}">{{ item.item_id }}</a></td>
+                <td><strong>{{ item.is_stf }}</strong></td>
                 <td><strong>{{ item.name }}</strong></td>
                 <td>{{ item.subcategory }}</td>
                 <td>{{ spot.name }}</td>

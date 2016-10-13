@@ -1,6 +1,7 @@
 from scout_manager.views.rest_dispatch import RESTDispatch
 from scout_manager.dao.space import update_spot, create_spot, delete_spot,\
     get_spot_by_id
+from scout_manager.dao.item import update_item, create_item, delete_item
 from django.http import HttpResponse
 from scout_manager.models import Person, GroupMembership
 from userservice.user import UserService
@@ -97,6 +98,48 @@ class SpotCreate(RESTDispatch):
         form_data = process_form_data(request)
         # try:
         create_spot(form_data)
+        # except Exception as ex:
+        #     return HttpResponse(json.dumps({'error': str(ex)}), status=400,
+        #                         content_type='application/json')
+        return HttpResponse(json.dumps({'status': 'it works'}),
+                            content_type='application/json')
+
+
+class Item(RESTDispatch):
+    """
+    Handles changes to items
+    """
+
+    def PUT(self, request, item_id):
+        form_data = process_form_data(request)
+        try:
+            update_item(form_data, item_id)
+        except Exception as ex:
+            return HttpResponse(json.dumps({'error': str(ex)}), status=400,
+                                content_type='application/json')
+        return HttpResponse(json.dumps({'status': 'it works'}),
+                            content_type='application/json')
+
+    def DELETE(self, request, item_id):
+        spot_id = request.body
+        try:
+            delete_item(item_id, spot_id)
+        except Exception as ex:
+            return HttpResponse(json.dumps({'error': str(ex)}), status=400,
+                                content_type='application/json')
+        return HttpResponse(json.dumps({'status': 'it works'}),
+                            content_type='application/json')
+
+
+class ItemCreate(RESTDispatch):
+    """
+    Handles Item creation, using PUT to deal with django issues
+    """
+
+    def PUT(self, request):
+        form_data = process_form_data(request)
+        # try:
+        create_item(form_data)
         # except Exception as ex:
         #     return HttpResponse(json.dumps({'error': str(ex)}), status=400,
         #                         content_type='application/json')

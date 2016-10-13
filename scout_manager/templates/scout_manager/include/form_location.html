@@ -7,33 +7,39 @@
     <h3 class="col-md-12">Location</h3>
 
     <div class="col-md-4 mgr-location-meta">
-
+        
         <div class="form-group">
-            <label for="space-latitude" class="control-label">Latitude:</label>
-            <input class="form-control" name="location:latitude" id="space_latitude" type="text" value="{% if spot.latitude %}{{ spot.latitude }}{% endif %}" required data-error="Use the location chooser form to get coords." />
-            <div class="help-block with-errors"></div>
-        </div>
-
-        <div class="form-group">
-            <label for="space-longitude" class="control-label">Longitude:</label>
-            <input class="form-control" name="location:longitude" id="space_longitude" type="text" value="{% if spot.longitude %}{{ spot.longitude }}{% endif %}" required data-error="Use the location chooser form to get coords." />
+            <label class="control-label" for="space-campus">Campus: <span class="visually-hidden">Required</span></label>
+            <select id="campus_select" class="form-control" name="extended_info:campus" required data-error="Campus selection is required.">
+                <option disabled selected value>select a campus...</option>
+                <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
+                <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
+                <option value="tacoma" {% if spot.campus == "tacoma" %} selected {% endif %}>Tacoma</option>
+            </select>
             <div class="help-block with-errors"></div>
         </div>
 
         <hr/>
 
         <div class="form-group">
-            <label class="control-label" for="space-campus">Campus:</label>
-            <p class="help-block scope">SCOUT-496: Re-center map based on Campus choice.</p>
-            <select id="campus_select" class="form-control" name="extended_info:campus" {% if spot.name %}required data-error="Campus must be specified"{% endif %}>
-                <option disabled selected value>select a campus...</option>
-                <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
-                <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
-                <option value="tacoma" {% if spot.campus == "tacoma" %} selected {% endif %}>Tacoma</option>
-            </select>
+            <label for="space-latitude" class="control-label">Latitude: <span class="visually-hidden">Required</span></label>
+            <p class="help-block">Drop pin on map to get coordinates. Drag pin for precise positioning. </p>
+            <input class="form-control" name="location:latitude" id="space_latitude" type="text" value="{% if spot.latitude %}{{ spot.latitude }}{% endif %}" required data-error="Latitude is required." />
+            <div class="help-block with-errors"></div>
         </div>
 
-        <!-- Hide if outdoor location. We suggest/enforce building options. -->
+        <div class="form-group">
+            <label for="space-longitude" class="control-label">Longitude: <span class="visually-hidden">Required</span></label>
+            <p class="help-block">Drop pin on map to get coordinates. Drag pin for precise positioning. </p>
+            <input class="form-control" name="location:longitude" id="space_longitude" type="text" value="{% if spot.longitude %}{{ spot.longitude }}{% endif %}" required data-error="Longitude is required." />
+            <div class="help-block with-errors"></div>
+        </div>
+
+        <hr/>
+
+        {% if spot.name %}
+        
+             <!-- Hide if outdoor location. We suggest/enforce building options. -->
         <div class="form-group">
             <label for="building-name" class="control-label">Building:</label>
             <select id="building_select" class="form-control" name="location:building_name" {% if spot.name %}required data-error="Please select a building"{% endif %}>
@@ -44,10 +50,6 @@
             </select>
             <div class="help-block with-errors"></div>
         </div>
-
-        {% if spot.name %}
-
-        <hr/>
 
         <!-- Hide if outdoor location. We suggest floor options. -->
         <div class="form-group">
@@ -72,9 +74,8 @@
 
     <div class="col-md-8 mgr-location-chooser">
         <div class="form-group">
-            <label for="space-latitude">Location chooser:</label>
+            <label for="space-latitude space-longitude">{% if spot.name %}Drag the marker for precise location positioning.{% else %}Click on map for coordinates. Drag marker for precise positioning.{% endif %}</label>
             <div style="border: solid 1px #c8c8c8; border-radius:3px; height:500px; margin: 0;" id="gmap_chooser">Google Maps here</div>
-            <p class="help-block">{% if spot.name %}Drag the marker to the desired location of the space.{% else %}Click on map to drop a pin on the location of your space and drag marker for precise positioning.{% endif %}</p>
         </div>
     </div>
 
