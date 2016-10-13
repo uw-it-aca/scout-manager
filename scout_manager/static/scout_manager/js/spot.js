@@ -92,7 +92,7 @@ var Spot = {
             success: function(results) {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-success");
-                $("#pub_error").html();
+                $("#pub_error").html("yay all good!");
 
                 // go back to app_type list
                 Spot._navigate_after_create();
