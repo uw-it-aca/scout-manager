@@ -8,7 +8,7 @@
 
         <div id="header" class="mgr-header">
             <h1><a href="/manager/">Scout<span>Manager</span></a></h1>
-            <span class="mgr-user-name scope">{{ user.username }}</span>
+            <span class="mgr-user-name"><span class="visually-hidden">Logged in as: </span>{{ user.username }}</span>
             <button onclick="document.getElementById('sidebar').classList.toggle('mgr-sidebar-closed');" type="button" class="btn mgr-menu-button"><i class="fa fa-bars"></i></button>
         </div>
 

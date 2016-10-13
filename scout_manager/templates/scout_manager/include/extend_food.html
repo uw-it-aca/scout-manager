@@ -3,13 +3,13 @@
 <div class="row">
 
     <!--  if "food" app_type -->
-    <h3 class="col-md-12">Food Extended Info</h3>
+    <h3 class="col-md-12">Food Space</h3>
 
 
     <div class="col-md-4">
 
         <fieldset class="checkbox-group {% if spot.name %}required{% endif %}">
-            <legend class="control-label">Spot types</legend>
+            <legend class="control-label">Space types</legend>
             <div class="well" id="food_spot_types">
                 <div class="checkbox">
                     <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafe" in type.name %} checked {% endif %}{% endfor %} value="cafe">Cafe</label>
@@ -161,7 +161,7 @@
     <div class="col-md-4">
 
         <fieldset class="checkbox-group {% if spot.name %}required{% endif %}">
-            <legend class="control-label">Payment Type</legend>
+            <legend class="control-label">Payment Accepted</legend>
             <div class="well" id="food_payment_type">
 
                 <div class="checkbox">
@@ -194,10 +194,10 @@
                     <label for="has-reservations-food"><input id="has-reservations-food" name="extended_info:s_has_reservation" type="checkbox" value="true" {% if spot.s_has_reservation %}checked{% endif%}>Accepts Reservations</label>
                 </div>
                 <div class="form-group">
-                    <label>Reservatio Notes:</label>
+                    <label>Reservation Notes:</label>
                     <textarea rows="4" class="form-control" id="reservation-notes-food" name="extended_info:s_reservation_notes">{% if spot.s_reservation_notes %}{{spot.s_reservation_notes}}{% endif %}</textarea>
                 </div>
-                <p class="help-block">Note: Reservation notes will only be displayed to clients IF the "Accepts Reservations" checkbox is checked.</p>
+                <p class="help-block">Note: Reservation notes will only be displayed IF the "Accepts Reservations" checkbox is checked.</p>
             </div>
         </fieldset>
     </div>
