@@ -27,7 +27,8 @@
             {% if spot.is_hidden %}
             <div class="scout-draft">
                 <span class="text-muted"></span>&nbsp;&nbsp;&nbsp;
-                <input id="submit_spot" type="button" class="btn btn-primary" value="Save" style="display:inline-block;"></input>
+                <input id="submit_spot" type="button" class="btn" value="Save & Close" style="display:inline-block;"></input>
+                <input id="submit_spot" type="button" class="btn btn-primary" value="Save & Continue" style="display:inline-block;"></input>
             </div>
             {% else %}
             <div class="scout-published">
@@ -36,12 +37,10 @@
             </div>
             {% endif %}
         {% else %}
-        <span class="scout-create ">
+        <span class="scout-create">
             <span class="text-danger" role="alert">Error: Required fields must be filled out.</span>&nbsp;&nbsp;&nbsp;
-            <input id="submit_spot" type="button" class="btn" value="Save Draft" style="display:inline-block;"></input>
-        </span>
-        <span class="scout-create-continue">
-            <input id="submit_spot_continue" type="button" class="btn btn-primary" value="Save & Continue" style="display:inline-block;"></input>
+            <input id="submit_spot" type="button" class="btn" value="Save & Close" style="display:inline-block;"></input>
+            <input id="submit_spot" type="button" class="btn btn-primary" value="Save & Continue" style="display:inline-block;"></input>
         </span>
         {% endif %}
 
@@ -188,25 +187,7 @@
 {% elif spot.app_type == "study" %}
     {% include "scout_manager/include/extend_study.html" %}
 {% elif spot.app_type == "tech" %}
-    <fieldset class="checkbox-group {% if spot.name %}required{% endif %}">
-        <legend class="control-label">Spot types</legend>
-        <div class="well" id="tech_spot_types">
-            <div class="checkbox">
-                <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "checkout" in type.name %} checked {% endif %}{% endfor %}  value="checkout">Equipment Checkout</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "conference" in type.name %} checked {% endif %}{% endfor %}  value="conference">Conference Room</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "maker_space" in type.name %} checked {% endif %}{% endfor %} value="maker_space">Maker Space</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "studio" in type.name %} checked {% endif %}{% endfor %}  value="studio">Production Studio</label>
-            </div>
-        </div>
-        <div class="help-block with-errors">Please select at least 1 spot type.</div>
-    </fieldset>
-
+    {% include "scout_manager/include/extend_tech.html" %}
 {% endif %}
 
 {% if spot.name %}

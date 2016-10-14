@@ -25,9 +25,7 @@ var Forms = {
         }
 
         // handle submitting spot to server
-        $("#submit_spot").click(Spot.submit_spot);
-        $("#submit_spot_continue").click(Spot.submit_spot_continue);
-        
+        $("#submit_spot").click(Spot.submit_spot);        
         $("#submit_item").click(Item.submit_item);
 
     },
