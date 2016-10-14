@@ -25,7 +25,7 @@ var Forms = {
         }
 
         // handle submitting spot to server
-        $("#submit_spot").click(Spot.submit_spot);        
+        $("#submit_spot").click(Spot.submit_spot);
         $("#submit_item").click(Item.submit_item);
 
     },
@@ -356,7 +356,7 @@ var Forms = {
             $(".scout-draft-actions #toggle_is_hidden").removeAttr("disabled");
             $(".scout-draft-actions #toggle_item_active").removeAttr("disabled");
             $(".scout-draft-actions .help-block").css('color', '');
-            //$(".scout-draft-actions  .help-block").html("Note: Publishing this space will make it visible in all client apps!");
+            $(".scout-draft-actions  .help-block").html("Note: Publishing this space will make it visible in all client apps!");
 
             $(".scout-published-actions #toggle_is_hidden").removeAttr("disabled");
             $(".scout-published-actions #toggle_item_active").removeAttr("disabled");
