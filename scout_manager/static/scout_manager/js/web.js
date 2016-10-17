@@ -50,7 +50,8 @@ $(document).on('ready', function(event) {
 
     // datatables
     $('#sortable_datatables').DataTable({
-        "paging": false
+        "paging": false,
+        "dom": '<"top"f>rt<"bottom"lp><"clear">'
     });
 
 });
