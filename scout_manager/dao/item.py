@@ -69,7 +69,7 @@ def _get_spot_json(spot_id):
 def update_item(form_data, item_id, image=None):
     item_json = _build_item_json(form_data)
     spot_id = item_json.pop('spot_id')
-    new_spot_id = item_json.pop('new_spot_id')
+    # new_spot_id = item_json.pop('new_spot_id')
 
     # Can we make item move work while preserving item id?
     # if not new_spot_id == spot_id:
