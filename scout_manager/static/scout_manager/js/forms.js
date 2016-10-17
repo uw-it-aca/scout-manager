@@ -238,10 +238,39 @@ var Forms = {
         });
     },
 
+    validate_required_radio_group: function() {
+
+        // get the count of all checkboxes for a given grouping
+        $(".radio-group.required input[type='radio']").each(function() {
+
+            // get the checkbox groupings id
+            var group_id = $(this).closest(".well").attr('id');
+            // get count of checkboxes checked for given grouping
+            var count_checked = $("#"+group_id+" [type='radio']:checked").length;
+
+            // if more than 1 checked, remove error css
+            if(count_checked > 0) {
+                $(this).closest(".radio-group").removeClass("has-error");
+            }
+            else {
+                $(this).closest(".radio-group").addClass("has-error")
+            }
+
+        });
+    },
+
     handle_checkbox_group_clicks: function() {
         // handle clicks for any checkboxes in a "checkbox-group" grouping
         $(".checkbox-group.required input[type='checkbox']").change(function(e) {
             Forms.validate_required_checkbox_group();
+        });
+
+    },
+
+    handle_radio_group_clicks: function() {
+        // handle clicks for any checkboxes in a "checkbox-group" grouping
+        $(".radio-group.required input[type='radio']").change(function(e) {
+            Forms.validate_required_radio_group();
         });
 
     },
@@ -288,6 +317,7 @@ var Forms = {
 
         Forms.handle_app_type_clicks();
         Forms.handle_checkbox_group_clicks();
+        Forms.handle_radio_group_clicks();
 
         if (spaces_add_path.test(page_path)) {
             console.log("at space add");
@@ -304,6 +334,7 @@ var Forms = {
             // custom validators
             Forms.validate_required_app_type();
             Forms.validate_required_checkbox_group();
+            Forms.validate_required_radio_group();
 
             // validate if spot can be published (ONLY during spot edit)
             Forms.validate_publish();
