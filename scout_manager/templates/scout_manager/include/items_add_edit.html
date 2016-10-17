@@ -267,12 +267,14 @@
 {% include "scout_manager/include/form_images.html" %}
 {% endif %}
 
+
 <hr/>
 
 <div class="row">
 
     <h3 class="col-md-12">Location</h3>
 
+    {% if not spot.item.name %}
     <div class="col-md-4">
 
         <div class="form-group">
@@ -309,4 +311,11 @@
             <div class="help-block with-errors"></div>
         </div>
     </div>
+    {% else %}
+    <div class="col-md-12">
+        <p>{{spot.campus}}</p>
+        <p>{{spot.building_name}}</p>
+        <p>{{spot.name}}</p>
+    </div>
+    {% endif %}
 </div>
