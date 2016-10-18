@@ -102,11 +102,6 @@
         </fieldset>
 
         {% if spot.name %}
-        <div class="form-group">
-            <label for="space-description">Space Description: <span class="label label-info">F</span></label>
-            <textarea name="extended_info:description" rows="4" class="form-control" id="space-description" type="text">{% if spot.description %}{{spot.description}}{% endif %}</textarea>
-            <p class="help-block">Briefly describe what people can expect when visiting the space.</p>
-        </div>
         {% endif %}
         
         {% if spot.app_type == "food" %}
@@ -177,13 +172,13 @@
             <input class="form-control" id="email" name="extended_info:s_email" type="email" value="{% if spot.email %}{{ spot.email }}{% endif %}" data-error="must be a valid email format">
             <div class="help-block with-errors"></div>
         </div>
-
+        {% if spot.app_type == "food" %}
         <div class="form-group">
-            <label for="phone" class="control-label">Phone: <span class="label label-info">F</span></label>
+            <label for="phone" class="control-label">Phone: </label>
             <input class="form-control" id="phone" name="extended_info:s_phone" type="tel" pattern="^\d{10}$" value="{% if spot.phone %}{{ spot.phone }}{% endif %}" data-error="please provide 10 digit phone number no dashses">
             <div class="help-block with-errors"></div>
         </div>
-
+        {% endif %}
         {% endif %}
 
     </div>

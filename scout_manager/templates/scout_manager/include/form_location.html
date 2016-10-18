@@ -50,24 +50,26 @@
             </select>
             <div class="help-block with-errors"></div>
         </div>
-
+        {% if spot.app_type == "food" %}
         <!-- Hide if outdoor location. We suggest floor options. -->
         <div class="form-group">
-            <label for="floor">Floor: <span class="label label-info">F</span></label>
+            <label for="floor">Floor: </label>
             <input class="form-control" id="floor" name="location:floor" type="text" value="{% if spot.floor %}{{ spot.floor }}{% endif %}">
         </div>
 
         <!-- Hide if outdoor location -->
         <div class="form-group">
-            <label for="room-number">Room #: <span class="label label-info">F</span></label>
+            <label for="room-number">Room #: </label>
             <input class="form-control" id="room-number" name="location:room_number" type="text" value="{% if spot.room_number %}{{ spot.room_number }}{% endif %}">
         </div>
-
+        {% endif %}
+        {% if spot.app_type == "study" %}
         <div class="form-group">
-            <label for="location-description">Location Description: <span class="label label-primary">S</span></label>
+            <label for="location-description">Location Description:</label>
             <textarea name="extended_info:location_description" rows="2" class="form-control" id="location-description" type="text">{% if spot.location_description %}{{spot.location_description}}{% endif %}</textarea>
             <p class="help-block">Note: This field can be used as an alternative display for Building, Floor, and Room number.</p>
         </div>
+        {% endif %}
         {% endif %}
 
     </div>
