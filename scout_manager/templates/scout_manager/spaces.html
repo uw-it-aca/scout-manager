@@ -21,6 +21,7 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
+                <th scope="col">App_Type</th>
                 <th scope="col">Campus</th>
                 <th scope="col">Building</th>
                 <th scope="col">Space type</th>
@@ -33,6 +34,7 @@
             <tr data-spotid="{{ spot.spot_id }}" data-etag="{{ spot.etag }}">
                 <td><a href="/manager/spaces/{{ spot.spot_id }}/" title="Manage Space: {{ spot.name }} ({% if spot.is_hidden %}DRAFT{% else %}PUBLISHED{% endif %})">{{ spot.spot_id }}</a></td>
                 <td><strong>{{ spot.name }}</strong></td>
+                <td>{{ spot.app_type }}</td>
                 <td>{% if spot.campus %}{{ spot.campus }}{% else %}<small class="text-danger">missing</small>{% endif %}</td>
                 <td>{% if spot.building_name %}{{ spot.building_name }}{% else %}<small class="text-danger">missing</small>{% endif %}</td>
                 <td>{% for type in spot.spot_types %}{{ type.name }}{% if not forloop.last %},{% endif %} {% empty %}<small class="text-danger">missing</small>{% endfor %}</td>
