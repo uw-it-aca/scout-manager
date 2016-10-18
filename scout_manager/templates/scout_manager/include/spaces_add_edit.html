@@ -104,10 +104,19 @@
         {% if spot.name %}
         <div class="form-group">
             <label for="space-description">Space Description: <span class="label label-info">F</span></label>
-            <textarea name="extended_info:description" rows="4" class="form-control" id="description" type="text">{% if spot.description %}{{spot.description}}{% endif %}</textarea>
+            <textarea name="extended_info:description" rows="4" class="form-control" id="space-description" type="text">{% if spot.description %}{{spot.description}}{% endif %}</textarea>
             <p class="help-block">Briefly describe what people can expect when visiting the space.</p>
         </div>
         {% endif %}
+        
+        {% if spot.app_type == "food" %}
+    {% include "scout_manager/include/extend_food.html" %}
+{% elif spot.app_type == "study" %}
+    {% include "scout_manager/include/extend_study.html" %}
+{% elif spot.app_type == "tech" %}
+    {% include "scout_manager/include/extend_tech.html" %}
+{% endif %}
+
 
     </div>
     <div class="col-md-4">
@@ -180,15 +189,6 @@
     </div>
 
 </div>
-
-
-{% if spot.app_type == "food" %}
-    {% include "scout_manager/include/extend_food.html" %}
-{% elif spot.app_type == "study" %}
-    {% include "scout_manager/include/extend_study.html" %}
-{% elif spot.app_type == "tech" %}
-    {% include "scout_manager/include/extend_tech.html" %}
-{% endif %}
 
 {% if spot.name %}
     <!-- include the images form -->

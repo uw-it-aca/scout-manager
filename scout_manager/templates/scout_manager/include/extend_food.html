@@ -1,14 +1,17 @@
-<hr/>
-
-<div class="row">
-
     <!--  if "food" app_type -->
-    <h3 class="col-md-12" style="margin-top:0;">Food Extended Info</h3>
+      <div class="form-group">
+            <label for="website">Website URL:</label>
+            <input class="form-control" id="website" name="extended_info:s_website_url" type="url" value="{% if spot.website_url %}{{spot.website_url}}{% endif %}" />
+        </div>
+        <div class="form-group">
+            <label for="menu-url">Menu URL:</label>
+            <input class="form-control" id="menu-url" name="extended_info:s_menu_url" type="url" value="{% if spot.menu_url %}{{spot.menu_url}}{% endif %}" />
+        </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
 
         <fieldset class="checkbox-group {% if spot.name %}required{% endif %}">
-            <legend class="control-label">Space types</legend>
+            <legend class="control-label">Type(s) of Space</legend>
             <div class="well" id="food_spot_types">
                 <div class="checkbox">
                     <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafe" in type.name %} checked {% endif %}{% endfor %} value="cafe">Cafe</label>
@@ -32,15 +35,7 @@
             <div class="help-block with-errors">Please select at least 1 spot type.</div>
         </fieldset>
 
-        <div class="form-group">
-            <label for="website">Website URL:</label>
-            <input class="form-control" id="website" name="extended_info:s_website_url" type="url" value="{% if spot.website_url %}{{spot.website_url}}{% endif %}" />
-        </div>
-        <div class="form-group">
-            <label for="menu-url">Menu URL:</label>
-            <input class="form-control" id="menu-url" name="extended_info:s_menu_url" type="url" value="{% if spot.menu_url %}{{spot.menu_url}}{% endif %}" />
-        </div>
-
+      
         <fieldset>
             <legend>Coupon Information</legend>
             <div class="well">
@@ -157,7 +152,7 @@
     </fieldset>
     -->
 
-    <div class="col-md-4">
+    <div class="col-md-6">
 
         <fieldset class="checkbox-group {% if spot.name %}required{% endif %}">
             <legend class="control-label">Payment Accepted</legend>
@@ -182,9 +177,6 @@
             <div class="help-block with-errors">Please select at least 1 payment type.</div>
         </fieldset>
 
-    </div>
-
-    <div class="col-md-4">
         <fieldset>
             <legend>Reservation Information</legend>
 
@@ -201,4 +193,3 @@
         </fieldset>
     </div>
 
-</div>
