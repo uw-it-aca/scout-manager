@@ -154,16 +154,6 @@
         </div>
         {% endif %}
 
-
-        <h3 class="">Admin Group</h3>
-
-        <div class="form-group">
-            <label for="">Owner/Admin Group:</label>
-            <input class="form-control" id="" name="extended_info:i_owner" type="text" value="{% if spot.item.owner %}{{ spot.item.owner }}{% endif %}" required data-error="An owner group must be provided.">
-            <div class="help-block with-errors"></div>
-        </div>
-        <p class="help-block">Note: Use the <a href="https://groups.uw.edu/" target="_blank">UW Groups</a> service to create or manage your groups.</p>
-
         {% if spot.item.name %}
         <h3 class="">DELETE</h3>
         <div class="form-group well">
