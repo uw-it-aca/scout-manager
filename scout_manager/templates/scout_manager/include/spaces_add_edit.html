@@ -27,8 +27,10 @@
             {% if spot.is_hidden %}
             <div class="scout-draft">
                 <span class="text-muted"></span>&nbsp;&nbsp;&nbsp;
-                <input id="save_close" type="button" class="btn" value="Save & Close" style="display:inline-block;"></input>
-                <input id="save_continue" type="button" class="btn btn-primary" value="Save & Continue" style="display:inline-block;"></input>
+                <input id="save_close" type="button" class="btn {% if spot.name %}btn-primary{% endif %}" value="Save & Close" style="display:inline-block; margin-right: 15px;"></input>
+                {% if not spot.name %}
+               <input id="save_continue" type="button" class="btn btn-primary" value="Save & Continue" style="display:inline-block;"></input>
+               {% endif %}
             </div>
             {% else %}
             <div class="scout-published">
@@ -39,7 +41,7 @@
         {% else %}
         <span class="scout-create">
             <span class="text-danger" role="alert">Error: Required fields must be filled out.</span>&nbsp;&nbsp;&nbsp;
-            <input id="save_close" type="button" class="btn" value="Save & Close" style="display:inline-block;"></input>
+            <input id="save_close" type="button" class="btn" value="Save & Close" style="display: inline-block;margin-right: 15px;"></input>
             <input id="save_continue" type="button" class="btn btn-primary" value="Save & Continue" style="display:inline-block;"></input>
         </span>
         {% endif %}
@@ -135,22 +137,25 @@
         <div class="form-group well">
             <div>
                 <label>Status: <span style="font-weight:normal;">{% if spot.is_hidden %}DRAFT{% else %}PUBLISHED{% endif %}</span></label>
-            </div>
+            {% if not spot.is_hidden %}
+            {% if not spot.app_type == "tech" %}
+                    <a href="/{{spot.campus}}/{{spot.app_type}}/{{ spot.spot_id }}" target="_blank" class="pull-right"><span>View in Scout</span></a>
+                    {% endif %}
+                    {% endif %}
+                    
+                    </div>
             <div class="mgr-dataset-actions">
                 <div class="checkbox hidden">
                     <label><input type="checkbox" name="extended_info:is_hidden" {% if spot.is_hidden %} checked{% endif %} value="true"></input>Is Hidden?</label>
                 </div>
                 {% if spot.is_hidden %}
                 <div class="scout-draft-actions">
-                    <button type="button" id="toggle_is_hidden" class="btn btn-default btn-sm"><i class="fa fa-eye"></i> <span>Publish</span></button>
+                    <button type="button" id="toggle_is_hidden" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> <span>Publish</span></button>
                     <div class="help-block">asdfasdfsfa</div>
                 </div>
                 {% else %}
                 <div class="scout-published-actions">
-                    <button type="button" id="toggle_is_hidden" class="btn btn-default btn-sm"><i class="fa fa-eye-slash"></i> <span>Unpublish</span></button>
-                    {% if not spot.app_type == "tech" %}
-                    <a class="btn btn-default btn-sm" href="/{{spot.campus}}/{{spot.app_type}}/{{ spot.spot_id }}" target="_blank"><i class="fa fa-chrome"></i> <span>View in Scout</span></a>
-                    {% endif %}
+                    <button type="button" id="toggle_is_hidden" class="btn btn-primary btn-sm"><i class="fa fa-eye-slash"></i> <span>Unpublish</span></button>
                     <div class="help-block">Note: Unpublishing a spot will remove it from all client apps and set it to Draft.</div>
                 </div>
                 {% endif %}
