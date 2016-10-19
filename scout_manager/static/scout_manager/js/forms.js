@@ -25,7 +25,8 @@ var Forms = {
         }
 
         // handle submitting spot to server
-        $("#submit_spot").click(Spot.submit_spot);
+        $("#save_continue").on('click', {exit: false}, Spot.submit_spot);
+        $("#save_close").on('click', {exit: true}, Spot.submit_spot);
         $("#submit_item").click(Item.submit_item);
 
     },
@@ -354,12 +355,9 @@ var Forms = {
         // get number of validation errors on page
         var num_errors = 0;
         num_errors = $('.has-error').length;
-        console.log(num_errors);
 
         // control whether the publish button can be clicked or not
         if (num_errors > 0) {
-            console.log("spot cannot be published")
-
             // for draft, don't allow publish if errors exist
 
             $(".scout-draft-actions #toggle_is_hidden").attr('disabled', 'disabled');
@@ -382,8 +380,6 @@ var Forms = {
             $(".scout-published span").html("Error: Form validation errors prevent any changes from being published.")
         }
         else {
-            console.log("spot can be published")
-
             $(".scout-draft-actions #toggle_is_hidden").removeAttr("disabled");
             $(".scout-draft-actions #toggle_item_active").removeAttr("disabled");
             $(".scout-draft-actions .help-block").css('color', '');
@@ -406,11 +402,9 @@ var Forms = {
 
         // get number of validation errors on page
         var num_errors = $('.has-error').length;
-        console.log(num_errors);
 
         // control whether the save draft or continue buttons can be clicked or not
         if (num_errors > 0) {
-            console.log("spot draft cannot be saved")
             $(".scout-create span").show();
 
              // save draft button disabled
@@ -422,7 +416,6 @@ var Forms = {
             $(".scout-create-continue #submit_item_continue").attr('disabled', 'disabled');
         }
         else {
-            console.log("spot draft can be saved")
             $(".scout-create span").hide();
 
             // save draft button enabled
@@ -440,7 +433,6 @@ var Forms = {
 
     init_delete_button: function () {
         $("#spot_delete").on("click", function(e) {
-            console.log("delete button clicked");
             var spot_id = Forms._get_spot_id();
             var etag = Forms._get_spot_etag();
 
@@ -449,7 +441,6 @@ var Forms = {
         });
 
         $("#item_delete").on("click", function(e) {
-            console.log("delete button clicked");
             var item_id = Forms._get_item_id();
             var spot_id = Forms._get_spot_id();
 

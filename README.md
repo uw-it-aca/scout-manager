@@ -45,3 +45,4 @@ AUTHZ_GROUP_BACKEND = 'authz_group.authz_implementation.all_ok.AllOK'
 MANAGER_SUPERUSER_GROUP = 'u_acadev_tester' (or another mock group you define)
 **Run with defined remote user, javerage will work with mock groups**
 REMOTE_USER="javerage" ./manage runserver
+ 

@@ -3,12 +3,16 @@ var Spot = {
     submit_spot: function (e) {
         var form_data = Spot.get_edit_form_data();
         var is_create= Spot._get_is_add(form_data);
+        var will_exit = false;
+        if (e.data.hasOwnProperty('exit')) {
+            will_exit = e.data.exit;
+        }
 
         if (is_create) {
-            Spot._create_spot(form_data);
+            Spot._create_spot(form_data, will_exit);
 
         } else {
-            Spot._edit_spot(form_data);
+            Spot._edit_spot(form_data, will_exit);
         }
     },
 
@@ -42,7 +46,7 @@ var Spot = {
         return !(form_data.id.length > 0);
     },
 
-    _edit_spot: function (form_data) {
+    _edit_spot: function (form_data, will_exit) {
         var f_data = new FormData();
         f_data.append("json", JSON.stringify(form_data));
         var image = $("#mgr_upload_image")[0];
@@ -62,7 +66,7 @@ var Spot = {
                 $("#pub_error").html("yay all good!");
 
                 // reload the page
-                window.location.reload(true);
+                Spot._spot_post_submit(will_exit);
             },
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");
@@ -73,7 +77,7 @@ var Spot = {
 
     },
 
-    _create_spot: function (form_data) {
+    _create_spot: function (form_data, will_exit) {
         var f_data = new FormData();
         f_data.append("json", JSON.stringify(form_data));
         var image = $("#mgr_upload_image")[0];
@@ -94,8 +98,7 @@ var Spot = {
                 $("#pub_error").addClass("alert-success");
                 $("#pub_error").html("yay all good!");
 
-                // go back to app_type list
-                Spot._navigate_after_create();
+                Spot._spot_post_submit(will_exit);
             },
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");
@@ -103,6 +106,14 @@ var Spot = {
                 $("#pub_error").html(error + ": " + xhr.responseText);
             }
         });
+    },
+
+    _spot_post_submit: function (will_exit) {
+        if (will_exit) {
+            Spot._navigate_to_apptype();
+        } else {
+            window.location.reload(true);
+        }
     },
 
     get_edit_form_data: function() {
@@ -134,15 +145,16 @@ var Spot = {
         return avalible_hours;
     },
 
-    _navigate_after_create: function() {
-        var type_inputs = $("div.mgr-set-app-type input:checked");
+    _navigate_to_apptype: function() {
+        var type_inputs = $("input[name='extended_info:app_type']");
         var app_type;
         $(type_inputs).each(function (idx, input){
             app_type = $(input).val();
         });
-        if (app_type !== undefined){
-            window.location.href ="../?app_type=" + app_type;
+        if (app_type == undefined) {
+            app_type = "study";
         }
+        window.location.href ="../?app_type=" + app_type;
     }
 
 };
