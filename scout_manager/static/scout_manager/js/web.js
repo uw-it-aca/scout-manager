@@ -17,17 +17,12 @@ $(document).on('ready', function(event) {
     var spaces_edit_path = new RegExp("\/manager\/spaces\/[0-9].+\/?$");
 
     if (spaces_add_path.test(page_path) || spaces_edit_path.test(page_path)) {
-        console.log("at spaces");
         Forms.init_form();
         Maps.init_picker();
     } else if (items_add_path.test(page_path) || items_edit_path.test(page_path)) {
-        console.log("at items");
         Forms.init_form("items");
     } else if (list_path.test(page_path)) {
         //List.init();
-        console.log('list view')
-    } else {
-        console.log("at home");
     }
 
 

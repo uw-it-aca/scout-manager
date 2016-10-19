@@ -27,20 +27,20 @@
             {% if spot.is_hidden %}
             <div class="scout-draft">
                 <span class="text-muted"></span>&nbsp;&nbsp;&nbsp;
-                <input id="submit_spot" type="button" class="btn" value="Save & Close" style="display:inline-block;"></input>
-                <input id="submit_spot" type="button" class="btn btn-primary" value="Save & Continue" style="display:inline-block;"></input>
+                <input id="save_close" type="button" class="btn" value="Save & Close" style="display:inline-block;"></input>
+                <input id="save_continue" type="button" class="btn btn-primary" value="Save & Continue" style="display:inline-block;"></input>
             </div>
             {% else %}
             <div class="scout-published">
                 <span class="text-muted"></span>&nbsp;&nbsp;&nbsp;
-                <input id="submit_spot" type="button" class="btn btn-primary" value="Publish Changes" style="display:inline-block;"></input>
+                <input id="save_continue" type="button" class="btn btn-primary" value="Publish Changes" style="display:inline-block;"></input>
             </div>
             {% endif %}
         {% else %}
         <span class="scout-create">
             <span class="text-danger" role="alert">Error: Required fields must be filled out.</span>&nbsp;&nbsp;&nbsp;
-            <input id="submit_spot" type="button" class="btn" value="Save & Close" style="display:inline-block;"></input>
-            <input id="submit_spot" type="button" class="btn btn-primary" value="Save & Continue" style="display:inline-block;"></input>
+            <input id="save_close" type="button" class="btn" value="Save & Close" style="display:inline-block;"></input>
+            <input id="save_continue" type="button" class="btn btn-primary" value="Save & Continue" style="display:inline-block;"></input>
         </span>
         {% endif %}
 
