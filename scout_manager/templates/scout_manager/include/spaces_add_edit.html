@@ -27,10 +27,8 @@
             {% if spot.is_hidden %}
             <div class="scout-draft">
                 <span class="text-muted"></span>&nbsp;&nbsp;&nbsp;
-                <input id="save_close" type="button" class="btn {% if spot.name %}btn-primary{% endif %}" value="Save & Close" style="display:inline-block; margin-right: 15px;"></input>
-                {% if not spot.name %}
-               <input id="save_continue" type="button" class="btn btn-primary" value="Save & Continue" style="display:inline-block;"></input>
-               {% endif %}
+                <input id="save_close" type="button" class="btn" value="Save & Close" style="display:inline-block; margin-right: 15px;"></input>
+               <input id="save_continue" type="button" class="btn btn-primary" value="Save  {% if not spot.name %}& Continue{% endif %}" style="display:inline-block;"></input>
             </div>
             {% else %}
             <div class="scout-published">
