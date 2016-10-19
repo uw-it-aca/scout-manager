@@ -3,13 +3,14 @@
 <h3>Images</h3>
 
 <div class="form-group">
-    <label>Image input:</label>
-    <input type="file" name="" accept="image/*" id="mgr_upload_image">
-    <p class="help-block">Note: You must click on "Upload Image" after selecting your image.</p>
-
-    <div class="mgr-dataset-actions">
-        <button class="btn btn-default btn-sm" id="mgr_upload_button" type="button" style="display:none;" value="upload-{% if spot.item %}item-{% endif %}image"><i class="fa fa-upload"></i> <span>Upload Image</span></button>
+    <div class="form-group">
+        <label>Image input:</label>
+    <input class="" type="file" name="" accept="image/*" id="mgr_upload_image" style="padding-top: 10px;">
     </div>
+    <div class="mgr-dataset-actions ">
+        <button class="btn btn-primary btn-sm" id="mgr_upload_button" type="button" style="display:none;" value="upload-{% if spot.item %}item-{% endif %}image"><i class="fa fa-upload"></i> <span>Upload Image</span></button>
+    </div>
+    <p class="help-block">Note: You must click on "Upload Image" after selecting your image.</p>
 
 </div>
 

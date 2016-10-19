@@ -3,7 +3,6 @@
     window.campus_locations = {{ campus_locations | safe}};
 </script>
 <div class="row mgr-location">
-
     <h3 class="col-md-12">Location</h3>
 
     <div class="col-md-4 mgr-location-meta">
@@ -18,26 +17,7 @@
             </select>
             <div class="help-block with-errors"></div>
         </div>
-
-        <hr/>
-
-        <div class="form-group">
-            <label for="space-latitude" class="control-label">Latitude: <span class="visually-hidden">Required</span></label>
-            <p class="help-block">Drop pin on map to get coordinates. Drag pin for precise positioning. </p>
-            <input class="form-control" name="location:latitude" id="space_latitude" type="text" value="{% if spot.latitude %}{{ spot.latitude }}{% endif %}" required data-error="Latitude is required." />
-            <div class="help-block with-errors"></div>
-        </div>
-
-        <div class="form-group">
-            <label for="space-longitude" class="control-label">Longitude: <span class="visually-hidden">Required</span></label>
-            <p class="help-block">Drop pin on map to get coordinates. Drag pin for precise positioning. </p>
-            <input class="form-control" name="location:longitude" id="space_longitude" type="text" value="{% if spot.longitude %}{{ spot.longitude }}{% endif %}" required data-error="Longitude is required." />
-            <div class="help-block with-errors"></div>
-        </div>
-
-        <hr/>
-
-        {% if spot.name %}
+                {% if spot.name %}
         
              <!-- Hide if outdoor location. We suggest/enforce building options. -->
         <div class="form-group">
@@ -71,6 +51,22 @@
         </div>
         {% endif %}
         {% endif %}
+
+        <hr/>
+
+        <div class="form-group">
+            <label for="space-latitude" class="control-label">Latitude: <span class="visually-hidden">Required</span></label>
+            <p class="help-block">Drop pin on map to get coordinates. Drag pin for precise positioning. </p>
+            <input class="form-control" name="location:latitude" id="space_latitude" type="text" value="{% if spot.latitude %}{{ spot.latitude }}{% endif %}" required data-error="Latitude is required." />
+            <div class="help-block with-errors"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="space-longitude" class="control-label">Longitude: <span class="visually-hidden">Required</span></label>
+            <p class="help-block">Drop pin on map to get coordinates. Drag pin for precise positioning. </p>
+            <input class="form-control" name="location:longitude" id="space_longitude" type="text" value="{% if spot.longitude %}{{ spot.longitude }}{% endif %}" required data-error="Longitude is required." />
+            <div class="help-block with-errors"></div>
+        </div>
 
     </div>
 

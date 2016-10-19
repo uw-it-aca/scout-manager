@@ -61,6 +61,9 @@ body { overflow-x: hidden; }
         .mgr-dataset-actions {
 
             .btn { margin-right: 5px; }
+            .btn-primary {
+                span {color: white;}
+            }
             button {
                 span { display: none; color: $asbestos; }
             }
