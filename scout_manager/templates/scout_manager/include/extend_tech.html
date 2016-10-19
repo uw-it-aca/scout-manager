@@ -1,14 +1,9 @@
-<hr/>
-
 <div class="row">
-
-    <!--  if "food" app_type -->
-    <h3 class="col-md-12" style="margin-top:0;">Tech Extended Info</h3>
-
+    <!--  if "tech" app_type -->
     <div class="col-md-12">
 
         <fieldset class="checkbox-group {% if spot.name %}required{% endif %}">
-            <legend class="control-label">Spot types</legend>
+            <legend class="control-label">Type of Space</legend>
             <div class="well" id="tech_spot_types">
                 <div class="checkbox">
                     <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "checkout" in type.name %} checked {% endif %}{% endfor %}  value="checkout">Equipment Checkout</label>
@@ -23,7 +18,7 @@
                     <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "studio" in type.name %} checked {% endif %}{% endfor %}  value="studio">Production Studio</label>
                 </div>
             </div>
-            <div class="help-block with-errors">Please select at least 1 spot type.</div>
+            <div class="help-block with-errors">Please select at least 1 space type.</div>
         </fieldset>
 
     </div>

@@ -160,7 +160,7 @@
         <h3>Alert message for this space</h3> {# we need to set has_alert too to show it #}
 
     <div class="checkbox">
-        <label><input name="extended_info:has_alert" type="checkbox" value="true" {% if spot.has_alert %}checked{% endif %}>Publish alert message.</label>
+        <label><input name="extended_info:has_alert" type="checkbox" value="true" {% if spot.has_alert %}checked{% endif %}>Display alert message</label>
     </div>
 
         <div class="form-group">
@@ -221,23 +221,8 @@
    
     <!-- include the hour and access form -->
     {% include "scout_manager/include/form_hours.html" %}
-
-    <hr/>
-
-    <h3 class="">DELETE</h3>
-    <div class="form-group well">
-        <div>
-            <label>Delete this space?</label>
-        </div>
-        <div class="mgr-dataset-actions">
-            <button id="spot_delete" type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
-            <div class="help-block">Note: This action cannot be undone!</div>
-        </div>
-    </div>
-
-{% endif %}
-
-<!-- FOR NOW: items for tech spaces -->
+    
+    <!-- FOR NOW: items for tech spaces -->
 {% if spot.name and spot.app_type == "tech" %}
 
     <hr/>
@@ -276,3 +261,20 @@
     </div>
 
 {% endif %}
+
+
+    <hr/>
+
+    <h3 class="">DELETE</h3>
+    <div class="form-group well">
+        <div>
+            <label>Delete this space?</label>
+        </div>
+        <div class="mgr-dataset-actions">
+            <button id="spot_delete" type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
+            <div class="help-block">Note: This action cannot be undone!</div>
+        </div>
+    </div>
+
+{% endif %}
+
