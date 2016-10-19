@@ -1,11 +1,8 @@
-<hr/>
-
 <div class="row">
 
     <!--  if "study" app_type -->
-    <h3 class="col-md-12" style="margin-top:0;">Study Extended Info</h3>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
         <fieldset class="checkbox-group {% if spot.name %}required{% endif %}">
             <legend class="control-label">Spot types</legend>
             <div class="well" id="study_spot_types">
@@ -39,34 +36,6 @@
             </div>
             <div class="help-block with-errors">Please select at least 1 spot type.</div>
         </fieldset>
-
-        <fieldset>
-            <legend>Computers</legend>
-            <div class="well">
-                <div class="checkbox ">
-                    <label><input type="checkbox" name="computers" {% if spot.computers %} checked {% endif %} value="computers">Has Computers</label>
-                </div>
-                <div class="form-group">
-                    <label for="computer-count" class=""># of computers</label>
-                    <input class="form-control" type="number" min="1" name="num_computers" id="computer-count" value="{% if spot.num_computers %}{{spot.num_computers}}{% endif %}" data-error="number can't be negative or decimal">
-                    <div class="help-block with-errors"></div>
-                </div>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>Labstats API</legend>
-            <div class="well">
-                <div class="checkbox ">
-                    <label><input type="checkbox" name="labstats" {% if spot.labstats %} checked {% endif %} value="labstats">Has Labstats</label>
-                </div>
-                <div class="form-group ">
-                    <label for="labstats-id">Labstats ID:</label>
-                    <input class="form-control" id="labstats-id" type="text" name="labstats_id" value="{% if spot.labstats_id %}{{spot.labstats_id}}{% endif %}">
-                </div>
-            </div>
-        </fieldset>
-
         <fieldset>
             <legend>Reservability</legend>
             <div class="well">
@@ -89,10 +58,38 @@
 
             </div>
         </fieldset>
+         <fieldset>
+            <legend>Noise Level</legend>
+            <div class="well">
+                <div class="radio">
+                    <label><input type="radio" name="noise" {% if spot.spot_noise == "silent" %} checked {% endif %} value="silent">Silent</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="noise" {% if spot.spot_noise == "quiet" %} checked {% endif %} value="quiet">Quiet</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="noise" {% if spot.spot_noise == "moderate" %} checked {% endif %} value="moderate">Chatter</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="noise" {% if spot.spot_noise == "variable" %} checked {% endif %} value="variable">Variable</label>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Lighting</legend>
+            <div class="well">
+                <div class="checkbox ">
+                    <label><input type="checkbox" name="lighting" {% if spot.natural_light %} checked {% endif %} value="natural">Has Natural Light</label>
+                </div>
+            </div>
+        </fieldset>
+
+
 
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
 
         <div class="form-group">
             <label for="capacity" class="control-label">Space Capacity</label>
@@ -126,28 +123,33 @@
                 </div>
             </div>
         </fieldset>
-    </div>
-
-    <div class="col-md-4">
         <fieldset>
-            <legend>Noise Level</legend>
+            <legend>Computers</legend>
             <div class="well">
-                <div class="radio">
-                    <label><input type="radio" name="noise" {% if spot.spot_noise == "silent" %} checked {% endif %} value="silent">Silent</label>
+                <div class="checkbox ">
+                    <label><input type="checkbox" name="computers" {% if spot.computers %} checked {% endif %} value="computers">Has Computers</label>
                 </div>
-                <div class="radio">
-                    <label><input type="radio" name="noise" {% if spot.spot_noise == "quiet" %} checked {% endif %} value="quiet">Quiet</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" name="noise" {% if spot.spot_noise == "moderate" %} checked {% endif %} value="moderate">Chatter</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" name="noise" {% if spot.spot_noise == "variable" %} checked {% endif %} value="variable">Variable</label>
+                <div class="form-group">
+                    <label for="computer-count" class=""># of computers</label>
+                    <input class="form-control" type="number" min="1" name="num_computers" id="computer-count" value="{% if spot.num_computers %}{{spot.num_computers}}{% endif %}" data-error="number can't be negative or decimal">
+                    <div class="help-block with-errors"></div>
                 </div>
             </div>
         </fieldset>
 
         <fieldset>
+            <legend>Labstats API</legend>
+            <div class="well">
+                <div class="checkbox ">
+                    <label><input type="checkbox" name="labstats" {% if spot.labstats %} checked {% endif %} value="labstats">Has Labstats</label>
+                </div>
+                <div class="form-group ">
+                    <label for="labstats-id">Labstats ID:</label>
+                    <input class="form-control" id="labstats-id" type="text" name="labstats_id" value="{% if spot.labstats_id %}{{spot.labstats_id}}{% endif %}">
+                </div>
+            </div>
+        </fieldset>
+         <fieldset>
             <legend>Food Nearby</legend>
             <div class="well">
                 <div class="radio">
@@ -162,17 +164,8 @@
             </div>
         </fieldset>
 
-        <fieldset>
-            <legend>Lighting</legend>
-            <div class="well">
-                <div class="checkbox ">
-                    <label><input type="checkbox" name="lighting" {% if spot.natural_light %} checked {% endif %} value="natural">Has Natural Light</label>
-                </div>
-            </div>
-        </fieldset>
 
     </div>
-
     <div class="clearfix"></div>
 
 </div>
