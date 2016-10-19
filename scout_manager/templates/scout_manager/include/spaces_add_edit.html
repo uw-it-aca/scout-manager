@@ -160,6 +160,7 @@
 
             </div>
         </div>
+        {% if not spot.app_type == "tech" %}
         <h3>Alert message for this space</h3> {# we need to set has_alert too to show it #}
 
     <div class="checkbox">
@@ -171,7 +172,7 @@
             <textarea class="form-control" rows="4" id="alert-notes" name="extended_info:alert_notes">{% if spot.alert_notes %}{{ spot.alert_notes }}{% endif %}</textarea>
             <p class="help-block">Note: Alert message will only be displayed IF the "Publish alert" checkbox is checked.</p>
         </div>
-
+        {% endif %}
         {% else %}
         <div class="checkbox hidden">
             <label><input type="checkbox" name="extended_info:is_hidden" checked value="true"></input>Is Hidden?</label>
@@ -216,8 +217,10 @@
 </div>
 
 {% if spot.name %}
+<div class="{% if spot.app_type == "tech" %}visually-hidden{% endif %}">
     <!-- include the images form -->
     {% include "scout_manager/include/form_images.html" %}
+</div>
 {% endif %}
 {% include "scout_manager/include/form_location.html" %}
 {% if spot.name %}
