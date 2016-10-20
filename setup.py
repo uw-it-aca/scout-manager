@@ -23,6 +23,9 @@ setup(
         'beautifulsoup4',
         'pillow',
         'openpyxl'
+        'UW-RestClients==1.2',
+        'Django-UserService==1.1.0',
+        'Django-SupportTools==1.0'
     ],
     license='Apache License, Version 2.0',  # example license
     description='A Django app for developer resources complimentary to mdot_web client.',
