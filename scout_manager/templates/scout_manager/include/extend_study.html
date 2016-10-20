@@ -73,6 +73,9 @@
                 <div class="radio">
                     <label><input type="radio" name="noise" {% if spot.spot_noise == "variable" %} checked {% endif %} value="variable">Variable</label>
                 </div>
+                <div class="radio">
+                <label><input type="radio" name="noise" {% if not spot.spot_noise %} checked {% endif %} value="">N/A</label>
+                </div>
             </div>
         </fieldset>
 
@@ -158,6 +161,9 @@
                 </div>
                 <div class="radio">
                     <label><input type="radio" name="food_nearby" {% if spot.food_nearby == "building" %} checked {% endif %} value="building">In the building</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="food_nearby" {% if not spot.food_nearby %} checked {% endif %} value="">N/A</label>
                 </div>
             </div>
         </fieldset>

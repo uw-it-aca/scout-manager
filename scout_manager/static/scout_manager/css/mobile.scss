@@ -74,7 +74,7 @@ body { overflow-x: hidden; }
             /* action buttons (small) */
             .btn { border-color: transparent; /*box-shadow: none;*/ }
             .btn-default { min-width: 32px; color: $base; background: lighten($clouds, 4%); border-color: transparent; }
-            .btn-danger { color: #d9534f; background: lighten($clouds, 4%); border-color: transparent;}
+            .btn-danger span { color: white;}
         }
 
         /* global buttons (large) */
