@@ -22,7 +22,7 @@ setup(
         'html5lib<=0.9999999',
         'beautifulsoup4',
         'pillow',
-        'openpyxl'
+        'openpyxl',
         'UW-RestClients==1.2',
         'Django-UserService==1.1.0',
         'Django-SupportTools==1.0'
