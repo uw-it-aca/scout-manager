@@ -22,8 +22,7 @@ setup(
         'html5lib<=0.9999999',
         'beautifulsoup4',
         'pillow',
-        'openpyxl',
-        'UW-RestClients==1.2'
+        'openpyxl'
     ],
     license='Apache License, Version 2.0',  # example license
     description='A Django app for developer resources complimentary to mdot_web client.',
