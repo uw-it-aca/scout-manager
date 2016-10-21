@@ -53,6 +53,10 @@
     <div class="col-md-8">
 
         <h3 class="">General Info</h3>
+        {% if spot.app_type == "study" %} 
+        <div class="row">
+            <div class="col-md-8">
+        {% endif %}
 
         <div class="form-group">
             <label for="space-name" class="control-label">Space Name:  <span class="visually-hidden">Required</span></label>
@@ -62,6 +66,19 @@
             <input type="hidden" name="id" value="{{ spot.spot_id }}" />
             <input type="hidden" name="etag" value="{{ spot.etag }}" />
         </div>
+        
+         {% if spot.app_type == "study" %}
+             </div>
+        <div class="col-md-4">
+        <div class="form-group">
+            <label for="capacity" class="control-label">Space Capacity (# of people)</label>
+            <input class="form-control" type="number" min="1" name="capacity" id="capacity" value="{% if spot.capacity %}{{spot.capacity}}{% endif %}" data-error="number can't be negative or decimal">
+            <div class="help-block with-errors"></div>
+        </div>
+        </div>
+        </div>
+        {% endif %}
+        
 
         <fieldset style="margin-top:2em;" class="radio-group required" id="app_type_radio">
             <legend class="">Primary purpose of Space:
@@ -100,6 +117,7 @@
             {% endif %}
 
         </fieldset>
+
         
         {% if spot.app_type == "food" %}
     {% include "scout_manager/include/extend_food.html" %}

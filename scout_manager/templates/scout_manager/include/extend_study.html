@@ -79,24 +79,9 @@
             </div>
         </fieldset>
 
-        <fieldset>
-            <legend>Lighting</legend>
-            <div class="well">
-                <div class="checkbox ">
-                    <label><input type="checkbox" name="lighting" {% if spot.natural_light %} checked {% endif %} value="natural">The space has Natural Light</label>
-                </div>
-            </div>
-        </fieldset>
-
     </div>
 
     <div class="col-md-6">
-
-        <div class="form-group">
-            <label for="capacity" class="control-label">Space Capacity (# of people)</label>
-            <input class="form-control" type="number" min="1" name="capacity" id="capacity" value="{% if spot.capacity %}{{spot.capacity}}{% endif %}" data-error="number can't be negative or decimal">
-            <div class="help-block with-errors"></div>
-        </div>
 
         <fieldset>
             <legend>Resources available in space:</legend>
@@ -133,24 +118,12 @@
                 <div class="form-group">
                     <label for="computer-count" class=""># of computers for use</label>
                     <input class="form-control" type="number" min="1" name="num_computers" id="computer-count" value="{% if spot.num_computers %}{{spot.num_computers}}{% endif %}" data-error="number can't be negative or decimal">
-                    <div class="help-block with-errors"></div>
-                </div>
+                    <div class="help-block with-errors"></div></div>
+                    <p class="help-block">If this space has Labstats monitoring, <a href="mailto:help@uw.edu">contact us</a> about getting computer availability stats in Scout.</p>
             </div>
         </fieldset>
 
-        <fieldset>
-            <legend>Labstats</legend>
-            <div class="well">
-                <div class="checkbox ">
-                    <label><input type="checkbox" name="labstats" {% if spot.labstats %} checked {% endif %} value="labstats">This space has Labstats monitoring computer usage</label>
-                </div>
-                <div class="form-group ">
-                    <label for="labstats-id">Labstats ID</label>
-                    <input class="form-control" id="labstats-id" type="text" name="labstats_id" value="{% if spot.labstats_id %}{{spot.labstats_id}}{% endif %}">
-                </div>
-            </div>
-        </fieldset>
-         <fieldset>
+                 <fieldset>
             <legend>Food Nearby</legend>
             <div class="well">
                 <div class="radio">
@@ -164,6 +137,14 @@
                 </div>
                 <div class="radio">
                     <label><input type="radio" name="food_nearby" {% if not spot.food_nearby %} checked {% endif %} value="">N/A</label>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Lighting</legend>
+            <div class="well">
+                <div class="checkbox ">
+                    <label><input type="checkbox" name="lighting" {% if spot.natural_light %} checked {% endif %} value="natural">The space has Natural Light</label>
                 </div>
             </div>
         </fieldset>
