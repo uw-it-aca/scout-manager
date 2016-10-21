@@ -34,9 +34,9 @@
         {% for spot in spots %}
             {% for item in spot.items %}
             <tr>
-                <td><a href="/manager/items/{{item.item_id}}/" title="Manage Item: {{ item.name }}">{{ item.item_id }}</a></td>
+                <td>{{ item.item_id }}</td>
                 <td><strong>{{ item.is_stf }}</strong></td>
-                <td><strong>{{ item.name }}</strong></td>
+                <td><strong><a href="/manager/items/{{item.item_id}}/" title="Manage Item: {{ item.name }}">{{ item.name }}</a></strong></td>
                 <td>{{ item.subcategory }}</td>
                 <td>{{ spot.name }}</td>
                 <td>{{ spot.campus }}</td>
