@@ -16,7 +16,7 @@
         
         <div class="row">
         <fieldset class="checkbox-group {% if spot.name %}required{% endif %} col-md-6">
-            <legend class="control-label">Type of Space</legend>
+            <legend class="control-label">Type of Space <span class="visually-hidden">(required)</span></legend>
             <div class="well" id="food_spot_types">
                 <div class="checkbox">
                     <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafe" in type.name %} checked {% endif %}{% endfor %} value="cafe">Cafe</label>
@@ -40,7 +40,7 @@
             <div class="help-block with-errors">Please select at least 1 space type.</div>
         </fieldset>
          <fieldset class="checkbox-group {% if spot.name %}required{% endif %} col-md-6">
-            <legend class="control-label">Payment Accepted</legend>
+            <legend class="control-label">Payment Accepted  <span class="visually-hidden">(required)</span></legend>
             <div class="well" id="food_payment_type">
 
                 <div class="checkbox">

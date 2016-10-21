@@ -365,6 +365,12 @@ var Forms = {
             $(".scout-draft-actions .help-block").css('color', '#a94442');
             $(".scout-draft-actions .help-block").attr('role', 'alert');
             $(".scout-draft-actions .help-block").html("Error: Form validation errors prevent this spot from being published.");
+            
+            $(".scout-draft-actions .item-help-block").css('color', '#a94442');
+            $(".scout-draft-actions .item-help-block").attr('role', 'alert');
+            $(".scout-draft-actions .item-help-block").html("Error: Form validation errors prevent this item from being published.");
+            
+
 
             // for published, don't allow unpublish or submit if errors exist
             $(".scout-published-actions #toggle_is_hidden").attr('disabled', 'disabled');
@@ -372,6 +378,10 @@ var Forms = {
             $(".scout-published-actions .help-block").attr('role', 'alert');
             $(".scout-published-actions .help-block").css('color', '#a94442');
             $(".scout-published-actions .help-block").html("Error: Form validation errors prevent this spot from being un-published.");
+            
+            $(".scout-published-actions .item-help-block").attr('role', 'alert');
+            $(".scout-published-actions .item-help-block").css('color', '#a94442');
+            $(".scout-published-actions .item-help-block").html("Error: Form validation errors prevent this item from being un-published.");
 
             $(".scout-published #submit_spot").attr('disabled', 'disabled');
             $(".scout-published #submit_item").attr('disabled', 'disabled');
@@ -384,16 +394,25 @@ var Forms = {
             $(".scout-draft-actions #toggle_item_active").removeAttr("disabled");
             $(".scout-draft-actions .help-block").css('color', '');
             $(".scout-draft-actions  .help-block").html("Note: Publishing this space will make it visible in all client apps!");
+            
+            $(".scout-draft-actions .item-help-block").css('color', '');
+            $(".scout-draft-actions .item-help-block").html("Note: Publishing this item will make it visible in all client apps!");
 
             $(".scout-published-actions #toggle_is_hidden").removeAttr("disabled");
             $(".scout-published-actions #toggle_item_active").removeAttr("disabled");
             $(".scout-published-actions .help-block").css('color', '');
-            // $(".scout-published-actions .help-block").html("Note: Unpublishing this space will remove it from being seen in client apps.");
+            $(".scout-published-actions .help-block").html("Note: Unpublishing this space will remove it from being seen in client apps.");
+            $(".scout-published-actions .item-help-block").css('color', '');
+            $(".scout-published-actions .item-help-block").html("Note: Unpublishing this item will remove it from being seen in client apps.");
+
 
             $(".scout-published #submit_spot").removeAttr("disabled");
             $(".scout-published #submit_item").removeAttr("disabled");
+            $(".scout-published span.item-help").removeClass("text-danger");
+            $(".scout-published span.item-help").html("Note: This item is published and any changes will be shown immediately in client apps.")
             $(".scout-published span").removeClass("text-danger");
             $(".scout-published span").html("Note: This space is published and any changes will be shown immediately in client apps.")
+
         }
 
     },

@@ -7,10 +7,9 @@
     <h2 class="pull-left">{% if spot.item.name %}{{ spot.item.name }}{% else %}Add New Item{% endif %}</h2>
     <div class="pull-right">
 
-        {% if spot.item.name %}
             {% if spot.item.is_active %}
             <div class="scout-published">
-                <span class="text-muted"></span>&nbsp;&nbsp;&nbsp;
+                <span class="text-muted item-help"></span>&nbsp;&nbsp;&nbsp;
                 <input id="submit_item" type="button" class="btn btn-primary" value="Publish Changes" style="display:inline-block;"></input>
             </div>
             {% else %}
@@ -19,12 +18,6 @@
                 <input id="submit_item" type="button" class="btn btn-primary" value="Save Draft" style="display:inline-block;"></input>
             </div>
             {% endif %}
-        {% else %}
-        <div class="scout-create">
-            <span class="text-danger">Note: All required fields must be filled before you can create.</span>&nbsp;&nbsp;&nbsp;
-            <input id="submit_item" type="button" class="btn btn-primary" value="Create Item" style="display:inline-block;"></input>
-        </div>
-        {% endif %}
 
 
     </div>
@@ -32,13 +25,12 @@
 
 
 <div class="row">
-
-    <div class="col-md-8">
-
+<div class="col-md-8">
         <h3>General Information</h3>
 
+<div class="col-md-8">
         <div class="form-group">
-            <label for="item_name">Name:</label>
+            <label for="item_name">Name</label>
             <input id="item_name" name="name" value="{% if spot.item.name %}{{ spot.item.name }}{% endif %}" class="form-control" type="text" required data-error="Please provide a name for this item." />
             <div class="help-block with-errors"></div>
 
@@ -46,18 +38,24 @@
             <input type="hidden" name="spot_id" value="{{ spot.spot_id }}" />
             <input type="hidden" name="etag" value="{{ spot.etag }}" />
         </div>
-
-        <fieldset>
-            <legend>Is this STF Funded:</legend>
-            <div class="well">
-                <div class="checkbox">
-                    <label><input type="checkbox" name="extended_info:i_is_stf" value="true" {% if spot.item.is_stf %}checked{% endif %}>Is STF?</label>
-                </div>
+    </div>
+    <div class="col-md-4">
+       
+       <div class="form-group">
+                <label for="">Quantity:</label>
+                <input id="" class="form-control" type="number" value="{{ spot.item.quantity }}" name="extended_info:i_quantity">
+            </div>       
+           </div>
+        
+        <div class="col-md-12">
+            <div class="form-group">
+            <label for="">Description:</label>
+            <textarea rows="4" class="form-control" id="" type="text" required name="extended_info:i_description">{{ spot.item.description }}</textarea>
+            <div class="help-block with-errors"></div>
             </div>
-        </fieldset>
-
+    
         <fieldset class="radio-group required">
-            <legend for="">Category: {{ spot.item.category }}/{{ spot.item.subcategory }}</legend>
+            <legend for="">Category</legend>
             <div class="well" id="item_category">
                 <div class="radio"><label><input type="radio" name="category" {% if "cameras" in spot.item.category %} checked {% endif %} value="cameras">Cameras</label></div>
                 <div class="radio"><label><input type="radio" name="category" {% if "camera_accessories" in spot.item.category %} checked {% endif %} value="camera_accessories">Camera Accessories</label></div>
@@ -68,7 +66,7 @@
             </div>
             <div class="help-block with-errors">Please select a category.</div>
         </fieldset>
-
+        
         <fieldset class="radio-group required">
             <legend>Subcategory</legend>
             <div class="well" id="item_subcategory" style="min-height:40px;">
@@ -119,12 +117,28 @@
             <div class="help-block with-errors">Please select a subcategory.</div>
 
         </fieldset>
+        
+            <div class="form-group">
+                <label for="">Brand:</label>
+                <input id="" class="form-control" type="text" value="{{spot.item.brand}}" required name="extended_info:i_brand">
+                <div class="help-block with-errors"></div>
+            </div>
+    
+            <div class="form-group">
+                <label for="">Model: </label>
+                <input id="" class="form-control" type="text" value="{{ spot.item.model }}" name="extended_info:i_model">
+            </div>
 
+
+            <div class="form-group">
+                <label for="">Manual URL:</label>
+                <input class="form-control" id="" type="text" value="{{ spot.item.manual_url }}" name="extended_info:i_manual_url">
+            </div>
+        </div>
     </div>
 
     <div class="col-md-4">
 
-        {% if spot.item.name %}
         <h3 class="">Publishing</h3>
         <div class="form-group well">
             <div>
@@ -135,103 +149,58 @@
                     <label><input type="checkbox" name="extended_info:i_is_active" {% if spot.item.is_active %} checked{% endif %} value="true"></input>Is Active?</label>
                 </div>
                 {% if spot.item.is_active %}
-                <div class="scout-draft-actions">
+                <div class="scout-published-actions">
                     <button type="button" id="toggle_item_active" class="btn btn-default btn-sm"><i class="fa fa-eye-slash"></i> <span>Unpublish Item</span></button>
-                    <div class="help-block">sadkljfadsfk</div>
+                    <div class="item-help-block"></div>
                 </div>
                 {% else %}
-                <div class="scout-published-actions">
+                <div class="scout-draft-actions">
                     <button type="button" id="toggle_item_active" class="btn btn-default btn-sm"><i class="fa fa-eye"></i> <span>Publish Item</span></button>
-                    <div class="help-block">asdfasdf</div>
+                    <div class="item-help-block"></div>
                 </div>
                 {% endif %}
 
             </div>
         </div>
-        {% else %}
-        <div class="checkbox hidden">
-            <label><input type="checkbox" name="extended_info:i_is_active" value="true"></input>Is Active?</label>
-        </div>
-        {% endif %}
-
-        {% if spot.item.name %}
-        <h3 class="">DELETE</h3>
-        <div class="form-group well">
-            <div>
-                <label>Delete this Item?</label>
+         
+            <h3 >Funding source</h3>
+            <div class="form-group well">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:i_is_stf" value="true" {% if spot.item.is_stf %}checked{% endif %}>STF funded this item</label>
+                </div>
             </div>
-            <div class="mgr-dataset-actions">
-                <button id="item_delete" type="button" class="btn btn-danger btn-sm scope btn-delete"><i class="fa fa-trash"></i> <span>Delete</span></button>
-                <div class="help-block">Note: This action cannot be undone!</div>
-            </div>
+        
         </div>
-        {% endif %}
 
     </div>
 
-</div>
 
-{% if spot.item.name %}
 <hr/>
 
 <div class="row">
-
-    <h3 class="col-md-12">STF Extended Information</h3>
-
-    <div class="col-md-4">
-
-        <div class="form-group">
-            <label for="">Description:</label>
-            <textarea rows="4" class="form-control" id="" type="text" required name="extended_info:i_description">{{ spot.item.description }}</textarea>
-            <div class="help-block with-errors"></div>
-        </div>
-
-        <div class="form-group">
-            <label for="">Brand:</label>
-            <input id="" class="form-control" type="text" value="{{spot.item.brand}}" required name="extended_info:i_brand">
-            <div class="help-block with-errors"></div>
-        </div>
-
-        <div class="form-group">
-            <label for="">Model: </label>
-            <input id="" class="form-control" type="text" value="{{ spot.item.model }}" name="extended_info:i_model">
-        </div>
-
-        <div class="form-group">
-            <label for="">Quantity:</label>
-            <input id="" class="form-control" type="number" value="{{ spot.item.quantity }}" name="extended_info:i_quantity">
-        </div>
-
-        <div class="form-group">
-            <label for="">Manual URL:</label>
-            <input class="form-control" id="" type="text" value="{{ spot.item.manual_url }}" name="extended_info:i_manual_url">
-        </div>
-
-    </div>
-
-    <div class="col-md-8">
-
+    <div class="col-md-12">
 
         <fieldset>
-            <legend>Reservations</legend>
-
-            <div class="well">
-
+            <legend><h3>Reservation Information</h3></legend>
+            <div class="col-md-2">
                 <div class="form-group">
                     <label for="">Checkout Duration (days):</label>
                     <input class="form-control" id="" type="number" value="{{ spot.item.checkout_period }}" name="extended_info:i_checkout_period">
                 </div>
+            </div>
+            <div class="col-md-10">
 
                 <div class="form-group">
-                    <label for="">Reserve URL:</label>
+                    <label for="">Reservation URL:</label>
                     <input class="form-control" id="" type="text" value="{{ spot.item.reserve_url }}" name="extended_info:i_reserve_url">
                 </div>
+            </div>
+            <div class="col-md-12">
 
                 <div class="form-group">
                     <label for="">Reservation Notes:</label>
                     <textarea rows="4" class="form-control" id="" name="extended_info:i_reservation_notes">{{ spot.item.reservation_notes }}</textarea>
                 </div>
-
             </div>
         </fieldset>
 
@@ -239,62 +208,30 @@
 
 
 </div>
-{% endif %}
 
-{% if spot.item.name %}
 <!-- include the images form -->
 {% include "scout_manager/include/form_images.html" %}
-{% endif %}
 
-
-<hr/>
-
-<div class="row">
-
-    <h3 class="col-md-12">Location</h3>
-
-    {% if not spot.item.name %}
-    <div class="col-md-4">
-
-        <div class="form-group">
-            <label class="control-label" for="">Campus:</label> {{spot.campus}}
-            <select id="campus_select" class="form-control">
-                <option disabled selected value>select a campus...</option>
-                <option value="seattle" {% if spot.campus == "seattle" %} selected {% endif %}>Seattle</option>
-                <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
-                <option value="tacoma" {% if spot.campus == "tacoma" %} selected {% endif %}>Tacoma</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="" class="control-label">Building:</label> {{spot.building_name}}
-            <select id="building_select" class="form-control">
-                <option disabled  {% if spot == None %}selected{% endif %} value="">select a building...</option>
-                {% for building, campus in buildings.items %}
-                <option value="{{ building }}" {% if spot.building_name == building %} selected {% endif %} data-campus="{{ campus }}">{{ building }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <p class="help-block">Note: Select a campus and building to narrow down the list of spaces.</p>
-
+<hr />
+   <h3  >Location</h3>
+    <div class="col-md-12 ">
+        <span><strong><a href="/manager/spaces/{{ spot.spot_id }}/" title="Manage Space: {{ spot.name }} ({% if spot.is_hidden %}(unpublished){% else %}PUBLISHED{% endif %})" target="_blank">{{spot.name}}</a></strong>, {{spot.building_name}}, {{spot.campus}}</span>
     </div>
 
-    <div class="col-md-8">
-        <div class="form-group">
-            <label for="" class="control-label">Space:</label> {{spot.name}}
-            <select id="spot_select" class="form-control" name="new_spot_id" required  data-error="Please select a space for this item.">
-                <option disabled selected value>select a space...</option>
-                {% for s in spots %}
-                <option value="{{s.spot_id}}" data-campus="{{s.campus}}" data-building="{{s.building_name}}" {% if s.name == spot.name %}selected{% endif %}>{{s.name}}</option>
-                {% endfor %}
-            </select>
-            <div class="help-block with-errors"></div>
+    
+    {% if spot.item.name %}
+<br/>
+    <hr />
+        <h3 class="">Delete</h3>
+        <div class="form-group well">
+            <div>
+                <label for="item_delete">Delete this Item?</label>
+            </div>
+            <div class="mgr-dataset-actions">
+                <button id="item_delete" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                <div class="help-block">Note: This action cannot be undone!</div>
+            </div>
         </div>
-    </div>
-    {% else %}
-    <div class="col-md-12">
-        <p>{{spot.campus}}</p>
-        <p>{{spot.building_name}}</p>
-        <p>{{spot.name}}, {{spot.spot_id}}</p>
-    </div>
-    {% endif %}
+        {% endif %}
+    
 </div>

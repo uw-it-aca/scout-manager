@@ -4,7 +4,7 @@
 
     <div class="col-md-6">
         <fieldset class="checkbox-group {% if spot.name %}required{% endif %}">
-            <legend class="control-label">Type of Space</legend>
+            <legend class="control-label">Type of Space  <span class="visually-hidden">Required</span></legend>
             <div class="well" id="study_spot_types">
                 <div class="checkbox">
                     <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "study_room" in type.name %} checked {% endif %}{% endfor %} value="study_room">Study room</label>
