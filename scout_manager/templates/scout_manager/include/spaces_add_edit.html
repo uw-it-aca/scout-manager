@@ -170,7 +170,7 @@
         <div class="form-group">
             <label for="alert-notes">Alert message:</label>
             <textarea class="form-control" rows="4" id="alert-notes" name="extended_info:alert_notes">{% if spot.alert_notes %}{{ spot.alert_notes }}{% endif %}</textarea>
-            <p class="help-block">Note: Alert message will only be displayed IF the "Publish alert" checkbox is checked.</p>
+            <p class="help-block">Note: Alert message will only be displayed IF the "Display alert" checkbox is checked.</p>
         </div>
         {% endif %}
         {% else %}
@@ -217,7 +217,7 @@
 </div>
 
 {% if spot.name %}
-<div class="{% if spot.app_type == "tech" %}visually-hidden{% endif %}">
+<div {% if spot.app_type == "tech" %}style="display:none;" aria-hidden="true"{% endif %}>
     <!-- include the images form -->
     {% include "scout_manager/include/form_images.html" %}
 </div>
