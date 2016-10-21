@@ -22,14 +22,13 @@
         <div class="col-md-4">
             <div class="well" style="padding:0;">
                 <div class="mgr-edit-img-container" data-url="/manager/item/images/{{ spot.item.item_id }}/image/{{ image.image_id }}/" data-id="{{ image.image_id }}"></div>
-                <div class="mgr-dataset-actions" style="padding:19px;">
-                    {% if forloop.first %}
-                    Default
-                    {% else %}
-                    Index: {{ forloop.counter }}
-                    {% endif %}
-                    &nbsp;&nbsp;
+                    <div class="mgr-dataset-actions" style="padding:19px;">
                     <button class="btn btn-danger btn-sm mgr-delete-image" type="button"><i class="fa fa-trash"></i> <span>Delete Image</span></button>
+                    &nbsp;&nbsp;
+                    {% if forloop.first %}
+                    Default Image
+                    {% else %}
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -42,13 +41,11 @@
              <div class="well" style="padding:0;">
                  <div class="mgr-edit-img-container" data-url="/manager/images/{{ spot.spot_id }}/image/{{ image.image_id }}/" data-id="{{ image.image_id }}"></div>
                  <div class="mgr-dataset-actions" style="padding:19px;">
+                     <button class="btn btn-danger btn-sm mgr-delete-image" type="button"><i class="fa fa-trash"></i> <span>Delete Image</span></button>&nbsp;&nbsp;
                      {% if forloop.first %}
-                     Default
+                     Default Image
                      {% else %}
-                     Index: {{ forloop.counter }}
                      {% endif %}
-                     &nbsp;&nbsp;
-                     <button class="btn btn-danger btn-sm mgr-delete-image" type="button"><i class="fa fa-trash"></i> <span>Delete Image</span></button>
                  </div>
             </div>
         </div>
