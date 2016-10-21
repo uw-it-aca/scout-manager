@@ -253,8 +253,8 @@
             <tbody>
                 {% for item in spot.items %}
                 <tr>
-                    <td><a href="/manager/items/{{ item.item_id }}/">{{ item.item_id }}</a></td>
-                    <td>{{ item.name }}</td>
+                    <td>{{ item.item_id }}</td>
+                    <td><a href="/manager/items/{{ item.item_id }}/" title="See details: {{ item.name }}">{{ item.name }}</a></td>
                     <td>{{ item.category }}</td>
                     <td>{{ item.subcategory }}</td>
                 </tr>
