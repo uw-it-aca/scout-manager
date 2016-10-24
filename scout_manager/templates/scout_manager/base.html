@@ -13,10 +13,10 @@
         </div>
 
         <div id="sidebar" class="mgr-sidebar {% if request.is_mobile or request.is_tablet %}mgr-sidebar-closed{% endif %}">
-            <h2 class="visually-hidden">Find the spaces and items you manage:</h2>
-            <div class="mgr-sidebar-actions">
-                <h3 id="subheader_spaces"><small class="text-muted" style="padding: 15px 20px 0 20px; display:block;">Spaces</small></h3>
-                <ul role="navigation" aria-labelledby="subheader_spaces">
+            <h2 class="visually-hidden" id="navigation_header">Find the spaces and items you manage:</h2>
+            <div class="mgr-sidebar-actions" role="navigation" aria-labelledby="navigation_header">
+                <h3 id="subheader_spaces" ><small class="text-muted" style="padding: 15px 20px 0 20px; display:block;">Spaces</small></h3>
+                <ul aria-labelledby="subheader_spaces">
                     <li><a class="" href="/manager/">View All Spaces</a></li>
                     <li><a class="" href="/manager/spaces/?app_type=food" title="View the food spaces you manage"><i class="fa fa-cutlery" aria-hidden="true"></i> Food</a></li>
                     <li><a class="" href="/manager/spaces/?app_type=study" title="View the study spaces you manage"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Study</a></li>                    
