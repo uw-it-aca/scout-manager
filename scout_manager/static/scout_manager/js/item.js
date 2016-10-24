@@ -49,7 +49,7 @@ var Item = {
             success: function(results) {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-success");
-                $("#pub_error").html("yay all good!");
+                $("#pub_error").html("All changes have been saved.");
             },
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");

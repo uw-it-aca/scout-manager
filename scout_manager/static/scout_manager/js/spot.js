@@ -63,7 +63,7 @@ var Spot = {
             success: function(results) {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-success");
-                $("#pub_error").html("yay all good!");
+                $("#pub_error").html("All changes have been saved.");
 
                 // reload the page
                 Spot._spot_post_submit(will_exit);
@@ -96,7 +96,7 @@ var Spot = {
             success: function(results) {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-success");
-                $("#pub_error").html("yay all good!");
+                $("#pub_error").html("All changes have been saved.");
 
                 Spot._spot_post_submit(will_exit);
             },
