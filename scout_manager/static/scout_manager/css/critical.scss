@@ -39,6 +39,20 @@ body { margin: 0; background: $clouds !important; }
 
 }
 
+//contextual help
+.help-link {
+    padding-left:3px;
+    &:hover {cursor:pointer;}
+}
+
+.modal-content {
+    .close {padding: 3px 8px;}
+}
+
+.modal-body {
+    h4 {margin-top: 30px;}
+}
+
 // flexbox
 
 .flex-container {

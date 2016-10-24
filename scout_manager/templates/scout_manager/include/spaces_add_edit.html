@@ -71,7 +71,11 @@
              </div>
         <div class="col-md-4">
         <div class="form-group">
-            <label for="capacity" class="control-label">Space Capacity (# of people)</label>
+            <label for="capacity" class="control-label">Space Capacity (# of people) 
+             <a type="button" class="help-link" data-toggle="modal" data-target="#help_capacity" title="More info: Capacity" >
+              <i class="fa fa-info-circle fa-2" aria-hidden="true"></i><span class="visually-hidden">More information</span>
+            </a>
+            </label>
             <input class="form-control" type="number" min="1" name="capacity" id="capacity" value="{% if spot.capacity %}{{spot.capacity}}{% endif %}" data-error="number can't be negative or decimal">
             <div class="help-block with-errors"></div>
         </div>
@@ -129,14 +133,19 @@
 
 {% if spot.name %}
         <fieldset >
-            <legend>Access Restictions</legend>
+            <legend>Access Restictions
+            <a type="button" class="help-link" data-toggle="modal" data-target="#help_access" title="More info: Access Restrictions" >
+              <i class="fa fa-info-circle fa-2" aria-hidden="true"></i><span class="visually-hidden">More information</span>
+            </a>
+            </legend>
 
             <div class="well">
                 <div class="checkbox">
             <label for="display_access_restrictions"><input id="display_access_restrictions" type="checkbox" name="display_access_restrictions" {% if spot.display_access_restrictions %}checked{% endif%} value="access_restrictions">There are restrictions around who can access this space</label>
         </div>
         <div class="form-group">
-            <label for="access-notes">Access Notes:</label>
+            <label for="access-notes">Access Notes:
+            </label>
             <textarea class="form-control" rows="4" id="access-notes" name="extended_info:access_notes">{% if spot.access_notes %}{{spot.access_notes}}{% endif %}</textarea>
             <p class="help-block">Note: Access notes will only be displayed to clients IF the "There are restrictions around who can access this space" checkbox is checked.</p>
         </div>
@@ -299,6 +308,16 @@
             <div class="help-block">Note: This action cannot be undone!</div>
         </div>
     </div>
+    
+{% endif %}
 
+<!-- contextual help modals -->
+{% include "scout_manager/include/help_general.html" %}
+{% if spot.app_type == "food" %}
+    {% include "scout_manager/include/help_food.html" %}
+{% elif spot.app_type == "study" %}
+    {% include "scout_manager/include/help_study.html" %}
+{% elif spot.app_type == "tech" %}
+    {% include "scout_manager/include/help_tech.html" %}
 {% endif %}
 

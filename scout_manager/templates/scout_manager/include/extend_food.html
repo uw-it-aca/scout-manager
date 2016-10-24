@@ -16,7 +16,11 @@
         
         <div class="row">
         <fieldset class="checkbox-group {% if spot.name %}required{% endif %} col-md-6">
-            <legend class="control-label">Type of Space <span class="visually-hidden">(required)</span></legend>
+            <legend class="control-label">Type of Space <span class="visually-hidden">(required)</span>
+            <a type="button" class="help-link" data-toggle="modal" data-target="#help_type" title="More info: Space Type" >
+              <i class="fa fa-info-circle fa-2" aria-hidden="true"></i><span class="visually-hidden">More information</span>
+            </a>
+            </legend>
             <div class="well" id="food_spot_types">
                 <div class="checkbox">
                     <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafe" in type.name %} checked {% endif %}{% endfor %} value="cafe">Cafe</label>
@@ -32,9 +36,6 @@
                 </div>
                 <div class="checkbox">
                     <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "restaurant" in type.name %} checked {% endif %}{% endfor %} value="restaurant">Restaurant</label>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafeteria" in type.name %} checked {% endif %}{% endfor %} value="cafeteria">Cafeteria</label>
                 </div>
             </div>
             <div class="help-block with-errors">Please select at least 1 space type.</div>
