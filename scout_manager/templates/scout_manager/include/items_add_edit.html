@@ -4,7 +4,7 @@
 <div class="alert hidden" role="alert" id="pub_error"></div>
 
 <div class="clearfix sticky" style="margin-bottom:1em;">
-    <h2 class="pull-left">{% if spot.item.name %}{{ spot.item.name }}{% else %}Add New Item{% endif %}</h2>
+    <h2 class="pull-left" id="sub_header">{% if spot.item.name %}{{ spot.item.name }}{% else %}Add New Item{% endif %}</h2>
     <div class="pull-right">
 
             {% if spot.item.is_active %}
