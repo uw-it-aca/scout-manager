@@ -91,7 +91,7 @@
                     <label for="has-reservations-food"><input id="has-reservations-food" name="extended_info:s_has_reservation" type="checkbox" value="true" {% if spot.s_has_reservation %}checked{% endif%}>This place accepts reservations</label>
                 </div>
                 <div class="form-group">
-                    <label>Reservation Notes:</label>
+                    <label for="reservation-notes-food">Reservation Notes:</label>
                     <textarea rows="4" class="form-control" id="reservation-notes-food" name="extended_info:s_reservation_notes">{% if spot.s_reservation_notes %}{{spot.s_reservation_notes}}{% endif %}</textarea>
                 </div>
                 <p class="help-block">Note: Reservation notes will only be displayed IF the "This place accepts reservations" checkbox is checked.</p>
