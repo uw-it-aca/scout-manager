@@ -27,6 +27,7 @@ var Forms = {
         // handle submitting spot to server
         $("#save_continue").on('click', {exit: false}, Spot.submit_spot);
         $("#save_close").on('click', {exit: true}, Spot.submit_spot);
+
         $("#submit_item").click(Item.submit_item);
 
     },
@@ -122,6 +123,10 @@ var Forms = {
             }
             $(this).parent().parent("div").remove();
             Forms.image_check_count();
+
+            // reload spot after image delete
+            Spot.submit_spot({'data':{'exit': false}});
+
         });
     },
 
@@ -142,7 +147,8 @@ var Forms = {
                 Item.submit_item();
             else
                 // submit spot
-                Spot.submit_spot();
+                //Spot.submit_spot();
+                Spot.submit_spot({'data':{'exit': false}});
         });
 
     },
@@ -195,11 +201,13 @@ var Forms = {
     toggle_is_hidden: function() {
 
         $("#toggle_is_hidden").click(function() {
+
             var checkBoxes = $("input[name='extended_info:is_hidden']");
             checkBoxes.prop("checked", !checkBoxes.prop("checked"));
 
             // submit "save changes"
-            Spot.submit_spot();
+            //Spot.submit_spot();
+            Spot.submit_spot({'data':{'exit': false}});
 
         });
 
@@ -367,11 +375,11 @@ var Forms = {
             $(".scout-draft-actions .help-block").css('color', '#a94442');
             $(".scout-draft-actions .help-block").attr('role', 'alert');
             $(".scout-draft-actions .help-block").html("Error: Form validation errors prevent this spot from being published.");
-            
+
             $(".scout-draft-actions .item-help-block").css('color', '#a94442');
             $(".scout-draft-actions .item-help-block").attr('role', 'alert');
             $(".scout-draft-actions .item-help-block").html("Error: Form validation errors prevent this item from being published.");
-            
+
 
 
             // for published, don't allow unpublish or submit if errors exist
@@ -380,7 +388,7 @@ var Forms = {
             $(".scout-published-actions .help-block").attr('role', 'alert');
             $(".scout-published-actions .help-block").css('color', '#a94442');
             $(".scout-published-actions .help-block").html("Error: Form validation errors prevent this spot from being un-published.");
-            
+
             $(".scout-published-actions .item-help-block").attr('role', 'alert');
             $(".scout-published-actions .item-help-block").css('color', '#a94442');
             $(".scout-published-actions .item-help-block").html("Error: Form validation errors prevent this item from being un-published.");
@@ -396,7 +404,7 @@ var Forms = {
             $(".scout-draft-actions #toggle_item_active").removeAttr("disabled");
             $(".scout-draft-actions .help-block").css('color', '');
             $(".scout-draft-actions  .help-block").html("Note: Publishing this space will make it visible in all client apps!");
-            
+
             $(".scout-draft-actions .item-help-block").css('color', '');
             $(".scout-draft-actions .item-help-block").html("Note: Publishing this item will make it visible in all client apps!");
 
