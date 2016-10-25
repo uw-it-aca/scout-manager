@@ -14,23 +14,23 @@
                         {% for period in day_hours.hours %}
                         <div class="mgr-hours-block">
                             <div class="form-group">
-                                <label >Open:</label>
-                                <input class="form-control" type="time" name="" value="{{ period.start_time|time:"H:i" }}" />
+                                <label for="open_{{ day_hours.day}}_{{ forloop.counter }}">Open:</label>
+                                <input id="open_{{ day_hours.day}}_{{ forloop.counter }}" class="form-control" type="time" name="" value="{{ period.start_time|time:"H:i" }}" />
                             </div>
                             <div class="form-group">
-                                <label>Close:</label>
-                                <input class="form-control" type="time" name="" value="{{ period.end_time|time:"H:i" }}" />
+                                <label for="close_{{ day_hours.day}}_{{ forloop.counter }}">Close:</label>
+                                <input id="close_{{ day_hours.day}}_{{ forloop.counter }}" class="form-control" type="time" name="" value="{{ period.end_time|time:"H:i" }}" />
                             </div>
                         </div>
                         {% empty %}
                         <div class="mgr-hours-block">
                             <div class="form-group">
-                                <label >Open:</label>
-                                <input class="form-control" type="time" name="" value="" />
+                                <label for="open_empty_{{ day_hours.day}}_{{ forloop.counter }}">Open:</label>
+                                <input id="open_empty_{{ day_hours.day}}_{{ forloop.counter }}" class="form-control" type="time" name="" value="" />
                             </div>
                             <div class="form-group">
-                                <label>Close:</label>
-                                <input class="form-control" type="time" name="" value="" />
+                                <label for="close_empty_{{ day_hours.day}}_{{ forloop.counter }}">Close:</label>
+                                <input id="close_empty_{{ day_hours.day}}_{{ forloop.counter }}" class="form-control" type="time" name="" value="" />
                             </div>
                         </div>
                         {% endfor %}

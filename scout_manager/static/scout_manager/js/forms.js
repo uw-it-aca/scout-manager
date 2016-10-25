@@ -52,6 +52,8 @@ var Forms = {
 
             var empty_hours = $(hours_blocks[0]).clone();
             $(empty_hours).find("input").val("");
+            $(empty_hours).find("input").attr('id','');
+            $(empty_hours).find("label").attr('for','');
 
             $($(this).parent().parent().find('.mgr-current-hours')).append(empty_hours);
 
