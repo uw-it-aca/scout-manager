@@ -28,7 +28,7 @@
             <div class="scout-draft">
                 <span class="text-muted"></span>&nbsp;&nbsp;&nbsp;
                 <input id="save_close" type="button" class="btn" value="Save & Close" style="display:inline-block; margin-right: 15px;"></input>
-               <input id="save_continue" type="button" class="btn btn-primary" value="Save  {% if not spot.name %}& Continue{% endif %}" style="display:inline-block;"></input>
+                <input id="save_continue" type="button" class="btn btn-primary" value="Save  {% if not spot.name %}& Continue{% endif %}" style="display:inline-block;"></input>
             </div>
             {% else %}
             <div class="scout-published">
@@ -53,7 +53,7 @@
     <div class="col-md-8">
 
         <h3 class="">General Info</h3>
-        {% if spot.app_type == "study" %} 
+        {% if spot.app_type == "study" %}
         <div class="row">
             <div class="col-md-8">
         {% endif %}
@@ -66,12 +66,12 @@
             <input type="hidden" name="id" value="{{ spot.spot_id }}" />
             <input type="hidden" name="etag" value="{{ spot.etag }}" />
         </div>
-        
+
          {% if spot.app_type == "study" %}
              </div>
         <div class="col-md-4">
         <div class="form-group">
-            <label for="capacity" class="control-label">Space Capacity (# of people) 
+            <label for="capacity" class="control-label">Space Capacity (# of people)
              <a type="button" class="help-link" data-toggle="modal" data-target="#help_capacity" title="More info: Capacity" >
               <i class="fa fa-info-circle fa-2" aria-hidden="true"></i><span class="visually-hidden">More information</span>
             </a>
@@ -82,7 +82,7 @@
         </div>
         </div>
         {% endif %}
-        
+
 
         <fieldset style="margin-top:2em;" class="radio-group required" id="app_type_radio">
             <legend class="">Primary purpose of Space:  <span class="visually-hidden">Required</span>
@@ -122,7 +122,7 @@
 
         </fieldset>
 
-        
+
         {% if spot.app_type == "food" %}
     {% include "scout_manager/include/extend_food.html" %}
 {% elif spot.app_type == "study" %}
@@ -167,7 +167,7 @@
                     <a href="/{{spot.campus}}/{{spot.app_type}}/{{ spot.spot_id }}" target="_blank" class="pull-right"><span>View in Scout</span></a>
                     {% endif %}
                     {% endif %}
-                    
+
                     </div>
             <div class="mgr-dataset-actions">
                 <div class="checkbox hidden">
@@ -236,7 +236,7 @@
             <div class="help-block with-errors"></div>
         </div>
         {% endif %}
-        
+
         {% endif %}
 
     </div>
@@ -251,10 +251,10 @@
 {% endif %}
 {% include "scout_manager/include/form_location.html" %}
 {% if spot.name %}
-   
+
     <!-- include the hour and access form -->
     {% include "scout_manager/include/form_hours.html" %}
-    
+
     <!-- FOR NOW: items for tech spaces -->
 {% if spot.name and spot.app_type == "tech" %}
 
@@ -308,7 +308,7 @@
             <div class="help-block">Note: This action cannot be undone!</div>
         </div>
     </div>
-    
+
 {% endif %}
 
 <!-- contextual help modals -->
@@ -320,4 +320,3 @@
 {% elif spot.app_type == "tech" %}
     {% include "scout_manager/include/help_tech.html" %}
 {% endif %}
-
