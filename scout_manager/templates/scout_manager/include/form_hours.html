@@ -14,22 +14,22 @@
                         {% for period in day_hours.hours %}
                         <div class="mgr-hours-block">
                             <div class="form-group">
-                                <label for="">Open:</label>
+                                <label >Open:</label>
                                 <input class="form-control" type="time" name="" value="{{ period.start_time|time:"H:i" }}" />
                             </div>
                             <div class="form-group">
-                                <label for="">Close:</label>
+                                <label>Close:</label>
                                 <input class="form-control" type="time" name="" value="{{ period.end_time|time:"H:i" }}" />
                             </div>
                         </div>
                         {% empty %}
                         <div class="mgr-hours-block">
                             <div class="form-group">
-                                <label for="">Open:</label>
+                                <label >Open:</label>
                                 <input class="form-control" type="time" name="" value="" />
                             </div>
                             <div class="form-group">
-                                <label for="">Close:</label>
+                                <label>Close:</label>
                                 <input class="form-control" type="time" name="" value="" />
                             </div>
                         </div>
