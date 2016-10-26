@@ -8,6 +8,7 @@ var Item = {
 
         } else {
             Item._edit_item(form_data);
+            window.location.reload(true);
         }
     },
 

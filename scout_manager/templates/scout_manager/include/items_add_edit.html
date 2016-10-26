@@ -40,20 +40,20 @@
         </div>
     </div>
     <div class="col-md-4">
-       
+
        <div class="form-group">
                 <label for="">Quantity:</label>
                 <input id="" class="form-control" type="number" value="{{ spot.item.quantity }}" name="extended_info:i_quantity">
-            </div>       
+            </div>
            </div>
-        
+
         <div class="col-md-12">
             <div class="form-group">
             <label for="">Description:</label>
             <textarea rows="4" class="form-control" id="" type="text" required name="extended_info:i_description">{{ spot.item.description }}</textarea>
             <div class="help-block with-errors"></div>
             </div>
-    
+
         <fieldset class="radio-group required">
             <legend for="">Category</legend>
             <div class="well" id="item_category">
@@ -66,7 +66,7 @@
             </div>
             <div class="help-block with-errors">Please select a category.</div>
         </fieldset>
-        
+
         <fieldset class="radio-group required">
             <legend>Subcategory</legend>
             <div class="well" id="item_subcategory" style="min-height:40px;">
@@ -167,14 +167,14 @@
 
             </div>
         </div>
-         
+
             <h3 >Funding source</h3>
             <div class="form-group well">
                 <div class="checkbox">
                     <label><input type="checkbox" name="extended_info:i_is_stf" value="true" {% if spot.item.is_stf %}checked{% endif %}>STF funded this item</label>
                 </div>
             </div>
-        
+
         </div>
 
     </div>
@@ -218,12 +218,12 @@
 {% include "scout_manager/include/form_images.html" %}
 
 <hr />
-   <h3  >Location</h3>
+   <h3 >Location</h3>
     <div class="col-md-12 ">
         <span><strong><a href="/manager/spaces/{{ spot.spot_id }}/" title="Manage Space: {{ spot.name }} ({% if spot.is_hidden %}(unpublished){% else %}PUBLISHED{% endif %})" target="_blank">{{spot.name}}</a></strong>, {{spot.building_name}}, {{spot.campus}}</span>
     </div>
 
-    
+
     {% if spot.item.name %}
 <br/>
     <hr />
@@ -238,5 +238,5 @@
             </div>
         </div>
         {% endif %}
-    
+
 </div>

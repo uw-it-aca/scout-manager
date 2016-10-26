@@ -13,46 +13,41 @@
     <p class="help-block">Note: You must click on "Upload Image" after selecting your image.</p>
 </div>
 
-<div id="mgr_list_spot_images" class="row">
-
-
-    {% if spot.item %}
-
-        {% for image in spot.item.images %}
-        <div class="col-md-4">
-            <div class="well" style="padding:0;">
-                <div class="mgr-edit-img-container" data-url="/manager/item/images/{{ spot.item.item_id }}/image/{{ image.image_id }}/" data-id="{{ image.image_id }}"></div>
-                    <div class="mgr-dataset-actions" style="padding:19px;">
-                    <button class="btn btn-danger btn-sm mgr-delete-image" type="button"><i class="fa fa-trash"></i> <span>Delete Image</span></button>
-                    &nbsp;&nbsp;
-                    {% if forloop.first %}
-                    Default Image
-                    {% else %}
-                    {% endif %}
-                </div>
+{% if spot.item %}
+<div id="mgr_list_item_images" class="row">
+    {% for image in spot.item.images %}
+    <div class="col-md-4">
+        <div class="well" style="padding:0;">
+            <div class="mgr-edit-img-container" data-url="/manager/item/images/{{ spot.item.item_id }}/image/{{ image.image_id }}/" data-id="{{ image.image_id }}"></div>
+                <div class="mgr-dataset-actions" style="padding:19px;">
+                <button class="btn btn-danger btn-sm mgr-delete-image" type="button"><i class="fa fa-trash"></i> <span>Delete Image</span></button>
+                &nbsp;&nbsp;
+                {% if forloop.first %}
+                Default Image
+                {% else %}
+                {% endif %}
             </div>
         </div>
-        {% endfor %}
-
-    {% else %}
-
-        {% for image in spot.images %}
-         <div class="col-md-4">
-             <div class="well" style="padding:0;">
-                 <div class="mgr-edit-img-container" data-url="/manager/images/{{ spot.spot_id }}/image/{{ image.image_id }}/" data-id="{{ image.image_id }}"></div>
-                 <div class="mgr-dataset-actions" style="padding:19px;">
-                     <button class="btn btn-danger btn-sm mgr-delete-image" type="button"><i class="fa fa-trash"></i> <span>Delete Image</span></button>&nbsp;&nbsp;
-                     {% if forloop.first %}
-                     Default Image
-                     {% else %}
-                     {% endif %}
-                 </div>
-            </div>
-        </div>
-        {% endfor %}
-        
-    {% endif %}
-
+    </div>
+    {% endfor %}
 </div>
-<div id="mgr_list_spot_empty" class="help-block col-md-12">There are no images.</div>
+{% else %}
+<div id="mgr_list_spot_images" class="row">
+    {% for image in spot.images %}
+     <div class="col-md-4">
+         <div class="well" style="padding:0;">
+             <div class="mgr-edit-img-container" data-url="/manager/images/{{ spot.spot_id }}/image/{{ image.image_id }}/" data-id="{{ image.image_id }}"></div>
+             <div class="mgr-dataset-actions" style="padding:19px;">
+                 <button class="btn btn-danger btn-sm mgr-delete-image" type="button"><i class="fa fa-trash"></i> <span>Delete Image</span></button>&nbsp;&nbsp;
+                 {% if forloop.first %}
+                 Default Image
+                 {% else %}
+                 {% endif %}
+             </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
 
+<div id="mgr_list_spot_empty" class="help-block col-md-12">There are no images.</div>

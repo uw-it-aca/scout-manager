@@ -108,7 +108,7 @@ var Forms = {
 
     image_delete: function() {
 
-        // remove image from list to be uploaded
+        // remove image from spaces
         $('#mgr_list_spot_images').on('click', '.mgr-delete-image', function() {
             var wrapper_elm = $(this).parent().siblings("div.mgr-edit-img-container").first();
             var image_id = $(wrapper_elm).attr("data-id");
@@ -126,6 +126,26 @@ var Forms = {
 
             // reload spot after image delete
             Spot.submit_spot({'data':{'exit': false}});
+
+        });
+
+        // remove item image
+        $('#mgr_list_item_images').on('click', '.mgr-delete-image', function() {
+            var wrapper_elm = $(this).parent().siblings("div.mgr-edit-img-container").first();
+            var image_id = $(wrapper_elm).attr("data-id");
+            var image_etag = $(wrapper_elm).attr("data-etag");
+
+            if(window.removed_images !== undefined){
+                window.removed_images.push({id: image_id,
+                                           etag: image_etag});
+            } else {
+                window.removed_images = [{id: image_id,
+                                          etag: image_etag}];
+            }
+            $(this).parent().parent("div").remove();
+            Forms.image_check_count();
+
+            Item.submit_item();
 
         });
     },
@@ -218,6 +238,8 @@ var Forms = {
         $("#toggle_item_active").click(function() {
             var checkBoxes = $("input[name='extended_info:i_is_active']");
             checkBoxes.prop("checked", !checkBoxes.prop("checked"));
+
+            console.log("item publish clicked")
 
             // submit "save changes"
             Item.submit_item();
