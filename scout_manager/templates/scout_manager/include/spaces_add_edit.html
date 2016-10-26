@@ -161,7 +161,7 @@
         <h3 class="">Publish</h3>
         <div class="form-group well">
             <div>
-                <label>Status: <span style="font-weight:normal;">{% if spot.is_hidden %}DRAFT{% else %}PUBLISHED{% endif %}</span></label>
+                <label>Status: <span style="font-weight:normal;">{% if spot.is_hidden %}<span class="status-draft">Draft</span>{% else %}PUBLISHED{% endif %}</span></label>
             {% if not spot.is_hidden %}
             {% if not spot.app_type == "tech" %}
                     <a href="/{{spot.campus}}/{{spot.app_type}}/{{ spot.spot_id }}" target="_blank" class="pull-right"><span>View in Scout</span></a>
@@ -271,10 +271,12 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Sub Category (type)</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Subcategory</th>
+                    <th scope="col">Funding</th>
+                    <th scope="col">Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -284,6 +286,8 @@
                     <td><a href="/manager/items/{{ item.item_id }}/" title="See details: {{ item.name }}">{{ item.name }}</a></td>
                     <td>{{ item.category }}</td>
                     <td>{{ item.subcategory }}</td>
+                    <td><strong>{{ item.is_stf }}</strong></td>
+                    <td>{{ item.is_active }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

@@ -20,12 +20,12 @@
         <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">STF</th>
                 <th scope="col">Name</th>
-                <th scope="col">Sub Category (type)</th>
-                <th scope="col">Location (space)</th>
+                <th scope="col">Subcategory</th>
+                <th scope="col">Location</th>
                 <th scope="col">Campus</th>
                 <th scope="col">Building</th>
+                <th scope="col">STF</th>
                 <th scope="col">Status</th>
             </tr>
         </thead>
@@ -35,12 +35,12 @@
             {% for item in spot.items %}
             <tr>
                 <td>{{ item.item_id }}</td>
-                <td><strong>{{ item.is_stf }}</strong></td>
                 <td><strong><a href="/manager/items/{{item.item_id}}/" title="Manage Item: {{ item.name }}">{{ item.name }}</a></strong></td>
                 <td>{{ item.subcategory }}</td>
                 <td>{{ spot.name }}</td>
                 <td>{{ spot.campus }}</td>
                 <td>{{ spot.building_name }}</td>
+                <td><strong>{{ item.is_stf }}</strong></td>
                 <td>{{ item.is_active }}</td>
             </tr>
             {% endfor %}

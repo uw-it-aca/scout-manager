@@ -144,7 +144,7 @@
         <h3 class="">Publishing</h3>
         <div class="form-group well">
             <div>
-                <label>Status: <span style="font-weight:normal;">{% if spot.item.is_active %}PUBLISHED{% else %}DRAFT{% endif %}</span></label>
+                <label>Status: <span style="font-weight:normal;">{% if spot.item.is_active %}PUBLISHED{% else %}<span class="status-draft">Draft</span>{% endif %}</span></label>
                 {% if spot.item.is_active %}
                     <a href="/{{spot.campus}}/{{spot.app_type}}/{{ spot.item.item_id }}" target="_blank" class="pull-right"><span>View in Scout</span></a>
                     {% endif %}
