@@ -417,6 +417,7 @@ var Forms = {
 
             $(".scout-published #submit_spot").attr('disabled', 'disabled');
             $(".scout-published #submit_item").attr('disabled', 'disabled');
+            $(".scout-published #save_continue").attr('disabled', 'disabled');
             $(".scout-published span").attr('role', 'alert');
             $(".scout-published span").addClass("text-danger");
             $(".scout-published span").html("Error: Form validation errors prevent any changes from being published.")
@@ -440,6 +441,7 @@ var Forms = {
 
             $(".scout-published #submit_spot").removeAttr("disabled");
             $(".scout-published #submit_item").removeAttr("disabled");
+            $(".scout-published #save_continue").removeAttr("disabled");
             $(".scout-published span.item-help").removeClass("text-danger");
             $(".scout-published span.item-help").html("Note: This item is published and any changes will be shown immediately in client apps.")
             $(".scout-published span").removeClass("text-danger");
