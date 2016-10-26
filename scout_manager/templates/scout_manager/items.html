@@ -25,8 +25,6 @@
                 <th scope="col">Location</th>
                 <th scope="col">Campus</th>
                 <th scope="col">Building</th>
-                <th scope="col">STF</th>
-                <th scope="col">Status</th>
             </tr>
         </thead>
         <tbody>
@@ -40,8 +38,7 @@
                 <td>{{ spot.name }}</td>
                 <td>{{ spot.campus }}</td>
                 <td>{{ spot.building_name }}</td>
-                <td><strong>{{ item.is_stf }}</strong></td>
-                <td>{{ item.is_active }}</td>
+
             </tr>
             {% endfor %}
         {% endfor %}

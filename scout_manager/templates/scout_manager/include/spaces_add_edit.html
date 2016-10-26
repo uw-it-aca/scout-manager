@@ -71,7 +71,7 @@
              </div>
         <div class="col-md-4">
         <div class="form-group">
-            <label for="capacity" class="control-label">Space Capacity (# of people)
+            <label for="capacity" class="control-label">Space Capacity
              <a type="button" class="help-link" data-toggle="modal" data-target="#help_capacity" title="More info: Capacity" >
               <i class="fa fa-info-circle fa-2" aria-hidden="true"></i><span class="visually-hidden">More information</span>
             </a>
@@ -286,8 +286,8 @@
                     <td><a href="/manager/items/{{ item.item_id }}/" title="See details: {{ item.name }}">{{ item.name }}</a></td>
                     <td>{{ item.category }}</td>
                     <td>{{ item.subcategory }}</td>
-                    <td><strong>{{ item.is_stf }}</strong></td>
-                    <td>{{ item.is_active }}</td>
+                    <td><strong>{% if spot.item.is_stf %} STF {% endif %}</strong></td>
+                    <td>{% if spot.item.is_active %} YES {% endif %}</td>
                 </tr>
                 {% endfor %}
             </tbody>
