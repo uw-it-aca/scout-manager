@@ -26,7 +26,7 @@ class Person(models.Model):
 
 
 class Group(models.Model):
-    group_id = models.CharField(max_length=500, unique=True)
+    group_id = models.CharField(max_length=255, unique=True)
     added_on = models.DateTimeField(auto_now_add=True)
 
 
