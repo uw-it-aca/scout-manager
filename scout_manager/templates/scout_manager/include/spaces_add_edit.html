@@ -275,7 +275,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Category</th>
                     <th scope="col">Subcategory</th>
-                    <th scope="col">Funding</th>
+                    <th scope="col">STF</th>
                     <th scope="col">Status</th>
                 </tr>
             </thead>
@@ -286,8 +286,16 @@
                     <td><a href="/manager/items/{{ item.item_id }}/" title="See details: {{ item.name }}">{{ item.name }}</a></td>
                     <td>{{ item.category }}</td>
                     <td>{{ item.subcategory }}</td>
-                    <td><strong>{% if spot.item.is_stf %} STF {% endif %}</strong></td>
-                    <td>{% if spot.item.is_active %} YES {% endif %}</td>
+                    <td>
+                        {% for ei in item.extended_info %}
+                             {% if ei.key == "i_is_stf" %}{{ ei.value }}{% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for ei in item.extended_info %}
+                             {% if ei.key == "i_is_active" %}{{ ei.value }}{% endif %}
+                        {% endfor %}
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
