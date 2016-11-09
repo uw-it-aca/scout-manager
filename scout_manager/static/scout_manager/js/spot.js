@@ -71,21 +71,17 @@ var Spot = {
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-danger");
-                //("#pub_error").html(error + ": " + xhr.responseText);
-
-                console.log(xhr.status);
-
                 switch (xhr.status) {
                     case 500:
-                        console.log("500 error")
+                        $("#pub_error").html("Internal server error. Please contact help@uw.edu");
                         break;
                     case 403:
-                        console.log("403 forbidden")
+                        $("#pub_error").html("You don't have permission.");
+                        break;
+                    case 400:
+                        $("#pub_error").html("You sent some bad data.");
                         break;
                 }
-                
-                $("#pub_error").html("An error occured!");
-
             }
         });
 
@@ -118,19 +114,17 @@ var Spot = {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-danger");
 
-                console.log(xhr.status);
-
                 switch (xhr.status) {
                     case 500:
-                        console.log("500 error")
+                        $("#pub_error").html("Internal server error. Please contact help@uw.edu");
                         break;
                     case 403:
-                        console.log("403 forbidden")
+                        $("#pub_error").html("You don't have permission.");
+                        break;
+                    case 400:
+                        $("#pub_error").html("You sendtsome bad data.");
                         break;
                 }
-
-                //$("#pub_error").html(error + ": " + xhr.responseText);
-                $("#pub_error").html("An error occured!");
             }
         });
     },
