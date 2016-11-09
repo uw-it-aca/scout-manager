@@ -286,16 +286,8 @@
                     <td><a href="/manager/items/{{ item.item_id }}/" title="See details: {{ item.name }}">{{ item.name }}</a></td>
                     <td>{{ item.category }}</td>
                     <td>{{ item.subcategory }}</td>
-                    <td>
-                        {% for ei in item.extended_info %}
-                             {% if ei.key == "i_is_stf" %}{{ ei.value }}{% endif %}
-                        {% endfor %}
-                    </td>
-                    <td>
-                        {% for ei in item.extended_info %}
-                             {% if ei.key == "i_is_active" %}{{ ei.value }}{% endif %}
-                        {% endfor %}
-                    </td>
+                    <td>{% if item.is_stf %}Yes{% else %}No{% endif %}</td>
+                    <td>{% if item.is_active %}Published{% else %}<span class="status-draft">Draft</span>{% endif %}</td>
                 </tr>
                 {% endfor %}
             </tbody>

@@ -2,6 +2,7 @@ from spotseeker_restclient.spotseeker import Spotseeker
 from spotseeker_restclient.exceptions import DataFailureException
 from scout.dao.space import add_cuisine_names, add_foodtype_names_to_spot, \
     add_payment_names, add_additional_info, add_study_info
+from scout.dao.item import add_item_info
 from scout_manager.dao.groups import add_group
 import json
 import re
@@ -37,6 +38,7 @@ def _get_spots_by_app_type(app_type, filters, published):
         spots = spot_client.search_spots(filters)
         for spot in spots:
             spot = process_extended_info(spot)
+            spot = add_item_info(spot)
             # If we want only published spots, check is_hidden attribute
             if published:
                 # This is a string value rather than proper boolean.
@@ -80,7 +82,9 @@ def _get_all_spots(filters):
 def get_spot_by_id(spot_id):
     spot_client = Spotseeker()
     res = spot_client.get_spot_by_id(spot_id)
-    return process_extended_info(res)
+    spot = process_extended_info(res)
+    spot = add_item_info(spot)
+    return spot
 
 
 def process_extended_info(spot):
