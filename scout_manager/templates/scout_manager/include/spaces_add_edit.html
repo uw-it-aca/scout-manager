@@ -65,6 +65,9 @@
 
             <input type="hidden" name="id" value="{{ spot.spot_id }}" />
             <input type="hidden" name="etag" value="{{ spot.etag }}" />
+            <input type="hidden" name="extended_info:has_cte_techloan" value="{{ spot.item.has_cte_techloan }}" />
+            <input type="hidden" name="extended_info:cte_techloan_id" value="{{ spot.item.cte_techloan_id }}" />
+
         </div>
 
          {% if spot.app_type == "study" %}
