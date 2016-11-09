@@ -1,7 +1,7 @@
 from spotseeker_restclient.spotseeker import Spotseeker
 from spotseeker_restclient.exceptions import DataFailureException
 from scout.dao.space import add_cuisine_names, add_foodtype_names_to_spot, \
-    add_payment_names, add_additional_info, add_study_info
+    add_payment_names, add_additional_info, add_study_info, add_tech_info
 from scout_manager.dao.groups import add_group
 import json
 import re
@@ -89,6 +89,7 @@ def process_extended_info(spot):
     spot = add_payment_names(spot)
     spot = add_additional_info(spot)
     spot = add_study_info(spot)
+    spot = add_tech_info(spot)
     spot.grouped_hours = get_spot_hours_by_day(spot)
     for item in spot.extended_info:
         if item.key == "owner":
