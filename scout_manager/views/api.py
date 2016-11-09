@@ -1,10 +1,8 @@
 from scout_manager.views.rest_dispatch import RESTDispatch
 from scout_manager.dao.space import update_spot, create_spot, delete_spot,\
     get_spot_by_id
+from scout_manager.dao.groups import is_superuser, is_provisioned_user
 from scout_manager.dao.item import update_item, create_item, delete_item
-from scout_manager.dao.groups import is_member
-from django.core.exceptions import ImproperlyConfigured
-from django.conf import settings
 from django.http import HttpResponse
 from scout_manager.models import Person, GroupMembership
 from userservice.user import UserService
@@ -84,12 +82,17 @@ def can_edit_spot(spot_id):
     group_id = _get_current_spot_group(spot_id)
     is_spot_editor = GroupMembership.objects.is_member(user, group_id)
     if not is_spot_editor:
-        if settings.MANAGER_SUPERUSER_GROUP:
-            is_spot_editor = is_member(settings.MANAGER_SUPERUSER_GROUP, user)
-        else:
-            raise ImproperlyConfigured("Must define a MANAGER_SUPERUSER_GROUP"
-                                       "in the settings")
+        is_spot_editor = is_superuser(user)
     return is_spot_editor
+
+
+def can_add_spot(member_id):
+    """
+    Determines if a user can add spots based on them being a member
+    of *any* spot group, also allows 'superusers'
+    """
+    user = UserService().get_user()
+    return (is_superuser(user) or is_provisioned_user(user))
 
 
 def _get_current_spot_group(spot_id):
