@@ -71,7 +71,17 @@ var Spot = {
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-danger");
-                $("#pub_error").html(error + ": " + xhr.responseText);
+                switch (xhr.status) {
+                    case 500:
+                        $("#pub_error").html("Internal server error. Please contact help@uw.edu");
+                        break;
+                    case 403:
+                        $("#pub_error").html("You don't have permission.");
+                        break;
+                    case 400:
+                        $("#pub_error").html("You sent some bad data.");
+                        break;
+                }
             }
         });
 
@@ -103,7 +113,18 @@ var Spot = {
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-danger");
-                $("#pub_error").html(error + ": " + xhr.responseText);
+
+                switch (xhr.status) {
+                    case 500:
+                        $("#pub_error").html("Internal server error. Please contact help@uw.edu");
+                        break;
+                    case 403:
+                        $("#pub_error").html("You don't have permission.");
+                        break;
+                    case 400:
+                        $("#pub_error").html("You sendtsome bad data.");
+                        break;
+                }
             }
         });
     },

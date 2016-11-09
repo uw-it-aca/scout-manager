@@ -1,6 +1,8 @@
 from restclients.gws import GWS
 from restclients.exceptions import DataFailureException, InvalidGroupID
 from scout_manager.models import Group, Person, GroupMembership
+from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
 
 
 def get_members(group_id):
@@ -15,6 +17,18 @@ def is_member(group_id, member_id):
         return gws.is_effective_member(group_id, member_id)
     except InvalidGroupID:
         return False
+
+
+def is_provisioned_user(member_id):
+    return Person.objects.get(netid=member_id).exists()
+
+
+def is_superuser(member_id):
+    if settings.MANAGER_SUPERUSER_GROUP:
+        is_spot_editor = is_member(settings.MANAGER_SUPERUSER_GROUP, member_id)
+    else:
+        raise ImproperlyConfigured("Must define a MANAGER_SUPERUSER_GROUP"
+                                   "in the settings")
 
 
 def add_group(group_id):
