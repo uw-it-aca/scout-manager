@@ -73,13 +73,13 @@ var Spot = {
                 $("#pub_error").addClass("alert-danger");
                 switch (xhr.status) {
                     case 500:
-                        $("#pub_error").html("Internal server error. Please contact help@uw.edu");
+                        $("#pub_error").html("Something went wrong on our end and our developers have been alerted. Please try again later and feel free to contact help@uw.edu.");
                         break;
                     case 403:
-                        $("#pub_error").html("You don't have permission.");
+                        $("#pub_error").html("Sorry, but you don't have permission to update this page.");
                         break;
                     case 400:
-                        $("#pub_error").html("You sent some bad data.");
+                        $("#pub_error").html("Sorry, there is some bad data in your submission. Please fix it and try again.");
                         break;
                 }
             }
@@ -116,13 +116,13 @@ var Spot = {
 
                 switch (xhr.status) {
                     case 500:
-                        $("#pub_error").html("Internal server error. Please contact help@uw.edu");
+                        $("#pub_error").html("Something went wrong on our end and our developers have been alerted. Please try again later and feel free to contact help@uw.edu.");
                         break;
                     case 403:
-                        $("#pub_error").html("You don't have permission.");
+                        $("#pub_error").html("Sorry, but you don't have permission to update this page.");
                         break;
                     case 400:
-                        $("#pub_error").html("You sendtsome bad data.");
+                        $("#pub_error").html("Sorry, there is some bad data in your submission. Please fix it and try again.");
                         break;
                 }
             }
