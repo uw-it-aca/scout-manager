@@ -73,6 +73,17 @@ var Spot = {
                 $("#pub_error").addClass("alert-danger");
                 //("#pub_error").html(error + ": " + xhr.responseText);
 
+                console.log(xhr.status);
+
+                switch (xhr.status) {
+                    case 500:
+                        console.log("500 error")
+                        break;
+                    case 403:
+                        console.log("403 forbidden")
+                        break;
+                }
+                
                 $("#pub_error").html("An error occured!");
 
             }

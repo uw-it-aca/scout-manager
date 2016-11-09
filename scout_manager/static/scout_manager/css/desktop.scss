@@ -31,7 +31,7 @@ $clouds: #ecf0f1;
 
     .mgr-content-inner { padding: 20px;
 
-        .alert { position: fixed; top: 20px; right: 10px; left: 230px; z-index: 9999; padding: 5px 10px; }
+        .alert { position: fixed; top: 20px; right: 10px; left: 230px; z-index: 999 !important; padding: 5px 10px; }
 
         hr { margin: 2em 0 2em 0}
 
