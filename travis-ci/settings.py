@@ -53,6 +53,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django.contrib.auth.middleware.RemoteUserMiddleware',
     'django_mobileesp.middleware.UserAgentDetectionMiddleware',
     'turbolinks.middleware.TurbolinksMiddleware',
     'htmlmin.middleware.HtmlMinifyMiddleware',
