@@ -56,7 +56,8 @@ MIDDLEWARE_CLASSES = (
     'django_mobileesp.middleware.UserAgentDetectionMiddleware',
     'turbolinks.middleware.TurbolinksMiddleware',
     'htmlmin.middleware.HtmlMinifyMiddleware',
-    'htmlmin.middleware.MarkRequestMiddleware'
+    'htmlmin.middleware.MarkRequestMiddleware',
+    'userservice.user.UserServiceMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
