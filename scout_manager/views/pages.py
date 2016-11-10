@@ -10,16 +10,20 @@ from scout.dao.image import get_spot_image, get_item_image
 from scout.dao.item import get_filtered_items, get_item_count
 from scout.views import CAMPUS_LOCATIONS
 from django.http import Http404, HttpResponse
+from userservice.user import UserService
 import base64
 
 
 def home(request):
+    netid = UserService().get_user()
     return render_to_response(
             'scout_manager/home.html',
+            {"netid": netid},
             context_instance=RequestContext(request))
 
 
 def items(request):
+    netid = UserService().get_user()
     spots = get_spot_list('tech')
     spots = get_filtered_items(spots, request)
     count = get_item_count(spots)
@@ -27,12 +31,14 @@ def items(request):
         spots = []
 
     context = {"spots": spots,
-               "count": count}
+               "count": count,
+               "netid": netid}
     return render_to_response('scout_manager/items.html', context,
                               context_instance=RequestContext(request))
 
 
 def items_add(request):
+    netid = UserService().get_user()
     buildings = get_building_list()
     spots = get_spot_list()
     spot = manager_get_spot_by_id(request.GET.get('spot_id')) \
@@ -40,7 +46,8 @@ def items_add(request):
     context = {"spot": spot,
                "spots": spots,
                "buildings": buildings,
-               "count": len(spots)}
+               "count": len(spots),
+               "netid": netid}
     return render_to_response(
             'scout_manager/items_add.html',
             context,
@@ -48,20 +55,24 @@ def items_add(request):
 
 
 def items_edit(request, item_id):
+    netid = UserService().get_user()
     buildings = get_building_list()
     spots = get_spot_list()
     spot = manager_get_item_by_id(int(item_id))
     context = {"spot": spot,
                "spots": spots,
                "buildings": buildings,
-               "app_type": 'tech'}
+               "app_type": 'tech',
+               "netid": netid}
     return render_to_response('scout_manager/items_edit.html', context,
                               context_instance=RequestContext(request))
 
 
 def schedule(request, spot_id):
+    netid = UserService().get_user()
     spot = manager_get_spot_by_id(spot_id)
-    context = {"spot": spot}
+    context = {"spot": spot,
+               "netid": netid}
     return render_to_response(
             'scout_manager/schedule.html',
             context,
@@ -69,6 +80,7 @@ def schedule(request, spot_id):
 
 
 def spaces(request):
+    netid = UserService().get_user()
     # TODO: filter this by spot manager
     app_type = request.GET.get('app_type', None)
     is_published = request.GET.get('is_published', None)
@@ -80,7 +92,8 @@ def spaces(request):
     spots = get_spot_list(app_type, is_published)
     context = {"spots": spots,
                "count": len(spots),
-               "app_type": app_type}
+               "app_type": app_type,
+               "netid": netid}
     return render_to_response(
             'scout_manager/spaces.html',
             context,
@@ -88,10 +101,12 @@ def spaces(request):
 
 
 def spaces_add(request):
+    netid = UserService().get_user()
     buildings = get_building_list()
     context = {"buildings": buildings,
                "spot": {"grouped_hours": get_spot_hours_by_day(None)},
-               "campus_locations": CAMPUS_LOCATIONS}
+               "campus_locations": CAMPUS_LOCATIONS,
+               "netid": netid}
     return render_to_response(
             'scout_manager/spaces_add.html',
             context,
@@ -99,12 +114,15 @@ def spaces_add(request):
 
 
 def spaces_upload(request):
+    netid = UserService().get_user()
     return render_to_response(
             'scout_manager/spaces_upload.html',
+            {"netid": netid},
             context_instance=RequestContext(request))
 
 
 def spaces_edit(request, spot_id):
+    netid = UserService().get_user()
     spot = manager_get_spot_by_id(spot_id)
     buildings = get_building_list_by_campus(spot.campus)
     # if no campus buildings, get all
@@ -112,7 +130,8 @@ def spaces_edit(request, spot_id):
         buildings = get_building_list()
     context = {"spot": spot,
                "buildings": buildings,
-               "campus_locations": CAMPUS_LOCATIONS
+               "campus_locations": CAMPUS_LOCATIONS,
+               "netid": netid
                }
     return render_to_response(
             'scout_manager/spaces_edit.html',
