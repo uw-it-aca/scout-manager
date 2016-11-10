@@ -40,7 +40,8 @@ INSTALLED_APPS = (
     'turbolinks',
     'spotseeker_restclient',
     'compressor',
-    'restclients'
+    'restclients',
+    'userservice'
 )
 
 MIDDLEWARE_CLASSES = (

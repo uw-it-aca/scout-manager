@@ -20,8 +20,9 @@ class Spot(RESTDispatch):
         return HttpResponse('it works')
 
     def PUT(self, request, spot_id):
+        user = UserService().get_user()
         form_data = process_form_data(request)
-        if not can_edit_spot(spot_id):
+        if not can_edit_spot(spot_id, user):
             raise PermissionDenied
         try:
             update_spot(form_data, spot_id)
@@ -73,12 +74,11 @@ def process_form_data(request):
     return form_data
 
 
-def can_edit_spot(spot_id):
+def can_edit_spot(spot_id, user):
     """
     Determines if a user can edit the given spot based on them being a member
     of the existing group attached to the spot, also allows 'superusers'
     """
-    user = UserService().get_user()
     group_id = _get_current_spot_group(spot_id)
     is_spot_editor = GroupMembership.objects.is_member(user, group_id)
     if not is_spot_editor:

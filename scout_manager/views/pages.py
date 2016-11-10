@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from scout_manager.dao.item import get_item_by_id as manager_get_item_by_id
@@ -6,6 +5,8 @@ from scout_manager.dao.space import get_spot_by_id as manager_get_spot_by_id
 from scout_manager.dao.space import get_spot_hours_by_day, get_spot_list
 from scout_manager.dao.buildings import get_building_list, \
     get_building_list_by_campus
+from scout_manager.dao.groups import is_superuser
+from scout_manager.models import GroupMembership
 from scout.dao.image import get_spot_image, get_item_image
 from scout.dao.item import get_filtered_items, get_item_count
 from scout.views import CAMPUS_LOCATIONS
@@ -81,7 +82,7 @@ def schedule(request, spot_id):
 
 def spaces(request):
     netid = UserService().get_user()
-    # TODO: filter this by spot manager
+
     app_type = request.GET.get('app_type', None)
     is_published = request.GET.get('is_published', None)
     if is_published is not None:
@@ -90,6 +91,8 @@ def spaces(request):
         elif is_published == "false":
             is_published = False
     spots = get_spot_list(app_type, is_published)
+    spots = _filter_spots(spots, netid)
+
     context = {"spots": spots,
                "count": len(spots),
                "app_type": app_type,
@@ -165,3 +168,19 @@ def item_image(request, image_id, item_id):
         return response
     except Exception:
         raise Http404()
+
+
+def _filter_spots(spots, netid):
+    if is_superuser(netid):
+        return spots
+    user_groups = GroupMembership.objects.filter(person__netid=netid)
+    group_ids = []
+    for group in user_groups:
+        group_ids.append(group.group.group_id)
+    filtered_spots = []
+    for spot in spots:
+        if hasattr(spot, "owner"):
+            if spot.owner in group_ids:
+                filtered_spots.append(spot)
+
+    return filtered_spots
