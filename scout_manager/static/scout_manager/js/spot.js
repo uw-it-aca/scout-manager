@@ -108,7 +108,7 @@ var Spot = {
                 $("#pub_error").addClass("alert-success");
                 $("#pub_error").html("All changes have been saved.");
 
-                Spot._spot_post_submit(will_exit);
+                Spot._spot_post_submit(will_exit, results.id);
             },
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");
@@ -129,11 +129,15 @@ var Spot = {
         });
     },
 
-    _spot_post_submit: function (will_exit) {
+    _spot_post_submit: function (will_exit, spot_id) {
         if (will_exit) {
             Spot._navigate_to_apptype();
         } else {
-            window.location.reload(true);
+            if(typeof spot_id !== undefined){
+                window.location.href ="/manager/spaces/" + spot_id + "/";
+            } else {
+                window.location.reload(true);
+            }
         }
     },
 

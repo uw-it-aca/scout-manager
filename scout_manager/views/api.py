@@ -15,10 +15,6 @@ class Spot(RESTDispatch):
     """
     Handles changes to spots
     """
-
-    def POST(self, request):
-        return HttpResponse('it works')
-
     def PUT(self, request, spot_id):
         user = UserService().get_user()
         form_data = process_form_data(request)
@@ -107,12 +103,13 @@ class SpotCreate(RESTDispatch):
 
     def PUT(self, request):
         form_data = process_form_data(request)
-        # try:
-        create_spot(form_data)
-        # except Exception as ex:
-        #     return HttpResponse(json.dumps({'error': str(ex)}), status=400,
-        #                         content_type='application/json')
-        return HttpResponse(json.dumps({'status': 'it works'}),
+        try:
+            spot_id = create_spot(form_data)
+        except Exception as ex:
+            return HttpResponse(json.dumps({'error': str(ex)}), status=400,
+                                content_type='application/json')
+        return HttpResponse(json.dumps({'status': 'Created',
+                                        'id': spot_id}),
                             content_type='application/json')
 
 

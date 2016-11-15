@@ -137,6 +137,8 @@ def create_spot(form_data):
             and form_data['file'] != "undefined":
         spot_client.post_image(spot_id, form_data['file'])
 
+    return spot_id
+
 
 def _get_spot_id_from_url(spot_url):
     match = re.match('.*?([0-9]+)$', spot_url)
