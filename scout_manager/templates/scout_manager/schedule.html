@@ -39,14 +39,14 @@
 
     <div>
 
-        <label for="menu-url">Menu URL:<input id="menu-url" name="extended_info:s_menu_url" type="url" value="{% if spot.menu_url %}{{spot.menu_url}}{% endif %}" /></label>
+        <label for="menu-url">Menu URL (http://example.com):<input id="menu-url" name="extended_info:s_menu_url" type="url" pattern="https?://.+" placeholder="http://example.com" value="{% if spot.menu_url %}{{spot.menu_url}}{% endif %}" /></label>
 
         <fieldset>
             <legend>Coupons</legend>
-            <label for="coupon-url">Coupon URL:
-                <input id="coupon-url" name="extended_info:s_coupon_url" type="url" value="{% if spot.coupon_url %}{{ spot.coupon_url }}{% endif %}" />
+            <label for="coupon-url">Coupon URL (http://example.com):
+                <input id="coupon-url" name="extended_info:s_coupon_url" type="url" pattern="https?://.+" placeholder="http://example.com" value="{% if spot.coupon_url %}{{ spot.coupon_url }}{% endif %}" />
             </label>
-            <label for="coupon-date">Expiration Date:
+            <label for="coupon-date">Expiration Date (mm/dd/yyyy):
                 <input id="coupon-date" name="extended_info:s_coupon_expiration" type="text" value="{% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% endif %}" placeholder="mm/dd/yyyy" />
             </label>
         </fieldset>
