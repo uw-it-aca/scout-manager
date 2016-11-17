@@ -61,7 +61,7 @@
         <div class="form-group">
             <label for="space-name" class="control-label">Space Name:  <span class="visually-hidden">Required</span></label>
             <input type="text" class="form-control" name="name" id="space-name" value="{% if spot.name %}{{ spot.name }}{% endif %}" required data-error="A name for this space is required." />
-            <div class="help-block with-errors"></div>
+            <div class="help-block with-errors" role="alert"></div>
 
             <input type="hidden" name="id" value="{{ spot.spot_id }}" />
             <input type="hidden" name="etag" value="{{ spot.etag }}" />
@@ -80,7 +80,7 @@
             </a>
             </label>
             <input class="form-control" type="number" min="1" name="capacity" id="capacity" value="{% if spot.capacity %}{{spot.capacity}}{% endif %}" data-error="number can't be negative or decimal">
-            <div class="help-block with-errors"></div>
+            <div class="help-block with-errors" role="alert"></div>
         </div>
         </div>
         </div>
@@ -120,7 +120,7 @@
                     <label><input type="radio" name="extended_info:app_type" value="tech">Access to Tech</label>
                 </div>
             </div>
-            <div class="help-block with-errors">A primary purpose selection is required. </div>
+            <div class="help-block with-errors" role="alert">A primary purpose selection is required. </div>
             {% endif %}
 
         </fieldset>
@@ -214,7 +214,7 @@
         <div class="form-group">
             <label for="owner" class="control-label">Space Manager Group: <span class="visually-hidden">Required</span></label>
             <input class="form-control" id="owner" name="extended_info:owner" type="text" pattern="\S+" value="{% if spot.owner %}{{ spot.owner }}{% endif %}" required data-error="A UW Group is required. No spaces allowed.">
-            <div class="help-block with-errors"></div>
+            <div class="help-block with-errors" role="alert"></div>
         </div>
         <p class="help-block">Note: Use the <a href="https://groups.uw.edu/" target="_blank">UW Groups</a> service to create or manage your groups.</p>
 
@@ -230,13 +230,13 @@
         <div class="form-group">
             <label for="email" class="control-label">Email:</label>
             <input class="form-control" id="email" name="extended_info:s_email" type="email" value="{% if spot.email %}{{ spot.email }}{% endif %}" data-error="must be a valid email format">
-            <div class="help-block with-errors"></div>
+            <div class="help-block with-errors" role="alert"></div>
         </div>
         {% if spot.app_type == "food" %}
         <div class="form-group">
             <label for="phone" class="control-label">Phone: </label>
             <input class="form-control" id="phone" name="extended_info:s_phone" type="tel" pattern="^\d{10}$" value="{% if spot.phone %}{{ spot.phone }}{% endif %}" data-error="please provide 10 digit phone number no dashses">
-            <div class="help-block with-errors"></div>
+            <div class="help-block with-errors" role="alert"></div>
         </div>
         {% endif %}
 

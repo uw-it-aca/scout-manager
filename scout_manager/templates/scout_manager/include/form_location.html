@@ -15,7 +15,7 @@
                 <option value="bothell" {% if spot.campus == "bothell" %} selected {% endif %}>Bothell</option>
                 <option value="tacoma" {% if spot.campus == "tacoma" %} selected {% endif %}>Tacoma</option>
             </select>
-            <div class="help-block with-errors"></div>
+            <div class="help-block with-errors" role="alert"></div>
         </div>
                 {% if spot.name %}
         
@@ -28,7 +28,7 @@
                 <option value="{{ building }}" {% if spot.building_name == building %} selected {% endif %} data-campus="{{ campus }}">{{ building }}</option>
                 {% endfor %}
             </select>
-            <div class="help-block with-errors"></div>
+            <div class="help-block with-errors" role="alert"></div>
         </div>
         {% if spot.app_type == "food" %}
         <!-- Hide if outdoor location. We suggest floor options. -->
@@ -58,14 +58,14 @@
             <label for="space_latitude" class="control-label">Latitude: <span class="visually-hidden">Required</span></label>
             <p class="help-block">Drop pin on map to get coordinates. Drag pin for precise positioning. </p>
             <input class="form-control" name="location:latitude" id="space_latitude" type="text" value="{% if spot.latitude %}{{ spot.latitude }}{% endif %}" required data-error="Latitude is required." />
-            <div class="help-block with-errors"></div>
+            <div class="help-block with-errors" role="alert"></div>
         </div>
 
         <div class="form-group">
             <label for="space_longitude" class="control-label">Longitude: <span class="visually-hidden">Required</span></label>
             <p class="help-block">Drop pin on map to get coordinates. Drag pin for precise positioning. </p>
             <input class="form-control" name="location:longitude" id="space_longitude" type="text" value="{% if spot.longitude %}{{ spot.longitude }}{% endif %}" required data-error="Longitude is required." />
-            <div class="help-block with-errors"></div>
+            <div class="help-block with-errors" role="alert"></div>
         </div>
 
     </div>

@@ -38,7 +38,7 @@
                     <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "outdoor" in type.name %} checked {% endif %}{% endfor %} value="outdoor">Outdoor area</label>
                 </div>
             </div>
-            <div class="help-block with-errors">Please select at least 1 space type.</div>
+            <div class="help-block with-errors" role="alert">Please select at least 1 space type.</div>
         </fieldset>
         <fieldset>
             <legend>Reservability</legend>
@@ -126,7 +126,7 @@
                 <div class="form-group">
                     <label for="computer-count" class=""># of computers for use</label>
                     <input class="form-control" type="number" min="1" name="num_computers" id="computer-count" value="{% if spot.num_computers %}{{spot.num_computers}}{% endif %}" data-error="number can't be negative or decimal">
-                    <div class="help-block with-errors"></div></div>
+                    <div class="help-block with-errors" role="alert"></div></div>
                     <p class="help-block">If this space has Labstats monitoring, <a href="mailto:help@uw.edu">contact us</a> about getting computer availability stats in Scout.</p>
             </div>
         </fieldset>

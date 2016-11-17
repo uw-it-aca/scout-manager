@@ -32,7 +32,7 @@
         <div class="form-group">
             <label for="item_name">Name</label>
             <input id="item_name" name="name" value="{% if spot.item.name %}{{ spot.item.name }}{% endif %}" class="form-control" type="text" required data-error="Please provide a name for this item." />
-            <div class="help-block with-errors"></div>
+            <div class="help-block with-errors" role="alert"></div>
 
             <input type="hidden" name="id" value="{{ spot.item.item_id }}" />
             <input type="hidden" name="spot_id" value="{{ spot.spot_id }}" />
@@ -52,7 +52,7 @@
             <div class="form-group">
             <label for="">Description:</label>
             <textarea rows="4" class="form-control" id="" type="text" required name="extended_info:i_description">{{ spot.item.description }}</textarea>
-            <div class="help-block with-errors"></div>
+            <div class="help-block with-errors" role="alert"></div>
             </div>
 
         <fieldset class="radio-group required">
@@ -65,7 +65,7 @@
                 <div class="radio"><label><input type="radio" name="category" {% if "audio_systems" in spot.item.category %} checked {% endif %} value="audio_systems">Audio Systems</label></div>
                 <div class="radio"><label><input type="radio" name="category" {% if "audio_accessories" in spot.item.category %} checked {% endif %} value="audio_accessories">Audio Accessories</label></div>
             </div>
-            <div class="help-block with-errors">Please select a category.</div>
+            <div class="help-block with-errors" role="alert">Please select a category.</div>
         </fieldset>
 
         <fieldset class="radio-group required">
@@ -115,7 +115,7 @@
                 </div>
 
             </div>
-            <div class="help-block with-errors">Please select a subcategory.</div>
+            <div class="help-block with-errors" role="alert">Please select a subcategory.</div>
 
         </fieldset>
         </div>
@@ -123,7 +123,7 @@
                 <div class="form-group">
                     <label for="">Brand:</label>
                     <input id="" class="form-control" type="text" value="{{spot.item.brand}}" required name="extended_info:i_brand">
-                    <div class="help-block with-errors"></div>
+                    <div class="help-block with-errors" role="alert"></div>
                 </div>
             </div>
             <div class="col-md-6">
