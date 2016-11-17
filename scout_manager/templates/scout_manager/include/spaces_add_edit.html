@@ -213,7 +213,7 @@
         <h3 class="">Space Management</h3>
         <div class="form-group">
             <label for="owner" class="control-label">Space Manager Group: <span class="visually-hidden">Required</span></label>
-            <input class="form-control" id="owner" name="extended_info:owner" type="text" value="{% if spot.owner %}{{ spot.owner }}{% endif %}" required data-error="A UW Group is required.">
+            <input class="form-control" id="owner" name="extended_info:owner" type="text" pattern="\S+" value="{% if spot.owner %}{{ spot.owner }}{% endif %}" required data-error="A UW Group is required. No spaces allowed.">
             <div class="help-block with-errors"></div>
         </div>
         <p class="help-block">Note: Use the <a href="https://groups.uw.edu/" target="_blank">UW Groups</a> service to create or manage your groups.</p>
