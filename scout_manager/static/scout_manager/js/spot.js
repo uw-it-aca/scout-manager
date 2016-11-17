@@ -133,7 +133,7 @@ var Spot = {
         if (will_exit) {
             Spot._navigate_to_apptype();
         } else {
-            if(typeof spot_id !== undefined){
+            if(typeof spot_id !== 'undefined'){
                 window.location.href ="/manager/spaces/" + spot_id + "/";
             } else {
                 window.location.reload(true);
