@@ -46,8 +46,9 @@
             <label for="coupon-url">Coupon URL (http://example.com):
                 <input id="coupon-url" name="extended_info:s_coupon_url" type="url" pattern="https?://.+" placeholder="http://example.com" value="{% if spot.coupon_url %}{{ spot.coupon_url }}{% endif %}" />
             </label>
-            <label for="coupon-date">Expiration Date (mm/dd/yyyy):
-                <input id="coupon-date" name="extended_info:s_coupon_expiration" type="text" value="{% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% endif %}" placeholder="mm/dd/yyyy" />
+            <label for="coupon-date">Expiration Date:
+                <input id="coupon-date" name="extended_info:s_coupon_expiration" type="text" value="{% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% endif %}" placeholder="mm/dd/yyyy" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d" data-error="Date must be in this format: mm/dd/yyyy" />
+            <div class="help-block with-errors"></div>
             </label>
         </fieldset>
 

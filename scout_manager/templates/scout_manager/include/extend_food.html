@@ -6,12 +6,14 @@
         </div>
         
         <div class="form-group">
-            <label for="website">Website URL (http://example.com):</label>
-            <input class="form-control" id="website" name="extended_info:s_website_url" type="url" pattern="https?://.+" placeholder="http://example.com" value="{% if spot.website_url %}{{spot.website_url}}{% endif %}" />
+            <label for="website">Website URL:</label>
+            <input class="form-control" id="website" name="extended_info:s_website_url" type="url" pattern="https?://.+" placeholder="http://example.com" value="{% if spot.website_url %}{{spot.website_url}}{% endif %}" data-error="Must be a valid url that is in this format: http://example.com" />
+            <div class="help-block with-errors"></div>
         </div>
         <div class="form-group">
-            <label for="menu-url">Menu URL (http://example.com):</label>
-            <input class="form-control" id="menu-url" name="extended_info:s_menu_url" type="url" pattern="https?://.+" placeholder="http://example.com" value="{% if spot.menu_url %}{{spot.menu_url}}{% endif %}" />
+            <label for="menu-url">Menu URL:</label>
+            <input class="form-control" id="menu-url" name="extended_info:s_menu_url" type="url" pattern="https?://.+" placeholder="http://example.com" value="{% if spot.menu_url %}{{spot.menu_url}}{% endif %}" data-error="Must be a valid url that is in this format: http://example.com" />
+            <div class="help-block with-errors"></div>
         </div>
         
         <div class="row">
@@ -72,12 +74,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="coupon-url">Coupon URL (http://example.com):</label>
-                    <input class="form-control" id="coupon-url" name="extended_info:s_coupon_url" type="url" pattern="https?://.+" placeholder="http://example.com" value="{% if spot.coupon_url %}{{ spot.coupon_url }}{% endif %}" />
+                    <label for="coupon-url">Coupon URL:</label>
+                    <input class="form-control" id="coupon-url" name="extended_info:s_coupon_url" type="url" pattern="https?://.+" placeholder="http://example.com" value="{% if spot.coupon_url %}{{ spot.coupon_url }}{% endif %}" data-error="Must be a valid url that is in this format: http://example.com" />
+            <div class="help-block with-errors"></div>
                 </div>
                 <div class="form-group">
-                    <label for="coupon-date">Expiration Date (mm/dd/yyyy):</label>
-                    <input class="form-control" id="coupon-date" name="extended_info:s_coupon_expiration" type="text" value="{% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% endif %}" placeholder="mm/dd/yyyy" />
+                    <label for="coupon-date">Expiration Date:</label>
+                    <input class="form-control" id="coupon-date" name="extended_info:s_coupon_expiration" type="text" value="{% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% endif %}" placeholder="mm/dd/yyyy" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d" data-error="Date must be in this format: mm/dd/yyyy" />
+            <div class="help-block with-errors"></div>
                 </div>
                 <p class="help-block">Note: Coupon link will only be displayed to clients IF the "There are online coupons available" checkbox is checked.</p>
             </div>
