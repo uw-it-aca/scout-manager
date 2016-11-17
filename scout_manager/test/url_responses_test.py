@@ -55,7 +55,7 @@ class urlStatusCheck(ScoutTest):
 
     def _clientUrlStatus(self, urlsuffix=''):
         """Return response code of given URL, or 500 if failed"""
-        response = self.client.get(baseUrl + urlsuffix)
+        response = self.client.get(baseUrl + urlsuffix, REMOTE_USER='javerage')
         return response.status_code
 
     def assertUrlStatus(self, code, urlsuffix=''):

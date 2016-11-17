@@ -17,7 +17,7 @@ urls = {
 
 _testCases = {
     # 'home': ('study', 'food', 'add'),
-    'food': ('tech', 'study', 'add', 'edit'),
+    'food': ('tech', 'study', 'add'),
     'tech': ('study', 'food', 'add'),
     'study': ('food', 'tech', 'add'),
     'add': ('food', 'study', 'tech'),
@@ -72,7 +72,7 @@ class NavigationTests(ScoutTest):
         if link in self.soups:
             return self.soups[link]
         else:
-            webResponse = self.client.get(link)
+            webResponse = self.client.get(link, REMOTE_USER='javerage')
             soup = BeautifulSoup(webResponse.content, 'html.parser')
             self.soups[link] = soup
             return soup
