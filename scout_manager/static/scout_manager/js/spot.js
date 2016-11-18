@@ -71,6 +71,7 @@ var Spot = {
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-danger");
+                var error = $.parseJSON(xhr.responseText);
                 switch (xhr.status) {
                     case 500:
                         $("#pub_error").html("Something went wrong on our end and our developers have been alerted. Please try again later and feel free to contact help@uw.edu.");
@@ -79,7 +80,7 @@ var Spot = {
                         $("#pub_error").html("Sorry, but you don't have permission to update this page.");
                         break;
                     case 400:
-                        $("#pub_error").html("Sorry, there is some bad data in your submission. Please fix it and try again.");
+                        $("#pub_error").html("Sorry, there is some bad data in your submission. Please fix it and try again: " + error.error);
                         break;
                 }
             }

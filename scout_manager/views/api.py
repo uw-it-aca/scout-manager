@@ -23,7 +23,7 @@ class Spot(RESTDispatch):
         try:
             update_spot(form_data, spot_id)
         except Exception as ex:
-            return HttpResponse(json.dumps({'error': str(ex)}), status=400,
+            return HttpResponse(str(ex.msg), status=400,
                                 content_type='application/json')
         return HttpResponse(json.dumps({'status': 'it works'}),
                             content_type='application/json')
@@ -33,7 +33,7 @@ class Spot(RESTDispatch):
         try:
             delete_spot(spot_id, etag)
         except Exception as ex:
-            return HttpResponse(json.dumps({'error': str(ex)}), status=400,
+            return HttpResponse(str(ex.msg), status=400,
                                 content_type='application/json')
         return HttpResponse(json.dumps({'status': 'it works'}),
                             content_type='application/json')
@@ -106,7 +106,7 @@ class SpotCreate(RESTDispatch):
         try:
             spot_id = create_spot(form_data)
         except Exception as ex:
-            return HttpResponse(json.dumps({'error': str(ex)}), status=400,
+            return HttpResponse(str(ex.msg), status=400,
                                 content_type='application/json')
         return HttpResponse(json.dumps({'status': 'Created',
                                         'id': spot_id}),
@@ -123,7 +123,7 @@ class Item(RESTDispatch):
         try:
             update_item(form_data, item_id)
         except Exception as ex:
-            return HttpResponse(json.dumps({'error': str(ex)}), status=400,
+            return HttpResponse(str(ex.msg), status=400,
                                 content_type='application/json')
         return HttpResponse(json.dumps({'status': 'it works'}),
                             content_type='application/json')
@@ -133,7 +133,7 @@ class Item(RESTDispatch):
         try:
             delete_item(item_id, spot_id)
         except Exception as ex:
-            return HttpResponse(json.dumps({'error': str(ex)}), status=400,
+            return HttpResponse(str(ex.msg), status=400,
                                 content_type='application/json')
         return HttpResponse(json.dumps({'status': 'it works'}),
                             content_type='application/json')
