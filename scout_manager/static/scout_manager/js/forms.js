@@ -371,8 +371,41 @@ var Forms = {
             Forms.validate_group();
             Forms.validate_create();
             Forms.validate_publish();
+            Forms.validate_either();
         })
 
+    },
+
+    validate_either: function() {
+        var hours_blocks = $("div.mgr-hours-block");
+        $(hours_blocks[0]).each(function(idx, block){
+            var is_valid = Forms._validate_hours(block);
+            if (! is_valid) {
+                $(block).css("background-color", "red");
+            }
+        });
+    },
+
+    _validate_hours: function(block) {
+        var inputs = $(block).find("input");
+        var open = $(inputs[0]);
+        var close = $(inputs[1]);
+        var m_open = moment(open.val(), "hh:mm");
+        var m_close = moment(close.val(), "hh:mm");
+
+        // valid if both blank
+        if (open.val().length === 0 && close.val().length === 0){
+            return true;
+        }
+        else if (open.val().length === 0 || close.val().length === 0){
+            // invalid if one blank
+            return false;
+        }
+        else if (m_close.isBefore(m_open)){
+            // invalid if close before open
+            return false;
+        }
+        return true
     },
 
     validate_publish: function() {
