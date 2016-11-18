@@ -412,7 +412,8 @@ var Forms = {
         $(hours_blocks[0]).each(function(idx, block){
             var is_valid = Forms._validate_hours(block);
             if (! is_valid) {
-                $(block).css("background-color", "red");
+                $(block).css("color", "red");
+-               $(block).children().children("input").css("background-color", "lightyellow");
             }
         });
     },
