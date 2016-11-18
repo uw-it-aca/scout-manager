@@ -75,24 +75,6 @@ var Maps = {
 
                     }
                 });
-
-                // handle keypress and input field changes
-                $("#space_latitude").change(function () {
-                    console.log("space_latitude changed");
-                });
-
-                $("#space_latitude").keypress(function (event) {
-                    console.log("space_latitude keypress");
-                });
-
-                $("#space_longitude").change(function () {
-                    console.log("space_latitude changed");
-                });
-
-                $("#space_longitude").keypress(function (event) {
-                    console.log("space_latitude keypress");
-                });
-
             }
             window.map = map;
 

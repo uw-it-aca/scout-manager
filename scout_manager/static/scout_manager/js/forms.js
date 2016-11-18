@@ -154,7 +154,6 @@ var Forms = {
 
         $('#mgr_upload_image').bind("change",function() {
             if ($('#mgr_upload_image').get(0).files.length !== 0) {
-                console.log("Files here.");
                 $("#mgr_upload_button").show();
             }
             else {
@@ -177,7 +176,6 @@ var Forms = {
 
         // handle display of empty message
         if( $('#mgr_list_spot_images > div').length < 1 ){
-            console.log("empty image list");
             $('#mgr_list_spot_empty').show();
         }
         else {
@@ -238,8 +236,6 @@ var Forms = {
         $("#toggle_item_active").click(function() {
             var checkBoxes = $("input[name='extended_info:i_is_active']");
             checkBoxes.prop("checked", !checkBoxes.prop("checked"));
-
-            console.log("item publish clicked")
 
             // submit "save changes"
             Item.submit_item();
@@ -353,8 +349,6 @@ var Forms = {
         Forms.handle_radio_group_clicks();
 
         if (spaces_add_path.test(page_path)) {
-            console.log("at space add");
-
             // require app_type prior to create
             Forms.validate_required_app_type();
             // validate if spot can be created

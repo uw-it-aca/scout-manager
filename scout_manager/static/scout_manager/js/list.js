@@ -5,7 +5,6 @@ var List = {
     },
 
     init_delete: function () {
-        console.log('init list delete');
         $("button.btn-delete").on("click", function(e) {
             var row = $(e.target).closest("tr");
             var spot_id = $(row).attr('data-spotid');
