@@ -15,6 +15,7 @@ var Forms = {
         Forms.init_delete_button();
         Forms.init_campus_building_filter();
         Forms.sort_building_list();
+        Forms.init_hours_midnight();
 
         $("#campus_select").trigger("change");
 
@@ -42,6 +43,7 @@ var Forms = {
             // clear hours and remove all but first element
             $(hours_inputs).val("");
             $(hours_block).slice(1).remove();
+            $(".hours_midnight").prop('checked', false).change();
         });
     },
 
@@ -57,7 +59,36 @@ var Forms = {
             $(empty_hours).find("label").attr('for','');
 
             $($(this).parent().parent().find('.mgr-current-hours')).append(empty_hours);
+            Forms.init_hours_midnight();
 
+        });
+    },
+
+    init_hours_midnight: function () {
+        $(".hours_midnight").change(function(e){
+            var close_input = $(e.target).siblings("input").first();
+            if($(e.target).is(":checked")){
+                close_input.val("23:59");
+                close_input.prop('disabled', true);
+            } else {
+                close_input.val("");
+                close_input.prop('disabled', false);
+            }
+        });
+
+        // Find spots with close set to 11:59pm and mark as midnight
+        var hours_blocks = $(".mgr-hours-block");
+        $(hours_blocks).each(function(idx, block){
+            var inputs = $(block).find("input[type='time']");
+            $(inputs).each(function(idx, input){
+                var id = $(input).attr('id');
+                if ( id.indexOf('close_') !== -1 ) {
+                    var close_time = $(input).val();
+                    if (close_time === "23:59"){
+                        $(input).siblings(":checkbox").prop("checked", true).change();
+                    }
+                }
+            })
         });
     },
 
@@ -381,8 +412,7 @@ var Forms = {
         $(hours_blocks[0]).each(function(idx, block){
             var is_valid = Forms._validate_hours(block);
             if (! is_valid) {
-                $(block).css("color", "red");
-                $(block).children().children("input").css("background-color", "lightyellow");
+                $(block).css("background-color", "red");
             }
         });
     },

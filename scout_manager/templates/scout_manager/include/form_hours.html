@@ -22,6 +22,8 @@
                                 <label for="close_{{ day_hours.day}}_{{ forloop.counter }}">Close:</label>
                                 <input id="close_{{ day_hours.day}}_{{ forloop.counter }}" class="form-control" type="time" name="" value="{{ period.end_time|time:"H:i" }}" pattern="^(0[0-9]|1[0-9]|2[0-4]):[0-5][0-9]$" data-error="Time must be in 24 hour format, hh:mm" />
             <div class="help-block with-errors" role="alert"></div>
+                                <label>Closes at midnight:</label>
+                                <input class="hours_midnight" id="close_midnight_{{ day_hours.day}}_{{ forloop.counter }}" type="checkbox" />
                             </div>
                         </div>
                         {% empty %}
@@ -35,6 +37,8 @@
                                 <label for="close_empty_{{ day_hours.day}}_{{ forloop.counter }}">Close:</label>
                                 <input id="close_empty_{{ day_hours.day}}_{{ forloop.counter }}" class="form-control" type="time" name="" value=""  pattern="^(0[0-9]|1[0-9]|2[0-4]):[0-5][0-9]$" data-error="Time must be in 24 hour format, hh:mm" />
             <div class="help-block with-errors" role="alert"></div>
+                                <label>Closes at midnight:</label>
+                                <input class="hours_midnight" id="close_midnight_{{ day_hours.day}}_{{ forloop.counter }}" type="checkbox" />
                             </div>
                         </div>
                         {% endfor %}
