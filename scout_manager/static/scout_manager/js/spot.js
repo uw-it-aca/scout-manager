@@ -80,7 +80,7 @@ var Spot = {
                         $("#pub_error").html("Sorry, but you don't have permission to update this page.");
                         break;
                     case 400:
-                        $("#pub_error").html("Sorry, there is some bad data in your submission. Please fix it and try again: " + error.error);
+                        $("#pub_error").html("Sorry, there is your submission contained bad data. Please fix it and try again:<br/><strong>" + error.error + "</strong>");
                         break;
                 }
             }

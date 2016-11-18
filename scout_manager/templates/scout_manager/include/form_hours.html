@@ -8,7 +8,7 @@
     <div class="col-md-4" style="margin-bottom: 20px;">
         <div class="well">
             <fieldset class="mgr-hours" data-day="{{ day_hours.day }}">
-                <legend>{{ day_hours.day|capfirst }}:</legend>
+                <legend class="mgr-current-hours">{{ day_hours.day|capfirst }}:</legend>
 
                     <div class="mgr-current-hours">
                         {% for period in day_hours.hours %}
