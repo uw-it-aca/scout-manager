@@ -110,7 +110,7 @@
                     <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Projector" in resource %} checked {% endif %}{% endfor %} value="projector">Projector</label>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Scanning" in resource %} checked {% endif %}{% endfor %} value="scanning">Scanning</label>
+                    <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Scanner" in resource %} checked {% endif %}{% endfor %} value="scanner">Scanner</label>
                 </div>
                 <div class="checkbox">
                     <label><input type="checkbox" name="resource" {% for resource in spot.spot_resources %}{% if "Whiteboards" in resource %} checked {% endif %}{% endfor %} value="whiteboard">Whiteboard</label>
