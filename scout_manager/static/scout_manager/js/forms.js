@@ -43,7 +43,7 @@ var Forms = {
             // clear hours and remove all but first element
             $(hours_inputs).val("");
             $(hours_block).slice(1).remove();
-            $(".hours_midnight").prop('checked', false).change();
+            $(this).parent().siblings().find(".hours_midnight").prop('checked', false).change();
         });
     },
 
@@ -66,13 +66,25 @@ var Forms = {
 
     init_hours_midnight: function () {
         $(".hours_midnight").change(function(e){
-            var close_input = $(e.target).siblings("input").first();
+            var close_label = $(e.target).parent().parent("div.close-hours").children("label");
+            var close_input = $(e.target).parent().parent("div.close-hours").children("input");
             if($(e.target).is(":checked")){
                 close_input.val("23:59");
                 close_input.prop('disabled', true);
-            } else {
+                close_input.addClass("visually-hidden");
+                close_label.addClass("visually-hidden");
+                close_label.siblings("span").addClass("pull-left");
+                close_label.siblings("span").removeClass("pull-right");
+                close_label.siblings("span").addClass("midnight-selected");
+                
+                } else {
                 close_input.val("");
                 close_input.prop('disabled', false);
+                close_input.removeClass("visually-hidden");
+                close_label.removeClass("visually-hidden");
+                close_label.siblings("span").addClass("pull-right");
+                close_label.siblings("span").removeClass("pull-left");
+                close_label.siblings("span").removeClass("midnight-selected");
             }
         });
 
@@ -85,7 +97,7 @@ var Forms = {
                 if ( id.indexOf('close_') !== -1 ) {
                     var close_time = $(input).val();
                     if (close_time === "23:59"){
-                        $(input).siblings(":checkbox").prop("checked", true).change();
+                        $(input).parent().find("input:checkbox").prop("checked", true).change();
                     }
                 }
             })
@@ -422,7 +434,7 @@ var Forms = {
     },
 
     _validate_hours: function(block) {
-        var inputs = $(block).find("input");
+        var inputs = $(block).find("input[type='time']");
         var open = $(inputs[0]);
         var close = $(inputs[1]);
         var m_open = moment(open.val(), "hh:mm");

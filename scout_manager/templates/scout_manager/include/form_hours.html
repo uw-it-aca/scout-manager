@@ -5,42 +5,48 @@
 <div class="row mgr-hours-group">
 
     {% for day_hours in spot.grouped_hours %}
-    <div class="col-md-4" style="margin-bottom: 20px;">
-        <div class="well">
-            <fieldset class="mgr-hours" data-day="{{ day_hours.day }}">
-                <legend>{{ day_hours.day|capfirst }}:</legend>
+        <div class="col-md-4" style="margin-bottom: 20px;">
+            <div class="well">
+                <fieldset class="mgr-hours" data-day="{{ day_hours.day }}">
+                    <legend class="hour-day">{{ day_hours.day|capfirst }}</legend>
 
                     <div class="mgr-current-hours">
                         {% for period in day_hours.hours %}
-                        <div class="mgr-hours-block">
-                            <div class="form-group">
-                                <label for="open_{{ day_hours.day}}_{{ forloop.counter }}">Open:</label>
-                                <input id="open_{{ day_hours.day}}_{{ forloop.counter }}" class="form-control" type="time" name="" value="{{ period.start_time|time:"H:i" }}" pattern="^(0[0-9]|1[0-9]|2[0-4]):[0-5][0-9]$" data-error="Time must be in 24 hour format, hh:mm" />
-            <div class="help-block with-errors" role="alert"></div>
+                            <div class="mgr-hours-block">
+                                <div class="form-group">
+                                    <label for="open_{{ day_hours.day}}_{{ forloop.counter }}">Open:</label>
+                                    <input id="open_{{ day_hours.day}}_{{ forloop.counter }}" class="form-control" type="time" name="" value="{{ period.start_time|time:"H:i" }}" pattern="^(0[0-9]|1[0-9]|2[0-4]):[0-5][0-9]$" data-error="Time must be in 24 hour format, hh:mm" />
+                                    <div class="help-block with-errors" role="alert"></div>
+                                </div>
+                                <div class="form-group  close-hours">
+                                    <label for="close_{{ day_hours.day}}_{{ forloop.counter }}">Close:</label>
+                                    <span class="midnight-block pull-right">
+                                        <label for="close_midnight_{{ day_hours.day}}_{{ forloop.counter }}">Closes at midnight</label>
+                                        <input class="hours_midnight" id="close_midnight_{{ day_hours.day}}_{{ forloop.counter }}" type="checkbox" />
+                                    </span>
+                                    <div class="clearfix"></div>
+                                    <input id="close_{{ day_hours.day}}_{{ forloop.counter }}" class="form-control" type="time" name="" value="{{ period.end_time|time:"H:i" }}" pattern="^(0[0-9]|1[0-9]|2[0-4]):[0-5][0-9]$" data-error="Time must be in 24 hour format, hh:mm" />
+                                    <div class="help-block with-errors" role="alert"></div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="close_{{ day_hours.day}}_{{ forloop.counter }}">Close:</label>
-                                <input id="close_{{ day_hours.day}}_{{ forloop.counter }}" class="form-control" type="time" name="" value="{{ period.end_time|time:"H:i" }}" pattern="^(0[0-9]|1[0-9]|2[0-4]):[0-5][0-9]$" data-error="Time must be in 24 hour format, hh:mm" />
-            <div class="help-block with-errors" role="alert"></div>
-                                <label>Closes at midnight:</label>
-                                <input class="hours_midnight" id="close_midnight_{{ day_hours.day}}_{{ forloop.counter }}" type="checkbox" />
-                            </div>
-                        </div>
                         {% empty %}
-                        <div class="mgr-hours-block">
-                            <div class="form-group">
-                                <label for="open_empty_{{ day_hours.day}}_{{ forloop.counter }}">Open:</label>
-                                <input id="open_empty_{{ day_hours.day}}_{{ forloop.counter }}" class="form-control" type="time" name="" value=""  pattern="^(0[0-9]|1[0-9]|2[0-4]):[0-5][0-9]$" data-error="Time must be in 24 hour format, hh:mm" />
-            <div class="help-block with-errors" role="alert"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="close_empty_{{ day_hours.day}}_{{ forloop.counter }}">Close:</label>
-                                <input id="close_empty_{{ day_hours.day}}_{{ forloop.counter }}" class="form-control" type="time" name="" value=""  pattern="^(0[0-9]|1[0-9]|2[0-4]):[0-5][0-9]$" data-error="Time must be in 24 hour format, hh:mm" />
-            <div class="help-block with-errors" role="alert"></div>
-                                <label>Closes at midnight:</label>
+                            <div class="mgr-hours-block">
+                                <div class="form-group">
+                                    <label for="open_empty_{{ day_hours.day}}_{{ forloop.counter }}">Open:</label>
+                                    <input id="open_empty_{{ day_hours.day}}_{{ forloop.counter }}" class="form-control" type="time" name="" value=""  pattern="^(0[0-9]|1[0-9]|2[0-4]):[0-5][0-9]$" data-error="Time must be in 24 hour format, hh:mm" />
+                                    <div class="help-block with-errors" role="alert"></div>
+                                </div>
+                                <div class="form-group close-hours">
+                                    <label for="close_empty_{{ day_hours.day}}_{{ forloop.counter }}">Close:</label>
+                                <span class="midnight-block pull-right">
+                                <label for="close_midnight_{{ day_hours.day}}_{{ forloop.counter }}">Closes at midnight</label>
                                 <input class="hours_midnight" id="close_midnight_{{ day_hours.day}}_{{ forloop.counter }}" type="checkbox" />
+                                </span>
+                                    <div class="clearfix"></div>
+                                    <input id="close_empty_{{ day_hours.day}}_{{ forloop.counter }}" class="form-control" type="time" name="" value=""  pattern="^(0[0-9]|1[0-9]|2[0-4]):[0-5][0-9]$" data-error="Time must be in 24 hour format, hh:mm" />
+                                    <div class="help-block with-errors" role="alert"></div>
+                                </div>
                             </div>
-                        </div>
                         {% endfor %}
                     </div>
 
@@ -49,18 +55,18 @@
                         <button type="button" value="add hours" title="add hours" class="btn btn-default btn-sm mgr-add-hours"><i class="fa fa-plus"></i> <span>Add hours</span></button>
                     </div>
 
-            </fieldset>
+                </fieldset>
+            </div>
         </div>
-    </div>
     {% endfor %}
 
 </div>
 
 <div class="form-group">
     <label for="hours-notes">Hours Notes:
-    <a type="button" class="help-link" data-toggle="modal" data-target="#help_hours_notes" title="More info: Hours Notes" >
-              <i class="fa fa-info-circle fa-2" aria-hidden="true"></i><span class="visually-hidden">More information</span>
-            </a></label>
+        <a type="button" class="help-link" data-toggle="modal" data-target="#help_hours_notes" title="More info: Hours Notes" >
+            <i class="fa fa-info-circle fa-2" aria-hidden="true"></i><span class="visually-hidden">More information</span>
+        </a></label>
     <textarea class="form-control" rows="4" id="hours-notes" name="extended_info:hours_notes">{% if spot.hours_notes %}{{spot.hours_notes}}{% endif %}</textarea>
 </div>
 
