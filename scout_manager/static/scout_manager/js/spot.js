@@ -161,7 +161,7 @@ var Spot = {
             $.each(hours_blocks, function(idx, block){
                 var inputs = $(block).find("input");
                 var start = $(inputs[0]).val();
-                var end = $(inputs[1]).val();
+                var end = $(inputs[2]).val();
                 if(start.length > 0 && end.length > 0){
                     avalible_hours[day_name].push([start, end]);
                 }
