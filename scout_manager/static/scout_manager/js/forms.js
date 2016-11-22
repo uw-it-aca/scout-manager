@@ -97,7 +97,7 @@ var Forms = {
                 if ( id.indexOf('close_') !== -1 ) {
                     var close_time = $(input).val();
                     if (close_time === "23:59"){
-                        $(input).siblings(":checkbox").prop("checked", true).change();
+                        $(input).parent().find("input:checkbox").prop("checked", true).change();
                     }
                 }
             })
