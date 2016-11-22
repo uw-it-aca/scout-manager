@@ -8,7 +8,6 @@ var Item = {
 
         } else {
             Item._edit_item(form_data);
-            window.location.reload(true);
         }
     },
 
@@ -51,6 +50,7 @@ var Item = {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-success");
                 $("#pub_error").html("All changes have been saved.");
+                window.location.reload(true);
             },
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");
