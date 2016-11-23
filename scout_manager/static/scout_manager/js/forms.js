@@ -53,10 +53,41 @@ var Forms = {
 
             var hours_blocks = $(this).parent().siblings().find('.mgr-hours-block');
 
-            var empty_hours = $(hours_blocks[0]).clone();
+            var empty_hours = $(hours_blocks).last().clone();
+
+            var open_input,
+                close_input,
+                close_midnight;
+            $(empty_hours).find("input").each(function(idx, hour_input){
+                if($(hour_input).attr('id').indexOf("open") !== -1){
+                    open_input = hour_input;
+                } else if($(hour_input).attr('id').indexOf("close") !== -1){
+                    close_input = hour_input;
+                } else if($(hour_input).attr('id').indexOf("close_midnight") !== -1){
+                    close_midnight = hour_input;
+                }
+            });
+
+            console.log(open_input);
+            var input_id = $(open_input).attr('id').split("_");
+            var prev_input_id_int = parseInt(input_id[input_id.length - 1]);
+            var input_id_int = prev_input_id_int + 1;
+            var input_id_day = input_id[input_id.length - 2];
+
             $(empty_hours).find("input").val("");
-            $(empty_hours).find("input").attr('id','');
-            $(empty_hours).find("label").attr('for','');
+
+            // Update input IDs
+            var open_id = 'open_' + input_id_day + "_" + input_id_int;
+            $(open_input).attr('id', open_id);
+            var close_id = 'close_' + input_id_day + "_" + input_id_int;
+            $(close_input).attr('id', close_id);
+            var midnight_id = 'close_midnight_' + input_id_day + "_" + input_id_int;
+            $(close_midnight).attr('id', midnight_id);
+
+            // Update corresponding label FORs
+            $(empty_hours).find("label[for='open_" + input_id_day + "_" + prev_input_id_int + "']").attr('for', open_id);
+            $(empty_hours).find("label[for='close_" + input_id_day + "_" + prev_input_id_int + "']").attr('for', close_id);
+            $(empty_hours).find("label[for='close_midnight_" + input_id_day + "_" + prev_input_id_int + "']").attr('for', midnight_id);
 
             $($(this).parent().parent().find('.mgr-current-hours')).append(empty_hours);
             Forms.init_hours_midnight();

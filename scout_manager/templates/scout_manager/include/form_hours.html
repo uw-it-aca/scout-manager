@@ -32,18 +32,18 @@
                         {% empty %}
                             <div class="mgr-hours-block">
                                 <div class="form-group">
-                                    <label for="open_empty_{{ day_hours.day}}_{{ forloop.counter }}">Open:</label>
-                                    <input id="open_empty_{{ day_hours.day}}_{{ forloop.counter }}" class="form-control" type="time" name="" value=""  pattern="^(0[0-9]|1[0-9]|2[0-4]):[0-5][0-9]$" data-error="Time must be in 24 hour format, hh:mm" />
+                                    <label for="open_{{ day_hours.day}}_{{ forloop.counter }}">Open:</label>
+                                    <input id="open_{{ day_hours.day}}_{{ forloop.counter }}" class="form-control" type="time" name="" value=""  pattern="^(0[0-9]|1[0-9]|2[0-4]):[0-5][0-9]$" data-error="Time must be in 24 hour format, hh:mm" />
                                     <div class="help-block with-errors" role="alert"></div>
                                 </div>
                                 <div class="form-group close-hours">
-                                    <label for="close_empty_{{ day_hours.day}}_{{ forloop.counter }}">Close:</label>
+                                    <label for="close_{{ day_hours.day}}_{{ forloop.counter }}">Close:</label>
                                 <span class="midnight-block pull-right">
                                 <label for="close_midnight_{{ day_hours.day}}_{{ forloop.counter }}">Closes at midnight</label>
                                 <input class="hours_midnight" id="close_midnight_{{ day_hours.day}}_{{ forloop.counter }}" type="checkbox" />
                                 </span>
                                     <div class="clearfix"></div>
-                                    <input id="close_empty_{{ day_hours.day}}_{{ forloop.counter }}" class="form-control" type="time" name="" value=""  pattern="^(0[0-9]|1[0-9]|2[0-4]):[0-5][0-9]$" data-error="Time must be in 24 hour format, hh:mm" />
+                                    <input id="close_{{ day_hours.day}}_{{ forloop.counter }}" class="form-control" type="time" name="" value=""  pattern="^(0[0-9]|1[0-9]|2[0-4]):[0-5][0-9]$" data-error="Time must be in 24 hour format, hh:mm" />
                                     <div class="help-block with-errors" role="alert"></div>
                                 </div>
                             </div>
