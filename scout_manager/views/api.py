@@ -119,7 +119,12 @@ class Item(RESTDispatch):
     """
 
     def PUT(self, request, item_id):
+        user = UserService().get_user()
         form_data = process_form_data(request)
+        # quick fix, until can_edit_item is implemented.
+        spot_id = json.loads(form_data["json"])["spot_id"]
+        if not can_edit_spot(spot_id, user):
+            raise PermissionDenied
         try:
             update_item(form_data, item_id)
         except Exception as ex:
