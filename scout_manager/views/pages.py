@@ -26,6 +26,7 @@ def home(request):
 def items(request):
     netid = UserService().get_user()
     spots = get_spot_list('tech')
+    spots = _filter_spots(spots, netid)
     spots = get_filtered_items(spots, request)
     count = get_item_count(spots)
     if count <= 0:
