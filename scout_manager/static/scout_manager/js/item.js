@@ -95,7 +95,7 @@ var Item = {
     },
 
     _navigate_after_create: function() {
-        var spot_select = $("#spot_select");
+        var spot_select = $("#spot_id_input");
         var spot_id = spot_select.val();
         window.location.href ="/manager/spaces/" + spot_id;
     }
