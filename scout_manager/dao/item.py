@@ -45,7 +45,10 @@ def _filter_spot_items(item_id, spot):
 
 def create_item(form_data):
     item_json = _build_item_json(form_data)
-    spot_id = item_json.pop('new_spot_id')
+    try:
+        spot_id = item_json.pop('new_spot_id')
+    except:
+        spot_id = item_json['spot_id']
     item_json.pop('id')
     item_json.pop('spot_id')
 
