@@ -23,7 +23,7 @@
         <div class="form-group">
             <label for="building-name" class="control-label">Building:</label>
             <select id="building_select" class="form-control" name="location:building_name" {% if spot.name %}required data-error="Please select a building"{% endif %}>
-                <option disabled {% if spot == None %}selected{% endif %} value>select a building...</option>
+                <option disabled {% if spot.building_name == '' %}selected{% endif %} value>select a building...</option>
                 {% for building, campus in buildings.items %}
                 <option value="{{ building }}" {% if spot.building_name == building %} selected {% endif %} data-campus="{{ campus }}">{{ building }}</option>
                 {% endfor %}
