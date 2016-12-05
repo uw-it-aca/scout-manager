@@ -8,7 +8,6 @@ var Item = {
 
         } else {
             Item._edit_item(form_data);
-            window.location.reload(true);
         }
     },
 
@@ -51,6 +50,7 @@ var Item = {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-success");
                 $("#pub_error").html("All changes have been saved.");
+                window.location.reload(true);
             },
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");
@@ -95,7 +95,7 @@ var Item = {
     },
 
     _navigate_after_create: function() {
-        var spot_select = $("#spot_select");
+        var spot_select = $("#spot_id_input");
         var spot_id = spot_select.val();
         window.location.href ="/manager/spaces/" + spot_id;
     }
