@@ -26,6 +26,7 @@ def is_provisioned_user(member_id):
 def is_superuser(member_id):
     if settings.MANAGER_SUPERUSER_GROUP:
         is_spot_editor = is_member(settings.MANAGER_SUPERUSER_GROUP, member_id)
+        return is_spot_editor
     else:
         raise ImproperlyConfigured("Must define a MANAGER_SUPERUSER_GROUP"
                                    "in the settings")
