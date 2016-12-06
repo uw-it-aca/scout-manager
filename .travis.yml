@@ -1,0 +1,26 @@
+sudo: false
+language: python
+python:
+  - "2.7.6"
+install:
+  - pip install -r requirements.txt
+before_script:
+  - pip install coverage
+  - pip install python-coveralls
+  - pip install pep8
+  - cp travis-ci/manage.py manage.py
+  - python manage.py migrate --noinput
+  - npm install mocha
+  - npm install jquery
+  - npm install jsdom@3
+script:
+  - pep8 scout_manager/ --exclude=migrations,scout_manager/test
+  - coverage run --source=scout_manager/ --omit=scout_manager/migrations/* manage.py test scout_manager
+after_script:
+  - coveralls
+notifications:
+  slack:
+    rooms:
+      secure: jQuVU2IqZzUqjlYtRLcNmZ1vj64jwunhxG8s+Qko8g/Qtek66uyOg/Rz5U6kCGCAteuTF7sm598CKMzxNBcOUrM/96QBLF9Om8z6NAWjHeE7Iu/AINhYpZEr64cXEihyC3Z8VggwV53FUXSsWbHvAjX01aI67ul9zdC+0vNSM1hO93hZ9e+aHZOFKc+sxuUBKxG0J3uMZ/G8qwXVlQYa/TJslrJLlmF3kAxPkJzsdJ6bpMvVVbHBuYZQRT1oOfFFRoY0gbJNoLZr5oCG/jwm1BSx4x6H7lh0oTdXdUJVzWIk8t8QfFhWl0kCN3PK3lYxGQVoZJlfCNAR5Hb3xnl78RbAPyvSf+jV/2jn8vpOzxDc2p4XLCGe6AFaM21IOHrb69NYJ/ve8AMHrbHN+pGMtIZ2pyH5ezpiBBFK8Y7F2tbQpe5IEQeKcL9DGv4gkiuSaOlu7bY2I2A/5vjtcwoZ3vsFoF5REOEcCqr573a+/21zkdrxrGa/S7ZXIQfXSP46Rxqn4DiQfKcvFJXgb7KuyTj23pUsSDtTYevhVy4BniWyFxJreda/Z1DIi54xlMSQMvHAoRtlbfqwac8sHhjXwnUdv208OLCtCwRsRLbZziXvRF399U3C3zGh9Wo+oPhxdpciQeLLJCaaGRq/hNThFp+OmMdXa/MFIYnV7FYpmtQ=
+    on_failure: always
+    on_success: change
