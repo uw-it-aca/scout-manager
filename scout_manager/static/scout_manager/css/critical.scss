@@ -1,0 +1,84 @@
+// sass variables
+
+$base: #6564A8;
+$asbestos: #666;
+$clouds: #ecf0f1;
+
+body { margin: 0; background: $clouds !important; }
+
+// header
+
+.mgr-header { background: #fff; border-top: solid 10px $base; border-bottom: solid 1px #d0d1d5; height: 76px; position: relative; text-transform: uppercase; font-family: 'Oswald', sans-serif;
+
+    h1 { margin: 0 10px; line-height: 66px; height:66px; font-weight: 400; font-size: 30px;
+
+        a { text-decoration: none; color: $base;
+            &:hover { text-decoration: none; }
+            span { color: $asbestos; }
+        }
+
+    }
+
+    .mgr-user-name { position: absolute; top:0; right: 0; padding-right:10px; font-size: 18px; font-weight: 300; line-height: 56px; color: $base; }
+
+}
+
+// content
+
+.mgr-content { margin: 0; background: #fff;
+
+    .mgr-content-inner { padding: 10px; }
+
+    h2 {  font-family: 'Oswald', sans-serif; text-transform: uppercase; font-weight: 400; font-size: 20px; position: relative; color: $asbestos;
+        span { position: absolute; right: 0; font-size: 14px; font-weight: 300; }
+        .fa-circle { color: $base; }
+    }
+
+    h3 { text-transform: uppercase; font-family: 'Oswald', sans-serif; font-weight: 400; font-size: 16px; color: $asbestos; margin-top:30px;}
+    .row-draft {background-color:#f9f9f9;}
+    .status-draft {font-weight:bold; color:#a94442;}
+
+}
+
+//contextual help
+.help-link {
+    padding-left:3px;
+    &:hover {cursor:pointer;}
+}
+
+.modal-content {
+    .close {padding: 3px 8px;}
+}
+
+.modal-body {
+    h4 {margin-top: 30px;}
+}
+
+// flexbox
+
+.flex-container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.flex-item {
+    flex: 1 0;
+    padding: 0;
+}
+
+.flex-item:first-child { margin-right: 10px;}
+
+
+// accessibility & helper classes
+
+
+.visually-hidden {
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    padding:0 !important;
+    border:0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+}

@@ -1,0 +1,104 @@
+    <!--  if "food" app_type -->
+        <div class="form-group">
+            <label for="space-description">Space Description:</label>
+            <textarea name="extended_info:s_description" rows="4" class="form-control" id="space-description" type="text">{% if spot.description %}{{spot.description}}{% endif %}</textarea>
+            <p class="help-block">Briefly describe what people can expect when visiting the space.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="website">Website URL:</label>
+            <input class="form-control" id="website" name="extended_info:s_website_url" type="url" pattern="https?://.+" placeholder="http://example.com" value="{% if spot.website_url %}{{spot.website_url}}{% endif %}" data-error="Must be a valid url that is in this format: http://example.com" />
+            <div class="help-block with-errors" role="alert"></div>
+        </div>
+        <div class="form-group">
+            <label for="menu-url">Menu URL:</label>
+            <input class="form-control" id="menu-url" name="extended_info:s_menu_url" type="url" pattern="https?://.+" placeholder="http://example.com" value="{% if spot.menu_url %}{{spot.menu_url}}{% endif %}" data-error="Must be a valid url that is in this format: http://example.com" />
+            <div class="help-block with-errors" role="alert"></div>
+        </div>
+
+        <div class="row">
+        <fieldset class="checkbox-group {% if spot.name %}required{% endif %} col-md-6">
+            <legend class="control-label">Type of Space <span class="visually-hidden">(required)</span>
+            <a type="button" class="help-link" data-toggle="modal" data-target="#help_type" title="More info: Space Type" >
+              <i class="fa fa-info-circle fa-2" aria-hidden="true"></i><span class="visually-hidden">More information</span>
+            </a>
+            </legend>
+            <div class="well" id="food_spot_types">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafe" in type.name %} checked {% endif %}{% endfor %} value="cafe">Cafe</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "food_court" in type.name %} checked {% endif %}{% endfor %} value="food_court">Food Court</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "food_truck" in type.name %} checked {% endif %}{% endfor %} value="food_truck">Food Truck</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "market" in type.name %} checked {% endif %}{% endfor %} value="market">Market</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "restaurant" in type.name %} checked {% endif %}{% endfor %} value="restaurant">Restaurant</label>
+                </div>
+            </div>
+            <div class="help-block with-errors" role="alert">Please select at least 1 space type.</div>
+        </fieldset>
+         <fieldset class="checkbox-group {% if spot.name %}required{% endif %} col-md-6">
+            <legend class="control-label">Payment Accepted  <span class="visually-hidden">(required)</span></legend>
+            <div class="well" id="food_payment_type">
+
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:s_pay" {% if "Cash" in spot.payment_names %} checked {% endif %} value="s_pay_cash">Cash</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:s_pay" {% if "Husky Card" in spot.payment_names %} checked {% endif %} value="s_pay_husky">Husky Card</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:s_pay" {% if "Dining Account" in spot.payment_names %} checked {% endif %} value="s_pay_dining">Dining Card</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:s_pay" {% if "Visa" in spot.payment_names %} checked {% endif %} value="s_pay_visa">Visa</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:s_pay" {% if "Mastercard" in spot.payment_names %} checked {% endif %} value="s_pay_mastercard">Mastercard</label>
+                </div>
+            </div>
+            <div class="help-block with-errors" role="alert">Please select at least 1 payment type.</div>
+        </fieldset>
+    </div>
+      <div class="row">
+        <fieldset class="col-md-6">
+            <legend>Coupon Information</legend>
+            <div class="well">
+                <div class="checkbox">
+                    <label for="has-coupon"><input id="has-coupon" name="extended_info:s_has_coupon" type="checkbox" value="true" {% if spot.has_coupon %}checked{% endif%}>There are online coupons available</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="coupon-url">Coupon URL:</label>
+                    <input class="form-control" id="coupon-url" name="extended_info:s_coupon_url" type="url" pattern="https?://.+" placeholder="http://example.com" value="{% if spot.coupon_url %}{{ spot.coupon_url }}{% endif %}" data-error="Must be a valid url that is in this format: http://example.com" />
+            <div class="help-block with-errors" role="alert"></div>
+                </div>
+                <div class="form-group">
+                    <label for="coupon-date">Expiration Date:</label>
+                    <input class="form-control" id="coupon-date" name="extended_info:s_coupon_expiration" type="text" value="{% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% endif %}" placeholder="mm/dd/yyyy" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d" data-error="Date must be in this format: mm/dd/yyyy" />
+            <div class="help-block with-errors" role="alert"></div>
+                </div>
+                <p class="help-block">Note: Coupon link will only be displayed to clients IF the "There are online coupons available" checkbox is checked.</p>
+            </div>
+        </fieldset>
+
+        <fieldset class="col-md-6">
+            <legend>Reservation Information</legend>
+
+            <div class="well">
+                <div class="checkbox">
+                    <label for="has-reservations-food"><input id="has-reservations-food" name="extended_info:s_has_reservation" type="checkbox" value="true" {% if spot.s_has_reservation %}checked{% endif%}>This place accepts reservations</label>
+                </div>
+                <div class="form-group">
+                    <label for="reservation-notes-food">Reservation Notes:</label>
+                    <textarea rows="4" class="form-control" id="reservation-notes-food" name="extended_info:s_reservation_notes">{% if spot.s_reservation_notes %}{{spot.s_reservation_notes}}{% endif %}</textarea>
+                </div>
+                <p class="help-block">Note: Reservation notes will only be displayed IF the "This place accepts reservations" checkbox is checked.</p>
+            </div>
+        </fieldset>
+      </div>

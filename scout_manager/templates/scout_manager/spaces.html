@@ -1,0 +1,51 @@
+{% extends "scout_manager/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Spaces{% endblock %}
+
+{% block web_content %}
+
+<div class="mgr-content-header clearfix">
+
+    <h2 {% if is_desktop %}class="pull-left"{% endif%} id="sub_header">{% if app_type %}{{ app_type }}{% else %}All{% endif %} Spaces <span class="visually-hidden">you manage</span></h2>
+
+    <div {% if is_desktop %}class="pull-right"{% endif%}>
+        <div class="pull-left" style="margin-right:20px;">Total <span class="visually-hidden">spaces in list</span>: <span class="">{{ count }}</span></div>
+    </div>
+
+</div>
+
+<div style="margin-top: 15px;" class="table-responsive">
+    <table class="table" id="sortable_datatables">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Space use</th>
+                <th scope="col">Space type</th>
+                <th scope="col">Campus</th>
+                <th scope="col">Building</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for spot in spots %}
+            <tr data-spotid="{{ spot.spot_id }}" data-etag="{{ spot.etag }}" {% if spot.is_hidden %}class="row-draft"{% endif %}>
+                <td>{{ spot.spot_id }}</td>
+                <td><strong><a href="/manager/spaces/{{ spot.spot_id }}/" title="Manage Space: {{ spot.name }} ({% if spot.is_hidden %}unpublished{% else %}PUBLISHED{% endif %})">{{ spot.name }}</a></strong></td>
+                <td>{{ spot.app_type }}</td>
+                <td>{% for type in spot.spot_types %}{{ type.name }}{% if not forloop.last %},{% endif %} {% empty %}<small class="text-danger">missing</small>{% endfor %}</td>
+                <td>{% if spot.campus %}{{ spot.campus }}{% else %}<small class="text-danger">missing</small>{% endif %}</td>
+                <td>{% if spot.building_name %}{{ spot.building_name }}{% else %}<small class="text-danger">missing</small>{% endif %}</td>
+                <td>{% if spot.is_hidden %}<span class="status-draft">Draft</span>{% else %}Published{% endif %}</td>
+            </tr>
+            {% empty %}
+            You don't manage any {% if app_type %}{{ app_type }} {% endif %}spaces. <a href="/manager/spaces/add/" role="button" title="Create new space"><i class="fa fa-plus" aria-hidden="true"></i> Add New Space</a><br/> If you should have management access to {% if app_type %}{{ app_type }} {% endif %}spaces, <a href="mailto:help@uw.edu">contact us</a>.
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

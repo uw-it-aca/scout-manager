@@ -1,8 +1,23 @@
-{% extends "scout_manager/app.html" %}
+{% extends "scout_manager/base.html" %}
 {% load staticfiles %}
 
-{% block web_content %} 
-<div style="display:block; margin-top:96px;">
-  This is home.html.. go to <a href="/manager/test/">test.html</a>
-</div>    
+{% block title %}Welcome{% endblock %}
+
+{% block web_content %}
+
+<h2>Space Admin Dashboard</h2>
+<ul>
+    <li>List of spaces being flagged (potential problems?)</li>
+    <li>Upcoming Scheduled changes</li>
+</ul>
+
+<br><br>
+
+<h2>Uber Admin Dashboard</h2>
+<ul>
+    <li>List of spaces being flagged (potential problems?)</li>
+    <li>Upcoming Scheduled changes</li>
+    <li>Recently published</li>
+</ul>
+
 {% endblock %}

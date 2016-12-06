@@ -1,0 +1,55 @@
+{% extends "scout_manager/base.html" %}
+{% load staticfiles %}
+
+{% block title %}All Items{% endblock %}
+
+{% block web_content %}
+
+<div class="mgr-content-header clearfix">
+
+    <h2 class="pull-left" id="sub_header">All Tech Items <span class="visually-hidden">you manage</span></h2>
+
+    <div class="pull-right">
+    Total <span class="visually-hidden">items you manage</span>: <span class="">{{ count }}</span>
+    </div>
+
+</div>
+
+<div style="margin-top: 15px;" class="table-responsive">
+    <table class="table" id="sortable_datatables">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Subcategory</th>
+                <th scope="col">Location</th>
+                <th scope="col">Campus</th>
+                <th scope="col">Building</th>
+                <th scope="col">STF</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for spot in spots %}
+
+            {% for item in spot.items %}
+            <tr>
+                <td>{{ item.item_id }}</td>
+                <td><strong><a href="/manager/items/{{item.item_id}}/" title="Manage Item: {{ item.name }}">{{ item.name }}</a></strong></td>
+                <td>{{ item.subcategory }}</td>
+                <td>{{ spot.name }}</td>
+                <td>{{ spot.campus }}</td>
+                <td>{{ spot.building_name }}</td>
+                <td>{% if item.is_stf %}Yes{% else %}No{% endif %}</td>
+                <td>{% if item.is_active %}Published{% else %}<span class="status-draft">Draft</span>{% endif %}</td>
+            </tr>
+            {% endfor %}
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
