@@ -218,7 +218,6 @@
         </div>
         <p class="help-block">Note: Use the <a href="https://groups.uw.edu/" target="_blank">UW Groups</a> service to create or manage your groups.</p>
 
-
         {% if spot.name %}
         <h3 class="">Space Manager Contact Info</h3>
 
@@ -239,6 +238,19 @@
             <div class="help-block with-errors" role="alert"></div>
         </div>
         {% endif %}
+
+        <hr/>
+
+        <h3 class="">DELETE</h3>
+        <div class="form-group well">
+            <div>
+                <label>Delete this space?</label>
+            </div>
+            <div class="mgr-dataset-actions">
+                <button id="spot_delete" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                <div class="help-block">Note: This action cannot be undone!</div>
+            </div>
+        </div>
 
         {% endif %}
 
@@ -302,24 +314,11 @@
 
 {% endif %}
 
-
-    <hr/>
-
-    <h3 class="">DELETE</h3>
-    <div class="form-group well">
-        <div>
-            <label>Delete this space?</label>
-        </div>
-        <div class="mgr-dataset-actions">
-            <button id="spot_delete" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <span>Delete</span></button>
-            <div class="help-block">Note: This action cannot be undone!</div>
-        </div>
-    </div>
-
 {% endif %}
 
 <!-- contextual help modals -->
 {% include "scout_manager/include/help_general.html" %}
+
 {% if spot.app_type == "food" %}
     {% include "scout_manager/include/help_food.html" %}
 {% elif spot.app_type == "study" %}

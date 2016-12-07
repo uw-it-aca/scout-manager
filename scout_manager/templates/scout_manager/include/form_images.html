@@ -1,8 +1,12 @@
 <hr/>
 
-<h3>Images</h3>
+<div class="row">
 
 <div class="form-group col-md-12">
+
+    <h3>Images</h3>
+
+
     <div class="form-group">
         <label for="mgr_upload_image">Add Image:</label>
     <input class="" type="file" name="" accept="image/*" id="mgr_upload_image" style="padding-top: 10px;">
@@ -14,7 +18,7 @@
 </div>
 
 {% if spot.item %}
-<div id="mgr_list_item_images" class="row">
+<div id="mgr_list_item_images">
     {% for image in spot.item.images %}
     <div class="col-md-4">
         <div class="well" style="padding:0;">
@@ -32,7 +36,7 @@
     {% endfor %}
 </div>
 {% else %}
-<div id="mgr_list_spot_images" class="row">
+<div id="mgr_list_spot_images">
     {% for image in spot.images %}
      <div class="col-md-4">
          <div class="well" style="padding:0;">
@@ -51,3 +55,5 @@
 {% endif %}
 
 <div id="mgr_list_spot_empty" class="help-block col-md-12">There are no images.</div>
+
+</div>
