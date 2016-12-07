@@ -26,7 +26,8 @@
 
 <div class="row">
 <div class="col-md-8">
-        <h3>General Information</h3>
+
+<h3>General Information</h3>
 
 <div class="col-md-8">
         <div class="form-group">
@@ -176,6 +177,19 @@
                 </div>
             </div>
 
+            <hr>
+
+            <h3>Delete Item</h3>
+            <div class="form-group well">
+                <div>
+                    <label for="item_delete">Delete this Item?</label>
+                </div>
+                <div class="mgr-dataset-actions">
+                    <button id="item_delete" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                    <div class="help-block">Note: This action cannot be undone!</div>
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -223,22 +237,11 @@
 <hr/>
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <h3>Location</h3>
         <span><strong><a href="/manager/spaces/{{ spot.spot_id }}/" title="Manage Space: {{ spot.name }} ({% if spot.is_hidden %}(unpublished){% else %}PUBLISHED{% endif %})" target="_blank">{{spot.name}}</a></strong>, {{spot.building_name}}, {{spot.campus}}</span>
     </div>
-    <div class="col-md-4">
-        <h3>Delete Item</h3>
-        <div class="form-group well">
-            <div>
-                <label for="item_delete">Delete this Item?</label>
-            </div>
-            <div class="mgr-dataset-actions">
-                <button id="item_delete" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <span>Delete</span></button>
-                <div class="help-block">Note: This action cannot be undone!</div>
-            </div>
-        </div>
-    </div>
+
 </div>
 {% endif %}
 
