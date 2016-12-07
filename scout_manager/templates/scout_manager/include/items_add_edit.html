@@ -218,17 +218,17 @@
 <!-- include the images form -->
 {% include "scout_manager/include/form_images.html" %}
 
-<hr />
-   <h3 >Location</h3>
-    <div class="col-md-12 ">
+{% if spot.item.name %}
+
+<hr/>
+
+<div class="row">
+    <div class="col-md-8">
+        <h3>Location</h3>
         <span><strong><a href="/manager/spaces/{{ spot.spot_id }}/" title="Manage Space: {{ spot.name }} ({% if spot.is_hidden %}(unpublished){% else %}PUBLISHED{% endif %})" target="_blank">{{spot.name}}</a></strong>, {{spot.building_name}}, {{spot.campus}}</span>
     </div>
-
-
-    {% if spot.item.name %}
-<br/>
-    <hr />
-        <h3 class="">Delete</h3>
+    <div class="col-md-4">
+        <h3>Delete Item</h3>
         <div class="form-group well">
             <div>
                 <label for="item_delete">Delete this Item?</label>
@@ -238,6 +238,8 @@
                 <div class="help-block">Note: This action cannot be undone!</div>
             </div>
         </div>
-        {% endif %}
+    </div>
+</div>
+{% endif %}
 
 </div>
