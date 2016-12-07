@@ -29,6 +29,9 @@ class Spot(RESTDispatch):
                             content_type='application/json')
 
     def DELETE(self, request, spot_id):
+        user = UserService().get_user()
+        if not can_edit_spot(spot_id, user):
+            raise PermissionDenied
         etag = request.body
         try:
             delete_spot(spot_id, etag)
@@ -134,7 +137,10 @@ class Item(RESTDispatch):
                             content_type='application/json')
 
     def DELETE(self, request, item_id):
+        user = UserService().get_user()
         spot_id = request.body
+        if not can_edit_spot(spot_id, user):
+            raise PermissionDenied
         try:
             delete_item(item_id, spot_id)
         except Exception as ex:
