@@ -34,7 +34,7 @@
         {% for spot in spots %}
 
             {% for item in spot.items %}
-            <tr>
+            <tr {% if not item.is_active %}class="row-draft"{% endif %}>
                 <td>{{ item.item_id }}</td>
                 <td><strong><a href="/manager/items/{{item.item_id}}/" title="Manage Item: {{ item.name }}">{{ item.name }}</a></strong></td>
                 <td>{{ item.subcategory }}</td>

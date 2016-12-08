@@ -296,7 +296,7 @@
             </thead>
             <tbody>
                 {% for item in spot.items %}
-                <tr>
+                <tr {% if not item.is_active %}class="row-draft"{% endif %}>
                     <td>{{ item.item_id }}</td>
                     <td><a href="/manager/items/{{ item.item_id }}/" title="See details: {{ item.name }}">{{ item.name }}</a></td>
                     <td>{{ item.category }}</td>
