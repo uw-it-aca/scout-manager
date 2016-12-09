@@ -145,7 +145,9 @@ var Spot = {
     },
 
     _spot_post_submit: function (will_exit, spot_id) {
-        if (will_exit) {
+        if (will_exit == 'link') {
+            // just follow the href
+        } else if (will_exit) {
             Spot._navigate_to_apptype();
         } else {
             if(typeof spot_id !== 'undefined'){
