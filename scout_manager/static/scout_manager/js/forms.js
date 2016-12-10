@@ -26,8 +26,8 @@ var Forms = {
         }
 
         // handle submitting spot to server
-        $("#save_continue").on('click', {exit: false}, Spot.submit_spot);
-        $("#save_close").on('click', {exit: true}, Spot.submit_spot);
+        $("#save_continue").on('click', {exit: 'reload'}, Spot.submit_spot);
+        $("#save_close").on('click', {exit: 'apptype'}, Spot.submit_spot);
         $("#add_item").on('click', {exit: 'link'}, Spot.submit_spot); 
         $("a.item_link").on('click', {exit: 'link'}, Spot.submit_spot);
 
