@@ -27,6 +27,7 @@
                 <th scope="col">Building</th>
                 <th scope="col">STF</th>
                 <th scope="col">Status</th>
+                {% if is_superuser %}<th scope="col">Owner</th>{% endif %}
             </tr>
         </thead>
         <tbody>
@@ -43,6 +44,7 @@
                 <td>{{ spot.building_name }}</td>
                 <td>{% if item.is_stf %}Yes{% else %}No{% endif %}</td>
                 <td>{% if item.is_active %}Published{% else %}<span class="status-draft">Draft</span>{% endif %}</td>
+                {% if is_superuser %}<td> {{ spot.owner }}</td>{% endif %}
             </tr>
             {% endfor %}
 
