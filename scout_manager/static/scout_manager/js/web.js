@@ -46,7 +46,8 @@ $(document).on('ready', function(event) {
     // datatables
     $('#sortable_datatables').DataTable({
         "paging": false,
-        "dom": '<"top"f>rt<"bottom"lp><"clear">'
+        "dom": '<"top"f>rt<"bottom"lp><"clear">',
+        "order": [[ 1, "asc" ]]
     });
 
 });
