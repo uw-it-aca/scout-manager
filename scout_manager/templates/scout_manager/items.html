@@ -44,7 +44,7 @@
                 <td>{{ spot.building_name }}</td>
                 <td>{% if item.is_stf %}Yes{% else %}No{% endif %}</td>
                 <td>{% if item.is_active %}Published{% else %}<span class="status-draft">Draft</span>{% endif %}</td>
-                {% if is_superuser %}<td> {{ spot.owner }}</td>{% endif %}
+                {% if is_superuser %}<td>{% if spot.owner %}{{ spot.owner }}{% else %}<small class="text-danger">missing</small>{% endif %}</td>{% endif %}
             </tr>
             {% endfor %}
 
