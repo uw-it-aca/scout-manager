@@ -3,7 +3,7 @@ var Spot = {
     submit_spot: function (e) {
         var form_data = Spot.get_edit_form_data();
         var is_create= Spot._get_is_add(form_data);
-        var will_exit = false;
+        var will_exit = 'reload';
         if (e.data.hasOwnProperty('exit')) {
             will_exit = e.data.exit;
         }
@@ -145,9 +145,11 @@ var Spot = {
     },
 
     _spot_post_submit: function (will_exit, spot_id) {
-        if (will_exit) {
+        if (will_exit === 'link') {
+            // just follow the href
+        } else if (will_exit === 'apptype') {
             Spot._navigate_to_apptype();
-        } else {
+        } else {  // 'reload' is the default
             if(typeof spot_id !== 'undefined'){
                 window.location.href ="/manager/spaces/" + spot_id + "/";
             } else {

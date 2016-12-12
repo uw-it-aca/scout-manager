@@ -78,7 +78,10 @@ def can_edit_spot(spot_id, user):
     Determines if a user can edit the given spot based on them being a member
     of the existing group attached to the spot, also allows 'superusers'
     """
-    group_id = _get_current_spot_group(spot_id)
+    try:
+        group_id = _get_current_spot_group(spot_id)
+    except AttributeError:
+        group_id = None
     is_spot_editor = GroupMembership.objects.is_member(user, group_id)
     if not is_spot_editor:
         is_spot_editor = is_superuser(user)
