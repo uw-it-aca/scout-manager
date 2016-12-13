@@ -69,9 +69,16 @@ body { margin: 0; background: $clouds !important; }
 .flex-item:first-child { margin-right: 10px;}
 
 
+// DataTable overrides
+
+.fixedHeader-floating {
+    position: fixed;
+    top: 60px !important;
+    z-index: 9999;
+    background: #fff;
+}
+
 // accessibility & helper classes
-
-
 .visually-hidden {
     position: absolute !important;
     clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
