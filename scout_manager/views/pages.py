@@ -33,7 +33,8 @@ def items(request):
 
     context = {"spots": spots,
                "count": count,
-               "netid": netid}
+               "netid": netid,
+               "is_superuser": is_superuser(netid)}
     return render_to_response('scout_manager/items.html', context,
                               context_instance=RequestContext(request))
 
@@ -96,7 +97,8 @@ def spaces(request):
     context = {"spots": spots,
                "count": len(spots),
                "app_type": app_type,
-               "netid": netid}
+               "netid": netid,
+               "is_superuser": is_superuser(netid)}
     return render_to_response(
             'scout_manager/spaces.html',
             context,

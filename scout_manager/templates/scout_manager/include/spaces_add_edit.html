@@ -277,7 +277,7 @@
 
     <h3>Item(s)</h3>
 
-    <p><a class="" href="/manager/items/add/?spot_id={{ spot.spot_id }}">Add New Item to this space</a></p>
+    <p><a id="add_item" class="" href="/manager/items/add/?spot_id={{ spot.spot_id }}">Add New Item to this space</a></p>
     <p>Total: <span class="">{{ spot.items|length }}</span></p>
 
     <div style="margin-top: 15px;" class="table-responsive">
@@ -296,9 +296,9 @@
             </thead>
             <tbody>
                 {% for item in spot.items %}
-                <tr>
+                <tr {% if not item.is_active %}class="row-draft"{% endif %}>
                     <td>{{ item.item_id }}</td>
-                    <td><a href="/manager/items/{{ item.item_id }}/" title="See details: {{ item.name }}">{{ item.name }}</a></td>
+                    <td><a class="item_link" href="/manager/items/{{ item.item_id }}/" title="See details: {{ item.name }}">{{ item.name }}</a></td>
                     <td>{{ item.category }}</td>
                     <td>{{ item.subcategory }}</td>
                     <td>{% if item.is_stf %}Yes{% else %}No{% endif %}</td>

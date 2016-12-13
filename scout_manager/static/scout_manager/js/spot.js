@@ -3,7 +3,7 @@ var Spot = {
     submit_spot: function (e) {
         var form_data = Spot.get_edit_form_data();
         var is_create= Spot._get_is_add(form_data);
-        var will_exit = false;
+        var will_exit = 'reload';
         if (e.data.hasOwnProperty('exit')) {
             will_exit = e.data.exit;
         }
@@ -40,7 +40,7 @@ var Spot = {
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-danger");
-                var error = $.parseJSON(xhr.responseText);
+                $("#pub_error").html(error + ": " + xhr.responseText);
                 switch (xhr.status) {
                     case 500:
                         $("#pub_error").html("Something went wrong on our end and our developers have been alerted. Please try again later and feel free to contact help@uw.edu.");
@@ -85,7 +85,7 @@ var Spot = {
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-danger");
-                var error = $.parseJSON(xhr.responseText);
+                $("#pub_error").html(error + ": " + xhr.responseText);
                 switch (xhr.status) {
                     case 500:
                         $("#pub_error").html("Something went wrong on our end and our developers have been alerted. Please try again later and feel free to contact help@uw.edu.");
@@ -145,9 +145,11 @@ var Spot = {
     },
 
     _spot_post_submit: function (will_exit, spot_id) {
-        if (will_exit) {
+        if (will_exit === 'link') {
+            // just follow the href
+        } else if (will_exit === 'apptype') {
             Spot._navigate_to_apptype();
-        } else {
+        } else {  // 'reload' is the default
             if(typeof spot_id !== 'undefined'){
                 window.location.href ="/manager/spaces/" + spot_id + "/";
             } else {

@@ -16,7 +16,7 @@
 </div>
 
 <div style="margin-top: 15px;" class="table-responsive">
-    <table class="table" id="sortable_datatables">
+    <table class="table display" id="sortable_datatables">
         <thead>
             <tr>
                 <th scope="col">ID</th>
@@ -26,6 +26,7 @@
                 <th scope="col">Campus</th>
                 <th scope="col">Building</th>
                 <th scope="col">Status</th>
+                {% if is_superuser %}<th scope="col">Owner</th>{% endif %}
             </tr>
         </thead>
         <tbody>
@@ -39,6 +40,7 @@
                 <td>{% if spot.campus %}{{ spot.campus }}{% else %}<small class="text-danger">missing</small>{% endif %}</td>
                 <td>{% if spot.building_name %}{{ spot.building_name }}{% else %}<small class="text-danger">missing</small>{% endif %}</td>
                 <td>{% if spot.is_hidden %}<span class="status-draft">Draft</span>{% else %}Published{% endif %}</td>
+                {% if is_superuser %}<td>{% if spot.owner %}{{ spot.owner }}{% else %}<small class="text-danger">missing</small>{% endif %}</td>{% endif %}
             </tr>
             {% empty %}
             You don't manage any {% if app_type %}{{ app_type }} {% endif %}spaces. <a href="/manager/spaces/add/" role="button" title="Create new space"><i class="fa fa-plus" aria-hidden="true"></i> Add New Space</a><br/> If you should have management access to {% if app_type %}{{ app_type }} {% endif %}spaces, <a href="mailto:help@uw.edu">contact us</a>.
