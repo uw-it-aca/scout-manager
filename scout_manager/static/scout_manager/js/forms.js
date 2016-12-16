@@ -65,7 +65,7 @@ var Forms = {
                     open_input = hour_input;
                 } else if($(hour_input).attr('id').indexOf("close_midnight") !== -1){
                     close_midnight = hour_input;
-                } else if($(hour_input).attr('id').indexOf(close) !== -1){
+                } else if($(hour_input).attr('id').indexOf("close") !== -1){
                     close_input = hour_input;
                 }
             });
