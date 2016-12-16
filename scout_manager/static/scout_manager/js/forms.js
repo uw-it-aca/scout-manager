@@ -237,12 +237,13 @@ var Forms = {
         });
 
         $('#mgr_upload_button').click(function() {
-            if ($(this).val() == "upload-item-image")
+            if ($(this).val() == "upload-item-image") {
                 Item.submit_item();
-            else
+            }
+            else {
                 // submit spot
-                //Spot.submit_spot();
-                Spot.submit_spot({'data':{'exit': false}});
+                Spot.submit_spot({'data': {'exit': false}});
+            }
         });
 
     },
