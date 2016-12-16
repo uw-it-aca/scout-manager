@@ -27,6 +27,7 @@
                 <th scope="col">Building</th>
                 <th scope="col">STF</th>
                 <th scope="col">Status</th>
+                {% if is_superuser %}<th scope="col">Owner</th>{% endif %}
             </tr>
         </thead>
         <tbody>
@@ -34,7 +35,7 @@
         {% for spot in spots %}
 
             {% for item in spot.items %}
-            <tr>
+            <tr {% if not item.is_active %}class="row-draft"{% endif %}>
                 <td>{{ item.item_id }}</td>
                 <td><strong><a href="/manager/items/{{item.item_id}}/" title="Manage Item: {{ item.name }}">{{ item.name }}</a></strong></td>
                 <td>{{ item.subcategory }}</td>
@@ -43,6 +44,7 @@
                 <td>{{ spot.building_name }}</td>
                 <td>{% if item.is_stf %}Yes{% else %}No{% endif %}</td>
                 <td>{% if item.is_active %}Published{% else %}<span class="status-draft">Draft</span>{% endif %}</td>
+                {% if is_superuser %}<td>{% if spot.owner %}{{ spot.owner }}{% else %}<small class="text-danger">missing</small>{% endif %}</td>{% endif %}
             </tr>
             {% endfor %}
 

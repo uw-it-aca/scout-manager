@@ -218,7 +218,6 @@
         </div>
         <p class="help-block">Note: Use the <a href="https://groups.uw.edu/" target="_blank">UW Groups</a> service to create or manage your groups.</p>
 
-
         {% if spot.name %}
         <h3 class="">Space Manager Contact Info</h3>
 
@@ -239,6 +238,19 @@
             <div class="help-block with-errors" role="alert"></div>
         </div>
         {% endif %}
+
+        <hr/>
+
+        <h3 class="">DELETE</h3>
+        <div class="form-group well">
+            <div>
+                <label>Delete this space?</label>
+            </div>
+            <div class="mgr-dataset-actions">
+                <button id="spot_delete" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <span>Delete</span></button>
+                <div class="help-block">Note: This action cannot be undone!</div>
+            </div>
+        </div>
 
         {% endif %}
 
@@ -265,7 +277,7 @@
 
     <h3>Item(s)</h3>
 
-    <p><a class="" href="/manager/items/add/?spot_id={{ spot.spot_id }}">Add New Item to this space</a></p>
+    <p><a id="add_item" class="" href="/manager/items/add/?spot_id={{ spot.spot_id }}">Add New Item to this space</a></p>
     <p>Total: <span class="">{{ spot.items|length }}</span></p>
 
     <div style="margin-top: 15px;" class="table-responsive">
@@ -284,9 +296,9 @@
             </thead>
             <tbody>
                 {% for item in spot.items %}
-                <tr>
+                <tr {% if not item.is_active %}class="row-draft"{% endif %}>
                     <td>{{ item.item_id }}</td>
-                    <td><a href="/manager/items/{{ item.item_id }}/" title="See details: {{ item.name }}">{{ item.name }}</a></td>
+                    <td><a class="item_link" href="/manager/items/{{ item.item_id }}/" title="See details: {{ item.name }}">{{ item.name }}</a></td>
                     <td>{{ item.category }}</td>
                     <td>{{ item.subcategory }}</td>
                     <td>{% if item.is_stf %}Yes{% else %}No{% endif %}</td>
@@ -302,24 +314,11 @@
 
 {% endif %}
 
-
-    <hr/>
-
-    <h3 class="">DELETE</h3>
-    <div class="form-group well">
-        <div>
-            <label>Delete this space?</label>
-        </div>
-        <div class="mgr-dataset-actions">
-            <button id="spot_delete" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> <span>Delete</span></button>
-            <div class="help-block">Note: This action cannot be undone!</div>
-        </div>
-    </div>
-
 {% endif %}
 
 <!-- contextual help modals -->
 {% include "scout_manager/include/help_general.html" %}
+
 {% if spot.app_type == "food" %}
     {% include "scout_manager/include/help_food.html" %}
 {% elif spot.app_type == "study" %}
