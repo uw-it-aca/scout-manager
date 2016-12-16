@@ -66,6 +66,7 @@ var Spot = {
                 $("#pub_error").html("All changes have been saved.");
 
                 // reload the page
+                $("#submit_form").html("");
                 Spot._spot_post_submit(will_exit);
             },
             error: function(xhr, status, error) {

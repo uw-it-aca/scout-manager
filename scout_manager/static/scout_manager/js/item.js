@@ -50,6 +50,7 @@ var Item = {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-success");
                 $("#pub_error").html("All changes have been saved.");
+                $("#submit_form").html("");
                 window.location.reload(true);
             },
             error: function(xhr, status, error) {
