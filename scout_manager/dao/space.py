@@ -163,7 +163,6 @@ def update_spot(form_data, spot_id, image=None):
     spot_client.put_spot(spot_id, json.dumps(json_data), etag)
 
 
-
 def _build_spot_json(form_data):
     json_data = json.loads(form_data['json'])
 
