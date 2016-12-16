@@ -241,7 +241,6 @@ var Forms = {
             }
             else {
                 // submit spot
-                //Spot.submit_spot();
                 Spot.submit_spot({'data': {'exit': false}});
             }
         });
