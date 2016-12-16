@@ -26,8 +26,10 @@ var Forms = {
         }
 
         // handle submitting spot to server
-        $("#save_continue").on('click', {exit: false}, Spot.submit_spot);
-        $("#save_close").on('click', {exit: true}, Spot.submit_spot);
+        $("#save_continue").on('click', {exit: 'reload'}, Spot.submit_spot);
+        $("#save_close").on('click', {exit: 'apptype'}, Spot.submit_spot);
+        $("#add_item").on('click', {exit: 'link'}, Spot.submit_spot); 
+        $("a.item_link").on('click', {exit: 'link'}, Spot.submit_spot);
 
         $("#submit_item").click(Item.submit_item);
 
@@ -61,14 +63,13 @@ var Forms = {
             $(empty_hours).find("input").each(function(idx, hour_input){
                 if($(hour_input).attr('id').indexOf("open") !== -1){
                     open_input = hour_input;
-                } else if($(hour_input).attr('id').indexOf("close") !== -1){
-                    close_input = hour_input;
                 } else if($(hour_input).attr('id').indexOf("close_midnight") !== -1){
                     close_midnight = hour_input;
+                } else if($(hour_input).attr('id').indexOf(close) !== -1){
+                    close_input = hour_input;
                 }
             });
 
-            console.log(open_input);
             var input_id = $(open_input).attr('id').split("_");
             var prev_input_id_int = parseInt(input_id[input_id.length - 1]);
             var input_id_int = prev_input_id_int + 1;

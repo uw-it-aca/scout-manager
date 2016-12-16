@@ -3,8 +3,7 @@ from django.shortcuts import render_to_response
 from scout_manager.dao.item import get_item_by_id as manager_get_item_by_id
 from scout_manager.dao.space import get_spot_by_id as manager_get_spot_by_id
 from scout_manager.dao.space import get_spot_hours_by_day, get_spot_list
-from scout_manager.dao.buildings import get_building_list, \
-    get_building_list_by_campus
+from scout_manager.dao.buildings import get_building_list
 from scout_manager.dao.groups import is_superuser
 from scout_manager.models import GroupMembership
 from scout.dao.image import get_spot_image, get_item_image
@@ -34,7 +33,8 @@ def items(request):
 
     context = {"spots": spots,
                "count": count,
-               "netid": netid}
+               "netid": netid,
+               "is_superuser": is_superuser(netid)}
     return render_to_response('scout_manager/items.html', context,
                               context_instance=RequestContext(request))
 
@@ -97,7 +97,8 @@ def spaces(request):
     context = {"spots": spots,
                "count": len(spots),
                "app_type": app_type,
-               "netid": netid}
+               "netid": netid,
+               "is_superuser": is_superuser(netid)}
     return render_to_response(
             'scout_manager/spaces.html',
             context,
@@ -128,7 +129,7 @@ def spaces_upload(request):
 def spaces_edit(request, spot_id):
     netid = UserService().get_user()
     spot = manager_get_spot_by_id(spot_id)
-    buildings = get_building_list_by_campus(spot.campus)
+    buildings = get_building_list()
     # if no campus buildings, get all
     if len(buildings) < 1:
         buildings = get_building_list()
