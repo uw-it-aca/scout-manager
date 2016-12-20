@@ -1,0 +1,12 @@
+{% extends "scout_manager/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Add New Space{% endblock %}
+
+{% block web_content %}
+
+<form id="submit_form" role="form">
+    {% include "scout_manager/include/spaces_add_edit.html" %}
+</form>
+
+{% endblock %}

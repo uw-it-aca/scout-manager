@@ -1,0 +1,152 @@
+<div class="row">
+
+    <!--  if "study" app_type -->
+
+    <div class="col-md-6">
+        <fieldset class="checkbox-group {% if spot.name %}required{% endif %}">
+            <legend class="control-label">Type of Space  <span class="visually-hidden">Required</span>
+            <a type="button" class="help-link" data-toggle="modal" data-target="#help_type" title="More info: Space Type" >
+              <i class="fa fa-info-circle fa-2" aria-hidden="true"></i><span class="visually-hidden">More information</span>
+            </a>
+            </legend>
+            <div class="well" id="study_spot_types">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "study_room" in type.name %} checked {% endif %}{% endfor %} value="study_room">Study room</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "study_area" in type.name %} checked {% endif %}{% endfor %} value="study_area">Study area</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "computer_lab" in type.name %} checked {% endif %}{% endfor %} value="computer_lab">Computer lab</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "studio" in type.name %} checked {% endif %}{% endfor %} value="studio">Production studio</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "classroom" in type.name %} checked {% endif %}{% endfor %} value="classroom">Conference/classroom</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "open" in type.name %} checked {% endif %}{% endfor %} value="open">Open space</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "lounge" in type.name %} checked {% endif %}{% endfor %} value="lounge">Lounge</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "cafe" in type.name %} checked {% endif %}{% endfor %} value="cafe">Cafe</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "outdoor" in type.name %} checked {% endif %}{% endfor %} value="outdoor">Outdoor area</label>
+                </div>
+            </div>
+            <div class="help-block with-errors" role="alert">Please select at least 1 space type.</div>
+        </fieldset>
+        <fieldset>
+            <legend>Reservability</legend>
+            <div class="well">
+                <div class="form-group ">
+                    <div class="radio">
+                        <label for="no_reservations"><input id="no_reservations" type="radio" name="extended_info:reservable" value="" {% if not spot.reservable %}checked{% endif%}>Not reservable</label>
+                    </div>
+                    <div class="radio">
+                        <label for="is_reservable"><input id="is_reservable" type="radio" name="extended_info:reservable" value="true" {% if spot.reservable == 'true' %}checked{% endif%}>Reservations allowed</label>
+                    </div>
+                    <div class="radio">
+                        <label for="reservations_required"><input id="reservations_required" type="radio" name="extended_info:reservable" value="reservations" {% if spot.reservable == 'reservations' %}checked{% endif%}>Reservations required</label>
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <label for="reservation-notes-study">Reservation Notes:</label>
+                    <textarea rows="4" class="form-control" id="reservation-notes-study" name="extended_info:reservation_notes">{% if spot.reservation_notes %}{{spot.reservation_notes}}{% endif %}</textarea>
+                </div>
+
+            </div>
+        </fieldset>
+         <fieldset>
+            <legend>Noise Level
+            <a type="button" class="help-link" data-toggle="modal" data-target="#help_noise" title="More info: Noise Level" >
+              <i class="fa fa-info-circle fa-2" aria-hidden="true"></i><span class="visually-hidden">More information</span>
+            </a>
+            </legend>
+            <div class="well">
+                <div class="radio">
+                    <label><input type="radio" name="noise" {% if spot.spot_noise == "silent" %} checked {% endif %} value="silent">Silent</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="noise" {% if spot.spot_noise == "quiet" %} checked {% endif %} value="quiet">Quiet</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="noise" {% if spot.spot_noise == "moderate" %} checked {% endif %} value="moderate">Chatter</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="noise" {% if spot.spot_noise == "variable" %} checked {% endif %} value="variable">Variable</label>
+                </div>
+                <div class="radio">
+                <label><input type="radio" name="noise" {% if not spot.spot_noise %} checked {% endif %} value="">N/A</label>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <fieldset>
+            <legend>Resources available in space:</legend>
+            <div class="well">
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:has_computers" {% for resource in spot.spot_resources %}{% if "Computers" in resource %} checked {% endif %}{% endfor %} value="true">Computers</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:has_displays" {% for resource in spot.spot_resources %}{% if "Display" in resource %} checked {% endif %}{% endfor %} value="true">Large Display (for laptop)</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:has_outlets" {% for resource in spot.spot_resources %}{% if "Outlets" in resource %} checked {% endif %}{% endfor %} value="true">Outlets</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:has_printing" {% for resource in spot.spot_resources %}{% if "Printing" in resource %} checked {% endif %}{% endfor %} value="true">Printing</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:has_projector" {% for resource in spot.spot_resources %}{% if "Projector" in resource %} checked {% endif %}{% endfor %} value="true">Projector</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:has_scanner" {% for resource in spot.spot_resources %}{% if "Scanner" in resource %} checked {% endif %}{% endfor %} value="true">Scanner</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="extended_info:has_whiteboards" {% for resource in spot.spot_resources %}{% if "Whiteboards" in resource %} checked {% endif %}{% endfor %} value="true">Whiteboard</label>
+                </div>
+                <p class="help-block">If this space has Labstats computer monitoring, <a href="mailto:help@uw.edu">contact us</a> about getting computer availability stats in Scout.</p>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Food Nearby</legend>
+            <div class="well">
+                <div class="radio">
+                    <label><input type="radio" name="food_nearby" {% if spot.food_nearby == "space" %} checked {% endif %} value="space">In space</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="food_nearby" {% if spot.food_nearby == "neighboring" %} checked {% endif %} value="neighboring">In neighboring area</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="food_nearby" {% if spot.food_nearby == "building" %} checked {% endif %} value="building">In the building</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="food_nearby" {% if not spot.food_nearby %} checked {% endif %} value="">N/A</label>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Lighting</legend>
+            <div class="well">
+                <div class="checkbox ">
+                    <label><input type="checkbox" name="extended_info:has_natural_light" {% if spot.natural_light %} checked {% endif %} value="true">The space has Natural Light</label>
+                </div>
+            </div>
+        </fieldset>
+
+
+    </div>
+    <div class="clearfix"></div>
+
+</div>

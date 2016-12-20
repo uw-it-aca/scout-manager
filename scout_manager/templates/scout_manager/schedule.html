@@ -1,0 +1,71 @@
+{% extends "scout_manager/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Schedule changes{% endblock %}
+
+{% block web_content %}
+
+<h2 id="sub_header">{{ spot.name }}</h2>
+
+
+
+<h3>Scheduled changes (only if published)</h3>
+
+<fieldset>
+    <legend>Scheduled updates</legend>
+
+    <p>These edits are set to be published:</p>
+
+    <ol class="dummy">
+        <li><a href="/manager/spaces/{{ spot.spot_id }}/schedule/20160516/">July 6, 2016</a></li>
+        <li><a href="/manager/spaces/{{ spot.spot_id }}/schedule/20160516/">July 8, 2016</a></li>
+    </ol>
+
+</fieldset>
+
+<h2>New changes</h2>
+<form>
+
+    <h3>Current Alert</h3>
+    <label for="alert-notes">Post this Alert message:
+        <textarea id="alert-notes" name="extended_info:alert_notes" type="text" value="{{ spot.alert_notes }}"></textarea>
+    </label>
+
+    <!-- include the hour and access form -->
+    {% include "scout_manager/include/form_hours.html" %}
+
+    <!--  if "food" space -->
+    <h3>Food space metadata</h3>
+
+    <div>
+
+        <label for="menu-url">Menu URL (http://example.com):<input id="menu-url" name="extended_info:s_menu_url" type="url" pattern="https?://.+" placeholder="http://example.com" value="{% if spot.menu_url %}{{spot.menu_url}}{% endif %}" /></label>
+
+        <fieldset>
+            <legend>Coupons</legend>
+            <label for="coupon-url">Coupon URL (http://example.com):
+                <input id="coupon-url" name="extended_info:s_coupon_url" type="url" pattern="https?://.+" placeholder="http://example.com" value="{% if spot.coupon_url %}{{ spot.coupon_url }}{% endif %}" />
+            </label>
+            <label for="coupon-date">Expiration Date:
+                <input id="coupon-date" name="extended_info:s_coupon_expiration" type="text" value="{% if spot.coupon_expiration %}{{ spot.coupon_expiration }}{% endif %}" placeholder="mm/dd/yyyy" pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d" data-error="Date must be in this format: mm/dd/yyyy" />
+            <div class="help-block with-errors" role="alert"></div>
+            </label>
+        </fieldset>
+
+    </div>
+
+    <h3>Valid Date(s)</h3>
+    <div>
+       <label for="valid_on">Valid on (required):</label><input id="valid_on" type="date" required>
+       <label for="valid_until">Valid until:</label><input id="valid_until" type="date">
+    </div>
+
+    <h3>Schedule Actions</h3>
+    <div class="dummy" style="margin-bottom:2em;">
+        <input type="submit" value="Schedule Changes" />
+        <input type="button" value="Cancel" />
+    </div>
+
+</form>
+
+{% endblock %}
