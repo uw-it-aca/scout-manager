@@ -27,7 +27,8 @@ class Spot(RESTDispatch):
         try:
             update_spot(form_data, spot_id)
         except Exception as ex:
-            logger.exception("Error updating spot user: %s spot_id: %s" % (user, spot_id))
+            logger.exception("Error updating spot user: %s spot_id: %s" %
+                             (user, spot_id))
             return HttpResponse(str(ex.msg), status=400,
                                 content_type='application/json')
         return HttpResponse(json.dumps({'status': 'it works'}),
@@ -41,7 +42,8 @@ class Spot(RESTDispatch):
         try:
             delete_spot(spot_id, etag)
         except Exception as ex:
-            logger.exception("Error deleting spot user: %s spot_id: %s" % (user, spot_id))
+            logger.exception("Error deleting spot user: %s spot_id: %s" %
+                             (user, spot_id))
             return HttpResponse(str(ex.msg), status=400,
                                 content_type='application/json')
         return HttpResponse(json.dumps({'status': 'it works'}),
