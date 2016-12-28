@@ -7,7 +7,10 @@ from django.core.exceptions import ImproperlyConfigured
 
 def get_members(group_id):
     gws = GWS()
-    members = gws.get_effective_members(group_id)
+    try:
+        members = gws.get_effective_members(group_id)
+    except InvalidGroupID:
+        return []
     return members
 
 
