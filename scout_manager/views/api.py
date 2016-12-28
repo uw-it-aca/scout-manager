@@ -9,6 +9,10 @@ from userservice.user import UserService
 from django.core.exceptions import PermissionDenied
 import json
 import re
+import logging
+
+
+logger = logging.getLogger("scout_manager")
 
 
 class Spot(RESTDispatch):
@@ -23,6 +27,8 @@ class Spot(RESTDispatch):
         try:
             update_spot(form_data, spot_id)
         except Exception as ex:
+            logger.exception("Error updating spot user: %s spot_id: %s" %
+                             (user, spot_id))
             return HttpResponse(str(ex.msg), status=400,
                                 content_type='application/json')
         return HttpResponse(json.dumps({'status': 'it works'}),
@@ -36,6 +42,8 @@ class Spot(RESTDispatch):
         try:
             delete_spot(spot_id, etag)
         except Exception as ex:
+            logger.exception("Error deleting spot user: %s spot_id: %s" %
+                             (user, spot_id))
             return HttpResponse(str(ex.msg), status=400,
                                 content_type='application/json')
         return HttpResponse(json.dumps({'status': 'it works'}),
@@ -112,6 +120,7 @@ class SpotCreate(RESTDispatch):
         try:
             spot_id = create_spot(form_data)
         except Exception as ex:
+            logger.exception("Error creating spot spot_id: %s" % spot_id)
             return HttpResponse(str(ex.msg), status=400,
                                 content_type='application/json')
         return HttpResponse(json.dumps({'status': 'Created',
