@@ -28,7 +28,7 @@ var Forms = {
         // handle submitting spot to server
         $("#save_continue").on('click', {exit: 'reload'}, Spot.submit_spot);
         $("#save_close").on('click', {exit: 'apptype'}, Spot.submit_spot);
-        $("#add_item").on('click', {exit: 'link'}, Spot.submit_spot); 
+        $("#add_item").on('click', {exit: 'link'}, Spot.submit_spot);
         $("a.item_link").on('click', {exit: 'link'}, Spot.submit_spot);
 
         $("#submit_item").click(Item.submit_item);
@@ -108,7 +108,7 @@ var Forms = {
                 close_label.siblings("span").addClass("pull-left");
                 close_label.siblings("span").removeClass("pull-right");
                 close_label.siblings("span").addClass("midnight-selected");
-                
+
                 } else {
                 close_input.val("");
                 close_input.prop('disabled', false);
@@ -227,7 +227,7 @@ var Forms = {
 
     image_upload: function() {
 
-        $('#mgr_upload_image').bind("change",function() {
+        $('#mgr_upload_image').on("change", function() {
             if ($('#mgr_upload_image').get(0).files.length !== 0) {
                 $("#mgr_upload_button").show();
             }
