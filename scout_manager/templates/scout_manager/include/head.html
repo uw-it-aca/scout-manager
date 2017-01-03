@@ -25,7 +25,7 @@
 {% if request.is_mobile %}
     <!-- critical (above the fold styles) -->
     {% compress css inline %}
-    <link rel="stylesheet" href="{% static 'vendor/css/bootstrap-3.3.6.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/css/bootstrap-3.3.7.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/css/font-awesome-4.5.0.min.css' %}">
     <link rel="stylesheet" href="{% static 'scout_manager/css/loading.scss' %}" type="text/x-scss">
     <link rel="stylesheet" href="{% static 'scout_manager/css/critical.scss' %}" type="text/x-scss">
@@ -34,14 +34,13 @@
     {% compress css %}
     <link rel="stylesheet" href="{% static 'scout_manager/css/mobile.scss' %}" type="text/x-scss">
     {% endcompress %}
-
 {% endif %}
 
 {% if request.is_tablet %}
     <!-- critical (above the fold styles) -->
     {% compress css inline %}
     <!-- inline -->
-    <link rel="stylesheet" href="{% static 'vendor/css/bootstrap-3.3.6.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/css/bootstrap-3.3.7.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/css/font-awesome-4.5.0.min.css' %}">
     <link rel="stylesheet" href="{% static 'scout_manager/css/loading.scss' %}" type="text/x-scss">
     <link rel="stylesheet" href="{% static 'scout_manager/css/critical.scss' %}" type="text/x-scss">
@@ -56,7 +55,7 @@
 {% if is_desktop %}
     <!-- critical (above the fold styles) -->
     {% compress css inline %}
-    <link rel="stylesheet" href="{% static 'vendor/css/bootstrap-3.3.6.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/css/bootstrap-3.3.7.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/css/dataTables.bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/css/font-awesome-4.5.0.min.css' %}">
     <link rel="stylesheet" href="{% static 'scout_manager/css/loading.scss' %}" type="text/x-scss">
@@ -78,11 +77,12 @@
 
 <!-- javascript -->
 {% compress js %}
-<script defer="defer" src="{% static 'vendor/js/jquery-1.11.0.min.js' %}"></script>
+<script async="async" src="{% static 'vendor/js/jquery-3.1.1.min.js' %}"></script>
+<script async="async" src="{% static 'vendor/js/jquery-migrate-3.0.0.js' %}"></script>
 <script defer="defer" src="{% static 'vendor/js/js-cookie-2.1.1.js' %}"></script>
-<script defer="defer" src="{% static 'vendor/js/bootstrap-3.3.6.min.js' %}"></script>
+<script defer="defer" src="{% static 'vendor/js/bootstrap-3.3.7.min.js' %}"></script>
 <script defer="defer" src="{% static 'vendor/js/bootstrap-validator-0.11.5.min.js' %}"></script>
-<script defer="defer" src="{% static 'vendor/js/jquery.dataTables.min.js' %}"></script>
+<script defer="defer" src="{% static 'vendor/js/jquery.dataTables-1.10.13.min.js' %}"></script>
 <script defer="defer" src="{% static 'vendor/js/dataTables.fixedHeader.min.js' %}"></script>
 <script defer="defer" src="{% static 'vendor/js/moment-2.16.0.min.js' %}"></script>
 <script defer="defer" src="{% static 'scout_manager/js/forms.js' %}"></script>
