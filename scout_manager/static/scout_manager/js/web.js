@@ -1,4 +1,4 @@
-$(document).on('ready', function(event) {
+$(function(){
 
     /// async load css by flipping the media attribute to all
     $('link[rel="stylesheet"]').attr('media', 'all');
@@ -8,7 +8,6 @@ $(document).on('ready', function(event) {
 
     // ignore query params
     page_path = page_path.split("?")[0];
-
 
     var list_path = new RegExp("\/manager\/spaces\/?$");
     var items_edit_path = new RegExp("\/manager\/items\/[0-9].+\/?$");
@@ -24,7 +23,6 @@ $(document).on('ready', function(event) {
     } else if (list_path.test(page_path)) {
         //List.init();
     }
-
 
     // Function to serialize form data into an JS object
     $.fn.serializeObject = function() {
