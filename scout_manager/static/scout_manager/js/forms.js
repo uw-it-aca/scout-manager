@@ -28,7 +28,7 @@ var Forms = {
         // handle submitting spot to server
         $("#save_continue").on('click', {exit: 'reload'}, Spot.submit_spot);
         $("#save_close").on('click', {exit: 'apptype'}, Spot.submit_spot);
-        $("#add_item").on('click', {exit: 'link'}, Spot.submit_spot); 
+        $("#add_item").on('click', {exit: 'link'}, Spot.submit_spot);
         $("a.item_link").on('click', {exit: 'link'}, Spot.submit_spot);
 
         $("#submit_item").click(Item.submit_item);
@@ -108,7 +108,7 @@ var Forms = {
                 close_label.siblings("span").addClass("pull-left");
                 close_label.siblings("span").removeClass("pull-right");
                 close_label.siblings("span").addClass("midnight-selected");
-                
+
                 } else {
                 close_input.val("");
                 close_input.prop('disabled', false);
@@ -227,7 +227,7 @@ var Forms = {
 
     image_upload: function() {
 
-        $('#mgr_upload_image').bind("change",function() {
+        $('#mgr_upload_image').on("change", function() {
             if ($('#mgr_upload_image').get(0).files.length !== 0) {
                 $("#mgr_upload_button").show();
             }
@@ -498,8 +498,8 @@ var Forms = {
         if (num_errors > 0) {
 
             // for draft, don't allow publish if errors exist
-            $(".scout-draft-actions #toggle_is_hidden").attr('disabled', 'disabled');
-            $(".scout-draft-actions #toggle_item_active").attr('disabled', 'disabled');
+            $(".scout-draft-actions #toggle_is_hidden").prop("disabled", true);
+            $(".scout-draft-actions #toggle_item_active").prop("disabled", true);
             $(".scout-draft-actions .help-block").css('color', '#a94442');
             $(".scout-draft-actions .help-block").attr('role', 'alert');
             $(".scout-draft-actions .help-block").html("Error: Form validation errors prevent this spot from being published.");
@@ -509,8 +509,8 @@ var Forms = {
             $(".scout-draft-actions .item-help-block").html("Error: Form validation errors prevent this item from being published.");
 
             // for published, don't allow unpublish or submit if errors exist
-            $(".scout-published-actions #toggle_is_hidden").attr('disabled', 'disabled');
-            $(".scout-published-actions #toggle_item_active").attr('disabled', 'disabled');
+            $(".scout-published-actions #toggle_is_hidden").prop("disabled", true);
+            $(".scout-published-actions #toggle_item_active").prop("disabled", true);
             $(".scout-published-actions .help-block").attr('role', 'alert');
             $(".scout-published-actions .help-block").css('color', '#a94442');
             $(".scout-published-actions .help-block").html("Error: Form validation errors prevent this spot from being un-published.");
@@ -519,9 +519,9 @@ var Forms = {
             $(".scout-published-actions .item-help-block").css('color', '#a94442');
             $(".scout-published-actions .item-help-block").html("Error: Form validation errors prevent this item from being un-published.");
 
-            $(".scout-published #submit_spot").attr('disabled', 'disabled');
-            $(".scout-published #submit_item").attr('disabled', 'disabled');
-            $(".scout-published #save_continue").attr('disabled', 'disabled');
+            $(".scout-published #submit_spot").prop("disabled", true);
+            $(".scout-published #submit_item").prop("disabled", true);
+            $(".scout-published #save_continue").prop("disabled", true);
 
             $(".scout-published span").attr('role', 'alert');
             $(".scout-published span").addClass("text-danger");
@@ -529,24 +529,24 @@ var Forms = {
         }
         else {
 
-            $(".scout-draft-actions #toggle_is_hidden").removeAttr("disabled");
-            $(".scout-draft-actions #toggle_item_active").removeAttr("disabled");
+            $(".scout-draft-actions #toggle_is_hidden").prop("disabled", false);
+            $(".scout-draft-actions #toggle_item_active").prop("disabled", false);
             $(".scout-draft-actions .help-block").css('color', '');
             $(".scout-draft-actions  .help-block").html("Note: Publishing this space will make it visible in all client apps!");
 
             $(".scout-draft-actions .item-help-block").css('color', '');
             $(".scout-draft-actions .item-help-block").html("Note: Publishing this item will make it visible in all client apps!");
 
-            $(".scout-published-actions #toggle_is_hidden").removeAttr("disabled");
-            $(".scout-published-actions #toggle_item_active").removeAttr("disabled");
+            $(".scout-published-actions #toggle_is_hidden").prop("disabled", false);
+            $(".scout-published-actions #toggle_item_active").prop("disabled", false);
             $(".scout-published-actions .help-block").css('color', '');
             $(".scout-published-actions .help-block").html("Note: Unpublishing this space will remove it from being seen in client apps.");
             $(".scout-published-actions .item-help-block").css('color', '');
             $(".scout-published-actions .item-help-block").html("Note: Unpublishing this item will remove it from being seen in client apps.");
 
-            $(".scout-published #submit_spot").removeAttr("disabled");
-            $(".scout-published #submit_item").removeAttr("disabled");
-            $(".scout-published #save_continue").removeAttr("disabled");
+            $(".scout-published #submit_spot").prop("disabled", false);
+            $(".scout-published #submit_item").prop("disabled", false);
+            $(".scout-published #save_continue").prop("disabled", false);
 
             $(".scout-published span.item-help").removeClass("text-danger");
             $(".scout-published span.item-help").html("Note: This item is published and any changes will be shown immediately in client apps.")
@@ -567,15 +567,15 @@ var Forms = {
             $(".scout-create span").show();
 
              // save draft button disabled
-            $(".scout-create #submit_spot").attr('disabled', 'disabled');
-            $(".scout-create #submit_item").attr('disabled', 'disabled');
+            $(".scout-create #submit_spot").prop("disabled", true);
+            $(".scout-create #submit_item").prop("disabled", true);
             // continue button disabled
-            $(".scout-create-continue #submit_spot_continue").attr('disabled', 'disabled');
-            $(".scout-create-continue #submit_item_continue").attr('disabled', 'disabled');
+            $(".scout-create-continue #submit_spot_continue").prop("disabled", true);
+            $(".scout-create-continue #submit_item_continue").prop("disabled", true);
 
             // save & close, save & continue buttons
-            $(".scout-create #save_close").attr('disabled', 'disabled');
-            $(".scout-create #save_continue").attr('disabled', 'disabled');
+            $(".scout-create #save_close").prop("disabled", true);
+            $(".scout-create #save_continue").prop("disabled", true);
 
         }
         else {
@@ -583,15 +583,15 @@ var Forms = {
             $(".scout-create span").hide();
 
             // save draft button enabled
-            $(".scout-create #submit_spot").removeAttr("disabled");
-            $(".scout-create #submit_item").removeAttr("disabled");
+            $(".scout-create #submit_spot").prop("disabled", false);
+            $(".scout-create #submit_item").prop("disabled", false);
             // continue button enabled
-            $(".scout-create-continue #submit_spot_continue").removeAttr("disabled");
-            $(".scout-create-continue #submit_item_continue").removeAttr("disabled");
+            $(".scout-create-continue #submit_spot_continue").prop("disabled", false);
+            $(".scout-create-continue #submit_item_continue").prop("disabled", false);
 
             // save & close, save & continue buttons
-            $(".scout-create #save_close").removeAttr("disabled");
-            $(".scout-create #save_continue").removeAttr("disabled");
+            $(".scout-create #save_close").prop("disabled", false);
+            $(".scout-create #save_continue").prop("disabled", false);
         }
 
     },
@@ -603,17 +603,17 @@ var Forms = {
 
         // control whether the save draft or continue buttons can be clicked or not
         if (num_errors > 0) {
-            $(".scout-draft #save_close").attr('disabled', 'disabled');
-            $(".scout-draft #save_continue").attr('disabled', 'disabled');
-            $(".scout-published #save_close").attr('disabled', 'disabled');
-            $(".scout-published #save_continue").attr('disabled', 'disabled');
+            $(".scout-draft #save_close").prop("disabled", true);
+            $(".scout-draft #save_continue").prop("disabled", true);
+            $(".scout-published #save_close").prop("disabled", true);
+            $(".scout-published #save_continue").prop("disabled", true);
 
         }
         else {
-            $(".scout-draft #save_close").removeAttr("disabled");
-            $(".scout-draft #save_continue").removeAttr("disabled");
-            $(".scout-published #save_close").removeAttr("disabled");
-            $(".scout-published #save_continue").removeAttr("disabled");
+            $(".scout-draft #save_close").prop("disabled", false);
+            $(".scout-draft #save_continue").prop("disabled", false);
+            $(".scout-published #save_close").prop("disabled", false);
+            $(".scout-published #save_continue").prop("disabled", false);
         }
     },
 
