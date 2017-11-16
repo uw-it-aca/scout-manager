@@ -72,8 +72,9 @@ def _update_group(group):
     remote_members = get_members(group.group_id)
     remote_people = []
     for member in remote_members:
-        person, created = Person.objects.get_or_create(netid=member.name)
-        remote_people.append(person)
+        if member.member_type == 'uwnetid':
+            person, created = Person.objects.get_or_create(netid=member.name)
+            remote_people.append(person)
 
     # Remove local group members who are not in remote group
     group_people_ids = []

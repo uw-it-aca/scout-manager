@@ -6,12 +6,12 @@ from scout_manager.dao.item import update_item, create_item, delete_item
 from django.http import HttpResponse
 from scout_manager.models import Person, GroupMembership
 from userservice.user import UserService
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import PermissionDenied, ImproperlyConfigured
 import json
 import re
 import logging
 
-
+logging.basicConfig()
 logger = logging.getLogger("scout_manager")
 
 
@@ -27,9 +27,11 @@ class Spot(RESTDispatch):
         try:
             update_spot(form_data, spot_id)
         except Exception as ex:
+            if (isinstance(ex, ImproperlyConfigured)):
+                return _improperly_configured_handler(ex)
             logger.exception("Error updating spot user: %s spot_id: %s" %
                              (user, spot_id))
-            return HttpResponse(str(ex.msg), status=400,
+            return HttpResponse(str(ex.message), status=400,
                                 content_type='application/json')
         return HttpResponse(json.dumps({'status': 'it works'}),
                             content_type='application/json')
@@ -42,9 +44,11 @@ class Spot(RESTDispatch):
         try:
             delete_spot(spot_id, etag)
         except Exception as ex:
+            if (isinstance(ex, ImproperlyConfigured)):
+                return _improperly_configured_handler(ex)
             logger.exception("Error deleting spot user: %s spot_id: %s" %
                              (user, spot_id))
-            return HttpResponse(str(ex.msg), status=400,
+            return HttpResponse(str(ex.message), status=400,
                                 content_type='application/json')
         return HttpResponse(json.dumps({'status': 'it works'}),
                             content_type='application/json')
@@ -110,6 +114,14 @@ def _get_current_spot_group(spot_id):
     return spot.owner
 
 
+# Return a 500 for ImproperlyConfigured errors to activate the appropriate
+# error message on the clientside
+def _improperly_configured_handler(ex):
+    logger.exception("Improperly configured settings")
+    return HttpResponse(str(ex.message), status=500,
+                        content_type='application/json')
+
+
 class SpotCreate(RESTDispatch):
     """
     Handles Spot creation, using PUT to deal with django issues
@@ -120,8 +132,10 @@ class SpotCreate(RESTDispatch):
         try:
             spot_id = create_spot(form_data)
         except Exception as ex:
-            logger.exception("Error creating spot spot_id: %s" % spot_id)
-            return HttpResponse(str(ex.msg), status=400,
+            if (isinstance(ex, ImproperlyConfigured)):
+                return _improperly_configured_handler(ex)
+            logger.exception("Error creating spot")
+            return HttpResponse(str(ex.message), status=400,
                                 content_type='application/json')
         return HttpResponse(json.dumps({'status': 'Created',
                                         'id': spot_id}),
@@ -143,7 +157,9 @@ class Item(RESTDispatch):
         try:
             update_item(form_data, item_id)
         except Exception as ex:
-            return HttpResponse(str(ex.msg), status=400,
+            if (isinstance(ex, ImproperlyConfigured)):
+                return _improperly_configured_handler(ex)
+            return HttpResponse(str(ex.message), status=400,
                                 content_type='application/json')
         return HttpResponse(json.dumps({'status': 'it works'}),
                             content_type='application/json')
@@ -156,7 +172,9 @@ class Item(RESTDispatch):
         try:
             delete_item(item_id, spot_id)
         except Exception as ex:
-            return HttpResponse(str(ex.msg), status=400,
+            if (isinstance(ex, ImproperlyConfigured)):
+                return _improperly_configured_handler(ex)
+            return HttpResponse(str(ex.message), status=400,
                                 content_type='application/json')
         return HttpResponse(json.dumps({'status': 'it works'}),
                             content_type='application/json')
