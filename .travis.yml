@@ -12,7 +12,7 @@ before_script:
   - python manage.py migrate --noinput
   - npm install mocha
   - npm install jquery
-  - npm install jsdom@3
+  - npm install jsdom
 script:
   - pep8 scout_manager/ --exclude=migrations,scout_manager/test
   - coverage run --source=scout_manager/ --omit=scout_manager/migrations/* manage.py test scout_manager

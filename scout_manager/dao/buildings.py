@@ -1,7 +1,4 @@
 BUILDING_LIST = {
-    'Alder Hall': {
-        'campus': 'seattle'
-    },
     'Alder Hall (ALD)': {
         'campus': 'seattle'
     },
@@ -30,6 +27,9 @@ BUILDING_LIST = {
         'campus': 'seattle'
     },
     'Computer Science and Engineering Building (CSE)': {
+        'campus': 'seattle'
+    },
+    'Denny Hall (DEN)': {
         'campus': 'seattle'
     },
     'Electrical Engineering Building (EEB)': {
@@ -92,13 +92,12 @@ BUILDING_LIST = {
     'Magnuson Health Sciences Center T (HST)': {
         'campus': 'seattle'
     },
-    'Mary Gates Hall (MGH)': {
+    'Maple Hall (MAH)': {
         'campus': 'seattle'
     },
     'Mary Gates Hall (MGH)': {
         'campus': 'seattle'
     },
-
     'McCarty Hall (MCC)': {
         'campus': 'seattle'
     },
