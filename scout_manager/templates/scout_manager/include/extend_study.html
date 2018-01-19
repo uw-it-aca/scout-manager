@@ -123,31 +123,36 @@
 
             <div class="well" style="margin-bottom:10px;">
 
-                <div class="radio">
-                    <label><input type="radio" name="labstats" {% if spot.has_labstats %} checked {% endif %} value="has_labstats">On-campus (Seattle only)</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" name="labstats" {% if spot.labstats_cloud %} checked {% endif %} value="labstats_cloud">LabStats Cloud (Bothell only)</label>
-                </div>
-
-                <div id="">
-                    <div class="form-group">
-                        <label for="space_latitude" class="control-label">LabStats ID: <span class="visually-hidden">Required</span></label>
-                        <input class="form-control" id="labstats_id" type="text" value="{% if spot.labstats_id %}{{ spot.labstats_id }}{% endif %}" />
+                <div class="form-group">
+                    <div class="radio">
+                        <label><input type="radio" name="labstats" {% if spot.has_labstats %} checked {% endif %} value="has_labstats">No monitoring</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="labstats" {% if spot.has_labstats %} checked {% endif %} value="has_labstats">On-campus (Seattle)</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="labstats" {% if spot.labstats_cloud %} checked {% endif %} value="labstats_cloud">LabStats Cloud (Bothell)</label>
                     </div>
                 </div>
 
                 <div id="">
                     <div class="form-group">
-                        <label for="space_latitude" class="control-label">Online UUID: <span class="visually-hidden">Required</span></label>
+                        <label for="space_latitude" class="control-label">LabStats ID (on campus only): <span class="visually-hidden">Required</span></label>
+                        <input class="form-control" id="labstats_id" type="text" value="{% if spot.labstats_id %}{{ spot.labstats_id }}{% endif %}" />
+                    </div>
+                </div>
+
+                <div id="">
+                    <div class="form-group">
+                        <label for="space_latitude" class="control-label">Online UUID (cloud only): <span class="visually-hidden">Required</span></label>
                         <input class="form-control" id="labstats_id" type="text" value="{% if spot.labstats_id %}{{ spot.labstats_id }}{% endif %}" />
                     </div>
                     <div class="form-group">
-                        <label for="space_latitude" class="control-label">Label: <span class="visually-hidden">Required</span></label>
+                        <label for="space_latitude" class="control-label">Label (cloud only): <span class="visually-hidden">Required</span></label>
                         <input class="form-control" id="labstats_id" type="text" value="{% if spot.labstats_id %}{{ spot.labstats_id }}{% endif %}" />
                     </div>
                     <div class="form-group">
-                        <label for="space_latitude" class="control-label">Page ID: <span class="visually-hidden">Required</span></label>
+                        <label for="space_latitude" class="control-label">PageID (cloud only): <span class="visually-hidden">Required</span></label>
                         <input class="form-control" id="labstats_id" type="text" value="{% if spot.labstats_id %}{{ spot.labstats_id }}{% endif %}" />
                     </div>
                 </div>
