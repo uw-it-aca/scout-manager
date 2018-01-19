@@ -2,7 +2,7 @@ from restclients.gws import GWS
 from restclients.exceptions import DataFailureException, InvalidGroupID
 from scout_manager.models import Group, Person, GroupMembership
 from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
+from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 
 
 def get_members(group_id):
@@ -23,7 +23,13 @@ def is_member(group_id, member_id):
 
 
 def is_provisioned_user(member_id):
-    return Person.objects.get(netid=member_id).exists()
+    user_exists = True
+    try:
+        Person.objects.get(netid=member_id).exists()
+    except ObjectDoesNotExist:
+        user_exists = False
+    return user_exists
+
 
 
 def is_superuser(member_id):
