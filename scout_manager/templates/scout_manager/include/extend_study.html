@@ -115,7 +115,45 @@
                 <div class="checkbox">
                     <label><input type="checkbox" name="extended_info:has_whiteboards" {% for resource in spot.spot_resources %}{% if "Whiteboards" in resource %} checked {% endif %}{% endfor %} value="true">Whiteboard</label>
                 </div>
-                <p class="help-block">If this space has Labstats computer monitoring, <a href="mailto:help@uw.edu">contact us</a> about getting computer availability stats in Scout.</p>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>LabStats</legend>
+
+            <div class="well" style="margin-bottom:10px;">
+
+                <div class="radio">
+                    <label><input type="radio" name="labstats" {% if spot.has_labstats %} checked {% endif %} value="has_labstats">On-campus (Seattle only)</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="labstats" {% if spot.labstats_cloud %} checked {% endif %} value="labstats_cloud">LabStats Cloud (Bothell only)</label>
+                </div>
+
+                <div id="">
+                    <div class="form-group">
+                        <label for="space_latitude" class="control-label">LabStats ID: <span class="visually-hidden">Required</span></label>
+                        <input class="form-control" id="labstats_id" type="text" value="{% if spot.labstats_id %}{{ spot.labstats_id }}{% endif %}" />
+                    </div>
+                </div>
+
+                <div id="">
+                    <div class="form-group">
+                        <label for="space_latitude" class="control-label">Online UUID: <span class="visually-hidden">Required</span></label>
+                        <input class="form-control" id="labstats_id" type="text" value="{% if spot.labstats_id %}{{ spot.labstats_id }}{% endif %}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="space_latitude" class="control-label">Label: <span class="visually-hidden">Required</span></label>
+                        <input class="form-control" id="labstats_id" type="text" value="{% if spot.labstats_id %}{{ spot.labstats_id }}{% endif %}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="space_latitude" class="control-label">Page ID: <span class="visually-hidden">Required</span></label>
+                        <input class="form-control" id="labstats_id" type="text" value="{% if spot.labstats_id %}{{ spot.labstats_id }}{% endif %}" />
+                    </div>
+                </div>
+
+                <p class="help-block">If this space has Labstats computer monitoring, <a href="mailto:help@uw.edu">contact us</a> for additional help in getting computer availability stats in Scout.</p>
+
             </div>
         </fieldset>
 
