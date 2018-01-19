@@ -125,13 +125,13 @@
 
                 <div class="form-group">
                     <div class="radio">
-                        <label><input type="radio" name="labstats" {% if spot.has_labstats %} checked {% endif %} value="has_labstats">No monitoring</label>
-                    </div>
-                    <div class="radio">
                         <label><input type="radio" name="labstats" {% if spot.has_labstats %} checked {% endif %} value="has_labstats">On-campus (Seattle)</label>
                     </div>
                     <div class="radio">
                         <label><input type="radio" name="labstats" {% if spot.labstats_cloud %} checked {% endif %} value="labstats_cloud">LabStats Cloud (Bothell)</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="labstats" value="">N/A</label>
                     </div>
                 </div>
 
