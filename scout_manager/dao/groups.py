@@ -31,7 +31,6 @@ def is_provisioned_user(member_id):
     return user_exists
 
 
-
 def is_superuser(member_id):
     if settings.MANAGER_SUPERUSER_GROUP:
         is_spot_editor = is_member(settings.MANAGER_SUPERUSER_GROUP, member_id)
