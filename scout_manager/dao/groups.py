@@ -3,6 +3,10 @@ from restclients.exceptions import DataFailureException, InvalidGroupID
 from scout_manager.models import Group, Person, GroupMembership
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
+import logging
+
+logging.basicConfig()
+logger = logging.getLogger("scout_manager")
 
 
 def get_members(group_id):
@@ -46,7 +50,7 @@ def add_group(group_id):
         try:
             _update_group(group)
         except DataFailureException:
-            # TODO: do something here since a missing group is bad
+            logger.exception("Adding group: %s" % group_id)
             pass
 
 
@@ -56,7 +60,7 @@ def update_groups():
         try:
             _update_group(group)
         except DataFailureException:
-            # TODO: do something here since a missing group is bad
+            logger.exception("Updating group: %s" % group.group_id)
             pass
 
     _remove_orphaned_people()
