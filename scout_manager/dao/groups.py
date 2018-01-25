@@ -2,7 +2,11 @@ from restclients.gws import GWS
 from restclients.exceptions import DataFailureException, InvalidGroupID
 from scout_manager.models import Group, Person, GroupMembership
 from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
+from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
+import logging
+
+logging.basicConfig()
+logger = logging.getLogger("scout_manager")
 
 
 def get_members(group_id):
@@ -23,7 +27,12 @@ def is_member(group_id, member_id):
 
 
 def is_provisioned_user(member_id):
-    return Person.objects.get(netid=member_id).exists()
+    user_exists = True
+    try:
+        Person.objects.get(netid=member_id).exists()
+    except ObjectDoesNotExist:
+        user_exists = False
+    return user_exists
 
 
 def is_superuser(member_id):
@@ -41,7 +50,7 @@ def add_group(group_id):
         try:
             _update_group(group)
         except DataFailureException:
-            # TODO: do something here since a missing group is bad
+            logger.exception("Adding group: %s" % group_id)
             pass
 
 
@@ -51,7 +60,7 @@ def update_groups():
         try:
             _update_group(group)
         except DataFailureException:
-            # TODO: do something here since a missing group is bad
+            logger.exception("Updating group: %s" % group.group_id)
             pass
 
     _remove_orphaned_people()
