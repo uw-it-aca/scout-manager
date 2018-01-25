@@ -16,6 +16,7 @@ var Forms = {
         Forms.init_campus_building_filter();
         Forms.sort_building_list();
         Forms.init_hours_midnight();
+        Forms.capitalize_space_name();
 
         $("#campus_select").trigger("change");
 
@@ -33,6 +34,28 @@ var Forms = {
 
         $("#submit_item").click(Item.submit_item);
 
+    },
+
+    // Capitalize the first letter of each word (first letter or a letter following a space)
+    // But also allow a user to go back and change it to lowercase if wanted
+    capitalize_space_name: function() {
+        var input = $("#space-name");
+        input.on('keypress', function(event) {
+            var v = input.val();
+            var len = v.length;
+            // If our cursor is on the last letter and the prev letter was a space
+            // OR this is the first letter OR the user deletes everything
+            if (v[len - 1] === " " && (this.selectionStart == len) || v.length == 0) {
+                event.preventDefault();
+                var char = String.fromCharCode(event.keyCode).toUpperCase();
+                input.val(v + char);
+            } else if (this.selectionStart == 0 && this.selectionEnd == len) {
+                // User did a controlA and wants to start over
+                event.preventDefault();
+                var char = String.fromCharCode(event.keyCode).toUpperCase();
+                input.val(char);
+            }
+        });
     },
 
     // hours functions
