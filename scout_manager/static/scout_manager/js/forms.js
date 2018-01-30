@@ -595,6 +595,10 @@ var Forms = {
         }
 
     },
+    
+    validate_labstats: function() {
+        
+    },
 
     validate_group: function() {
 
