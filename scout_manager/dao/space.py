@@ -177,16 +177,26 @@ def _build_spot_json(form_data):
     if auth_group is not None:
         # TODO: pass some error to clients if this isn't included
         add_group(auth_group.lower())
+
+    ei_keys = []
+
     cuisines = json_data.pop("extended_info:s_cuisine", [])
     cuisines = _process_checkbox_array(cuisines)
+    ei_keys += cuisines
 
     foods = json_data.pop("extended_info:s_food", [])
     foods = _process_checkbox_array(foods)
+    ei_keys += foods
 
     payments = json_data.pop("extended_info:s_pay", [])
     payments = _process_checkbox_array(payments)
+    ei_keys += payments
 
-    extended_info = dict.fromkeys(cuisines + foods + payments, "true")
+    if 'labstats' in json_data:
+        labstats = json_data.pop("labstats")
+        ei_keys += [labstats]
+
+    extended_info = dict.fromkeys(ei_keys, "true")
 
     for key in list(json_data):
         if key.startswith('extended_info'):
@@ -195,7 +205,7 @@ def _build_spot_json(form_data):
             json_data.pop(key)
             if value != "None" and len(value) > 0:
                 extended_info[name] = value
-
+    
     # formats location data
     location_data = {}
     for key in list(json_data):
