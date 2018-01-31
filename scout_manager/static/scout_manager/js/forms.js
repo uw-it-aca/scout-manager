@@ -423,6 +423,7 @@ var Forms = {
         Forms.handle_app_type_clicks();
         Forms.handle_checkbox_group_clicks();
         Forms.handle_radio_group_clicks();
+        Forms.handle_labstats_change();
 
         if (spaces_add_path.test(page_path)) {
             // require app_type prior to create
@@ -436,6 +437,7 @@ var Forms = {
             Forms.validate_required_app_type();
             Forms.validate_required_checkbox_group();
             Forms.validate_required_radio_group();
+            Forms.validate_labstats();
             // validate if spot can be published (ONLY during spot edit)
             Forms.validate_group();
             Forms.validate_publish();
@@ -597,7 +599,87 @@ var Forms = {
     },
     
     validate_labstats: function() {
+        //labstats 5
+        if ($("#has_labstats")[0].checked) {
+            //make sure the cloud ields are empty 
+            if (
+                $("#labstats_customer_id")[0].value.length <= 0 &&
+                $("#labstats_label")[0].value.length <= 0 &&
+                $("#labstats_page_id")[0].value.length <= 0
+            ) {
+                $("#labstats-props").removeClass("has-error");
+            } else {
+                $("#labstats-props").addClass("has-error");
+            }
+
+            //make sure the labstats id is filled out
+            if ($("#labstats_id")[0].value.length <= 0) {
+                $("#labstats-id-group").addClass("has-error");
+            }
+            else {
+                //check if id is an integer
+                var value = $("#labstats_id")[0].value;
+                if ("" + parseInt(value,10) == value) {
+                    $("#labstats-id-group").removeClass("has-error");
+                }
+                else {
+                    $("#labstats-id-group").addClass("has-error");
+                }
+            }
+        }
         
+        //labstats cloud
+        if ($("#labstats_cloud")[0].checked) {
+            //make sure customer id, label, and page id are filed in
+            if (
+                $("#labstats_customer_id")[0].value.length <= 0 ||
+                $("#labstats_label")[0].value.length <= 0 ||
+                $("#labstats_page_id")[0].value.length <= 0
+            ) {
+                $("#labstats-props").addClass("has-error");
+            } else {
+                $("#labstats-props").removeClass("has-error");
+            }
+
+            //make sure the labstats id is not filled out
+            if ($("#labstats_id")[0].value.length > 0) {
+                $("#labstats-id-group").addClass("has-error");
+            }
+            else {
+                $("#labstats-id-group").removeClass("has-error");
+            }
+        }
+        
+        // N/A
+        if ($("#no_labstats")[0].checked) {
+            //make sure customer id, label, and page id are not filed in
+            if (
+                $("#labstats_customer_id")[0].value.length <= 0 &&
+                $("#labstats_label")[0].value.length <= 0 &&
+                $("#labstats_page_id")[0].value.length <= 0
+            ) {
+                $("#labstats-props").removeClass("has-error");
+            } else {
+                $("#labstats-props").addClass("has-error");
+            }
+
+            //make sure the labstats id is not filled out
+            if ($("#labstats_id")[0].value.length > 0) {
+                $("#labstats-id-group").addClass("has-error");
+            }
+            else {
+                $("#labstats-id-group").removeClass("has-error");
+            }
+        }
+    },
+
+    handle_labstats_change: function(){
+        //validate changes to labstats info
+        $("#labstats-type").change(Forms.validate_labstats);
+        $("#labstats_id").change(Forms.validate_labstats);
+        $("#labstats_customer_id").change(Forms.validate_labstats);
+        $("#labstats_label").change(Forms.validate_labstats);
+        $("#labstats_page_id").change(Forms.validate_labstats);
     },
 
     validate_group: function() {

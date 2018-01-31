@@ -123,37 +123,39 @@
 
             <div class="well" style="margin-bottom:10px;">
 
-                <div class="form-group">
+                <div class="form-group" id="labstats-type">
                     <div class="radio">
-                        <label><input type="radio" name="labstats" {% if spot.has_labstats %} checked {% endif %} value="has_labstats">On-campus (Seattle)</label>
+                        <label><input type="radio" id="has_labstats" name="labstats" {% if spot.has_labstats %} checked {% endif %} value="has_labstats">On-campus (Seattle)</label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" name="labstats" {% if spot.labstats_cloud %} checked {% endif %} value="labstats_cloud">LabStats Cloud (Bothell)</label>
+                        <label><input type="radio" id="labstats_cloud" name="labstats" {% if spot.labstats_cloud %} checked {% endif %} value="labstats_cloud">LabStats Cloud (Bothell)</label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" name="labstats" value="">N/A</label>
+                        <label><input type="radio" id="no_labstats" name="labstats" value="">N/A</label>
                     </div>
                 </div>
 
-                <div id="">
+                <div id="labstats-id-group">
                     <div class="form-group">
                         <label for="space_latitude" class="control-label">LabStats ID (on campus only): <span class="visually-hidden">Required</span></label>
-                        <input class="form-control" id="labstats_id" type="text" value="{% if spot.labstats_id %}{{ spot.labstats_id }}{% endif %}" />
+                        <input class="form-control" name="extended_info:labstats_id" id="labstats_id" type="text" value="{% if spot.labstats_id %}{{ spot.labstats_id }}{% endif %}" />
                     </div>
+                    <div class='help-block with-errors' id="labstats-id-missing"> Please fill out the labstats id of the lab.</div>
+                    <div class='help-block with-errors' id="labstats-id-oud"> Please fill out the labstats id of the lab.</div>
                 </div>
 
-                <div id="">
+                <div id="labstats-props">
                     <div class="form-group">
                         <label for="space_latitude" class="control-label">Online UUID (cloud only): <span class="visually-hidden">Required</span></label>
-                        <input class="form-control" id="labstats_id" type="text" value="{% if spot.labstats_id %}{{ spot.labstats_id }}{% endif %}" />
+                        <input class="form-control" name="extended_info:labstats_customer_id" id="labstats_customer_id" type="text" value="{% if spot.labstats_customer_id %}{{ spot.labstats_customer_id }}{% endif %}" />
                     </div>
                     <div class="form-group">
                         <label for="space_latitude" class="control-label">Label (cloud only): <span class="visually-hidden">Required</span></label>
-                        <input class="form-control" id="labstats_id" type="text" value="{% if spot.labstats_id %}{{ spot.labstats_id }}{% endif %}" />
+                        <input class="form-control" name="extended_info:labstats_label" id="labstats_label" type="text" value="{% if spot.labstats_label %}{{ spot.labstats_label }}{% endif %}" />
                     </div>
                     <div class="form-group">
                         <label for="space_latitude" class="control-label">PageID (cloud only): <span class="visually-hidden">Required</span></label>
-                        <input class="form-control" id="labstats_id" type="text" value="{% if spot.labstats_id %}{{ spot.labstats_id }}{% endif %}" />
+                        <input class="form-control" name="extended_info:labstats_page_id" id="labstats_page_id" type="text" value="{% if spot.labstats_page_id %}{{ spot.labstats_page_id }}{% endif %}" />
                     </div>
                 </div>
 
