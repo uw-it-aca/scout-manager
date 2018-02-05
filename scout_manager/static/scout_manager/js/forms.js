@@ -610,6 +610,7 @@ var Forms = {
                 $("#labstats-props").removeClass("has-error");
             } else {
                 $("#labstats-props").addClass("has-error");
+                $("#labstats-props-extra")
             }
 
             //make sure the labstats id is filled out
