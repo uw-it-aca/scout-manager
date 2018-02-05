@@ -109,6 +109,7 @@ def process_extended_info(spot):
             spot.labstats_id = item.value
         if item.key == "labstats_customer_id":
             spot.labstats_customer_id = item.value
+        if item.key == "has_online_labstats":
             spot.labstats_cloud = "true"
         if item.key == "labstats_label":
             spot.labstats_label = item.value
@@ -217,7 +218,7 @@ def _build_spot_json(form_data):
             json_data.pop(key)
             if value != "None" and len(value) > 0:
                 extended_info[name] = value
-    
+
     # formats location data
     location_data = {}
     for key in list(json_data):

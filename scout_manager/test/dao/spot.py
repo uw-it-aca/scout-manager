@@ -99,15 +99,14 @@ class BuildSpotJsonTest(ScoutTest):
         }
         self.assertEqual(out, expected)
 
-    
     def test_extended_info_json_labstats_5(self):
         """
         Test that _build_spot_json correctly handles labstats 5 information
         """
-        has_labstats = 'true'
+        labstats = 'has_labstats'
         labstats_id = '47'
         json_data = {
-            'extended_info:has_labstats': has_labstats,
+            'labstats': labstats,
             'extended_info:labstats_id': labstats_id
         }
         out = _build_spot_json(wrap_json(json_data))
@@ -122,15 +121,17 @@ class BuildSpotJsonTest(ScoutTest):
         }
         self.assertEqual(out, expected)
 
-
     def test_extended_info_json_labstats_cloud(self):
         """
         Test that _build_spot_json correctly handles labstats cloud information
         """
+
+        labstats = 'has_online_labstats'
         labstats_customer_id = '17aa57b6-0528-11e8-ba89-0ed5f89f718b'
         labstats_label = 'example_label'
         labstats_page_id = '47'
         json_data = {
+            'labstats': labstats,
             'extended_info:labstats_customer_id': labstats_customer_id,
             'extended_info:labstats_label': labstats_label,
             'extended_info:labstats_page_id': labstats_page_id
@@ -140,6 +141,7 @@ class BuildSpotJsonTest(ScoutTest):
         # rather than a list
         expected = {
             'extended_info': {
+                'has_online_labstats': 'true',
                 'labstats_customer_id': labstats_customer_id,
                 'labstats_label': labstats_label,
                 'labstats_page_id': labstats_page_id
@@ -176,7 +178,6 @@ class BuildSpotJsonTest(ScoutTest):
             _build_spot_json(wrap_json(json_data))
         except KeyError:
             self.fail("_build_spot_json raised a KeyError with no type set")
-
 
 
 def wrap_json(jsdata):
