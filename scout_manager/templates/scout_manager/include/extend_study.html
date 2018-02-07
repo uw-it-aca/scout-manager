@@ -135,28 +135,28 @@
                     </div>
                 </div>
 
-                <div id="labstats-id-group">
+                <div id="labstats-id-group" style="display:none;">
                     <div class="form-group">
-                        <label for="space_latitude" class="control-label">LabStats ID (on campus only): <span class="visually-hidden">Required</span></label>
+                        <label for="space_latitude" class="control-label">LabStats ID: <span class="visually-hidden">Required</span></label>
                         <input class="form-control" name="extended_info:labstats_id" id="labstats_id" type="text" value="{% if spot.labstats_id %}{{ spot.labstats_id }}{% endif %}" />
                     </div>
-                    <div class='help-block with-errors' id="labstats-id-missing"> This id is either invalid, extraneous, or missing </div>
+                    <div class='help-block with-errors' id="labstats-id-missing">A LabStats ID is required.</div>
                 </div>
 
-                <div id="labstats-props">
+                <div id="labstats-props" style="display:none;">
                     <div class="form-group">
-                        <label for="space_latitude" class="control-label">Online UUID (cloud only): <span class="visually-hidden">Required</span></label>
+                        <label for="space_latitude" class="control-label">Online UUID: <span class="visually-hidden">Required</span></label>
                         <input class="form-control" name="extended_info:labstats_customer_id" id="labstats_customer_id" type="text" value="{% if spot.labstats_customer_id %}{{ spot.labstats_customer_id }}{% endif %}" />
                     </div>
                     <div class="form-group">
-                        <label for="space_latitude" class="control-label">Label (cloud only): <span class="visually-hidden">Required</span></label>
+                        <label for="space_latitude" class="control-label">Label: <span class="visually-hidden">Required</span></label>
                         <input class="form-control" name="extended_info:labstats_label" id="labstats_label" type="text" value="{% if spot.labstats_label %}{{ spot.labstats_label }}{% endif %}" />
                     </div>
                     <div class="form-group">
-                        <label for="space_latitude" class="control-label">PageID (cloud only): <span class="visually-hidden">Required</span></label>
+                        <label for="space_latitude" class="control-label">PageID: <span class="visually-hidden">Required</span></label>
                         <input class="form-control" name="extended_info:labstats_page_id" id="labstats_page_id" type="text" value="{% if spot.labstats_page_id %}{{ spot.labstats_page_id }}{% endif %}" />
                     </div>
-                    <div class='help-block with-errors' id="labstats-props-missing"> These fields are either extraneous or missing </div>
+                    <div class='help-block with-errors' id="labstats-props-missing">These LabStats Cloud fields are required.</div>
                 </div>
 
                 <p class="help-block">If this space has Labstats computer monitoring, <a href="mailto:help@uw.edu">contact us</a> for additional help in getting computer availability stats in Scout.</p>

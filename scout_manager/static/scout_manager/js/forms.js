@@ -597,11 +597,11 @@ var Forms = {
         }
 
     },
-    
+
     validate_labstats: function() {
         //labstats 5
         if ($("#has_labstats")[0].checked) {
-            //make sure the cloud ields are empty 
+            //make sure the cloud ields are empty
             if (
                 $("#labstats_customer_id")[0].value.length <= 0 &&
                 $("#labstats_label")[0].value.length <= 0 &&
@@ -628,7 +628,7 @@ var Forms = {
                 }
             }
         }
-        
+
         //labstats cloud
         if ($("#labstats_cloud")[0].checked) {
             //make sure customer id, label, and page id are filed in
@@ -650,7 +650,7 @@ var Forms = {
                 $("#labstats-id-group").removeClass("has-error");
             }
         }
-        
+
         // N/A
         if ($("#no_labstats")[0].checked) {
             //make sure customer id, label, and page id are not filed in
@@ -681,6 +681,27 @@ var Forms = {
         $("#labstats_customer_id").change(Forms.validate_labstats);
         $("#labstats_label").change(Forms.validate_labstats);
         $("#labstats_page_id").change(Forms.validate_labstats);
+
+        // handle radio click events for labstats
+        $("#has_labstats").click(function(e){
+            // only submit labstats_id
+            $("#labstats-id-group").show();
+            $("#labstats-props").hide();
+        });
+
+        $("#labstats_cloud").click(function(e){
+            // only submit cloud fields
+            $("#labstats-id-group").hide();
+            $("#labstats-props").show();
+        });
+
+        $("#no_labstats").click(function(e){
+            // make sure labstats fields are empty
+            console.log("make sure all labstats fiends empty");
+            $("#labstats-id-group").hide();
+            $("#labstats-props").hide();
+        });
+
     },
 
     validate_group: function() {
