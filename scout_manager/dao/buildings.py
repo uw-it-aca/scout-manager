@@ -167,6 +167,21 @@ BUILDING_LIST = {
     'UW Medical Center': {
         'campus': 'seattle'
     },
+    'UW Medicine Building A': {
+        'campus': 'seattle'
+    },
+    'UW Medicine Building B': {
+        'campus': 'seattle'
+    },
+    'UW Medicine Building C': {
+        'campus': 'seattle'
+    },
+    'UW Medicine Building D': {
+        'campus': 'seattle'
+    },
+    'UW Medicine Building E': {
+        'campus': 'seattle'
+    },
     'UW Tower Building A (UWTA)': {
         'campus': 'seattle'
     },
