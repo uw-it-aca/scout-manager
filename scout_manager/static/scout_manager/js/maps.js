@@ -38,6 +38,7 @@ var Maps = {
                         marker = null;
                         $("#space_latitude").val("");
                         $("#space_longitude").val("");
+                        Forms.init_validate();
                     });
                 }
 
