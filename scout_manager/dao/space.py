@@ -1,6 +1,6 @@
 from spotseeker_restclient.spotseeker import Spotseeker
 from spotseeker_restclient.exceptions import DataFailureException
-from scout.dao.space import add_cuisine_names, add_foodtype_names_to_spot, \
+from scout.dao.space import add_cuisine_names, add_foodtype_names_to_spot,\
     add_payment_names, add_additional_info, add_study_info, add_tech_info
 from scout.dao.item import add_item_info
 from scout_manager.dao.groups import add_group
@@ -95,6 +95,7 @@ def process_extended_info(spot):
     spot = add_study_info(spot)
     spot = add_tech_info(spot)
     spot.grouped_hours = get_spot_hours_by_day(spot)
+
     for item in spot.extended_info:
         if item.key == "owner":
             spot.owner = item.value
@@ -102,6 +103,18 @@ def process_extended_info(spot):
             spot.app_type = item.value
         if item.key == "is_hidden":
             spot.is_hidden = item.value
+        if item.key == "has_labstats":
+            spot.has_labstats = item.value
+        if item.key == "labstats_id":
+            spot.labstats_id = item.value
+        if item.key == "labstats_customer_id":
+            spot.labstats_customer_id = item.value
+        if item.key == "has_online_labstats":
+            spot.labstats_cloud = "true"
+        if item.key == "labstats_label":
+            spot.labstats_label = item.value
+        if item.key == "labstats_page_id":
+            spot.labstats_page_id = item.value
     return spot
 
 
@@ -177,16 +190,26 @@ def _build_spot_json(form_data):
     if auth_group is not None:
         # TODO: pass some error to clients if this isn't included
         add_group(auth_group.lower())
+
+    ei_keys = []
+
     cuisines = json_data.pop("extended_info:s_cuisine", [])
     cuisines = _process_checkbox_array(cuisines)
+    ei_keys += cuisines
 
     foods = json_data.pop("extended_info:s_food", [])
     foods = _process_checkbox_array(foods)
+    ei_keys += foods
 
     payments = json_data.pop("extended_info:s_pay", [])
     payments = _process_checkbox_array(payments)
+    ei_keys += payments
 
-    extended_info = dict.fromkeys(cuisines + foods + payments, "true")
+    if 'labstats' in json_data:
+        labstats = json_data.pop("labstats")
+        ei_keys += [labstats]
+
+    extended_info = dict.fromkeys(ei_keys, "true")
 
     for key in list(json_data):
         if key.startswith('extended_info'):

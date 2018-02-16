@@ -167,6 +167,21 @@ BUILDING_LIST = {
     'UW Medical Center': {
         'campus': 'seattle'
     },
+    'SLU: Rosen Building (RSN)': {
+        'campus': 'seattle'
+    },
+    'SLU: Brotman Building (BFB)': {
+        'campus': 'seattle'
+    },
+    'SLU: Lab South (SLA)': {
+        'campus': 'seattle'
+    },
+    'SLU: Lab North (SLB)': {
+        'campus': 'seattle'
+    },
+    'SLU: Administration Building (SLC)': {
+        'campus': 'seattle'
+    },
     'UW Tower Building A (UWTA)': {
         'campus': 'seattle'
     },
