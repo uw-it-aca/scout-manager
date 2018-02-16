@@ -446,7 +446,12 @@ var Forms = {
         Forms.handle_app_type_clicks();
         Forms.handle_checkbox_group_clicks();
         Forms.handle_radio_group_clicks();
-        Forms.handle_labstats_change();
+
+        //only need to listen for labstats data changes if form has labstats data
+        //not using jquery selector because it's truthy even if the object isn't found
+        if (document.getElementById("has_labstats")) {
+            Forms.handle_labstats_change();
+        }
 
         if (spaces_add_path.test(page_path)) {
             // require app_type prior to create
@@ -460,7 +465,11 @@ var Forms = {
             Forms.validate_required_app_type();
             Forms.validate_required_checkbox_group();
             Forms.validate_required_radio_group();
-            Forms.validate_labstats();
+
+            //validate labstats data only if it exists
+            if (document.getElementById("has_labstats")) {
+                Forms.validate_labstats();
+            }
             // validate if spot can be published (ONLY during spot edit)
             Forms.validate_group();
             Forms.validate_publish();
@@ -720,7 +729,6 @@ var Forms = {
 
         $("#no_labstats").click(function(e){
             // make sure labstats fields are empty
-            console.log("make sure all labstats fiends empty");
             $("#labstats-id-group").hide();
             $("#labstats-props").hide();
         });
