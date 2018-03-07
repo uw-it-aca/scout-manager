@@ -24,6 +24,7 @@ _testCases = (
     ('Spaces add', '/spaces/add/', OK, 'SCOUT-122'),
     ('Spaces add redir', '/spaces/add', redir, 'SCOUT-129'),
     ('Spaces specific', '/spaces/2/', OK, 'SCOUT-122'),
+    ('Spaces specific nonexistant', '/spaces/0/', notfound),
     ('Spaces specific redir', '/spaces/5070', redir, 'SCOUT-129'),
     ('Bad url', '/rando/', notfound)
 )
