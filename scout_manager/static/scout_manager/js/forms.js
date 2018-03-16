@@ -16,6 +16,7 @@ var Forms = {
         Forms.init_campus_building_filter();
         Forms.sort_building_list();
         Forms.init_hours_midnight();
+        Forms.capitalize_space_name();
 
         $("#campus_select").trigger("change");
 
@@ -33,6 +34,28 @@ var Forms = {
 
         $("#submit_item").click(Item.submit_item);
 
+    },
+
+    // Capitalize the first letter of each word (first letter or a letter following a space)
+    // But also allow a user to go back and change it to lowercase if wanted
+    capitalize_space_name: function() {
+        var input = $("#space-name");
+        input.on('keypress', function(event) {
+            var v = input.val();
+            var len = v.length;
+            // If our cursor is on the last letter and the prev letter was a space
+            // OR this is the first letter OR the user deletes everything
+            if (v[len - 1] === " " && (this.selectionStart == len) || v.length == 0) {
+                event.preventDefault();
+                var char = String.fromCharCode(event.keyCode).toUpperCase();
+                input.val(v + char);
+            } else if (this.selectionStart == 0 && this.selectionEnd == len) {
+                // User did a controlA and wants to start over
+                event.preventDefault();
+                var char = String.fromCharCode(event.keyCode).toUpperCase();
+                input.val(char);
+            }
+        });
     },
 
     // hours functions
@@ -424,6 +447,12 @@ var Forms = {
         Forms.handle_checkbox_group_clicks();
         Forms.handle_radio_group_clicks();
 
+        //only need to listen for labstats data changes if form has labstats data
+        //not using jquery selector because it's truthy even if the object isn't found
+        if (document.getElementById("has_labstats")) {
+            Forms.handle_labstats_change();
+        }
+
         if (spaces_add_path.test(page_path)) {
             // require app_type prior to create
             Forms.validate_required_app_type();
@@ -436,6 +465,11 @@ var Forms = {
             Forms.validate_required_app_type();
             Forms.validate_required_checkbox_group();
             Forms.validate_required_radio_group();
+
+            //validate labstats data only if it exists
+            if (document.getElementById("has_labstats")) {
+                Forms.validate_labstats();
+            }
             // validate if spot can be published (ONLY during spot edit)
             Forms.validate_group();
             Forms.validate_publish();
@@ -593,6 +627,111 @@ var Forms = {
             $(".scout-create #save_close").prop("disabled", false);
             $(".scout-create #save_continue").prop("disabled", false);
         }
+
+    },
+
+    validate_labstats: function() {
+        //labstats 5
+        if ($("#has_labstats")[0].checked) {
+            //make sure the cloud ields are empty
+            if (
+                $("#labstats_customer_id")[0].value.length <= 0 &&
+                $("#labstats_label")[0].value.length <= 0 &&
+                $("#labstats_page_id")[0].value.length <= 0
+            ) {
+                $("#labstats-props").removeClass("has-error");
+            } else {
+                $("#labstats-props").addClass("has-error");
+                $("#labstats-props-extra")
+            }
+
+            //make sure the labstats id is filled out
+            if ($("#labstats_id")[0].value.length <= 0) {
+                $("#labstats-id-group").addClass("has-error");
+            }
+            else {
+                //check if id is an integer
+                var value = $("#labstats_id")[0].value;
+                if ("" + parseInt(value,10) == value) {
+                    $("#labstats-id-group").removeClass("has-error");
+                }
+                else {
+                    $("#labstats-id-group").addClass("has-error");
+                }
+            }
+        }
+
+        //labstats cloud
+        if ($("#labstats_cloud")[0].checked) {
+            //make sure customer id, label, and page id are filed in
+            if (
+                $("#labstats_customer_id")[0].value.length <= 0 ||
+                $("#labstats_label")[0].value.length <= 0 ||
+                $("#labstats_page_id")[0].value.length <= 0
+            ) {
+                $("#labstats-props").addClass("has-error");
+            } else {
+                $("#labstats-props").removeClass("has-error");
+            }
+
+            //make sure the labstats id is not filled out
+            if ($("#labstats_id")[0].value.length > 0) {
+                $("#labstats-id-group").addClass("has-error");
+            }
+            else {
+                $("#labstats-id-group").removeClass("has-error");
+            }
+        }
+
+        // N/A
+        if ($("#no_labstats")[0].checked) {
+            //make sure customer id, label, and page id are not filed in
+            if (
+                $("#labstats_customer_id")[0].value.length <= 0 &&
+                $("#labstats_label")[0].value.length <= 0 &&
+                $("#labstats_page_id")[0].value.length <= 0
+            ) {
+                $("#labstats-props").removeClass("has-error");
+            } else {
+                $("#labstats-props").addClass("has-error");
+            }
+
+            //make sure the labstats id is not filled out
+            if ($("#labstats_id")[0].value.length > 0) {
+                $("#labstats-id-group").addClass("has-error");
+            }
+            else {
+                $("#labstats-id-group").removeClass("has-error");
+            }
+        }
+    },
+
+    handle_labstats_change: function(){
+        //validate changes to labstats info
+        $("#labstats-type").change(Forms.validate_labstats);
+        $("#labstats_id").change(Forms.validate_labstats);
+        $("#labstats_customer_id").change(Forms.validate_labstats);
+        $("#labstats_label").change(Forms.validate_labstats);
+        $("#labstats_page_id").change(Forms.validate_labstats);
+
+        // handle radio click events for labstats
+        $("#has_labstats").click(function(e){
+            // only submit labstats_id
+            $("#labstats-id-group").show();
+            $("#labstats-props").hide();
+        });
+
+        $("#labstats_cloud").click(function(e){
+            // only submit cloud fields
+            $("#labstats-id-group").hide();
+            $("#labstats-props").show();
+        });
+
+        $("#no_labstats").click(function(e){
+            // make sure labstats fields are empty
+            $("#labstats-id-group").hide();
+            $("#labstats-props").hide();
+        });
 
     },
 

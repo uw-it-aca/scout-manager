@@ -31,6 +31,15 @@ var Maps = {
                     google.maps.event.addListener(marker, 'drag', function(e) {
                         setLatLongValue(e.latLng);
                     });
+
+                    //clear the location when the campus is changed
+                    $("#campus_select").change(function(e) {
+                        marker.setMap(null);
+                        marker = null;
+                        $("#space_latitude").val("");
+                        $("#space_longitude").val("");
+                        Forms.init_validate();
+                    });
                 }
 
                 setLatLongValue(latlng);
