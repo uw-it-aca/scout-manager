@@ -225,7 +225,6 @@ var Forms = {
                 window.removed_images = [{id: image_id,
                                           etag: image_etag}];
             }
-            $(this).parent().parent("div").remove();
             Forms.image_check_count();
 
             // reload spot after image delete
@@ -246,7 +245,6 @@ var Forms = {
                 window.removed_images = [{id: image_id,
                                           etag: image_etag}];
             }
-            $(this).parent().parent("div").remove();
             Forms.image_check_count();
 
             Item.submit_item();
