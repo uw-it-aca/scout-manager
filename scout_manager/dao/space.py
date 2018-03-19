@@ -170,7 +170,8 @@ def update_spot(form_data, spot_id, image=None):
         for image in json_data['removed_images']:
             spot_client.delete_image(spot_id, image['id'], image['etag'])
 
-    if form_data['file'] is not None and form_data['file'] != "undefined":
+    if (form_data['file'] is not None and form_data['file'] != "undefined" and
+            form_data['file'] != "null"):
         spot_client.post_image(spot_id, form_data['file'])
 
     spot_client.put_spot(spot_id, json.dumps(json_data), etag)
