@@ -208,7 +208,8 @@ def _build_spot_json(form_data):
 
     if 'labstats' in json_data:
         labstats = json_data.pop("labstats")
-        ei_keys += [labstats]
+        if labstats != "":
+            ei_keys += [labstats]
 
     extended_info = dict.fromkeys(ei_keys, "true")
 
