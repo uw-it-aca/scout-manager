@@ -194,7 +194,7 @@ var Forms = {
         // AJAX callback to attach images to DOM
         // and set data-csrf to returned CSRF header
         $(container).attr('data-etag', etag);
-        $(container).css("background-image" , "url(data:image/png;base64,"+image_data,+")");
+        $(container).css("background-image" , "url(data:image/png;base64,"+image_data+")");
     },
 
     image_add: function(input) {
