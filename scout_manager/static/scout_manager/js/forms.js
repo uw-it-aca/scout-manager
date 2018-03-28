@@ -41,19 +41,25 @@ var Forms = {
     capitalize_space_name: function() {
         var input = $("#space-name");
         input.on('keypress', function(event) {
+            var event = event || window.event;
+            var key = event.keyCode || event.which;
             var v = input.val();
             var len = v.length;
-            // If our cursor is on the last letter and the prev letter was a space
-            // OR this is the first letter OR the user deletes everything
-            if (v[len - 1] === " " && (this.selectionStart == len) || v.length == 0) {
-                event.preventDefault();
-                var char = String.fromCharCode(event.keyCode).toUpperCase();
-                input.val(v + char);
-            } else if (this.selectionStart == 0 && this.selectionEnd == len) {
-                // User did a controlA and wants to start over
-                event.preventDefault();
-                var char = String.fromCharCode(event.keyCode).toUpperCase();
-                input.val(char);
+            if (key >= 97 && key <= 122 && !event.metaKey) {
+                // If our cursor is on the last letter and the prev letter was a space
+                // OR this is the first letter OR the user deletes everything
+                if (v[len - 1] === " " && (this.selectionStart == len) || v.length == 0) {
+                    event.preventDefault();
+                    var char = String.fromCharCode(key).toUpperCase();
+                    input.val(v + char);
+                } else if (this.selectionStart == 0 && this.selectionEnd == len) {
+                    // User did a controlA and wants to start over
+                    event.preventDefault();
+                    var char = String.fromCharCode(key).toUpperCase();
+                    input.val(char);
+                    // Adding this for Edge (doesn't update correctly)
+                    this.selectionStart = 1;
+                }
             }
         });
     },
@@ -188,7 +194,7 @@ var Forms = {
         // AJAX callback to attach images to DOM
         // and set data-csrf to returned CSRF header
         $(container).attr('data-etag', etag);
-        $(container).css("background-image" , "url(data:image/png;base64,"+image_data,+")");
+        $(container).css("background-image" , "url(data:image/png;base64,"+image_data+")");
     },
 
     image_add: function(input) {
@@ -219,7 +225,6 @@ var Forms = {
                 window.removed_images = [{id: image_id,
                                           etag: image_etag}];
             }
-            $(this).parent().parent("div").remove();
             Forms.image_check_count();
 
             // reload spot after image delete
@@ -240,7 +245,6 @@ var Forms = {
                 window.removed_images = [{id: image_id,
                                           etag: image_etag}];
             }
-            $(this).parent().parent("div").remove();
             Forms.image_check_count();
 
             Item.submit_item();
