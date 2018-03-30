@@ -701,6 +701,9 @@ var Forms = {
                 $("#labstats_id")[0].value = "";
             }
         }
+
+        Forms.validate_publish();
+        Forms.validate_create();
     },
 
     handle_labstats_change: function(){
