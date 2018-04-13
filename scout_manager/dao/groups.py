@@ -69,7 +69,7 @@ def update_groups():
 def _remove_orphaned_people():
     for person in Person.objects.all():
         netid = person.netid
-        if 0 == len(GroupMembership.objects.filter(person__netid = netid)):
+        if 0 == len(GroupMembership.objects.filter(person__netid=netid)):
             person.delete()
 
 
