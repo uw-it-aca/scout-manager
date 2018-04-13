@@ -7,14 +7,14 @@ install:
 before_script:
   - pip install coverage
   - pip install python-coveralls
-  - pip install pep8
+  - pip install pycodestyle
   - cp travis-ci/manage.py manage.py
   - python manage.py migrate --noinput
   - npm install mocha
   - npm install jquery
   - npm install jsdom
 script:
-  - pep8 scout_manager/ --exclude=migrations,scout_manager/test
+  - pycodestyle scout_manager/ --exclude=migrations,scout_manager/test
   - coverage run --source=scout_manager/ --omit=scout_manager/migrations/* manage.py test scout_manager
 after_script:
   - coveralls
