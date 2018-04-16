@@ -26,6 +26,22 @@ var Forms = {
             $("#building_select").trigger("change");
         }
 
+        //display labstats fields
+        if ($("#has_labstats")[0].checked) {
+            $("#labstats-id-group").show();
+            $("#labstats-props").hide();
+        }
+
+        if ($("#labstats_cloud")[0].checked) {
+            $("#labstats-id-group").hide();
+            $("#labstats-props").show();
+        }
+
+        if ($("#no_labstats")[0].checked) {
+            $("#labstats-id-group").hide();
+            $("#labstats-props").hide();
+        }
+
         // handle submitting spot to server
         $("#save_continue").on('click', {exit: 'reload'}, Spot.submit_spot);
         $("#save_close").on('click', {exit: 'apptype'}, Spot.submit_spot);
