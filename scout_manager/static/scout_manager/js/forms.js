@@ -27,19 +27,21 @@ var Forms = {
         }
 
         //display labstats fields
-        if ($("#has_labstats")[0].checked) {
-            $("#labstats-id-group").show();
-            $("#labstats-props").hide();
-        }
+        if ($("#has_labstats")[0]) {
+            if ($("#has_labstats")[0].checked) {
+                $("#labstats-id-group").show();
+                $("#labstats-props").hide();
+            }
 
-        if ($("#labstats_cloud")[0].checked) {
-            $("#labstats-id-group").hide();
-            $("#labstats-props").show();
-        }
+            if ($("#labstats_cloud")[0].checked) {
+                $("#labstats-id-group").hide();
+                $("#labstats-props").show();
+            }
 
-        if ($("#no_labstats")[0].checked) {
-            $("#labstats-id-group").hide();
-            $("#labstats-props").hide();
+            if ($("#no_labstats")[0].checked) {
+                $("#labstats-id-group").hide();
+                $("#labstats-props").hide();
+            }
         }
 
         // handle submitting spot to server
