@@ -80,8 +80,8 @@ var Spot = {
                 $("#pub_error").html("All changes have been saved.");
 
                 // reload the page
-                $("#submit_form").html("");
                 Spot._spot_post_submit(will_exit);
+                $("#submit_form").html("");
             },
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");

@@ -166,10 +166,10 @@ class Command(BaseCommand):
                       " occured while creating a spot for " + jsondict['name']
 
     def i_model_data_manager(self, i_model_bad):
-        i_model = re.split('\([0-9]*[- ]?day\)',
+        i_model = re.split(r'([0-9]*[- ]?day)',
                            i_model_bad,
                            flags=re.IGNORECASE)
-        i_model = re.split('\[([0-9]*[\/]?){1,}\]',
+        i_model = re.split(r'[([0-9]*[/]?){1,}]',
                            i_model[0],
                            flags=re.IGNORECASE)
         return i_model[0].strip()

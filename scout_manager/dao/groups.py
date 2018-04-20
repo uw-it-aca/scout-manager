@@ -67,13 +67,10 @@ def update_groups():
 
 
 def _remove_orphaned_people():
-    people_ids_in_group = GroupMembership.objects.all()\
-        .values_list('id', flat=True)
-    distinct_ids = []
-    for person_id in people_ids_in_group:
-        if person_id not in distinct_ids:
-            distinct_ids.append(person_id)
-    Person.objects.exclude(id__in=distinct_ids).delete()
+    for person in Person.objects.all():
+        netid = person.netid
+        if 0 == len(GroupMembership.objects.filter(person__netid=netid)):
+            person.delete()
 
 
 def _update_group(group):
