@@ -24,10 +24,16 @@ class Person(models.Model):
     added_on = models.DateTimeField(auto_now_add=True)
     objects = PersonManager()
 
+    def __unicode__(self):
+        return "Person: {}".format(self.netid)
+
 
 class Group(models.Model):
     group_id = models.CharField(max_length=255, unique=True)
     added_on = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return "Group: {}".format(self.group_id)
 
 
 class GroupMembership(models.Model):
@@ -36,3 +42,6 @@ class GroupMembership(models.Model):
     added_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     objects = MembershipManager()
+
+    def __unicode__(self):
+        return "GroupMembership: {} - {}".format(self.group, self.person)
