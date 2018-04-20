@@ -88,7 +88,10 @@ def spaces(request):
         elif is_published == "false":
             is_published = False
     spots = get_spot_list(app_type, is_published)
-    spots = _filter_spots(spots, netid)
+    if netid:
+        spots = _filter_spots(spots, netid)
+    else:
+        return HttpResponse('Unauthorized', status=401)
 
     context = {"spots": spots,
                "count": len(spots),
