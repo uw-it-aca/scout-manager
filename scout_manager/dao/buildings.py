@@ -259,6 +259,9 @@ BUILDING_LIST = {
     'Cherry Parkes (CP)': {
         'campus': 'tacoma'
     },
+    'Court 17 Student Housing': {
+        'campus': 'tacoma'
+    },
     'Dougan (DOU)': {
         'campus': 'tacoma'
     },
