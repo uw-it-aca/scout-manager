@@ -638,15 +638,9 @@ var Forms = {
         //labstats 5
         if ($("#has_labstats")[0].checked) {
             //make sure customer id, label, and page id are not filed in
-            if (
-                $("#labstats_customer_id")[0].value.length > 0 ||
-                $("#labstats_label")[0].value.length > 0 ||
-                $("#labstats_page_id")[0].value.length > 0
-            ) {
-                $("#labstats_customer_id")[0].value = "";
-                $("#labstats_label")[0].value = "";
-                $("#labstats_page_id")[0].value = "";
-            }
+            $("#labstats_customer_id")[0].value = "";
+            $("#labstats_label")[0].value = "";
+            $("#labstats_page_id")[0].value = "";
 
             //make sure the labstats id is filled out
             if ($("#labstats_id")[0].value.length <= 0) {
@@ -678,28 +672,18 @@ var Forms = {
             }
 
             //make sure the labstats id is not filled out
-            if ($("#labstats_id")[0].value.length > 0) {
-                $("#labstats_id")[0].value = "";
-            }
+            $("#labstats_id")[0].value = "";
         }
 
         // N/A
         if ($("#no_labstats")[0].checked) {
             //make sure customer id, label, and page id are not filed in
-            if (
-                $("#labstats_customer_id")[0].value.length > 0 ||
-                $("#labstats_label")[0].value.length > 0 ||
-                $("#labstats_page_id")[0].value.length > 0
-            ) {
-                $("#labstats_customer_id")[0].value = "";
-                $("#labstats_label")[0].value = "";
-                $("#labstats_page_id")[0].value = "";
-            }
+            $("#labstats_customer_id")[0].value = "";
+            $("#labstats_label")[0].value = "";
+            $("#labstats_page_id")[0].value = "";
 
             //make sure the labstats id is not filled out
-            if ($("#labstats_id")[0].value.length > 0) {
-                $("#labstats_id")[0].value = "";
-            }
+            $("#labstats_id")[0].value = "";
         }
 
         Forms.validate_publish();
