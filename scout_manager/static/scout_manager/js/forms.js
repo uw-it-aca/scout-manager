@@ -26,6 +26,24 @@ var Forms = {
             $("#building_select").trigger("change");
         }
 
+        //display labstats fields
+        if ($("#has_labstats")[0]) {
+            if ($("#has_labstats")[0].checked) {
+                $("#labstats-id-group").show();
+                $("#labstats-props").hide();
+            }
+
+            if ($("#labstats_cloud")[0].checked) {
+                $("#labstats-id-group").hide();
+                $("#labstats-props").show();
+            }
+
+            if ($("#no_labstats")[0].checked) {
+                $("#labstats-id-group").hide();
+                $("#labstats-props").hide();
+            }
+        }
+
         // handle submitting spot to server
         $("#save_continue").on('click', {exit: 'reload'}, Spot.submit_spot);
         $("#save_close").on('click', {exit: 'apptype'}, Spot.submit_spot);
@@ -41,19 +59,25 @@ var Forms = {
     capitalize_space_name: function() {
         var input = $("#space-name");
         input.on('keypress', function(event) {
+            var event = event || window.event;
+            var key = event.keyCode || event.which;
             var v = input.val();
             var len = v.length;
-            // If our cursor is on the last letter and the prev letter was a space
-            // OR this is the first letter OR the user deletes everything
-            if (v[len - 1] === " " && (this.selectionStart == len) || v.length == 0) {
-                event.preventDefault();
-                var char = String.fromCharCode(event.keyCode).toUpperCase();
-                input.val(v + char);
-            } else if (this.selectionStart == 0 && this.selectionEnd == len) {
-                // User did a controlA and wants to start over
-                event.preventDefault();
-                var char = String.fromCharCode(event.keyCode).toUpperCase();
-                input.val(char);
+            if (key >= 97 && key <= 122 && !event.metaKey) {
+                // If our cursor is on the last letter and the prev letter was a space
+                // OR this is the first letter OR the user deletes everything
+                if (v[len - 1] === " " && (this.selectionStart == len) || v.length == 0) {
+                    event.preventDefault();
+                    var char = String.fromCharCode(key).toUpperCase();
+                    input.val(v + char);
+                } else if (this.selectionStart == 0 && this.selectionEnd == len) {
+                    // User did a controlA and wants to start over
+                    event.preventDefault();
+                    var char = String.fromCharCode(key).toUpperCase();
+                    input.val(char);
+                    // Adding this for Edge (doesn't update correctly)
+                    this.selectionStart = 1;
+                }
             }
         });
     },
@@ -188,7 +212,7 @@ var Forms = {
         // AJAX callback to attach images to DOM
         // and set data-csrf to returned CSRF header
         $(container).attr('data-etag', etag);
-        $(container).css("background-image" , "url(data:image/png;base64,"+image_data,+")");
+        $(container).css("background-image" , "url(data:image/png;base64,"+image_data+")");
     },
 
     image_add: function(input) {
@@ -219,7 +243,6 @@ var Forms = {
                 window.removed_images = [{id: image_id,
                                           etag: image_etag}];
             }
-            $(this).parent().parent("div").remove();
             Forms.image_check_count();
 
             // reload spot after image delete
@@ -240,7 +263,6 @@ var Forms = {
                 window.removed_images = [{id: image_id,
                                           etag: image_etag}];
             }
-            $(this).parent().parent("div").remove();
             Forms.image_check_count();
 
             Item.submit_item();
@@ -633,17 +655,10 @@ var Forms = {
     validate_labstats: function() {
         //labstats 5
         if ($("#has_labstats")[0].checked) {
-            //make sure the cloud ields are empty
-            if (
-                $("#labstats_customer_id")[0].value.length <= 0 &&
-                $("#labstats_label")[0].value.length <= 0 &&
-                $("#labstats_page_id")[0].value.length <= 0
-            ) {
-                $("#labstats-props").removeClass("has-error");
-            } else {
-                $("#labstats-props").addClass("has-error");
-                $("#labstats-props-extra")
-            }
+            //make sure customer id, label, and page id are not filed in
+            $("#labstats_customer_id")[0].value = "";
+            $("#labstats_label")[0].value = "";
+            $("#labstats_page_id")[0].value = "";
 
             //make sure the labstats id is filled out
             if ($("#labstats_id")[0].value.length <= 0) {
@@ -675,44 +690,31 @@ var Forms = {
             }
 
             //make sure the labstats id is not filled out
-            if ($("#labstats_id")[0].value.length > 0) {
-                $("#labstats-id-group").addClass("has-error");
-            }
-            else {
-                $("#labstats-id-group").removeClass("has-error");
-            }
+            $("#labstats_id")[0].value = "";
         }
 
         // N/A
         if ($("#no_labstats")[0].checked) {
             //make sure customer id, label, and page id are not filed in
-            if (
-                $("#labstats_customer_id")[0].value.length <= 0 &&
-                $("#labstats_label")[0].value.length <= 0 &&
-                $("#labstats_page_id")[0].value.length <= 0
-            ) {
-                $("#labstats-props").removeClass("has-error");
-            } else {
-                $("#labstats-props").addClass("has-error");
-            }
+            $("#labstats_customer_id")[0].value = "";
+            $("#labstats_label")[0].value = "";
+            $("#labstats_page_id")[0].value = "";
 
             //make sure the labstats id is not filled out
-            if ($("#labstats_id")[0].value.length > 0) {
-                $("#labstats-id-group").addClass("has-error");
-            }
-            else {
-                $("#labstats-id-group").removeClass("has-error");
-            }
+            $("#labstats_id")[0].value = "";
         }
+
+        Forms.validate_publish();
+        Forms.validate_create();
     },
 
     handle_labstats_change: function(){
         //validate changes to labstats info
         $("#labstats-type").change(Forms.validate_labstats);
-        $("#labstats_id").change(Forms.validate_labstats);
-        $("#labstats_customer_id").change(Forms.validate_labstats);
-        $("#labstats_label").change(Forms.validate_labstats);
-        $("#labstats_page_id").change(Forms.validate_labstats);
+        $("#labstats_id").keyup(Forms.validate_labstats);
+        $("#labstats_customer_id").keyup(Forms.validate_labstats);
+        $("#labstats_label").keyup(Forms.validate_labstats);
+        $("#labstats_page_id").keyup(Forms.validate_labstats);
 
         // handle radio click events for labstats
         $("#has_labstats").click(function(e){
