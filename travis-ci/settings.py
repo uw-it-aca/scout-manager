@@ -56,8 +56,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.RemoteUserMiddleware',
     'django_mobileesp.middleware.UserAgentDetectionMiddleware',
     'turbolinks.middleware.TurbolinksMiddleware',
-    'htmlmin.middleware.HtmlMinifyMiddleware',
-    'htmlmin.middleware.MarkRequestMiddleware',
     'userservice.user.UserServiceMiddleware',
 )
 
@@ -159,8 +157,5 @@ COMPRESS_JS_FILTERS = [
 
 # google analytics tracking
 #GOOGLE_ANALYTICS_KEY = "UA-XXXXXXXX-X"
-
-# htmlmin
-HTML_MINIFY = True
 
 MANAGER_SUPERUSER_GROUP = "u_acadev_tester"

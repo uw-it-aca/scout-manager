@@ -16,7 +16,6 @@ setup(
         'Django<=1.8.6',
         'django-compressor',
         'django_mobileesp',
-        'django-htmlmin',
         'django-pyscss',
         'pytz',
         'html5lib<=0.9999999',
