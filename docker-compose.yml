@@ -11,4 +11,4 @@ services:
       - ./scout_manager:/app/scout_manager
     ports:
       - "${PORT:-8000}:8000"
-    command: bash -c "python manage.py migrate --settings=sampleproj.settings.base && REMOTE_USER=javerage python manage.py runserver 0.0.0.0:8000 --settings=sampleproj.settings.base"
+    command: bash -c "python manage.py migrate --settings=sampleproj.settings.local && REMOTE_USER=javerage python manage.py runserver 0.0.0.0:8000 --settings=sampleproj.settings.local"

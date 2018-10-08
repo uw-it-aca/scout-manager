@@ -64,3 +64,6 @@ target/
 
 # Docker envvars
 .env
+
+# Scout Manager
+sampleproj/settings/local.py
