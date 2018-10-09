@@ -10,7 +10,7 @@ before_script:
   - pip install coveralls
   - pip install pycodestyle
   - cp sampleproj/manage.py manage.py
-  - python manage.py migrate --noinput
+  - python manage.py migrate --settings=sampleproj.settings.travis --noinput
   - npm install mocha
   - npm install jquery
   - npm install jsdom
