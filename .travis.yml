@@ -16,7 +16,7 @@ before_script:
   - npm install jsdom
 script:
   - pycodestyle scout_manager/ --exclude=migrations,scout_manager/test
-  - coverage run --source=scout_manager/ --omit=scout_manager/migrations/* manage.py test scout_manager
+  - coverage run --source=scout_manager/ --omit=scout_manager/migrations/* manage.py test scout_manager --settings=sampleproj.settings.travis
 after_script:
   - coveralls
 notifications:
