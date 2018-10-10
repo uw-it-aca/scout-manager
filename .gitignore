@@ -66,4 +66,5 @@ target/
 .env
 
 # Scout Manager
+sampleproj/db.sqlite3
 sampleproj/settings/local.py
