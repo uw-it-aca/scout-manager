@@ -5,17 +5,18 @@ python:
 install:
   - pip install -r requirements.txt
 before_script:
+  - pip install -U 'setuptools>=18.5'
   - pip install coverage
-  - pip install python-coveralls
+  - pip install coveralls
   - pip install pycodestyle
-  - cp travis-ci/manage.py manage.py
-  - python manage.py migrate --noinput
+  - cp sampleproj/manage.py manage.py
+  - python manage.py migrate --settings=sampleproj.settings.travis --noinput
   - npm install mocha
   - npm install jquery
   - npm install jsdom
 script:
   - pycodestyle scout_manager/ --exclude=migrations,scout_manager/test
-  - coverage run --source=scout_manager/ --omit=scout_manager/migrations/* manage.py test scout_manager
+  - coverage run --source=scout_manager/ --omit=scout_manager/migrations/* manage.py test scout_manager --settings=sampleproj.settings.travis
 after_script:
   - coveralls
 notifications:

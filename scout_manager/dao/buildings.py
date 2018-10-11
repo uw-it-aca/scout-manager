@@ -74,6 +74,9 @@ BUILDING_LIST = {
     'Lander Hall (LAH)': {
         'campus': 'seattle'
     },
+    'Life Sciences Building (LSB)': {
+        'campus': 'seattle'
+    },
     'Magnuson Health Sciences Center A (HSA)': {
         'campus': 'seattle'
     },
@@ -192,6 +195,9 @@ BUILDING_LIST = {
         'campus': 'seattle'
     },
     'William H. Gates Hall (LAW)': {
+        'campus': 'seattle'
+    },
+    'Willow Hall (WLW)': {
         'campus': 'seattle'
     },
 
