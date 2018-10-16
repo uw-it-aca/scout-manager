@@ -61,3 +61,10 @@ target/
 
 # Swap files
 *.swp
+
+# Docker envvars
+.env
+
+# Scout Manager
+sampleproj/db.sqlite3
+sampleproj/settings/local.py
