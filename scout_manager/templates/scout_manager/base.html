@@ -4,7 +4,7 @@
         <title>{% block title %}{% endblock %} &middot; Scout Manager</title>
         {% include "scout_manager/include/head.html" %}
     </head>
-    <body {% if request.is_mobile or request.is_tablet %}data-mobile="true"{% endif %}>
+    <body {% if request|is_mobile or request|is_tablet %}data-mobile="true"{% endif %}>
 
         <div id="header" class="mgr-header" role="banner" aria-labelledby="app_header">
             <h1 id="app_header"><a href="/manager/">Scout<span>Manager</span></a></h1>
@@ -12,7 +12,7 @@
             <button onclick="document.getElementById('sidebar').classList.toggle('mgr-sidebar-closed');" type="button" class="btn mgr-menu-button"><i class="fa fa-bars"></i></button>
         </div>
 
-        <div id="sidebar" class="mgr-sidebar {% if request.is_mobile or request.is_tablet %}mgr-sidebar-closed{% endif %}">
+        <div id="sidebar" class="mgr-sidebar {% if request|is_mobile or request|is_tablet %}mgr-sidebar-closed{% endif %}">
             <h2 class="visually-hidden" id="navigation_header">Find the spaces and items you manage:</h2>
             <div class="mgr-sidebar-actions" role="navigation" aria-labelledby="navigation_header">
                 <h3 id="subheader_spaces" ><small class="text-muted" style="padding: 15px 20px 0 20px; display:block;">Spaces</small></h3>
