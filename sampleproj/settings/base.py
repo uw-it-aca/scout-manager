@@ -13,7 +13,7 @@ INSTALLED_APPS = (
     'scout_manager',
     'spotseeker_restclient',
     'restclients',
-    'user_agents',
+    'django_user_agents',
 )
 
 MIDDLEWARE_CLASSES = (
