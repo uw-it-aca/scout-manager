@@ -23,7 +23,7 @@
                     <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "studio" in type.name %} checked {% endif %}{% endfor %} value="studio">Production studio</label>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "classroom" in type.name %} checked {% endif %}{% endfor %} value="classroom">Conference/classroom</label>
+                    <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "classroom" in type.name %} checked {% endif %}{% endfor %} value="classroom">Classroom</label>
                 </div>
                 <div class="checkbox">
                     <label><input type="checkbox" name="type" {% for type in spot.spot_types %}{% if "open" in type.name %} checked {% endif %}{% endfor %} value="open">Open space</label>

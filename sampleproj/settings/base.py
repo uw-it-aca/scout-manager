@@ -13,6 +13,7 @@ INSTALLED_APPS = (
     'scout_manager',
     'spotseeker_restclient',
     'restclients',
+    'django_user_agents',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -25,7 +26,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.auth.middleware.RemoteUserMiddleware',
-    'django_mobileesp.middleware.UserAgentDetectionMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
     'userservice.user.UserServiceMiddleware',
 )
 
