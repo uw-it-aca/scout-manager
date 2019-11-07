@@ -17,6 +17,9 @@ BUILDING_LIST = {
     'Art Building (ART)': {
         'campus': 'seattle'
     },
+    'Bill & Melinda Gates Center for Computer Science & Engineering (CSE2)': {
+        'campus': 'seattle'
+    },
     'Burke Memorial-Washington State Museum (BMM)': {
         'campus': 'seattle'
     },
@@ -75,6 +78,9 @@ BUILDING_LIST = {
         'campus': 'seattle'
     },
     'Life Sciences Building (LSB)': {
+        'campus': 'seattle'
+    },
+    'Madrona Hall (MDR)': {
         'campus': 'seattle'
     },
     'Magnuson Health Sciences Center A (HSA)': {
