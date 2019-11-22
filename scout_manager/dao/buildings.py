@@ -29,6 +29,9 @@ BUILDING_LIST = {
     'Computer Science and Engineering Building (CSE)': {
         'campus': 'seattle'
     },
+    'Computer Science and Engineering Building 2 (CSE2)': {
+        'campus': 'seattle'
+    },
     'Denny Hall (DEN)': {
         'campus': 'seattle'
     },
@@ -75,6 +78,9 @@ BUILDING_LIST = {
         'campus': 'seattle'
     },
     'Life Sciences Building (LSB)': {
+        'campus': 'seattle'
+    },
+    'Madrona Hall (MDR)': {
         'campus': 'seattle'
     },
     'Magnuson Health Sciences Center A (HSA)': {
