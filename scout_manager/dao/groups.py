@@ -1,5 +1,6 @@
-from restclients.gws import GWS
-from restclients.exceptions import DataFailureException, InvalidGroupID
+from uw_gws import GWS
+from uw_gws.exceptions import InvalidGroupID
+from restclients_core.exceptions import DataFailureException
 from scout_manager.models import Group, Person, GroupMembership
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
@@ -78,7 +79,7 @@ def _update_group(group):
     remote_members = get_members(group.group_id)
     remote_people = []
     for member in remote_members:
-        if member.member_type == 'uwnetid':
+        if member.is_uwnetid():
             person, created = Person.objects.get_or_create(netid=member.name)
             remote_people.append(person)
 
