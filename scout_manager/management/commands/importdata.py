@@ -1,6 +1,6 @@
 from openpyxl import *
 from django.conf import settings
-from spotseeker_restclient.dao_implementation.spotseeker import Live
+from uw_spotseeker import Spotseeker
 from django.core.management.base import BaseCommand
 import re
 import json
@@ -152,7 +152,7 @@ class Command(BaseCommand):
                    "Content-Type": "application/json"}
         jsondicts = [jsondict_hub, jsondict_ougl, jsondict_health,
                      jsondict_kane]
-        client = Live()
+        client = Spotseeker().get_implementation();
         for jsondict in jsondicts:
             space_json = json.dumps(jsondict)
             resp, content = client.postURL("/api/v1/spot/",

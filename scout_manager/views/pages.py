@@ -6,7 +6,7 @@ from scout_manager.dao.space import get_spot_hours_by_day, get_spot_list
 from scout_manager.dao.buildings import get_building_list
 from scout_manager.dao.groups import is_superuser
 from scout_manager.models import GroupMembership
-from spotseeker_restclient.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException
 from scout.dao.image import get_spot_image, get_item_image
 from scout.dao.item import get_filtered_items, get_item_count
 from scout.views import CAMPUS_LOCATIONS

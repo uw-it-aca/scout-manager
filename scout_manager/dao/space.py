@@ -1,5 +1,5 @@
-from spotseeker_restclient.spotseeker import Spotseeker
-from spotseeker_restclient.exceptions import DataFailureException
+from uw_spotseeker import Spotseeker
+from restclients_core.exceptions import DataFailureException
 from scout.dao.space import add_cuisine_names, add_foodtype_names_to_spot,\
     add_payment_names, add_additional_info, add_study_info, add_tech_info
 from scout.dao.item import add_item_info
@@ -81,7 +81,7 @@ def _get_all_spots(filters):
 
 def get_spot_by_id(spot_id):
     spot_client = Spotseeker()
-    res = spot_client.get_spot_by_id(spot_id)
+    res = spot_client.get_spot_by_id(int(spot_id))
     spot = process_extended_info(res)
     spot = add_item_info(spot)
     return spot
