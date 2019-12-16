@@ -152,7 +152,7 @@ class Command(BaseCommand):
                    "Content-Type": "application/json"}
         jsondicts = [jsondict_hub, jsondict_ougl, jsondict_health,
                      jsondict_kane]
-        client = Spotseeker().get_implementation();
+        client = Spotseeker().get_implementation()
         for jsondict in jsondicts:
             space_json = json.dumps(jsondict)
             resp, content = client.postURL("/api/v1/spot/",
