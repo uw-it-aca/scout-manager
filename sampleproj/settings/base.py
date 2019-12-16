@@ -11,7 +11,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'scout_manager',
-    'spotseeker_restclient',
     'django_user_agents',
 )
 
