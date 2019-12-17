@@ -2,10 +2,12 @@ from django.test import TestCase
 from django.test.utils import override_settings
 from scout_manager.models import GroupMembership, Group, Person
 from scout_manager.dao.groups import update_groups, add_group
+from uw_spotseeker.dao import Spotseeker_DAO
+from uw_gws.dao import GWS_DAO
 
 
-SS_DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
-GWS_DAO = "restclients.dao_implementation.gws.File"
+SS_DAO = "Mock"
+GWS_DAO = "Mock"
 
 
 @override_settings(SPOTSEEKER_DAO_CLASS=SS_DAO,

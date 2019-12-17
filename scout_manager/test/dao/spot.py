@@ -4,7 +4,7 @@ Tests for the scout-manager spot DAO
 from scout_manager.dao.space import get_spot_hours_by_day, \
     _process_checkbox_array, get_spot_list, _get_spot_id_from_url, \
     _build_spot_json
-from spotseeker_restclient.spotseeker import Spotseeker
+from uw_spotseeker import Spotseeker
 from scout_manager.test import ScoutTest
 import datetime
 import json
