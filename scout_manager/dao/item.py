@@ -1,6 +1,6 @@
-from spotseeker_restclient.dao import SPOTSEEKER_DAO
-from spotseeker_restclient.spotseeker import Spotseeker
-from spotseeker_restclient.exceptions import DataFailureException
+from uw_spotseeker.dao import Spotseeker_DAO
+from uw_spotseeker import Spotseeker
+from restclients_core.exceptions import DataFailureException
 from scout_manager.dao.space import process_extended_info
 import json
 
@@ -62,7 +62,7 @@ def create_item(form_data):
 
 def _get_spot_json(spot_id):
     url = "/api/v1/spot/%s" % spot_id
-    dao = SPOTSEEKER_DAO()
+    dao = Spotseeker_DAO()
     resp, content = dao.getURL(url, {})
 
     if resp.status != 200:
