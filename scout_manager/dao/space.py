@@ -143,7 +143,7 @@ def create_spot(form_data):
     json_data = _build_spot_json(form_data)
     spot_client = Spotseeker()
     resp = spot_client.post_spot(json.dumps(json_data))
-    spot_id = _get_spot_id_from_url(resp['location'])
+    spot_id = _get_spot_id_from_url(resp.headers['location'])
 
     if 'file' in form_data \
             and form_data['file'] is not None \

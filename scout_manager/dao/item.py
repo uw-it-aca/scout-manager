@@ -63,11 +63,11 @@ def create_item(form_data):
 def _get_spot_json(spot_id):
     url = "/api/v1/spot/%s" % spot_id
     dao = Spotseeker_DAO()
-    resp, content = dao.getURL(url, {})
+    resp = dao.getURL(url, {})
 
     if resp.status != 200:
-        raise DataFailureException(url, resp.status, content)
-    return json.loads(content)
+        raise DataFailureException(url, resp.status, resp.data)
+    return json.loads(resp.data)
 
 
 def update_item(form_data, item_id, image=None):
