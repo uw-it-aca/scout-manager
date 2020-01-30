@@ -22,7 +22,7 @@ setup(
         'beautifulsoup4',
         'pillow',
         'UW-RestClients-GWS==1.0',
-        'openpyxl',
+        'openpyxl<=2.6.4',
         'Django-UserService==1.1.0',
         'Django-SupportTools==1.0',
         'django-pyscss',
