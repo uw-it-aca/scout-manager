@@ -154,10 +154,10 @@ def image(request, image_id, spot_id):
     width = request.GET.get('width', None)
     try:
         resp, content = get_spot_image(spot_id, image_id, width)
-        etag = resp.get('etag', None)
+        etag = resp.headers.get('etag', None)
         encoded_content = base64.b64encode(content)
         response = HttpResponse(encoded_content,
-                                content_type=resp['content-type'])
+                                content_type=resp.headers['content-type'])
         response['etag'] = etag
         return response
     except Exception:
@@ -168,10 +168,10 @@ def item_image(request, image_id, item_id):
     width = request.GET.get('width', None)
     try:
         resp, content = get_item_image(item_id, image_id, width)
-        etag = resp.get('etag', None)
+        etag = resp.headers.get('etag', None)
         encoded_content = base64.b64encode(content)
         response = HttpResponse(encoded_content,
-                                content_type=resp['content-type'])
+                                content_type=resp.headers['content-type'])
         response['etag'] = etag
         return response
     except Exception:
