@@ -60,8 +60,7 @@ class ApiTest(ScoutTest):
         mock_request.META = mock_meta
 
         result = process_form_data(mock_request)
-        import pdb; pdb.set_trace()
-        result_image = Image.open(io.BytesIO(result["file"].encode('utf-8')))
+        result_image = Image.open(io.BytesIO(result["file"]))
         self.assertEqual(test_image, result_image)
 
         result_json = json.loads(result['json'])
