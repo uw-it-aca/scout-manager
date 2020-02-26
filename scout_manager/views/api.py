@@ -55,33 +55,18 @@ class Spot(RESTDispatch):
 
 
 def process_form_data(request):
-    form_data = {}
-    content_type = request.META['CONTENT_TYPE']
-    for param in content_type.split(";"):
-        if "boundary" in param:
-            boundary = param.replace("boundary=", "").strip()
-            # add two dashes, for some reason
-            boundary = "--" + boundary
-    blocks = request.body.split(boundary)
+    if request.META['CONTENT_TYPE'].startswith('multipart'):
+        put, files = request.parse_file_upload(request.META, request)
+        request.FILES.update(files)
+        put_dict = put.dict()
+        if "file" in files:
+            put_dict["file"] = files["file"].file
+        request.PUT = put_dict
+    else:
+        put_dict = QueryDict(request.body).dict()
+        request.PUT = put_dict
 
-    for block in blocks:
-        block_data = ''
-        file_start_idx = None
-        for index, line in enumerate(block.splitlines()):
-            if "Content-Disposition" in line:
-                match = re.findall(r'name=\"(.*?)\"', line)
-                block_name = match[0]
-            elif len(line) > 0 and line != "--" and "Content-Type" not in line:
-                if file_start_idx is None:
-                    file_start_idx = index
-                block_data += line
-        if len(block_data) > 0:
-            if block_name == "file":
-                file_block = block.splitlines(True)[file_start_idx:]
-                file_data = ''.join(file_block)
-                form_data[block_name] = file_data.strip()
-            else:
-                form_data[block_name] = block_data
+    form_data = request.PUT
     return form_data
 
 

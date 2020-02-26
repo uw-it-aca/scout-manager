@@ -36,12 +36,13 @@ class ApiTest(ScoutTest):
                    }
         # Mocking the body of the request
         mockData = ('--' + mockWebKitBoundary +
-                    '\nContent-Disposition: form-data; name="json"\n\n' +
-                    json.dumps(mockJSON) + '\n--' + mockWebKitBoundary + '--\n')
+                    '\r\nContent-Disposition: form-data; name="json"\r\n\r\n' +
+                    json.dumps(mockJSON) + '\r\n--' + mockWebKitBoundary + '--\r\n')
         # Mock the request itself
         request = self.factory.put(spotUrl, mockData)
         request.META = {}
         request.META['CONTENT_TYPE'] = 'multipart/form-data; boundary=' + mockWebKitBoundary
+        request.META['CONTENT_LENGTH'] = '458'
         result = process_form_data(request)
         # Assert that we can properly get the correct json from the request body
         self.assertEqual(result['json'], json.dumps(mockJSON))
@@ -54,13 +55,13 @@ class ApiTest(ScoutTest):
 
         mock_data = open(path, "rb").read()
         test_image = Image.open(image_path)
-        mock_request = Mock()
-        mock_request.body = mock_data
+        mock_request = self.factory.put(spotUrl, mock_data)
         mock_meta = {'CONTENT_TYPE': 'multipart/form-data; boundary=' + mockWebKitBoundary}
         mock_request.META = mock_meta
+        mock_request.META['CONTENT_LENGTH'] = '2021'
 
         result = process_form_data(mock_request)
-        result_image = Image.open(io.BytesIO(result["file"]))
+        result_image = Image.open(result["file"])
         self.assertEqual(test_image, result_image)
 
         result_json = json.loads(result['json'])
