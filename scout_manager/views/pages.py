@@ -2,7 +2,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from scout_manager.dao.item import get_item_by_id as manager_get_item_by_id
 from scout_manager.dao.space import get_spot_by_id as manager_get_spot_by_id
-from scout_manager.dao.space import get_spot_hours_by_day, get_spot_list
+from scout_manager.dao.space import get_spot_hours_by_day, get_spot_list, get_schema
 from scout_manager.dao.buildings import get_building_list
 from scout_manager.dao.groups import is_superuser
 from scout_manager.models import GroupMembership
@@ -58,9 +58,11 @@ def items_edit(request, item_id):
     netid = UserService().get_user()
     buildings = get_building_list()
     spot = manager_get_item_by_id(int(item_id))
+    schema = get_schema()
     context = {"spot": spot,
                "buildings": buildings,
                "app_type": 'tech',
+               "filters": schema["items"],
                "netid": netid}
     return render_to_response('scout_manager/items_edit.html', context,
                               context_instance=RequestContext(request))
