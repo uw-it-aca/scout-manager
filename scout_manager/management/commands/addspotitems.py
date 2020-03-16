@@ -1,6 +1,6 @@
 from openpyxl import *
 from django.conf import settings
-from spotseeker_restclient.dao_implementation.spotseeker import Live
+from uw_spotseeker import Spotseeker
 from django.core.management.base import BaseCommand
 import re
 import json
@@ -40,7 +40,7 @@ class Command(BaseCommand):
         # GET and PUT data to server.
         headers = {"X-OAuth-User": settings.OAUTH_USER,
                    "Content-Type": "application/json"}
-        client = Live()
+        client = Spotseeker().get_implementation()
 
         # Replace <spot_id> with the appropriate spot id.
         spot_kane = client.getURL(

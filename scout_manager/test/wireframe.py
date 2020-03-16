@@ -7,9 +7,10 @@ to be there is there.
 from bs4 import BeautifulSoup
 from django.test import TestCase
 from django.test.utils import override_settings
+from uw_spotseeker import Spotseeker
 
 baseUrl = '/manager/spaces/'
-DAO = "spotseeker_restclient.dao_implementation.spotseeker.File"
+DAO = Spotseeker().get_implementation()
 
 
 @override_settings(SPOTSEEKER_DAO_CLASS=DAO)
@@ -43,4 +44,4 @@ class ContentTest(TestCase):
         #sef.assertGreater(len(), 0)
         #checkId = bs.select('#page_discover')
         #self.assertGreater(len(checkId), 0)
-        
+
