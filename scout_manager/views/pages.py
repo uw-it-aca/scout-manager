@@ -2,8 +2,8 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from scout_manager.dao.item import get_item_by_id as manager_get_item_by_id
 from scout_manager.dao.space import get_spot_by_id as manager_get_spot_by_id
-from scout_manager.dao.space import get_spot_hours_by_day, get_spot_list,
-                                    get_schema
+from scout_manager.dao.space import get_spot_hours_by_day, get_spot_list, \
+    get_schema
 from scout_manager.dao.buildings import get_building_list
 from scout_manager.dao.groups import is_superuser
 from scout_manager.models import GroupMembership
