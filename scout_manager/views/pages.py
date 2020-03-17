@@ -59,7 +59,11 @@ def items_edit(request, item_id):
     netid = UserService().get_user()
     buildings = get_building_list()
     spot = manager_get_item_by_id(int(item_id))
+
     schema = get_schema()
+    if "items" not in schema:
+        schema["items"] = {}
+
     context = {"spot": spot,
                "buildings": buildings,
                "app_type": 'tech',
