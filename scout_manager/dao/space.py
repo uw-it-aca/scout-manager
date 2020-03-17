@@ -7,6 +7,7 @@ from scout_manager.dao.groups import add_group
 import json
 import re
 
+
 def get_schema():
     spot_client = Spotseeker()
     schema = {}
@@ -17,6 +18,7 @@ def get_schema():
         pass
 
     return schema
+
 
 def delete_spot(spot_id, etag):
     spot_client = Spotseeker()
