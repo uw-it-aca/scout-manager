@@ -9,7 +9,8 @@ from scout_manager.models import GroupMembership
 from restclients_core.exceptions import DataFailureException
 from scout.dao.image import get_spot_image, get_item_image
 from scout.dao.item import get_filtered_items, get_item_count
-from scout.views import CAMPUS_LOCATIONS
+from scout.dao.space import get_spot_list
+from scout.views import CAMPUS_LOCATIONS, extract_spots_item_info
 from django.http import Http404, HttpResponse
 from userservice.user import UserService
 import base64
@@ -58,9 +59,13 @@ def items_edit(request, item_id):
     netid = UserService().get_user()
     buildings = get_building_list()
     spot = manager_get_item_by_id(int(item_id))
+    tech_spots = get_spot_list("tech")
+    info = extract_spots_item_info(tech_spots)
+
     context = {"spot": spot,
                "buildings": buildings,
                "app_type": 'tech',
+               "filters": info,
                "netid": netid}
     return render_to_response('scout_manager/items_edit.html', context,
                               context_instance=RequestContext(request))
