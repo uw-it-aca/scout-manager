@@ -60,7 +60,7 @@
             <legend for="">Category</legend>
             <div class="well" id="item_category">
             {% for category, subcategories in filters.categories.items %}
-                    <div class="radio"><label><input type="radio" name="category" {% if category in spot.item.category %} checked {% endif %} value="{{ category }}">{{ category }}</label></div>
+                    <div class="radio"><label><input type="radio" name="category" {% if category in spot.item.category %} checked {% endif %} value="{{ category }}">{{ category.name|default:category }}</label></div>
             {% endfor %}
             </div>
             <div class="help-block with-errors" role="alert">Please select a category.</div>
@@ -73,7 +73,7 @@
                 {% for category, subcategories in filters.categories.items %}
                         {% if "cameras" in category %}
                         {% for subcategory in subcategories.sub %}
-                        <div class="radio"><label><input type="radio" name="subcategory" {% if subcategory.value in spot.item.subcategory %} checked {% endif %} value="{{ subcategory.value }}">{{ subcategory.value }}</label></div>
+                        <div class="radio"><label><input type="radio" name="subcategory" {% if subcategory.value in spot.item.subcategory %} checked {% endif %} value="{{ subcategory.value }}">{{ subcategory.name|default:subcategory.value }}</label></div>
                         {% endfor %}
                         {% endif %}
                     {% endfor %}
@@ -83,7 +83,7 @@
                 {% if "cameras" not in category %}
                 <div class="subcategory" style="display: none;" id="category_{{ category }}">
                         {% for subcategory in subcategories.sub %}
-                        <div class="radio"><label><input type="radio" name="subcategory" {% if subcategory.value in spot.item.subcategory %} checked {% endif %} value={{ subcategory.value }}>{{ subcategory.value }}</label></div>
+                        <div class="radio"><label><input type="radio" name="subcategory" {% if subcategory.value in spot.item.subcategory %} checked {% endif %} value={{ subcategory.value }}>{{ subcategory.name|default:subcategory.value }}</label></div>
                         {% endfor %}
                 </div>
                 {% endif %}
