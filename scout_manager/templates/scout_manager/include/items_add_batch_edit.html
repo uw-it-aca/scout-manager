@@ -1,0 +1,77 @@
+{% load staticfiles %}
+{% csrf_token %}
+
+<div class="alert hidden" role="alert" id="pub_error"></div>
+
+<div class="clearfix sticky" style="margin-bottom:1em;">
+    <h2 class="pull-left" id="sub_header">{% if spot.item.name %}{{ spot.item.name }}{% else %}Batch Import Items{% endif %}</h2>
+    <div class="pull-right">
+            <div class="scout-published">
+                <span class="text-muted item-help"></span>&nbsp;&nbsp;&nbsp;
+                <input id="submit_item_batch" type="button" class="btn btn-primary" value="Import Items" style="display:inline-block;"></input>
+            </div>
+    </div>
+</div>
+
+<div class="row" style="margin-bottom:2em;">
+    <div class="col-md-12">
+        <h3>Item(s)</h3>
+        <button id="item_row_add" type="button" name="action" value="+" class="item-row-add pull-left btn btn-primary btn-sm"><i class="fa fa-plus"></i> <span>Add Item Row</span></button>
+        <button id="item_row_add_x" type="button" class="pull-right btn btn-primary btn-sm"><i class="fa fa-plus"></i> <span>Add Item Rows</span></button>
+        <input id="add_row_num" class="pull-right" type="number" value="1" name="num_rows" style="padding-top: 2px; padding-bottom: 3px;"min="1" max="999">
+    </div>
+</div>
+
+{% for entry in entries %}
+<div class="row item-entry-row" style="margin-bottom:1em;">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="">Name:</label>
+            <input id="" class="form-control" type="text" value="{{spot.item.brand}}" required name="extended_info:i_brand">
+            <div class="help-block with-errors" role="alert"></div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="">Category:</label>
+            <select id="category_select" class="form-control" name="category" required data-error="Category selection is required.">
+                <option disabled selected value>Select a category</option>
+                <option value="cameras">Cameras</option>
+            </select>
+            <div class="help-block with-errors" role="alert"></div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="">Subcategory:</label>
+            <select id="subcategory_select" class="form-control" name="subcategory" required data-error="Subcategory selection is required.">
+                <option disabled selected value>Select a subcategory</option>
+                <option value="Digital Cameras">Digital Cameras</option>
+            </select>
+            <div class="help-block with-errors" role="alert"></div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="">Brand:</label>
+            <select id="brand_select" class="form-control" name="brand" required data-error="Brand selection is required.">
+                <option disabled selected value>Select a brand</option>
+                <option value="Nikon">Nikon</option>
+            </select>
+            <div class="help-block with-errors" role="alert"></div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="">Description:</label>
+            <input id="" class="form-control" type="text" value="{{spot.item.brand}}" required name="extended_info:i_brand">
+            <div class="help-block with-errors" role="alert"></div>
+        </div>
+    </div>
+    <div class="col-md-6" style="height: 70px; padding-top: 25px;">
+        <button id="remove_row_btn" type="button" class="remove-row-btn btn btn-danger btn-sm"><i class="fa fa-trash"></i> <span>Remove Row</span></button>
+    </div>
+</div>
+{% endfor %}
+
+</div>

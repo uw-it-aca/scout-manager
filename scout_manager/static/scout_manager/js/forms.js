@@ -409,6 +409,33 @@ var Forms = {
         });
     },
 
+    handle_delete_item_row: function() {
+        $(".remove-row-btn").click(function(e) {
+            $(this).parent().parent().remove();
+        });
+    },
+
+    handle_item_row_add: function() {
+        $("#item_row_add").click(function(e) {
+            let newRow = $(".item-entry-row").first().clone();
+            newRow.show();
+            $(this).parent().parent().parent().append(newRow);
+            Forms.handle_delete_item_row();
+        });
+    },
+
+    handle_multi_item_row_add: function() {
+        $("#item_row_add_x").click(function(e) {
+            let count = $("#add_row_num").val();
+            for (let step = 0; step < count; step++) {
+                let newRow = $(".item-entry-row").first().clone();
+                newRow.show();
+                $(this).parent().parent().parent().append(newRow);
+            }
+            Forms.handle_delete_item_row();
+        });
+    },
+
     handle_checkbox_group_clicks: function() {
         // handle clicks for any checkboxes in a "checkbox-group" grouping
         $(".checkbox-group.required input[type='checkbox']").change(function(e) {

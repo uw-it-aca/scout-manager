@@ -12,6 +12,7 @@ $(function(){
     var list_path = new RegExp("\/manager\/spaces\/?$");
     var items_edit_path = new RegExp("\/manager\/items\/[0-9].+\/?$");
     var items_add_path = new RegExp("\/manager\/items\/add\/?$");
+    var items_add_batch_path = new RegExp("\/manager\/items\/add\/batch\/?$");
     var spaces_add_path = new RegExp("\/manager\/spaces\/add\/?$");
     var spaces_edit_path = new RegExp("\/manager\/spaces\/[0-9].+\/?$");
 
@@ -22,6 +23,11 @@ $(function(){
         Forms.init_form("items");
     } else if (list_path.test(page_path)) {
         //List.init();
+    } else if (items_add_batch_path.test(page_path)) {
+        Forms.handle_item_row_add();
+        Forms.handle_multi_item_row_add();
+        $(".item-entry-row").first().hide();
+        Forms.handle_delete_item_row();
     }
 
     // Function to serialize form data into an JS object

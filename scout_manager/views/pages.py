@@ -55,6 +55,23 @@ def items_add(request):
         context_instance=RequestContext(request))
 
 
+def items_add_batch(request):
+    entries = ['one', 'two']
+    netid = UserService().get_user()
+    buildings = get_building_list()
+    spot = manager_get_spot_by_id(request.GET.get('spot_id')) \
+        if request.GET.get('spot_id') else None
+
+    context = {"spot": spot,
+               "buildings": buildings,
+               "entries": entries,
+               "netid": netid}
+    return render_to_response(
+        'scout_manager/items_add_batch.html',
+        context,
+        context_instance=RequestContext(request))
+
+
 def items_edit(request, item_id):
     netid = UserService().get_user()
     buildings = get_building_list()
