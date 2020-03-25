@@ -36,7 +36,9 @@
             <label for="">Category:</label>
             <select id="category_select" class="form-control" name="category" required data-error="Category selection is required.">
                 <option disabled selected value>Select a category</option>
-                <option value="cameras">Cameras</option>
+                {% for category, subcategories in filters.categories.items %}
+                <option value={{ category }}>{{ subcategories.name|default:category }}</option>
+                {% endfor %}
             </select>
             <div class="help-block with-errors" role="alert"></div>
         </div>
@@ -46,7 +48,11 @@
             <label for="">Subcategory:</label>
             <select id="subcategory_select" class="form-control" name="subcategory" required data-error="Subcategory selection is required.">
                 <option disabled selected value>Select a subcategory</option>
-                <option value="Digital Cameras">Digital Cameras</option>
+                {% for category, subcategories in filters.categories.items %}
+                   {% for subcategory, name in subcategories.sub.items %}
+                   <option value={{ subcategory }}>{{ name.name|default:subcategory }}</option>
+                   {% endfor %}
+                {% endfor %}
             </select>
             <div class="help-block with-errors" role="alert"></div>
         </div>
@@ -56,7 +62,9 @@
             <label for="">Brand:</label>
             <select id="brand_select" class="form-control" name="brand" required data-error="Brand selection is required.">
                 <option disabled selected value>Select a brand</option>
-                <option value="Nikon">Nikon</option>
+                {% for brand in filters.brands %}
+                    <option value={{ brand }}>{{ brand }}</option>
+                {% endfor %}
             </select>
             <div class="help-block with-errors" role="alert"></div>
         </div>

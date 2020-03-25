@@ -44,10 +44,13 @@ def items(request):
 def items_add(request):
     netid = UserService().get_user()
     buildings = get_building_list()
+    tech_spots = get_spots("tech")
+    info = extract_spots_item_info(tech_spots)
     spot = manager_get_spot_by_id(request.GET.get('spot_id')) \
         if request.GET.get('spot_id') else None
     context = {"spot": spot,
                "buildings": buildings,
+               "filters": info,
                "netid": netid}
     return render_to_response(
         'scout_manager/items_add.html',
@@ -59,12 +62,15 @@ def items_add_batch(request):
     entries = ['one', 'two']
     netid = UserService().get_user()
     buildings = get_building_list()
+    tech_spots = get_spots("tech")
+    info = extract_spots_item_info(tech_spots)
     spot = manager_get_spot_by_id(request.GET.get('spot_id')) \
         if request.GET.get('spot_id') else None
 
     context = {"spot": spot,
                "buildings": buildings,
                "entries": entries,
+               "filters": info,
                "netid": netid}
     return render_to_response(
         'scout_manager/items_add_batch.html',
