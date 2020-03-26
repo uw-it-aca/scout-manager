@@ -18,7 +18,7 @@
         <h3>Item(s)</h3>
         <button id="item_row_add" type="button" name="action" value="+" class="item-row-add pull-left btn btn-primary btn-sm"><i class="fa fa-plus"></i> <span>Add Item Row</span></button>
         <button id="item_row_add_x" type="button" class="pull-right btn btn-primary btn-sm"><i class="fa fa-plus"></i> <span>Add Item Rows</span></button>
-        <input id="add_row_num" class="pull-right" type="number" value="1" name="num_rows" style="padding-top: 2px; padding-bottom: 3px;"min="1" max="999">
+        <input id="add_row_num" class="pull-right" type="number" value="1" name="" style="padding-top: 2px; padding-bottom: 3px;"min="1" max="999">
     </div>
 </div>
 
@@ -27,7 +27,9 @@
     <div class="col-md-3">
         <div class="form-group">
             <label for="">Name:</label>
-            <input id="" class="form-control" type="text" value="{{spot.item.brand}}" required name="extended_info:i_brand">
+            <input id="i_name_input" maxlength="50" class="form-control" type="text" value="" required name="name" data-error="Item name is required">
+            <input type="hidden" id="spot_id_input" name="spot_id" value="{{ spot.spot_id }}" />
+            <input type="hidden" name="etag" value="{{ spot.etag }}" />
             <div class="help-block with-errors" role="alert"></div>
         </div>
     </div>
@@ -35,7 +37,7 @@
         <div class="form-group">
             <label for="">Category:</label>
             <select id="category_select" class="form-control" name="category" required data-error="Category selection is required.">
-                <option disabled selected value>Select a category</option>
+                <option selected value="">Select a category</option>
                 {% for category, subcategories in filters.categories.items %}
                 <option value={{ category }}>{{ subcategories.name|default:category }}</option>
                 {% endfor %}
@@ -47,7 +49,7 @@
         <div class="form-group">
             <label for="">Subcategory:</label>
             <select id="subcategory_select" class="form-control" name="subcategory" required data-error="Subcategory selection is required.">
-                <option disabled selected value>Select a subcategory</option>
+                <option selected value="">Select a subcategory</option>
                 {% for category, subcategories in filters.categories.items %}
                    {% for subcategory, name in subcategories.sub.items %}
                    <option value={{ subcategory }}>{{ name.name|default:subcategory }}</option>
@@ -60,8 +62,8 @@
     <div class="col-md-3">
         <div class="form-group">
             <label for="">Brand:</label>
-            <select id="brand_select" class="form-control" name="brand" required data-error="Brand selection is required.">
-                <option disabled selected value>Select a brand</option>
+            <select id="brand_select" class="form-control" name="extended_info:i_brand" required data-error="Brand selection is required.">
+                <option selected value="">Select a brand</option>
                 {% for brand in filters.brands %}
                     <option value={{ brand }}>{{ brand }}</option>
                 {% endfor %}
@@ -72,7 +74,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="">Description:</label>
-            <input id="" class="form-control" type="text" value="{{spot.item.brand}}" required name="extended_info:i_brand">
+            <input id="i_description_input" maxlength="350" class="form-control" type="text" value="" required name="extended_info:i_description" data-error="Item description is required">
             <div class="help-block with-errors" role="alert"></div>
         </div>
     </div>

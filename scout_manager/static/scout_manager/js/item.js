@@ -11,6 +11,11 @@ var Item = {
         }
     },
 
+    submit_item_batch: function (e) {
+        var form_data = Item.get_batch_form_data();
+        Item._create_item_batch(form_data);
+    },
+
     delete_item: function (item_id, etag, success_callback) {
         $.ajax({
             url: "/manager/api/item/" + item_id,
@@ -99,6 +104,38 @@ var Item = {
                 $("#pub_error").html(error + ": " + xhr.responseText);
             }
         });
+    },
+
+    _create_item_batch: function (form_data) {
+        var f_data = new FormData();
+        f_data.append("json", JSON.stringify(form_data));
+        console.log(form_data);
+        //$.ajax({
+        //    url: "/manager/api/item/",
+        //    type: "PUT",
+        //    data: f_data,
+        //    contentType: false,
+        //    processData: false,
+        //    dataType: "json",
+        //    headers: {'X-CSRFToken': Cookies.get('csrftoken')},
+        //    success: function(results) {
+        //        $("#pub_error").removeClass("hidden");
+        //        $("#pub_error").addClass("alert-success");
+        //        $("#pub_error").html();
+        //        Item._navigate_after_create();
+        //    },
+        //    error: function(xhr, status, error) {
+        //        $("#pub_error").removeClass("hidden");
+        //        $("#pub_error").addClass("alert-danger");
+        //        $("#pub_error").html(error + ": " + xhr.responseText);
+        //    }
+        //});
+    },
+
+    get_batch_form_data: function() {
+        var form = $("form").first();
+        var serialized_form = form.serializeObject();
+        return serialized_form;
     },
 
     get_edit_form_data: function() {

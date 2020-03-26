@@ -409,9 +409,17 @@ var Forms = {
         });
     },
 
+    handle_submit_item_batch: function() {
+        $("#submit_item_batch").click(Item.submit_item_batch);
+    },
+
     handle_delete_item_row: function() {
         $(".remove-row-btn").click(function(e) {
             $(this).parent().parent().remove();
+            Forms.validate_batch();
+            $("#submit_form :input").on('input', function (e) {
+                Forms.validate_batch();
+            });
         });
     },
 
@@ -421,6 +429,10 @@ var Forms = {
             newRow.show();
             $(this).parent().parent().parent().append(newRow);
             Forms.handle_delete_item_row();
+            Forms.validate_batch();
+            $("#submit_form :input").on('input', function (e) {
+                Forms.validate_batch();
+            });
         });
     },
 
@@ -433,6 +445,10 @@ var Forms = {
                 $(this).parent().parent().parent().append(newRow);
             }
             Forms.handle_delete_item_row();
+            Forms.validate_batch();
+            $("#submit_form :input").on('input', function (e) {
+                Forms.validate_batch();
+            });
         });
     },
 
@@ -569,6 +585,20 @@ var Forms = {
             return false;
         }
         return true
+    },
+
+    validate_batch: function() {
+        var serialized_form = Item.get_batch_form_data();
+        $("#submit_item_batch").prop("disabled", false);
+        for (var i = 1; i < serialized_form["name"].length; i++) {
+            if (serialized_form["name"][i] === "" ||
+                serialized_form["category"][i] === "" ||
+                serialized_form["subcategory"][i] === "" ||
+                serialized_form["extended_info:i_brand"][i] === "" ||
+                serialized_form["extended_info:i_description"][i] === "") {
+                $("#submit_item_batch").prop("disabled", true);
+            }
+        }
     },
 
     validate_publish: function() {

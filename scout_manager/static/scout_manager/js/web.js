@@ -3,6 +3,24 @@ $(function(){
     /// async load css by flipping the media attribute to all
     $('link[rel="stylesheet"]').attr('media', 'all');
 
+    // Function to serialize form data into an JS object
+    $.fn.serializeObject = function() {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function() {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+
+
     // page based JS calls
     var page_path = window.location.pathname;
 
@@ -28,24 +46,12 @@ $(function(){
         Forms.handle_multi_item_row_add();
         $(".item-entry-row").first().hide();
         Forms.handle_delete_item_row();
+        Forms.handle_submit_item_batch();
+        Forms.validate_batch();
+        $("#submit_form :input").on('input', function (e) {
+            Forms.validate_batch();
+        })
     }
-
-    // Function to serialize form data into an JS object
-    $.fn.serializeObject = function() {
-        var o = {};
-        var a = this.serializeArray();
-        $.each(a, function() {
-            if (o[this.name] !== undefined) {
-                if (!o[this.name].push) {
-                    o[this.name] = [o[this.name]];
-                }
-                o[this.name].push(this.value || '');
-            } else {
-                o[this.name] = this.value || '';
-            }
-        });
-        return o;
-    };
 
     // datatables
     $('#sortable_datatables').DataTable({
