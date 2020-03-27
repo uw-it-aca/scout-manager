@@ -1,4 +1,5 @@
-from scout_manager.dao.item import _build_item_json, create_item, _get_spot_json
+from scout_manager.dao.item import _build_item_json, create_item, \
+    _get_spot_json, delete_item, update_item
 from uw_spotseeker import Spotseeker
 from scout_manager.test import ScoutTest
 from mock import patch
@@ -45,3 +46,26 @@ class ItemDaoTest(ScoutTest):
             create_item(test_data)
             mock_put.assert_called_once_with('1', json.dumps(json_data), etag)
 
+    def test_delete_item(self):
+        test_item_id = '792'
+        json_data = _get_spot_json('1')
+        etag = json_data['etag']
+        json_data['items'].pop(1)
+        with patch.object(Spotseeker, 'put_spot') as mock_put:
+            delete_item(test_item_id, test_spot_id)
+            mock_put.assert_called_once_with('1', json.dumps(json_data), etag)
+
+    def test_update_item(self):
+        test_item_id = '792'
+        test_update_item = self.test_item
+        test_update_item['id'] = test_item_id
+        test_data = {'json': json.dumps(test_update_item)}
+        test_data['file'] = None
+        json_data = _get_spot_json('1')
+        etag = json_data['etag']
+        item_json = _build_item_json(test_data)
+        item_json.pop('spot_id')
+        json_data['items'][1] = item_json
+        with patch.object(Spotseeker, 'put_spot') as mock_put:
+            update_item(test_data, test_item_id)
+            mock_put.assert_called_once_with('1', json.dumps(json_data), etag)
