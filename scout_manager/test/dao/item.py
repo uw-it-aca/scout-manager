@@ -52,7 +52,7 @@ class ItemDaoTest(ScoutTest):
         etag = json_data['etag']
         json_data['items'].pop(1)
         with patch.object(Spotseeker, 'put_spot') as mock_put:
-            delete_item(test_item_id, test_spot_id)
+            delete_item(test_item_id, '1')
             mock_put.assert_called_once_with('1', json.dumps(json_data), etag)
 
     def test_update_item(self):
