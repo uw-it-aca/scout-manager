@@ -19,6 +19,8 @@
         <button id="item_row_add" type="button" name="action" value="+" class="item-row-add pull-left btn btn-primary btn-sm"><i class="fa fa-plus"></i> <span>Add Item Row</span></button>
         <button id="item_row_add_x" type="button" class="pull-right btn btn-primary btn-sm"><i class="fa fa-plus"></i> <span>Add Item Rows</span></button>
         <input id="add_row_num" class="pull-right" type="number" value="1" name="" style="padding-top: 2px; padding-bottom: 3px;"min="1" max="999">
+        <input type="hidden" id="spot_id_input" name="spot_id" value="{{ spot.spot_id }}" />
+        <input type="hidden" name="etag" value="{{ spot.etag }}" />
     </div>
 </div>
 
@@ -28,8 +30,6 @@
         <div class="form-group">
             <label for="">Name:</label>
             <input id="i_name_input" maxlength="50" class="form-control" type="text" value="" required name="name" data-error="Item name is required">
-            <input type="hidden" id="spot_id_input" name="spot_id" value="{{ spot.spot_id }}" />
-            <input type="hidden" name="etag" value="{{ spot.etag }}" />
             <div class="help-block with-errors" role="alert"></div>
         </div>
     </div>

@@ -13,7 +13,22 @@ var Item = {
 
     submit_item_batch: function (e) {
         var form_data = Item.get_batch_form_data();
-        Item._create_item_batch(form_data);
+        var items = [];
+        for (var i = 1; i < form_data['name'].length; i++) {
+            var entry = {
+                'id': '',
+                'csrfmiddlewaretoken': form_data['csrfmiddlewaretoken'],
+                'spot_id': form_data['spot_id'],
+                'etag': form_data['etag'],
+                'name': form_data['name'][i],
+                'category': form_data['category'][i],
+                'subcategory': form_data['subcategory'][i],
+                'extended_info:i_brand': form_data['extended_info:i_brand'][i],
+                'extended_info:i_description': form_data['extended_info:i_description'][i],
+            };
+            items.push(entry);
+        }
+        Item._create_item_batch(items);
     },
 
     delete_item: function (item_id, etag, success_callback) {
@@ -106,30 +121,30 @@ var Item = {
         });
     },
 
-    _create_item_batch: function (form_data) {
+    _create_item_batch: function (item_batch) {
+        var form_data = item_batch;;
         var f_data = new FormData();
         f_data.append("json", JSON.stringify(form_data));
-        console.log(form_data);
-        //$.ajax({
-        //    url: "/manager/api/item/",
-        //    type: "PUT",
-        //    data: f_data,
-        //    contentType: false,
-        //    processData: false,
-        //    dataType: "json",
-        //    headers: {'X-CSRFToken': Cookies.get('csrftoken')},
-        //    success: function(results) {
-        //        $("#pub_error").removeClass("hidden");
-        //        $("#pub_error").addClass("alert-success");
-        //        $("#pub_error").html();
-        //        Item._navigate_after_create();
-        //    },
-        //    error: function(xhr, status, error) {
-        //        $("#pub_error").removeClass("hidden");
-        //        $("#pub_error").addClass("alert-danger");
-        //        $("#pub_error").html(error + ": " + xhr.responseText);
-        //    }
-        //});
+        $.ajax({
+            url: "/manager/api/item/",
+            type: "PUT",
+            data: f_data,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            headers: {'X-CSRFToken': Cookies.get('csrftoken')},
+            success: function(results) {
+                $("#pub_error").removeClass("hidden");
+                $("#pub_error").addClass("alert-success");
+                $("#pub_error").html();
+                Item._navigate_after_create();
+            },
+            error: function(xhr, status, error) {
+                $("#pub_error").removeClass("hidden");
+                $("#pub_error").addClass("alert-danger");
+                $("#pub_error").html(error + ": " + xhr.responseText);
+            }
+        });
     },
 
     get_batch_form_data: function() {
