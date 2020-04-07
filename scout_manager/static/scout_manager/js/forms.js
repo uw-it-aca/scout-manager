@@ -409,6 +409,49 @@ var Forms = {
         });
     },
 
+    handle_submit_item_batch: function() {
+        $("#submit_item_batch").click(Item.submit_item_batch);
+    },
+
+    handle_delete_item_row: function() {
+        $(".remove-row-btn").click(function(e) {
+            $(this).parent().parent().remove();
+            Forms.validate_batch();
+            $("#submit_form :input").on('input', function (e) {
+                Forms.validate_batch();
+            });
+        });
+    },
+
+    handle_item_row_add: function() {
+        $("#item_row_add").click(function(e) {
+            let newRow = $(".item-entry-row").first().clone();
+            newRow.show();
+            $(this).parent().parent().parent().append(newRow);
+            Forms.handle_delete_item_row();
+            Forms.validate_batch();
+            $("#submit_form :input").on('input', function (e) {
+                Forms.validate_batch();
+            });
+        });
+    },
+
+    handle_multi_item_row_add: function() {
+        $("#item_row_add_x").click(function(e) {
+            let count = $("#add_row_num").val();
+            for (let step = 0; step < count; step++) {
+                let newRow = $(".item-entry-row").first().clone();
+                newRow.show();
+                $(this).parent().parent().parent().append(newRow);
+            }
+            Forms.handle_delete_item_row();
+            Forms.validate_batch();
+            $("#submit_form :input").on('input', function (e) {
+                Forms.validate_batch();
+            });
+        });
+    },
+
     handle_checkbox_group_clicks: function() {
         // handle clicks for any checkboxes in a "checkbox-group" grouping
         $(".checkbox-group.required input[type='checkbox']").change(function(e) {
@@ -542,6 +585,20 @@ var Forms = {
             return false;
         }
         return true
+    },
+
+    validate_batch: function() {
+        var serialized_form = Item.get_batch_form_data();
+        $("#submit_item_batch").prop("disabled", false);
+        for (var i = 1; i < serialized_form["name"].length; i++) {
+            if (serialized_form["name"][i] === "" ||
+                serialized_form["category"][i] === "" ||
+                serialized_form["subcategory"][i] === "" ||
+                serialized_form["extended_info:i_brand"][i] === "" ||
+                serialized_form["extended_info:i_description"][i] === "") {
+                $("#submit_item_batch").prop("disabled", true);
+            }
+        }
     },
 
     validate_publish: function() {

@@ -44,20 +44,33 @@ def _filter_spot_items(item_id, spot):
 
 
 def create_item(form_data):
-    item_json = _build_item_json(form_data)
-    try:
-        # TODO: figure out if this is even needed any longer.
-        spot_id = item_json.pop('new_spot_id')
-    except KeyError:
-        spot_id = item_json['spot_id']
-    item_json.pop('id')
-    item_json.pop('spot_id')
+    req_data = json.loads(form_data['json'])
+    if isinstance(req_data, list):
+        spot_id = req_data[0]['spot_id']
+        spot_client = Spotseeker()
+        spot_data = _get_spot_json(spot_id)
+        etag = req_data[0]['etag']
+        for item in req_data:
+            item_json = _build_item_json({'json': json.dumps(item)})
+            item_json.pop('id')
+            item_json.pop('spot_id')
+            spot_data['items'].append(item_json)
+        spot_client.put_spot(spot_id, json.dumps(spot_data), etag)
+    else:
+        item_json = _build_item_json(form_data)
+        try:
+            # TODO: figure out if this is even needed any longer.
+            spot_id = item_json.pop('new_spot_id')
+        except KeyError:
+            spot_id = item_json['spot_id']
+        item_json.pop('id')
+        item_json.pop('spot_id')
 
-    spot_client = Spotseeker()
-    json_data = _get_spot_json(spot_id)
-    etag = json_data['etag']
-    json_data['items'].append(item_json)
-    spot_client.put_spot(spot_id, json.dumps(json_data), etag)
+        spot_client = Spotseeker()
+        json_data = _get_spot_json(spot_id)
+        etag = json_data['etag']
+        json_data['items'].append(item_json)
+        spot_client.put_spot(spot_id, json.dumps(json_data), etag)
 
 
 def _get_spot_json(spot_id):
