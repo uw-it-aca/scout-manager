@@ -25,6 +25,10 @@ urlpatterns = patterns(
         'scout_manager.views.pages.items_add',
         name='items_add'),
 
+    url(r'^items/add/batch/$',
+        'scout_manager.views.pages.items_add_batch',
+        name='items_add_batch'),
+
     # /spaces/
     url(r'^spaces/$',
         'scout_manager.views.pages.spaces',
