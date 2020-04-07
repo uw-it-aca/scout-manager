@@ -59,7 +59,6 @@ def items_add(request):
 
 
 def items_add_batch(request):
-    entries = ['one', 'two']
     netid = UserService().get_user()
     buildings = get_building_list()
     tech_spots = get_spots("tech")
@@ -69,7 +68,6 @@ def items_add_batch(request):
 
     context = {"spot": spot,
                "buildings": buildings,
-               "entries": entries,
                "filters": info,
                "netid": netid}
     return render_to_response(

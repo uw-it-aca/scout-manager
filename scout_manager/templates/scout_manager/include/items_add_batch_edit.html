@@ -24,7 +24,6 @@
     </div>
 </div>
 
-{% for entry in entries %}
 <div class="row item-entry-row" style="margin-bottom:1em;">
     <div class="col-md-3">
         <div class="form-group">
@@ -82,6 +81,63 @@
         <button id="remove_row_btn" type="button" class="remove-row-btn btn btn-danger btn-sm"><i class="fa fa-trash"></i> <span>Remove Row</span></button>
     </div>
 </div>
-{% endfor %}
+
+<div class="row item-entry-row" style="margin-bottom:1em;">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="">Name:</label>
+            <input id="i_name_input" maxlength="50" class="form-control" type="text" value="" required name="name" data-error="Item name is required">
+            <div class="help-block with-errors" role="alert"></div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="">Category:</label>
+            <select id="category_select" class="form-control" name="category" required data-error="Category selection is required.">
+                <option selected value="">Select a category</option>
+                {% for category, subcategories in filters.categories.items %}
+                <option value={{ category }}>{{ subcategories.name|default:category }}</option>
+                {% endfor %}
+            </select>
+            <div class="help-block with-errors" role="alert"></div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="">Subcategory:</label>
+            <select id="subcategory_select" class="form-control" name="subcategory" required data-error="Subcategory selection is required.">
+                <option selected value="">Select a subcategory</option>
+                {% for category, subcategories in filters.categories.items %}
+                   {% for subcategory, name in subcategories.sub.items %}
+                   <option value={{ subcategory }}>{{ name.name|default:subcategory }}</option>
+                   {% endfor %}
+                {% endfor %}
+            </select>
+            <div class="help-block with-errors" role="alert"></div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="">Brand:</label>
+            <select id="brand_select" class="form-control" name="extended_info:i_brand" required data-error="Brand selection is required.">
+                <option selected value="">Select a brand</option>
+                {% for brand in filters.brands %}
+                    <option value={{ brand }}>{{ brand }}</option>
+                {% endfor %}
+            </select>
+            <div class="help-block with-errors" role="alert"></div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="">Description:</label>
+            <input id="i_description_input" maxlength="350" class="form-control" type="text" value="" required name="extended_info:i_description" data-error="Item description is required">
+            <div class="help-block with-errors" role="alert"></div>
+        </div>
+    </div>
+    <div class="col-md-6" style="height: 70px; padding-top: 25px;">
+        <button id="remove_row_btn" type="button" class="remove-row-btn btn btn-danger btn-sm"><i class="fa fa-trash"></i> <span>Remove Row</span></button>
+    </div>
+</div>
 
 </div>
