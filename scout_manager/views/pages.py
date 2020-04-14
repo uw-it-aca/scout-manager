@@ -9,7 +9,8 @@ from scout_manager.models import GroupMembership
 from restclients_core.exceptions import DataFailureException
 from scout.dao.image import get_spot_image, get_item_image
 from scout.dao.item import get_filtered_items, get_item_count
-from scout.views import CAMPUS_LOCATIONS
+from scout.dao.space import get_spot_list as get_spots
+from scout.views import CAMPUS_LOCATIONS, extract_spots_item_info
 from django.http import Http404, HttpResponse
 from userservice.user import UserService
 import base64
@@ -43,13 +44,34 @@ def items(request):
 def items_add(request):
     netid = UserService().get_user()
     buildings = get_building_list()
+    tech_spots = get_spots("tech")
+    info = extract_spots_item_info(tech_spots)
     spot = manager_get_spot_by_id(request.GET.get('spot_id')) \
         if request.GET.get('spot_id') else None
     context = {"spot": spot,
                "buildings": buildings,
+               "filters": info,
                "netid": netid}
     return render_to_response(
         'scout_manager/items_add.html',
+        context,
+        context_instance=RequestContext(request))
+
+
+def items_add_batch(request):
+    netid = UserService().get_user()
+    buildings = get_building_list()
+    tech_spots = get_spots("tech")
+    info = extract_spots_item_info(tech_spots)
+    spot = manager_get_spot_by_id(request.GET.get('spot_id')) \
+        if request.GET.get('spot_id') else None
+
+    context = {"spot": spot,
+               "buildings": buildings,
+               "filters": info,
+               "netid": netid}
+    return render_to_response(
+        'scout_manager/items_add_batch.html',
         context,
         context_instance=RequestContext(request))
 
@@ -58,9 +80,13 @@ def items_edit(request, item_id):
     netid = UserService().get_user()
     buildings = get_building_list()
     spot = manager_get_item_by_id(int(item_id))
+    tech_spots = get_spots("tech")
+    info = extract_spots_item_info(tech_spots)
+
     context = {"spot": spot,
                "buildings": buildings,
                "app_type": 'tech',
+               "filters": info,
                "netid": netid}
     return render_to_response('scout_manager/items_edit.html', context,
                               context_instance=RequestContext(request))

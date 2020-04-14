@@ -1,0 +1,12 @@
+{% extends "scout_manager/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Batch import new items{% endblock %}
+
+{% block web_content %}
+
+<form id="submit_form" role="form">
+    {% include "scout_manager/include/items_add_batch_edit.html" %}
+</form>
+
+{% endblock %}
