@@ -4,11 +4,11 @@
 <div class="alert hidden" role="alert" id="pub_error"></div>
 
 <div class="clearfix sticky" style="margin-bottom:1em;">
-    <h2 class="pull-left" id="sub_header">{% if spot.item.name %}{{ spot.item.name }}{% else %}Batch Import Items{% endif %}</h2>
+    <h2 class="pull-left" id="sub_header">{% if spot.item.name %}{{ spot.item.name }}{% else %}Batch Add Items{% endif %}</h2>
     <div class="pull-right">
             <div class="scout-published">
                 <span class="text-muted item-help"></span>&nbsp;&nbsp;&nbsp;
-                <input id="submit_item_batch" type="button" class="btn btn-primary" value="Import Items" style="display:inline-block;"></input>
+                <input id="submit_item_batch" type="button" class="btn btn-primary" value="Add Items" style="display:inline-block;"></input>
             </div>
     </div>
 </div>
@@ -24,7 +24,7 @@
     </div>
 </div>
 
-<div class="row item-entry-row" style="margin-bottom:1em;">
+<div id="placeholder_row" class="row item-entry-row" style="margin-bottom:1em;">
     <div class="col-md-3">
         <div class="form-group">
             <label for="">Name:</label>
@@ -35,7 +35,7 @@
     <div class="col-md-3">
         <div class="form-group">
             <label for="">Category:</label>
-            <select id="category_select" class="form-control" name="category" required data-error="Category selection is required.">
+            <select id="category_select" class="form-control category_dropdown" name="category" required data-error="Category selection is required.">
                 <option selected value="">Select a category</option>
                 {% for category, subcategories in filters.categories.items %}
                 <option value={{ category }}>{{ subcategories.name|default:category }}</option>
@@ -50,9 +50,11 @@
             <select id="subcategory_select" class="form-control" name="subcategory" required data-error="Subcategory selection is required.">
                 <option selected value="">Select a subcategory</option>
                 {% for category, subcategories in filters.categories.items %}
-                   {% for subcategory, name in subcategories.sub.items %}
-                   <option value={{ subcategory }}>{{ name.name|default:subcategory }}</option>
-                   {% endfor %}
+                   <optgroup class="category_{{ category }}_">
+                       {% for subcategory, name in subcategories.sub.items %}
+                       <option value={{ subcategory }}>{{ name.name|default:subcategory }}</option>
+                       {% endfor %}
+                   </optgroup>
                 {% endfor %}
             </select>
             <div class="help-block with-errors" role="alert"></div>
@@ -93,7 +95,7 @@
     <div class="col-md-3">
         <div class="form-group">
             <label for="">Category:</label>
-            <select id="category_select" class="form-control" name="category" required data-error="Category selection is required.">
+            <select id="category_select" data-row-key="1" class="form-control category_dropdown" name="category" required data-error="Category selection is required.">
                 <option selected value="">Select a category</option>
                 {% for category, subcategories in filters.categories.items %}
                 <option value={{ category }}>{{ subcategories.name|default:category }}</option>
@@ -105,12 +107,14 @@
     <div class="col-md-3">
         <div class="form-group">
             <label for="">Subcategory:</label>
-            <select id="subcategory_select" class="form-control" name="subcategory" required data-error="Subcategory selection is required.">
+            <select id="subcategory_select" class="subcategory_dropdown_1 form-control" name="subcategory" required data-error="Subcategory selection is required.">
                 <option selected value="">Select a subcategory</option>
                 {% for category, subcategories in filters.categories.items %}
-                   {% for subcategory, name in subcategories.sub.items %}
-                   <option value={{ subcategory }}>{{ name.name|default:subcategory }}</option>
-                   {% endfor %}
+                   <optgroup style="display: none" class="category_{{category}}_1 subcategory_group_1">
+                       {% for subcategory, name in subcategories.sub.items %}
+                       <option value={{ subcategory }}>{{ name.name|default:subcategory }}</option>
+                       {% endfor %}
+                   </optgroup>
                 {% endfor %}
             </select>
             <div class="help-block with-errors" role="alert"></div>
