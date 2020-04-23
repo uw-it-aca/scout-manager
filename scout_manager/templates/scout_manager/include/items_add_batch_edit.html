@@ -52,7 +52,7 @@
                 {% for category, subcategories in filters.categories.items %}
                    <optgroup class="category_{{ category }}_">
                        {% for subcategory, name in subcategories.sub.items %}
-                       <option value={{ subcategory }}>{{ name.name|default:subcategory }}</option>
+                       <option value="{{ subcategory }}">{{ name.name|default:subcategory }}</option>
                        {% endfor %}
                    </optgroup>
                 {% endfor %}
@@ -72,14 +72,21 @@
             <div class="help-block with-errors" role="alert"></div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-3">
         <div class="form-group">
             <label for="">Description:</label>
             <input id="i_description_input" maxlength="350" class="form-control" type="text" value="" required name="extended_info:i_description" data-error="Item description is required">
             <div class="help-block with-errors" role="alert"></div>
         </div>
     </div>
-    <div class="col-md-6" style="height: 70px; padding-top: 25px;">
+    <div class="col-md-3">
+        <label for="">Publish Item:</label>
+        <select name="extended_info:i_is_active" class="form-control">
+            <option selected value="no">No</option>
+            <option value="yes">Yes</option>
+        </select>
+    </div>
+    <div class="col-md-3" style="height: 70px; padding-top: 25px;">
         <button id="remove_row_btn" type="button" class="remove-row-btn btn btn-danger btn-sm"><i class="fa fa-trash"></i> <span>Remove Row</span></button>
     </div>
 </div>
@@ -112,7 +119,7 @@
                 {% for category, subcategories in filters.categories.items %}
                    <optgroup style="display: none" class="category_{{category}}_1 subcategory_group_1">
                        {% for subcategory, name in subcategories.sub.items %}
-                       <option value={{ subcategory }}>{{ name.name|default:subcategory }}</option>
+                       <option value="{{ subcategory }}">{{ name.name|default:subcategory }}</option>
                        {% endfor %}
                    </optgroup>
                 {% endfor %}
@@ -132,14 +139,21 @@
             <div class="help-block with-errors" role="alert"></div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-3">
         <div class="form-group">
             <label for="">Description:</label>
             <input id="i_description_input" maxlength="350" class="form-control" type="text" value="" required name="extended_info:i_description" data-error="Item description is required">
             <div class="help-block with-errors" role="alert"></div>
         </div>
     </div>
-    <div class="col-md-6" style="height: 70px; padding-top: 25px;">
+    <div class="col-md-3">
+        <label for="">Publish Item:</label>
+        <select name="extended_info:i_is_active" class="form-control">
+            <option selected value="no">No</option>
+            <option value="yes">Yes</option>
+        </select>
+    </div>
+    <div class="col-md-3" style="height: 70px; padding-top: 25px;">
         <button id="remove_row_btn" type="button" class="remove-row-btn btn btn-danger btn-sm"><i class="fa fa-trash"></i> <span>Remove Row</span></button>
     </div>
 </div>

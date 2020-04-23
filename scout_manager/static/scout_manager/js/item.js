@@ -26,6 +26,9 @@ var Item = {
                 'extended_info:i_brand': form_data['extended_info:i_brand'][i],
                 'extended_info:i_description': form_data['extended_info:i_description'][i],
             };
+            if (form_data['extended_info:i_is_active'][i] == "yes") {
+                entry['extended_info:i_is_active'] = "true"
+            }
             items.push(entry);
         }
         Item._create_item_batch(items);

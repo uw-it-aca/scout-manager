@@ -152,6 +152,7 @@ class Item(RESTDispatch):
     def DELETE(self, request, item_id):
         user = UserService().get_user()
         spot_id = request.body
+        spot_id = int(spot_id)
         if not can_edit_spot(spot_id, user):
             raise PermissionDenied
         try:
