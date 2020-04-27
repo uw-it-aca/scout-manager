@@ -442,30 +442,27 @@ var Forms = {
 
     handle_item_row_add: function() {
         $("#item_row_add").click(function(e) {
-            let newRow = Forms.add_row_to_batch_form();
-            $(this).parent().parent().parent().append(newRow);
-            Forms.handle_delete_item_row();
-            Forms.validate_batch();
-            Forms.handle_category_change();
-            $("#submit_form :input").on('input', function (e) {
-                Forms.validate_batch();
-            });
+            Forms.handle_add_row(this, 1);
         });
     },
 
     handle_multi_item_row_add: function() {
         $("#item_row_add_x").click(function(e) {
             let count = $("#add_row_num").val();
-            for (let step = 0; step < count; step++) {
-                let newRow = Forms.add_row_to_batch_form();
-                $(this).parent().parent().parent().append(newRow);
-            }
-            Forms.handle_delete_item_row();
+            Forms.handle_add_row(this, count);
+        });
+    },
+
+    handle_add_row: function(context, count) {
+        for (let step = 0; step < count; step++) {
+            let newRow = Forms.add_row_to_batch_form();
+            $(context).parent().parent().parent().append(newRow);
+        }
+        Forms.handle_delete_item_row();
+        Forms.validate_batch();
+        Forms.handle_category_change();
+        $("#submit_form :input").on('input', function (e) {
             Forms.validate_batch();
-            Forms.handle_category_change();
-            $("#submit_form :input").on('input', function (e) {
-                Forms.validate_batch();
-            });
         });
     },
 
