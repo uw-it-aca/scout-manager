@@ -48,8 +48,11 @@ $(function(){
         Forms.handle_delete_item_row();
         Forms.handle_submit_item_batch();
         Forms.validate_batch();
+        window.batchRows = 1;
+        Forms.handle_category_change();
         $("#submit_form :input").on('input', function (e) {
             Forms.validate_batch();
+            Forms.handle_category_change();
         })
     }
 
