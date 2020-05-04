@@ -55,6 +55,23 @@
             <textarea rows="4" class="form-control" id="" type="text" required name="extended_info:i_description">{{ spot.item.description }}</textarea>
             <div class="help-block with-errors" role="alert"></div>
             </div>
+        {% if is_superuser %}
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="">Category:</label>
+                <input id="" class="form-control" type="text" value="{{spot.item.category}}" required name="category">
+                <div class="help-block with-errors" role="alert"></div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="">Subcategory:</label>
+                <input id="" class="form-control" type="text" value="{{spot.item.subcategory}}" required name="subcategory">
+                <div class="help-block with-errors" role="alert"></div>
+            </div>
+        </div>
+        {% else %}
 
         <fieldset class="radio-group required">
             <legend for="">Category</legend>
@@ -94,6 +111,7 @@
 
         </fieldset>
         </div>
+        {% endif %}
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="">Brand:</label>

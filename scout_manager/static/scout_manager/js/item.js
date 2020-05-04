@@ -1,6 +1,8 @@
 var Item = {
     submit_item: function (e) {
         var form_data = Item.get_edit_form_data();
+        // Normalize category name format for db storage (lowercase and underscore-seperated)
+        form_data['category'] = form_data['category'].replace(/\s+/g, '_').toLowerCase();
         var is_create = Item._get_is_add(form_data);
 
         if (is_create) {
