@@ -1,8 +1,19 @@
 var Item = {
     submit_item: function (e) {
         var form_data = Item.get_edit_form_data();
+        // Use the value of the input that was not hidden during submission
+        if ($("#switch_input").val() == 'Use Text Inputs') {
+            // Second entry corresponds to dropdown selection
+            form_data['category'] = form_data['category'][1]
+            form_data['subcategory'] = form_data['subcategory'][1]
+        } else {
+            // First entry corresponds to a text input
+            form_data['category'] = form_data['category'][0]
+            form_data['subcategory'] = form_data['subcategory'][0]
+        }
         // Normalize category name format for db storage (lowercase and underscore-seperated)
         form_data['category'] = form_data['category'].replace(/\s+/g, '_').toLowerCase();
+
         var is_create = Item._get_is_add(form_data);
 
         if (is_create) {
