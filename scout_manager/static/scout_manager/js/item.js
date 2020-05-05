@@ -6,7 +6,7 @@ var Item = {
             // Second entry corresponds to dropdown selection
             form_data['category'] = form_data['category'][1]
             form_data['subcategory'] = form_data['subcategory'][1]
-        } else {
+        } else if ($('#switch_input').val() == 'Use Selections') {
             // First entry corresponds to a text input
             form_data['category'] = form_data['category'][0]
             form_data['subcategory'] = form_data['subcategory'][0]

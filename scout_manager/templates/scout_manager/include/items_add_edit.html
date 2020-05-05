@@ -144,7 +144,7 @@
                 {% if "cameras" not in category %}
                 <div class="subcategory" style="display: none;" id="category_{{ category }}">
                         {% for subcategory, name in subcategories.sub.items %}
-                        <div class="radio"><label><input type="radio" name="subcategory" {% if subcategory in spot.item.subcategory %} checked {% endif %} value={{ subcategory }}>{{ name.name|default:subcategory }}</label></div>
+                        <div class="radio"><label><input type="radio" name="subcategory" {% if subcategory in spot.item.subcategory %} checked {% endif %} value="{{ subcategory }}">{{ name.name|default:subcategory }}</label></div>
                         {% endfor %}
                 </div>
                 {% endif %}
