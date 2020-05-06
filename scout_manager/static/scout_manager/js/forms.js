@@ -187,8 +187,10 @@ var Forms = {
     init_input_switch: function() {
         $("#switch_input").click(function(e) {
             if (e.target.value == 'Use Text Inputs') {
-                $("#dropdown_controls").hide();
                 $("#text_input_controls").show();
+                $('#category_text_input').val($("input[name='category']:checked").val());
+                $('#subcategory_text_input').val($("input[name='subcategory']:checked").val());
+                $("#dropdown_controls").hide();
                 $("#switch_input").val('Use Selections');
             } else {
                 $("#dropdown_controls").show();

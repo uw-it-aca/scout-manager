@@ -63,21 +63,21 @@
         <div class="col-md-6" style="padding-left: 0;">
             <div class="form-group">
                 <label for="">Category:</label>
-                <input id="" class="form-control" type="text" value="{{spot.item.category}}" required name="category">
+                <input id="category_text_input" class="form-control" type="text" value="{{spot.item.category}}" required name="category">
                 <div class="help-block with-errors" role="alert"></div>
             </div>
         </div>
         <div class="col-md-6" style="padding-right: 0;">
             <div class="form-group">
                 <label for="">Subcategory:</label>
-                <input id="" class="form-control" type="text" value="{{spot.item.subcategory}}" required name="subcategory">
+                <input id="subcategory_text_input" class="form-control" type="text" value="{{spot.item.subcategory}}" required name="subcategory">
                 <div class="help-block with-errors" role="alert"></div>
             </div>
         </div>
         </div>
         {% endif %}
         <div id="dropdown_controls">
-        <fieldset class="radio-group required">
+        <fieldset class="radio-group required" id="category_fieldset">
             <legend for="">Category</legend>
             <div class="well" id="item_category">
             {% for category, subcategories in filters.categories.items %}
@@ -87,7 +87,7 @@
             <div class="help-block with-errors" role="alert">Please select a category.</div>
         </fieldset>
 
-        <fieldset class="radio-group required">
+        <fieldset id="subcategory_fieldset" class="radio-group required">
             <legend>Subcategory</legend>
             <div class="well" id="item_subcategory" style="min-height:40px;">
                 <div class="subcategory" style="" id="category_cameras">
