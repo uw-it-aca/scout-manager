@@ -51,6 +51,7 @@ def items_add(request):
     context = {"spot": spot,
                "buildings": buildings,
                "filters": info,
+               "is_superuser": is_superuser(netid),
                "netid": netid}
     return render_to_response(
         'scout_manager/items_add.html',
@@ -86,6 +87,7 @@ def items_edit(request, item_id):
     context = {"spot": spot,
                "buildings": buildings,
                "app_type": 'tech',
+               "is_superuser": is_superuser(netid),
                "filters": info,
                "netid": netid}
     return render_to_response('scout_manager/items_edit.html', context,

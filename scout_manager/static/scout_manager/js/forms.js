@@ -17,6 +17,7 @@ var Forms = {
         Forms.sort_building_list();
         Forms.init_hours_midnight();
         Forms.capitalize_space_name();
+        Forms.init_input_switch();
 
         $("#campus_select").trigger("change");
 
@@ -180,6 +181,22 @@ var Forms = {
                     }
                 }
             })
+        });
+    },
+
+    init_input_switch: function() {
+        $("#switch_input").click(function(e) {
+            if (e.target.value == 'Use Text Inputs') {
+                $("#text_input_controls").show();
+                $('#category_text_input').val($("input[name='category']:checked").val());
+                $('#subcategory_text_input').val($("input[name='subcategory']:checked").val());
+                $("#dropdown_controls").hide();
+                $("#switch_input").val('Use Selections');
+            } else {
+                $("#dropdown_controls").show();
+                $("#text_input_controls").hide();
+                $("#switch_input").val('Use Text Inputs');
+            }
         });
     },
 
