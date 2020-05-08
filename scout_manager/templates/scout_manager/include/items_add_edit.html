@@ -23,6 +23,9 @@
     </div>
 </div>
 
+{% if is_superuser %}
+<input id="switch_input" type="button" class="btn-sm btn-primary" value="Use Text Inputs" style="display:inline-block;"></input>
+{% endif %}
 
 <div class="row">
 <div class="col-md-8">
@@ -55,8 +58,26 @@
             <textarea rows="4" class="form-control" id="" type="text" required name="extended_info:i_description">{{ spot.item.description }}</textarea>
             <div class="help-block with-errors" role="alert"></div>
             </div>
-
-        <fieldset class="radio-group required">
+        {% if is_superuser %}
+        <div style="display: none;" id="text_input_controls">
+        <div class="col-md-6" style="padding-left: 0;">
+            <div class="form-group">
+                <label for="">Category:</label>
+                <input id="category_text_input" class="form-control" type="text" value="{{spot.item.category}}" required name="category">
+                <div class="help-block with-errors" role="alert"></div>
+            </div>
+        </div>
+        <div class="col-md-6" style="padding-right: 0;">
+            <div class="form-group">
+                <label for="">Subcategory:</label>
+                <input id="subcategory_text_input" class="form-control" type="text" value="{{spot.item.subcategory}}" required name="subcategory">
+                <div class="help-block with-errors" role="alert"></div>
+            </div>
+        </div>
+        </div>
+        {% endif %}
+        <div id="dropdown_controls">
+        <fieldset class="radio-group required" id="category_fieldset">
             <legend for="">Category</legend>
             <div class="well" id="item_category">
             {% for category, subcategories in filters.categories.items %}
@@ -66,7 +87,7 @@
             <div class="help-block with-errors" role="alert">Please select a category.</div>
         </fieldset>
 
-        <fieldset class="radio-group required">
+        <fieldset id="subcategory_fieldset" class="radio-group required">
             <legend>Subcategory</legend>
             <div class="well" id="item_subcategory" style="min-height:40px;">
                 <div class="subcategory" style="" id="category_cameras">
@@ -83,7 +104,7 @@
                 {% if "cameras" not in category %}
                 <div class="subcategory" style="display: none;" id="category_{{ category }}">
                         {% for subcategory, name in subcategories.sub.items %}
-                        <div class="radio"><label><input type="radio" name="subcategory" {% if subcategory in spot.item.subcategory %} checked {% endif %} value={{ subcategory }}>{{ name.name|default:subcategory }}</label></div>
+                        <div class="radio"><label><input type="radio" name="subcategory" {% if subcategory in spot.item.subcategory %} checked {% endif %} value="{{ subcategory }}">{{ name.name|default:subcategory }}</label></div>
                         {% endfor %}
                 </div>
                 {% endif %}
@@ -93,6 +114,7 @@
             <div class="help-block with-errors" role="alert">Please select a subcategory.</div>
 
         </fieldset>
+        </div>
         </div>
             <div class="col-md-6">
                 <div class="form-group">
