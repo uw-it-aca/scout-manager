@@ -119,7 +119,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="">Brand:</label>
-                    <select id="" class="form-control" name="extended_info:i_brand" required data-error="Brand selection is required.">
+                    <select id="brand_select_input" class="form-control" name="extended_info:i_brand" required data-error="Brand selection is required.">
                         <option selected value="{{spot.item.brand}}">Select a brand</option>
                         {% for brand in filters.brands %}
                            {% if spot.item.brand in brand  %}
@@ -129,6 +129,9 @@
                            {% endif %}
                         {% endfor %}
                     </select>
+                    {% if is_superuser %}
+                      <input id="brand_text_input" class="form-control" type="text" value="{{ spot.item.brand }}" name="extended_info:i_brand" style="display: none;">
+                    {% endif %}
                     <div class="help-block with-errors" role="alert"></div>
                 </div>
             </div>
