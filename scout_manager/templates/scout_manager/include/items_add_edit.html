@@ -90,21 +90,21 @@
         <fieldset id="subcategory_fieldset" class="radio-group required">
             <legend>Subcategory</legend>
             <div class="well" id="item_subcategory" style="min-height:40px;">
-                <div class="subcategory" style="" id="category_cameras">
                 {% for category, subcategories in filters.categories.items %}
-                        {% if "cameras" in category %}
+                {% if spot.item.category in category %}
+                <div class="subcategory" style="" id="category_{{ category }}">
                         {% for subcategory, name in subcategories.sub.items %}
                         <div class="radio"><label><input type="radio" name="subcategory" {% if subcategory in spot.item.subcategory %} checked {% endif %} value="{{ subcategory }}">{{ name.name|default:subcategory }}</label></div>
                         {% endfor %}
-                        {% endif %}
-                    {% endfor %}
                 </div>
+                {% endif %}
+                {% endfor %}
 
                 {% for category, subcategories in filters.categories.items %}
-                {% if "cameras" not in category %}
+                {% if spot.item.category not in category %}
                 <div class="subcategory" style="display: none;" id="category_{{ category }}">
                         {% for subcategory, name in subcategories.sub.items %}
-                        <div class="radio"><label><input type="radio" name="subcategory" {% if subcategory in spot.item.subcategory %} checked {% endif %} value="{{ subcategory }}">{{ name.name|default:subcategory }}</label></div>
+                        <div class="radio"><label><input type="radio" name="subcategory" value="{{ subcategory }}">{{ name.name|default:subcategory }}</label></div>
                         {% endfor %}
                 </div>
                 {% endif %}
