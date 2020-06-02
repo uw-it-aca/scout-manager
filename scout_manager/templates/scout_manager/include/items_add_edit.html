@@ -90,21 +90,21 @@
         <fieldset id="subcategory_fieldset" class="radio-group required">
             <legend>Subcategory</legend>
             <div class="well" id="item_subcategory" style="min-height:40px;">
-                <div class="subcategory" style="" id="category_cameras">
                 {% for category, subcategories in filters.categories.items %}
-                        {% if "cameras" in category %}
+                {% if spot.item.category in category %}
+                <div class="subcategory" style="" id="category_{{ category }}">
                         {% for subcategory, name in subcategories.sub.items %}
                         <div class="radio"><label><input type="radio" name="subcategory" {% if subcategory in spot.item.subcategory %} checked {% endif %} value="{{ subcategory }}">{{ name.name|default:subcategory }}</label></div>
                         {% endfor %}
-                        {% endif %}
-                    {% endfor %}
                 </div>
+                {% endif %}
+                {% endfor %}
 
                 {% for category, subcategories in filters.categories.items %}
-                {% if "cameras" not in category %}
+                {% if spot.item.category not in category %}
                 <div class="subcategory" style="display: none;" id="category_{{ category }}">
                         {% for subcategory, name in subcategories.sub.items %}
-                        <div class="radio"><label><input type="radio" name="subcategory" {% if subcategory in spot.item.subcategory %} checked {% endif %} value="{{ subcategory }}">{{ name.name|default:subcategory }}</label></div>
+                        <div class="radio"><label><input type="radio" name="subcategory" value="{{ subcategory }}">{{ name.name|default:subcategory }}</label></div>
                         {% endfor %}
                 </div>
                 {% endif %}
@@ -119,7 +119,19 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="">Brand:</label>
-                    <input id="" class="form-control" type="text" value="{{spot.item.brand}}" required name="extended_info:i_brand">
+                    <select id="brand_select_input" class="form-control" name="extended_info:i_brand" required data-error="Brand selection is required.">
+                        <option selected value="{{spot.item.brand}}">Select a brand</option>
+                        {% for brand in filters.brands %}
+                           {% if spot.item.brand in brand  %}
+                            <option selected value={{ brand }}>{{ brand }}</option>
+                           {% else %}
+                            <option value={{ brand }}>{{ brand }}</option>
+                           {% endif %}
+                        {% endfor %}
+                    </select>
+                    {% if is_superuser %}
+                      <input id="brand_text_input" class="form-control" type="text" value="{{ spot.item.brand }}" name="extended_info:i_brand" style="display: none;">
+                    {% endif %}
                     <div class="help-block with-errors" role="alert"></div>
                 </div>
             </div>
