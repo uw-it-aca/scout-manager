@@ -23,7 +23,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="">
 
-{% if request|is_mobile %}
+{% if request.user_agent.is_mobile %}
     <!-- critical (above the fold styles) -->
     {% compress css inline %}
     <link rel="stylesheet" href="{% static 'vendor/css/bootstrap-3.3.7.min.css' %}">
@@ -37,7 +37,7 @@
     {% endcompress %}
 {% endif %}
 
-{% if request|is_tablet %}
+{% if request.user_agent.is_tablet %}
     <!-- critical (above the fold styles) -->
     {% compress css inline %}
     <!-- inline -->
