@@ -55,15 +55,6 @@ STATICFILES_FINDERS = (
     "compressor.finders.CompressorFinder",
 )
 
-# django-mobileesp
-from django_mobileesp.detector import mobileesp_agent as agent
-DETECT_USER_AGENTS = {
-    'is_tablet' : agent.detectTierTablet,
-    'is_mobile': agent.detectMobileQuick,
-    'is_and': agent.detectAndroid,
-    'is_ios': agent.detectIos,
-    'is_win': agent.detectWindowsPhone,
-}
 
 # django-compressor
 COMPRESS_PRECOMPILERS = (
