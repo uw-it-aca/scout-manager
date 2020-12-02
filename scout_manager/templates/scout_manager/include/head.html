@@ -53,7 +53,8 @@
     {% endcompress %}
 {% endif %}
 
-{% if is_desktop %}
+{% if not request.user_agent.is_mobile and not request.user_agent.is_tablet %}
+    <!-- add desktop styles -->
     <!-- critical (above the fold styles) -->
     {% compress css inline %}
     <link rel="stylesheet" href="{% static 'vendor/css/bootstrap-3.3.7.min.css' %}">
