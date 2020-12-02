@@ -20,8 +20,7 @@ def home(request):
     netid = UserService().get_user()
     return render_to_response(
         'scout_manager/home.html',
-        {"netid": netid},
-        context_instance=RequestContext(request))
+        {"netid": netid})
 
 
 def items(request):
@@ -37,8 +36,7 @@ def items(request):
                "count": count,
                "netid": netid,
                "is_superuser": is_superuser(netid)}
-    return render_to_response('scout_manager/items.html', context,
-                              context_instance=RequestContext(request))
+    return render_to_response('scout_manager/items.html', context)
 
 
 def items_add(request):
@@ -54,8 +52,7 @@ def items_add(request):
                "netid": netid}
     return render_to_response(
         'scout_manager/items_add.html',
-        context,
-        context_instance=RequestContext(request))
+        context)
 
 
 def items_add_batch(request):
@@ -72,8 +69,7 @@ def items_add_batch(request):
                "netid": netid}
     return render_to_response(
         'scout_manager/items_add_batch.html',
-        context,
-        context_instance=RequestContext(request))
+        context)
 
 
 def items_edit(request, item_id):
@@ -88,8 +84,7 @@ def items_edit(request, item_id):
                "app_type": 'tech',
                "filters": info,
                "netid": netid}
-    return render_to_response('scout_manager/items_edit.html', context,
-                              context_instance=RequestContext(request))
+    return render_to_response('scout_manager/items_edit.html', context)
 
 
 def schedule(request, spot_id):
@@ -99,8 +94,7 @@ def schedule(request, spot_id):
                "netid": netid}
     return render_to_response(
         'scout_manager/schedule.html',
-        context,
-        context_instance=RequestContext(request))
+        context)
 
 
 def spaces(request):
@@ -126,8 +120,7 @@ def spaces(request):
                "is_superuser": is_superuser(netid)}
     return render_to_response(
         'scout_manager/spaces.html',
-        context,
-        context_instance=RequestContext(request))
+        context)
 
 
 def spaces_add(request):
@@ -139,16 +132,14 @@ def spaces_add(request):
                "netid": netid}
     return render_to_response(
         'scout_manager/spaces_add.html',
-        context,
-        context_instance=RequestContext(request))
+        context)
 
 
 def spaces_upload(request):
     netid = UserService().get_user()
     return render_to_response(
         'scout_manager/spaces_upload.html',
-        {"netid": netid},
-        context_instance=RequestContext(request))
+        {"netid": netid},)
 
 
 def spaces_edit(request, spot_id):
@@ -172,8 +163,7 @@ def spaces_edit(request, spot_id):
                }
     return render_to_response(
         'scout_manager/spaces_edit.html',
-        context,
-        context_instance=RequestContext(request))
+        context)
 
 
 def image(request, image_id, spot_id):
