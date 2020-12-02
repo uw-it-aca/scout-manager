@@ -1,8 +1,8 @@
 [run]
-source = scout-manager
+source = scout_manager
 parallel = True
 
 [paths]
 source =
-  scout-manager/
-  /app/scout-manager/
+  scout_manager/
+  /app/scout_manager/
