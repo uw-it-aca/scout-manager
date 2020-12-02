@@ -25,7 +25,7 @@ function catch {
     exit 1
 }
 
-run_test "pycodestyle ${DJANGO_APP}/ --exclude=migrations,static"
+run_test "pycodestyle ${DJANGO_APP}/ --exclude=migrations,static,${DJANGO_APP}/test"
 
 run_test "coverage run --source=${DJANGO_APP} '--omit=*/migrations/*' manage.py test ${DJANGO_APP}"
 
