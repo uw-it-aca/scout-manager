@@ -13,20 +13,18 @@ setup(
     include_package_data=True,
     install_requires = [
         'setuptools',
-        'django>=1.9,<1.10',
+        'django>=1.10,<1.11',
         'django-compressor',
         'django-user-agents',
-        'django-pyscss',
         'pytz',
         'html5lib<=0.9999999',
         'beautifulsoup4',
         'pillow',
         'UW-RestClients-GWS==1.0',
         'openpyxl<=2.6.4',
-        'Django-UserService==1.1.0',
-        'Django-SupportTools==1.0',
+        'Django-UserService==1.4.0',
+        'Django-SupportTools>1.3,<2.0',
         'django-pyscss',
-        'django-user-agents'
     ],
     license='Apache License, Version 2.0',  # example license
     description='A Django app for developer resources complimentary to mdot_web client.',
