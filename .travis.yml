@@ -3,24 +3,52 @@ language: python
 python:
   - "3.6"
   - "2.7"
+env:
+  global:
+    - RELEASE_NAME="scout-manager"
+    - DJANGO_APP="scout_manager"
+    - COMMIT_HAS="$(git rev-parse --short=7 HEAD)"
+    - IMAGE_TAG="${RELEASE_NAME}:${COMMIT_HASH}"
 install:
-  - export BOTO_CONFIG=/dev/null
-  - pip install -r requirements.txt
+  - docker build --target app-container -t "${IMAGE_TAG}" .
+  - docker build -t "${IMAGE_TAG}-test" .
 before_script:
-  - pip install -U 'setuptools>=18.5'
+  # - pip install -U 'setuptools>=18.5'
   - pip install coverage
   - pip install coveralls
-  - pip install pycodestyle
-  - cp sampleproj/manage.py manage.py
-  - python manage.py migrate --settings=sampleproj.settings.travis --noinput
   - npm install mocha
   - npm install jquery
   - npm install jsdom
 script:
-  - pycodestyle scout_manager/ --exclude=migrations,scout_manager/test
-  - coverage run --source=scout_manager/ --omit=scout_manager/migrations/* manage.py test scout_manager --settings=sampleproj.settings.travis
+  - docker run -u root -it -v /tmp:/coverage -e DJANGO_APP="${DJANGO_APP}" -e "ENV=localdev"  "${IMAGE_TAG}-test" bash -c ". ./travis/test.sh"
 after_script:
+  - cp /tmp/.coverage.* .
+  - coverage combine
   - coveralls
+  # - |
+  #   if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+  #     case "$TRAVIS_BRANCH" in
+  #       "master")
+  #         export APP_INSTANCE="prod";
+  #         ;;
+  #       "qa")
+  #         export APP_INSTANCE="test";
+  #         ;;
+  #       "develop")
+  #         export APP_INSTANCE="dev";
+  #         ;;
+  #       *)
+  #         unset APP_INSTANCE
+  #         ;;
+  #     esac
+  #     if [[ "$APP_INSTANCE" ]]; then
+  #       curl -Ls ${DEPLOY_SCRIPT_BASE}/travis-ci/deploy.sh | bash;
+  #     fi
+  #   fi
+  # cache:
+  #   directories:
+  #   - "$HOME/helm"
+  #   - "$HOME/kubeval"
 notifications:
   slack:
     rooms:
