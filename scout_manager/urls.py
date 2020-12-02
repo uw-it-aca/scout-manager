@@ -1,62 +1,61 @@
 from django.conf import settings
-from django.conf.urls import patterns, include, url
+from django.conf.urls import url
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
-from scout_manager.views.api import Spot, SpotCreate
-from scout_manager.views.api import Item, ItemCreate
+from .views import pages
+from scout_manager.views.api import Spot, SpotCreate,\
+    Item, ItemCreate
 # from django.contrib import admin
 # admin.autodiscover()
 
-urlpatterns = patterns(
-    '',
-
+urlpatterns = [
     # /manager/
     url(r'^$', RedirectView.as_view(url='/manager/spaces/')),
 
     # /items/
-    url(r'^items/$', 'scout_manager.views.pages.items',
+    url(r'^items/$', pages.items,
         name='items'),
 
     url(r'^items/(?P<item_id>[0-9]{1,5})/$',
-        'scout_manager.views.pages.items_edit',
+        pages.items_edit,
         name='items_edit'),
 
     url(r'^items/add/$',
-        'scout_manager.views.pages.items_add',
+        pages.items_add,
         name='items_add'),
 
     url(r'^items/add/batch/$',
-        'scout_manager.views.pages.items_add_batch',
+        pages.items_add_batch,
         name='items_add_batch'),
 
     # /spaces/
     url(r'^spaces/$',
-        'scout_manager.views.pages.spaces',
+        pages.spaces,
         name='spaces'),
 
     # /spaces/ID/
     url(r'^spaces/(?P<spot_id>[0-9]{1,5})/$',
-        'scout_manager.views.pages.spaces_edit',
+        pages.spaces_edit,
         name='spaces_edit'),
 
     # /spaces/ID/schedule/new/
     url(r'^spaces/(?P<spot_id>[0-9]{1,5})/schedule/new/$',
-        'scout_manager.views.pages.schedule',
+        pages.schedule,
         name='schedule'),
 
     # /spaces/ID/schedule/DATETIME/
     url(r'^spaces/(?P<spot_id>[0-9]{1,5})/schedule/20160516/$',
-        'scout_manager.views.pages.schedule',
+        pages.schedule,
         name='schedule'),
 
     # /spaces/add/
     url(r'^spaces/add/$',
-        'scout_manager.views.pages.spaces_add',
+        pages.spaces_add,
         name='spaces_add'),
 
     # /spaces/add/
     url(r'^spaces/upload/$',
-        'scout_manager.views.pages.spaces_upload',
+        pages.spaces_upload,
         name='spaces_upload'),
 
     # /api/
@@ -75,20 +74,19 @@ urlpatterns = patterns(
 
     # manager spot image
     url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',
-        'scout_manager.views.pages.image',
+        pages.image,
         name='manager_image'),
 
     # manager item image
     url(r'^item/images/(?P<item_id>\d+)/image/(?P<image_id>\d+)/$',
-        'scout_manager.views.pages.item_image',
+        pages.item_image,
         name='manager_item_image'),
-)
+]
 
 # debug routes for developing error pages
 if settings.DEBUG:
-    urlpatterns += patterns(
-        '',
+    urlpatterns += [
         url(r'^500/$', TemplateView.as_view(template_name='500.html')),
         url(r'^404/$', TemplateView.as_view(template_name='404.html')),
         url(r'^403/$', TemplateView.as_view(template_name='403.html')),
-    )
+    ]
