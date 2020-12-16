@@ -1,5 +1,5 @@
 from django.template import RequestContext
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from scout_manager.dao.item import get_item_by_id as manager_get_item_by_id
 from scout_manager.dao.space import get_spot_by_id as manager_get_spot_by_id
 from scout_manager.dao.space import get_spot_hours_by_day, get_spot_list
@@ -18,7 +18,7 @@ import base64
 
 def home(request):
     netid = UserService().get_user()
-    return render_to_response(
+    return render( request,
         'scout_manager/home.html',
         {"netid": netid})
 
@@ -36,7 +36,7 @@ def items(request):
                "count": count,
                "netid": netid,
                "is_superuser": is_superuser(netid)}
-    return render_to_response('scout_manager/items.html', context)
+    return render(request, 'scout_manager/items.html', context)
 
 
 def items_add(request):
@@ -51,7 +51,7 @@ def items_add(request):
                "filters": info,
                "is_superuser": is_superuser(netid),
                "netid": netid}
-    return render_to_response(
+    return render(request,
         'scout_manager/items_add.html',
         context)
 
@@ -68,7 +68,7 @@ def items_add_batch(request):
                "buildings": buildings,
                "filters": info,
                "netid": netid}
-    return render_to_response(
+    return render(request,
         'scout_manager/items_add_batch.html',
         context)
 
@@ -86,7 +86,9 @@ def items_edit(request, item_id):
                "is_superuser": is_superuser(netid),
                "filters": info,
                "netid": netid}
-    return render_to_response('scout_manager/items_edit.html', context)
+    return render(request,
+        'scout_manager/items_edit.html',
+        context)
 
 
 def schedule(request, spot_id):
@@ -94,7 +96,7 @@ def schedule(request, spot_id):
     spot = manager_get_spot_by_id(spot_id)
     context = {"spot": spot,
                "netid": netid}
-    return render_to_response(
+    return render(request,
         'scout_manager/schedule.html',
         context)
 
@@ -120,7 +122,7 @@ def spaces(request):
                "app_type": app_type,
                "netid": netid,
                "is_superuser": is_superuser(netid)}
-    return render_to_response(
+    return render(request,
         'scout_manager/spaces.html',
         context)
 
@@ -132,14 +134,14 @@ def spaces_add(request):
                "spot": {"grouped_hours": get_spot_hours_by_day(None)},
                "campus_locations": CAMPUS_LOCATIONS,
                "netid": netid}
-    return render_to_response(
+    return render(request,
         'scout_manager/spaces_add.html',
         context)
 
 
 def spaces_upload(request):
     netid = UserService().get_user()
-    return render_to_response(
+    return render(request,
         'scout_manager/spaces_upload.html',
         {"netid": netid},)
 
@@ -163,7 +165,7 @@ def spaces_edit(request, spot_id):
                "campus_locations": CAMPUS_LOCATIONS,
                "netid": netid
                }
-    return render_to_response(
+    return render(request,
         'scout_manager/spaces_edit.html',
         context)
 
