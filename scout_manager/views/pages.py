@@ -18,7 +18,8 @@ import base64
 
 def home(request):
     netid = UserService().get_user()
-    return render( request,
+    return render(
+        request,
         'scout_manager/home.html',
         {"netid": netid})
 
@@ -51,7 +52,8 @@ def items_add(request):
                "filters": info,
                "is_superuser": is_superuser(netid),
                "netid": netid}
-    return render(request,
+    return render(
+        request,
         'scout_manager/items_add.html',
         context)
 
@@ -68,7 +70,8 @@ def items_add_batch(request):
                "buildings": buildings,
                "filters": info,
                "netid": netid}
-    return render(request,
+    return render(
+        request,
         'scout_manager/items_add_batch.html',
         context)
 
@@ -86,7 +89,8 @@ def items_edit(request, item_id):
                "is_superuser": is_superuser(netid),
                "filters": info,
                "netid": netid}
-    return render(request,
+    return render(
+        request,
         'scout_manager/items_edit.html',
         context)
 
@@ -96,7 +100,8 @@ def schedule(request, spot_id):
     spot = manager_get_spot_by_id(spot_id)
     context = {"spot": spot,
                "netid": netid}
-    return render(request,
+    return render(
+        request,
         'scout_manager/schedule.html',
         context)
 
@@ -122,7 +127,8 @@ def spaces(request):
                "app_type": app_type,
                "netid": netid,
                "is_superuser": is_superuser(netid)}
-    return render(request,
+    return render(
+        request,
         'scout_manager/spaces.html',
         context)
 
@@ -134,14 +140,16 @@ def spaces_add(request):
                "spot": {"grouped_hours": get_spot_hours_by_day(None)},
                "campus_locations": CAMPUS_LOCATIONS,
                "netid": netid}
-    return render(request,
+    return render(
+        request,
         'scout_manager/spaces_add.html',
         context)
 
 
 def spaces_upload(request):
     netid = UserService().get_user()
-    return render(request,
+    return render(
+        request,
         'scout_manager/spaces_upload.html',
         {"netid": netid},)
 
@@ -165,7 +173,8 @@ def spaces_edit(request, spot_id):
                "campus_locations": CAMPUS_LOCATIONS,
                "netid": netid
                }
-    return render(request,
+    return render(
+        request,
         'scout_manager/spaces_edit.html',
         context)
 
