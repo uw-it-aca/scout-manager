@@ -5,55 +5,49 @@ This README documents whatever steps are necessary to get your application up an
 
 ## Installing the application ##
 
-**Install Scout Manager app in your existing project**  
+### Prerequisites ###
+To run the app, you must have the following installed:
+* Docker
+* Docker-compose
 
-    $ (yourenv) pip install -e git+https://github.com/uw-it-aca/scout-manager/#egg=scout_manager
+### Steps to run ###
+First, clone the app:
 
-**Update your project urls.py**
+    $ git clone https://github.com/uw-it-aca/scout-manager.git
 
-    urlpatterns = patterns('',
-        ...
-        url(r'^manager/', include('scout_manager.urls')),
-    )
+Navigate to the develop branch and copy the sample environment variables into your own `.env` file:
 
-**Update your project settings.py**
+    $ cd scout-manager
+    $ git checkout develop
+    $ cp sample.env .env
 
-    INSTALLED_APPS = (
-        ...
-        'scout_manager',
-        'scout',
-        'restclients',
-        'spotseeker_restclient'
-        'userservice',
-        'supporttools'
-    )
+Then, run the following command to build your docker container:
 
-    MIDDLEWARE_CLASSES = (
-         ...
-        'django.contrib.auth.middleware.RemoteUserMiddleware',
-        'userservice.user.UserServiceMiddleware'
-    )
+    $ docker-compose up --build
 
-    AUTHENTICATION_BACKENDS = (
-        'django.contrib.auth.backends.RemoteUserBackend',
-    )
+You should see the server running at http://localhost:8000 (or at the port set in your `.env` file)
 
-    USERSERVICE_ADMIN_GROUP = ''
-    AUTHZ_GROUP_BACKEND = 'authz_group.authz_implementation.all_ok.AllOK'
+## Development ##
+
+### Running the app with Docker ###
+
+To rebuild the docker container from scratch, run:
+
+    $ docker-compose up --build
+
+Otherwise, just run:
+
+    $ docker-compose up
 
 
-    MANAGER_SUPERUSER_GROUP = 'u_acadev_tester' (or another mock group you define)
-    
-    OAUTH_USER = 'scout_manager' (matching a SPOTSEEKER_AUTH_ADMIN setting in spotseeker-server)
+### Running the app against a live spotseeker server ###
 
+In your `.env` file, uncomment the following lines:
 
-**Note: If you haven't already, remember to add details for a connection to spotseeker_server in your settings.py. Change 'File' to 'Live' if you want to connect to a live spotseeker_server:**
-    
-    SPOTSEEKER_HOST = ''
-    SPOTSEEKER_OAUTH_KEY = ''
+    RESTCLIENTS_SPOTSEEKER_HOST = ''
+    SPOTSEEKER_OAUTH_KEY ''
     SPOTSEEKER_OAUTH_SECRET = ''
-    SPOTSEEKER_DAO_CLASS = 'spotseeker_restclient.dao_implementation.spotseeker.File'
+    RESTCLIENTS_SPOTSEEKER_DAO_CLASS = 'Live'
+    OAUTH_USER = 'erochfor'
 
-**Run with defined remote user, javerage will work with mock groups**
-
-    REMOTE_USER="javerage" ./manage runserver
+You will need to make sure you have a valid oauth secret/key in order to run scout agains a live api. Make sure Spotseeker is running and set the url to `RESTCLIENTS_SPOTSEEKER_HOST`.
