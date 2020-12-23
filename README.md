@@ -48,6 +48,6 @@ In your `.env` file, uncomment the following lines:
     SPOTSEEKER_OAUTH_KEY ''
     SPOTSEEKER_OAUTH_SECRET = ''
     RESTCLIENTS_SPOTSEEKER_DAO_CLASS = 'spotseeker_restclient.dao_implementation.spotseeker.Live'
-    OAUTH_USER = 'erochfor'
+    OAUTH_USER = 'javerage'
 
 You will need to make sure you have a valid oauth secret/key in order to run scout agains a live api. Make sure Spotseeker is running and set the url to `RESTCLIENTS_SPOTSEEKER_HOST`.
