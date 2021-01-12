@@ -39,6 +39,10 @@ Otherwise, just run:
 
     $ docker-compose up
 
+### Running Unit Tests with Docker
+
+    $ docker-compose run --rm app bin/python manage.py test
+
 
 ### Running the app against a live spotseeker server ###
 
