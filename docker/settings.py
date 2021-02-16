@@ -9,11 +9,7 @@ else:
     DEBUG = False
 
 INSTALLED_APPS += [
-    # 'django_sass',
     'scout_manager',
-    # 'scout',
-    # 'restclients',
-    # 'spotseeker_restclient',
     'django_user_agents',
     'compressor',
     'userservice',
@@ -22,7 +18,6 @@ INSTALLED_APPS += [
 
 MIDDLEWARE += [
     'django.middleware.security.SecurityMiddleware',
-    # 'django.contrib.auth.middleware.RemoteUserMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware',
     'userservice.user.UserServiceMiddleware',
 ]
