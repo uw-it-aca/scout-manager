@@ -1,7 +1,7 @@
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from .base_settings import *
-from google.ouath2 import service_account
+from google.oauth2 import service_account
 # BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 if os.getenv('ENV', 'localdev') == 'localdev':
