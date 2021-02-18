@@ -52,6 +52,9 @@ image:
   tag: IMAGE_TAG
 memcached:
   enabled: false
+gcsCredentials:
+  mounted: true
+  secretName: prod.scout-manager.uw.edu-gc-service-credentials
 cronjob:
   enabled: false
 certs:
@@ -113,6 +116,11 @@ externalSecrets:
       data:
         - name: prod.scout-manager.uw.edu-ic.cert
           property: prod.scout-manager.uw.edu-ic.cert
+    - name: prod.scout-manager.uw.edu-gc-service-credentials
+      externalKey: axdd/kv/data/scout-manager/prod/gc-service-credentials
+      data:
+        - name: credentials.json
+          property: credentials.json
 environmentVariablesSecrets:
   authzGroupBackend:
     name: AUTHZ_GROUP_BACKEND
