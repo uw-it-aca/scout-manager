@@ -1,0 +1,152 @@
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 4
+targetAverageUtilization: 100
+resources:
+  limits:
+    cpu: 1.0
+    memory: 1280Mi
+  requests:
+    cpu: 256m
+    memory: 1024Mi
+ingress:
+  enabled: true
+  tls:
+    scout-manager:
+      secretName: prod.scout-manager.uw.edu-ingress-cert
+      hosts:
+        - prod.scout-manager.uw.edu
+  hosts:
+    scout-manager:
+      host: prod.scout-manager.uw.edu
+      paths:
+        - "/"
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/ssl-ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256"
+    nginx.ingress.kubernetes.io/client-body-buffer-size: "16K"
+lifecycle:
+  enabled: true
+  preStop:
+    enabled: true
+affinity:
+   podsSpanNodes: true
+readiness:
+  enabled: true
+externalService:
+  enabled: true
+  name: scout-manager-db-service
+  type: ClusterIP
+  serviceAddress: 172.18.0.37  # CHANGE TO MATCH
+  servicePort: 3306
+database:
+  engine: mysql
+  name: scout_manager_prod
+  hostname: scout-manager-db-service
+  secretName: prod.scout-manager.uw.edu-sql-secrets
+repo: scout-manager
+instance: prod
+image:
+  repository: gcr.io/uwit-mci-axdd/scout-manager
+  tag: IMAGE_TAG
+memcached:
+  enabled: false
+cronjob:
+  enabled: false
+certs:
+  mounted: true
+  certPath: /certs/prod.scout-manager.uw.edu-uwca.cert
+  keyPath: /certs/prod.scout-manager.uw.edu-uwca.key
+  secretName: prod.scout-manager.uw.edu-uwca-certs
+environmentVariables:
+  - name: CLUSTER_CNAME
+    value: prod.scout-manager.uw.edu
+  - name: ENV
+    value: prod
+  - name: RESTCLIENTS_SPOTSEEKER_DAO_CLASS
+    value: Live
+  - name: RESTCLIENTS_SPOTSEEKER_HOST
+    value: https://spotseeker.uw.edu
+  - name: WEBSERVER
+    value: nginx
+externalSecrets:
+  enabled: true
+  secrets:
+    - name: prod.scout-manager.uw.edu-secrets
+      externalKey: axdd/kv/data/scout-manager/prod/secrets
+      data:
+        - name: authz-group-backend
+          property: authz-group-backend
+        - name: django-secret
+          property: django-secret
+        - name: manager-superuser-group
+          property: manager-superuser-group
+        - name: oauth-user
+          property: oauth-user
+        - name: spotseeker-oauth-key
+          property: spotseeker-oauth-key
+        - name: spotseeker-oauth-secret
+          property: spotseeker-oauth-secret
+        - name: storage-bucket-name
+          property: storage-bucket-name
+        - name: storage-project-id
+          property: storage-project-id
+        - name: userservice-admin-group
+          property: userservice-admin-group
+    - name: prod.scout-manager.uw.edu-sql-secrets
+      externalKey: axdd/kv/data/scout-manager/prod/sql-secrets
+      data:
+        - name: username
+          property: username
+        - name: password
+          property: password
+    - name: prod.scout-manager.uw.edu-uwca-certs
+      externalKey: axdd/kv/data/scout-manager/prod/uwca-certs
+      data:
+        - name: prod.scout-manager.uw.edu-uwca.cert
+          property: prod.scout-manager.uw.edu-uwca.cert
+        - name: prod.scout-manager.uw.edu-uwca.key
+          property: prod.scout-manager.uw.edu-uwca.key
+    - name: prod.scout-manager.uw.edu-ic-cert
+      externalKey: axdd/kv/data/scout-manager/prod/ic-certs
+      data:
+        - name: prod.scout-manager.uw.edu-ic.cert
+          property: prod.scout-manager.uw.edu-ic.cert
+environmentVariablesSecrets:
+  authzGroupBackend:
+    name: AUTHZ_GROUP_BACKEND
+    secretName: prod.scout-manager.uw.edu-secrets
+    secretKey: authz-group-backend
+  djangoSecret:
+    name: DJANGO_SECRET
+    secretName: prod.scout-manager.uw.edu-secrets
+    secretKey: django-secret
+  managerSuperuserGroup:
+    name: MANAGER_SUPERUSER_GROUP
+    secretName: prod.scout-manager.uw.edu-secrets
+    secretKey: manager-superuser-group
+  oauthUser:
+    name: OAUTH_USER
+    secretName: prod.scout-manager.uw.edu-secrets
+    secretKey: oauth-user
+  spotseekerOauthKey:
+    name: SPOTSEEKER_OAUTH_KEY
+    secretName: prod.scout-manager.uw.edu-secrets
+    secretKey: spotseeker-oauth-key
+  spotseekerOauthSecret:
+    name: SPOTSEEKER_OAUTH_SECRET
+    secretName: prod.scout-manager.uw.edu-secrets
+    secretKey: spotseeker-oauth-secret
+  storageBucketName:
+    name: STORAGE_BUCKET_NAME
+    secretName: prod.scout-manager.uw.edu-secrets
+    secretKey: storage-bucket-name
+  storageProjectId:
+    name: STORAGE_PROJECT_ID
+    secretName: prod.scout-manager.uw.edu-secrets
+    secretKey: storage-project-id
+  userserviceAdminGroup:
+    name: USERSERVICE_ADMIN_GROUP
+    secretName: prod.scout-manager.uw.edu-secrets
+    secretKey: userservice-admin-group
