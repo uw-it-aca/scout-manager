@@ -1,6 +1,7 @@
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from .base_settings import *
+from google.ouath2 import service_account
 # BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 if os.getenv('ENV', 'localdev') == 'localdev':
@@ -32,6 +33,16 @@ COMPRESS_PRECOMPILERS = (
     ("text/x-sass", "django_pyscss.compressor.DjangoScssFilter",),
     ('text/less', 'lessc {infile} {outfile}'),
 )
+
+# django storages settings
+if not DEBUG:
+    DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+    GS_BUCKET_NAME = os.getenv('STORAGE_BUCKET_NAME', '')
+    GS_PROJECT_ID = os.getenv('STORAGE_PROJECT_ID')
+    GS_LOCATION = os.path.join(os.getenv('ENV'), 'media')
+    GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+        '/gcs/credentials.json'
+    )
 
 # scout auth stuff
 MANAGER_SUPERUSER_GROUP = os.getenv('MANAGER_SUPERUSER_GROUP', 'u_acadev_test')
