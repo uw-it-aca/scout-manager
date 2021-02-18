@@ -59,8 +59,6 @@ environmentVariables:
     value: Mock
   - name: RESTCLIENTS_SPOTSEEKER_HOST
     value: https://test.spotseeker.uw.edu
-  - name: SCOUT_SHOW_NEWSSPLASH
-    value: True
   - name: WEBSERVER
     value: nginx
 externalSecrets:
