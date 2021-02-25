@@ -63,6 +63,8 @@ certs:
   keyPath: /certs/prod.scout-manager.uw.edu-uwca.key
   secretName: prod.scout-manager.uw.edu-uwca-certs
 environmentVariables:
+  - name: AUTH
+    value: SAML
   - name: CLUSTER_CNAME
     value: prod.scout-manager.uw.edu
   - name: ENV
@@ -71,6 +73,8 @@ environmentVariables:
     value: Live
   - name: RESTCLIENTS_SPOTSEEKER_HOST
     value: https://spotseeker.uw.edu
+  - name: SAML_ENTITY_ID
+    value: https://prod.scout-manager.uw.edu/saml2
   - name: WEBSERVER
     value: nginx
 externalSecrets:
@@ -121,6 +125,11 @@ externalSecrets:
       data:
         - name: credentials.json
           property: credentials.json
+    - name: prod.scout-manager.uw.edu-uw-idp-cert
+      externalKey: axdd/kv/data/idp-cert
+      data:
+        - name: uw-idp-cert
+          property: cert
 environmentVariablesSecrets:
   authzGroupBackend:
     name: AUTHZ_GROUP_BACKEND
@@ -138,6 +147,14 @@ environmentVariablesSecrets:
     name: OAUTH_USER
     secretName: prod.scout-manager.uw.edu-secrets
     secretKey: oauth-user
+  samlSPCert:
+    name: SP_CERT
+    secretName: prod.scout-manager.uw.edu-ic-cert
+    secretKey: prod.scout-manager.uw.edu-ic.cert
+  samlIDPCert:
+    name: IDP_CERT
+    secretName: prod.scout-manager.uw.edu-uw-idp-cert
+    secretKey: uw-idp-cert
   spotseekerOauthKey:
     name: SPOTSEEKER_OAUTH_KEY
     secretName: prod.scout-manager.uw.edu-secrets

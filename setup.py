@@ -25,7 +25,8 @@ setup(
         'pillow',
         'pytz',
         'setuptools',
-        'UW-RestClients-GWS==1.0',  
+        'UW-Django-SAML2>=0.4,<1.0',
+        'UW-RestClients-GWS==1.0',
     ],
     license='Apache License, Version 2.0',  # example license
     description='A Django app for developer resources complimentary to mdot_web client.',

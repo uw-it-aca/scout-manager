@@ -12,6 +12,7 @@ services:
     ports:
       - "${PORT:-8000}:8000"
     environment:
+      AUTH: SAML_MOCK
       ENV: localdev
       REMOTE_USER: ${REMOTE_USER:-javerage}
       OAUTH_USER: ${OAUTH_USER:-javerage}
