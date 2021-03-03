@@ -77,7 +77,7 @@ externalSecrets:
   enabled: true
   secrets:
     - name: prod.manager.scout.uw.edu-secrets
-      externalKey: axdd/kv/data/scout-manager/prod/secrets
+      externalKey: axdd/kv/data/scout/prod-manager/secrets
       data:
         - name: authz-group-backend
           property: authz-group-backend
@@ -98,26 +98,26 @@ externalSecrets:
         - name: userservice-admin-group
           property: userservice-admin-group
     - name: prod.manager.scout.uw.edu-sql-secrets
-      externalKey: axdd/kv/data/scout-manager/prod/sql-secrets
+      externalKey: axdd/kv/data/scout/prod-manager/sql-secrets
       data:
         - name: username
           property: username
         - name: password
           property: password
     - name: prod.manager.scout.uw.edu-uwca-certs
-      externalKey: axdd/kv/data/scout-manager/prod/uwca-certs
+      externalKey: axdd/kv/data/scout/prod-manager/uwca-certs
       data:
         - name: prod.manager.scout.uw.edu-uwca.cert
           property: prod.manager.scout.uw.edu-uwca.cert
         - name: prod.manager.scout.uw.edu-uwca.key
           property: prod.manager.scout.uw.edu-uwca.key
     - name: prod.manager.scout.uw.edu-ic-cert
-      externalKey: axdd/kv/data/scout-manager/prod/ic-certs
+      externalKey: axdd/kv/data/scout/prod-manager/ic-certs
       data:
         - name: prod.manager.scout.uw.edu-ic.cert
           property: prod.manager.scout.uw.edu-ic.cert
     - name: prod.manager.scout.uw.edu-gc-service-credentials
-      externalKey: axdd/kv/data/scout-manager/prod/gc-service-credentials
+      externalKey: axdd/kv/data/scout/prod-manager/gc-service-credentials
       data:
         - name: credentials.json
           property: credentials.json
