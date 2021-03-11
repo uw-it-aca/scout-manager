@@ -46,7 +46,6 @@ if not DEBUG:
 # scout auth stuff
 MANAGER_SUPERUSER_GROUP = os.getenv('MANAGER_SUPERUSER_GROUP', 'u_acadev_test')
 USERSERVICE_ADMIN_GROUP = os.getenv('USERSERVICE_ADMIN_GROUP', 'u_acadev_test')
-AUTHZ_GROUP_BACKEND = os.getenv('AUTHZ_GROUP_BACKEND', '')
 
 # spotseeker server api stuff
 RESTCLIENTS_SPOTSEEKER_HOST = os.getenv('RESTCLIENTS_SPOTSEEKER_HOST', None)

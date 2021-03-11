@@ -79,8 +79,6 @@ externalSecrets:
     - name: prod.manager.scout.uw.edu-secrets
       externalKey: axdd/kv/data/scout/prod-manager/secrets
       data:
-        - name: authz-group-backend
-          property: authz-group-backend
         - name: django-secret
           property: django-secret
         - name: manager-superuser-group
@@ -122,10 +120,6 @@ externalSecrets:
         - name: credentials.json
           property: credentials.json
 environmentVariablesSecrets:
-  authzGroupBackend:
-    name: AUTHZ_GROUP_BACKEND
-    secretName: prod.manager.scout.uw.edu-secrets
-    secretKey: authz-group-backend
   djangoSecret:
     name: DJANGO_SECRET
     secretName: prod.manager.scout.uw.edu-secrets
