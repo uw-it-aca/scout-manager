@@ -88,7 +88,7 @@ externalSecrets:
         - name: userservice-admin-group
           property: userservice-admin-group
     - name: test.manager.scout.uw.edu-sql-secrets
-      externalKey: axdd/kv/data/scout/test-manager/sql-secrets
+      externalKey: axdd/kv/data/scout/common/sql-secrets
       data:
         - name: username
           property: username
@@ -107,7 +107,7 @@ externalSecrets:
         - name: test.manager.scout.uw.edu-ic.cert
           property: test.manager.scout.uw.edu-ic.cert
     - name: test.manager.scout.uw.edu-gc-service-credentials
-      externalKey: axdd/kv/data/scout/test-manager/gc-service-credentials
+      externalKey: axdd/kv/data/scout/common/gc-service-credentials
       data:
         - name: credentials.json
           property: credentials.json
