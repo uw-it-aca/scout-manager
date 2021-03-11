@@ -98,7 +98,7 @@ externalSecrets:
         - name: userservice-admin-group
           property: userservice-admin-group
     - name: prod.manager.scout.uw.edu-sql-secrets
-      externalKey: axdd/kv/data/scout/prod-manager/sql-secrets
+      externalKey: axdd/kv/data/scout/common/sql-secrets
       data:
         - name: username
           property: username
@@ -117,7 +117,7 @@ externalSecrets:
         - name: prod.manager.scout.uw.edu-ic.cert
           property: prod.manager.scout.uw.edu-ic.cert
     - name: prod.manager.scout.uw.edu-gc-service-credentials
-      externalKey: axdd/kv/data/scout/prod-manager/gc-service-credentials
+      externalKey: axdd/kv/data/scout/common/gc-service-credentials
       data:
         - name: credentials.json
           property: credentials.json
