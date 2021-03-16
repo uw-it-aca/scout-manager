@@ -13,7 +13,7 @@ setup(
     include_package_data=True,
     install_requires = [
         'beautifulsoup4',
-        'django>=1.10,<1.11',
+        'django==1.11',
         'django-compressor',
         'django-pyscss',
         'django-user-agents',
