@@ -19,7 +19,7 @@ setup(
         'django-user-agents',
         'django-storages[google]',
         'Django-SupportTools>1.3,<2.0',
-        'Django-UserService==1.4.0',
+        # 'Django-UserService>=2.0.1,<3.1',
         'html5lib<=0.9999999',
         'openpyxl<=2.6.4',
         'pillow',
