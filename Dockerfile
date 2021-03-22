@@ -7,7 +7,7 @@ USER acait
 ADD --chown=acait:acait . /app/
 
 RUN /app/bin/pip install -r requirements.txt
-RUN . /app/bin/activate && pip install mysqlclient
+RUN . /app/bin/activate && pip install mysqlclient django-prometheus==2.0.0
 
 ADD --chown=acait:acait docker/ project/
 
