@@ -81,6 +81,8 @@ externalSecrets:
       data:
         - name: django-secret
           property: django-secret
+        - name: google-maps-api-key
+          property: google-maps-api-key
         - name: manager-superuser-group
           property: manager-superuser-group
         - name: oauth-user
@@ -124,6 +126,10 @@ environmentVariablesSecrets:
     name: DJANGO_SECRET
     secretName: prod.manager.scout.uw.edu-secrets
     secretKey: django-secret
+  googleMapsApiKey:
+    name: GOOGLE_MAPS_API
+    secretName: test.manager.scout.uw.edu-secrets
+    secretKey: google-maps-api-key
   managerSuperuserGroup:
     name: MANAGER_SUPERUSER_GROUP
     secretName: prod.manager.scout.uw.edu-secrets

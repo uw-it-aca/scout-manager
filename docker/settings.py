@@ -43,6 +43,8 @@ if not DEBUG:
         '/gcs/credentials.json'
     )
 
+GOOGLE_MAPS_API = os.getenv('GOOGLE_MAPS_API', '')
+
 # scout auth stuff
 MANAGER_SUPERUSER_GROUP = os.getenv('MANAGER_SUPERUSER_GROUP', 'u_acadev_test')
 USERSERVICE_ADMIN_GROUP = os.getenv('USERSERVICE_ADMIN_GROUP', 'u_acadev_test')
