@@ -8,78 +8,81 @@ from scout_manager.views.api import Spot, SpotCreate,\
 # from django.contrib import admin
 # admin.autodiscover()
 
+from django.contrib.auth.decorators import login_required
+
 urlpatterns = [
     # /manager/
-    url(r'^$', RedirectView.as_view(url='/manager/spaces/')),
+    url(r'^$',
+        login_required(RedirectView.as_view(url='/manager/spaces/'))),
 
     # /items/
-    url(r'^items/$', pages.items,
+    url(r'^items/$', login_required(pages.items),
         name='items'),
 
     url(r'^items/(?P<item_id>[0-9]{1,5})/$',
-        pages.items_edit,
+        login_required(pages.items_edit),
         name='items_edit'),
 
     url(r'^items/add/$',
-        pages.items_add,
+        login_required(pages.items_add),
         name='items_add'),
 
     url(r'^items/add/batch/$',
-        pages.items_add_batch,
+        login_required(pages.items_add_batch),
         name='items_add_batch'),
 
     # /spaces/
     url(r'^spaces/$',
-        pages.spaces,
+        login_required(pages.spaces),
         name='spaces'),
 
     # /spaces/ID/
     url(r'^spaces/(?P<spot_id>[0-9]{1,5})/$',
-        pages.spaces_edit,
+        login_required(pages.spaces_edit),
         name='spaces_edit'),
 
     # /spaces/ID/schedule/new/
     url(r'^spaces/(?P<spot_id>[0-9]{1,5})/schedule/new/$',
-        pages.schedule,
+        login_required(pages.schedule),
         name='schedule'),
 
     # /spaces/ID/schedule/DATETIME/
     url(r'^spaces/(?P<spot_id>[0-9]{1,5})/schedule/20160516/$',
-        pages.schedule,
+        login_required(pages.schedule),
         name='schedule'),
 
     # /spaces/add/
     url(r'^spaces/add/$',
-        pages.spaces_add,
+        login_required(pages.spaces_add),
         name='spaces_add'),
 
     # /spaces/add/
     url(r'^spaces/upload/$',
-        pages.spaces_upload,
+        login_required(pages.spaces_upload),
         name='spaces_upload'),
 
     # /api/
     url(r'api/spot/(?P<spot_id>[0-9]{1,5})',
-        Spot().run),
+        login_required(Spot().run)),
 
     url(r'api/spot/',
-        SpotCreate().run),
+        login_required(SpotCreate().run)),
 
     # /api/
     url(r'api/item/(?P<item_id>[0-9]{1,5})',
-        Item().run),
+        login_required(Item().run)),
 
     url(r'api/item/',
-        ItemCreate().run),
+        login_required(ItemCreate().run)),
 
     # manager spot image
     url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',
-        pages.image,
+        login_required(pages.image),
         name='manager_image'),
 
     # manager item image
     url(r'^item/images/(?P<item_id>\d+)/image/(?P<image_id>\d+)/$',
-        pages.item_image,
+        login_required(pages.item_image),
         name='manager_item_image'),
 ]
 
