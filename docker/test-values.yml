@@ -139,7 +139,7 @@ environmentVariablesSecrets:
     secretKey: oauth-user
   samlSPCert:
     name: SP_CERT
-    secretName: test.manager.scout.uw.edu-ic-cert
+    secretName: test.manager.scout.uw.edu-ic-certs
     secretKey: test.manager.scout.uw.edu-ic.cert
   samlIDPCert:
     name: IDP_CERT
