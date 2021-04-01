@@ -54,7 +54,7 @@ certs:
   secretName: test.manager.scout.uw.edu-uwca-certs
 environmentVariables:
   - name: AUTH
-    value: SAML_MOCK
+    value: SAML
   - name: CLUSTER_CNAME
     value: test.manager.scout.uw.edu
   - name: ENV
