@@ -37,8 +37,8 @@ class Group(models.Model):
 
 
 class GroupMembership(models.Model):
-    group = models.ForeignKey('Group')
-    person = models.ForeignKey('Person')
+    group = models.ForeignKey('Group', on_delete=models.CASCADE)
+    person = models.ForeignKey('Person', on_delete=models.CASCADE)
     added_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     objects = MembershipManager()
