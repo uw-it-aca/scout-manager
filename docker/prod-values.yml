@@ -67,7 +67,7 @@ environmentVariables:
     value: prod.manager.scout.uw.edu
   - name: ENV
     value: prod
-  - name: GWS
+  - name: GWS_ENV
     value: PROD
   - name: RESTCLIENTS_SPOTSEEKER_DAO_CLASS
     value: Live
