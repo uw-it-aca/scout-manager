@@ -1,8 +1,7 @@
-from django.conf.urls import include, url
+from .base_urls import *
+from django.urls import include, re_path
 from django.contrib import admin
 
-urlpatterns = [
-    url(r'^manager/', include('scout_manager.urls')),
-    url(r'^', include('django_prometheus.urls')), # add here for django 1.11 compatibility
-    url(r'^saml/', include('uw_saml.urls')),  # add here for django 1.11 compatibility
+urlpatterns += [
+    re_path(r'^manager/', include('scout_manager.urls')),
 ]
