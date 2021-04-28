@@ -33,6 +33,14 @@ COMPRESS_PRECOMPILERS = (
     ('text/less', 'lessc {infile} {outfile}'),
 )
 
+TEMPLATES[0]["OPTIONS"]["context_processors"].extend(
+    [
+        "scout.context_processors.google_maps",
+        "scout.context_processors.google_analytics",
+        "scout.context_processors.is_desktop",
+    ]
+)
+
 # django storages settings
 if not DEBUG:
     DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
