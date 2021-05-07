@@ -188,7 +188,7 @@ jobs:
 
     steps:
       - name: House Keeping
-        uses: uw-it-aca/actions/cicd-housekeeping@feature/registry-pruning
+        uses: uw-it-aca/actions/cicd-housekeeping@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
           gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
