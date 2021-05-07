@@ -32,16 +32,16 @@ setup(
         'UW-RestClients-GWS==1.0',  
     ],
     license='Apache License, Version 2.0',  # example license
-    description='A Django app for developer resources complimentary to mdot_web client.',
+    description='A Django app for managing spaces in spotseeker_server.',
     long_description=README,
-    url='http://www.example.com/',
-    author='Your Name',
-    author_email='yourname@example.com',
+    url='https://github.com/uw-it-aca/scout-manager/',
+    author='UW-IT AXDD',
+    author_email='aca-it@uw.edu',
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: Apache Software License', # example license
+        'License :: OSI Approved :: Apache Software License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.6',
