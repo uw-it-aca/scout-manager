@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from scout_manager.test import ScoutTest
 from django.test.client import RequestFactory
 from scout_manager.views.api import process_form_data
