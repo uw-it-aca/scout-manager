@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from scout_manager.dao.item import _build_item_json, create_item, \
     _get_spot_json, delete_item, update_item
 from uw_spotseeker import Spotseeker

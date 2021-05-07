@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from uw_gws import GWS
 from uw_gws.exceptions import InvalidGroupID
 from restclients_core.exceptions import DataFailureException
