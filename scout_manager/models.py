@@ -15,8 +15,9 @@ class MembershipManager(models.Manager):
         try:
             person = Person.objects.get(netid=person_id)
             group = Group.objects.get(group_id=group_id)
-            memberships = GroupMembership.objects.filter(group=group,
-                                                         person=person)
+            memberships = GroupMembership.objects.filter(
+                group=group, person=person
+            )
         except ObjectDoesNotExist:
             return False
         return len(memberships) > 0
@@ -40,8 +41,8 @@ class Group(models.Model):
 
 
 class GroupMembership(models.Model):
-    group = models.ForeignKey('Group', on_delete=models.CASCADE)
-    person = models.ForeignKey('Person', on_delete=models.CASCADE)
+    group = models.ForeignKey("Group", on_delete=models.CASCADE)
+    person = models.ForeignKey("Person", on_delete=models.CASCADE)
     added_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     objects = MembershipManager()

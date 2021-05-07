@@ -10,32 +10,52 @@ from django.utils.timezone import utc
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('scout_manager', '0001_initial'),
+        ("scout_manager", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='group',
-            name='added_on',
-            field=models.DateTimeField(auto_now_add=True, default=datetime.datetime(2016, 6, 17, 0, 5, 15, 70357, tzinfo=utc)),
+            model_name="group",
+            name="added_on",
+            field=models.DateTimeField(
+                auto_now_add=True,
+                default=datetime.datetime(
+                    2016, 6, 17, 0, 5, 15, 70357, tzinfo=utc
+                ),
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='groupmembership',
-            name='added_on',
-            field=models.DateTimeField(auto_now_add=True, default=datetime.datetime(2016, 6, 17, 0, 5, 23, 624598, tzinfo=utc)),
+            model_name="groupmembership",
+            name="added_on",
+            field=models.DateTimeField(
+                auto_now_add=True,
+                default=datetime.datetime(
+                    2016, 6, 17, 0, 5, 23, 624598, tzinfo=utc
+                ),
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='groupmembership',
-            name='updated_on',
-            field=models.DateTimeField(auto_now=True, default=datetime.datetime(2016, 6, 17, 0, 5, 28, 932629, tzinfo=utc)),
+            model_name="groupmembership",
+            name="updated_on",
+            field=models.DateTimeField(
+                auto_now=True,
+                default=datetime.datetime(
+                    2016, 6, 17, 0, 5, 28, 932629, tzinfo=utc
+                ),
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='person',
-            name='added_on',
-            field=models.DateTimeField(auto_now_add=True, default=datetime.datetime(2016, 6, 17, 0, 5, 34, 382771, tzinfo=utc)),
+            model_name="person",
+            name="added_on",
+            field=models.DateTimeField(
+                auto_now_add=True,
+                default=datetime.datetime(
+                    2016, 6, 17, 0, 5, 34, 382771, tzinfo=utc
+                ),
+            ),
             preserve_default=False,
         ),
     ]
