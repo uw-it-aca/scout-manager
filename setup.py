@@ -12,7 +12,7 @@ setup(
     packages=['scout_manager'],
     include_package_data=True,
     install_requires = [
-        'beautifulsoup4',
+        'beautifulsoup4<4.9',
         'django==2.1.*',
         'django-compressor',
         'django-pyscss',
