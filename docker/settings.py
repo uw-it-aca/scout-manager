@@ -1,36 +1,43 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from google.oauth2 import service_account
 from .base_settings import *
 
-if os.getenv('ENV', 'localdev') == 'localdev':
+if os.getenv("ENV", "localdev") == "localdev":
     DEBUG = True
 else:
     DEBUG = False
 
 INSTALLED_APPS += [
-    'scout_manager',
-    'django_user_agents',
-    'compressor',
-    'userservice',
-    'supporttools'
+    "scout_manager",
+    "django_user_agents",
+    "compressor",
+    "userservice",
+    "supporttools",
 ]
 
 MIDDLEWARE += [
-    'django.middleware.security.SecurityMiddleware',
-    'django_user_agents.middleware.UserAgentMiddleware',
-    'userservice.user.UserServiceMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django_user_agents.middleware.UserAgentMiddleware",
+    "userservice.user.UserServiceMiddleware",
 ]
 
-STATICFILES_FINDERS += (
-    'compressor.finders.CompressorFinder',
-)
+STATICFILES_FINDERS += ("compressor.finders.CompressorFinder",)
 
 
 COMPRESS_PRECOMPILERS = (
-    ("text/x-scss", "django_pyscss.compressor.DjangoScssFilter",),
-    ("text/x-sass", "django_pyscss.compressor.DjangoScssFilter",),
-    ('text/less', 'lessc {infile} {outfile}'),
+    (
+        "text/x-scss",
+        "django_pyscss.compressor.DjangoScssFilter",
+    ),
+    (
+        "text/x-sass",
+        "django_pyscss.compressor.DjangoScssFilter",
+    ),
+    ("text/less", "lessc {infile} {outfile}"),
 )
 
 TEMPLATES[0]["OPTIONS"]["context_processors"].extend(
@@ -43,15 +50,15 @@ TEMPLATES[0]["OPTIONS"]["context_processors"].extend(
 
 # django storages settings
 if not DEBUG:
-    DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-    GS_BUCKET_NAME = os.getenv('STORAGE_BUCKET_NAME', '')
-    GS_PROJECT_ID = os.getenv('STORAGE_PROJECT_ID')
-    GS_LOCATION = os.path.join(os.getenv('ENV'), 'manager')
+    DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+    GS_BUCKET_NAME = os.getenv("STORAGE_BUCKET_NAME", "")
+    GS_PROJECT_ID = os.getenv("STORAGE_PROJECT_ID")
+    GS_LOCATION = os.path.join(os.getenv("ENV"), "manager")
     GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-        '/gcs/credentials.json'
+        "/gcs/credentials.json"
     )
 
-GOOGLE_MAPS_API = os.getenv('GOOGLE_MAPS_API', '')
+GOOGLE_MAPS_API = os.getenv("GOOGLE_MAPS_API", "")
 
 # scout auth stuff
 SCOUT_MANAGER_ACCESS_GROUP = os.getenv('SCOUT_MANAGER_ACCESS_GROUP', 'u_acadev_scout_access_test')

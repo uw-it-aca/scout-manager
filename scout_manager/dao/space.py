@@ -1,7 +1,16 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from uw_spotseeker import Spotseeker
 from restclients_core.exceptions import DataFailureException
-from scout.dao.space import add_cuisine_names, add_foodtype_names_to_spot,\
-    add_payment_names, add_additional_info, add_study_info, add_tech_info
+from scout.dao.space import (
+    add_cuisine_names,
+    add_foodtype_names_to_spot,
+    add_payment_names,
+    add_additional_info,
+    add_study_info,
+    add_tech_info,
+)
 from scout.dao.item import add_item_info
 from scout_manager.dao.groups import add_group
 import json
@@ -16,8 +25,8 @@ def delete_spot(spot_id, etag):
 def get_spot_list(app_type=None, published=None, groups=[]):
     filters = []
     for group in groups:
-        filters.append(('extended_info:group', group))
-    filters.append(('limit', 0))
+        filters.append(("extended_info:group", group))
+    filters.append(("limit", 0))
 
     if app_type is None:
         return _get_all_spots(filters)
@@ -31,10 +40,10 @@ def _get_spots_by_app_type(app_type, filters, published):
     spot_client = Spotseeker()
     res = []
     if published is False:
-        filters.append(('extended_info:is_hidden', 'true'))
+        filters.append(("extended_info:is_hidden", "true"))
 
     try:
-        filters.append(('extended_info:app_type', app_type))
+        filters.append(("extended_info:app_type", app_type))
         spots = spot_client.search_spots(filters)
         for spot in spots:
             spot = process_extended_info(spot)
@@ -44,7 +53,7 @@ def _get_spots_by_app_type(app_type, filters, published):
                 # This is a string value rather than proper boolean.
                 # Check against 'false' in case we start setting is_hidden to
                 # false rather than removing it.
-                if getattr(spot, 'is_hidden', 'false') == 'false':
+                if getattr(spot, "is_hidden", "false") == "false":
                     res.append(spot)
             else:
                 # If we don't care about whether it's published, add it
@@ -119,23 +128,24 @@ def process_extended_info(spot):
 
 
 def get_spot_hours_by_day(spot):
-    days = ["monday",
-            "tuesday",
-            "wednesday",
-            "thursday",
-            "friday",
-            "saturday",
-            "sunday"]
+    days = [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday",
+    ]
     hours_objects = []
     for day in days:
         try:
-            day_hours = \
-                [hours for hours in spot.spot_availability if hours.day == day]
+            day_hours = [
+                hours for hours in spot.spot_availability if hours.day == day
+            ]
         except AttributeError:
             day_hours = None
-        hours_objects.append({"day": day,
-                              "hours": day_hours
-                              })
+        hours_objects.append({"day": day, "hours": day_hours})
     return hours_objects
 
 
@@ -143,18 +153,20 @@ def create_spot(form_data):
     json_data = _build_spot_json(form_data)
     spot_client = Spotseeker()
     resp = spot_client.post_spot(json.dumps(json_data))
-    spot_id = _get_spot_id_from_url(resp.headers['location'])
+    spot_id = _get_spot_id_from_url(resp.headers["location"])
 
-    if 'file' in form_data \
-            and form_data['file'] is not None \
-            and form_data['file'] != "undefined":
-        spot_client.post_image(spot_id, form_data['file'])
+    if (
+        "file" in form_data
+        and form_data["file"] is not None
+        and form_data["file"] != "undefined"
+    ):
+        spot_client.post_image(spot_id, form_data["file"])
 
     return spot_id
 
 
 def _get_spot_id_from_url(spot_url):
-    match = re.match('.*?([0-9]+)$', spot_url)
+    match = re.match(".*?([0-9]+)$", spot_url)
     return match.group(1)
 
 
@@ -166,23 +178,26 @@ def update_spot(form_data, spot_id, image=None):
     spot = get_spot_by_id(spot_id)
     etag = spot.etag
 
-    if 'removed_images' in json_data:
-        for image in json_data['removed_images']:
-            spot_client.delete_image(spot_id, image['id'], image['etag'])
+    if "removed_images" in json_data:
+        for image in json_data["removed_images"]:
+            spot_client.delete_image(spot_id, image["id"], image["etag"])
 
-    if (form_data['file'] is not None and form_data['file'] != "undefined" and
-            form_data['file'] != "null"):
-        spot_client.post_image(spot_id, form_data['file'])
+    if (
+        form_data["file"] is not None
+        and form_data["file"] != "undefined"
+        and form_data["file"] != "null"
+    ):
+        spot_client.post_image(spot_id, form_data["file"])
 
     spot_client.put_spot(spot_id, json.dumps(json_data), etag)
 
 
 def _build_spot_json(form_data):
-    json_data = json.loads(form_data['json'])
+    json_data = json.loads(form_data["json"])
 
     # handles case where single box is checked doesn't return a list
     try:
-        json_data['type'] = _process_checkbox_array(json_data['type'])
+        json_data["type"] = _process_checkbox_array(json_data["type"])
     except KeyError:
         pass
 
@@ -206,7 +221,7 @@ def _build_spot_json(form_data):
     payments = _process_checkbox_array(payments)
     ei_keys += payments
 
-    if 'labstats' in json_data:
+    if "labstats" in json_data:
         labstats = json_data.pop("labstats")
         if labstats != "":
             ei_keys += [labstats]
@@ -214,9 +229,9 @@ def _build_spot_json(form_data):
     extended_info = dict.fromkeys(ei_keys, "true")
 
     for key in list(json_data):
-        if key.startswith('extended_info'):
+        if key.startswith("extended_info"):
             value = json_data[key]
-            name = key.split(':', 1)[1]
+            name = key.split(":", 1)[1]
             json_data.pop(key)
             if value != "None" and len(value) > 0:
                 extended_info[name] = value
@@ -224,7 +239,7 @@ def _build_spot_json(form_data):
     # formats location data
     location_data = {}
     for key in list(json_data):
-        if key.startswith('location'):
+        if key.startswith("location"):
             name = key.split(":", 1)[1]
             location_data[name] = json_data[key]
             json_data.pop(key)
