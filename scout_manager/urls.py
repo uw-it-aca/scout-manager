@@ -13,78 +13,78 @@ from scout_manager.views.api import Spot, SpotCreate, Item, ItemCreate
 
 urlpatterns = [
     # /manager/
-    re_path(r'^$',
-            RedirectView.as_view(url='/manager/spaces/')),
+    re_path(r"^$",
+            RedirectView.as_view(url="/manager/spaces/")),
 
     # /items/
-    re_path(r'^items/$', pages.items,
-            name='items'),
+    re_path(r"^items/$", pages.items,
+            name="items"),
 
-    re_path(r'^items/(?P<item_id>[0-9]{1,5})/$',
+    re_path(r"^items/(?P<item_id>[0-9]{1,5})/$",
             pages.items_edit,
-            name='items_edit'),
+            name="items_edit"),
 
-    re_path(r'^items/add/$',
+    re_path(r"^items/add/$",
             pages.items_add,
-            name='items_add'),
+            name="items_add"),
 
-    re_path(r'^items/add/batch/$',
+    re_path(r"^items/add/batch/$",
             pages.items_add_batch,
-            name='items_add_batch'),
+            name="items_add_batch"),
 
     # /spaces/
-    re_path(r'^spaces/$',
+    re_path(r"^spaces/$",
             pages.spaces,
-            name='spaces'),
+            name="spaces"),
 
     # /spaces/ID/
-    re_path(r'^spaces/(?P<spot_id>[0-9]{1,5})/$',
+    re_path(r"^spaces/(?P<spot_id>[0-9]{1,5})/$",
             pages.spaces_edit,
-            name='spaces_edit'),
+            name="spaces_edit"),
 
     # /spaces/ID/schedule/new/
-    re_path(r'^spaces/(?P<spot_id>[0-9]{1,5})/schedule/new/$',
+    re_path(r"^spaces/(?P<spot_id>[0-9]{1,5})/schedule/new/$",
             pages.schedule,
-            name='schedule'),
+            name="schedule"),
 
     # /spaces/ID/schedule/DATETIME/
-    re_path(r'^spaces/(?P<spot_id>[0-9]{1,5})/schedule/20160516/$',
+    re_path(r"^spaces/(?P<spot_id>[0-9]{1,5})/schedule/20160516/$",
             pages.schedule,
-            name='schedule'),
+            name="schedule"),
 
     # /spaces/add/
-    re_path(r'^spaces/add/$',
+    re_path(r"^spaces/add/$",
             pages.spaces_add,
-            name='spaces_add'),
+            name="spaces_add"),
 
     # /spaces/add/
-    re_path(r'^spaces/upload/$',
+    re_path(r"^spaces/upload/$",
             pages.spaces_upload,
-            name='spaces_upload'),
+            name="spaces_upload"),
 
     # /api/
-    re_path(r'api/spot/(?P<spot_id>[0-9]{1,5})',
+    re_path(r"api/spot/(?P<spot_id>[0-9]{1,5})",
             Spot().run),
 
-    re_path(r'api/spot/',
+    re_path(r"api/spot/",
             SpotCreate().run),
 
     # /api/
-    re_path(r'api/item/(?P<item_id>[0-9]{1,5})',
+    re_path(r"api/item/(?P<item_id>[0-9]{1,5})",
             Item().run),
 
-    re_path(r'api/item/',
+    re_path(r"api/item/",
             ItemCreate().run),
 
     # manager spot image
-    re_path(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',
+    re_path(r"^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$",
             pages.image,
-            name='manager_image'),
+            name="manager_image"),
 
     # manager item image
-    re_path(r'^item/images/(?P<item_id>\d+)/image/(?P<image_id>\d+)/$',
+    re_path(r"^item/images/(?P<item_id>\d+)/image/(?P<image_id>\d+)/$",
             pages.item_image,
-            name='manager_item_image'),
+            name="manager_item_image"),
 ]
 
 # debug routes for developing error pages

@@ -26,7 +26,7 @@ logger = logging.getLogger("scout_manager")
 
 
 @method_decorator(group_required(settings.SCOUT_MANAGER_ACCESS_GROUP),
-                  name='run')
+                  name="run")
 class Spot(RESTDispatch):
     """
     Handles changes to spots
@@ -128,7 +128,7 @@ def _improperly_configured_handler(ex):
 
 
 @method_decorator(group_required(settings.SCOUT_MANAGER_ACCESS_GROUP),
-                  name='run')
+                  name="run")
 class SpotCreate(RESTDispatch):
     """
     Handles Spot creation, using PUT to deal with django issues
@@ -152,7 +152,7 @@ class SpotCreate(RESTDispatch):
 
 
 @method_decorator(group_required(settings.SCOUT_MANAGER_ACCESS_GROUP),
-                  name='run')
+                  name="run")
 class Item(RESTDispatch):
     """
     Handles changes to items
@@ -197,7 +197,7 @@ class Item(RESTDispatch):
 
 
 @method_decorator(group_required(settings.SCOUT_MANAGER_ACCESS_GROUP),
-                  name='run')
+                  name="run")
 class ItemCreate(RESTDispatch):
     """
     Handles Item creation, using PUT to deal with django issues
