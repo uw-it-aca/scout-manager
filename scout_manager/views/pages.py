@@ -13,9 +13,12 @@ from scout.dao.space import get_spot_list as get_spots
 from scout.views import CAMPUS_LOCATIONS, extract_spots_item_info
 from django.http import Http404, HttpResponse
 from userservice.user import UserService
+from django.conf import settings
+from uw_saml.decorators import group_required
 import base64
 
 
+@group_required(settings.SCOUT_MANAGER_ACCESS_GROUP)
 def home(request):
     netid = UserService().get_user()
     return render(
@@ -24,6 +27,7 @@ def home(request):
         {"netid": netid})
 
 
+@group_required(settings.SCOUT_MANAGER_ACCESS_GROUP)
 def items(request):
     netid = UserService().get_user()
     spots = get_spot_list('tech')
@@ -40,6 +44,7 @@ def items(request):
     return render(request, 'scout_manager/items.html', context)
 
 
+@group_required(settings.SCOUT_MANAGER_ACCESS_GROUP)
 def items_add(request):
     netid = UserService().get_user()
     buildings = get_building_list()
@@ -58,6 +63,7 @@ def items_add(request):
         context)
 
 
+@group_required(settings.SCOUT_MANAGER_ACCESS_GROUP)
 def items_add_batch(request):
     netid = UserService().get_user()
     buildings = get_building_list()
@@ -76,6 +82,7 @@ def items_add_batch(request):
         context)
 
 
+@group_required(settings.SCOUT_MANAGER_ACCESS_GROUP)
 def items_edit(request, item_id):
     netid = UserService().get_user()
     buildings = get_building_list()
@@ -95,6 +102,7 @@ def items_edit(request, item_id):
         context)
 
 
+@group_required(settings.SCOUT_MANAGER_ACCESS_GROUP)
 def schedule(request, spot_id):
     netid = UserService().get_user()
     spot = manager_get_spot_by_id(spot_id)
@@ -106,6 +114,7 @@ def schedule(request, spot_id):
         context)
 
 
+@group_required(settings.SCOUT_MANAGER_ACCESS_GROUP)
 def spaces(request):
     netid = UserService().get_user()
 
@@ -133,6 +142,7 @@ def spaces(request):
         context)
 
 
+@group_required(settings.SCOUT_MANAGER_ACCESS_GROUP)
 def spaces_add(request):
     netid = UserService().get_user()
     buildings = get_building_list()
@@ -146,6 +156,7 @@ def spaces_add(request):
         context)
 
 
+@group_required(settings.SCOUT_MANAGER_ACCESS_GROUP)
 def spaces_upload(request):
     netid = UserService().get_user()
     return render(
@@ -154,6 +165,7 @@ def spaces_upload(request):
         {"netid": netid},)
 
 
+@group_required(settings.SCOUT_MANAGER_ACCESS_GROUP)
 def spaces_edit(request, spot_id):
     netid = UserService().get_user()
 
@@ -179,6 +191,7 @@ def spaces_edit(request, spot_id):
         context)
 
 
+@group_required(settings.SCOUT_MANAGER_ACCESS_GROUP)
 def image(request, image_id, spot_id):
     width = request.GET.get('width', None)
     try:
@@ -193,6 +206,7 @@ def image(request, image_id, spot_id):
         raise Http404()
 
 
+@group_required(settings.SCOUT_MANAGER_ACCESS_GROUP)
 def item_image(request, image_id, item_id):
     width = request.GET.get('width', None)
     try:
