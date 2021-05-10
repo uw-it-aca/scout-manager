@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 """
 Tests for the scout-manager groups DAO
 """
@@ -7,14 +10,13 @@ from scout_manager.models import Group, GroupMembership, Person
 
 
 class GroupDaoTest(TestCase):
-    """ Tests the scout manager groups DAO methods.
-    """
+    """Tests the scout manager groups DAO methods."""
 
     def test_removed_orphan_people(self):
         # start with a higher id, so we have Person ids not in GroupMembership
         # ids. See SCOUT-728.
-        Person.objects.create(id=2, netid='javerage')
-        groups_dao.add_group('u_acadev_tester')
+        Person.objects.create(id=2, netid="javerage")
+        groups_dao.add_group("u_acadev_tester")
         before = []
         for person in Person.objects.all():
             before.append(person)
@@ -24,7 +26,7 @@ class GroupDaoTest(TestCase):
         after = []
         for person in Person.objects.all():
             after.append(person)
-        
+
         # Check that 'extra' was removed, but 'tbohn' was not.
         self.assertEqual(len(after), len(before))
         for person in before:
