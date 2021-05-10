@@ -8,8 +8,6 @@ from scout_manager.views.api import Spot, SpotCreate,\
 # from django.contrib import admin
 # admin.autodiscover()
 
-from django.contrib.auth.decorators import login_required
-
 urlpatterns = [
     # /manager/
     re_path(r'^$',
