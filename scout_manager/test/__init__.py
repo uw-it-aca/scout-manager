@@ -23,6 +23,3 @@ class ScoutTest(TestCase):
             "isMemberOf": [settings.SCOUT_MANAGER_ACCESS_GROUP]
         }
         session.save()
-    
-    def tearDown(self):
-        self.user.delete()
