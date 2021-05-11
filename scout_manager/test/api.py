@@ -16,6 +16,7 @@ spotUrl = "/manager/api/spot/24/"
 
 class ApiTest(ScoutTest):
     def setUp(self):
+        super().setUp()
         self.factory = RequestFactory()
 
     # PROCESS FORM DATA
