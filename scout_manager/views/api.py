@@ -13,6 +13,9 @@ from scout_manager.dao.item import update_item, create_item, delete_item
 from django.http import HttpResponse
 from scout_manager.models import Person, GroupMembership
 from userservice.user import UserService
+from django.conf import settings
+from django.utils.decorators import method_decorator
+from uw_saml.decorators import group_required
 from django.core.exceptions import PermissionDenied, ImproperlyConfigured
 import json
 import re
@@ -22,6 +25,8 @@ logging.basicConfig()
 logger = logging.getLogger("scout_manager")
 
 
+@method_decorator(group_required(settings.SCOUT_MANAGER_ACCESS_GROUP),
+                  name="run")
 class Spot(RESTDispatch):
     """
     Handles changes to spots
@@ -122,6 +127,8 @@ def _improperly_configured_handler(ex):
     )
 
 
+@method_decorator(group_required(settings.SCOUT_MANAGER_ACCESS_GROUP),
+                  name="run")
 class SpotCreate(RESTDispatch):
     """
     Handles Spot creation, using PUT to deal with django issues
@@ -144,6 +151,8 @@ class SpotCreate(RESTDispatch):
         )
 
 
+@method_decorator(group_required(settings.SCOUT_MANAGER_ACCESS_GROUP),
+                  name="run")
 class Item(RESTDispatch):
     """
     Handles changes to items
@@ -187,6 +196,8 @@ class Item(RESTDispatch):
         )
 
 
+@method_decorator(group_required(settings.SCOUT_MANAGER_ACCESS_GROUP),
+                  name="run")
 class ItemCreate(RESTDispatch):
     """
     Handles Item creation, using PUT to deal with django issues
