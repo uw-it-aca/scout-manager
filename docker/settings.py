@@ -61,6 +61,7 @@ if not DEBUG:
 GOOGLE_MAPS_API = os.getenv("GOOGLE_MAPS_API", "")
 
 # scout auth stuff
+SCOUT_MANAGER_ACCESS_GROUP = os.getenv("SCOUT_MANAGER_ACCESS_GROUP", "u_acadev_scout_access_test")
 MANAGER_SUPERUSER_GROUP = os.getenv("MANAGER_SUPERUSER_GROUP", "u_acadev_test")
 USERSERVICE_ADMIN_GROUP = os.getenv("USERSERVICE_ADMIN_GROUP", "u_acadev_test")
 
@@ -72,3 +73,6 @@ RESTCLIENTS_SPOTSEEKER_DAO_CLASS = os.getenv(
 SPOTSEEKER_OAUTH_KEY = os.getenv("SPOTSEEKER_OAUTH_KEY", "")
 SPOTSEEKER_OAUTH_SECRET = os.getenv("SPOTSEEKER_OAUTH_SECRET", "")
 OAUTH_USER = os.getenv("OAUTH_USER", "")
+
+if os.getenv("AUTH", "NONE") == "SAML_MOCK":
+    MOCK_SAML_ATTRIBUTES["isMemberOf"].append(SCOUT_MANAGER_ACCESS_GROUP)
