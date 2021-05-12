@@ -5,6 +5,8 @@
 Cases to test navigation from page to page
 """
 from bs4 import BeautifulSoup
+from django.conf import settings
+from django.contrib.auth.models import User
 from scout_manager.test import ScoutTest
 
 baseUrl = "/manager/spaces/"
@@ -69,6 +71,20 @@ class NavigationTests(ScoutTest):
     def setUpClass(cls):
         super(NavigationTests, cls).setUpClass()
         cls.soups = {}
+
+    def setUp(self):
+        self.user = User.objects.create(username="javerage")
+        self.user.save()
+
+        self.client.force_login(user=self.user)
+        session = self.client.session
+        session["samlUserdata"] = {
+            "isMemberOf": [settings.SCOUT_MANAGER_ACCESS_GROUP]
+        }
+        session.save()
+
+    def tearDown(self):
+        self.user.delete()
 
     for start, ends in _testCases.items():
         testFooterFunc = _makeTestFooterFunc(start)
