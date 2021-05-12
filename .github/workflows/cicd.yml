@@ -160,7 +160,6 @@ jobs:
           release_name: ${{ env.RELEASE_NAME }}
           commit_hash: ${{ needs.context.outputs.commit_hash }}
           git_repo_branch: ${{ needs.context.outputs.git_repo_branch }}
-          context_filename: ${{ needs.context.outputs.deploy-context-filename }}
           gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
 
       - name: Deploy Evaluation Branch
@@ -171,7 +170,6 @@ jobs:
           commit_hash: ${{ needs.context.outputs.commit_hash }}
           git_repo_branch: ${{ needs.context.outputs.git_repo_branch }}
           gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
-          context_filename: ${{ needs.context.outputs.deploy-context-filename }}
           app_instance: eval
 
       - name: 'Surface context from executed build step'
