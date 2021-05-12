@@ -2,6 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from scout_manager.test import ScoutTest
+from django.conf import settings
+from django.contrib.auth.models import User
 from django.test.client import RequestFactory
 from scout_manager.views.api import process_form_data
 from mock import Mock
@@ -16,8 +18,20 @@ spotUrl = "/manager/api/spot/24/"
 
 class ApiTest(ScoutTest):
     def setUp(self):
-        super().setUp()
+        self.user = User.objects.create(username="javerage")
+        self.user.save()
+
+        self.client.force_login(user=self.user)
+        session = self.client.session
+        session["samlUserdata"] = {
+            "isMemberOf": [settings.SCOUT_MANAGER_ACCESS_GROUP]
+        }
+        session.save()
+
         self.factory = RequestFactory()
+    
+    def tearDown(self):
+        self.user.delete()
 
     # PROCESS FORM DATA
 

@@ -6,6 +6,8 @@ Use a list of URLs and expected status codes to ensure every page
 returns the expected code.
 """
 
+from django.conf import settings
+from django.contrib.auth.models import User
 from scout_manager.test import ScoutTest
 
 baseUrl = "/manager"
@@ -56,6 +58,20 @@ def _makeTestFunc(name, path, status=OK, issue=None):
 class urlStatusCheck(ScoutTest):
     """Use a list of URLs and expected status codes to ensure every
     page returns the expected code."""
+
+    def setUp(self):
+        self.user = User.objects.create(username="javerage")
+        self.user.save()
+
+        self.client.force_login(user=self.user)
+        session = self.client.session
+        session["samlUserdata"] = {
+            "isMemberOf": [settings.SCOUT_MANAGER_ACCESS_GROUP]
+        }
+        session.save()
+
+    def tearDown(self):
+        self.user.delete()
 
     def _clientUrlStatus(self, urlsuffix=""):
         """Return response code of given URL, or 500 if failed"""
