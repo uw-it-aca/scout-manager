@@ -1,11 +1,21 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from scout_manager.views.rest_dispatch import RESTDispatch
-from scout_manager.dao.space import update_spot, create_spot, delete_spot,\
-    get_spot_by_id
+from scout_manager.dao.space import (
+    update_spot,
+    create_spot,
+    delete_spot,
+    get_spot_by_id,
+)
 from scout_manager.dao.groups import is_superuser, is_provisioned_user
 from scout_manager.dao.item import update_item, create_item, delete_item
 from django.http import HttpResponse
 from scout_manager.models import Person, GroupMembership
 from userservice.user import UserService
+from django.conf import settings
+from django.utils.decorators import method_decorator
+from uw_saml.decorators import group_required
 from django.core.exceptions import PermissionDenied, ImproperlyConfigured
 import json
 import re
@@ -15,10 +25,13 @@ logging.basicConfig()
 logger = logging.getLogger("scout_manager")
 
 
+@method_decorator(group_required(settings.SCOUT_MANAGER_ACCESS_GROUP),
+                  name="run")
 class Spot(RESTDispatch):
     """
     Handles changes to spots
     """
+
     def PUT(self, request, spot_id):
         user = UserService().get_user()
         form_data = process_form_data(request)
@@ -27,14 +40,17 @@ class Spot(RESTDispatch):
         try:
             update_spot(form_data, spot_id)
         except Exception as ex:
-            if (isinstance(ex, ImproperlyConfigured)):
+            if isinstance(ex, ImproperlyConfigured):
                 return _improperly_configured_handler(ex)
-            logger.exception("Error updating spot user: %s spot_id: %s" %
-                             (user, spot_id))
-            return HttpResponse(str(ex.message), status=400,
-                                content_type='application/json')
-        return HttpResponse(json.dumps({'status': 'it works'}),
-                            content_type='application/json')
+            logger.exception(
+                "Error updating spot user: %s spot_id: %s" % (user, spot_id)
+            )
+            return HttpResponse(
+                str(ex.message), status=400, content_type="application/json"
+            )
+        return HttpResponse(
+            json.dumps({"status": "it works"}), content_type="application/json"
+        )
 
     def DELETE(self, request, spot_id):
         user = UserService().get_user()
@@ -44,18 +60,21 @@ class Spot(RESTDispatch):
         try:
             delete_spot(spot_id, etag)
         except Exception as ex:
-            if (isinstance(ex, ImproperlyConfigured)):
+            if isinstance(ex, ImproperlyConfigured):
                 return _improperly_configured_handler(ex)
-            logger.exception("Error deleting spot user: %s spot_id: %s" %
-                             (user, spot_id))
-            return HttpResponse(str(ex.message), status=400,
-                                content_type='application/json')
-        return HttpResponse(json.dumps({'status': 'it works'}),
-                            content_type='application/json')
+            logger.exception(
+                "Error deleting spot user: %s spot_id: %s" % (user, spot_id)
+            )
+            return HttpResponse(
+                str(ex.message), status=400, content_type="application/json"
+            )
+        return HttpResponse(
+            json.dumps({"status": "it works"}), content_type="application/json"
+        )
 
 
 def process_form_data(request):
-    if request.META['CONTENT_TYPE'].startswith('multipart'):
+    if request.META["CONTENT_TYPE"].startswith("multipart"):
         put, files = request.parse_file_upload(request.META, request)
         request.FILES.update(files)
         put_dict = put.dict()
@@ -91,7 +110,7 @@ def can_add_spot(member_id):
     of *any* spot group, also allows 'superusers'
     """
     user = UserService().get_user()
-    return (is_superuser(user) or is_provisioned_user(user))
+    return is_superuser(user) or is_provisioned_user(user)
 
 
 def _get_current_spot_group(spot_id):
@@ -103,10 +122,13 @@ def _get_current_spot_group(spot_id):
 # error message on the clientside
 def _improperly_configured_handler(ex):
     logger.exception("Improperly configured settings")
-    return HttpResponse(str(ex.message), status=500,
-                        content_type='application/json')
+    return HttpResponse(
+        str(ex.message), status=500, content_type="application/json"
+    )
 
 
+@method_decorator(group_required(settings.SCOUT_MANAGER_ACCESS_GROUP),
+                  name="run")
 class SpotCreate(RESTDispatch):
     """
     Handles Spot creation, using PUT to deal with django issues
@@ -117,16 +139,20 @@ class SpotCreate(RESTDispatch):
         try:
             spot_id = create_spot(form_data)
         except Exception as ex:
-            if (isinstance(ex, ImproperlyConfigured)):
+            if isinstance(ex, ImproperlyConfigured):
                 return _improperly_configured_handler(ex)
             logger.exception("Error creating spot")
-            return HttpResponse(str(ex.message), status=400,
-                                content_type='application/json')
-        return HttpResponse(json.dumps({'status': 'Created',
-                                        'id': spot_id}),
-                            content_type='application/json')
+            return HttpResponse(
+                str(ex.message), status=400, content_type="application/json"
+            )
+        return HttpResponse(
+            json.dumps({"status": "Created", "id": spot_id}),
+            content_type="application/json",
+        )
 
 
+@method_decorator(group_required(settings.SCOUT_MANAGER_ACCESS_GROUP),
+                  name="run")
 class Item(RESTDispatch):
     """
     Handles changes to items
@@ -142,12 +168,14 @@ class Item(RESTDispatch):
         try:
             update_item(form_data, item_id)
         except Exception as ex:
-            if (isinstance(ex, ImproperlyConfigured)):
+            if isinstance(ex, ImproperlyConfigured):
                 return _improperly_configured_handler(ex)
-            return HttpResponse(str(ex.message), status=400,
-                                content_type='application/json')
-        return HttpResponse(json.dumps({'status': 'it works'}),
-                            content_type='application/json')
+            return HttpResponse(
+                str(ex.message), status=400, content_type="application/json"
+            )
+        return HttpResponse(
+            json.dumps({"status": "it works"}), content_type="application/json"
+        )
 
     def DELETE(self, request, item_id):
         user = UserService().get_user()
@@ -158,14 +186,18 @@ class Item(RESTDispatch):
         try:
             delete_item(item_id, spot_id)
         except Exception as ex:
-            if (isinstance(ex, ImproperlyConfigured)):
+            if isinstance(ex, ImproperlyConfigured):
                 return _improperly_configured_handler(ex)
-            return HttpResponse(str(ex.message), status=400,
-                                content_type='application/json')
-        return HttpResponse(json.dumps({'status': 'it works'}),
-                            content_type='application/json')
+            return HttpResponse(
+                str(ex.message), status=400, content_type="application/json"
+            )
+        return HttpResponse(
+            json.dumps({"status": "it works"}), content_type="application/json"
+        )
 
 
+@method_decorator(group_required(settings.SCOUT_MANAGER_ACCESS_GROUP),
+                  name="run")
 class ItemCreate(RESTDispatch):
     """
     Handles Item creation, using PUT to deal with django issues
@@ -178,5 +210,6 @@ class ItemCreate(RESTDispatch):
         # except Exception as ex:
         #     return HttpResponse(json.dumps({'error': str(ex)}), status=400,
         #                         content_type='application/json')
-        return HttpResponse(json.dumps({'status': 'it works'}),
-                            content_type='application/json')
+        return HttpResponse(
+            json.dumps({"status": "it works"}), content_type="application/json"
+        )

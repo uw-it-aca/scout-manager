@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from scout_manager.test.pages_navigation import NavigationTests
 from scout_manager.test.url_responses_test import urlStatusCheck
 from scout_manager.test.dao.buildings import BuildingDaoTest

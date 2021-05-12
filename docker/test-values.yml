@@ -88,6 +88,8 @@ externalSecrets:
           property: manager-superuser-group
         - name: oauth-user
           property: oauth-user
+        - name: scout-manager-access-group
+          property: scout-manager-access-group
         - name: spotseeker-oauth-key
           property: spotseeker-oauth-key
         - name: spotseeker-oauth-secret
@@ -152,6 +154,10 @@ environmentVariablesSecrets:
     name: IDP_CERT
     secretName: test.manager.scout.uw.edu-uw-idp-cert
     secretKey: uw-idp-cert
+  scoutManagerAccessGroup:
+    name: SCOUT_MANAGER_ACCESS_GROUP
+    secretName: test.manager.scout.uw.edu-secrets
+    secretKey: scout-manager-access-group
   spotseekerOauthKey:
     name: SPOTSEEKER_OAUTH_KEY
     secretName: test.manager.scout.uw.edu-secrets

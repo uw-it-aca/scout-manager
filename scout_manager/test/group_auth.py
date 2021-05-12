@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from django.test import TestCase
 from django.test.utils import override_settings
 from scout_manager.models import GroupMembership, Group, Person
@@ -10,8 +13,9 @@ SS_DAO = "Mock"
 GWS_DAO = "Mock"
 
 
-@override_settings(SPOTSEEKER_DAO_CLASS=SS_DAO,
-                   RESTCLIENTS_GWS_DAO_CLASS=GWS_DAO)
+@override_settings(
+    SPOTSEEKER_DAO_CLASS=SS_DAO, RESTCLIENTS_GWS_DAO_CLASS=GWS_DAO
+)
 class GroupAuthTest(TestCase):
     test_group = "u_acadev_tester"
     test_user = "javerage"
@@ -24,8 +28,9 @@ class GroupAuthTest(TestCase):
         group = Group.objects.get(group_id=self.test_group)
         self.assertEqual(group.group_id, self.test_group)
         javerage = Person.objects.get(netid=self.test_user)
-        membership = GroupMembership.objects.filter(person=javerage,
-                                                    group_id=group)
+        membership = GroupMembership.objects.filter(
+            person=javerage, group_id=group
+        )
         self.assertEqual(len(membership), 1)
 
     def test_is_provisioned(self):
@@ -35,18 +40,22 @@ class GroupAuthTest(TestCase):
         self.assertFalse(not_provisioned)
 
     def test_is_member(self):
-        is_member = GroupMembership.objects.is_member(self.test_user,
-                                                      self.test_group)
+        is_member = GroupMembership.objects.is_member(
+            self.test_user, self.test_group
+        )
         self.assertTrue(is_member)
-        not_user = GroupMembership.objects.is_member("notauser",
-                                                      self.test_group)
+        not_user = GroupMembership.objects.is_member(
+            "notauser", self.test_group
+        )
         self.assertFalse(not_user)
 
-        not_group = GroupMembership.objects.is_member(self.test_user,
-                                                      "u_notagroup")
+        not_group = GroupMembership.objects.is_member(
+            self.test_user, "u_notagroup"
+        )
         self.assertFalse(not_group)
 
         Person.objects.create(netid="notingroup")
-        not_member = GroupMembership.objects.is_member("notingroup",
-                                                       self.test_group)
+        not_member = GroupMembership.objects.is_member(
+            "notingroup", self.test_group
+        )
         self.assertFalse(not_member)
