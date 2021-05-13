@@ -56,7 +56,12 @@ gcsCredentials:
   mounted: true
   secretName: manager.scout.uw.edu-gc-service-credentials
 cronjob:
-  enabled: false
+  enabled: true
+  jobs:
+    - name: sync-groups
+      schedule: "0 12-23 * * 1-5"
+      command: ["/scripts/management_command.sh"]
+      args: ["sync_groups"]
 certs:
   mounted: true
   certPath: /certs/manager.scout.uw.edu-uwca.cert
