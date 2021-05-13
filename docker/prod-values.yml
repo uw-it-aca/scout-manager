@@ -104,10 +104,6 @@ externalSecrets:
           property: spotseeker-oauth-key
         - name: spotseeker-oauth-secret
           property: spotseeker-oauth-secret
-        - name: storage-bucket-name
-          property: storage-bucket-name
-        - name: storage-project-id
-          property: storage-project-id
         - name: userservice-admin-group
           property: userservice-admin-group
     - name: manager.scout.uw.edu-sql-secrets
@@ -134,11 +130,6 @@ externalSecrets:
       data:
         - name: uw-idp-cert
           property: cert
-    - name: manager.scout.uw.edu-gc-service-credentials
-      externalKey: axdd/kv/data/scout/common/gc-service-credentials
-      data:
-        - name: credentials.json
-          property: credentials.json
 environmentVariablesSecrets:
   djangoSecret:
     name: DJANGO_SECRET
@@ -176,14 +167,6 @@ environmentVariablesSecrets:
     name: SPOTSEEKER_OAUTH_SECRET
     secretName: manager.scout.uw.edu-secrets
     secretKey: spotseeker-oauth-secret
-  storageBucketName:
-    name: STORAGE_BUCKET_NAME
-    secretName: manager.scout.uw.edu-secrets
-    secretKey: storage-bucket-name
-  storageProjectId:
-    name: STORAGE_PROJECT_ID
-    secretName: manager.scout.uw.edu-secrets
-    secretKey: storage-project-id
   userserviceAdminGroup:
     name: USERSERVICE_ADMIN_GROUP
     secretName: manager.scout.uw.edu-secrets

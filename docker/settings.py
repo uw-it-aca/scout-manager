@@ -3,7 +3,6 @@
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from google.oauth2 import service_account
 from .base_settings import *
 
 if os.getenv("ENV", "localdev") == "localdev":
@@ -47,16 +46,6 @@ TEMPLATES[0]["OPTIONS"]["context_processors"].extend(
         "scout.context_processors.is_desktop",
     ]
 )
-
-# django storages settings
-if not DEBUG:
-    DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-    GS_BUCKET_NAME = os.getenv("STORAGE_BUCKET_NAME", "")
-    GS_PROJECT_ID = os.getenv("STORAGE_PROJECT_ID")
-    GS_LOCATION = os.path.join(os.getenv("ENV"), "manager")
-    GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-        "/gcs/credentials.json"
-    )
 
 GOOGLE_MAPS_API = os.getenv("GOOGLE_MAPS_API", "")
 
