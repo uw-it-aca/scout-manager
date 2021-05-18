@@ -20,7 +20,6 @@ setup(
         "django-compressor",
         "django-pyscss",
         "django-user-agents",
-        "django-storages[google]",
         "Django-SupportTools",
         # 'Django-UserService>=2.0.1,<3.1',
         "html5lib<=0.9999999",
