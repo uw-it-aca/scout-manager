@@ -42,7 +42,7 @@ externalService:
   servicePort: 3306
 database:
   engine: mysql
-  name: manager_prod
+  name: manager
   hostname: scout-manager-db-service
   secretName: manager.scout.uw.edu-sql-secrets
 repo: scout-manager
@@ -52,9 +52,6 @@ image:
   tag: IMAGE_TAG
 memcached:
   enabled: false
-gcsCredentials:
-  mounted: true
-  secretName: manager.scout.uw.edu-gc-service-credentials
 cronjob:
   enabled: true
   jobs:
@@ -120,7 +117,7 @@ externalSecrets:
           property: manager.scout.uw.edu-uwca.cert
         - name: manager.scout.uw.edu-uwca.key
           property: manager.scout.uw.edu-uwca.key
-    - name: manager.scout.uw.edu-ic-cert
+    - name: manager.scout.uw.edu-ic-certs
       externalKey: axdd/kv/data/scout/prod-manager/ic-certs
       data:
         - name: manager.scout.uw.edu-ic.cert
