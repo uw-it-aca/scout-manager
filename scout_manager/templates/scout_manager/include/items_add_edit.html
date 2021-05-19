@@ -23,6 +23,9 @@
     </div>
 </div>
 
+{% if is_superuser %}
+<input id="switch_input" type="button" class="btn-sm btn-primary" value="Use Text Inputs" style="display:inline-block;"></input>
+{% endif %}
 
 <div class="row">
 <div class="col-md-8">
@@ -55,75 +58,80 @@
             <textarea rows="4" class="form-control" id="" type="text" required name="extended_info:i_description">{{ spot.item.description }}</textarea>
             <div class="help-block with-errors" role="alert"></div>
             </div>
-
-        <fieldset class="radio-group required">
+        {% if is_superuser %}
+        <div style="display: none;" id="text_input_controls">
+        <div class="col-md-6" style="padding-left: 0;">
+            <div class="form-group">
+                <label for="">Category:</label>
+                <input id="category_text_input" class="form-control" type="text" value="{{spot.item.category}}" required name="category">
+                <div class="help-block with-errors" role="alert"></div>
+            </div>
+        </div>
+        <div class="col-md-6" style="padding-right: 0;">
+            <div class="form-group">
+                <label for="">Subcategory:</label>
+                <input id="subcategory_text_input" class="form-control" type="text" value="{{spot.item.subcategory}}" required name="subcategory">
+                <div class="help-block with-errors" role="alert"></div>
+            </div>
+        </div>
+        </div>
+        {% endif %}
+        <div id="dropdown_controls">
+        <fieldset class="radio-group required" id="category_fieldset">
             <legend for="">Category</legend>
             <div class="well" id="item_category">
-                <div class="radio"><label><input type="radio" name="category" {% if "cameras" in spot.item.category %} checked {% endif %} value="cameras">Cameras</label></div>
-                <div class="radio"><label><input type="radio" name="category" {% if "camera_accessories" in spot.item.category %} checked {% endif %} value="camera_accessories">Camera Accessories</label></div>
-                <div class="radio"><label><input type="radio" name="category" {% if "computers" in spot.item.category %} checked {% endif %} value="computers">Computers</label></div>
-                <div class="radio"><label><input type="radio" name="category" {% if "computer_accessories" in spot.item.category %} checked {% endif %} value="computer_accessories">Computer Accessories</label></div>
-                <div class="radio"><label><input type="radio" name="category" {% if "audio_systems" in spot.item.category %} checked {% endif %} value="audio_systems">Audio Systems</label></div>
-                <div class="radio"><label><input type="radio" name="category" {% if "audio_accessories" in spot.item.category %} checked {% endif %} value="audio_accessories">Audio Accessories</label></div>
+            {% for category, subcategories in filters.categories.items %}
+                    <div class="radio"><label><input type="radio" name="category" {% if category in spot.item.category %} checked {% endif %} value="{{ category }}">{{ subcategories.name|default:category }}</label></div>
+            {% endfor %}
             </div>
             <div class="help-block with-errors" role="alert">Please select a category.</div>
         </fieldset>
 
-        <fieldset class="radio-group required">
+        <fieldset id="subcategory_fieldset" class="radio-group required">
             <legend>Subcategory</legend>
             <div class="well" id="item_subcategory" style="min-height:40px;">
-
-                <div class="subcategory" style="" id="category_cameras">
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Digital Camera" in spot.item.subcategory %} checked {% endif %} value="Digital Camera">Digital Camera</label></div>
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Digital Video Camera" in spot.item.subcategory %} checked {% endif %} value="Digital Video Camera">Digital Video Camera</label></div>
+                {% for category, subcategories in filters.categories.items %}
+                {% if spot.item.category in category %}
+                <div class="subcategory" style="" id="category_{{ category }}">
+                        {% for subcategory, name in subcategories.sub.items %}
+                        <div class="radio"><label><input type="radio" name="subcategory" {% if subcategory in spot.item.subcategory %} checked {% endif %} value="{{ subcategory }}">{{ name.name|default:subcategory }}</label></div>
+                        {% endfor %}
                 </div>
+                {% endif %}
+                {% endfor %}
 
-                <div class="subcategory" style="display:none;" id="category_camera_accessories">
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - Light Kit" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - Light Kit">Light Kit</label></div>
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - Macro Lens" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - Macro Lens">Macro Lens</label></div>
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - Macro Ring Lite Flash" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - Macro Ring Lite Flash">Macro Ring Lite Flash</label></div>
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - Shoe Mount Flash" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - Shoe Mount Flash">Shoe Mount Flash</label></div>
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - SLR Remote" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - SLR Remote">SLR Remote</label></div>
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - Telephoto Lens" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - Telephoto Lens">Telephoto Lens</label></div>
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "DSLR Accessories - Wide Angle Lens" in spot.item.subcategory %} checked {% endif %} value="DSLR Accessories - Wide Angle Lens">Wide Angle Lens</label></div>
+                {% for category, subcategories in filters.categories.items %}
+                {% if spot.item.category not in category %}
+                <div class="subcategory" style="display: none;" id="category_{{ category }}">
+                        {% for subcategory, name in subcategories.sub.items %}
+                        <div class="radio"><label><input type="radio" name="subcategory" value="{{ subcategory }}">{{ name.name|default:subcategory }}</label></div>
+                        {% endfor %}
                 </div>
-
-                <div class="subcategory" style="display:none;" id="category_computers">
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Laptop Computer" in spot.item.subcategory %} checked {% endif %} value="Laptop Computer">Laptop Computer</label></div>
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Tablet Computer" in spot.item.subcategory %} checked {% endif %} value="Tablet Computer">Tablet Computer</label></div>
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Calculator" in spot.item.subcategory %} checked {% endif %} value="Calculator">Calculator</label></div>
-                </div>
-
-                <div class="subcategory" style="display:none;" id="category_computer_accessories">
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Blu-ray Burner" in spot.item.subcategory %} checked {% endif %} value="Blu-ray Burner">Blu-ray Burner</label></div>
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Digital Pen Tablet" in spot.item.subcategory %} checked {% endif %} value="Digital Pen Tablet">Digital Pen Tablet</label></div>
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "External Hard Drive" in spot.item.subcategory %} checked {% endif %} value="External Hard Drive">External Hard Drive</label></div>
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Data Projector" in spot.item.subcategory %} checked {% endif %} value="Data Projector">Data Projector</label></div>
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Power Point Remote" in spot.item.subcategory %} checked {% endif %} value="Power Point Remote">Power Point Remote</label></div>
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Projection Screen" in spot.item.subcategory %} checked {% endif %} value="Projection Screen">Projection Screen</label></div>
-                </div>
-
-                <div class="subcategory" style="display:none;" id="category_audio_systems">
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Portable Audio System" in spot.item.subcategory %} checked {% endif %} value="Portable Audio System">Portable Audio System</label></div>
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Voice Recorder/MP3 player" in spot.item.subcategory %} checked {% endif %} value="Voice Recorder/MP3 player">Voice Recorder/MP3 player</label></div>
-                </div>
-
-                <div class="subcategory" style="display:none;" id="category_audio_accessories">
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Microphone Stands" in spot.item.subcategory %} checked {% endif %} value="Microphone Stands">Microphone Stands</label></div>
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Shotgun Microphone" in spot.item.subcategory %} checked {% endif %} value="Shotgun Microphone">Shotgun Microphone</label></div>
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Tripod" in spot.item.subcategory %} checked {% endif %} value="Tripod">Tripod</label></div>
-                    <div class="radio"><label><input type="radio" name="subcategory" {% if "Wireless Microphone System" in spot.item.subcategory %} checked {% endif %} value="Wireless Microphone System">Wireless Microphone System</label></div>
-                </div>
+                {% endif %}
+                {% endfor %}
 
             </div>
             <div class="help-block with-errors" role="alert">Please select a subcategory.</div>
 
         </fieldset>
         </div>
+        </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="">Brand:</label>
-                    <input id="" class="form-control" type="text" value="{{spot.item.brand}}" required name="extended_info:i_brand">
+                    <select id="brand_select_input" class="form-control" name="extended_info:i_brand" required data-error="Brand selection is required.">
+                        <option selected value="{{spot.item.brand}}">Select a brand</option>
+                        {% for brand in filters.brands %}
+                           {% if spot.item.brand in brand  %}
+                            <option selected value={{ brand }}>{{ brand }}</option>
+                           {% else %}
+                            <option value={{ brand }}>{{ brand }}</option>
+                           {% endif %}
+                        {% endfor %}
+                    </select>
+                    {% if is_superuser %}
+                      <input id="brand_text_input" class="form-control" type="text" value="{{ spot.item.brand }}" name="extended_info:i_brand" style="display: none;">
+                    {% endif %}
                     <div class="help-block with-errors" role="alert"></div>
                 </div>
             </div>

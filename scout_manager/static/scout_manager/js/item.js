@@ -1,6 +1,21 @@
 var Item = {
     submit_item: function (e) {
         var form_data = Item.get_edit_form_data();
+        // Use the value of the input that was not hidden during submission
+        if ($("#switch_input").val() == 'Use Text Inputs') {
+            // Second entry corresponds to dropdown selection
+            form_data['category'] = form_data['category'][1]
+            form_data['subcategory'] = form_data['subcategory'][1]
+            form_data['extended_info:i_brand'] = form_data['extended_info:i_brand'][1]
+        } else if ($('#switch_input').val() == 'Use Selections') {
+            // First entry corresponds to a text input
+            form_data['category'] = form_data['category'][0]
+            form_data['subcategory'] = form_data['subcategory'][0]
+            form_data['extended_info:i_brand'] = form_data['extended_info:i_brand'][0]
+        }
+        // Normalize category name format for db storage (lowercase and underscore-seperated)
+        form_data['category'] = form_data['category'].replace(/\s+/g, '_').toLowerCase();
+
         var is_create = Item._get_is_add(form_data);
 
         if (is_create) {
@@ -9,6 +24,29 @@ var Item = {
         } else {
             Item._edit_item(form_data);
         }
+    },
+
+    submit_item_batch: function (e) {
+        var form_data = Item.get_batch_form_data();
+        var items = [];
+        for (var i = 1; i < form_data['name'].length; i++) {
+            var entry = {
+                'id': '',
+                'csrfmiddlewaretoken': form_data['csrfmiddlewaretoken'],
+                'spot_id': form_data['spot_id'],
+                'etag': form_data['etag'],
+                'name': form_data['name'][i],
+                'category': form_data['category'][i],
+                'subcategory': form_data['subcategory'][i],
+                'extended_info:i_brand': form_data['extended_info:i_brand'][i],
+                'extended_info:i_description': form_data['extended_info:i_description'][i],
+            };
+            if (form_data['extended_info:i_is_active'][i] == "yes") {
+                entry['extended_info:i_is_active'] = "true"
+            }
+            items.push(entry);
+        }
+        Item._create_item_batch(items);
     },
 
     delete_item: function (item_id, etag, success_callback) {
@@ -99,6 +137,38 @@ var Item = {
                 $("#pub_error").html(error + ": " + xhr.responseText);
             }
         });
+    },
+
+    _create_item_batch: function (item_batch) {
+        var form_data = item_batch;;
+        var f_data = new FormData();
+        f_data.append("json", JSON.stringify(form_data));
+        $.ajax({
+            url: "/manager/api/item/",
+            type: "PUT",
+            data: f_data,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            headers: {'X-CSRFToken': Cookies.get('csrftoken')},
+            success: function(results) {
+                $("#pub_error").removeClass("hidden");
+                $("#pub_error").addClass("alert-success");
+                $("#pub_error").html();
+                Item._navigate_after_create();
+            },
+            error: function(xhr, status, error) {
+                $("#pub_error").removeClass("hidden");
+                $("#pub_error").addClass("alert-danger");
+                $("#pub_error").html(error + ": " + xhr.responseText);
+            }
+        });
+    },
+
+    get_batch_form_data: function() {
+        var form = $("form").first();
+        var serialized_form = form.serializeObject();
+        return serialized_form;
     },
 
     get_edit_form_data: function() {

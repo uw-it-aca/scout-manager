@@ -1,3 +1,6 @@
+[![Build Status](https://github.com/uw-it-aca/scout-manager/workflows/Build%2C%20Test%20and%20Deploy/badge.svg?branch=master)](https://github.com/uw-it-aca/scout-manager/actions)
+[![Coverage Status](https://coveralls.io/repos/github/uw-it-aca/scout-manager/badge.svg?branch=master)](https://coveralls.io/github/uw-it-aca/scout-manager?branch=master)
+
 SCOUT MANAGER
 =============
 
@@ -5,55 +8,64 @@ This README documents whatever steps are necessary to get your application up an
 
 ## Installing the application ##
 
-**Install Scout Manager app in your existing project**  
+### Prerequisites ###
+To run the app, you must have the following installed:
+* Docker
+* Docker-compose
 
-    $ (yourenv) pip install -e git+https://github.com/uw-it-aca/scout-manager/#egg=scout_manager
+### Steps to run ###
+First, clone the app:
 
-**Update your project urls.py**
+```
+git clone https://github.com/uw-it-aca/scout-manager.git
+```
 
-    urlpatterns = patterns('',
-        ...
-        url(r'^manager/', include('scout_manager.urls')),
-    )
+If you wish to change the default settings, navigate to the develop branch and copy the sample environment variables into your own `.env` file:
 
-**Update your project settings.py**
+```
+cd scout-manager
+git checkout develop
+cp sample.env .env
+```
 
-    INSTALLED_APPS = (
-        ...
-        'scout_manager',
-        'scout',
-        'restclients',
-        'spotseeker_restclient'
-        'userservice',
-        'supporttools'
-    )
+Then, run the following command to build your docker container:
 
-    MIDDLEWARE_CLASSES = (
-         ...
-        'django.contrib.auth.middleware.RemoteUserMiddleware',
-        'userservice.user.UserServiceMiddleware'
-    )
+```
+docker-compose up --build
+```
 
-    AUTHENTICATION_BACKENDS = (
-        'django.contrib.auth.backends.RemoteUserBackend',
-    )
+You should see the server running at http://localhost:8000 (or at the port set in your `.env` file)
 
-    USERSERVICE_ADMIN_GROUP = ''
-    AUTHZ_GROUP_BACKEND = 'authz_group.authz_implementation.all_ok.AllOK'
+## Development ##
+
+### Running the app with Docker ###
+
+To rebuild the docker container from scratch, run:
+
+```
+docker-compose up --build
+```
+
+Otherwise, just run:
+
+```
+docker-compose up
+```
+
+### Running Unit Tests with Docker
+
+```
+docker-compose run --rm app bin/python manage.py test
+```
 
 
-    MANAGER_SUPERUSER_GROUP = 'u_acadev_tester' (or another mock group you define)
-    
-    OAUTH_USER = 'scout_manager' (matching a SPOTSEEKER_AUTH_ADMIN setting in spotseeker-server)
+### Running the app against a Live Spotseeker Server ###
+
+To find more information on how to run scout against a Live Spotseeker server using the 'all_ok' Auth Module, check [here](https://github.com/uw-it-aca/spotseeker_server/wiki/Using-'all_ok'-oauth-module)
 
 
-**Note: If you haven't already, remember to add details for a connection to spotseeker_server in your settings.py. Change 'File' to 'Live' if you want to connect to a live spotseeker_server:**
-    
-    SPOTSEEKER_HOST = ''
-    SPOTSEEKER_OAUTH_KEY = ''
-    SPOTSEEKER_OAUTH_SECRET = ''
-    SPOTSEEKER_DAO_CLASS = 'spotseeker_restclient.dao_implementation.spotseeker.File'
+To find more information on how to run scout against a Live Spotseeker server using the 'oauth' Auth Module, check [here](https://github.com/uw-it-aca/spotseeker_server/wiki/Using-OAuth)
 
-**Run with defined remote user, javerage will work with mock groups**
+## Built With
 
-    REMOTE_USER="javerage" ./manage runserver
+* [Django](http://djangoproject.com/)

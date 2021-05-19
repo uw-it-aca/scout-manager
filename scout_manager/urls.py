@@ -1,90 +1,90 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from django.conf import settings
-from django.conf.urls import patterns, include, url
+from django.urls import re_path
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
-from scout_manager.views.api import Spot, SpotCreate
-from scout_manager.views.api import Item, ItemCreate
+from .views import pages
+from scout_manager.views.api import Spot, SpotCreate, Item, ItemCreate
+
 # from django.contrib import admin
 # admin.autodiscover()
 
-urlpatterns = patterns(
-    '',
-
+urlpatterns = [
     # /manager/
-    url(r'^$', RedirectView.as_view(url='/manager/spaces/')),
-
+    re_path(
+        r"^$", RedirectView.as_view(url="/manager/spaces/")
+    ),
     # /items/
-    url(r'^items/$', 'scout_manager.views.pages.items',
-        name='items'),
-
-    url(r'^items/(?P<item_id>[0-9]{1,5})/$',
-        'scout_manager.views.pages.items_edit',
-        name='items_edit'),
-
-    url(r'^items/add/$',
-        'scout_manager.views.pages.items_add',
-        name='items_add'),
-
+    re_path(r"^items/$", pages.items, name="items"),
+    re_path(
+        r"^items/(?P<item_id>[0-9]{1,5})/$",
+        pages.items_edit,
+        name="items_edit",
+    ),
+    re_path(
+        r"^items/add/$", pages.items_add, name="items_add"
+    ),
+    re_path(
+        r"^items/add/batch/$",
+        pages.items_add_batch,
+        name="items_add_batch",
+    ),
     # /spaces/
-    url(r'^spaces/$',
-        'scout_manager.views.pages.spaces',
-        name='spaces'),
-
+    re_path(r"^spaces/$", pages.spaces, name="spaces"),
     # /spaces/ID/
-    url(r'^spaces/(?P<spot_id>[0-9]{1,5})/$',
-        'scout_manager.views.pages.spaces_edit',
-        name='spaces_edit'),
-
+    re_path(
+        r"^spaces/(?P<spot_id>[0-9]{1,5})/$",
+        pages.spaces_edit,
+        name="spaces_edit",
+    ),
     # /spaces/ID/schedule/new/
-    url(r'^spaces/(?P<spot_id>[0-9]{1,5})/schedule/new/$',
-        'scout_manager.views.pages.schedule',
-        name='schedule'),
-
+    re_path(
+        r"^spaces/(?P<spot_id>[0-9]{1,5})/schedule/new/$",
+        pages.schedule,
+        name="schedule",
+    ),
     # /spaces/ID/schedule/DATETIME/
-    url(r'^spaces/(?P<spot_id>[0-9]{1,5})/schedule/20160516/$',
-        'scout_manager.views.pages.schedule',
-        name='schedule'),
-
+    re_path(
+        r"^spaces/(?P<spot_id>[0-9]{1,5})/schedule/20160516/$",
+        pages.schedule,
+        name="schedule",
+    ),
     # /spaces/add/
-    url(r'^spaces/add/$',
-        'scout_manager.views.pages.spaces_add',
-        name='spaces_add'),
-
+    re_path(
+        r"^spaces/add/$", pages.spaces_add, name="spaces_add"
+    ),
     # /spaces/add/
-    url(r'^spaces/upload/$',
-        'scout_manager.views.pages.spaces_upload',
-        name='spaces_upload'),
-
+    re_path(
+        r"^spaces/upload/$",
+        pages.spaces_upload,
+        name="spaces_upload",
+    ),
     # /api/
-    url(r'api/spot/(?P<spot_id>[0-9]{1,5})',
-        Spot().run),
-
-    url(r'api/spot/',
-        SpotCreate().run),
-
+    re_path(r"api/spot/(?P<spot_id>[0-9]{1,5})", Spot().run),
+    re_path(r"api/spot/", SpotCreate().run),
     # /api/
-    url(r'api/item/(?P<item_id>[0-9]{1,5})',
-        Item().run),
-
-    url(r'api/item/',
-        ItemCreate().run),
-
+    re_path(r"api/item/(?P<item_id>[0-9]{1,5})", Item().run),
+    re_path(r"api/item/", ItemCreate().run),
     # manager spot image
-    url(r'^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$',
-        'scout_manager.views.pages.image',
-        name='manager_image'),
-
+    re_path(
+        r"^images/(?P<spot_id>\d+)/image/(?P<image_id>\d+)/$",
+        pages.image,
+        name="manager_image",
+    ),
     # manager item image
-    url(r'^item/images/(?P<item_id>\d+)/image/(?P<image_id>\d+)/$',
-        'scout_manager.views.pages.item_image',
-        name='manager_item_image'),
-)
+    re_path(
+        r"^item/images/(?P<item_id>\d+)/image/(?P<image_id>\d+)/$",
+        pages.item_image,
+        name="manager_item_image",
+    ),
+]
 
 # debug routes for developing error pages
 if settings.DEBUG:
-    urlpatterns += patterns(
-        '',
-        url(r'^500/$', TemplateView.as_view(template_name='500.html')),
-        url(r'^404/$', TemplateView.as_view(template_name='404.html')),
-        url(r'^403/$', TemplateView.as_view(template_name='403.html')),
-    )
+    urlpatterns += [
+        re_path(r"^500/$", TemplateView.as_view(template_name="500.html")),
+        re_path(r"^404/$", TemplateView.as_view(template_name="404.html")),
+        re_path(r"^403/$", TemplateView.as_view(template_name="403.html")),
+    ]

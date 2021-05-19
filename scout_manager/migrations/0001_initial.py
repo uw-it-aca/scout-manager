@@ -10,34 +10,66 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Group',
+            name="Group",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('group_id', models.CharField(max_length=500)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("group_id", models.CharField(max_length=500)),
             ],
         ),
         migrations.CreateModel(
-            name='GroupMembership',
+            name="GroupMembership",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('group', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='scout_manager.Group')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "group",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="scout_manager.Group",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Person',
+            name="Person",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('netid', models.CharField(max_length=40)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("netid", models.CharField(max_length=40)),
             ],
         ),
         migrations.AddField(
-            model_name='groupmembership',
-            name='person',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='scout_manager.Person'),
+            model_name="groupmembership",
+            name="person",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="scout_manager.Person",
+            ),
         ),
     ]

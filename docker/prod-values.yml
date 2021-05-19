@@ -1,0 +1,170 @@
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 4
+targetAverageUtilization: 100
+resources:
+  limits:
+    cpu: 1.0
+    memory: 1280Mi
+  requests:
+    cpu: 256m
+    memory: 1024Mi
+ingress:
+  enabled: true
+  tls:
+    scout-manager:
+      secretName: manager.scout.uw.edu-ingress-cert
+      hosts:
+        - manager.scout.uw.edu
+  hosts:
+    scout-manager:
+      host: manager.scout.uw.edu
+      paths:
+        - "/"
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/ssl-ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256"
+    nginx.ingress.kubernetes.io/client-body-buffer-size: "16K"
+lifecycle:
+  enabled: true
+  preStop:
+    enabled: true
+affinity:
+   podsSpanNodes: true
+readiness:
+  enabled: true
+externalService:
+  enabled: true
+  name: scout-manager-db-service
+  type: ClusterIP
+  serviceAddress: 172.18.0.196
+  servicePort: 3306
+database:
+  engine: mysql
+  name: manager_prod
+  hostname: scout-manager-db-service
+  secretName: manager.scout.uw.edu-sql-secrets
+repo: scout-manager
+instance: prod
+image:
+  repository: gcr.io/uwit-mci-axdd/scout-manager
+  tag: IMAGE_TAG
+memcached:
+  enabled: false
+cronjob:
+  enabled: true
+  jobs:
+    - name: sync-groups
+      schedule: "0 12-23 * * 1-5"
+      command: ["/scripts/management_command.sh"]
+      args: ["sync_groups"]
+certs:
+  mounted: true
+  certPath: /certs/manager.scout.uw.edu-uwca.cert
+  keyPath: /certs/manager.scout.uw.edu-uwca.key
+  secretName: manager.scout.uw.edu-uwca-certs
+environmentVariables:
+  - name: AUTH
+    value: SAML
+  - name: CLUSTER_CNAME
+    value: manager.scout.uw.edu
+  - name: ENV
+    value: prod
+  - name: GWS_ENV
+    value: PROD
+  - name: RESTCLIENTS_SPOTSEEKER_DAO_CLASS
+    value: Live
+  - name: RESTCLIENTS_SPOTSEEKER_HOST
+    value: https://api.scout.uw.edu
+  - name: SAML_ENTITY_ID
+    value: https://manager.scout.uw.edu/saml2
+  - name: WEBSERVER
+    value: nginx
+externalSecrets:
+  enabled: true
+  secrets:
+    - name: manager.scout.uw.edu-secrets
+      externalKey: axdd/kv/data/scout/prod-manager/secrets
+      data:
+        - name: django-secret
+          property: django-secret
+        - name: google-maps-api-key
+          property: google-maps-api-key
+        - name: manager-superuser-group
+          property: manager-superuser-group
+        - name: oauth-user
+          property: oauth-user
+        - name: scout-manager-access-group
+          property: scout-manager-access-group
+        - name: spotseeker-oauth-key
+          property: spotseeker-oauth-key
+        - name: spotseeker-oauth-secret
+          property: spotseeker-oauth-secret
+        - name: userservice-admin-group
+          property: userservice-admin-group
+    - name: manager.scout.uw.edu-sql-secrets
+      externalKey: axdd/kv/data/scout/common/sql-secrets
+      data:
+        - name: username
+          property: username
+        - name: password
+          property: password
+    - name: manager.scout.uw.edu-uwca-certs
+      externalKey: axdd/kv/data/scout/prod-manager/uwca-certs
+      data:
+        - name: manager.scout.uw.edu-uwca.cert
+          property: manager.scout.uw.edu-uwca.cert
+        - name: manager.scout.uw.edu-uwca.key
+          property: manager.scout.uw.edu-uwca.key
+    - name: manager.scout.uw.edu-ic-cert
+      externalKey: axdd/kv/data/scout/prod-manager/ic-certs
+      data:
+        - name: manager.scout.uw.edu-ic.cert
+          property: manager.scout.uw.edu-ic.cert
+    - name: manager.scout.uw.edu-uw-idp-cert
+      externalKey: axdd/kv/data/idp-cert
+      data:
+        - name: uw-idp-cert
+          property: cert
+environmentVariablesSecrets:
+  djangoSecret:
+    name: DJANGO_SECRET
+    secretName: manager.scout.uw.edu-secrets
+    secretKey: django-secret
+  googleMapsApiKey:
+    name: GOOGLE_MAPS_API
+    secretName: manager.scout.uw.edu-secrets
+    secretKey: google-maps-api-key
+  managerSuperuserGroup:
+    name: MANAGER_SUPERUSER_GROUP
+    secretName: manager.scout.uw.edu-secrets
+    secretKey: manager-superuser-group
+  oauthUser:
+    name: OAUTH_USER
+    secretName: manager.scout.uw.edu-secrets
+    secretKey: oauth-user
+  samlSPCert:
+    name: SP_CERT
+    secretName: manager.scout.uw.edu-ic-certs
+    secretKey: manager.scout.uw.edu-ic.cert
+  samlIDPCert:
+    name: IDP_CERT
+    secretName: manager.scout.uw.edu-uw-idp-cert
+    secretKey: uw-idp-cert
+  scoutManagerAccessGroup:
+    name: SCOUT_MANAGER_ACCESS_GROUP
+    secretName: manager.scout.uw.edu-secrets
+    secretKey: scout-manager-access-group
+  spotseekerOauthKey:
+    name: SPOTSEEKER_OAUTH_KEY
+    secretName: manager.scout.uw.edu-secrets
+    secretKey: spotseeker-oauth-key
+  spotseekerOauthSecret:
+    name: SPOTSEEKER_OAUTH_SECRET
+    secretName: manager.scout.uw.edu-secrets
+    secretKey: spotseeker-oauth-secret
+  userserviceAdminGroup:
+    name: USERSERVICE_ADMIN_GROUP
+    secretName: manager.scout.uw.edu-secrets
+    secretKey: userservice-admin-group

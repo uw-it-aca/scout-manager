@@ -17,6 +17,7 @@ var Forms = {
         Forms.sort_building_list();
         Forms.init_hours_midnight();
         Forms.capitalize_space_name();
+        Forms.init_input_switch();
 
         $("#campus_select").trigger("change");
 
@@ -180,6 +181,27 @@ var Forms = {
                     }
                 }
             })
+        });
+    },
+
+    init_input_switch: function() {
+        $("#switch_input").click(function(e) {
+            if (e.target.value == 'Use Text Inputs') {
+                $("#text_input_controls").show();
+                $("#brand_text_input").show();
+                $("#brand_text_input").val($("#brand_select_input").val());
+                $("#brand_select_input").hide();
+                $('#category_text_input').val($("input[name='category']:checked").val());
+                $('#subcategory_text_input').val($("input[name='subcategory']:checked").val());
+                $("#dropdown_controls").hide();
+                $("#switch_input").val('Use Selections');
+            } else {
+                $("#brand_select_input").show();
+                $("#dropdown_controls").show();
+                $("#text_input_controls").hide();
+                $("#brand_text_input").hide();
+                $("#switch_input").val('Use Text Inputs');
+            }
         });
     },
 
@@ -409,6 +431,83 @@ var Forms = {
         });
     },
 
+    handle_category_change: function() {
+        // Get all category dropdowns for every row currently in the batch form
+        let categorySelects = document.getElementsByClassName("category_dropdown");
+        // Set an onchange listener for all the dropdowns that populates the subcategory dropdown
+        Array.prototype.filter.call(categorySelects, function(categorySelect){
+            categorySelect.addEventListener('change', function() {
+                let rowNum = $(this).attr("data-row-key");
+                // hide all subcategory groups for this row
+                $(".subcategory_dropdown_" + rowNum).val('');
+                $(".subcategory_group_" + rowNum).hide();
+                // show only subcategory group that corresponds to clicked category
+                $(".category_" + $(this).val() + "_" + rowNum).show();
+                Forms.validate_batch();
+            });
+        });
+    },
+
+    handle_submit_item_batch: function() {
+        $("#submit_item_batch").click(Item.submit_item_batch);
+    },
+
+    handle_delete_item_row: function() {
+        $(".remove-row-btn").click(function(e) {
+            $(this).parent().parent().remove();
+            Forms.validate_batch();
+            $("#submit_form :input").on('input', function (e) {
+                Forms.validate_batch();
+            });
+        });
+    },
+
+    handle_item_row_add: function() {
+        $("#item_row_add").click(function(e) {
+            Forms.handle_add_row(this, 1);
+        });
+    },
+
+    handle_multi_item_row_add: function() {
+        $("#item_row_add_x").click(function(e) {
+            let count = $("#add_row_num").val();
+            Forms.handle_add_row(this, count);
+        });
+    },
+
+    handle_add_row: function(context, count) {
+        for (let step = 0; step < count; step++) {
+            let newRow = Forms.add_row_to_batch_form();
+            $(context).parent().parent().parent().append(newRow);
+        }
+        Forms.handle_delete_item_row();
+        Forms.validate_batch();
+        Forms.handle_category_change();
+        $("#submit_form :input").on('input', function (e) {
+            Forms.validate_batch();
+        });
+    },
+
+    add_row_to_batch_form: function() {
+        window.batchRows++;
+        let newRow = $(".item-entry-row").first().clone();
+        newRow.removeAttr('id');
+        let newCategories = newRow.find("#category_select");
+        newCategories.attr("data-row-key", window.batchRows);
+        let newSelect = newRow.find("#subcategory_select");
+        newSelect.addClass("subcategory_dropdown_" + window.batchRows);
+        let newOptGroups = newSelect.find("optgroup");
+        newOptGroups.each(function() {
+            let classes = $(this).attr("class");
+            $(this).removeClass(classes);
+            $(this).addClass("subcategory_group_" + window.batchRows);
+            $(this).addClass(classes + window.batchRows);
+            $(this).css("display", "none");
+        });
+        newRow.show();
+        return newRow;
+    },
+
     handle_checkbox_group_clicks: function() {
         // handle clicks for any checkboxes in a "checkbox-group" grouping
         $(".checkbox-group.required input[type='checkbox']").change(function(e) {
@@ -542,6 +641,23 @@ var Forms = {
             return false;
         }
         return true
+    },
+
+    validate_batch: function() {
+        var serialized_form = Item.get_batch_form_data();
+        $("#submit_item_batch").prop("disabled", false);
+        if (serialized_form["name"].length < 1) {
+            $("#submit_item_batch").prop("disabled", true);
+        }
+        for (var i = 1; i < serialized_form["name"].length; i++) {
+            if (serialized_form["name"][i] === "" ||
+                serialized_form["category"][i] === "" ||
+                serialized_form["subcategory"][i] === "" ||
+                serialized_form["extended_info:i_brand"][i] === "" ||
+                serialized_form["extended_info:i_description"][i] === "") {
+                $("#submit_item_batch").prop("disabled", true);
+            }
+        }
     },
 
     validate_publish: function() {

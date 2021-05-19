@@ -3,12 +3,19 @@ version: '3'
 services:
   app:
     restart: always
+    container_name: scout-manager
     build: .
     # map the local (host) directories to their container counterparts
     # to support live-syncing
     volumes:
-      - ./sampleproj:/app/sampleproj
-      - ./scout_manager:/app/scout_manager
+      - ./scout_manager:/app/scout-manager
     ports:
       - "${PORT:-8000}:8000"
-    command: bash -c "python manage.py migrate --settings=sampleproj.settings.local && REMOTE_USER=${REMOTE_USER:-javerage} python manage.py runserver 0.0.0.0:8000 --settings=sampleproj.settings.local"
+    environment:
+      AUTH: SAML_MOCK
+      ENV: localdev
+      OAUTH_USER: ${OAUTH_USER:-javerage}
+      RESTCLIENTS_SPOTSEEKER_HOST: ${RESTCLIENTS_SPOTSEEKER_HOST:-None}
+      RESTCLIENTS_SPOTSEEKER_DAO_CLASS: ${RESTCLIENTS_SPOTSEEKER_DAO_CLASS:-Mock}
+      SPOTSEEKER_OAUTH_KEY: ${SPOTSEEKER_OAUTH_KEY:-None}
+      SPOTSEEKER_OAUTH_SECRET: ${SPOTSEEKER_OAUTH_SECRET:-None}

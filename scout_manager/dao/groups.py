@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from uw_gws import GWS
 from uw_gws.exceptions import InvalidGroupID
 from restclients_core.exceptions import DataFailureException
@@ -41,8 +44,9 @@ def is_superuser(member_id):
         is_spot_editor = is_member(settings.MANAGER_SUPERUSER_GROUP, member_id)
         return is_spot_editor
     else:
-        raise ImproperlyConfigured("Must define a MANAGER_SUPERUSER_GROUP"
-                                   "in the settings")
+        raise ImproperlyConfigured(
+            "Must define a MANAGER_SUPERUSER_GROUP" "in the settings"
+        )
 
 
 def add_group(group_id):
@@ -87,14 +91,16 @@ def _update_group(group):
     group_people_ids = []
     for person in remote_people:
         group_people_ids.append(person.pk)
-    people_to_remove = GroupMembership.objects.filter(group=group)\
-        .exclude(person__in=group_people_ids)
+    people_to_remove = GroupMembership.objects.filter(group=group).exclude(
+        person__in=group_people_ids
+    )
     people_to_remove.delete()
 
     # Add new members to group and update timestamps
     for person in remote_people:
-        membership, created = GroupMembership\
-            .objects.get_or_create(group=group, person=person)
+        membership, created = GroupMembership.objects.get_or_create(
+            group=group, person=person
+        )
         if not created:
             # update timestamp
             membership.save()

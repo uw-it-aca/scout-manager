@@ -1,0 +1,8 @@
+[run]
+source = scout_manager
+parallel = True
+
+[paths]
+source =
+  scout_manager/
+  /app/scout_manager/
