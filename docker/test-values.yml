@@ -46,7 +46,7 @@ cronjob:
   enabled: true
   jobs:
     - name: sync-groups
-      schedule: "0 12-23 * * 1-5"
+      schedule: "59 12-23 * * 1-5"
       command: ["/scripts/management_command.sh"]
       args: ["sync_groups"]
 certs:
