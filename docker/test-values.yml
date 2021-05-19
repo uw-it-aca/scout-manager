@@ -42,9 +42,6 @@ image:
   tag: IMAGE_TAG
 memcached:
   enabled: false
-gcsCredentials:
-  mounted: true
-  secretName: test.manager.scout.uw.edu-gc-service-credentials
 cronjob:
   enabled: true
   jobs:
