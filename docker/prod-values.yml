@@ -42,7 +42,7 @@ externalService:
   servicePort: 3306
 database:
   engine: mysql
-  name: manager_prod
+  name: manager
   hostname: scout-manager-db-service
   secretName: manager.scout.uw.edu-sql-secrets
 repo: scout-manager
