@@ -92,17 +92,14 @@
             <div class="well" id="item_subcategory" style="min-height:40px;">
                 {% for category, subcategories in filters.categories.items %}
                 {% if spot.item.category in category %}
-                <div class="subcategory" style="" id="category_{{ category }}">
+                <div class="subcategory" id="category_{{ category|cut:' ' }}">
                         {% for subcategory, name in subcategories.sub.items %}
                         <div class="radio"><label><input type="radio" name="subcategory" {% if subcategory in spot.item.subcategory %} checked {% endif %} value="{{ subcategory }}">{{ name.name|default:subcategory }}</label></div>
                         {% endfor %}
                 </div>
                 {% endif %}
-                {% endfor %}
-
-                {% for category, subcategories in filters.categories.items %}
-                {% if spot.item.category not in category %}
-                <div class="subcategory" style="display: none;" id="category_{{ category }}">
+                {% if not spot.item or spot.item.category not in category %}
+                <div class="subcategory" style="display: none;" id="category_{{ category|cut:' ' }}">
                         {% for subcategory, name in subcategories.sub.items %}
                         <div class="radio"><label><input type="radio" name="subcategory" value="{{ subcategory }}">{{ name.name|default:subcategory }}</label></div>
                         {% endfor %}
