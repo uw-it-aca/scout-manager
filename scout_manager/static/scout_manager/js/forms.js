@@ -354,7 +354,7 @@ var Forms = {
             // hide all subcategory forms
             $(".subcategory").hide();
             // show only subcategory form that corresponds to clicked category
-            $("#category_" + $(this).val()).show();
+            $("#category_" + $(this).val().replace(" ", "")).show();
         });
 
     },
