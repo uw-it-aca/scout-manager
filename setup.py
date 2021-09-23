@@ -16,7 +16,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "beautifulsoup4",
-        "django==2.1.*",
+        "django~=2.1",
         "django-compressor",
         "django-pyscss",
         "django-user-agents",
@@ -28,7 +28,7 @@ setup(
         "pytz",
         "setuptools",
         "UW-Django-SAML2",
-        "UW-RestClients-GWS==1.0",
+        "UW-RestClients-GWS~=2.3",
     ],
     license="Apache License, Version 2.0",  # example license
     description="A Django app for managing spaces in spotseeker_server.",
