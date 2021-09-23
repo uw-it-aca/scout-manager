@@ -187,7 +187,7 @@ jobs:
     steps:
       - name: House Keeping
         if: >-
-          contains(fromJSON('["main", "master", "qa"]'),
+          contains(fromJSON('["main", "master", "develop"]'),
             needs.context.outputs.git_repo_branch)
         uses: uw-it-aca/actions/cicd-housekeeping@main
         with:
