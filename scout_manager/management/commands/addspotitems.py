@@ -165,7 +165,7 @@ class Command(BaseCommand):
         row = 2
         while sheet_descriptions["A" + str(row)].value:
             if sheet_descriptions["A" + str(row)].value == descr_id:
-                # handle item description and it's 350 limit.
+                # handle item description and its 350 limit.
                 item_description = sheet_descriptions["C" + str(row)].value
                 if len(item_description) >= 350:
                     item_description = item_description[:345] + "..."
