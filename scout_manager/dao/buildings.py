@@ -96,7 +96,6 @@ BUILDING_LIST = {
     "Dougan (DOU)": {"campus": "tacoma"},
     "Garretson Woodruff & Pratt (GWP)": {"campus": "tacoma"},
     "Russell T. Joy (JOY)": {"campus": "tacoma"},
-    "Joy": {"campus": "tacoma"},
     "Keystone (KEY)": {"campus": "tacoma"},
     "Laborer's Hall": {"campus": "tacoma"},
     "Longshoremen's Hall (LSH)": {"campus": "tacoma"},
