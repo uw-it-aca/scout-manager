@@ -43,7 +43,7 @@ def items(request):
         "netid": netid,
         "is_superuser": is_superuser(netid),
     }
-    return render(request,  "scout_manager/items.html", context)
+    return render(request, "scout_manager/items.html", context)
 
 
 @group_required(settings.SCOUT_MANAGER_ACCESS_GROUP)
