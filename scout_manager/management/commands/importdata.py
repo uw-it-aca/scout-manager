@@ -26,13 +26,13 @@ class Command(BaseCommand):
                 load_workbook(workbook)
                 self.importdata(workbook)
             except IOError:
-                print("Could not open file %s!" % workbook)
-                print("Also make sure the spotseeker server is running.")
+                print "Could not open file %s!" % workbook
+                print "Also make sure the spotseeker server is running."
             except Exception as e:
-                print("Unexpected error occured!")
+                print "Unexpected error occured!"
                 raise
         else:
-            print("A filename is needed to import data from.")
+            print "A filename is needed to import data from."
 
     def importdata(self, workbook):
         wb = load_workbook(filename=workbook)
@@ -141,7 +141,7 @@ class Command(BaseCommand):
                 elif item_location == "OUGL - STF":
                     jsondict_ougl["items"].append(item)
                 else:
-                    print("INVALID DATA : " + item)
+                    print "INVALID DATA : " + item
             row += 1
 
         # Post data to database.
@@ -162,13 +162,13 @@ class Command(BaseCommand):
                 "/api/v1/spot/", headers, space_json
             )
             if resp.status == 201:
-                print("A spot for " + jsondict[
+                print "A spot for " + jsondict[
                     "name"
-                ] + " has been created on " + resp["location"])
+                ] + " has been created on " + resp["location"]
             else:
-                print("Error " + str(
+                print "Error " + str(
                     resp.status
-                ) + " occured while creating a spot for " + jsondict["name"])
+                ) + " occured while creating a spot for " + jsondict["name"]
 
     def i_model_data_manager(self, i_model_bad):
         i_model = re.split(
