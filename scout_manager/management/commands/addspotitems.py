@@ -27,7 +27,7 @@ class Command(BaseCommand):
                 self.addspotitems(workbook)
             except IOError:
                 print("Could not open file %s!" % workbook)
-                print("Also make sure the spotseeker serveris running.")
+                print("Also make sure the spotseeker server is running.")
             except Exception as e:
                 print("Unexpected error occured!")
                 raise
