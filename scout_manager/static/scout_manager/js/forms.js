@@ -644,6 +644,8 @@ var Forms = {
     },
 
     validate_batch: function() {
+        $('#submit_form').validator({'focus': false});
+        $('#submit_form').validator('validate');
         var serialized_form = Item.get_batch_form_data();
         $("#submit_item_batch").prop("disabled", false);
         if (serialized_form["name"].length < 1) {
