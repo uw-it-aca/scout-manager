@@ -43,6 +43,7 @@ BUILDING_LIST = {
     "Mary Gates Hall (MGH)": {"campus": "seattle"},
     "McCarty Hall (MCC)": {"campus": "seattle"},
     "McMahon Hall (MCM)": {"campus": "seattle"},
+    "Meany Hall (MNY)": {"campus": "seattle"},
     "Mercer Court (MRC)": {"campus": "seattle"},
     "Miller Hall (MLR)": {"campus": "seattle"},
     "Molecular Engineering & Sciences (MOL)": {"campus": "seattle"},
