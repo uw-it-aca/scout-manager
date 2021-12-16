@@ -353,6 +353,7 @@ var Forms = {
         $("#item_category input[name='category']").change(function(e){
             // hide all subcategory forms
             $(".subcategory").hide();
+            //TODO SCOUT-1005
             // show only subcategory form that corresponds to clicked category
             $("#category_" + $(this).val().replace(" ", "")).show();
         });
@@ -560,6 +561,9 @@ var Forms = {
         // path for spot create form
         var spaces_add_path = new RegExp("\/manager\/spaces\/add\/?$");
 
+        //path for item create form
+        var items_add_path = new RegExp("\/manager\/items\/add\/?$");
+
         // validate form
         $('#submit_form').validator({'focus': false});
         $('#submit_form').validator('validate');
@@ -580,6 +584,9 @@ var Forms = {
             // validate if spot can be created
             Forms.validate_create();
 
+        }
+        else if (items_add_path.test(page_path)) {
+          Forms.init_item_add_edit();
         }
         else {
             // custom validators
@@ -985,6 +992,54 @@ var Forms = {
 
     _get_spot_etag: function () {
         return $('input[name="etag"]').attr("value")
+    },
+
+    validate_item_add_edit: function() {
+      let flag = false;
+      let inputSwitch = $("#switch_input");
+      if (inputSwitch.val() == 'Use Selections') {
+        flag = $("#category_text_input").val()=="" ?
+        false :
+        $("#item_name").val()=="" ?
+        false :
+        $("subcategory_text_input").val()=="" ?
+        false :
+        true;
+      }
+      else {
+        let flag1 = false;
+        let flag2 = false;
+        $("#input[name=category][type=radio]").forEach((radio) => {
+          if(radio.checked)
+          flag1 = true;
+        });
+        $("#input[name=subcategory][type=radio]").forEach((radio) => {
+          if(radio.checked)
+          flag2 = true;
+        });
+        flag = $("#item_name").val()==""?
+        false :
+        !flag1 ?
+        false :
+        !flag2 ?
+        false :
+        true;
+      }
+      $("#submit_item").prop("disabled", !flag);
+      $("#toggle_item_active").prop("disabled", !flag);
+    },
+
+    init_item_add_edit: function(){
+      alert("I was here, pops")
+      $("#category_text_input").addEventListener("change", Forms.validate_item_add_edit);
+      $("#item_name").addEventListener("change", Forms.validate_item_add_edit);
+      $("subcategory_text_input").addEventListener("change", Forms.validate_item_add_edit);
+      $("#input[name=category][type=radio]").forEach((radio) => {
+        radio.addEventListener("change", Forms.validate_item_add_edit);
+      });
+      $("#input[name=subcategory][type=radio]").forEach((radio) => {
+        radio.addEventListener("change", Forms.validate_item_add_edit);
+      });
     }
 
 };
