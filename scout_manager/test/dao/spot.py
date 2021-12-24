@@ -64,7 +64,9 @@ class SpotDaoTest(ScoutTest):
     # TODO: find a way to get put_spot to be called
     def test_create_spot(self):
         form_data = {
-            "json": '{"name": "Test Spot", "capacity": 19, "location:latitude": 50, "location:longitude": -30, "extended_info:app_type": "tech"}',
+            "json": '{"name": "Test Spot", "capacity": 19,\
+                 "location:latitude": 50, "location:longitude": -30,\
+                      "extended_info:app_type": "tech"}',
             "file": None,
         }
         try:
