@@ -31,3 +31,9 @@ class GroupDaoTest(TestCase):
         self.assertEqual(len(after), len(before))
         for person in before:
             self.assertIn(person, after)
+    
+    def test_is_provisioned_user(self):
+        Person.objects.create(id=2, netid="javerage")
+        self.assertTrue(groups_dao.is_provisioned_user("javerage"))
+        self.assertFalse(groups_dao.is_provisioned_user("javerage1"))
+        Person.objects.get(id=2).delete()
