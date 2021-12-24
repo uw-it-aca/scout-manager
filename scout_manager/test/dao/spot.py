@@ -5,16 +5,21 @@
 Tests for the scout-manager spot DAO
 """
 from scout_manager.dao.space import (
+    create_spot,
+    get_spot_by_id,
     get_spot_hours_by_day,
     _process_checkbox_array,
     get_spot_list,
     _get_spot_id_from_url,
     _build_spot_json,
+    update_spot,
 )
 from uw_spotseeker import Spotseeker
 from scout_manager.test import ScoutTest
 import datetime
 import json
+from mock import patch
+from restclients_core.exceptions import DataFailureException
 
 
 class SpotDaoTest(ScoutTest):
@@ -55,7 +60,29 @@ class SpotDaoTest(ScoutTest):
     def test_get_id(self):
         url = "http://spotseeker-test-app1.cac.washington.edu/api/v1/spot/5213"
         self.assertEqual(_get_spot_id_from_url(url), "5213")
-
+    
+    # TODO: find a way to get put_spot to be called
+    def test_create_spot(self):
+        form_data = {
+            "json": '{"name": "Test Spot", "capacity": 19, "location:latitude": 50, "location:longitude": -30, "extended_info:app_type": "tech"}',
+            "file": None,
+        }
+        try:
+            create_spot(form_data)
+        except DataFailureException as e:
+            self.assertTrue("Error fetching /api/v1/spot." in str(e))
+    
+    def test_update_spot(self):
+        form_data = {
+            "file": None,
+            "json": '{"capacity": "19"}'
+        }
+        json_data = _build_spot_json(form_data)
+        with patch.object(Spotseeker, "put_spot") as mock_put:
+            # this doesn't actually change the capacity to 19 but it calls put_spot
+            update_spot(form_data, "1")
+            etag = get_spot_by_id(1).etag
+            mock_put.assert_called_once_with("1", json.dumps(json_data), etag)
 
 class BuildSpotJsonTest(ScoutTest):
     """Unit tests for the _build_spot_json function"""
