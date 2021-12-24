@@ -33,7 +33,7 @@ def is_member(group_id, member_id):
 def is_provisioned_user(member_id):
     user_exists = True
     try:
-        Person.objects.get(netid=member_id).exists()
+        Person.objects.get(netid=member_id)
     except ObjectDoesNotExist:
         user_exists = False
     return user_exists
