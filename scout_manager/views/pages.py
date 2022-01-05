@@ -3,7 +3,9 @@
 
 from django.template import RequestContext
 from django.shortcuts import render
-from scout_manager.dao.item import get_spot_by_item_id as manager_get_spot_by_item_id
+from scout_manager.dao.item import (
+    get_spot_by_item_id as manager_get_spot_by_item_id
+)
 from scout_manager.dao.space import get_spot_by_id as manager_get_spot_by_id
 from scout_manager.dao.space import get_spot_hours_by_day, get_spot_list
 from scout_manager.dao.buildings import get_building_list
