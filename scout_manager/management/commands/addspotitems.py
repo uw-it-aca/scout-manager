@@ -26,13 +26,13 @@ class Command(BaseCommand):
                 load_workbook(workbook)
                 self.addspotitems(workbook)
             except IOError:
-                print "Could not open file %s!" % workbook
-                print "Also make sure the spotseeker server is running."
+                print("Could not open file " + str(workbook) + "!")
+                print("Also make sure the spotseeker server is running.")
             except Exception as e:
-                print "Unexpected error occured!"
+                print("Unexpected error occured!")
                 raise
         else:
-            print "A filename is needed to import data from."
+            print("A filename is needed to import data from.")
 
     def addspotitems(self, workbook):
         wb = load_workbook(filename=workbook)
@@ -103,7 +103,7 @@ class Command(BaseCommand):
                 elif item_location == "KNE 035 - STF":
                     spot_kane["items"].append(item)
                 else:
-                    print "No matching spot found for : " + str(item)
+                    print("No matching spot found for : " + str(item))
             row += 1
 
         # PUT the spots with items back on the server.
@@ -113,13 +113,13 @@ class Command(BaseCommand):
             spot_json = json.dumps(spot)
             resp, content = client.putURL(spot["uri"], headers, spot_json)
             if resp.status == 201 or resp.status == 200:
-                print "Spot " + spot[
+                print("Spot " + spot[
                     "name"
-                ] + " has been updated with the items"
+                ] + " has been updated with the items")
             else:
-                print "Error " + str(
+                print("Error " + str(
                     resp.status
-                ) + " occured while updating the spot for " + spot["name"]
+                ) + " occured while updating the spot for " + spot["name"])
 
     def item_data_cleaner(self, i_model_bad):
         i_model = re.split(
