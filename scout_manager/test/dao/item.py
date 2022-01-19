@@ -10,11 +10,14 @@ from scout_manager.dao.item import (
 )
 from uw_spotseeker import Spotseeker
 from scout_manager.test import ScoutTest
+from django.test.utils import override_settings
 from mock import patch
 import datetime
 import json
 
+DAO = 'Mock'
 
+@override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)
 class ItemDaoTest(ScoutTest):
     def setUp(self):
         self.test_item = {

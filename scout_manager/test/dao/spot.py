@@ -13,10 +13,13 @@ from scout_manager.dao.space import (
 )
 from uw_spotseeker import Spotseeker
 from scout_manager.test import ScoutTest
+from django.test.utils import override_settings
 import datetime
 import json
 
+DAO = 'Mock'
 
+@override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)
 class SpotDaoTest(ScoutTest):
     def test_make_hours_no_spot(self):
         spot_hours = get_spot_hours_by_day(None)
@@ -56,7 +59,7 @@ class SpotDaoTest(ScoutTest):
         url = "http://spotseeker-test-app1.cac.washington.edu/api/v1/spot/5213"
         self.assertEqual(_get_spot_id_from_url(url), "5213")
 
-
+@override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)
 class BuildSpotJsonTest(ScoutTest):
     """Unit tests for the _build_spot_json function"""
 
