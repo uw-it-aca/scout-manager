@@ -42,6 +42,9 @@ class Spot(RESTDispatch):
         except Exception as ex:
             if isinstance(ex, ImproperlyConfigured):
                 return _improperly_configured_handler(ex)
+            # if spotseeker returns a 401, it's unauthorized
+            if ex.status == 401:
+                return _unauthorized_handler(ex)
             logger.exception(
                 "Error updating spot user: %s spot_id: %s" % (user, spot_id)
             )
@@ -127,6 +130,15 @@ def _improperly_configured_handler(ex):
     )
 
 
+# Return a 403 (for now) for Unauthorized errors to activate the appropriate
+# error message on the clientside
+def _unauthorized_handler(ex):
+    logger.exception("Unauthorized user")
+    return HttpResponse(
+        str(ex.msg), status=403, content_type="application/json"
+    )
+
+
 @method_decorator(group_required(settings.SCOUT_MANAGER_ACCESS_GROUP),
                   name="run")
 class SpotCreate(RESTDispatch):
@@ -141,6 +153,9 @@ class SpotCreate(RESTDispatch):
         except Exception as ex:
             if isinstance(ex, ImproperlyConfigured):
                 return _improperly_configured_handler(ex)
+            # if spotseeker returns a 401, it's unauthorized
+            if ex.status == 401:
+                return _unauthorized_handler(ex)
             logger.exception("Error creating spot")
             return HttpResponse(
                 str(ex.msg), status=400, content_type="application/json"
