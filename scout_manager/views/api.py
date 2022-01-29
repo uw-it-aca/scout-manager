@@ -46,7 +46,7 @@ class Spot(RESTDispatch):
                 "Error updating spot user: %s spot_id: %s" % (user, spot_id)
             )
             return HttpResponse(
-                str(ex.message), status=400, content_type="application/json"
+                str(ex), status=400, content_type="application/json"
             )
         return HttpResponse(
             json.dumps({"status": "it works"}), content_type="application/json"

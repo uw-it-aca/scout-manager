@@ -188,7 +188,6 @@ def update_spot(form_data, spot_id, image=None):
         and form_data["file"] != "null"
     ):
         spot_client.post_image(spot_id, form_data["file"])
-
     spot_client.put_spot(spot_id, json.dumps(json_data), etag)
 
 
