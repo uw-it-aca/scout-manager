@@ -73,7 +73,7 @@ var Item = {
                         $("#pub_error").html("Sorry, but you don't have permission to update this page.");
                         break;
                     case 400:
-                        $("#pub_error").html("Sorry, your submission contained bad data. Please fix it and try again:<br/><strong>" + error.error + "</strong>");
+                        $("#pub_error").html("Sorry, your submission contained bad data. Please fix it and try again:<br/><strong>" + xhr.responseText + "</strong>");
                         break;
                 }
             }

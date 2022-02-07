@@ -45,8 +45,11 @@ class Spot(RESTDispatch):
             logger.exception(
                 "Error updating spot user: %s spot_id: %s" % (user, spot_id)
             )
+            # finds error message in DataFailureException byte string
+            msg_start = ex.msg.rindex(b"__all__") + 12
+            message = ex.msg[msg_start:-3].decode()
             return HttpResponse(
-                str(ex), status=400, content_type="application/json"
+                message, status=400, content_type="application/json"
             )
         return HttpResponse(
             json.dumps({"status": "it works"}), content_type="application/json"
