@@ -6,6 +6,7 @@ from scout_manager.dao.item import (
     create_item,
     _get_spot_json,
     delete_item,
+    get_spot_by_item_id,
     update_item,
 )
 from uw_spotseeker import Spotseeker
@@ -27,9 +28,14 @@ class ItemDaoTest(ScoutTest):
             "category": "computers",
             "subcategory": "Laptop Computer",
             "extended_info:i_brand": "Apple",
-            "extneded_info:i_description": "For testing...",
+            "extended_info:i_description": "For testing...",
             "etag": "74d3d61ac442fc076d104b120lf86a5cb82fa3",
         }
+
+    def test_get_spot_from_manager_resources(self):
+        # this spot is only in the manager resources folder
+        spot = get_spot_by_item_id("18")
+        self.assertEqual(spot.spot_id, 5258)
 
     def test_create_single_item(self):
         test_data = {"json": json.dumps(self.test_item)}
@@ -42,7 +48,7 @@ class ItemDaoTest(ScoutTest):
         with patch.object(Spotseeker, "put_spot") as mock_put:
             create_item(test_data)
             mock_put.assert_called_once_with("1", json.dumps(json_data), etag)
-
+    
     def test_create_item_batch(self):
         test_list = [self.test_item, self.test_item]
         test_data = {"json": json.dumps(test_list)}
