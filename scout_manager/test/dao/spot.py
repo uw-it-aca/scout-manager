@@ -16,12 +16,15 @@ from scout_manager.dao.space import (
 )
 from uw_spotseeker import Spotseeker
 from scout_manager.test import ScoutTest
+from django.test.utils import override_settings
 import datetime
 import json
 from mock import patch
 from restclients_core.exceptions import DataFailureException
 
+DAO = 'Mock'
 
+@override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)
 class SpotDaoTest(ScoutTest):
     def test_make_hours_no_spot(self):
         spot_hours = get_spot_hours_by_day(None)
@@ -86,6 +89,8 @@ class SpotDaoTest(ScoutTest):
             etag = get_spot_by_id(1).etag
             mock_put.assert_called_once_with("1", json.dumps(json_data), etag)
 
+
+@override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)
 class BuildSpotJsonTest(ScoutTest):
     """Unit tests for the _build_spot_json function"""
 

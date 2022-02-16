@@ -5,10 +5,13 @@
 Tests for the scout-manager groups DAO
 """
 from django.test import TestCase
+from django.test.utils import override_settings
 from scout_manager.dao import groups as groups_dao
 from scout_manager.models import Group, GroupMembership, Person
 
+DAO = 'Mock'
 
+@override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)
 class GroupDaoTest(TestCase):
     """Tests the scout manager groups DAO methods."""
 
