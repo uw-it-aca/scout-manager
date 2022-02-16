@@ -234,7 +234,7 @@
         {% if spot.app_type == "food" %}
         <div class="form-group">
             <label for="phone" class="control-label">Phone: </label>
-            <input class="form-control" id="phone" name="extended_info:s_phone" type="tel" pattern="^\d{10}$" value="{% if spot.phone %}{{ spot.phone }}{% endif %}" data-error="please provide 10 digit phone number no dashses">
+            <input class="form-control" id="phone" name="extended_info:s_phone" type="tel" pattern="^\d{10}$" value="{% if spot.phone %}{{ spot.phone }}{% endif %}" data-error="Please provide a 10 digit phone number without dashes">
             <div class="help-block with-errors" role="alert"></div>
         </div>
         {% endif %}
