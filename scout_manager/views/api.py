@@ -47,9 +47,9 @@ class Spot(RESTDispatch):
             )
             # finds error message in DataFailureException byte string
             msg_start = ex.msg.rindex(b"__all__") + 12
-            message = ex.msg[msg_start:-3].decode()
+            ex.msg = ex.msg[msg_start:-3].decode()
             return HttpResponse(
-                message, status=400, content_type="application/json"
+                str(ex.msg), status=400, content_type="application/json"
             )
         return HttpResponse(
             json.dumps({"status": "it works"}), content_type="application/json"
@@ -69,7 +69,7 @@ class Spot(RESTDispatch):
                 "Error deleting spot user: %s spot_id: %s" % (user, spot_id)
             )
             return HttpResponse(
-                str(ex.message), status=400, content_type="application/json"
+                str(ex.msg), status=400, content_type="application/json"
             )
         return HttpResponse(
             json.dumps({"status": "it works"}), content_type="application/json"
@@ -126,7 +126,7 @@ def _get_current_spot_group(spot_id):
 def _improperly_configured_handler(ex):
     logger.exception("Improperly configured settings")
     return HttpResponse(
-        str(ex.message), status=500, content_type="application/json"
+        str(ex.msg), status=500, content_type="application/json"
     )
 
 
@@ -146,7 +146,7 @@ class SpotCreate(RESTDispatch):
                 return _improperly_configured_handler(ex)
             logger.exception("Error creating spot")
             return HttpResponse(
-                str(ex.message), status=400, content_type="application/json"
+                str(ex.msg), status=400, content_type="application/json"
             )
         return HttpResponse(
             json.dumps({"status": "Created", "id": spot_id}),
@@ -174,7 +174,7 @@ class Item(RESTDispatch):
             if isinstance(ex, ImproperlyConfigured):
                 return _improperly_configured_handler(ex)
             return HttpResponse(
-                str(ex.message), status=400, content_type="application/json"
+                str(ex.msg), status=400, content_type="application/json"
             )
         return HttpResponse(
             json.dumps({"status": "it works"}), content_type="application/json"
@@ -192,7 +192,7 @@ class Item(RESTDispatch):
             if isinstance(ex, ImproperlyConfigured):
                 return _improperly_configured_handler(ex)
             return HttpResponse(
-                str(ex.message), status=400, content_type="application/json"
+                str(ex.msg), status=400, content_type="application/json"
             )
         return HttpResponse(
             json.dumps({"status": "it works"}), content_type="application/json"
