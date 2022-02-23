@@ -8,7 +8,7 @@ services:
     # map the local (host) directories to their container counterparts
     # to support live-syncing
     volumes:
-      - ./scout_manager:/app/scout-manager
+      - ./scout_manager:/app/scout_manager
     ports:
       - "${PORT:-8000}:8000"
     environment:
