@@ -1,9 +1,11 @@
-# Copyright 2021 UW-IT, University of Washington
+# Copyright 2022 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 from django.template import RequestContext
 from django.shortcuts import render
-from scout_manager.dao.item import get_item_by_id as manager_get_item_by_id
+from scout_manager.dao.item import (
+    get_spot_by_item_id as manager_get_spot_by_item_id
+)
 from scout_manager.dao.space import get_spot_by_id as manager_get_spot_by_id
 from scout_manager.dao.space import get_spot_hours_by_day, get_spot_list
 from scout_manager.dao.buildings import get_building_list
@@ -92,7 +94,7 @@ def items_add_batch(request):
 def items_edit(request, item_id):
     netid = UserService().get_user()
     buildings = get_building_list()
-    spot = manager_get_item_by_id(int(item_id))
+    spot = manager_get_spot_by_item_id(int(item_id))
     tech_spots = get_spots("tech")
     info = extract_spots_item_info(tech_spots)
 
