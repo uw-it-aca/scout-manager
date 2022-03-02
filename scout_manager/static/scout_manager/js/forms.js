@@ -606,6 +606,7 @@ var Forms = {
 
         // form validation callback after any validation occurs
         $("#submit_form").on('validated.bs.validator', function (e) {
+            console.log("I'm on fire pops");
             Forms.validate_group();
             Forms.validate_create();
             Forms.validate_publish();
@@ -1009,13 +1010,31 @@ var Forms = {
       else {
         let flag1 = false;
         let flag2 = false;
-        $("#input[name=category][type=radio]").forEach((radio) => {
-          if(radio.checked)
-          flag1 = true;
+        /*
+        $("input[name=category][type=radio]").each((radio) => {
+          if($(radio).prop("checked")){
+            flag1 = true;
+            console.log("I was at flag1, pops, its value is " + flag1);
+          }
         });
-        $("#input[name=subcategory][type=radio]").forEach((radio) => {
-          if(radio.checked)
-          flag2 = true;
+        */
+        document.querySelectorAll("input[name=category][type=radio]").forEach((radio)=>{
+          if(radio.checked){
+            flag1 = true;
+          }
+        });
+        /*
+        $("input[name=subcategory][type=radio]").each((radio) => {
+          if($(radio).prop("checked")){
+            flag2 = true;
+            console.log("I was at flag2, pops" + flag2);
+          }
+        });
+        */
+        document.querySelectorAll("input[name=subcategory][type=radio]").forEach((radio)=>{
+          if(radio.checked){
+            flag2 = true;
+          }
         });
         flag = $("#item_name").val()==""?
         false :
@@ -1026,20 +1045,47 @@ var Forms = {
         true;
       }
       $("#submit_item").prop("disabled", !flag);
+      alert("The flag value is" + flag);
       $("#toggle_item_active").prop("disabled", !flag);
     },
 
     init_item_add_edit: function(){
-      alert("I was here, pops")
-      $("#category_text_input").addEventListener("change", Forms.validate_item_add_edit);
-      $("#item_name").addEventListener("change", Forms.validate_item_add_edit);
-      $("subcategory_text_input").addEventListener("change", Forms.validate_item_add_edit);
-      $("#input[name=category][type=radio]").forEach((radio) => {
-        radio.addEventListener("change", Forms.validate_item_add_edit);
+      //Disable save and publish by default
+      alert("However, I was cooled already")
+      $("#submit_item").prop("disabled", true);
+      $("#toggle_item_active").prop("disabled", true);
+
+      if ($("#switch_input").val() == 'Use Text Inputs') {
+        document.querySelector("#category_text_input").classList.remove("has-error");
+        document.querySelector("#subcategory_text_input").classList.remove("has-error");
+        alert("Was here as well, pops")
+      }
+
+      $("#category_text_input").on("change", Forms.validate_item_add_edit);
+      $("#item_name").on("change", Forms.validate_item_add_edit);
+      $("#subcategory_text_input").on("change", Forms.validate_item_add_edit);
+      /*
+      $("input[name=category][type=radio]").each((radio) => {
+        $(radio).on("click", Forms.validate_item_add_edit);
       });
-      $("#input[name=subcategory][type=radio]").forEach((radio) => {
-        radio.addEventListener("change", Forms.validate_item_add_edit);
+      */
+      document.querySelectorAll("input[name=category][type=radio]").forEach((radio) => {
+        radio.addEventListener("click", Forms.validate_item_add_edit);
+      })
+      /*
+      let categories = document.querySelectorAll("input[name=category][type=radio]");
+      for (let category of categories){
+        category.addEventListener("click", Forms.validate_item_add_edit)
+      }
+      */
+      document.querySelectorAll("input[name=subcategory][type=radio]").forEach((radio) => {
+        radio.addEventListener("click", Forms.validate_item_add_edit);
+      })
+      /*
+      $("input[name=subcategory][type=radio]").each((radio) => {
+        radio.on("click", Forms.validate_item_add_edit);
       });
+      */
     }
 
 };
