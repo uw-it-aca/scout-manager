@@ -1,4 +1,4 @@
-# Copyright 2021 UW-IT, University of Washington
+# Copyright 2022 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 from uw_spotseeker.dao import Spotseeker_DAO
@@ -18,7 +18,7 @@ def delete_item(item_id, spot_id):
     spot_client.put_spot(spot_id, json.dumps(json_data), etag)
 
 
-def get_item_by_id(item_id):
+def get_spot_by_item_id(item_id):
     from scout.dao.item import add_item_info
 
     spot_client = Spotseeker()
