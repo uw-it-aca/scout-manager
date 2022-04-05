@@ -353,6 +353,8 @@ var Forms = {
         $("#item_category input[name='category']").change(function(e){
             // hide all subcategory forms
             $(".subcategory").hide();
+            // deselect all subcategory radio buttons
+            //$("input[name=subcategory][type=radio]").forEach(radio => radio.checked=false);
             // show only subcategory form that corresponds to clicked category
             $("#category_" + $(this).val().replace(" ", "")).show();
         });
