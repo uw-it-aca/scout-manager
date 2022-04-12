@@ -75,21 +75,14 @@ def _get_study_spots(filters):
 
 
 def _get_all_spots(filters):
-    print("First of all, am here, pops")
     spot_client = Spotseeker()
-    print("Second this is what I have on spot")
     res = []
     try:
-        print("Reached here, tho")
         spots = spot_client.all_spots()
-        print("Didn't even reach here, pops")
         for spot in spots:
-            print("The spot existed, pops")
-            print(spot)
             spot = process_extended_info(spot)
             res.append(spot)
     except DataFailureException:
-        print("The spot never existed, pops")
         pass
         # TODO: consider logging on failure
     return res
