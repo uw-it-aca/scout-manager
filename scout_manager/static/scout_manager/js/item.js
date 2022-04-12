@@ -15,7 +15,6 @@ var Item = {
         }
         // Normalize category name format for db storage (lowercase and underscore-seperated)
         form_data['category'] = form_data['category'].replace(/\s+/g, '_').toLowerCase();
-        form_data['subcategory'] = form_data['subcategory'].replace(/\s+/g, '_').toLowerCase();
         var is_create = Item._get_is_add(form_data);
 
         if (is_create) {
