@@ -1,14 +1,17 @@
-# Copyright 2021 UW-IT, University of Washington
+# Copyright 2022 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 """
 Tests for the scout-manager groups DAO
 """
 from django.test import TestCase
+from django.test.utils import override_settings
 from scout_manager.dao import groups as groups_dao
 from scout_manager.models import Group, GroupMembership, Person
 
+DAO = 'Mock'
 
+@override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)
 class GroupDaoTest(TestCase):
     """Tests the scout manager groups DAO methods."""
 
@@ -31,3 +34,9 @@ class GroupDaoTest(TestCase):
         self.assertEqual(len(after), len(before))
         for person in before:
             self.assertIn(person, after)
+    
+    def test_is_provisioned_user(self):
+        Person.objects.create(id=2, netid="javerage")
+        self.assertTrue(groups_dao.is_provisioned_user("javerage"))
+        self.assertFalse(groups_dao.is_provisioned_user("javerage1"))
+        Person.objects.get(id=2).delete()

@@ -1,10 +1,11 @@
-# Copyright 2021 UW-IT, University of Washington
+# Copyright 2022 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 """
 Tests for the scout-manager buildings DAO
 """
 from django.test import TestCase
+from django.test.utils import override_settings
 import scout_manager.dao.buildings
 from scout_manager.dao.buildings import (
     get_building_list,
@@ -20,7 +21,9 @@ TEST_BUILDING_LIST = {
 # override building list for testing purposes
 scout_manager.dao.buildings.BUILDING_LIST = TEST_BUILDING_LIST
 
+DAO='Mock'
 
+@override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)
 class BuildingDaoTest(TestCase):
     def test_get_all_buildings(self):
         buildings = get_building_list()

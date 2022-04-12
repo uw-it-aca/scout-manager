@@ -8,12 +8,13 @@ services:
     # map the local (host) directories to their container counterparts
     # to support live-syncing
     volumes:
-      - ./scout_manager:/app/scout-manager
+      - ./scout_manager:/app/scout_manager
     ports:
       - "${PORT:-8000}:8000"
     environment:
       AUTH: SAML_MOCK
       ENV: localdev
+      MANAGER_SUPERUSER_GROUP: ${MANAGER_SUPERUSER_GROUP:-u_acadev_tester}
       OAUTH_USER: ${OAUTH_USER:-javerage}
       RESTCLIENTS_SPOTSEEKER_HOST: ${RESTCLIENTS_SPOTSEEKER_HOST:-None}
       RESTCLIENTS_SPOTSEEKER_DAO_CLASS: ${RESTCLIENTS_SPOTSEEKER_DAO_CLASS:-Mock}
