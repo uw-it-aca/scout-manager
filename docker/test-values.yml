@@ -1,3 +1,7 @@
+resources:
+  requests:
+    cpu: 90m
+    memory: 192Mi
 ingress:
   enabled: true
   tls:
