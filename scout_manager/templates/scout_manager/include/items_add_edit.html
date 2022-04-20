@@ -101,7 +101,7 @@
                 {% if not spot.item or spot.item.category not in category %}
                 <div class="subcategory" style="display: none;" id="category_{{ category|cut:' ' }}">
                         {% for subcategory, name in subcategories.sub.items %}
-                        <div class="radio"><label><input type="radio" name="subcategory" value="{{ subcategory }}">{{ name.name|default:subcategory }}</label></div>
+                        <div class="radio"><label><input type="radio" name="subcategory" value="{{ subcategory }}">{{ name.name|default:subcategory|cut:'DSLR Accessories - ' }}</label></div>
                         {% endfor %}
                 </div>
                 {% endif %}
