@@ -1,4 +1,6 @@
-FROM gcr.io/uwit-mci-axdd/django-container:1.3.8 as app-container
+ARG DJANGO_CONTAINER_VERSION=1.3.8
+
+FROM gcr.io/uwit-mci-axdd/django-container:${DJANGO_CONTAINER_VERSION} as app-container
 
 USER root
 RUN apt-get update && apt-get install mysql-client libmysqlclient-dev -y
@@ -11,13 +13,14 @@ RUN . /app/bin/activate && pip install mysqlclient django-prometheus==2.0.0
 
 ADD --chown=acait:acait docker/ project/
 
-RUN . /app/bin/activate && pip install nodeenv && nodeenv -p &&\
+#TODO: when moving to django-container 1.4.0 stop pinning node version
+RUN . /app/bin/activate && pip install nodeenv && nodeenv --node=17.9.0 -p &&\
     npm install -g npm && ./bin/npm install less -g
 
 RUN . /app/bin/activate && python manage.py collectstatic --noinput &&\
     python manage.py compress -f
 
-FROM gcr.io/uwit-mci-axdd/django-test-container:1.3.8 as app-test-container
+FROM gcr.io/uwit-mci-axdd/django-test-container:${DJANGO_CONTAINER_VERSION} as app-test-container
 
 COPY --from=0 /app/ /app/
 COPY --from=0 /static/ /static/
