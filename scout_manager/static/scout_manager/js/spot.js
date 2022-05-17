@@ -100,7 +100,6 @@ var Spot = {
                 }
             }
         });
-
     },
 
     _create_spot: function (form_data, will_exit) {
@@ -148,6 +147,8 @@ var Spot = {
     _spot_post_submit: function (will_exit, spot_id) {
         if (will_exit === 'link') {
             // just follow the href
+            console.log('reloading...');
+            location.reload();
         } else if (will_exit === 'apptype') {
             Spot._navigate_to_apptype();
         } else {  // 'reload' is the default
