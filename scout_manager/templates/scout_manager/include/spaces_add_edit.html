@@ -277,8 +277,8 @@
 
     <h3>Item(s)</h3>
 
-    <p><a id="add_item" class="" href="/manager/items/add/?spot_id={{ spot.spot_id }}">Add New Item to this space</a></p>
-    <p><a id="add_item_batch" class="" href="/manager/items/add/batch/?spot_id={{ spot.spot_id }}">Batch Add Items to this space</a></p>
+    <p><a id="add_item" class="" href="javascript:delay('/manager/items/add/?spot_id={{ spot.spot_id }}')">Add New Item to this space</a></p>
+    <p><a id="add_item_batch" class="" href="javascript:delay('/manager/items/add/batch/?spot_id={{ spot.spot_id }}')">Batch Add Items to this space</a></p>
     <p>Total: <span class="">{{ spot.items|length }}</span></p>
 
     <div style="margin-top: 15px;" class="table-responsive">
@@ -299,7 +299,7 @@
                 {% for item in spot.items %}
                 <tr {% if not item.is_active %}class="row-draft"{% endif %}>
                     <td>{{ item.item_id }}</td>
-                    <td><a class="item_link" href="/manager/items/{{ item.item_id }}/" title="See details: {{ item.name }}">{{ item.name }}</a></td>
+                    <td><a class="item_link" href="javascript:reroute2('/manager/items/{{ item.item_id }}/')" title="See details: {{ item.name }}">{{ item.name }}</a></td>
                     <td>{{ item.category }}</td>
                     <td>{{ item.subcategory }}</td>
                     <td>{% if item.is_stf %}Yes{% else %}No{% endif %}</td>
@@ -327,3 +327,21 @@
 {% elif spot.app_type == "tech" %}
     {% include "scout_manager/include/help_tech.html" %}
 {% endif %}
+
+<script>
+    function reroute(url) {
+        $.ajax({
+            url: url,
+            success: function(response) {
+                window.location.href = url;
+            }
+        });
+    }
+
+    // listen for the unlock event from spot.js
+    function reroute2(url) {
+        window.onunload = function() {
+            window.location.href = url;
+        }
+    }
+</script>
