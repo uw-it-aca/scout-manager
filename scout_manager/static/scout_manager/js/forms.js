@@ -48,8 +48,10 @@ var Forms = {
         // handle submitting spot to server
         $("#save_continue").on('click', {exit: 'reload'}, Spot.submit_spot);
         $("#save_close").on('click', {exit: 'apptype'}, Spot.submit_spot);
-        $("#add_item").on('click', {exit: 'link'}, Spot.submit_spot);
-        $("a.item_link").on('click', {exit: 'link'}, Spot.submit_spot);
+        $("#add_item").on('click', {exit: 'link', href: $('#add_item').attr('href')}, Spot.submit_spot);
+        $("a.item_link").each(function (idx) {
+            $(this).on('click', { exit: 'link', href: $(this).attr('href') }, Spot.submit_spot);
+        })
 
         $("#submit_item").click(Item.submit_item);
 
