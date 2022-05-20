@@ -86,7 +86,7 @@ var Spot = {
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-danger");
-                $("#pub_error").html(error + ": " + xhr.responseText);
+                $("#pub_error").html(error + ": " + xhr.responseText + " | " + xhr.status);
                 switch (xhr.status) {
                     case 500:
                         $("#pub_error").html("Something went wrong on our end and our developers have been alerted. Please try again later and feel free to contact help@uw.edu.");
@@ -146,9 +146,8 @@ var Spot = {
 
     _spot_post_submit: function (will_exit, spot_id) {
         if (will_exit === 'link') {
-            // just follow the href
-            console.log('reloading...');
-            location.reload();
+            // just follow the href (triggered by reload)
+            window.location.reload(true);
         } else if (will_exit === 'apptype') {
             Spot._navigate_to_apptype();
         } else {  // 'reload' is the default
