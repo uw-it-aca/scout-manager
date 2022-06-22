@@ -111,7 +111,7 @@ externalSecrets:
         - name: manager.scout.uw.edu-ic.cert
           property: manager.scout.uw.edu-ic.cert
         - name: manager.scout.uw.edu-ic.key
-          property: test.manager.scout.uw.edu-ic.key
+          property: manager.scout.uw.edu-ic.key
     - name: manager.scout.uw.edu-uw-idp-cert
       externalKey: axdd/kv/data/idp-cert
       data:
