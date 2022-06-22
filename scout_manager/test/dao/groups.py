@@ -8,6 +8,7 @@ from django.test import TestCase
 from django.test.utils import override_settings
 from scout_manager.dao import groups as groups_dao
 from scout_manager.models import Group, GroupMembership, Person
+from uw_gws import GWS
 
 DAO = 'Mock'
 
@@ -39,4 +40,13 @@ class GroupDaoTest(TestCase):
         Person.objects.create(id=2, netid="javerage")
         self.assertTrue(groups_dao.is_provisioned_user("javerage"))
         self.assertFalse(groups_dao.is_provisioned_user("javerage1"))
+        Person.objects.get(id=2).delete()
+    
+    @override_settings(MANAGER_SUPERUSER_GROUP='u_acadev_tester')
+    def test_is_superuser(self):
+        gws = GWS()
+        Person.objects.create(id=2, netid="javerage")
+        gws.add_members("u_acadev_tester", ["javerage"])
+        self.assertTrue(groups_dao.is_superuser("javerage"))
+        self.assertFalse(groups_dao.is_superuser("javerage1"))
         Person.objects.get(id=2).delete()

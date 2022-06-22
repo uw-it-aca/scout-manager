@@ -868,6 +868,9 @@ var Forms = {
         // check to see if the owner field has a validation error
         var num_errors = $('.has-error #owner').length;
 
+        // don't allow whitespace in the owner (space manager group) field
+        $("#owner").val($.trim($("#owner").val()));
+
         // control whether the save draft or continue buttons can be clicked or not
         if (num_errors > 0) {
             $(".scout-draft #save_close").prop("disabled", true);
