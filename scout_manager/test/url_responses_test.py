@@ -10,7 +10,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from scout_manager.test import ScoutTest
 
-baseUrl = "/manager"
+baseUrl = ""
 
 OK = 200
 redir = 301
@@ -32,6 +32,7 @@ _testCases = (
     ("Spaces specific nonexistant", "/spaces/0/", notfound),
     ("Spaces specific redir", "/spaces/5070", redir, "SCOUT-129"),
     ("Bad url", "/rando/", notfound),
+    ("Old baseUrl", "/manager/", redir, "SCOUT-1036"),
 )
 
 

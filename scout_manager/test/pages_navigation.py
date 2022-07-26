@@ -9,7 +9,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from scout_manager.test import ScoutTest
 
-baseUrl = "/manager/spaces/"
+baseUrl = "/spaces/"
 
 urls = {
     # 'home': baseUrl,
