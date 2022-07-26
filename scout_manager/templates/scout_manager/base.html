@@ -8,7 +8,7 @@
     </head>
     <body {% if request.user_agent.is_mobile or request.user_agent.is_tablet %}data-mobile="true"{% endif %}>
         <div id="header" class="mgr-header" role="banner" aria-labelledby="app_header">
-            <h1 id="app_header"><a href="/manager/">Scout<span>Manager</span></a></h1>
+            <h1 id="app_header"><a href="/">Scout<span>Manager</span></a></h1>
             <span class="mgr-user-name"><span class="visually-hidden">Logged in as: </span>{{ netid }}</span>
             <button onclick="document.getElementById('sidebar').classList.toggle('mgr-sidebar-closed');" type="button" class="btn mgr-menu-button"><i class="fa fa-bars"></i></button>
         </div>
@@ -18,18 +18,18 @@
             <div class="mgr-sidebar-actions" role="navigation" aria-labelledby="navigation_header">
                 <h3 id="subheader_spaces" ><small class="text-muted" style="padding: 15px 20px 0 20px; display:block;">Spaces</small></h3>
                 <ul aria-labelledby="subheader_spaces">
-                    <li><a class="" href="/manager/">View All Spaces</a></li>
-                    <li><a class="" href="/manager/spaces/?app_type=food" title="View the food spaces you manage"><i class="fa fa-cutlery" aria-hidden="true"></i> Food</a></li>
-                    <li><a class="" href="/manager/spaces/?app_type=study" title="View the study spaces you manage"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Study</a></li>
-                    <li><a class="" href="/manager/spaces/?app_type=tech" title="View the tech spaces you manage"><i class="fa fa-laptop" aria-hidden="true"></i> Tech</a></li>
+                    <li><a class="" href="/">View All Spaces</a></li>
+                    <li><a class="" href="/spaces/?app_type=food" title="View the food spaces you manage"><i class="fa fa-cutlery" aria-hidden="true"></i> Food</a></li>
+                    <li><a class="" href="/spaces/?app_type=study" title="View the study spaces you manage"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Study</a></li>
+                    <li><a class="" href="/spaces/?app_type=tech" title="View the tech spaces you manage"><i class="fa fa-laptop" aria-hidden="true"></i> Tech</a></li>
                 </ul>
                 <ul style="font-weight:400;">
-                    <li><a href="/manager/spaces/add/" role="button" title="Create new space"><i class="fa fa-plus" aria-hidden="true"></i> Add New Space</a></li>
-                    <!--<li><a href="/manager/spaces/upload/"><i class="fa fa-upload" aria-hidden="true"></i> Upload Spaces</a></li>-->
+                    <li><a href="/spaces/add/" role="button" title="Create new space"><i class="fa fa-plus" aria-hidden="true"></i> Add New Space</a></li>
+                    <!--<li><a href="/spaces/upload/"><i class="fa fa-upload" aria-hidden="true"></i> Upload Spaces</a></li>-->
                 </ul>
                 <h3 id="subheader_items"><small class="text-muted" style="padding: 15px 20px 0 20px; display:block;">Items</small></h3>
                 <ul aria-labelledby="subheader_items">
-                    <li><a class="" href="/manager/items/" title="View all the tech items you manage"><i class="fa fa-laptop" aria-hidden="true"></i> View All Items</a></li>
+                    <li><a class="" href="/items/" title="View all the tech items you manage"><i class="fa fa-laptop" aria-hidden="true"></i> View All Items</a></li>
                 </ul>
             </div>
         </div>
