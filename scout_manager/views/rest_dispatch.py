@@ -44,6 +44,7 @@ def _make_response(status_code, reason_phrase):
     response = HttpResponse(reason_phrase)
     response.status_code = status_code
     response.reason_phrase = reason_phrase
+    response.write(response.content)
     return response
 
 

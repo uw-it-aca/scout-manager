@@ -1,8 +1,16 @@
 [run]
 source = scout_manager
 parallel = True
+omit =
+    /app/scout_manager/management/commands/addspotitems.py
+    /app/scout_manager/management/commands/importdata.py
 
 [paths]
 source =
   scout_manager/
   /app/scout_manager/
+
+[report]
+omit =
+    /app/scout_manager/management/commands/addspotitems.py
+    /app/scout_manager/management/commands/importdata.py
