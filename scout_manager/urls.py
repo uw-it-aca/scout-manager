@@ -14,7 +14,7 @@ from scout_manager.views.api import Spot, SpotCreate, Item, ItemCreate
 urlpatterns = [
     # /manager/
     re_path(
-        r"^manager/$", RedirectView.as_view(url="/")
+        r"^manager/", RedirectView.as_view(url="/")
     ),
     # /
     re_path(

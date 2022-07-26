@@ -7,9 +7,5 @@ from django.contrib import admin
 from django.views.generic.base import RedirectView
 
 urlpatterns += [
-    re_path(r"^manager/", include("scout_manager.urls")),
-    # Redirects to /manager/spaces for /
-    re_path(
-        r"^$", RedirectView.as_view(url="/manager/spaces/")
-    ),
+    re_path(r"^", include("scout_manager.urls")),
 ]
