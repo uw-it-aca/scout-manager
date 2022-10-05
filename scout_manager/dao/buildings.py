@@ -106,6 +106,7 @@ BUILDING_LIST = {
     "Longshoremen's Hall (LSH)": {"campus": "tacoma"},
     "Mattress Factory (MAT)": {"campus": "tacoma"},
     "McDonald Smith (MDS)": {"campus": "tacoma"},
+    "Milgard Hall (MLG)": {"campus": "tacoma"},
     "Pinkerton (PNK)": {"campus": "tacoma"},
     "Science (SCI)": {"campus": "tacoma"},
     "Snoqualmie Building (SNO)": {"campus": "tacoma"},
