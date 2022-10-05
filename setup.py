@@ -21,7 +21,7 @@ setup(
         "django-pyscss",
         "django-user-agents",
         "Django-SupportTools",
-        # 'Django-UserService>=2.0.1,<3.1',
+        'Django-UserService',
         "html5lib",
         "openpyxl<=2.6.4",
         "pillow",
