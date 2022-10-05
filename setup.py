@@ -16,7 +16,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "beautifulsoup4",
-        "django~=2.1",
+        "django~=2.2",
         "django-compressor",
         "django-pyscss",
         "django-user-agents",
