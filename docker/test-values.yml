@@ -57,9 +57,9 @@ cronjob:
       args: ["sync_groups"]
 certs:
   mounted: true
-  certPath: /certs/test.manager.scout.uw.edu-uwca.cert
-  keyPath: /certs/test.manager.scout.uw.edu-uwca.key
-  secretName: test.manager.scout.uw.edu-uwca-certs
+  certPath: /certs/test.manager.scout.uw.edu-ic.cert
+  keyPath: /certs/test.manager.scout.uw.edu-ic.key
+  secretName: test.manager.scout.uw.edu-ic-certs
 environmentVariables:
   - name: AUTH
     value: SAML
@@ -106,18 +106,13 @@ externalSecrets:
           property: username
         - name: password
           property: password
-    - name: test.manager.scout.uw.edu-uwca-certs
-      externalKey: axdd/kv/data/scout/test-manager/uwca-certs
-      data:
-        - name: test.manager.scout.uw.edu-uwca.cert
-          property: test.manager.scout.uw.edu-uwca.cert
-        - name: test.manager.scout.uw.edu-uwca.key
-          property: test.manager.scout.uw.edu-uwca.key
     - name: test.manager.scout.uw.edu-ic-certs
       externalKey: axdd/kv/data/scout/test-manager/ic-certs
       data:
         - name: test.manager.scout.uw.edu-ic.cert
           property: test.manager.scout.uw.edu-ic.cert
+        - name: test.manager.scout.uw.edu-ic.key
+          property: test.manager.scout.uw.edu-ic.key
     - name: test.manager.scout.uw.edu-uw-idp-cert
       externalKey: axdd/kv/data/idp-cert
       data:
