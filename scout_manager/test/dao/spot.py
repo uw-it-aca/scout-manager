@@ -4,6 +4,8 @@
 """
 Tests for the scout-manager spot DAO
 """
+from django.http import HttpResponse
+
 from scout_manager.dao.space import (
     create_spot,
     get_spot_by_id,
@@ -14,6 +16,7 @@ from scout_manager.dao.space import (
     _build_spot_json,
     update_spot,
 )
+from scout_manager.views.api import Spot
 from uw_spotseeker import Spotseeker
 from scout_manager.test import ScoutTest
 from django.test.utils import override_settings
@@ -23,6 +26,7 @@ from mock import patch
 from restclients_core.exceptions import DataFailureException
 
 DAO = 'Mock'
+
 
 @override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)
 class SpotDaoTest(ScoutTest):
@@ -63,7 +67,7 @@ class SpotDaoTest(ScoutTest):
     def test_get_id(self):
         url = "http://spotseeker-test-app1.cac.washington.edu/api/v1/spot/5213"
         self.assertEqual(_get_spot_id_from_url(url), "5213")
-    
+
     # TODO: find a way to get put_spot to be called
     def test_create_spot(self):
         form_data = {
@@ -76,7 +80,7 @@ class SpotDaoTest(ScoutTest):
             create_spot(form_data)
         except DataFailureException as e:
             self.assertTrue("Error fetching /api/v1/spot." in str(e))
-    
+
     def test_update_spot(self):
         form_data = {
             "file": None,
@@ -84,10 +88,48 @@ class SpotDaoTest(ScoutTest):
         }
         json_data = _build_spot_json(form_data)
         with patch.object(Spotseeker, "put_spot") as mock_put:
-            # this doesn't actually change the capacity to 19 but it calls put_spot
+            # this doesn't actually change the capacity to 19 but calls put_spot
             update_spot(form_data, "1")
             etag = get_spot_by_id(1).etag
             mock_put.assert_called_once_with("1", json.dumps(json_data), etag)
+
+    @patch("scout_manager.test.dao.spot.update_spot")
+    def test_error_messages(self, mock_update):
+        form_data = {
+            "file": None,
+            "json": '{"extended_info:location_description": "12345"}'
+        }
+        mock_update.side_effect = DataFailureException(
+            '/api/v1/spot/1', 400,
+            b'{"__all__": ["Error message tested"]}'
+        )
+
+        def error_msg_helper(spot_id):
+            try:
+                update_spot(form_data, spot_id)
+            except Exception as ex:
+                ex.msg = json.loads(ex.msg.decode("utf-8"))
+                print(type(ex.msg))
+                ex.msg = ex.msg.get("__all__", "Form is invalid")
+                print(type(ex.msg))
+                ex.msg = ' '.join(ex.msg)
+                print(type(ex.msg))
+                return HttpResponse(
+                    str(ex.msg), status=400, content_type="application/json"
+                )
+            return HttpResponse(
+                json.dumps({"status": "it works"}),
+                content_type="application/json"
+            )
+
+        with patch.object(
+                Spot, "PUT", wraps=mock_update,
+                side_effect=error_msg_helper
+        ) as mock_put:
+            ret = mock_put("1")
+            self.assertEqual(ret.status_code, 400)
+            self.assertEqual(ret.content.decode("utf-8"),
+                             str("Error message tested"))
 
 
 @override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)

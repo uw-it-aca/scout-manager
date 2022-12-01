@@ -107,7 +107,7 @@
                 {% elif spot.app_type == "tech" %}
                 <input type="hidden" name="extended_info:app_type" value="tech" checked />
                 {% endif %}
-                <p class="help-block">Note: Please <a href="mailto:help@uw.edu">contact us</a> if you need to change this attribute.</p>
+                <p class="help-block">Note: Please <a href="mailto:help@uw.edu">contact help@uw.edu</a> and mention Scout if you need to change this attribute.</p>
             {% else %}
             <div id="add_new_extended_info" class="well mgr-set-app-type">
                 <div class="radio">
@@ -234,7 +234,7 @@
         {% if spot.app_type == "food" %}
         <div class="form-group">
             <label for="phone" class="control-label">Phone: </label>
-            <input class="form-control" id="phone" name="extended_info:s_phone" type="tel" pattern="^\d{10}$" value="{% if spot.phone %}{{ spot.phone }}{% endif %}" data-error="please provide 10 digit phone number no dashses">
+            <input class="form-control" id="phone" name="extended_info:s_phone" type="tel" pattern="^\d{10}$" value="{% if spot.phone %}{{ spot.phone }}{% endif %}" data-error="Please provide a 10 digit phone number without dashes">
             <div class="help-block with-errors" role="alert"></div>
         </div>
         {% endif %}

@@ -73,7 +73,7 @@
                     <label><input type="radio" name="extended_info:noise_level" {% if spot.spot_noise == "silent" %} checked {% endif %} value="silent">Silent</label>
                 </div>
                 <div class="radio">
-                    <label><input type="radio" name="extended_info:noise_level" {% if spot.spot_noise == "quiet" %} checked {% endif %} value="quiet">Quiet</label>
+                    <label><input type="radio" name="extended_info:noise_level" {% if spot.spot_noise == "quiet" %} checked {% endif %} value="quiet">Low Hum</label>
                 </div>
                 <div class="radio">
                     <label><input type="radio" name="extended_info:noise_level" {% if spot.spot_noise == "moderate" %} checked {% endif %} value="moderate">Chatter</label>
@@ -185,7 +185,7 @@
             <legend>Lighting</legend>
             <div class="well">
                 <div class="checkbox ">
-                    <label><input type="checkbox" name="extended_info:has_natural_light" {% if spot.natural_light %} checked {% endif %} value="true">The space has Natural Light</label>
+                    <label><input type="checkbox" name="extended_info:has_natural_light" {% if spot.natural_light %} checked {% endif %} value="true">The space has natural lighting</label>
                 </div>
             </div>
         </fieldset>

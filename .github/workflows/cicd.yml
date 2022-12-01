@@ -47,7 +47,7 @@ on:
 
 jobs:
   context:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     outputs:
       commit_hash: ${{ steps.context.outputs.commit_hash }}
@@ -62,7 +62,7 @@ jobs:
           release_name: ${{ env.RELEASE_NAME }}
 
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     needs: context
 
@@ -73,7 +73,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.6
+          python-version: '3.8'
 
       - name: Run Python Linters
         uses: uw-it-aca/actions/python-linters@main
@@ -95,6 +95,7 @@ jobs:
       - name: Build App Image
         uses: docker/build-push-action@v2
         with:
+          context: .
           target: app-container
           tags: ${{ needs.context.outputs.image_tag }}
           push: false
@@ -145,7 +146,7 @@ jobs:
     outputs:
       context: ${{ steps.context.outputs.context }}
 
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout Repo
@@ -153,7 +154,7 @@ jobs:
 
       - name: Deployment Pipeline
         if: >-
-          contains(fromJSON('["main", "master", "develop"]'),
+          contains(fromJSON('["main", "master", "develop", "qa"]'),
             needs.context.outputs.git_repo_branch)
         uses: uw-it-aca/actions/cicd-deploy@main
         with:
@@ -182,7 +183,7 @@ jobs:
 
     needs: [context, build, deploy]
 
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     steps:
       - name: House Keeping
