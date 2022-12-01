@@ -25,7 +25,7 @@ import json
 from mock import patch
 from restclients_core.exceptions import DataFailureException
 
-DAO = 'Mock'
+DAO = "Mock"
 
 
 @override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)
@@ -82,10 +82,7 @@ class SpotDaoTest(ScoutTest):
             self.assertTrue("Error fetching /api/v1/spot." in str(e))
 
     def test_update_spot(self):
-        form_data = {
-            "file": None,
-            "json": '{"capacity": "19"}'
-        }
+        form_data = {"file": None, "json": '{"capacity": "19"}'}
         json_data = _build_spot_json(form_data)
         with patch.object(Spotseeker, "put_spot") as mock_put:
             # this doesn't actually change the capacity to 19 but calls put_spot
@@ -97,11 +94,10 @@ class SpotDaoTest(ScoutTest):
     def test_error_messages(self, mock_update):
         form_data = {
             "file": None,
-            "json": '{"extended_info:location_description": "12345"}'
+            "json": '{"extended_info:location_description": "12345"}',
         }
         mock_update.side_effect = DataFailureException(
-            '/api/v1/spot/1', 400,
-            b'{"__all__": ["Error message tested"]}'
+            "/api/v1/spot/1", 400, b'{"__all__": ["Error message tested"]}'
         )
 
         def error_msg_helper(spot_id):
@@ -112,24 +108,24 @@ class SpotDaoTest(ScoutTest):
                 print(type(ex.msg))
                 ex.msg = ex.msg.get("__all__", "Form is invalid")
                 print(type(ex.msg))
-                ex.msg = ' '.join(ex.msg)
+                ex.msg = " ".join(ex.msg)
                 print(type(ex.msg))
                 return HttpResponse(
                     str(ex.msg), status=400, content_type="application/json"
                 )
             return HttpResponse(
                 json.dumps({"status": "it works"}),
-                content_type="application/json"
+                content_type="application/json",
             )
 
         with patch.object(
-                Spot, "PUT", wraps=mock_update,
-                side_effect=error_msg_helper
+            Spot, "PUT", wraps=mock_update, side_effect=error_msg_helper
         ) as mock_put:
             ret = mock_put("1")
             self.assertEqual(ret.status_code, 400)
-            self.assertEqual(ret.content.decode("utf-8"),
-                             str("Error message tested"))
+            self.assertEqual(
+                ret.content.decode("utf-8"), str("Error message tested")
+            )
 
 
 @override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)

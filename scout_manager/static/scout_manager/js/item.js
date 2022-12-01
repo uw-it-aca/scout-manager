@@ -102,8 +102,12 @@ var Item = {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-success");
                 $("#pub_error").html("All changes have been saved.");
-                $("#submit_form").html("");
-                window.location.reload(true);
+
+                // reload the page
+                setTimeout(function () {
+                    $("#submit_form").html("");
+                    window.location.reload(true);
+                }, 900);
             },
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");
@@ -128,8 +132,12 @@ var Item = {
             success: function(results) {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-success");
-                $("#pub_error").html();
-                Item._navigate_after_create();
+                $("#pub_error").html("All changes have been saved.");
+
+                setTimeout(function () {
+                    $("#pub_error").html();
+                    Item._navigate_after_create();
+                }, 900);
             },
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");

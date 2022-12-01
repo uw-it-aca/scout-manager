@@ -80,8 +80,10 @@ var Spot = {
                 $("#pub_error").html("All changes have been saved.");
 
                 // reload the page
-                Spot._spot_post_submit(will_exit);
-                $("#submit_form").html("");
+                setTimeout(function () {
+                    Spot._spot_post_submit(will_exit);
+                    $("#submit_form").html("");
+                }, 900);
             },
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");
@@ -124,7 +126,9 @@ var Spot = {
                 $("#pub_error").addClass("alert-success");
                 $("#pub_error").html("All changes have been saved.");
 
-                Spot._spot_post_submit(will_exit, results.id);
+                setTimeout(function () {
+                    Spot._spot_post_submit(will_exit, results.id);
+                }, 900);
             },
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");
