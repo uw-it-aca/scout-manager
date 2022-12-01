@@ -48,6 +48,12 @@ class Spot(RESTDispatch):
             logger.exception(
                 "Error updating spot user: %s spot_id: %s" % (user, spot_id)
             )
+            ex.msg = json.loads(ex.msg)
+            ex.msg = ex.msg.get("__all__")
+            if ex.msg is not None:
+                ex.msg = ' '.join(ex.msg)
+            else:
+                ex.msg = "Form is invalid"
             return HttpResponse(
                 str(ex.msg), status=400, content_type="application/json"
             )

@@ -25,6 +25,7 @@ BUILDING_LIST = {
     "Gowen Hall (GWN)": {"campus": "seattle"},
     "Haggett Hall (HGT)": {"campus": "seattle"},
     "Hans Rosling Center for Population Health (HRC)": {"campus": "seattle"},
+    "Health Sciences Education Building (HSEB)": {"campus": "seattle"},
     "Hitchcock Hall (HCK)": {"campus": "seattle"},
     "Husky Union Building (HUB)": {"campus": "seattle"},
     "Hutchinson Hall (HUT)": {"campus": "seattle"},

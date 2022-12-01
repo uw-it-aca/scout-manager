@@ -17,8 +17,10 @@ ingress:
         - "/"
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
-    nginx.ingress.kubernetes.io/ssl-ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256"
     nginx.ingress.kubernetes.io/client-body-buffer-size: "16K"
+    nginx.ingress.kubernetes.io/proxy-body-size: "20m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "500"
+    nginx.ingress.kubernetes.io/ssl-ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256"
 lifecycle:
   enabled: true
   preStop:
@@ -54,9 +56,9 @@ cronjob:
       args: ["sync_groups"]
 certs:
   mounted: true
-  certPath: /certs/manager.scout.uw.edu-uwca.cert
-  keyPath: /certs/manager.scout.uw.edu-uwca.key
-  secretName: manager.scout.uw.edu-uwca-certs
+  certPath: /certs/manager.scout.uw.edu-ic.cert
+  keyPath: /certs/manager.scout.uw.edu-ic.key
+  secretName: manager.scout.uw.edu-ic-certs
 environmentVariables:
   - name: AUTH
     value: SAML
@@ -103,18 +105,13 @@ externalSecrets:
           property: username
         - name: password
           property: password
-    - name: manager.scout.uw.edu-uwca-certs
-      externalKey: axdd/kv/data/scout/prod-manager/uwca-certs
-      data:
-        - name: manager.scout.uw.edu-uwca.cert
-          property: manager.scout.uw.edu-uwca.cert
-        - name: manager.scout.uw.edu-uwca.key
-          property: manager.scout.uw.edu-uwca.key
     - name: manager.scout.uw.edu-ic-certs
       externalKey: axdd/kv/data/scout/prod-manager/ic-certs
       data:
         - name: manager.scout.uw.edu-ic.cert
           property: manager.scout.uw.edu-ic.cert
+        - name: manager.scout.uw.edu-ic.key
+          property: manager.scout.uw.edu-ic.key
     - name: manager.scout.uw.edu-uw-idp-cert
       externalKey: axdd/kv/data/idp-cert
       data:
