@@ -168,16 +168,16 @@
             <legend>Food Nearby</legend>
             <div class="well">
                 <div class="radio">
-                    <label><input type="radio" name="food_nearby" {% if spot.food_nearby == "space" %} checked {% endif %} value="space">In space</label>
+                    <label><input type="radio" name="extended_info:food_nearby" {% if spot.food_nearby == "space" %} checked {% endif %} value="space">In space</label>
                 </div>
                 <div class="radio">
-                    <label><input type="radio" name="food_nearby" {% if spot.food_nearby == "neighboring" %} checked {% endif %} value="neighboring">In neighboring area</label>
+                    <label><input type="radio" name="extended_info:food_nearby" {% if spot.food_nearby == "neighboring" %} checked {% endif %} value="neighboring">In neighboring area</label>
                 </div>
                 <div class="radio">
-                    <label><input type="radio" name="food_nearby" {% if spot.food_nearby == "building" %} checked {% endif %} value="building">In the building</label>
+                    <label><input type="radio" name="extended_info:food_nearby" {% if spot.food_nearby == "building" %} checked {% endif %} value="building">In the building</label>
                 </div>
                 <div class="radio">
-                    <label><input type="radio" name="food_nearby" {% if not spot.food_nearby %} checked {% endif %} value="">N/A</label>
+                    <label><input type="radio" name="extended_info:food_nearby" {% if not spot.food_nearby %} checked {% endif %} value="">N/A</label>
                 </div>
             </div>
         </fieldset>
