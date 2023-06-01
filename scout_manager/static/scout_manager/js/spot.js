@@ -4,15 +4,21 @@ var Spot = {
         var form_data = Spot.get_edit_form_data();
         var is_create= Spot._get_is_add(form_data);
         var will_exit = 'reload';
+        var redirect = '#';
         if (e.data.hasOwnProperty('exit')) {
             will_exit = e.data.exit;
         }
+        if (will_exit == 'link' && e.data.hasOwnProperty('href')) {
+            redirect = e.data.href;
+        } else if (will_exit == 'link') {
+            console.error('No href provided for link redirect');
+        }
 
         if (is_create) {
-            Spot._create_spot(form_data, will_exit);
+            Spot._create_spot(form_data, will_exit, redirect);
 
         } else {
-            Spot._edit_spot(form_data, will_exit);
+            Spot._edit_spot(form_data, will_exit, redirect);
         }
     },
 
@@ -60,7 +66,7 @@ var Spot = {
         return !(form_data.id.length > 0);
     },
 
-    _edit_spot: function (form_data, will_exit) {
+    _edit_spot: function (form_data, will_exit, redirect) {
         var f_data = new FormData();
         f_data.append("json", JSON.stringify(form_data));
         var image = $("#mgr_upload_image")[0];
@@ -80,13 +86,13 @@ var Spot = {
                 $("#pub_error").html("All changes have been saved.");
 
                 // reload the page
-                Spot._spot_post_submit(will_exit);
+                Spot._spot_post_submit(will_exit, results.id, redirect);
                 $("#submit_form").html("");
             },
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");
                 $("#pub_error").addClass("alert-danger");
-                $("#pub_error").html(error + ": " + xhr.responseText);
+                $("#pub_error").html(error + ": " + xhr.responseText + " | " + xhr.status);
                 switch (xhr.status) {
                     case 500:
                         $("#pub_error").html("Something went wrong on our end and our developers have been alerted. Please try again later and feel free to contact help@uw.edu.");
@@ -100,10 +106,9 @@ var Spot = {
                 }
             }
         });
-
     },
 
-    _create_spot: function (form_data, will_exit) {
+    _create_spot: function (form_data, will_exit, redirect) {
         var f_data = new FormData();
         f_data.append("json", JSON.stringify(form_data));
         var image = $("#mgr_upload_image")[0];
@@ -124,7 +129,7 @@ var Spot = {
                 $("#pub_error").addClass("alert-success");
                 $("#pub_error").html("All changes have been saved.");
 
-                Spot._spot_post_submit(will_exit, results.id);
+                Spot._spot_post_submit(will_exit, results.id, redirect);
             },
             error: function(xhr, status, error) {
                 $("#pub_error").removeClass("hidden");
@@ -145,9 +150,10 @@ var Spot = {
         });
     },
 
-    _spot_post_submit: function (will_exit, spot_id) {
+    _spot_post_submit: function (will_exit, spot_id, redirect) {
         if (will_exit === 'link') {
             // just follow the href
+            window.location.href = redirect;
         } else if (will_exit === 'apptype') {
             Spot._navigate_to_apptype();
         } else {  // 'reload' is the default
