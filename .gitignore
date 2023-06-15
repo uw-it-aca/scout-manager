@@ -62,6 +62,10 @@ target/
 # Swap files
 *.swp
 
+# IDE files
+.idea/
+.vscode/
+
 # Docker envvars
 .env
 
