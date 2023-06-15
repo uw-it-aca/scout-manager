@@ -18,6 +18,8 @@ INSTALLED_APPS += [
     "supporttools",
 ]
 
+APP_NAME = os.getenv("APP_NAME", "scout-manager")
+
 MIDDLEWARE += [
     "django.middleware.security.SecurityMiddleware",
     "django_user_agents.middleware.UserAgentMiddleware",
@@ -65,9 +67,26 @@ RESTCLIENTS_SPOTSEEKER_HOST = os.getenv("RESTCLIENTS_SPOTSEEKER_HOST", None)
 RESTCLIENTS_SPOTSEEKER_DAO_CLASS = os.getenv(
     "RESTCLIENTS_SPOTSEEKER_DAO_CLASS", "Mock"
 )
-SPOTSEEKER_OAUTH_KEY = os.getenv("SPOTSEEKER_OAUTH_KEY", "")
-SPOTSEEKER_OAUTH_SECRET = os.getenv("SPOTSEEKER_OAUTH_SECRET", "")
+
+SPOTSEEKER_OAUTH_CREDENTIAL = os.getenv("SPOTSEEKER_OAUTH_CREDENTIAL", "")
+SPOTSEEKER_OAUTH_SCOPE = os.getenv("SCOPE", "read write")
 OAUTH_USER = os.getenv("OAUTH_USER", "")
 
 if os.getenv("AUTH", "NONE") == "SAML_MOCK":
     MOCK_SAML_ATTRIBUTES["isMemberOf"].append(SCOUT_MANAGER_ACCESS_GROUP)
+
+DEBUG_CACHING = os.getenv("DEBUG_CACHING", "True") == "True"
+
+if DEBUG and not DEBUG_CACHING:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+        }
+    }
+else:
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': 'scout-manager',
+        }
+    }
