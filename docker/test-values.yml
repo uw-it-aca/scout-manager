@@ -77,7 +77,7 @@ environmentVariables:
     value: https://test.manager.scout.uw.edu/saml2
   - name: WEBSERVER
     value: nginx
-  - name: SCOPE
+  - name: SPOTSEEKER_OAUTH_SCOPE
     value: read write
 externalSecrets:
   enabled: true

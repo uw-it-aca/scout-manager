@@ -69,7 +69,7 @@ RESTCLIENTS_SPOTSEEKER_DAO_CLASS = os.getenv(
 )
 
 SPOTSEEKER_OAUTH_CREDENTIAL = os.getenv("SPOTSEEKER_OAUTH_CREDENTIAL", "")
-SPOTSEEKER_OAUTH_SCOPE = os.getenv("SCOPE", "read write")
+SPOTSEEKER_OAUTH_SCOPE = os.getenv("SPOTSEEKER_OAUTH_SCOPE", "read write")
 OAUTH_USER = os.getenv("OAUTH_USER", "")
 
 if os.getenv("AUTH", "NONE") == "SAML_MOCK":
