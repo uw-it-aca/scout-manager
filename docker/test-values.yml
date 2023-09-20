@@ -55,6 +55,10 @@ cronjob:
       schedule: "59 12-23 * * 1-5"
       command: ["/scripts/management_command.sh"]
       args: ["sync_groups"]
+    - name: sync-techloan
+      schedule: "0,15,30,45 * * * *"
+      command: ["/scripts/management_command.sh"]
+      args: ["sync_techloan"]
 certs:
   mounted: true
   certPath: /certs/test.manager.scout.uw.edu-ic.cert
@@ -153,6 +157,10 @@ environmentVariablesSecrets:
     name: SPOTSEEKER_OAUTH_CREDENTIAL
     secretName: test.manager.scout.uw.edu-secrets
     secretKey: spotseeker-oauth-credential
+  spotseekerTechloanUrl:
+    name: SPOTSEEKER_TECHLOAN_URL
+    secretName: test.manager.scout.uw.edu-secrets
+    secretKey: spotseeker-techloan-url
   userserviceAdminGroup:
     name: USERSERVICE_ADMIN_GROUP
     secretName: test.manager.scout.uw.edu-secrets
