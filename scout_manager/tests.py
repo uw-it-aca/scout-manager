@@ -9,3 +9,4 @@ from scout_manager.test.dao.item import ItemDaoTest
 from scout_manager.test.dao.spot import SpotDaoTest, BuildSpotJsonTest
 from scout_manager.test.group_auth import GroupAuthTest
 from scout_manager.test.api import ApiTest
+from scout_manager.test.techloan.sync_techloan import SyncTechloanTest
