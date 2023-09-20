@@ -27,6 +27,8 @@ setup(
         "pillow",
         "pytz",
         "setuptools",
+        "schema",
+        "responses",
         "UW-Django-SAML2",
         "UW-RestClients-GWS~=2.3",
     ],
