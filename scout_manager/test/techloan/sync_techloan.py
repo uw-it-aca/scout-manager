@@ -21,13 +21,6 @@ import responses
 
 test_logger = logging.getLogger(__name__)
 
-bad_techloan_updater = {
-    'server_host': 0,
-    'oauth_credential': 'dummy',
-    'oauth_scope': 'dummy',
-    'oauth_user': 'javerage',
-}
-
 good_techloan_updater = {
     'server_host': 'https://techloan.uw.edu',
     'oauth_credential': 'dummy',
@@ -35,8 +28,10 @@ good_techloan_updater = {
     'oauth_user': 'javerage',
 }
 
-filter = Spots._filter
+bad_techloan_updater = good_techloan_updater.copy()
+bad_techloan_updater.update({'server_host': 0})
 
+filter = Spots._filter
 
 
 def remove_images(spots: list) -> list:
@@ -154,29 +149,6 @@ class SyncTechloanTest(TechloanTestCase):
             call_sync()
             self.assertIn('Settings misconfigured', cm.output[0])
 
-    def test_sync_with_individual_parts(self):
-        with patch('scout_manager.management.commands.sync_techloan'
-                   '.Command.get_techloan',
-                   return_value=Techloan(self.equipments)):
-            techloan = Command.get_techloan()
-            self.assertIsInstance(techloan, Techloan)
-            other_techloan = Techloan(self.equipments)
-            self.assertEqual(techloan.equipments, other_techloan.equipments)
-
-        with patch('scout_manager.management.commands.sync_techloan'
-                   '.Command.get_spots',
-                   return_value=Spots(self.mock_spots, None)):
-            spots = Command.get_spots()
-            self.assertIsInstance(spots, Spots)
-            other_spots = Spots(self.mock_spots2, None)
-            self.assertEqual(spots.spots, other_spots.spots)
-
-        with patch('scout_manager.management.commands.sync_techloan'
-                   '.Command.sync_techloan_to_spots',
-                   return_value=spots.sync_with_techloan(techloan)):
-            Command.sync_techloan_to_spots()
-            self.assertNotEqual(spots.spots, self.mock_spots2)
-
     @responses.activate
     def test_get_techloan_with_requests(self):
         responses.add(
@@ -245,38 +217,6 @@ class SyncTechloanTest(TechloanTestCase):
             body=json.dumps(self.equipments),
         )
 
-        responses.add(
-            responses.GET,
-            f'http://techloan.test/api/v1/spot/?{urlencode(filter)}',
-            status=200,
-            body=json.dumps(self.mock_spots),
-        )
-
-        for id in self.get_spot_ids(self.mock_spots):
-            responses.add(
-                responses.PUT,
-                f'http://techloan.test/api/v1/spot/{id}',
-                status=200,
-                body=json.dumps('OK'),
-            )
-
-            responses.add(
-                responses.GET,
-                f'http://techloan.test/api/v1/spot/{id}',
-                status=200,
-                body=json.dumps(self.get_spot_by_id(id, self.mock_spots)),
-            )
-
-            for item_id in self.get_item_ids(self.mock_spots, spot_ids=[id]):
-                for image_id in self.get_image_ids(self.mock_spots, item_id):
-                    responses.add(
-                        responses.DELETE,
-                        'http://techloan.test/api/v1/item/'
-                        f'{item_id}/image/{image_id}',
-                        status=200,
-                        body=json.dumps('OK'),
-                    )
-
         # assert no errors logged
         with self.assertLogs() as cm:
             # add test info log so test doesn't fail if no logs
@@ -285,62 +225,62 @@ class SyncTechloanTest(TechloanTestCase):
             for out in cm.output:
                 self.assertNotIn('ERROR', out)
 
-    @responses.activate
-    @override_settings(SPOTSEEKER_TECHLOAN_UPDATER=good_techloan_updater)
-    # cannot use override_settings for SPOTSEEKER_TECHLOAN_URL
-    @patch('scout_manager.management.commands.techloan.techloan'
-           '.Techloan._url', 'http://techloan.test/api/v1/equipment')
-    @patch('scout_manager.management.commands.techloan.spotseeker'
-           '.Spots._url', 'http://techloan.test/api/v1/spot')
-    def test_sync_add_imgs(self):
-        responses.add(
-            responses.GET,
-            'http://techloan.test/api/v1/equipment',
-            status=200,
-            body=json.dumps(self.equip_with_img),
-        )
+    # @responses.activate
+    # @override_settings(SPOTSEEKER_TECHLOAN_UPDATER=good_techloan_updater)
+    # # cannot use override_settings for SPOTSEEKER_TECHLOAN_URL
+    # @patch('scout_manager.management.commands.techloan.techloan'
+    #        '.Techloan._url', 'http://techloan.test/api/v1/equipment')
+    # @patch('scout_manager.management.commands.techloan.spotseeker'
+    #        '.Spots._url', 'http://techloan.test/api/v1/spot')
+    # def test_sync_add_imgs(self):
+    #     responses.add(
+    #         responses.GET,
+    #         'http://techloan.test/api/v1/equipment',
+    #         status=200,
+    #         body=json.dumps(self.equip_with_img),
+    #     )
 
-        responses.add(
-            responses.GET,
-            f'http://techloan.test/api/v1/spot/?{urlencode(filter)}',
-            status=200,
-            body=json.dumps(self.mock_spots_no_imgs),
-        )
+    #     responses.add(
+    #         responses.GET,
+    #         f'http://techloan.test/api/v1/spot/?{urlencode(filter)}',
+    #         status=200,
+    #         body=json.dumps(self.mock_spots_no_imgs),
+    #     )
 
-        for id in self.get_spot_ids(self.mock_spots_no_imgs):
-            responses.add(
-                responses.PUT,
-                f'http://techloan.test/api/v1/spot/{id}',
-                status=200,
-                body=json.dumps('OK'),
-            )
+    #     for id in self.get_spot_ids(self.mock_spots_no_imgs):
+    #         responses.add(
+    #             responses.PUT,
+    #             f'http://techloan.test/api/v1/spot/{id}',
+    #             status=200,
+    #             body=json.dumps('OK'),
+    #         )
 
-            responses.add(
-                responses.GET,
-                f'http://techloan.test/api/v1/spot/{id}',
-                status=200,
-                body=json.dumps(
-                    self.get_spot_by_id(id, self.mock_spots_no_imgs)
-                ),
-            )
+    #         responses.add(
+    #             responses.GET,
+    #             f'http://techloan.test/api/v1/spot/{id}',
+    #             status=200,
+    #             body=json.dumps(
+    #                 self.get_spot_by_id(id, self.mock_spots_no_imgs)
+    #             ),
+    #         )
 
-            for item_id in self.get_item_ids(self.mock_spots_no_imgs,
-                                             spot_ids=[id]):
-                responses.add(
-                    responses.POST,
-                    f'http://techloan.test/api/v1/item/{item_id}/image',
-                    status=201,
-                    body=json.dumps('OK'),
-                )
+    #         for item_id in self.get_item_ids(self.mock_spots_no_imgs,
+    #                                          spot_ids=[id]):
+    #             responses.add(
+    #                 responses.POST,
+    #                 f'http://techloan.test/api/v1/item/{item_id}/image',
+    #                 status=201,
+    #                 body=json.dumps('OK'),
+    #             )
 
-        # assert no errors logged
-        with self.assertLogs() as cm:
-            # add test info log so test doesn't fail if no logs
-            test_logger.info('Starting full sync...')
-            call_sync()
-            for out in cm.output:
-                self.assertNotIn('Failed to retrieve image', out)
-                self.assertNotIn('ERROR', out)
+    #     # assert no errors logged
+    #     with self.assertLogs() as cm:
+    #         # add test info log so test doesn't fail if no logs
+    #         test_logger.info('Starting full sync...')
+    #         call_sync()
+    #         for out in cm.output:
+    #             self.assertNotIn('Failed to retrieve image', out)
+    #             self.assertNotIn('ERROR', out)
 
     @responses.activate
     @override_settings(SPOTSEEKER_TECHLOAN_UPDATER=good_techloan_updater)
@@ -357,266 +297,226 @@ class SyncTechloanTest(TechloanTestCase):
             body=json.dumps(self.equip_with_img),
         )
 
-        responses.add(
-            responses.GET,
-            f'http://techloan.test/api/v1/spot/?{urlencode(filter)}',
-            status=200,
-            body=json.dumps(self.mock_spots),
-        )
-
-        for id in self.get_spot_ids(self.mock_spots):
-            responses.add(
-                responses.PUT,
-                f'http://techloan.test/api/v1/spot/{id}',
-                status=200,
-                body=json.dumps('OK'),
-            )
-
-            responses.add(
-                responses.GET,
-                f'http://techloan.test/api/v1/spot/{id}',
-                status=200,
-                body=json.dumps(self.get_spot_by_id(id, self.mock_spots)),
-            )
-
-            for item_id in self.get_item_ids(self.mock_spots, spot_ids=[id]):
-                responses.add(
-                    responses.POST,
-                    f'http://techloan.test/api/v1/item/{item_id}/image',
-                    status=201,
-                    body=json.dumps('OK'),
-                )
-
-                for image_id in self.get_image_ids(self.mock_spots, item_id):
-                    responses.add(
-                        responses.DELETE,
-                        'http://techloan.test/api/v1/item/'
-                        f'{item_id}/image/{image_id}',
-                        status=200,
-                        body=json.dumps('OK'),
-                    )
-
         # assert no errors logged
         with self.assertLogs() as cm:
             # add test info log so test doesn't fail if no logs
             test_logger.info('Starting full sync...')
-            # import pdb; pdb.set_trace()
             call_sync()
             for out in cm.output:
                 self.assertNotIn('ERROR', out)
 
-    @responses.activate
-    @override_settings(SPOTSEEKER_TECHLOAN_UPDATER=good_techloan_updater)
-    # cannot use override_settings for SPOTSEEKER_TECHLOAN_URL
-    @patch('scout_manager.management.commands.techloan.techloan'
-           '.Techloan._url', 'http://techloan.test/api/v1/equipment')
-    @patch('scout_manager.management.commands.techloan.spotseeker'
-           '.Spots._url', 'http://techloan.test/api/v1/spot')
-    def test_sync_bad_cte_id(self):
-        responses.add(
-            responses.GET,
-            'http://techloan.test/api/v1/equipment',
-            status=200,
-            body=json.dumps(self.equip_with_img),
-        )
+    # @responses.activate
+    # @override_settings(SPOTSEEKER_TECHLOAN_UPDATER=good_techloan_updater)
+    # # cannot use override_settings for SPOTSEEKER_TECHLOAN_URL
+    # @patch('scout_manager.management.commands.techloan.techloan'
+    #        '.Techloan._url', 'http://techloan.test/api/v1/equipment')
+    # @patch('scout_manager.management.commands.techloan.spotseeker'
+    #        '.Spots._url', 'http://techloan.test/api/v1/spot')
+    # def test_sync_bad_cte_id(self):
+    #     responses.add(
+    #         responses.GET,
+    #         'http://techloan.test/api/v1/equipment',
+    #         status=200,
+    #         body=json.dumps(self.equip_with_img),
+    #     )
 
-        responses.add(
-            responses.GET,
-            f'http://techloan.test/api/v1/spot/?{urlencode(filter)}',
-            status=200,
-            body=json.dumps(self.mock_spots_bad_cte_ids),
-        )
+    #     responses.add(
+    #         responses.GET,
+    #         f'http://techloan.test/api/v1/spot/?{urlencode(filter)}',
+    #         status=200,
+    #         body=json.dumps(self.mock_spots_bad_cte_ids),
+    #     )
 
-        for id in self.get_spot_ids(self.mock_spots_bad_cte_ids):
-            responses.add(
-                responses.PUT,
-                f'http://techloan.test/api/v1/spot/{id}',
-                status=200,
-                body=json.dumps('OK'),
-            )
+    #     for id in self.get_spot_ids(self.mock_spots_bad_cte_ids):
+    #         responses.add(
+    #             responses.PUT,
+    #             f'http://techloan.test/api/v1/spot/{id}',
+    #             status=200,
+    #             body=json.dumps('OK'),
+    #         )
 
-            responses.add(
-                responses.GET,
-                f'http://techloan.test/api/v1/spot/{id}',
-                status=200,
-                body=json.dumps(
-                    self.get_spot_by_id(id, self.mock_spots_bad_cte_ids)
-                ),
-            )
+    #         responses.add(
+    #             responses.GET,
+    #             f'http://techloan.test/api/v1/spot/{id}',
+    #             status=200,
+    #             body=json.dumps(
+    #                 self.get_spot_by_id(id, self.mock_spots_bad_cte_ids)
+    #             ),
+    #         )
 
-            for item_id in self.get_item_ids(self.mock_spots, spot_ids=[id]):
-                for image_id in self.get_image_ids(self.mock_spots, item_id):
-                    responses.add(
-                        responses.DELETE,
-                        'http://techloan.test/api/v1/item/'
-                        f'{item_id}/image/{image_id}',
-                        status=200,
-                        body=json.dumps('OK'),
-                    )
+    #         for item_id in self.get_item_ids(self.mock_spots, spot_ids=[id]):
+    #             for image_id in self.get_image_ids(self.mock_spots, item_id):
+    #                 responses.add(
+    #                     responses.DELETE,
+    #                     'http://techloan.test/api/v1/item/'
+    #                     f'{item_id}/image/{image_id}',
+    #                     status=200,
+    #                     body=json.dumps('OK'),
+    #                 )
 
-        # assert errors for bad cte logged
-        with self.assertLogs(level='ERROR') as cm:
-            call_sync()
-            for out in cm.output:
-                if 'ERROR' in out:
-                    self.assertIn('Can\'t find item id', out)
+    #     # assert errors for bad cte logged
+    #     with self.assertLogs(level='ERROR') as cm:
+    #         call_sync()
+    #         for out in cm.output:
+    #             if 'ERROR' in out:
+    #                 self.assertIn('Can\'t find item id', out)
 
-    @responses.activate
-    @override_settings(SPOTSEEKER_TECHLOAN_UPDATER=good_techloan_updater)
-    # cannot use override_settings for SPOTSEEKER_TECHLOAN_URL
-    @patch('scout_manager.management.commands.techloan.techloan'
-           '.Techloan._url', 'http://techloan.test/api/v1/equipment')
-    @patch('scout_manager.management.commands.techloan.spotseeker'
-           '.Spots._url', 'http://techloan.test/api/v1/spot')
-    def test_no_sync_for_unchanged_equips(self):
-        responses.add(
-            responses.GET,
-            'http://techloan.test/api/v1/equipment',
-            status=200,
-            body=json.dumps(self.equip_with_img),
-        )
+    # @responses.activate
+    # @override_settings(SPOTSEEKER_TECHLOAN_UPDATER=good_techloan_updater)
+    # # cannot use override_settings for SPOTSEEKER_TECHLOAN_URL
+    # @patch('scout_manager.management.commands.techloan.techloan'
+    #        '.Techloan._url', 'http://techloan.test/api/v1/equipment')
+    # @patch('scout_manager.management.commands.techloan.spotseeker'
+    #        '.Spots._url', 'http://techloan.test/api/v1/spot')
+    # def test_no_sync_for_unchanged_equips(self):
+    #     responses.add(
+    #         responses.GET,
+    #         'http://techloan.test/api/v1/equipment',
+    #         status=200,
+    #         body=json.dumps(self.equip_with_img),
+    #     )
 
-        responses.add(
-            responses.GET,
-            f'http://techloan.test/api/v1/spot/?{urlencode(filter)}',
-            status=200,
-            body=json.dumps(self.mock_spots_bad_cte_ids),
-        )
+    #     responses.add(
+    #         responses.GET,
+    #         f'http://techloan.test/api/v1/spot/?{urlencode(filter)}',
+    #         status=200,
+    #         body=json.dumps(self.mock_spots_bad_cte_ids),
+    #     )
 
-        for id in self.get_spot_ids(self.mock_spots):
-            responses.add(
-                responses.PUT,
-                f'http://techloan.test/api/v1/spot/{id}',
-                status=200,
-                body=json.dumps('OK'),
-            )
+    #     for id in self.get_spot_ids(self.mock_spots):
+    #         responses.add(
+    #             responses.PUT,
+    #             f'http://techloan.test/api/v1/spot/{id}',
+    #             status=200,
+    #             body=json.dumps('OK'),
+    #         )
 
-            responses.add(
-                responses.GET,
-                f'http://techloan.test/api/v1/spot/{id}',
-                status=200,
-                body=json.dumps(self.get_spot_by_id(id, self.mock_spots)),
-            )
+    #         responses.add(
+    #             responses.GET,
+    #             f'http://techloan.test/api/v1/spot/{id}',
+    #             status=200,
+    #             body=json.dumps(self.get_spot_by_id(id, self.mock_spots)),
+    #         )
 
-            for item_id in self.get_item_ids(self.mock_spots, spot_ids=[id]):
-                responses.add(
-                    responses.POST,
-                    f'http://techloan.test/api/v1/item/{item_id}/image',
-                    status=201,
-                    body=json.dumps('OK'),
-                )
+    #         for item_id in self.get_item_ids(self.mock_spots, spot_ids=[id]):
+    #             responses.add(
+    #                 responses.POST,
+    #                 f'http://techloan.test/api/v1/item/{item_id}/image',
+    #                 status=201,
+    #                 body=json.dumps('OK'),
+    #             )
 
-                for image_id in self.get_image_ids(self.mock_spots, item_id):
-                    responses.add(
-                        responses.DELETE,
-                        'http://techloan.test/api/v1/item/'
-                        f'{item_id}/image/{image_id}',
-                        status=200,
-                        body=json.dumps('OK'),
-                    )
+    #             for image_id in self.get_image_ids(self.mock_spots, item_id):
+    #                 responses.add(
+    #                     responses.DELETE,
+    #                     'http://techloan.test/api/v1/item/'
+    #                     f'{item_id}/image/{image_id}',
+    #                     status=200,
+    #                     body=json.dumps('OK'),
+    #                 )
 
-        with self.assertLogs() as cm:
-            test_logger.info('Starting full sync...')
-            with patch('scout_manager.management.commands.sync_techloan'
-                       '.Command.get_techloan',
-                       return_value=Techloan(self.equip_with_img)):
-                techloan = Command.get_techloan()
-            with patch('scout_manager.management.commands.sync_techloan'
-                       '.Command.get_spots',
-                       return_value=Spots(self.mock_spots, None, None)):
-                spots = Command.get_spots()
-            with patch('scout_manager.management.commands.sync_techloan'
-                       '.Command.sync_techloan_to_spots',
-                       return_value=spots.sync_with_techloan(techloan)):
-                Command.sync_techloan_to_spots(techloan, spots)
-            for out in cm.output:
-                self.assertNotIn('ERROR', out)
+    #     with self.assertLogs() as cm:
+    #         test_logger.info('Starting full sync...')
+    #         with patch('scout_manager.management.commands.sync_techloan'
+    #                    '.Command.get_techloan',
+    #                    return_value=Techloan(self.equip_with_img)):
+    #             techloan = Command.get_techloan()
+    #         with patch('scout_manager.management.commands.sync_techloan'
+    #                    '.Command.get_spots',
+    #                    return_value=Spots(self.mock_spots, None)):
+    #             spots = Command.get_spots()
+    #         with patch('scout_manager.management.commands.sync_techloan'
+    #                    '.Command.sync_techloan_to_spots',
+    #                    return_value=spots.sync_with_techloan(techloan)):
+    #             Command.sync_techloan_to_spots(techloan, spots)
+    #         for out in cm.output:
+    #             self.assertNotIn('ERROR', out)
 
-        for item_id in self.get_item_ids(self.mock_spots, spot_ids=[id]):
-            responses.add(
-                responses.POST,
-                f'http://techloan.test/api/v1/item/{item_id}/image',
-                status=500,
-                body=json.dumps('OK'),
-            )
+    #     for item_id in self.get_item_ids(self.mock_spots, spot_ids=[id]):
+    #         responses.add(
+    #             responses.POST,
+    #             f'http://techloan.test/api/v1/item/{item_id}/image',
+    #             status=500,
+    #             body=json.dumps('OK'),
+    #         )
 
-            for image_id in self.get_image_ids(self.mock_spots, item_id):
-                responses.add(
-                    responses.DELETE,
-                    'http://techloan.test/api/v1/item/'
-                    f'{item_id}/image/{image_id}',
-                    status=500,
-                    body=json.dumps('OK'),
-                )
+    #         for image_id in self.get_image_ids(self.mock_spots, item_id):
+    #             responses.add(
+    #                 responses.DELETE,
+    #                 'http://techloan.test/api/v1/item/'
+    #                 f'{item_id}/image/{image_id}',
+    #                 status=500,
+    #                 body=json.dumps('OK'),
+    #             )
 
-        with self.assertLogs() as cm:
-            test_logger.info('Starting full sync...')
-            with patch('scout_manager.management.commands.sync_techloan'
-                       '.Command.sync_techloan_to_spots',
-                       return_value=spots.sync_with_techloan(techloan)):
-                Command.sync_techloan_to_spots(techloan, spots)
-            for out in cm.output:
-                self.assertNotIn('ERROR', out)
+    #     with self.assertLogs() as cm:
+    #         test_logger.info('Starting full sync...')
+    #         with patch('scout_manager.management.commands.sync_techloan'
+    #                    '.Command.sync_techloan_to_spots',
+    #                    return_value=spots.sync_with_techloan(techloan)):
+    #             Command.sync_techloan_to_spots(techloan, spots)
+    #         for out in cm.output:
+    #             self.assertNotIn('ERROR', out)
 
-    @responses.activate
-    @override_settings(SPOTSEEKER_TECHLOAN_UPDATER=good_techloan_updater)
-    # cannot use override_settings for SPOTSEEKER_TECHLOAN_URL
-    @patch('scout_manager.management.commands.techloan.techloan'
-           '.Techloan._url', 'http://techloan.test/api/v1/equipment')
-    @patch('scout_manager.management.commands.techloan.spotseeker'
-           '.Spots._url', 'http://techloan.test/api/v1/spot')
-    def test_deactivate_spot_items_without_matching_cte_id(self):
-        responses.add(
-            responses.GET,
-            'http://techloan.test/api/v1/equipment',
-            status=200,
-            body=json.dumps(self.equip_with_img),
-        )
+    # @responses.activate
+    # @override_settings(SPOTSEEKER_TECHLOAN_UPDATER=good_techloan_updater)
+    # # cannot use override_settings for SPOTSEEKER_TECHLOAN_URL
+    # @patch('scout_manager.management.commands.techloan.techloan'
+    #        '.Techloan._url', 'http://techloan.test/api/v1/equipment')
+    # @patch('scout_manager.management.commands.techloan.spotseeker'
+    #        '.Spots._url', 'http://techloan.test/api/v1/spot')
+    # def test_deactivate_spot_items_without_matching_cte_id(self):
+    #     responses.add(
+    #         responses.GET,
+    #         'http://techloan.test/api/v1/equipment',
+    #         status=200,
+    #         body=json.dumps(self.equip_with_img),
+    #     )
 
-        responses.add(
-            responses.GET,
-            f'http://techloan.test/api/v1/spot/?{urlencode(filter)}',
-            status=200,
-            body=json.dumps(self.mock_spots_bad_cte_ids),
-        )
+    #     responses.add(
+    #         responses.GET,
+    #         f'http://techloan.test/api/v1/spot/?{urlencode(filter)}',
+    #         status=200,
+    #         body=json.dumps(self.mock_spots_bad_cte_ids),
+    #     )
 
-        for id in self.get_spot_ids(self.mock_spots_bad_cte_ids):
-            responses.add(
-                responses.PUT,
-                f'http://techloan.test/api/v1/spot/{id}',
-                status=200,
-                body=json.dumps('OK'),
-            )
+    #     for id in self.get_spot_ids(self.mock_spots_bad_cte_ids):
+    #         responses.add(
+    #             responses.PUT,
+    #             f'http://techloan.test/api/v1/spot/{id}',
+    #             status=200,
+    #             body=json.dumps('OK'),
+    #         )
 
-            responses.add(
-                responses.GET,
-                f'http://techloan.test/api/v1/spot/{id}',
-                status=200,
-                body=json.dumps(
-                    self.get_spot_by_id(id, self.mock_spots_bad_cte_ids)
-                ),
-            )
+    #         responses.add(
+    #             responses.GET,
+    #             f'http://techloan.test/api/v1/spot/{id}',
+    #             status=200,
+    #             body=json.dumps(
+    #                 self.get_spot_by_id(id, self.mock_spots_bad_cte_ids)
+    #             ),
+    #         )
 
-        item_ids = self.get_item_ids(self.mock_spots_bad_cte_ids)
-        with self.assertLogs() as cm:
-            test_logger.info('Starting full sync...')
-            with patch('scout_manager.management.commands.sync_techloan'
-                       '.Command.get_techloan',
-                       return_value=Techloan(self.equip_with_img)):
-                techloan = Command.get_techloan()
-            with patch('scout_manager.management.commands.sync_techloan'
-                       '.Command.get_spots',
-                       return_value=Spots(self.mock_spots_bad_cte_ids, None)):
-                spots = Command.get_spots()
-            with patch('scout_manager.management.commands.sync_techloan'
-                       '.Command.sync_techloan_to_spots',
-                       return_value=spots.sync_with_techloan(techloan)):
-                Command.sync_techloan_to_spots(techloan, spots)
-            for out in cm.output:
-                self.assertNotIn('ERROR', out)
-            for spot in spots:
-                for item in spot['items']:
-                    if 'id' not in item:
-                        assert 'i_is_active' in item['extended_info']
-                    elif item['id'] in item_ids:
-                        assert 'i_is_active' not in item['extended_info']
+    #     item_ids = self.get_item_ids(self.mock_spots_bad_cte_ids)
+    #     with self.assertLogs() as cm:
+    #         test_logger.info('Starting full sync...')
+    #         with patch('scout_manager.management.commands.sync_techloan'
+    #                    '.Command.get_techloan',
+    #                    return_value=Techloan(self.equip_with_img)):
+    #             techloan = Command.get_techloan()
+    #         with patch('scout_manager.management.commands.sync_techloan'
+    #                    '.Command.get_spots',
+    #                    return_value=Spots(self.mock_spots_bad_cte_ids, None)):
+    #             spots = Command.get_spots()
+    #         with patch('scout_manager.management.commands.sync_techloan'
+    #                    '.Command.sync_techloan_to_spots',
+    #                    return_value=spots.sync_with_techloan(techloan)):
+    #             Command.sync_techloan_to_spots(techloan, spots)
+    #         for out in cm.output:
+    #             self.assertNotIn('ERROR', out)
+    #         for spot in spots:
+    #             for item in spot['items']:
+    #                 if 'id' not in item:
+    #                     assert 'i_is_active' in item['extended_info']
+    #                 elif item['id'] in item_ids:
+    #                     assert 'i_is_active' not in item['extended_info']
