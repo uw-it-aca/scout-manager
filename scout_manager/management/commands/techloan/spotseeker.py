@@ -3,8 +3,9 @@
 
 import json
 import logging
+import datetime
+import os
 import urllib.request as req
-import requests
 from schema import Schema
 from urllib.parse import urlencode
 from typing import Iterator
@@ -52,7 +53,9 @@ def sync_equipment_to_item(equipment, item):
     item['extended_info']['i_recent_changes'] = \
         item['extended_info'].get('i_last_modified') != \
         equipment['last_modified']
-    item['extended_info']['i_last_modified'] = equipment['last_modified']
+    # if last_modified is None, set it to now
+    item['extended_info']['i_last_modified'] = \
+        equipment['last_modified'] or datetime.datetime.now().isoformat()
 
 
 class Spot(dict):
@@ -194,12 +197,25 @@ class Spots:
 
             logger.info('Updating spot ' + str(spot['id']))
 
-            spotseeker = Spotseeker()
-            resp, _ = spotseeker.put_spot(spot['id'], spot.raw(), spot['etag'])
+            headers = {"X-OAuth-User": os.getenv('OAUTH_USER'),
+                       "If-Match": spot['etag']}
+            spot_json = json.dumps(spot.raw())
+            if spot['id'] == 72: import pdb; pdb.set_trace()
+            resp = Spotseeker_DAO().putURL(f"/api/v1/spot/{spot['id']}", headers, spot_json)
+            if resp.status != 200:
+                failures.append({
+                    'name': spot['name'],
+                    'location': f"PUT {'/api/v1/spot/' + str(spot['id'])}",
+                    'reason': resp.status,
+                })
+                continue
 
-            # get spot items content to confirm item IDs
-            items_content = spotseeker.get_spot_by_id(
-                spot['id']).json()['items']
+            raw_spot_content = Spotseeker_DAO().getURL(
+                f"/api/v1/spot/{spot['id']}"
+            ).data
+            items_content = json.loads(raw_spot_content.decode('utf-8'))['items']
+
+            spotseeker = Spotseeker()
 
             # post item images
             logger.info(f"Uploading images for spot {spot['id']}")
@@ -245,35 +261,12 @@ class Spots:
                 full_url = f"{item_url}/{item_id}/image"
 
                 # read image
-                f = open(image, "rb")
-                image_bytes = f.read()
+                with open(image, "rb") as f:
+                    image_bytes = f.read()
 
                 # post new image
                 logger.info('Uploading image ' + full_url)
                 _ = spotseeker.post_item_image(item_id, image_bytes)
-
-            if resp.status_code not in (
-                requests.codes.ok,
-                requests.codes.created,
-            ):
-                location = None
-                reason = None
-                try:
-                    error = resp.json()
-                    location = list(error)[0]
-                    reason = error[location]
-                except ValueError:
-                    location = resp.status_code
-                    reason = resp.content
-
-                if isinstance(reason, bytes):
-                    reason = reason.decode()
-
-                failures.append({
-                    'name': spot['name'],
-                    'location': location,
-                    'reason': reason,
-                })
 
         if len(failures) != 0:
             errors = {}
