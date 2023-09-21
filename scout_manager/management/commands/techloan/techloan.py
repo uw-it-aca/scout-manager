@@ -37,7 +37,7 @@ class Techloan:
         },
     }, ignore_extra_keys=True)
 
-    _url = str(settings.SPOTSEEKER_TECHLOAN_URL)
+    _url = settings.SPOTSEEKER_TECHLOAN_URL
 
     def __init__(self, equipments):
         self.equipments = []
