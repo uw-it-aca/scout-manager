@@ -130,8 +130,9 @@ class SyncTechloanTest(TechloanTestCase):
         for equip in self.equip_with_img:
             equip['image_url'] = 'http://placehold.jp/150x150.png'
 
-        with open(os.path.join('scout_manager/resources/spotseeker/file/api/v1',
-                               f'spot?{urlencode(filter)}'), 'r') as f:
+        with open(os.path.join(
+                'scout_manager/resources/spotseeker/file/api/v1',
+                f'spot?{urlencode(filter)}'), 'r') as f:
             self.mock_spots = json.load(f)
 
         self.mock_spots2 = copy.deepcopy(self.mock_spots)
@@ -506,7 +507,8 @@ class SyncTechloanTest(TechloanTestCase):
     #             techloan = Command.get_techloan()
     #         with patch('scout_manager.management.commands.sync_techloan'
     #                    '.Command.get_spots',
-    #                    return_value=Spots(self.mock_spots_bad_cte_ids, None)):
+    #                    return_value=Spots(
+    #                       self.mock_spots_bad_cte_ids, None)):
     #             spots = Command.get_spots()
     #         with patch('scout_manager.management.commands.sync_techloan'
     #                    '.Command.sync_techloan_to_spots',

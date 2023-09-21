@@ -21,7 +21,8 @@ TEST_BUILDING_LIST = {
 # override building list for testing purposes
 scout_manager.dao.buildings.BUILDING_LIST = TEST_BUILDING_LIST
 
-DAO='Mock'
+DAO = 'Mock'
+
 
 @override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)
 class BuildingDaoTest(TestCase):

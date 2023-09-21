@@ -18,6 +18,7 @@ import json
 
 DAO = 'Mock'
 
+
 @override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)
 class ItemDaoTest(ScoutTest):
     def setUp(self):
@@ -48,7 +49,7 @@ class ItemDaoTest(ScoutTest):
         with patch.object(Spotseeker, "put_spot") as mock_put:
             create_item(test_data)
             mock_put.assert_called_once_with("1", json.dumps(json_data), etag)
-    
+
     def test_create_item_batch(self):
         test_list = [self.test_item, self.test_item]
         test_data = {"json": json.dumps(test_list)}

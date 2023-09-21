@@ -29,7 +29,7 @@ class ApiTest(ScoutTest):
         session.save()
 
         self.factory = RequestFactory()
-    
+
     def tearDown(self):
         self.user.delete()
 
