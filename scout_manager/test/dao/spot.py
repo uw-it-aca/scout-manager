@@ -88,7 +88,7 @@ class SpotDaoTest(ScoutTest):
         }
         json_data = _build_spot_json(form_data)
         with patch.object(Spotseeker, "put_spot") as mock_put:
-            # this doesn't actually change the capacity to 19 but calls put_spot
+            # this doesn't actually change capacity to 19 but calls put_spot
             update_spot(form_data, "1")
             etag = get_spot_by_id(1).etag
             mock_put.assert_called_once_with("1", json.dumps(json_data), etag)

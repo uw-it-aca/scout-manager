@@ -200,8 +200,11 @@ class Spots:
             headers = {"X-OAuth-User": os.getenv('OAUTH_USER'),
                        "If-Match": spot['etag']}
             spot_json = json.dumps(spot.raw())
-            if spot['id'] == 72: import pdb; pdb.set_trace()
-            resp = Spotseeker_DAO().putURL(f"/api/v1/spot/{spot['id']}", headers, spot_json)
+            resp = Spotseeker_DAO().putURL(
+                f"/api/v1/spot/{spot['id']}",
+                headers,
+                spot_json
+            )
             if resp.status != 200:
                 failures.append({
                     'name': spot['name'],
@@ -213,7 +216,8 @@ class Spots:
             raw_spot_content = Spotseeker_DAO().getURL(
                 f"/api/v1/spot/{spot['id']}"
             ).data
-            items_content = json.loads(raw_spot_content.decode('utf-8'))['items']
+            items_content = json.loads(
+                raw_spot_content.decode('utf-8'))['items']
 
             spotseeker = Spotseeker()
 
@@ -288,7 +292,7 @@ class Spots:
 
         # search spots with techloan filter
         """
-        TODO: this is a copy-paste of spotseeker.search_spots without 
+        TODO: this is a copy-paste of spotseeker.search_spots without
         converting to the Spot model. This should be fixed with a change to the
         Spot model in the future.
         """
