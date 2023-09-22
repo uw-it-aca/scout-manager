@@ -204,12 +204,6 @@ class SyncTechloanTest(TechloanTestCase):
     @patch('scout_manager.management.commands.techloan.spotseeker'
            '.Spots._url', 'http://techloan.test/api/v1/spot')
     def test_full_sync_techloan_no_imgs(self):
-        responses.add(
-            responses.POST,
-            'http://api.techloan.test/auth/token/',
-            status=200,
-            body=json.dumps({'access_token': 'dummy'}),
-        )
 
         responses.add(
             responses.GET,
