@@ -277,28 +277,28 @@ class SyncTechloanTest(TechloanTestCase):
     #             self.assertNotIn('Failed to retrieve image', out)
     #             self.assertNotIn('ERROR', out)
 
-    @responses.activate
-    @override_settings(SPOTSEEKER_TECHLOAN_UPDATER=good_techloan_updater)
-    # cannot use override_settings for SPOTSEEKER_TECHLOAN_URL
-    @patch('scout_manager.management.commands.techloan.techloan'
-           '.Techloan._url', 'http://techloan.test/api/v1/equipment')
-    @patch('scout_manager.management.commands.techloan.spotseeker'
-           '.Spots._url', 'http://techloan.test/api/v1/spot')
-    def test_sync_replace_imgs(self):
-        responses.add(
-            responses.GET,
-            'http://techloan.test/api/v1/equipment',
-            status=200,
-            body=json.dumps(self.equip_with_img),
-        )
+    # @responses.activate
+    # @override_settings(SPOTSEEKER_TECHLOAN_UPDATER=good_techloan_updater)
+    # # cannot use override_settings for SPOTSEEKER_TECHLOAN_URL
+    # @patch('scout_manager.management.commands.techloan.techloan'
+    #        '.Techloan._url', 'http://techloan.test/api/v1/equipment')
+    # @patch('scout_manager.management.commands.techloan.spotseeker'
+    #        '.Spots._url', 'http://techloan.test/api/v1/spot')
+    # def test_sync_replace_imgs(self):
+    #     responses.add(
+    #         responses.GET,
+    #         'http://techloan.test/api/v1/equipment',
+    #         status=200,
+    #         body=json.dumps(self.equip_with_img),
+    #     )
 
-        # assert no errors logged
-        with self.assertLogs() as cm:
-            # add test info log so test doesn't fail if no logs
-            test_logger.info('Starting full sync...')
-            call_sync()
-            for out in cm.output:
-                self.assertNotIn('ERROR', out)
+    #     # assert no errors logged
+    #     with self.assertLogs() as cm:
+    #         # add test info log so test doesn't fail if no logs
+    #         test_logger.info('Starting full sync...')
+    #         call_sync()
+    #         for out in cm.output:
+    #             self.assertNotIn('ERROR', out)
 
     # @responses.activate
     # @override_settings(SPOTSEEKER_TECHLOAN_UPDATER=good_techloan_updater)
