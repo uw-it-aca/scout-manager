@@ -66,7 +66,7 @@ class SpotDaoTest(ScoutTest):
 
     def test_get_id(self):
         url = "http://spotseeker-test-app1.cac.washington.edu/api/v1/spot/5213"
-        self.assertEqual(_get_spot_id_from_url(url), "5213")
+        self.assertEqual(_get_spot_id_from_url(url), 5213)
 
     # TODO: find a way to get put_spot to be called
     def test_create_spot(self):
@@ -88,6 +88,7 @@ class SpotDaoTest(ScoutTest):
         }
         json_data = _build_spot_json(form_data)
         with patch.object(Spotseeker, "put_spot") as mock_put:
+            mock_put.return_value = (None, None)
             # this doesn't actually change capacity to 19 but calls put_spot
             update_spot(form_data, "1")
             etag = get_spot_by_id(1).etag

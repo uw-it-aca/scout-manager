@@ -1,7 +1,6 @@
 # Copyright 2023 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from uw_spotseeker.dao import Spotseeker_DAO
 from uw_spotseeker import Spotseeker
 from restclients_core.exceptions import DataFailureException
 from scout_manager.dao.space import process_extended_info
@@ -78,26 +77,14 @@ def create_item(form_data):
         spot_client.put_spot(spot_id, json.dumps(json_data), etag)
 
 
-def _get_spot_json(spot_id):
-    url = "/api/v1/spot/%s" % spot_id
-    dao = Spotseeker_DAO()
-    resp = dao.getURL(url, {})
-
-    if resp.status != 200:
-        raise DataFailureException(url, resp.status, resp.data)
-    return json.loads(resp.data)
+def _get_spot_json(spot_id: int):
+    spot_client = Spotseeker()
+    return spot_client.get_spot_by_id_json(spot_id)
 
 
 def update_item(form_data, item_id, image=None):
     item_json = _build_item_json(form_data)
     spot_id = item_json.pop("spot_id")
-    # new_spot_id = item_json.pop('new_spot_id')
-
-    # Can we make item move work while preserving item id?
-    # if not new_spot_id == spot_id:
-    #     delete_item(item_id, spot_id)
-    #     create_item(form_data)
-    #     return
 
     spot_client = Spotseeker()
     json_data = _get_spot_json(spot_id)
