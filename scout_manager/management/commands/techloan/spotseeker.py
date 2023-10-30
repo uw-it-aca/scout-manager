@@ -197,15 +197,11 @@ class Spots:
 
             logger.info('Updating spot ' + str(spot['id']))
 
-            headers = {"X-OAuth-User": os.getenv('OAUTH_USER'),
-                       "If-Match": spot['etag']}
             spot_json = json.dumps(spot.raw())
-            resp = Spotseeker_DAO().putURL(
-                f"/api/v1/spot/{spot['id']}",
-                headers,
-                spot_json
-            )
-            if resp.status != 200:
+            try:
+                resp, _ = Spotseeker().put_spot(spot['id'], spot_json,
+                                                spot['etag'])
+            except DataFailureException as ex:
                 failures.append({
                     'name': spot['name'],
                     'location': f"PUT {'/api/v1/spot/' + str(spot['id'])}",
@@ -213,13 +209,8 @@ class Spots:
                 })
                 continue
 
-            raw_spot_content = Spotseeker_DAO().getURL(
-                f"/api/v1/spot/{spot['id']}"
-            ).data
-            items_content = json.loads(
-                raw_spot_content.decode('utf-8'))['items']
-
             spotseeker = Spotseeker()
+            items_content = spotseeker.get_spot_by_id_json(spot['id'])['items']
 
             # post item images
             logger.info(f"Uploading images for spot {spot['id']}")
@@ -291,18 +282,6 @@ class Spots:
         logger.info("Get spots from spotseeker_server")
 
         # search spots with techloan filter
-        """
-        TODO: this is a copy-paste of spotseeker.search_spots without
-        converting to the Spot model. This should be fixed with a change to the
-        Spot model in the future.
-        """
-        url = '/api/v1/spot?' + urlencode(cls._filter)
-        response = Spotseeker_DAO().getURL(url)
-        status = response.status
-        content = response.data
-
-        if status != 200:
-            raise DataFailureException(url, status, content)
-        spots_json = json.loads(content.decode('utf-8'))
+        spots_json = Spotseeker().get_filtered_spots_json(cls._filter)
 
         return cls(spots_json, config)
