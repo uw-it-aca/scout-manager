@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from uw_spotseeker import Spotseeker
+from uw_spotseeker.models import Spot
 from restclients_core.exceptions import DataFailureException
 from scout.dao.space import (
     add_cuisine_names,
@@ -10,9 +11,11 @@ from scout.dao.space import (
     add_additional_info,
     add_study_info,
     add_tech_info,
+    get_spots_by_filter,
 )
 from scout.dao.item import add_item_info
 from scout_manager.dao.groups import add_group
+from typing import Optional
 import json
 import re
 
@@ -88,12 +91,21 @@ def _get_all_spots(filters):
     return res
 
 
-def get_spot_by_id(spot_id):
+def get_spot_by_id(spot_id) -> Spot:
     spot_client = Spotseeker()
     res = spot_client.get_spot_by_id(int(spot_id))
     spot = process_extended_info(res)
     spot = add_item_info(spot)
     return spot
+
+
+def get_spot_id_by_lid(lid: int) -> Optional[int]:
+    spots = get_spots_by_filter([("extended_info:library_id", lid)])
+
+    if len(spots) == 0:
+        return None
+
+    return spots[0].spot_id
 
 
 def process_extended_info(spot):
@@ -149,7 +161,7 @@ def get_spot_hours_by_day(spot):
     return hours_objects
 
 
-def create_spot(form_data):
+def create_spot(form_data: dict) -> int:
     json_data = _build_spot_json(form_data)
     spot_client = Spotseeker()
     resp = spot_client.post_spot(json.dumps(json_data))
@@ -165,12 +177,12 @@ def create_spot(form_data):
     return spot_id
 
 
-def _get_spot_id_from_url(spot_url):
+def _get_spot_id_from_url(spot_url: str) -> int:
     match = re.match(".*?([0-9]+)$", spot_url)
-    return match.group(1)
+    return int(match.group(1))
 
 
-def update_spot(form_data, spot_id, image=None):
+def update_spot(form_data: dict, spot_id, image=None) -> None:
     json_data = _build_spot_json(form_data)
     spot_client = Spotseeker()
     # this is really hacky, but the etag seems to keep getting reset
@@ -187,11 +199,14 @@ def update_spot(form_data, spot_id, image=None):
         and form_data["file"] != "undefined"
         and form_data["file"] != "null"
     ):
-        spot_client.post_image(spot_id, form_data["file"])
-    spot_client.put_spot(spot_id, json.dumps(json_data), etag)
+        _ = spot_client.post_image(spot_id, form_data["file"])
+
+    _, _ = spot_client.put_spot(spot_id, json.dumps(json_data), etag)
+
+    return None
 
 
-def _build_spot_json(form_data):
+def _build_spot_json(form_data: dict):
     json_data = json.loads(form_data["json"])
 
     # handles case where single box is checked doesn't return a list
