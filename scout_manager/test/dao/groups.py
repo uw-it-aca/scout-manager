@@ -1,4 +1,4 @@
-# Copyright 2022 UW-IT, University of Washington
+# Copyright 2024 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 """
@@ -11,6 +11,7 @@ from scout_manager.models import Group, GroupMembership, Person
 from uw_gws import GWS
 
 DAO = 'Mock'
+
 
 @override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)
 class GroupDaoTest(TestCase):
@@ -35,13 +36,13 @@ class GroupDaoTest(TestCase):
         self.assertEqual(len(after), len(before))
         for person in before:
             self.assertIn(person, after)
-    
+
     def test_is_provisioned_user(self):
         Person.objects.create(id=2, netid="javerage")
         self.assertTrue(groups_dao.is_provisioned_user("javerage"))
         self.assertFalse(groups_dao.is_provisioned_user("javerage1"))
         Person.objects.get(id=2).delete()
-    
+
     @override_settings(MANAGER_SUPERUSER_GROUP='u_acadev_tester')
     def test_is_superuser(self):
         gws = GWS()

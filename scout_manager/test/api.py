@@ -1,4 +1,4 @@
-# Copyright 2022 UW-IT, University of Washington
+# Copyright 2024 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 from scout_manager.test import ScoutTest
@@ -29,7 +29,7 @@ class ApiTest(ScoutTest):
         session.save()
 
         self.factory = RequestFactory()
-    
+
     def tearDown(self):
         self.user.delete()
 

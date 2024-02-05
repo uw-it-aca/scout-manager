@@ -1,0 +1,153 @@
+[
+    {
+        "id": 28,
+        "uri": "/api/v1/spot/28",
+        "etag": "4b4630339c3bcfcf850148e9db9825744b213845",
+        "name": "Tech Loan Office",
+        "type": [
+            "checkout"
+        ],
+        "location": {
+            "latitude": 47.65347700,
+            "longitude": -122.30638200,
+            "height_from_sea_level": null,
+            "building_name": "Kane Hall (KNE)",
+            "floor": "",
+            "room_number": ""
+        },
+        "capacity": null,
+        "display_access_restrictions": "",
+        "images": [],
+        "available_hours": {
+            "monday": [],
+            "tuesday": [],
+            "wednesday": [],
+            "thursday": [],
+            "friday": [],
+            "saturday": [],
+            "sunday": []
+        },
+        "organization": "",
+        "manager": "",
+        "extended_info": {
+            "app_type": "tech",
+            "has_cte_techloan": "true",
+            "cte_techloan_id": "12345",
+            "campus": "seattle"
+        },
+        "items": [
+            {
+                "id": 129,
+                "name": "Apple Macbook Pro",
+                "category": "Placeholder Category",
+                "subcategory": "Laptop Computer",
+                "extended_info": {
+                    "i_quantity": "10",
+                    "i_model": "Macbook Pro",
+                    "i_brand": "Apple",
+                    "i_check_out_period": "7",
+                    "i_is_active": "true",
+                    "i_image_url": "http://placehold.jp/250x250.png",
+                    "cte_type_id": "54321"
+                },
+                "images": [
+                    {
+                        "id": 124,
+                        "url": "/api/v1/item/129/image/124",
+                        "content-type": "image/jpeg",
+                        "creation_date": "2022-05-25T22:06:59.895213+00:00",
+                        "upload_user": "",
+                        "upload_application": "",
+                        "thumbnail_root": "/api/v1/item/129/image/124/thumb",
+                        "description": "Macbook Pro",
+                        "display_index": 0,
+                        "width": 293,
+                        "height": 172
+                    }
+                ]
+            },
+            {
+                "id": 130,
+                "name": "Dell Latitude E5440",
+                "category": "Placeholder Category",
+                "subcategory": "Laptop Computer",
+                "extended_info": {
+                    "i_quantity": "12",
+                    "i_model": "Latitude E5440",
+                    "i_brand": "Dell",
+                    "i_check_out_period": "14",
+                    "i_is_active": "true",
+                    "cte_type_id": "54321"
+                },
+                "images": []
+            },
+            {
+                "id": 131,
+                "name": "Fender Passport P-150",
+                "category": "Placeholder Category",
+                "subcategory": "Portable Audio System",
+                "extended_info": {
+                    "i_quantity": "5",
+                    "i_model": "Passport P-150",
+                    "i_brand": "Fender",
+                    "i_check_out_period": "7",
+                    "i_is_active": "true",
+                    "cte_type_id": "54321"
+                },
+                "images": []
+            }
+        ],
+        "last_modified": "2022-05-25T22:07:00.172197+00:00",
+        "external_id": null
+    },
+    {
+        "id": 1234,
+        "uri": "/api/v1/spot/1234",
+        "name": "Test Spot",
+        "type": [
+            "checkout"
+        ],
+        "etag": "12345",
+        "location": {
+            "latitude": 47.65347700,
+            "longitude": -122.30638200,
+            "height_from_sea_level": null,
+            "building_name": "Kane Hall (KNE)",
+            "floor": "",
+            "room_number": ""
+        },
+        "capacity": 24,
+        "display_access_restrictions": "",
+        "images": [],
+        "available_hours": {
+            "monday": [],
+            "tuesday": [],
+            "wednesday": [],
+            "thursday": [],
+            "friday": [],
+            "saturday": [],
+            "sunday": []
+        },
+        "organization": "",
+        "manager": "",
+        "extended_info": {
+            "cte_techloan_id": "00000"
+        },
+        "items": [
+            {
+                "id": 5000,
+                "name": "Testing Item",
+                "category": "Test Category",
+                "subcategory": "Test Subcategory",
+                "extended_info": {
+                    "i_quantity": "10",
+                    "i_model": "Test Model",
+                    "cte_type_id": "98765"
+                },
+                "images": []
+            }
+        ],
+        "last_modified": "2022-05-25T22:07:00.172197+00:00",
+        "external_id": null
+    }
+]
