@@ -29,6 +29,8 @@ setup(
         "setuptools",
         "UW-Django-SAML2",
         "UW-RestClients-GWS~=2.3",
+        "lxml==4.9.4",
+        "xmlsec==1.3.13"
     ],
     license="Apache License, Version 2.0",  # example license
     description="A Django app for managing spaces in spotseeker_server.",
