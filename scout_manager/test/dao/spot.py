@@ -1,4 +1,4 @@
-# Copyright 2022 UW-IT, University of Washington
+# Copyright 2024 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 """
@@ -66,7 +66,7 @@ class SpotDaoTest(ScoutTest):
 
     def test_get_id(self):
         url = "http://spotseeker-test-app1.cac.washington.edu/api/v1/spot/5213"
-        self.assertEqual(_get_spot_id_from_url(url), "5213")
+        self.assertEqual(_get_spot_id_from_url(url), 5213)
 
     # TODO: find a way to get put_spot to be called
     def test_create_spot(self):
@@ -88,7 +88,8 @@ class SpotDaoTest(ScoutTest):
         }
         json_data = _build_spot_json(form_data)
         with patch.object(Spotseeker, "put_spot") as mock_put:
-            # this doesn't actually change the capacity to 19 but calls put_spot
+            mock_put.return_value = (None, None)
+            # this doesn't actually change capacity to 19 but calls put_spot
             update_spot(form_data, "1")
             etag = get_spot_by_id(1).etag
             mock_put.assert_called_once_with("1", json.dumps(json_data), etag)

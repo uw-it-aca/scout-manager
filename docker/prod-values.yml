@@ -76,6 +76,8 @@ environmentVariables:
     value: https://manager.scout.uw.edu/saml2
   - name: WEBSERVER
     value: nginx
+  - name: SPOTSEEKER_OAUTH_SCOPE
+    value: read write
 externalSecrets:
   enabled: true
   secrets:
@@ -146,14 +148,10 @@ environmentVariablesSecrets:
     name: SCOUT_MANAGER_ACCESS_GROUP
     secretName: manager.scout.uw.edu-secrets
     secretKey: scout-manager-access-group
-  spotseekerOauthKey:
-    name: SPOTSEEKER_OAUTH_KEY
+  spotseekerOauthCredential:
+    name: SPOTSEEKER_OAUTH_CREDENTIAL
     secretName: manager.scout.uw.edu-secrets
-    secretKey: spotseeker-oauth-key
-  spotseekerOauthSecret:
-    name: SPOTSEEKER_OAUTH_SECRET
-    secretName: manager.scout.uw.edu-secrets
-    secretKey: spotseeker-oauth-secret
+    secretKey: spotseeker-oauth-credential
   userserviceAdminGroup:
     name: USERSERVICE_ADMIN_GROUP
     secretName: manager.scout.uw.edu-secrets

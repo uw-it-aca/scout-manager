@@ -1,4 +1,4 @@
-# Copyright 2022 UW-IT, University of Washington
+# Copyright 2024 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
@@ -14,7 +14,8 @@ spotseeker_paths = Spotseeker_DAO().service_mock_paths()
 @override_settings(RESTCLIENTS_SPOTSEEKER_DAO_CLASS=DAO)
 class ScoutTest(TestCase):
     def _get_manager_mock_path(self):
-        manager_path = abspath(os.path.join(dirname(dirname(__file__)), "resources"))
+        manager_path = abspath(
+            os.path.join(dirname(dirname(__file__)), "resources"))
         paths = spotseeker_paths + [manager_path]
         return paths
 
