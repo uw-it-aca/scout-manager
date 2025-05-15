@@ -102,6 +102,8 @@ externalSecrets:
           property: spotseeker-oauth-key
         - name: spotseeker-oauth-secret
           property: spotseeker-oauth-secret
+        - name: spotseeker-techloan-url
+          property: spotseeker-techloan-url
         - name: userservice-admin-group
           property: userservice-admin-group
     - name: test.manager.scout.uw.edu-sql-secrets
