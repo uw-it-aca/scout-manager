@@ -96,6 +96,8 @@ externalSecrets:
           property: oauth-user
         - name: scout-manager-access-group
           property: scout-manager-access-group
+        - name: spotseeker-oauth-credential
+          property: spotseeker-oauth-credential
         - name: spotseeker-oauth-key
           property: spotseeker-oauth-key
         - name: spotseeker-oauth-secret
