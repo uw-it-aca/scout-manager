@@ -1,4 +1,4 @@
-# Copyright 2022 UW-IT, University of Washington
+# Copyright 2025 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 BUILDING_LIST = {
@@ -33,7 +33,6 @@ BUILDING_LIST = {
     "Kane Hall (KNE)": {"campus": "seattle"},
     "Lander Hall (LAH)": {"campus": "seattle"},
     "Life Sciences Building (LSB)": {"campus": "seattle"},
-    "Madrona Hall (MDR)": {"campus": "seattle"},
     "Magnuson Health Sciences Center A (HSA)": {"campus": "seattle"},
     "Magnuson Health Sciences Center C (HSC)": {"campus": "seattle"},
     "Magnuson Health Sciences Center D (HSD)": {"campus": "seattle"},
@@ -51,6 +50,7 @@ BUILDING_LIST = {
     "Music Building (MUS)": {"campus": "seattle"},
     "Oak Hall (OAK)": {"campus": "seattle"},
     "Odegaard Undergraduate Library (OUGL)": {"campus": "seattle"},
+    "Oliver Hall (WLW)": {"campus": "seattle"},
     "Paccar Hall (PCAR)": {"campus": "seattle"},
     "Padelford Hall (PDL)": {"campus": "seattle"},
     "Parrington Hall (PAR)": {"campus": "seattle"},
@@ -65,6 +65,7 @@ BUILDING_LIST = {
     },
     "South Campus Center (SOCC)": {"campus": "seattle"},
     "South Campus Center": {"campus": "seattle"},
+    "Spratlen Hall (MDR)": {"campus": "seattle"},
     "Surgery And Treatment Pavilion (UMSP)": {"campus": "seattle"},
     "Suzzallo Library (SUZ)": {"campus": "seattle"},
     "UW Medical Center": {"campus": "seattle"},
@@ -77,7 +78,6 @@ BUILDING_LIST = {
     "William H. Foege Genome Sciences (GNOM)": {"campus": "seattle"},
     "William H. Foege Bioengineering (BIOE)": {"campus": "seattle"},
     "William H. Gates Hall (LAW)": {"campus": "seattle"},
-    "Willow Hall (WLW)": {"campus": "seattle"},
     "Brotman Building (BFB)": {"campus": "south_lake_union"},
     "Activities and Recreation Center": {"campus": "bothell"},
     "Beardslee Building (UWBB)": {"campus": "bothell"},

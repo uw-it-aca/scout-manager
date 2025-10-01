@@ -1,4 +1,4 @@
-# Copyright 2021 UW-IT, University of Washington
+# Copyright 2025 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 import os
@@ -17,7 +17,7 @@ setup(
     install_requires=[
         "beautifulsoup4",
         "django~=2.2",
-        "django-compressor",
+        "django-compressor==2.4.1",
         "django-pyscss",
         "django-user-agents",
         "Django-SupportTools",
