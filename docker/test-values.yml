@@ -43,6 +43,8 @@ database:
   secretName: test.manager.scout.uw.edu-sql-secrets
 repo: scout-manager
 instance: test
+namespace:
+  enabled: true
 image:
   repository: gcr.io/uwit-mci-axdd/scout-manager
   tag: IMAGE_TAG
