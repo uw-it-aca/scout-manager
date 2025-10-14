@@ -44,7 +44,7 @@ database:
 repo: scout-manager
 instance: test
 namespace:
-  enabled: true
+  enabled: false
 image:
   repository: gcr.io/uwit-mci-axdd/scout-manager
   tag: IMAGE_TAG
