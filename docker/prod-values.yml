@@ -43,6 +43,8 @@ database:
 repo: scout-manager
 instance: prod
 image:
+namespace:
+  enabled: true
   repository: gcr.io/uwit-mci-axdd/scout-manager
   tag: IMAGE_TAG
 memcached:
